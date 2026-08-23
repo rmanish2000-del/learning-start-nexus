@@ -881,6 +881,45 @@ export type Database = {
         }
         Relationships: []
       }
+      parent_learner_links: {
+        Row: {
+          created_at: string
+          id: string
+          learner_id: string
+          org_id: string
+          parent_user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          learner_id: string
+          org_id: string
+          parent_user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          learner_id?: string
+          org_id?: string
+          parent_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parent_learner_links_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_learner_links_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -1159,7 +1198,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "educator" | "student" | "reviewer"
+      app_role: "admin" | "educator" | "student" | "reviewer" | "parent"
       learner_status: "active" | "needs_attention" | "paused"
     }
     CompositeTypes: {
@@ -1288,7 +1327,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "educator", "student", "reviewer"],
+      app_role: ["admin", "educator", "student", "reviewer", "parent"],
       learner_status: ["active", "needs_attention", "paused"],
     },
   },
