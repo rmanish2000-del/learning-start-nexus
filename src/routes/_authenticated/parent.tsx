@@ -105,12 +105,12 @@ function ParentPortal() {
       const [mastery, outcomes, sessions, interventions] = await Promise.all([
         supabase
           .from("mastery_history")
-          .select("mastery_score, recorded_at")
+          .select("score, recorded_on")
           .eq("learner_id", learner!.id)
-          .order("recorded_at", { ascending: true }),
+          .order("recorded_on", { ascending: true }),
         supabase
           .from("learner_outcomes")
-          .select("id, status, mastery_lift, baseline_score, reassessment_score, created_at")
+          .select("id, status, mastery_lift, baseline_score, post_score, created_at")
           .eq("learner_id", learner!.id)
           .order("created_at", { ascending: false }),
         supabase
@@ -296,8 +296,8 @@ function ParentPortal() {
                         <div className="h-56">
                           <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={progress.mastery.map((m) => ({
-                              date: format(new Date(m.recorded_at), "MMM d"),
-                              mastery: m.mastery_score,
+                              date: format(new Date(m.recorded_on), "MMM d"),
+                              mastery: m.score,
                             }))}>
                               <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
                               <XAxis dataKey="date" tick={{ fontSize: 11 }} />
@@ -366,8 +366,8 @@ function ParentPortal() {
                             {progress.outcomes.map((o) => (
                               <div key={o.id} className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/[0.03] p-3">
                                 <p className="text-sm font-medium">
-                                  Outcome: {o.baseline_score ?? "—"}% → {o.reassessment_score ?? "pending"}
-                                  {o.reassessment_score !== null ? "%" : ""}
+                                  Outcome: {o.baseline_score ?? "—"}% →{" "}
+                                  {o.post_score !== null ? `${o.post_score}%` : "pending"}
                                 </p>
                                 {o.mastery_lift !== null && (
                                   <Badge variant="secondary">+{o.mastery_lift} lift</Badge>
@@ -402,11 +402,10 @@ interface ConsentCardProps {
         hasConsent: boolean;
         history: {
           id: string;
-          parent_name: string;
-          parent_email: string;
-          consent_date: string;
-          consent_version: string;
-          created_at: string;
+          parentName: string;
+          parentEmail: string;
+          consentVersion: string;
+          recordedAt: string;
         }[];
       }
     | undefined;
@@ -496,10 +495,10 @@ function ConsentCard({
                 {consent.history.map((h) => (
                   <div key={h.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5 text-xs">
                     <span>
-                      {h.parent_name} · {h.parent_email}
+                      {h.parentName} · {h.parentEmail}
                     </span>
                     <span className="text-muted-foreground">
-                      {h.consent_version} · {format(new Date(h.created_at), "MMM d, yyyy")}
+                      {h.consentVersion} · {format(new Date(h.recordedAt), "MMM d, yyyy")}
                     </span>
                   </div>
                 ))}
