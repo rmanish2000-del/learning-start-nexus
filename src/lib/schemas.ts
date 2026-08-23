@@ -87,3 +87,28 @@ export const updateInterventionSchema = z.object({
   status: z.enum(["planned", "in_progress", "completed", "cancelled"]),
   notes: z.string().trim().max(500).optional(),
 });
+
+// Sprint 4: AI tutor
+export const launchTutorSchema = z.object({
+  interventionId: z.string().uuid(),
+});
+
+export const tutorSessionIdSchema = z.object({
+  sessionId: z.string().uuid(),
+});
+
+export const tutorActionSchema = z.object({
+  sessionId: z.string().uuid(),
+  action: z.enum([
+    "explain",
+    "hint",
+    "example",
+    "reframe",
+    "try_question",
+    "try_answer",
+    "socratic",
+    "practice_question",
+    "practice_answer",
+  ]),
+  studentText: z.string().trim().max(500).optional(),
+});
