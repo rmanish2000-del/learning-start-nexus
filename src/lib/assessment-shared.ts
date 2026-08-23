@@ -14,8 +14,8 @@ export type AssessmentItem = {
   kind: ItemKind;
   prompt: string;
   options: string[] | null;
-  correct_answer?: string; // stripped for students before submission
-  explanation?: string | null;
+  correct_answer: string; // stripped for students before submission (see stripAnswers)
+  explanation: string | null;
   sort_order?: number;
   points?: number;
 };
