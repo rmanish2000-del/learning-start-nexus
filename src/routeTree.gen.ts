@@ -14,12 +14,15 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAssessmentAuditRouteImport } from './routes/_authenticated/assessment-audit'
+import { Route as AuthenticatedAssessmentProofRouteImport } from './routes/_authenticated/assessment-proof'
 import { Route as AuthenticatedAssessmentVerificationRouteImport } from './routes/_authenticated/assessment-verification'
 import { Route as AuthenticatedAssessmentsRouteImport } from './routes/_authenticated/assessments'
 import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenticated/assignments'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
+import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
@@ -50,6 +53,18 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAssessmentAuditRoute =
+  AuthenticatedAssessmentAuditRouteImport.update({
+    id: '/assessment-audit',
+    path: '/assessment-audit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAssessmentProofRoute =
+  AuthenticatedAssessmentProofRouteImport.update({
+    id: '/assessment-proof',
+    path: '/assessment-proof',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAssessmentVerificationRoute =
   AuthenticatedAssessmentVerificationRouteImport.update({
     id: '/assessment-verification',
@@ -83,6 +98,12 @@ const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   path: '/learners',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRlsVerificationRoute =
+  AuthenticatedRlsVerificationRouteImport.update({
+    id: '/rls-verification',
+    path: '/rls-verification',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -118,12 +139,15 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/assessment-audit': typeof AuthenticatedAssessmentAuditRoute
+  '/assessment-proof': typeof AuthenticatedAssessmentProofRoute
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
   '/assignments': typeof AuthenticatedAssignmentsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/verification': typeof AuthenticatedVerificationRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -135,12 +159,15 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/assessment-audit': typeof AuthenticatedAssessmentAuditRoute
+  '/assessment-proof': typeof AuthenticatedAssessmentProofRoute
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
   '/assignments': typeof AuthenticatedAssignmentsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/verification': typeof AuthenticatedVerificationRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -154,12 +181,15 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/assessment-audit': typeof AuthenticatedAssessmentAuditRoute
+  '/_authenticated/assessment-proof': typeof AuthenticatedAssessmentProofRoute
   '/_authenticated/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/_authenticated/assessments': typeof AuthenticatedAssessmentsRoute
   '/_authenticated/assignments': typeof AuthenticatedAssignmentsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/verification': typeof AuthenticatedVerificationRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -173,12 +203,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/sitemap.xml'
     | '/admin'
+    | '/assessment-audit'
+    | '/assessment-proof'
     | '/assessment-verification'
     | '/assessments'
     | '/assignments'
     | '/dashboard'
     | '/home'
     | '/learners'
+    | '/rls-verification'
     | '/settings'
     | '/verification'
     | '/assessment/$assessmentId'
@@ -190,12 +223,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/sitemap.xml'
     | '/admin'
+    | '/assessment-audit'
+    | '/assessment-proof'
     | '/assessment-verification'
     | '/assessments'
     | '/assignments'
     | '/dashboard'
     | '/home'
     | '/learners'
+    | '/rls-verification'
     | '/settings'
     | '/verification'
     | '/assessment/$assessmentId'
@@ -208,12 +244,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/sitemap.xml'
     | '/_authenticated/admin'
+    | '/_authenticated/assessment-audit'
+    | '/_authenticated/assessment-proof'
     | '/_authenticated/assessment-verification'
     | '/_authenticated/assessments'
     | '/_authenticated/assignments'
     | '/_authenticated/dashboard'
     | '/_authenticated/home'
     | '/_authenticated/learners'
+    | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
     | '/_authenticated/verification'
     | '/_authenticated/assessment/$assessmentId'
@@ -265,6 +304,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/assessment-audit': {
+      id: '/_authenticated/assessment-audit'
+      path: '/assessment-audit'
+      fullPath: '/assessment-audit'
+      preLoaderRoute: typeof AuthenticatedAssessmentAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assessment-proof': {
+      id: '/_authenticated/assessment-proof'
+      path: '/assessment-proof'
+      fullPath: '/assessment-proof'
+      preLoaderRoute: typeof AuthenticatedAssessmentProofRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/assessment-verification': {
       id: '/_authenticated/assessment-verification'
       path: '/assessment-verification'
@@ -305,6 +358,13 @@ declare module '@tanstack/react-router' {
       path: '/learners'
       fullPath: '/learners'
       preLoaderRoute: typeof AuthenticatedLearnersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/rls-verification': {
+      id: '/_authenticated/rls-verification'
+      path: '/rls-verification'
+      fullPath: '/rls-verification'
+      preLoaderRoute: typeof AuthenticatedRlsVerificationRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings': {
@@ -360,12 +420,15 @@ const AuthenticatedLearnersRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedAssessmentAuditRoute: typeof AuthenticatedAssessmentAuditRoute
+  AuthenticatedAssessmentProofRoute: typeof AuthenticatedAssessmentProofRoute
   AuthenticatedAssessmentVerificationRoute: typeof AuthenticatedAssessmentVerificationRoute
   AuthenticatedAssessmentsRoute: typeof AuthenticatedAssessmentsRoute
   AuthenticatedAssignmentsRoute: typeof AuthenticatedAssignmentsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
+  AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedVerificationRoute: typeof AuthenticatedVerificationRoute
   AuthenticatedAssessmentAssessmentIdRoute: typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -374,6 +437,8 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedAssessmentAuditRoute: AuthenticatedAssessmentAuditRoute,
+  AuthenticatedAssessmentProofRoute: AuthenticatedAssessmentProofRoute,
   AuthenticatedAssessmentVerificationRoute:
     AuthenticatedAssessmentVerificationRoute,
   AuthenticatedAssessmentsRoute: AuthenticatedAssessmentsRoute,
@@ -381,6 +446,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
+  AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedVerificationRoute: AuthenticatedVerificationRoute,
   AuthenticatedAssessmentAssessmentIdRoute:
