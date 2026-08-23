@@ -401,7 +401,7 @@ function StudentHomePage() {
       )}
 
       {(assessmentSessions ?? []).length > 0 && (
-        <Card>
+        <Card data-tour="student-assessments">
           <CardHeader>
             <CardTitle className="text-base">My assessments</CardTitle>
             <CardDescription>Diagnostics assigned by your educator — progress saves automatically.</CardDescription>
@@ -442,9 +442,9 @@ function StudentHomePage() {
         </Card>
       )}
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">My mastery</CardTitle>
+        <Card data-tour="student-mastery">
+          <CardHeader>
+            <CardTitle className="text-base">My mastery</CardTitle>
           <CardDescription>How your score has grown</CardDescription>
         </CardHeader>
         <CardContent>
@@ -548,6 +548,7 @@ function StudentHomePage() {
           </CardContent>
         </Card>
       </div>
+      <GuidedTour tourId="student-home" steps={STUDENT_TOUR} />
     </div>
   );
 }
