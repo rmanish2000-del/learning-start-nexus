@@ -197,6 +197,48 @@ function StudentHomePage() {
         </Card>
       </div>
 
+      {(assessmentSessions ?? []).length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">My assessments</CardTitle>
+            <CardDescription>Diagnostics assigned by your educator — progress saves automatically.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {(assessmentSessions ?? []).map((s) => (
+              <div key={s.id} className="flex items-center gap-3 rounded-lg border p-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <ClipboardList className="h-4 w-4 text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">{s.assessments?.title ?? "Assessment"}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {s.status === "submitted"
+                      ? `Scored ${s.score_pct}%`
+                      : s.status === "in_progress"
+                        ? "In progress — resume anytime"
+                        : "Not started"}
+                    {s.due ? ` · due ${s.due}` : ""}
+                    {s.assessments?.time_limit_minutes ? ` · ${s.assessments.time_limit_minutes} min` : ""}
+                  </p>
+                </div>
+                <Button asChild size="sm" variant={s.status === "submitted" ? "outline" : "default"}>
+                  <Link to="/session/$sessionId" params={{ sessionId: s.id }}>
+                    {s.status === "submitted" ? (
+                      "Review"
+                    ) : (
+                      <>
+                        <Play className="h-3.5 w-3.5" />
+                        {s.status === "in_progress" ? "Resume" : "Start"}
+                      </>
+                    )}
+                  </Link>
+                </Button>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
+
       <Card>
         <CardHeader>
           <CardTitle className="text-base">My mastery</CardTitle>
