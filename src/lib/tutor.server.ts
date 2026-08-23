@@ -120,7 +120,12 @@ function systemPrompt(ctx: TutorContext): string {
 function fallbackReplyText(
   content: ConceptContent,
   action: TutorAction,
-  opts: { hintLevel: number; studentText?: string; activeItem?: PracticeItem | null; correct?: boolean | null },
+  opts: {
+    hintLevel: number;
+    studentText?: string | undefined;
+    activeItem?: PracticeItem | null | undefined;
+    correct?: boolean | null | undefined;
+  },
 ): string {
   switch (action) {
     case "explain":
@@ -131,7 +136,7 @@ function fallbackReplyText(
       return content.example;
     case "hint": {
       const level = Math.min(Math.max(opts.hintLevel, 1), 3);
-      return `Hint ${level} of 3: ${content.hints[level - 1]}`;
+      return `Hint ${level} of 3: ${content.hints[level - 1] ?? content.hints[0]}`;
     }
     case "socratic": {
       const idx = Math.min(Math.max(opts.hintLevel - 1, 0), content.socratic.length - 1);
@@ -286,6 +291,7 @@ function activePracticeItem(
   const allItems = [content.tryQuestion, ...content.practice];
   for (let i = rows.length - 1; i >= 0; i--) {
     const row = rows[i];
+    if (!row) continue;
     if (row.kind === "try_answer" || row.kind === "practice_answer") return null; // last question already answered
     if (row.kind === "try_question" || row.kind === "practice_question") {
       const match = allItems.find((item) => row.response_text.includes(item.question));
@@ -330,7 +336,8 @@ export async function performTutorAction(
 
   // Practice questions cycle deterministically through the concept's set.
   const practiceCount = interactions.filter((r) => r.kind === "practice_question").length;
-  const nextPractice = content.practice[practiceCount % content.practice.length];
+  const nextPractice =
+    content.practice[practiceCount % content.practice.length] ?? content.tryQuestion;
 
   let activeItem: PracticeItem | null = null;
   let correct: boolean | null = null;
