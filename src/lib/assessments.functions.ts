@@ -15,6 +15,7 @@ import {
   stripAnswers,
 } from "./assessments.server";
 import { applyGapDetection } from "./interventions.server";
+import { finalizeOutcomesForSession } from "./outcomes.server";
 
 // Staff: create a diagnostic from item-bank items (all writes via caller's
 // RLS-scoped client — policies enforce org isolation and staff role).
@@ -223,12 +224,27 @@ export const submitAssessment = createServerFn({ method: "POST" })
       breakdown: scoring.breakdown,
     });
 
+    // Sprint 5: if this submission is a reassessment tied to an intervention,
+    // finalize the pending outcome — mastery lift, confidence, and status are
+    // computed deterministically from the stored rows.
+    const outcomes = await finalizeOutcomesForSession(supabaseAdmin, {
+      orgId: session.org_id,
+      learnerId: session.learner_id,
+      sessionId: session.id,
+      interventionId: session.intervention_id ?? null,
+      scorePct: scoring.scorePct,
+      totalCount: scoring.totalCount,
+      breakdown: scoring.breakdown,
+      assessmentTitle: session.assessments.title,
+    });
+
     return {
       scorePct: scoring.scorePct,
       correctCount: scoring.correctCount,
       totalCount: scoring.totalCount,
       breakdown: scoring.breakdown,
       gapSummary,
+      outcomes,
     };
   });
 
