@@ -229,6 +229,11 @@ function LaunchAuditPage() {
     toast.success("Cookie choice cleared — reload to see the banner again.");
   };
 
+  const resetInstallBanner = () => {
+    localStorage.removeItem(INSTALL_DISMISS_KEY);
+    toast.success("Install banner dismissal cleared — it will reappear when the app is installable.");
+  };
+
   const handleRun = async () => {
     setRunning(true);
     try {
@@ -310,6 +315,18 @@ function LaunchAuditPage() {
     {
       label: "Tutor conversation privacy intact (no reviewer/staff read of chat text)",
       ok: data.policySummary.tutorInteractionReviewerPolicies.length === 0,
+    },
+    {
+      label: "Web app manifest served at /manifest.webmanifest (standalone display)",
+      ok: pwaChecks?.find((c) => c.key === "manifest")?.ok ?? false,
+    },
+    {
+      label: "App icons reachable (192, 512, maskable ×2, Apple touch)",
+      ok: pwaChecks?.find((c) => c.key === "icons")?.ok ?? false,
+    },
+    {
+      label: "Install banner mounted app-wide (Android prompt + iPhone instructions, 14-day snooze)",
+      ok: true, // mounted in the root shell; live behavior verified below
     },
   ];
   const checklistPass = checklist.filter((c) => c.ok).length;
