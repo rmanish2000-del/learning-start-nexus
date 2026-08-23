@@ -76,7 +76,7 @@ function ProbeCard({ p }: { p: LaunchProbe }) {
 }
 
 function LaunchAuditPage() {
-  const { role } = authRoute.useLoaderData();
+  const { role } = authRoute.useRouteContext();
   const fetchAudit = useServerFn(getLaunchAudit);
   const runProbes = useServerFn(runLaunchAuditProbes);
 
