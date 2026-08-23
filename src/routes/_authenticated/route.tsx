@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 import { supabase } from "@/integrations/supabase/client";
-import { isReviewerAllowedPath, type AppRole } from "@/lib/roles";
+import { isReviewerAllowedPath, roleHome, type AppRole } from "@/lib/roles";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { AppShell } from "@/components/app-shell";
 
@@ -27,6 +27,15 @@ export const Route = createFileRoute("/_authenticated")({
     // route to the launch audit (their home).
     if (role === "reviewer" && !isReviewerAllowedPath(location.pathname)) {
       throw redirect({ to: "/launch-audit" });
+    }
+
+    // Sprint 5B: parents get the read-only portal only; everyone else is
+    // bounced away from it.
+    if (role === "parent" && location.pathname !== "/parent") {
+      throw redirect({ to: "/parent" });
+    }
+    if (role !== "parent" && location.pathname === "/parent") {
+      throw redirect({ to: roleHome(role) });
     }
 
     return {

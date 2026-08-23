@@ -2,8 +2,11 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link, Outlet, redirect, useChildMatches } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Plus, Search } from "lucide-react";
+import { Plus, Search, Users } from "lucide-react";
 import { toast } from "sonner";
+
+import { ContextHelp } from "@/components/context-help";
+import { EmptyState } from "@/components/empty-state";
 
 import { supabase } from "@/integrations/supabase/client";
 import { createLearner } from "@/lib/learners.functions";
@@ -149,12 +152,14 @@ function LearnersPage() {
           </p>
         </div>
 
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button>
-              <Plus className="h-4 w-4" /> Add learner
-            </Button>
-          </DialogTrigger>
+        <div className="flex items-center gap-2">
+          <ContextHelp page="/learners" />
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button>
+                <Plus className="h-4 w-4" /> Add learner
+              </Button>
+            </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Add learner</DialogTitle>
@@ -220,9 +225,21 @@ function LearnersPage() {
               </DialogFooter>
             </form>
           </DialogContent>
-        </Dialog>
+          </Dialog>
+        </div>
       </div>
 
+      {!isPending && (learners ?? []).length === 0 ? (
+        <EmptyState
+          icon={Users}
+          title="No learners yet"
+          description="Add your first learner to create their profile and student sign-in (handle + PIN). Once they're in, you can assign assessments, approve interventions, and track outcomes."
+          hint="This is step 1 of your getting-started checklist on the dashboard."
+          actionLabel="Add your first learner"
+          onAction={() => setDialogOpen(true)}
+        />
+      ) : (
+        <>
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative min-w-56 flex-1">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -324,6 +341,8 @@ function LearnersPage() {
           </TableBody>
         </Table>
       </div>
+        </>
+      )}
     </div>
   );
 }

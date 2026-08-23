@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -8,7 +9,39 @@ import type { Database } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ContextHelp } from "@/components/context-help";
+import { GuidedTour, type TourStep } from "@/components/guided-tour";
+import { OnboardingChecklist } from "@/components/onboarding-checklist";
+import type { OnboardingStep } from "@/lib/onboarding";
 import { getOrgOutcomeSummary } from "@/lib/outcomes.functions";
+
+const EDUCATOR_TOUR: TourStep[] = [
+  {
+    selector: '[data-tour="educator-checklist"]',
+    title: "Your getting-started checklist",
+    body: "Four steps to a working classroom: add a learner, assign an assessment, approve an intervention, then review outcomes. It checks itself off as you go.",
+  },
+  {
+    selector: '[data-tour="educator-stats"]',
+    title: "Roster health at a glance",
+    body: "Live counts, average mastery and 30-day lift across your learners. Anything below 60% lands in Needs attention.",
+  },
+  {
+    selector: '[data-tour="educator-outcomes"]',
+    title: "Intervention outcomes",
+    body: "Proof the loop works: diagnostic vs reassessment results for every completed intervention, with average mastery lift.",
+  },
+  {
+    selector: '[data-tour="educator-roster"]',
+    title: "Your roster",
+    body: "Sorted by lowest mastery first so you always know who needs you today. Click a learner for their full profile.",
+  },
+  {
+    selector: '[data-tour="sidebar-nav"]',
+    title: "Everything else lives here",
+    body: "Learners, Assessments, Interventions and the audit centers are in the sidebar. That's the tour — you're ready.",
+  },
+];
 
 type Learner = Database["public"]["Tables"]["learners"]["Row"];
 type Evidence = Database["public"]["Tables"]["learner_evidence"]["Row"];
@@ -43,10 +76,33 @@ export function liftText(lift: number) {
 function DashboardPage() {
   const { role, profile } = Route.useRouteContext();
   const fetchOutcomeSummary = useServerFn(getOrgOutcomeSummary);
+  const outcomesRef = useRef<HTMLDivElement>(null);
 
   const { data: outcomeSummary } = useQuery({
     queryKey: ["outcome-summary"],
     queryFn: () => fetchOutcomeSummary(),
+  });
+
+  // Onboarding step signals: has the educator assigned anything yet?
+  const { data: sessionCount } = useQuery({
+    queryKey: ["session-count"],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from("assessment_sessions")
+        .select("id", { count: "exact", head: true });
+      if (error) throw error;
+      return count ?? 0;
+    },
+  });
+  const { data: interventionCount } = useQuery({
+    queryKey: ["intervention-count"],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from("interventions")
+        .select("id", { count: "exact", head: true });
+      if (error) throw error;
+      return count ?? 0;
+    },
   });
 
   const { data: learners, isPending } = useQuery({
@@ -88,20 +144,72 @@ function DashboardPage() {
     { label: "Needs attention", value: String(attention.length), icon: TriangleAlert, hint: "Below 60% or flagged" },
   ];
 
+  const onboardingSteps: OnboardingStep[] = [
+    {
+      key: "add-learner",
+      title: "Add a learner",
+      description: "Create a learner profile with their handle + PIN sign-in.",
+      done: total > 0,
+      to: "/learners",
+      ctaLabel: "Open learners",
+    },
+    {
+      key: "assign-assessment",
+      title: "Assign an assessment",
+      description: "Send a diagnostic — the student sees it on their home screen instantly.",
+      done: (sessionCount ?? 0) > 0,
+      to: "/assessments",
+      ctaLabel: "Open assessments",
+    },
+    {
+      key: "approve-intervention",
+      title: "Approve an intervention",
+      description: "Scores under 70% open a gap with a recommendation — approving it unlocks the AI Tutor.",
+      done: (interventionCount ?? 0) > 0,
+      to: "/interventions",
+      ctaLabel: "Open interventions",
+    },
+    {
+      key: "view-outcomes",
+      title: "View outcomes",
+      description: "After reassessment, see before/after mastery lift for every intervention.",
+      done: (outcomeSummary?.total ?? 0) > 0,
+      action: "scroll-outcomes",
+      ctaLabel: "View outcomes",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-6xl space-y-6">
-      <div className="space-y-1">
-        <h2 className="text-2xl font-semibold tracking-tight">
-          {role === "admin" ? "Center overview" : `Welcome back, ${firstName}`}
-        </h2>
-        <p className="text-sm text-muted-foreground">
-          {role === "admin"
-            ? "Organization-wide roster health for Brightpath Learning."
-            : "Here's how your roster is doing today."}
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            {role === "admin" ? "Center overview" : `Welcome back, ${firstName}`}
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            {role === "admin"
+              ? "Organization-wide roster health for Brightpath Learning."
+              : "Here's how your roster is doing today."}
+          </p>
+        </div>
+        <ContextHelp page="/dashboard" />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div data-tour="educator-checklist">
+        <OnboardingChecklist
+          role="educator"
+          title="Getting started as an educator"
+          description="Four steps to a working classroom — the checklist completes itself from live data."
+          steps={onboardingSteps}
+          tourId="educator-dashboard"
+          onAction={(action) => {
+            if (action === "scroll-outcomes")
+              outcomesRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        />
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-tour="educator-stats">
         {stats.map((stat) => (
           <Card key={stat.label}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -124,7 +232,8 @@ function DashboardPage() {
         ))}
       </div>
 
-      <Card>
+      <Card data-tour="educator-outcomes">
+        <div ref={outcomesRef} className="scroll-mt-20" />
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle className="text-base">Intervention outcomes</CardTitle>
@@ -169,7 +278,7 @@ function DashboardPage() {
       </Card>
 
       <div className="grid gap-6 lg:grid-cols-5">
-        <Card className="lg:col-span-3">
+        <Card className="lg:col-span-3" data-tour="educator-roster">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
               <CardTitle className="text-base">Roster</CardTitle>
@@ -247,6 +356,7 @@ function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+      <GuidedTour tourId="educator-dashboard" steps={EDUCATOR_TOUR} />
     </div>
   );
 }

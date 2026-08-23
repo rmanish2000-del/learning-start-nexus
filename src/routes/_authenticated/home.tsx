@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -10,12 +11,49 @@ import { getMyOutcomes } from "@/lib/outcomes.functions";
 import { OUTCOME_STATUS_LABELS, type OutcomeStatus } from "@/lib/outcome-shared";
 import { launchTutorSession } from "@/lib/tutor.functions";
 import { getLearnerConsent } from "@/lib/consent.functions";
+import {
+  getOnboardingFlag,
+  setOnboardingFlag,
+  stepFlagKey,
+  type OnboardingStep,
+} from "@/lib/onboarding";
+import { ContextHelp } from "@/components/context-help";
+import { GuidedTour, type TourStep } from "@/components/guided-tour";
+import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const STUDENT_TOUR: TourStep[] = [
+  {
+    selector: '[data-tour="student-checklist"]',
+    title: "Your getting-started checklist",
+    body: "Three steps: take your diagnostic, view your plan, then practice with the AI Tutor. It checks itself off as you go.",
+  },
+  {
+    selector: '[data-tour="student-assessments"]',
+    title: "Assessments from your educator",
+    body: "Diagnostics appear here the moment your educator assigns them. Progress saves automatically — resume anytime.",
+  },
+  {
+    selector: '[data-tour="student-plan"]',
+    title: "Your focus plan",
+    body: "Extra practice planned just for you. Each item can unlock an AI Tutor session once a parent or guardian has consented.",
+  },
+  {
+    selector: '[data-tour="student-mastery"]',
+    title: "Watch your mastery grow",
+    body: "Every completed assessment feeds this chart. Reassessments after interventions show your before/after lift.",
+  },
+  {
+    selector: '[data-tour="sidebar-nav"]',
+    title: "That's everything",
+    body: "Settings and verification pages live in the sidebar. You're all set — happy learning!",
+  },
+];
 
 export const Route = createFileRoute("/_authenticated/home")({
   beforeLoad: ({ context }) => {
@@ -151,6 +189,62 @@ function StudentHomePage() {
   const chartData = (history ?? []).map((h) => ({ date: h.recorded_on.slice(5), score: h.score }));
   const nextPlanItems = (planItems ?? []).filter((p) => p.status !== "completed").slice(0, 3);
 
+  // Sprint 5B: student onboarding checklist (diagnostic → plan → AI tutor).
+  const planRef = useRef<HTMLDivElement>(null);
+  const [, forceRender] = useState(0);
+  const submittedSession = (assessmentSessions ?? []).some((s) => s.status === "submitted");
+  const pendingSession = (assessmentSessions ?? []).find((s) => s.status !== "submitted");
+  const firstFocus = (focusPlan ?? [])[0];
+
+  const studentSteps: OnboardingStep[] = [
+    {
+      key: "diagnostic",
+      title: "Take your diagnostic",
+      description: "A short check-up from your educator — progress saves automatically, resume anytime.",
+      done: submittedSession,
+      ...(pendingSession
+        ? { action: "take-diagnostic", ctaLabel: pendingSession.status === "in_progress" ? "Resume" : "Start" }
+        : submittedSession
+          ? {}
+          : { blockedHint: "Your educator will assign one soon" }),
+    },
+    {
+      key: "plan",
+      title: "View your plan",
+      description: "Your focus plan shows exactly what to practice next.",
+      done: getOnboardingFlag(stepFlagKey("student", "plan")),
+      ...(firstFocus
+        ? { action: "scroll-plan", ctaLabel: "View plan" }
+        : { blockedHint: "Your educator is building it" }),
+    },
+    {
+      key: "tutor",
+      title: "Practice with the AI Tutor",
+      description: "A Socratic companion that explains, hints and practices with you — inside your approved plan.",
+      done: getOnboardingFlag(stepFlagKey("student", "tutor")),
+      ...(tutorConsentMissing
+        ? { blockedHint: "Needs guardian consent" }
+        : firstFocus
+          ? { action: "launch-tutor", ctaLabel: "Open AI Tutor" }
+          : { blockedHint: "Waiting for your educator" }),
+    },
+  ];
+
+  const handleStudentAction = (action: string) => {
+    if (action === "take-diagnostic" && pendingSession) {
+      void navigate({ to: "/session/$sessionId", params: { sessionId: pendingSession.id } });
+    }
+    if (action === "scroll-plan") {
+      setOnboardingFlag(stepFlagKey("student", "plan"));
+      forceRender((n) => n + 1);
+      planRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    if (action === "launch-tutor" && firstFocus) {
+      setOnboardingFlag(stepFlagKey("student", "tutor"));
+      launchTutorMutation.mutate(firstFocus.id);
+    }
+  };
+
   if (learnerPending) {
     return (
       <div className="mx-auto max-w-4xl space-y-4">
@@ -163,12 +257,28 @@ function StudentHomePage() {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
-      <div className="space-y-1">
-        <h2 className="text-2xl font-semibold tracking-tight">Hi {firstName}</h2>
-        <p className="text-sm text-muted-foreground">
-          {learner ? `Grade ${learner.grade} · ${learner.subject}` : "Welcome to EduOS"}
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-semibold tracking-tight">Hi {firstName}</h2>
+          <p className="text-sm text-muted-foreground">
+            {learner ? `Grade ${learner.grade} · ${learner.subject}` : "Welcome to EduOS"}
+          </p>
+        </div>
+        <ContextHelp page="/home" />
       </div>
+
+      {learner && (
+        <div data-tour="student-checklist">
+          <OnboardingChecklist
+            role="student"
+            title="Getting started"
+            description="Three steps and you're fully set up on EduOS."
+            steps={studentSteps}
+            tourId="student-home"
+            onAction={handleStudentAction}
+          />
+        </div>
+      )}
 
       {!learner && (
         <Card>
@@ -291,7 +401,7 @@ function StudentHomePage() {
       )}
 
       {(assessmentSessions ?? []).length > 0 && (
-        <Card>
+        <Card data-tour="student-assessments">
           <CardHeader>
             <CardTitle className="text-base">My assessments</CardTitle>
             <CardDescription>Diagnostics assigned by your educator — progress saves automatically.</CardDescription>
@@ -332,9 +442,9 @@ function StudentHomePage() {
         </Card>
       )}
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">My mastery</CardTitle>
+        <Card data-tour="student-mastery">
+          <CardHeader>
+            <CardTitle className="text-base">My mastery</CardTitle>
           <CardDescription>How your score has grown</CardDescription>
         </CardHeader>
         <CardContent>
@@ -343,7 +453,8 @@ function StudentHomePage() {
       </Card>
 
       {(focusPlan ?? []).length > 0 && (
-        <Card>
+        <Card data-tour="student-plan">
+          <div ref={planRef} className="scroll-mt-20" />
           <CardHeader>
             <CardTitle className="text-base">Focus plan</CardTitle>
             <CardDescription>
@@ -438,6 +549,7 @@ function StudentHomePage() {
           </CardContent>
         </Card>
       </div>
+      <GuidedTour tourId="student-home" steps={STUDENT_TOUR} />
     </div>
   );
 }

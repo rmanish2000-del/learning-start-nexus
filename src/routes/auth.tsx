@@ -248,6 +248,10 @@ function AuthPage() {
               Reviewer — <span className="font-mono">reviewer@eduos.global</span> /{" "}
               <span className="font-mono">Review#2026</span> (read-only, audit pages)
             </p>
+            <p>
+              Parent — <span className="font-mono">meera.patel@eduos.dev</span> /{" "}
+              <span className="font-mono">Parent#2026</span> (Aarav's guardian, read-only portal)
+            </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
