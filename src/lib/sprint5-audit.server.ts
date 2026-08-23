@@ -512,37 +512,49 @@ export async function runSprint5Probes(
         dbError: null,
       });
     } else {
-      const [{ data: pending }, { data: educator }] = await Promise.all([
+      const [{ data: outcome }, { data: educator }] = await Promise.all([
         outcomesTable(admin)
-          .select("id, subtopic, baseline_score, reassessment_session_id")
+          .select("id, subtopic, baseline_score, post_score, mastery_lift, status, reassessment_session_id")
           .eq("learner_id", aarav.id)
-          .eq("status", "pending")
+          .order("created_at", { ascending: false })
+          .limit(1)
           .maybeSingle(),
         aarav.educator_id
           ? admin.from("profiles").select("full_name").eq("id", aarav.educator_id).maybeSingle()
           : Promise.resolve({ data: null }),
       ]);
+      const o = outcome as unknown as {
+        subtopic: string;
+        baseline_score: number;
+        post_score: number | null;
+        mastery_lift: number | null;
+        status: string;
+        reassessment_session_id: string | null;
+      } | null;
       let reassessmentReady = false;
-      if (pending?.reassessment_session_id) {
+      if (o?.status === "pending" && o.reassessment_session_id) {
         const { data: session } = await sessionsTable(admin)
           .select("status")
-          .eq("id", pending.reassessment_session_id)
+          .eq("id", o.reassessment_session_id)
           .maybeSingle();
         reassessmentReady = session?.status === "assigned" || session?.status === "in_progress";
       }
+      const completed = !!o && o.status !== "pending" && o.mastery_lift !== null;
       const sarah = educator?.full_name === "Sarah Whitfield";
       probes.push({
         key: "demo_story_ready",
         name: "MVP demo story ready (Sarah -> Aarav)",
         expectation:
-          "Aarav's educator is Sarah Whitfield; a pending outcome exists with an assigned reassessment.",
-        pass: !!pending && reassessmentReady && sarah,
+          "Aarav's educator is Sarah Whitfield; his outcome chain is either mid-flight (pending outcome with an assigned reassessment) or complete (finalized with a mastery lift).",
+        pass: sarah && (completed || (!!o && o.status === "pending" && reassessmentReady)),
         skipped: false,
         detail:
           `Educator: ${educator?.full_name ?? "none"}${sarah ? "" : " (expected Sarah Whitfield)"}. ` +
-          (pending
-            ? `Pending outcome on ${pending.subtopic} (baseline ${pending.baseline_score}%); reassessment session ${reassessmentReady ? "assigned and ready" : "NOT ready"}.`
-            : "No pending outcome for Aarav."),
+          (!o
+            ? "No outcome for Aarav."
+            : completed
+              ? `Story complete: ${o.subtopic} baseline ${o.baseline_score}% -> post ${o.post_score}% = ${o.mastery_lift !== null && o.mastery_lift >= 0 ? "+" : ""}${o.mastery_lift} points (${o.status}).`
+              : `Pending outcome on ${o.subtopic} (baseline ${o.baseline_score}%); reassessment session ${reassessmentReady ? "assigned and ready" : "NOT ready"}.`),
         dbError: null,
       });
     }
