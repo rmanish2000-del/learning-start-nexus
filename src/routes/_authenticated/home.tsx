@@ -103,10 +103,18 @@ function StudentHomePage() {
   });
 
   const fetchSessions = useServerFn(getMyAssessmentSessions);
+  const fetchOutcomes = useServerFn(getMyOutcomes);
   const { data: assessmentSessions } = useQuery({
     queryKey: ["my-assessment-sessions"],
     queryFn: () => fetchSessions(),
   });
+
+  // Sprint 5: the student's own before/after outcome view.
+  const { data: outcomes } = useQuery({
+    queryKey: ["my-outcomes"],
+    queryFn: () => fetchOutcomes(),
+  });
+  const completedOutcomes = (outcomes ?? []).filter((o) => o.status !== "pending");
 
   // Sprint 3: accepted interventions are the student's focus plan. Gaps and
   // recommendations stay staff-only — students never see them.
