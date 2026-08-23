@@ -212,11 +212,23 @@ export const submitAssessment = createServerFn({ method: "POST" })
       recorded_on: today,
     });
 
+    // Sprint 3: deterministic gap detection + recommendation generation run
+    // server-side on every submission (idempotent — safe to re-run).
+    const gapSummary = await applyGapDetection(supabaseAdmin, {
+      orgId: session.org_id,
+      learnerId: session.learner_id,
+      sessionId: session.id,
+      subject: "Mathematics",
+      topic: "Fractions",
+      breakdown: scoring.breakdown,
+    });
+
     return {
       scorePct: scoring.scorePct,
       correctCount: scoring.correctCount,
       totalCount: scoring.totalCount,
       breakdown: scoring.breakdown,
+      gapSummary,
     };
   });
 
