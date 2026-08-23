@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
 import {
   Building2,
@@ -6,6 +7,7 @@ import {
   FlaskConical,
   KeyRound,
   Lock,
+  Server,
   ShieldCheck,
   UserRound,
   Users,
@@ -23,6 +25,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { supabase } from "@/integrations/supabase/client";
+import { probeRouteProtection } from "@/lib/verification.functions";
 import { ROLE_LABELS } from "@/lib/roles";
 
 export const Route = createFileRoute("/_authenticated/verification")({
@@ -99,7 +102,7 @@ const SECURITY_CHECKLIST = [
   "Row Level Security enabled on all 9 tables (organizations, profiles, user_roles, learners, mastery_history, learner_assessments, learner_evidence, learning_plan_items, learning_items)",
   "Every learner-scoped policy filters by org_id = private.current_org_id() — cross-organization reads return zero rows",
   "Role checks use private.has_role() — a security-definer function in the non-API-exposed private schema",
-  "All app routes sit under the _authenticated gate; anonymous users are redirected to /auth before any data loads",
+  "Server middleware answers anonymous document requests to protected routes with 302 → /auth before any HTML/JS ships; the client-side beforeLoad gate re-checks the session with getUser()",
   "Admin/educator/student route guards redirect cross-role access (see access matrix above)",
   "Privileged server functions (create user, create learner, reset PIN, assign educator) re-verify the caller's role server-side",
   "Students authenticate with handle + 6-digit PIN mapped to synthetic emails — no inbox required",
@@ -124,6 +127,15 @@ function AccessCell({ value }: { value: string }) {
 function VerificationPage() {
   const { user, role, profile } = authRoute.useRouteContext();
   const { orgs, learners, myLearner } = useVerificationData(user.id, profile?.org_id ?? null, role);
+
+  // Live anonymous probe against THIS deployment: the server fetches each
+  // protected route with no cookies, exactly like an incognito visitor.
+  const runProbe = useServerFn(probeRouteProtection);
+  const probe = useQuery({
+    queryKey: ["route-protection-probe"],
+    queryFn: () => runProbe(),
+    staleTime: 30_000,
+  });
 
   const visibleLearners = learners.data ?? [];
   const assignedToMe = visibleLearners.filter((l) => l.educator_id === user.id);
