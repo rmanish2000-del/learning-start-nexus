@@ -28,6 +28,7 @@ import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/h
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
 import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenticated/launch-audit'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
+import { Route as AuthenticatedParentRouteImport } from './routes/_authenticated/parent'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
@@ -140,6 +141,11 @@ const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   path: '/learners',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedParentRoute = AuthenticatedParentRouteImport.update({
+  id: '/parent',
+  path: '/parent',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedRlsVerificationRoute =
   AuthenticatedRlsVerificationRouteImport.update({
     id: '/rls-verification',
@@ -219,6 +225,7 @@ export interface FileRoutesByFullPath {
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/parent': typeof AuthenticatedParentRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -249,6 +256,7 @@ export interface FileRoutesByTo {
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/parent': typeof AuthenticatedParentRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -281,6 +289,7 @@ export interface FileRoutesById {
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
   '/_authenticated/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/_authenticated/parent': typeof AuthenticatedParentRoute
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -313,6 +322,7 @@ export interface FileRouteTypes {
     | '/interventions'
     | '/launch-audit'
     | '/learners'
+    | '/parent'
     | '/rls-verification'
     | '/settings'
     | '/sprint-3-audit'
@@ -343,6 +353,7 @@ export interface FileRouteTypes {
     | '/interventions'
     | '/launch-audit'
     | '/learners'
+    | '/parent'
     | '/rls-verification'
     | '/settings'
     | '/sprint-3-audit'
@@ -374,6 +385,7 @@ export interface FileRouteTypes {
     | '/_authenticated/interventions'
     | '/_authenticated/launch-audit'
     | '/_authenticated/learners'
+    | '/_authenticated/parent'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
     | '/_authenticated/sprint-3-audit'
@@ -532,6 +544,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLearnersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/parent': {
+      id: '/_authenticated/parent'
+      path: '/parent'
+      fullPath: '/parent'
+      preLoaderRoute: typeof AuthenticatedParentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/rls-verification': {
       id: '/_authenticated/rls-verification'
       path: '/rls-verification'
@@ -630,6 +649,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
   AuthenticatedLaunchAuditRoute: typeof AuthenticatedLaunchAuditRoute
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
+  AuthenticatedParentRoute: typeof AuthenticatedParentRoute
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
@@ -654,6 +674,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
   AuthenticatedLaunchAuditRoute: AuthenticatedLaunchAuditRoute,
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
+  AuthenticatedParentRoute: AuthenticatedParentRoute,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,
