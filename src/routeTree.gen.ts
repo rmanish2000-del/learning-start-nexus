@@ -21,6 +21,7 @@ import { Route as AuthenticatedAssessmentsRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenticated/assignments'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -93,6 +94,12 @@ const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedInterventionsRoute =
+  AuthenticatedInterventionsRouteImport.update({
+    id: '/interventions',
+    path: '/interventions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   id: '/learners',
   path: '/learners',
@@ -146,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/assignments': typeof AuthenticatedAssignmentsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/interventions': typeof AuthenticatedInterventionsRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -166,6 +174,7 @@ export interface FileRoutesByTo {
   '/assignments': typeof AuthenticatedAssignmentsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/interventions': typeof AuthenticatedInterventionsRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -188,6 +197,7 @@ export interface FileRoutesById {
   '/_authenticated/assignments': typeof AuthenticatedAssignmentsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/assignments'
     | '/dashboard'
     | '/home'
+    | '/interventions'
     | '/learners'
     | '/rls-verification'
     | '/settings'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/assignments'
     | '/dashboard'
     | '/home'
+    | '/interventions'
     | '/learners'
     | '/rls-verification'
     | '/settings'
@@ -251,6 +263,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assignments'
     | '/_authenticated/dashboard'
     | '/_authenticated/home'
+    | '/_authenticated/interventions'
     | '/_authenticated/learners'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
@@ -353,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/interventions': {
+      id: '/_authenticated/interventions'
+      path: '/interventions'
+      fullPath: '/interventions'
+      preLoaderRoute: typeof AuthenticatedInterventionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/learners': {
       id: '/_authenticated/learners'
       path: '/learners'
@@ -427,6 +447,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssignmentsRoute: typeof AuthenticatedAssignmentsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
@@ -445,6 +466,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAssignmentsRoute: AuthenticatedAssignmentsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
