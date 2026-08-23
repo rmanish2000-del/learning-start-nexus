@@ -446,6 +446,48 @@ function LaunchAuditPage() {
         </CardContent>
       </Card>
 
+      {/* PWA installability */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Smartphone className="h-4.5 w-4.5 text-primary" /> PWA installability
+          </CardTitle>
+          <CardDescription>
+            Manifest-only home-screen support — no service worker, no caching, no offline mode.
+            Verified live from this browser just now.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {(pwaChecks ?? []).map((c) => (
+            <div key={c.key} className="flex items-start gap-2 rounded-lg border px-3 py-2 text-sm">
+              {c.ok ? (
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+              ) : (
+                <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+              )}
+              <div>
+                <p className="font-medium">{c.label}</p>
+                <p className="text-xs text-muted-foreground">{c.detail}</p>
+              </div>
+            </div>
+          ))}
+          {pwaChecks === null ? (
+            <p className="text-sm text-muted-foreground">Checking manifest and icons…</p>
+          ) : null}
+          <p className="text-xs text-muted-foreground">
+            The install banner is mounted app-wide and appears only when EduOS is installable:
+            Android/desktop Chrome gets the native prompt; iPhone/iPad gets Share → Add to Home
+            Screen instructions. "Later" snoozes it for 14 days; installing hides it permanently.
+            Dismissal is stored under <Mono>{INSTALL_DISMISS_KEY}</Mono>.
+          </p>
+          <div>
+            <Button variant="outline" size="sm" onClick={resetInstallBanner}>
+              Reset install banner
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Reviewer role */}
       <Card>
         <CardHeader>
