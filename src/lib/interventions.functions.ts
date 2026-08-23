@@ -3,6 +3,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import type { Database } from "@/integrations/supabase/types";
 import { requireAnyRole } from "./admin.server";
 import {
   acceptRecommendationSchema,
