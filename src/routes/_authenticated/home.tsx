@@ -189,6 +189,62 @@ function StudentHomePage() {
   const chartData = (history ?? []).map((h) => ({ date: h.recorded_on.slice(5), score: h.score }));
   const nextPlanItems = (planItems ?? []).filter((p) => p.status !== "completed").slice(0, 3);
 
+  // Sprint 5B: student onboarding checklist (diagnostic → plan → AI tutor).
+  const planRef = useRef<HTMLDivElement>(null);
+  const [, forceRender] = useState(0);
+  const submittedSession = (assessmentSessions ?? []).some((s) => s.status === "submitted");
+  const pendingSession = (assessmentSessions ?? []).find((s) => s.status !== "submitted");
+  const firstFocus = (focusPlan ?? [])[0];
+
+  const studentSteps: OnboardingStep[] = [
+    {
+      key: "diagnostic",
+      title: "Take your diagnostic",
+      description: "A short check-up from your educator — progress saves automatically, resume anytime.",
+      done: submittedSession,
+      ...(pendingSession
+        ? { action: "take-diagnostic", ctaLabel: pendingSession.status === "in_progress" ? "Resume" : "Start" }
+        : submittedSession
+          ? {}
+          : { blockedHint: "Your educator will assign one soon" }),
+    },
+    {
+      key: "plan",
+      title: "View your plan",
+      description: "Your focus plan shows exactly what to practice next.",
+      done: getOnboardingFlag(stepFlagKey("student", "plan")),
+      ...(firstFocus
+        ? { action: "scroll-plan", ctaLabel: "View plan" }
+        : { blockedHint: "Your educator is building it" }),
+    },
+    {
+      key: "tutor",
+      title: "Practice with the AI Tutor",
+      description: "A Socratic companion that explains, hints and practices with you — inside your approved plan.",
+      done: getOnboardingFlag(stepFlagKey("student", "tutor")),
+      ...(tutorConsentMissing
+        ? { blockedHint: "Needs guardian consent" }
+        : firstFocus
+          ? { action: "launch-tutor", ctaLabel: "Open AI Tutor" }
+          : { blockedHint: "Waiting for your educator" }),
+    },
+  ];
+
+  const handleStudentAction = (action: string) => {
+    if (action === "take-diagnostic" && pendingSession) {
+      void navigate({ to: "/session/$sessionId", params: { sessionId: pendingSession.id } });
+    }
+    if (action === "scroll-plan") {
+      setOnboardingFlag(stepFlagKey("student", "plan"));
+      forceRender((n) => n + 1);
+      planRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    if (action === "launch-tutor" && firstFocus) {
+      setOnboardingFlag(stepFlagKey("student", "tutor"));
+      launchTutorMutation.mutate(firstFocus.id);
+    }
+  };
+
   if (learnerPending) {
     return (
       <div className="mx-auto max-w-4xl space-y-4">
@@ -201,12 +257,28 @@ function StudentHomePage() {
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
-      <div className="space-y-1">
-        <h2 className="text-2xl font-semibold tracking-tight">Hi {firstName}</h2>
-        <p className="text-sm text-muted-foreground">
-          {learner ? `Grade ${learner.grade} · ${learner.subject}` : "Welcome to EduOS"}
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="space-y-1">
+          <h2 className="text-2xl font-semibold tracking-tight">Hi {firstName}</h2>
+          <p className="text-sm text-muted-foreground">
+            {learner ? `Grade ${learner.grade} · ${learner.subject}` : "Welcome to EduOS"}
+          </p>
+        </div>
+        <ContextHelp page="/home" />
       </div>
+
+      {learner && (
+        <div data-tour="student-checklist">
+          <OnboardingChecklist
+            role="student"
+            title="Getting started"
+            description="Three steps and you're fully set up on EduOS."
+            steps={studentSteps}
+            tourId="student-home"
+            onAction={handleStudentAction}
+          />
+        </div>
+      )}
 
       {!learner && (
         <Card>
