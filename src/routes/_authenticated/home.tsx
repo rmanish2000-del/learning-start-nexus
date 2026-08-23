@@ -453,7 +453,8 @@ function StudentHomePage() {
       </Card>
 
       {(focusPlan ?? []).length > 0 && (
-        <Card>
+        <Card data-tour="student-plan">
+          <div ref={planRef} className="scroll-mt-20" />
           <CardHeader>
             <CardTitle className="text-base">Focus plan</CardTitle>
             <CardDescription>
