@@ -1,8 +1,11 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, BookOpen, CircleCheck, CircleDashed, Loader, Sparkles } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { ArrowRight, BookOpen, CircleCheck, CircleDashed, ClipboardList, Loader, Play, Sparkles } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
+import { getMyAssessmentSessions } from "@/lib/assessments.functions";
+import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -85,6 +88,12 @@ function StudentHomePage() {
       if (error) throw error;
       return data;
     },
+  });
+
+  const fetchSessions = useServerFn(getMyAssessmentSessions);
+  const { data: assessmentSessions } = useQuery({
+    queryKey: ["my-assessment-sessions"],
+    queryFn: () => fetchSessions(),
   });
 
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
