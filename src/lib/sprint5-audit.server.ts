@@ -490,8 +490,10 @@ export async function runSprint5Probes(
     }
   }
 
-  // P7 — Demo story readiness: Aarav's pending outcome with an assigned
-  // reassessment, owned by educator Sarah Whitfield.
+  // P7 — Demo story readiness: Aarav's outcome chain, owned by educator
+  // Sarah Whitfield. Passes when the story is mid-flight (pending outcome
+  // with an assigned reassessment) or complete (finalized outcome with a
+  // mastery lift).
   {
     const { data: aarav } = await admin
       .from("learners")
