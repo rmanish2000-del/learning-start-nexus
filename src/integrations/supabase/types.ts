@@ -253,6 +253,89 @@ export type Database = {
           },
         ]
       }
+      interventions: {
+        Row: {
+          activity: string
+          completed_at: string | null
+          created_at: string
+          educator_id: string | null
+          gap_id: string | null
+          id: string
+          learner_id: string
+          notes: string | null
+          org_id: string
+          recommendation_id: string | null
+          started_at: string | null
+          status: string
+          target_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          activity: string
+          completed_at?: string | null
+          created_at?: string
+          educator_id?: string | null
+          gap_id?: string | null
+          id?: string
+          learner_id: string
+          notes?: string | null
+          org_id: string
+          recommendation_id?: string | null
+          started_at?: string | null
+          status?: string
+          target_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          activity?: string
+          completed_at?: string | null
+          created_at?: string
+          educator_id?: string | null
+          gap_id?: string | null
+          id?: string
+          learner_id?: string
+          notes?: string | null
+          org_id?: string
+          recommendation_id?: string | null
+          started_at?: string | null
+          status?: string
+          target_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interventions_gap_id_fkey"
+            columns: ["gap_id"]
+            isOneToOne: false
+            referencedRelation: "learning_gaps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interventions_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interventions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interventions_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learner_assessments: {
         Row: {
           created_at: string
@@ -387,6 +470,95 @@ export type Database = {
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learning_gaps: {
+        Row: {
+          created_at: string
+          detected_at: string
+          first_detected_at: string
+          gap_score_pct: number
+          id: string
+          items_correct: number
+          items_total: number
+          learner_id: string
+          org_id: string
+          resolved_session_id: string | null
+          session_id: string | null
+          severity: string
+          status: string
+          subject: string
+          subtopic: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          detected_at?: string
+          first_detected_at?: string
+          gap_score_pct: number
+          id?: string
+          items_correct: number
+          items_total: number
+          learner_id: string
+          org_id: string
+          resolved_session_id?: string | null
+          session_id?: string | null
+          severity: string
+          status?: string
+          subject: string
+          subtopic: string
+          topic: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          detected_at?: string
+          first_detected_at?: string
+          gap_score_pct?: number
+          id?: string
+          items_correct?: number
+          items_total?: number
+          learner_id?: string
+          org_id?: string
+          resolved_session_id?: string | null
+          session_id?: string | null
+          severity?: string
+          status?: string
+          subject?: string
+          subtopic?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_gaps_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_gaps_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_gaps_resolved_session_id_fkey"
+            columns: ["resolved_session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_gaps_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
             referencedColumns: ["id"]
           },
         ]
@@ -564,6 +736,73 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "profiles_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recommendations: {
+        Row: {
+          activity: string
+          created_at: string
+          gap_id: string
+          id: string
+          learner_id: string
+          org_id: string
+          priority: number
+          rationale: string
+          rule_id: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          activity: string
+          created_at?: string
+          gap_id: string
+          id?: string
+          learner_id: string
+          org_id: string
+          priority: number
+          rationale: string
+          rule_id: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          activity?: string
+          created_at?: string
+          gap_id?: string
+          id?: string
+          learner_id?: string
+          org_id?: string
+          priority?: number
+          rationale?: string
+          rule_id?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendations_gap_id_fkey"
+            columns: ["gap_id"]
+            isOneToOne: true
+            referencedRelation: "learning_gaps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recommendations_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recommendations_org_id_fkey"
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"

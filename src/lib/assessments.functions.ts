@@ -14,6 +14,7 @@ import {
   scoreSession,
   stripAnswers,
 } from "./assessments.server";
+import { applyGapDetection } from "./interventions.server";
 
 // Staff: create a diagnostic from item-bank items (all writes via caller's
 // RLS-scoped client — policies enforce org isolation and staff role).

@@ -64,3 +64,26 @@ export const saveProgressSchema = z.object({
     .refine((o) => Object.keys(o).length <= 100, "Too many answers"),
   currentPosition: z.number().int().min(0).max(500),
 });
+
+// Sprint 3: gap detection, recommendations, interventions
+export const acceptRecommendationSchema = z.object({
+  recommendationId: z.string().uuid(),
+  targetDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .optional(),
+});
+
+export const recommendationIdSchema = z.object({
+  recommendationId: z.string().uuid(),
+});
+
+export const gapIdSchema = z.object({
+  gapId: z.string().uuid(),
+});
+
+export const updateInterventionSchema = z.object({
+  interventionId: z.string().uuid(),
+  status: z.enum(["planned", "in_progress", "completed", "cancelled"]),
+  notes: z.string().trim().max(500).optional(),
+});
