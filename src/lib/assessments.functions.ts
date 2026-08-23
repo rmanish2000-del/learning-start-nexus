@@ -218,3 +218,21 @@ export const submitAssessment = createServerFn({ method: "POST" })
       breakdown: scoring.breakdown,
     };
   });
+
+export const getMyAssessmentSessions = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data: learner } = await context.supabase
+      .from("learners")
+      .select("id")
+      .eq("student_user_id", context.userId)
+      .maybeSingle();
+    if (!learner) return [];
+    const { data, error } = await context.supabase
+      .from("assessment_sessions")
+      .select("id, status, score_pct, due, last_activity_at, assessments(title, topic, time_limit_minutes)")
+      .eq("learner_id", learner.id)
+      .order("created_at", { ascending: false });
+    if (error) throw new Error(error.message);
+    return data;
+  });

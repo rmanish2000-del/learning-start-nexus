@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
+import { ClipboardList, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -34,6 +34,7 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
   { to: "/learners", label: "Learners", icon: Users, roles: ["admin", "educator"] },
+  { to: "/assessments", label: "Assessments", icon: ClipboardList, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
@@ -47,6 +48,9 @@ const SYSTEM_ITEMS: NavItem[] = [
 const TITLES: [RegExp, string][] = [
   [/^\/learners\/.+/, "Learner profile"],
   [/^\/learners/, "Learners"],
+  [/^\/assessments/, "Assessments"],
+  [/^\/assessment\/.+/, "Assessment detail"],
+  [/^\/session\/.+/, "Assessment"],
   [/^\/assignments/, "Assignments"],
   [/^\/admin/, "Admin"],
   [/^\/dashboard/, "Dashboard"],
