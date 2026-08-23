@@ -1,8 +1,11 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, BookOpen, CircleCheck, CircleDashed, Loader, Sparkles } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { ArrowRight, BookOpen, CircleCheck, CircleDashed, ClipboardList, Loader, Play, Sparkles } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
+import { getMyAssessmentSessions } from "@/lib/assessments.functions";
+import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -61,7 +64,7 @@ function StudentHomePage() {
 
   const { data: history } = useQuery({
     queryKey: ["mastery-history", learner?.id],
-    enabled: !!learner,
+    enabled: !!learner?.id,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("mastery_history")
@@ -75,7 +78,7 @@ function StudentHomePage() {
 
   const { data: planItems } = useQuery({
     queryKey: ["plan-items", learner?.id],
-    enabled: !!learner,
+    enabled: !!learner?.id,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("learning_plan_items")
@@ -85,6 +88,12 @@ function StudentHomePage() {
       if (error) throw error;
       return data;
     },
+  });
+
+  const fetchSessions = useServerFn(getMyAssessmentSessions);
+  const { data: assessmentSessions } = useQuery({
+    queryKey: ["my-assessment-sessions"],
+    queryFn: () => fetchSessions(),
   });
 
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
@@ -187,6 +196,48 @@ function StudentHomePage() {
           </CardContent>
         </Card>
       </div>
+
+      {(assessmentSessions ?? []).length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">My assessments</CardTitle>
+            <CardDescription>Diagnostics assigned by your educator — progress saves automatically.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {(assessmentSessions ?? []).map((s) => (
+              <div key={s.id} className="flex items-center gap-3 rounded-lg border p-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <ClipboardList className="h-4 w-4 text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">{s.assessments?.title ?? "Assessment"}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {s.status === "submitted"
+                      ? `Scored ${s.score_pct}%`
+                      : s.status === "in_progress"
+                        ? "In progress — resume anytime"
+                        : "Not started"}
+                    {s.due ? ` · due ${s.due}` : ""}
+                    {s.assessments?.time_limit_minutes ? ` · ${s.assessments.time_limit_minutes} min` : ""}
+                  </p>
+                </div>
+                <Button asChild size="sm" variant={s.status === "submitted" ? "outline" : "default"}>
+                  <Link to="/session/$sessionId" params={{ sessionId: s.id }}>
+                    {s.status === "submitted" ? (
+                      "Review"
+                    ) : (
+                      <>
+                        <Play className="h-3.5 w-3.5" />
+                        {s.status === "in_progress" ? "Resume" : "Start"}
+                      </>
+                    )}
+                  </Link>
+                </Button>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
 
       <Card>
         <CardHeader>
