@@ -2,8 +2,11 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link, Outlet, redirect, useChildMatches } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Plus, Search } from "lucide-react";
+import { Plus, Search, Users } from "lucide-react";
 import { toast } from "sonner";
+
+import { ContextHelp } from "@/components/context-help";
+import { EmptyState } from "@/components/empty-state";
 
 import { supabase } from "@/integrations/supabase/client";
 import { createLearner } from "@/lib/learners.functions";
