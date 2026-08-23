@@ -75,8 +75,8 @@ function AuthPage() {
     const form = new FormData(event.currentTarget);
     const handle = String(form.get("handle") ?? "");
     const pin = String(form.get("pin") ?? "");
-    if (!handle.trim() || !/^\d{4}$/.test(pin)) {
-      toast.error("Enter your handle and 4-digit PIN.");
+    if (!handle.trim() || !/^\d{6}$/.test(pin)) {
+      toast.error("Enter your handle and 6-digit PIN.");
       return;
     }
     setPending(true);
@@ -202,7 +202,7 @@ function AuthPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="pin">4-digit PIN</Label>
+                  <Label htmlFor="pin">6-digit PIN</Label>
                   <div className="relative">
                     <KeyRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
@@ -211,8 +211,8 @@ function AuthPage() {
                       type="password"
                       inputMode="numeric"
                       autoComplete="off"
-                      maxLength={4}
-                      placeholder="••••"
+                      maxLength={6}
+                      placeholder="••••••"
                       className="pl-9 tracking-[0.5em]"
                       required
                     />
@@ -240,7 +240,7 @@ function AuthPage() {
             </p>
             <p>
               Student — handle <span className="font-mono">aarav</span> / PIN{" "}
-              <span className="font-mono">1234</span>
+              <span className="font-mono">123456</span>
             </p>
           </div>
         </div>

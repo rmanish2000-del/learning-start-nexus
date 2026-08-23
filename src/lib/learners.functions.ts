@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { createLearnerSchema, resetPinSchema } from "./schemas";
+import { assignEducatorSchema, createLearnerSchema, resetPinSchema } from "./schemas";
 import { studentEmail, studentPassword } from "./auth-utils";
 import { requireAnyRole } from "./admin.server";
 
@@ -18,8 +18,18 @@ export const createLearner = createServerFn({ method: "POST" })
       .eq("user_id", context.userId)
       .eq("role", "admin")
       .maybeSingle();
-    // Educators always own the learners they create; admins may assign anyone.
-    const educatorId = adminRole && data.educatorId ? data.educatorId : context.userId;
+    // Educators always own the learners they create; admins may assign anyone
+    // in the same org (org-scoped profiles RLS makes other orgs unreadable).
+    let educatorId = context.userId;
+    if (adminRole && data.educatorId) {
+      const { data: educatorProfile } = await context.supabase
+        .from("profiles")
+        .select("id")
+        .eq("id", data.educatorId)
+        .maybeSingle();
+      if (!educatorProfile) throw new Error("That educator is not part of your organization.");
+      educatorId = data.educatorId;
+    }
 
     const { data: profile } = await context.supabase
       .from("profiles")
@@ -73,7 +83,7 @@ export const resetLearnerPin = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
 
-    // RLS scopes this read: admins see every learner, educators only their own.
+    // RLS scopes this read: admins see their org's learners, educators only their own.
     const { data: learner, error } = await context.supabase
       .from("learners")
       .select("id, student_user_id, handle")
@@ -88,6 +98,39 @@ export const resetLearnerPin = createServerFn({ method: "POST" })
       { password: studentPassword(learner.handle, data.pin) },
     );
     if (updateError) throw new Error(updateError.message);
+
+    return { ok: true };
+  });
+
+// Reassign a learner to a different educator. Admin-only; both records must
+// belong to the caller's organization (enforced via org-scoped RLS reads).
+export const assignEducator = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => assignEducatorSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+
+    const [{ data: learner }, { data: educatorProfile }, { data: educatorRole }] =
+      await Promise.all([
+        context.supabase.from("learners").select("id").eq("id", data.learnerId).maybeSingle(),
+        context.supabase.from("profiles").select("id").eq("id", data.educatorId).maybeSingle(),
+        context.supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", data.educatorId)
+          .eq("role", "educator")
+          .maybeSingle(),
+      ]);
+    if (!learner) throw new Error("Learner not found in your organization.");
+    if (!educatorProfile) throw new Error("Educator not found in your organization.");
+    if (!educatorRole) throw new Error("That staff member is not an educator.");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
+      .from("learners")
+      .update({ educator_id: data.educatorId })
+      .eq("id", data.learnerId);
+    if (error) throw new Error(error.message);
 
     return { ok: true };
   });

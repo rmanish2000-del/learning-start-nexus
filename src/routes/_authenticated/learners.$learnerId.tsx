@@ -502,8 +502,8 @@ function LearnerProfilePage() {
                 onSubmit={(e) => {
                   e.preventDefault();
                   const pin = String(new FormData(e.currentTarget).get("pin") ?? "");
-                  if (!/^\d{4}$/.test(pin)) {
-                    toast.error("PIN must be exactly 4 digits.");
+                  if (!/^\d{6}$/.test(pin)) {
+                    toast.error("PIN must be exactly 6 digits.");
                     return;
                   }
                   resetPinMutation.mutate(pin);
@@ -512,7 +512,7 @@ function LearnerProfilePage() {
               >
                 <div className="relative flex-1">
                   <KeyRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input name="pin" inputMode="numeric" maxLength={4} placeholder="New 4-digit PIN" className="pl-9" />
+                  <Input name="pin" inputMode="numeric" maxLength={6} placeholder="New 6-digit PIN" className="pl-9" />
                 </div>
                 <Button type="submit" variant="secondary" disabled={resetPinMutation.isPending}>
                   Reset PIN

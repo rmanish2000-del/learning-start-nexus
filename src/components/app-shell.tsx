@@ -1,13 +1,15 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { GraduationCap, Home, LayoutDashboard, ShieldCheck, Users } from "lucide-react";
-
-import type { AppRole } from "@/lib/roles";
+import { useQuery } from "@tanstack/react-query";
+import { Link, getRouteApi } from "@tanstack/react-router";
+import { GraduationCap, LayoutDashboard, ShieldCheck, UserCog, Users } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { UserMenu } from "@/components/user-menu";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarInset,
   SidebarMenu,
@@ -15,73 +17,158 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { Separator } from "@/components/ui/separator";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { UserMenu } from "@/components/user-menu";
+import { supabase } from "@/integrations/supabase/client";
+import { cn } from "@/lib/utils";
+import { ROLE_LABELS, type AppRole } from "@/lib/roles";
 
-interface NavItem {
+type NavItem = {
   to: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: typeof LayoutDashboard;
   roles: AppRole[];
-}
+  exact?: boolean;
+};
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
   { to: "/learners", label: "Learners", icon: Users, roles: ["admin", "educator"] },
+  { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
-  { to: "/home", label: "Home", icon: Home, roles: ["student"] },
+  { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
 ];
 
-const TITLES: [string, string][] = [
-  ["/learners", "Learners"],
-  ["/admin", "Admin"],
-  ["/dashboard", "Dashboard"],
-  ["/home", "Home"],
+const TITLES: [RegExp, string][] = [
+  [/^\/learners\/.+/, "Learner profile"],
+  [/^\/learners/, "Learners"],
+  [/^\/assignments/, "Assignments"],
+  [/^\/admin/, "Admin"],
+  [/^\/dashboard/, "Dashboard"],
+  [/^\/home/, "My learning"],
 ];
 
-function pageTitle(pathname: string): string {
-  const match = TITLES.find(([prefix]) => pathname.startsWith(prefix));
-  if (match) return match[1];
-  return "EduOS";
+const authRoute = getRouteApi("/_authenticated");
+
+function NavLinks() {
+  const { role } = authRoute.useRouteContext();
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  return (
+    <SidebarMenu>
+      {NAV_ITEMS.filter((item) => item.roles.includes(role)).map((item) => (
+        <SidebarMenuItem key={item.to}>
+          <SidebarMenuButton
+            asChild
+            tooltip={item.label}
+            className="data-[status=active]:bg-sidebar-accent data-[status=active]:text-sidebar-accent-foreground"
+          >
+            <Link
+              to={item.to}
+              {...(item.exact ? { activeOptions: { exact: true } } : {})}
+              onClick={() => isMobile && setOpenMobile(false)}
+            >
+              <item.icon />
+              <span>{item.label}</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      ))}
+    </SidebarMenu>
+  );
+}
+
+// Persistent audit indicator: current role, organization, and assigned educator.
+function DemoContextBar() {
+  const { user, role, profile } = authRoute.useRouteContext();
+
+  const { data: org } = useQuery({
+    queryKey: ["org", profile?.org_id],
+    enabled: !!profile?.org_id,
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("organizations")
+        .select("name")
+        .eq("id", profile!.org_id!)
+        .single();
+      return data;
+    },
+  });
+
+  const { data: myLearner } = useQuery({
+    queryKey: ["my-learner", user.id],
+    enabled: role === "student",
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("learners")
+        .select("educator_id")
+        .eq("student_user_id", user.id)
+        .maybeSingle();
+      return data;
+    },
+  });
+
+  const { data: educatorProfile } = useQuery({
+    queryKey: ["educator", myLearner?.educator_id],
+    enabled: !!myLearner?.educator_id,
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("id", myLearner!.educator_id!)
+        .maybeSingle();
+      return data;
+    },
+  });
+
+  const educatorLabel =
+    role === "student"
+      ? myLearner
+        ? (educatorProfile?.full_name ?? "…")
+        : "Unassigned"
+      : role === "educator"
+        ? `${profile?.full_name ?? "You"} (you)`
+        : "All educators";
+
+  return (
+    <div className="border-b bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <span className="rounded-full border border-dashed border-primary/40 px-2 py-0.5 font-medium uppercase tracking-wide text-primary">
+          Demo
+        </span>
+        <span>
+          Role: <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>
+        </span>
+        <span>
+          Org: <span className="font-medium text-foreground">{org?.name ?? "…"}</span>
+        </span>
+        <span>
+          Educator: <span className="font-medium text-foreground">{educatorLabel}</span>
+        </span>
+      </div>
+    </div>
+  );
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-
   return (
     <SidebarProvider>
-      <Sidebar collapsible="icon">
-        <SidebarHeader className="p-4">
-          <Link to="/" className="flex items-center gap-2.5 overflow-hidden">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+      <Sidebar>
+        <SidebarHeader className="px-3 py-3.5">
+          <Link to="/dashboard" className="flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <GraduationCap className="h-4.5 w-4.5" />
-            </div>
-            <span className="truncate text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
+            </span>
+            <span className="text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
               EduOS
             </span>
           </Link>
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
+            <SidebarGroupLabel>Workspace</SidebarGroupLabel>
             <SidebarGroupContent>
-              <SidebarMenu>
-                {NAV_ITEMS.map((item) => (
-                  <SidebarMenuItem key={item.to} data-role-nav={item.roles.join(",")}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={pathname.startsWith(item.to)}
-                      tooltip={item.label}
-                    >
-                      <Link to={item.to}>
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.label}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
+              <NavLinks />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
@@ -91,19 +178,48 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </p>
         </SidebarFooter>
       </Sidebar>
-
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-14 items-center gap-3 border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <SidebarTrigger />
-          <Separator orientation="vertical" className="h-5" />
-          <h1 className="text-sm font-semibold tracking-tight">{pageTitle(pathname)}</h1>
-          <div className="ml-auto flex items-center gap-1">
+        <header className="flex h-13 items-center justify-between border-b px-4">
+          <div className="flex min-w-0 items-center gap-2">
+            <SidebarTrigger />
+            <HeaderTitle />
+          </div>
+          <div className="flex items-center gap-1">
             <ThemeToggle />
             <UserMenu />
           </div>
         </header>
-        <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
+        <DemoContextBar />
+        <main className="min-w-0 flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
+}
+
+function HeaderTitle() {
+  const { role } = authRoute.useRouteContext();
+
+  return (
+    <h1 className="flex min-w-0 items-center gap-2 text-sm font-medium text-foreground">
+      <PathTitle />
+      <span
+        className={cn(
+          "rounded-full px-2 py-0.5 text-[11px] font-medium",
+          role === "admin" && "bg-destructive/10 text-destructive",
+          role === "educator" && "bg-primary/10 text-primary",
+          role === "student" && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+        )}
+      >
+        {ROLE_LABELS[role]}
+      </span>
+    </h1>
+  );
+}
+
+import { useLocation } from "@tanstack/react-router";
+
+function PathTitle() {
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const match = TITLES.find(([pattern]) => pattern.test(pathname));
+  return <span className="truncate">{match?.[1] ?? "EduOS"}</span>;
 }

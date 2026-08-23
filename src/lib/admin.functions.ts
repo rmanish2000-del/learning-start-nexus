@@ -3,24 +3,47 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { createStaffUserSchema, updateUserRoleSchema } from "./schemas";
 import { requireAnyRole } from "./admin.server";
 
+// Resolve the caller's org via their own session (RLS-scoped read).
+async function callerOrgId(
+  supabase: Parameters<typeof requireAnyRole>[0],
+  userId: string,
+): Promise<string> {
+  const { data } = await supabase
+    .from("profiles")
+    .select("org_id")
+    .eq("id", userId)
+    .single();
+  if (!data?.org_id) throw new Error("Your account is not linked to an organization.");
+  return data.org_id;
+}
+
 export const listStaffUsers = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const orgId = await callerOrgId(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const { data: usersPage, error } = await supabaseAdmin.auth.admin.listUsers({ perPage: 1000 });
+    // Scope every listing to the caller's organization.
+    const { data: orgProfiles, error: profilesError } = await supabaseAdmin
+      .from("profiles")
+      .select("id, full_name")
+      .eq("org_id", orgId);
+    if (profilesError) throw new Error(profilesError.message);
+
+    const orgUserIds = new Set((orgProfiles ?? []).map((p) => p.id));
+    const nameByUser = new Map((orgProfiles ?? []).map((p) => [p.id, p.full_name]));
+
+    const [{ data: usersPage, error }, { data: roles }] = await Promise.all([
+      supabaseAdmin.auth.admin.listUsers({ perPage: 1000 }),
+      supabaseAdmin.from("user_roles").select("user_id, role"),
+    ]);
     if (error) throw new Error(error.message);
 
-    const [{ data: roles }, { data: profiles }] = await Promise.all([
-      supabaseAdmin.from("user_roles").select("user_id, role"),
-      supabaseAdmin.from("profiles").select("id, full_name"),
-    ]);
-
     const roleByUser = new Map((roles ?? []).map((r) => [r.user_id, r.role]));
-    const nameByUser = new Map((profiles ?? []).map((p) => [p.id, p.full_name]));
 
     return usersPage.users
+      .filter((u) => orgUserIds.has(u.id))
       .map((u) => ({
         id: u.id,
         email: u.email ?? "",
@@ -36,6 +59,7 @@ export const createStaffUser = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => createStaffUserSchema.parse(input))
   .handler(async ({ data, context }) => {
     await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const orgId = await callerOrgId(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const tempPassword = `EduOS-${crypto.randomUUID().replace(/-/g, "").slice(0, 10)}!`;
@@ -47,6 +71,13 @@ export const createStaffUser = createServerFn({ method: "POST" })
       user_metadata: { full_name: data.fullName },
     });
     if (error) throw new Error(error.message);
+
+    // Attach the new staff member to the caller's organization, not the default.
+    const { error: profileError } = await supabaseAdmin
+      .from("profiles")
+      .update({ org_id: orgId })
+      .eq("id", created.user.id);
+    if (profileError) throw new Error(profileError.message);
 
     const { error: roleError } = await supabaseAdmin
       .from("user_roles")
@@ -64,6 +95,15 @@ export const updateUserRole = createServerFn({ method: "POST" })
     if (data.userId === context.userId && data.role !== "admin") {
       throw new Error("You cannot remove your own admin role.");
     }
+
+    // Org-scoped profiles RLS: the target is only readable inside the caller's org.
+    const { data: targetProfile } = await context.supabase
+      .from("profiles")
+      .select("id")
+      .eq("id", data.userId)
+      .maybeSingle();
+    if (!targetProfile) throw new Error("That user is not part of your organization.");
+
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { error: deleteError } = await supabaseAdmin
