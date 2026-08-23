@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
+import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, Sparkles, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -49,6 +49,7 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "educator"] },
   { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "educator"] },
   { to: "/sprint-3-audit", label: "Sprint 3 Audit", icon: ShieldCheck, roles: ["admin", "educator", "student"] },
+  { to: "/sprint-4-audit", label: "Sprint 4 Audit", icon: Sparkles, roles: ["admin", "educator", "student"] },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -69,6 +70,8 @@ const TITLES: [RegExp, string][] = [
   [/^\/assessment-proof/, "Assessment build proof"],
   [/^\/interventions/, "Interventions"],
   [/^\/sprint-3-audit/, "Sprint 3 audit center"],
+  [/^\/tutor\/.+/, "AI Tutor"],
+  [/^\/sprint-4-audit/, "Sprint 4 audit center"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");

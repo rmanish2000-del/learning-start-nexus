@@ -17,6 +17,8 @@ export const PROTECTED_ROUTES = [
   "/assessment-proof",
   "/interventions",
   "/sprint-3-audit",
+  "/tutor",
+  "/sprint-4-audit",
   "/home",
 ] as const;
 
