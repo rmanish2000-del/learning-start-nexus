@@ -161,10 +161,12 @@ function ParentPortal() {
     },
   ];
 
+  const [, forceRender] = useState(0);
   const handleAction = (action: string) => {
     if (action === "scroll-consent") consentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     if (action === "scroll-progress") {
       setOnboardingFlag(stepFlagKey("parent", "progress"));
+      forceRender((n) => n + 1);
       progressRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
