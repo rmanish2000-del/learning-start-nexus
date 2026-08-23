@@ -6,6 +6,8 @@ import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { getMyAssessmentSessions } from "@/lib/assessments.functions";
+import { getMyOutcomes } from "@/lib/outcomes.functions";
+import { OUTCOME_STATUS_LABELS, type OutcomeStatus } from "@/lib/outcome-shared";
 import { launchTutorSession } from "@/lib/tutor.functions";
 import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
