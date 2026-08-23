@@ -196,6 +196,21 @@ function LearnerProfilePage() {
     },
   });
 
+  // Sprint 4: tutor session aggregates. Conversation content is student-only
+  // by RLS — staff see concept, counts, and status, never the dialogue.
+  const { data: tutorSessions } = useQuery({
+    queryKey: ["tutor-sessions", learnerId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("tutor_sessions")
+        .select("*")
+        .eq("learner_id", learnerId)
+        .order("last_activity_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
   const addEvidenceMutation = useMutation({
     mutationFn: async (input: { title: string; kind: string; note: string }) => {
       const { error } = await supabase.from("learner_evidence").insert({
@@ -315,6 +330,7 @@ function LearnerProfilePage() {
           <TabsTrigger value="progress">Progress</TabsTrigger>
           <TabsTrigger value="plan">Learning plan</TabsTrigger>
           <TabsTrigger value="gaps">Gaps</TabsTrigger>
+          <TabsTrigger value="tutor">AI Tutor</TabsTrigger>
           <TabsTrigger value="evidence">Evidence</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
