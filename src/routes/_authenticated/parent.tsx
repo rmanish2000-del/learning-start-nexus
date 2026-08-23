@@ -305,7 +305,7 @@ function ParentPortal() {
                               <XAxis dataKey="date" tick={{ fontSize: 11 }} />
                               <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} />
                               <Tooltip />
-                              <Line type="monotone" dataKey="mastery" stroke="hsl(var(--primary))" strokeWidth={2} dot />
+                              <Line type="monotone" dataKey="mastery" stroke="var(--primary)" strokeWidth={2} dot />
                             </LineChart>
                           </ResponsiveContainer>
                         </div>
