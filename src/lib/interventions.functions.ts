@@ -98,7 +98,7 @@ export const updateInterventionStatus = createServerFn({ method: "POST" })
     }
 
     const now = new Date().toISOString();
-    const patch: Record<string, unknown> = { status: data.status };
+    const patch: Database["public"]["Tables"]["interventions"]["Update"] = { status: data.status };
     if (data.status === "in_progress") patch.started_at = now;
     if (data.status === "completed") patch.completed_at = now;
     if (data.notes !== undefined) patch.notes = data.notes || null;
