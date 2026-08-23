@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
+import { setSessionMarker } from "@/lib/session-marker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -48,6 +49,7 @@ function AuthPage() {
 
   const goHome = async (userId: string) => {
     const role = await fetchRole(userId);
+    setSessionMarker();
     void navigate({ to: roleHome(role), replace: true });
   };
 
