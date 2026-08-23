@@ -11,6 +11,7 @@ export const PROTECTED_ROUTES = [
   "/admin",
   "/settings",
   "/verification",
+  "/assessment-verification",
   "/home",
 ] as const;
 
