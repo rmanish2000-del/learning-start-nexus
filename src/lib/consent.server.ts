@@ -48,9 +48,10 @@ export async function getConsentStatus(
     .order("created_at", { ascending: false });
   if (error) throw error;
   const rows = data ?? [];
+  const first = rows[0];
   return {
     hasConsent: rows.length > 0,
-    latest: rows.length > 0 ? mapConsent(rows[0]) : null,
+    latest: first ? mapConsent(first) : null,
     totalRecords: rows.length,
   };
 }
