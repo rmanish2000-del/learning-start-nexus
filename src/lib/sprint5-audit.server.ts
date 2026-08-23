@@ -353,21 +353,22 @@ export async function runSprint5Probes(
       });
     } else {
       const o = completed as unknown as OutcomeRow;
+      const gapId = o.gap_id ?? "";
       const [
         { data: baseline },
         { data: gap },
         { data: rec },
         { data: intervention },
-        { data: tutor },
+        { count: tutorCount },
         { data: reassessment },
-        { data: evidence },
+        { count: evidenceCount },
       ] = await Promise.all([
-        sessionsTable(admin).select("id, status").eq("id", o.baseline_session_id).maybeSingle(),
-        admin.from("learning_gaps").select("id, status").eq("id", o.gap_id).maybeSingle(),
-        admin.from("recommendations").select("id, status").eq("gap_id", o.gap_id).limit(1).maybeSingle(),
+        sessionsTable(admin).select("id, status").eq("id", o.baseline_session_id ?? "").maybeSingle(),
+        admin.from("learning_gaps").select("id, status").eq("id", gapId).maybeSingle(),
+        admin.from("recommendations").select("id, status").eq("gap_id", gapId).limit(1).maybeSingle(),
         admin.from("interventions").select("id, status").eq("id", o.intervention_id).maybeSingle(),
         admin.from("tutor_sessions").select("id", { count: "exact", head: true }).eq("intervention_id", o.intervention_id),
-        sessionsTable(admin).select("id, status").eq("id", o.reassessment_session_id).maybeSingle(),
+        sessionsTable(admin).select("id, status").eq("id", o.reassessment_session_id ?? "").maybeSingle(),
         admin.from("learner_evidence").select("id", { count: "exact", head: true }).eq("learner_id", o.learner_id),
       ]);
       const links = [
@@ -375,15 +376,10 @@ export async function runSprint5Probes(
         { label: "gap recorded", ok: !!gap },
         { label: "recommendation generated", ok: !!rec },
         { label: "intervention completed", ok: intervention?.status === "completed" },
-        { label: "tutor practice held", ok: (tutor ?? []).length > 0 || (tutor as unknown as number) > 0 },
+        { label: "tutor practice held", ok: (tutorCount ?? 0) > 0 },
         { label: "reassessment submitted", ok: reassessment?.status === "submitted" },
-        { label: "evidence entries written", ok: ((evidence as unknown as number) ?? 0) > 0 },
+        { label: "evidence entries written", ok: (evidenceCount ?? 0) > 0 },
       ];
-      // count queries above return { count } — normalize
-      const tutorCount = Array.isArray(tutor) ? tutor.length : ((tutor as unknown as { count?: number })?.count ?? 0);
-      const evidenceCount = Array.isArray(evidence) ? evidence.length : ((evidence as unknown as { count?: number })?.count ?? 0);
-      links[4].ok = tutorCount > 0;
-      links[6].ok = evidenceCount > 0;
       const missing = links.filter((l) => !l.ok).map((l) => l.label);
       probes.push({
         key: "evidence_chain",
