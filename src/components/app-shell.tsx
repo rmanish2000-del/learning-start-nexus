@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { GraduationCap, LayoutDashboard, ShieldCheck, UserCog, Users } from "lucide-react";
+import { FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -39,6 +39,11 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
 ];
 
+const SYSTEM_ITEMS: NavItem[] = [
+  { to: "/settings", label: "Settings", icon: Settings, roles: ["admin", "educator", "student"] },
+  { to: "/verification", label: "Verification", icon: FlaskConical, roles: ["admin", "educator", "student"] },
+];
+
 const TITLES: [RegExp, string][] = [
   [/^\/learners\/.+/, "Learner profile"],
   [/^\/learners/, "Learners"],
@@ -46,6 +51,8 @@ const TITLES: [RegExp, string][] = [
   [/^\/admin/, "Admin"],
   [/^\/dashboard/, "Dashboard"],
   [/^\/home/, "My learning"],
+  [/^\/settings/, "Settings"],
+  [/^\/verification/, "Verification"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");
