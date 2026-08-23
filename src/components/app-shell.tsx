@@ -57,13 +57,13 @@ const TITLES: [RegExp, string][] = [
 
 const authRoute = getRouteApi("/_authenticated");
 
-function NavLinks() {
+function NavLinks({ items }: { items: NavItem[] }) {
   const { role } = authRoute.useRouteContext();
   const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <SidebarMenu>
-      {NAV_ITEMS.filter((item) => item.roles.includes(role)).map((item) => (
+      {items.filter((item) => item.roles.includes(role)).map((item) => (
         <SidebarMenuItem key={item.to}>
           <SidebarMenuButton
             asChild
@@ -175,7 +175,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <SidebarGroup>
             <SidebarGroupLabel>Workspace</SidebarGroupLabel>
             <SidebarGroupContent>
-              <NavLinks />
+              <NavLinks items={NAV_ITEMS} />
+            </SidebarGroupContent>
+          </SidebarGroup>
+          <SidebarGroup>
+            <SidebarGroupLabel>System</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <NavLinks items={SYSTEM_ITEMS} />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
