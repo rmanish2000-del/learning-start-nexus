@@ -93,15 +93,20 @@ export async function fetchGateDecisions(supabase: Client): Promise<GateDecision
 
 export async function fetchReviewerAccount(supabase: Client): Promise<ReviewerAccountInfo> {
   // Admins can read org role rows; a reviewer running this reads their own row.
+  // No FK between user_roles and profiles, so fetch the name in a second query.
   const { data, error } = await supabase
     .from("user_roles")
-    .select("user_id, profiles(full_name)")
+    .select("user_id")
     .eq("role", "reviewer")
     .limit(1)
     .maybeSingle();
   if (error) throw error;
   if (!data) return null;
-  const profile = data.profiles as unknown as { full_name: string } | null;
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name")
+    .eq("id", data.user_id)
+    .maybeSingle();
   return { userId: data.user_id, fullName: profile?.full_name ?? "Reviewer" };
 }
 
