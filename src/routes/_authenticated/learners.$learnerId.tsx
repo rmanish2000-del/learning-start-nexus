@@ -217,6 +217,23 @@ function LearnerProfilePage() {
     },
   });
 
+  // Sprint 5: outcomes with full evidence-chain reports.
+  const fetchOutcomes = useServerFn(getLearnerOutcomes);
+  const fetchOutcomeReport = useServerFn(getOutcomeReport);
+  const { data: learnerOutcomes } = useQuery({
+    queryKey: ["learner-outcomes", learnerId],
+    queryFn: () => fetchOutcomes({ data: { learnerId } }),
+  });
+  const outcomeIds = (learnerOutcomes ?? []).map((o) => o.id).join(",");
+  const { data: outcomeReports } = useQuery({
+    queryKey: ["learner-outcome-reports", learnerId, outcomeIds],
+    enabled: (learnerOutcomes ?? []).length > 0,
+    queryFn: () =>
+      Promise.all(
+        (learnerOutcomes ?? []).map((o) => fetchOutcomeReport({ data: { outcomeId: o.id } })),
+      ),
+  });
+
   const addEvidenceMutation = useMutation({
     mutationFn: async (input: { title: string; kind: string; note: string }) => {
       const { error } = await supabase.from("learner_evidence").insert({
