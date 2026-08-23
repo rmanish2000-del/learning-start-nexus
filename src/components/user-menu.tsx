@@ -3,6 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { ChevronsUpDown, LogOut } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
+import { STUDENT_EMAIL_DOMAIN } from "@/lib/auth-utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -32,7 +33,7 @@ export function UserMenu() {
   const { user, role, profile } = authRoute.useRouteContext();
 
   const displayName = profile?.full_name || (user.user_metadata?.["full_name"] as string) || "Account";
-  const email = user.email?.endsWith("@students.eduos.app") ? "Student account" : (user.email ?? "");
+  const email = user.email?.endsWith(`@${STUDENT_EMAIL_DOMAIN}`) ? "Student account" : (user.email ?? "");
 
   async function handleSignOut() {
     await queryClient.cancelQueries();

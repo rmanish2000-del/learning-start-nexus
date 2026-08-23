@@ -169,8 +169,8 @@ function LearnersPage() {
                   <Input id="handle" name="handle" placeholder="aarav" autoCapitalize="none" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="pin">4-digit PIN</Label>
-                  <Input id="pin" name="pin" inputMode="numeric" maxLength={4} placeholder="1234" required />
+                  <Label htmlFor="pin">6-digit PIN</Label>
+                  <Input id="pin" name="pin" inputMode="numeric" maxLength={6} placeholder="123456" required />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">

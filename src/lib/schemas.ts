@@ -6,7 +6,7 @@ export const handleSchema = z
   .toLowerCase()
   .regex(/^[a-z0-9][a-z0-9._-]{1,29}$/, "2–30 characters: lowercase letters, numbers, dot, dash, underscore");
 
-export const pinSchema = z.string().regex(/^\d{4}$/, "PIN must be exactly 4 digits");
+export const pinSchema = z.string().regex(/^\d{6}$/, "PIN must be exactly 6 digits");
 
 export const createLearnerSchema = z.object({
   fullName: z.string().trim().min(2, "Name is required").max(80),
@@ -31,4 +31,9 @@ export const updateUserRoleSchema = z.object({
 export const resetPinSchema = z.object({
   learnerId: z.string().uuid(),
   pin: pinSchema,
+});
+
+export const assignEducatorSchema = z.object({
+  learnerId: z.string().uuid(),
+  educatorId: z.string().uuid(),
 });
