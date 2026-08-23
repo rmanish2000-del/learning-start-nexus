@@ -70,12 +70,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 {NAV_ITEMS.map((item) => (
                   <SidebarMenuItem key={item.to} data-role-nav={item.roles.join(",")}>
                     <SidebarMenuButton
-                      render={<Link to={item.to} />}
+                      asChild
                       isActive={pathname.startsWith(item.to)}
                       tooltip={item.label}
                     >
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.label}</span>
+                      <Link to={item.to}>
+                        <item.icon className="h-4 w-4" />
+                        <span>{item.label}</span>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
