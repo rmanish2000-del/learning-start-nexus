@@ -24,7 +24,7 @@ export const listStaffUsers = createServerFn({ method: "GET" })
       .map((u) => ({
         id: u.id,
         email: u.email ?? "",
-        fullName: nameByUser.get(u.id) || (u.user_metadata?.full_name as string) || "",
+        fullName: nameByUser.get(u.id) || (u.user_metadata?.["full_name"] as string) || "",
         role: (roleByUser.get(u.id) ?? "student") as "admin" | "educator" | "student",
         createdAt: u.created_at,
       }))
