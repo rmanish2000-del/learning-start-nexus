@@ -11,7 +11,13 @@ export const Route = createFileRoute("/sitemap.xml")({
         const url = new URL(request.url);
         const origin = url.origin;
         const lastmod = new Date().toISOString().split("T")[0];
-        const paths: [string, boolean][] = [["/", true]];
+        const paths: [string, boolean][] = [
+          ["/", true],
+          ["/about", true],
+          ["/privacy", true],
+          ["/terms", true],
+          ["/contact", true],
+        ];
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths
           .map(([p, dated]) => renderUrl(origin, p, dated ? lastmod : undefined))
           .join("\n")}\n</urlset>`;
