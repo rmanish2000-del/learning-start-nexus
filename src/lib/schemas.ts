@@ -112,3 +112,12 @@ export const tutorActionSchema = z.object({
   ]),
   studentText: z.string().trim().max(500).optional(),
 });
+
+// Sprint 5: outcome proof
+export const learnerIdSchema = z.object({
+  learnerId: z.string().uuid(),
+});
+
+export const outcomeIdSchema = z.object({
+  outcomeId: z.string().uuid(),
+});
