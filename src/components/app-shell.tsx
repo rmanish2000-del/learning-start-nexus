@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { ClipboardCheck, ClipboardList, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
+import { ClipboardCheck, ClipboardList, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -44,6 +44,9 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/settings", label: "Settings", icon: Settings, roles: ["admin", "educator", "student"] },
   { to: "/verification", label: "Verification", icon: FlaskConical, roles: ["admin", "educator", "student"] },
   { to: "/assessment-verification", label: "Assessment QA", icon: ClipboardCheck, roles: ["admin", "educator", "student"] },
+  { to: "/rls-verification", label: "RLS Policies", icon: ShieldCheck, roles: ["admin", "educator"] },
+  { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "educator"] },
+  { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "educator"] },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -59,6 +62,9 @@ const TITLES: [RegExp, string][] = [
   [/^\/settings/, "Settings"],
   [/^\/verification/, "Verification"],
   [/^\/assessment-verification/, "Assessment verification"],
+  [/^\/rls-verification/, "RLS verification"],
+  [/^\/assessment-audit/, "Assessment audit report"],
+  [/^\/assessment-proof/, "Assessment build proof"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");
@@ -144,7 +150,7 @@ function DemoContextBar() {
         : "All educators";
 
   return (
-    <div className="border-b bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground">
+    <div className="border-b bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground print:hidden">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
         <span className="rounded-full border border-dashed border-primary/40 px-2 py-0.5 font-medium uppercase tracking-wide text-primary">
           Demo
@@ -166,7 +172,7 @@ function DemoContextBar() {
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar className="print:hidden">
         <SidebarHeader className="px-3 py-3.5">
           <Link to="/dashboard" className="flex items-center gap-2.5">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -198,7 +204,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="flex h-13 items-center justify-between border-b px-4">
+        <header className="flex h-13 items-center justify-between border-b px-4 print:hidden">
           <div className="flex min-w-0 items-center gap-2">
             <SidebarTrigger />
             <HeaderTitle />
