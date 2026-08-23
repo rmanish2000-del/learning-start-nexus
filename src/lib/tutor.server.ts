@@ -6,7 +6,9 @@
 // recommendations, or interventions.
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { generateText } from "ai";
 import type { Database } from "@/integrations/supabase/types";
+import { createLovableAiGatewayProvider } from "./ai-gateway.server";
 import {
   answersMatch,
   conceptContent,
@@ -17,7 +19,6 @@ import {
 type Client = SupabaseClient<Database>;
 
 export const TUTOR_MODEL = "google/gemini-3.7-flash";
-const GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 
 export const TUTOR_ACTIONS = [
   "explain",
@@ -65,25 +66,16 @@ export async function callTutorAi(
   if (!apiKey) return null;
   const started = Date.now();
   try {
-    const res = await fetch(GATEWAY_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: TUTOR_MODEL,
-        messages: [{ role: "system", content: system }, ...messages],
-        max_tokens: 400,
-      }),
+    const gateway = createLovableAiGatewayProvider(apiKey);
+    const { text } = await generateText({
+      model: gateway(TUTOR_MODEL),
+      system,
+      messages,
+      maxOutputTokens: 400,
     });
-    if (!res.ok) return null;
-    const json = (await res.json()) as {
-      choices?: { message?: { content?: string } }[];
-    };
-    const text = json.choices?.[0]?.message?.content?.trim();
-    if (!text) return null;
-    return { text, latencyMs: Date.now() - started };
+    const trimmed = text.trim();
+    if (!trimmed) return null;
+    return { text: trimmed, latencyMs: Date.now() - started };
   } catch {
     return null;
   }

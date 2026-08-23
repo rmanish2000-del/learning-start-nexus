@@ -1,10 +1,12 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, BookOpen, CircleCheck, CircleDashed, ClipboardList, Loader, Play, Sparkles } from "lucide-react";
+import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { getMyAssessmentSessions } from "@/lib/assessments.functions";
+import { launchTutorSession } from "@/lib/tutor.functions";
 import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +37,16 @@ function itemIcon(status: string) {
 
 function StudentHomePage() {
   const { user, profile } = Route.useRouteContext();
+  const navigate = useNavigate();
+  const launchTutor = useServerFn(launchTutorSession);
+
+  // Sprint 4: launch (or resume) the AI tutor for an assigned intervention.
+  const launchTutorMutation = useMutation({
+    mutationFn: (interventionId: string) => launchTutor({ data: { interventionId } }),
+    onSuccess: (result) =>
+      void navigate({ to: "/tutor/$sessionId", params: { sessionId: result.sessionId } }),
+    onError: (error) => toast.error(error.message),
+  });
 
   const { data: learner, isPending: learnerPending } = useQuery({
     queryKey: ["my-learner", user.id],
@@ -290,6 +302,14 @@ function StudentHomePage() {
                 <Badge variant={i.status === "in_progress" ? "default" : "outline"}>
                   {i.status === "in_progress" ? "In progress" : "Planned"}
                 </Badge>
+                <Button
+                  size="sm"
+                  disabled={launchTutorMutation.isPending}
+                  onClick={() => launchTutorMutation.mutate(i.id)}
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  AI Tutor
+                </Button>
               </div>
             ))}
           </CardContent>
