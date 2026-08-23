@@ -179,7 +179,7 @@ export async function runLaunchProbes(
       detail: error
         ? `Query failed: ${error.message}`
         : `Visible consent records (this org, RLS): ${orgCount ?? 0} · global: ${globalCount ?? 0} · aarav records: ${aaravRecords}.`,
-      dbError: error ? { code: error.code, message: error.message } : null,
+      dbError: error ? { code: error.code ?? null, message: error.message, details: error.details ?? null, hint: error.hint ?? null } : null,
     });
   }
 
@@ -277,7 +277,7 @@ export async function runLaunchProbes(
       pass: summary.tutorInteractionReviewerPolicies.length === 0 && !error,
       skipped: false,
       detail: `Policies on tutor_interactions mentioning reviewer: ${summary.tutorInteractionReviewerPolicies.length} · conversation rows visible to the current caller: ${visibleInteractions ?? 0}.`,
-      dbError: error ? { code: error.code, message: error.message } : null,
+      dbError: error ? { code: error.code ?? null, message: error.message, details: error.details ?? null, hint: error.hint ?? null } : null,
     });
   }
 
