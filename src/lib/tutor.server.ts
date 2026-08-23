@@ -164,11 +164,11 @@ export async function generateTutorReply(
   action: TutorAction,
   opts: {
     hintLevel: number;
-    studentText?: string;
-    activeItem?: PracticeItem | null;
-    correct?: boolean | null;
+    studentText?: string | undefined;
+    activeItem?: PracticeItem | null | undefined;
+    correct?: boolean | null | undefined;
     history: { role: "user" | "assistant"; content: string }[];
-    forceFallback?: boolean;
+    forceFallback?: boolean | undefined;
   },
 ): Promise<TutorReply> {
   const content = conceptContent(ctx.concept);
