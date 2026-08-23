@@ -27,6 +27,7 @@ export const recordGuardianConsent = createServerFn({ method: "POST" })
       .eq("id", data.learnerId)
       .single();
     if (learnerError) throw learnerError;
+    if (!learner.org_id) throw new Error("Learner is not attached to an organization");
     const { data: row, error } = await context.supabase
       .from("guardian_consents")
       .insert({
