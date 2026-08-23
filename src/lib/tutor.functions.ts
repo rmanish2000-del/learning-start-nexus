@@ -27,6 +27,7 @@ export const launchTutorSession = createServerFn({ method: "POST" })
       .maybeSingle();
     if (learnerError) throw new Error(learnerError.message);
     if (!learner) throw new Error("No learner profile is linked to your account.");
+    if (!learner.org_id) throw new Error("Your learner profile isn't linked to an organization.");
 
     const { data: intervention, error: interventionError } = await supabase
       .from("interventions")

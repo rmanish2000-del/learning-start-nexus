@@ -140,7 +140,7 @@ function fallbackReplyText(
     }
     case "socratic": {
       const idx = Math.min(Math.max(opts.hintLevel - 1, 0), content.socratic.length - 1);
-      return content.socratic[idx];
+      return content.socratic[idx] ?? content.socratic[0] ?? "What do you think?";
     }
     case "try_question":
       return `Try this one — I'll wait for your answer:\n\n${content.tryQuestion.question}`;
@@ -304,8 +304,8 @@ function activePracticeItem(
 export async function performTutorAction(
   supabase: Client,
   userId: string,
-  input: { sessionId: string; action: TutorAction; studentText?: string },
-  opts: { forceFallback?: boolean } = {},
+  input: { sessionId: string; action: TutorAction; studentText?: string | undefined },
+  opts: { forceFallback?: boolean | undefined } = {},
 ): Promise<{ interaction: InteractionRow; reply: TutorReply }> {
   const { data: session, error: sessionError } = await supabase
     .from("tutor_sessions")
