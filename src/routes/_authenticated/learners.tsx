@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, redirect, useChildMatches } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus, Search } from "lucide-react";
@@ -57,6 +57,8 @@ export const Route = createFileRoute("/_authenticated/learners")({
 function LearnersPage() {
   const { role } = Route.useRouteContext();
   const queryClient = useQueryClient();
+  // /learners/$learnerId nests under this route — hand off to the child.
+  const hasChild = useChildMatches().length > 0;
   const createLearnerFn = useServerFn(createLearner);
 
   const [search, setSearch] = useState("");
@@ -134,6 +136,8 @@ function LearnersPage() {
       educatorId: form.get("educatorId") ? String(form.get("educatorId")) : undefined,
     });
   };
+
+  if (hasChild) return <Outlet />;
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">

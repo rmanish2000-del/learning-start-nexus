@@ -96,6 +96,23 @@ function StudentHomePage() {
     queryFn: () => fetchSessions(),
   });
 
+  // Sprint 3: accepted interventions are the student's focus plan. Gaps and
+  // recommendations stay staff-only — students never see them.
+  const { data: focusPlan } = useQuery({
+    queryKey: ["my-interventions", learner?.id],
+    enabled: !!learner?.id,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("interventions")
+        .select("*")
+        .eq("learner_id", learner!.id)
+        .in("status", ["planned", "in_progress"])
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
   const continueItem = (items ?? []).find((i) => i.status === "in_progress") ?? (items ?? []).find((i) => i.status === "not_started");
   const completed = (items ?? []).filter((i) => i.status === "completed").length;
@@ -248,6 +265,36 @@ function StudentHomePage() {
           <MasteryChart data={chartData} />
         </CardContent>
       </Card>
+
+      {(focusPlan ?? []).length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Focus plan</CardTitle>
+            <CardDescription>
+              Extra practice your educator planned for you — this is what to work on next.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {(focusPlan ?? []).map((i) => (
+              <div key={i.id} className="flex items-center gap-3 rounded-lg border p-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">{i.title}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {i.activity}
+                    {i.target_date ? ` · target ${i.target_date}` : ""}
+                  </p>
+                </div>
+                <Badge variant={i.status === "in_progress" ? "default" : "outline"}>
+                  {i.status === "in_progress" ? "In progress" : "Planned"}
+                </Badge>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>

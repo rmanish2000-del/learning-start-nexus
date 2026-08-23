@@ -104,7 +104,7 @@ function CrossOrgCard({ tests }: { tests: Sprint3CrossOrgTest[] }) {
               </div>
               {t.dbResponse.code ? (
                 <div className="mt-1.5">
-                  <DbErrorBlock error={{ code: t.dbResponse.code, message: t.dbResponse.message, details: null }} />
+                  <DbErrorBlock error={{ code: t.dbResponse.code, message: t.dbResponse.message, details: null, hint: null }} />
                 </div>
               ) : null}
               {t.postCheck ? (
@@ -288,7 +288,7 @@ function Sprint3AuditPage() {
                     <td className="py-1.5 pr-3">{r.subtopic}</td>
                     <td className="py-1.5 pr-3">{r.severity}</td>
                     <td className="py-1.5 pr-3">{r.priority}</td>
-                    <td className="py-1.5">{r.titleTemplate}</td>
+                    <td className="py-1.5">{r.title}</td>
                   </tr>
                 ))}
               </tbody>
@@ -499,8 +499,8 @@ function Sprint3AuditPage() {
                           {probes.detection.subtopicStats.map((s) => (
                             <div key={s.subtopic} className="flex justify-between">
                               <span>{s.subtopic}</span>
-                              <span className={s.isGap ? "font-medium text-destructive" : "text-muted-foreground"}>
-                                {s.correct}/{s.total} ({s.pct}%){s.isGap ? " — gap" : ""}
+                              <span className={s.severity ? "font-medium text-destructive" : "text-muted-foreground"}>
+                                {s.correct}/{s.total} ({s.pct}%){s.severity ? ` — gap (${s.severity})` : ""}
                               </span>
                             </div>
                           ))}
