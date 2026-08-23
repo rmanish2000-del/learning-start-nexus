@@ -12,6 +12,9 @@ export const PROTECTED_ROUTES = [
   "/settings",
   "/verification",
   "/assessment-verification",
+  "/rls-verification",
+  "/assessment-audit",
+  "/assessment-proof",
   "/home",
 ] as const;
 
