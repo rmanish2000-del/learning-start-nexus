@@ -2,11 +2,17 @@ import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstac
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { ArrowLeft, KeyRound, Plus } from "lucide-react";
+import { ArrowLeft, CheckCircle2, CircleDashed, KeyRound, PlayCircle, Plus, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { resetLearnerPin } from "@/lib/learners.functions";
+import { getLearnerOutcomes, getOutcomeReport } from "@/lib/outcomes.functions";
+import {
+  buildOutcomeTimeline,
+  OUTCOME_STATUS_LABELS,
+  type OutcomeStatus,
+} from "@/lib/outcome-shared";
 import {
   GAP_STATUS_LABELS,
   INTERVENTION_STATUS_LABELS,
