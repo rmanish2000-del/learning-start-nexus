@@ -225,7 +225,8 @@ function LearnersPage() {
               </DialogFooter>
             </form>
           </DialogContent>
-        </Dialog>
+          </Dialog>
+        </div>
       </div>
 
       {!isPending && (learners ?? []).length === 0 ? (
