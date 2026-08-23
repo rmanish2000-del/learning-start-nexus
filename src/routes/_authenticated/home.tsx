@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -10,12 +11,49 @@ import { getMyOutcomes } from "@/lib/outcomes.functions";
 import { OUTCOME_STATUS_LABELS, type OutcomeStatus } from "@/lib/outcome-shared";
 import { launchTutorSession } from "@/lib/tutor.functions";
 import { getLearnerConsent } from "@/lib/consent.functions";
+import {
+  getOnboardingFlag,
+  setOnboardingFlag,
+  stepFlagKey,
+  type OnboardingStep,
+} from "@/lib/onboarding";
+import { ContextHelp } from "@/components/context-help";
+import { GuidedTour, type TourStep } from "@/components/guided-tour";
+import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const STUDENT_TOUR: TourStep[] = [
+  {
+    selector: '[data-tour="student-checklist"]',
+    title: "Your getting-started checklist",
+    body: "Three steps: take your diagnostic, view your plan, then practice with the AI Tutor. It checks itself off as you go.",
+  },
+  {
+    selector: '[data-tour="student-assessments"]',
+    title: "Assessments from your educator",
+    body: "Diagnostics appear here the moment your educator assigns them. Progress saves automatically — resume anytime.",
+  },
+  {
+    selector: '[data-tour="student-plan"]',
+    title: "Your focus plan",
+    body: "Extra practice planned just for you. Each item can unlock an AI Tutor session once a parent or guardian has consented.",
+  },
+  {
+    selector: '[data-tour="student-mastery"]',
+    title: "Watch your mastery grow",
+    body: "Every completed assessment feeds this chart. Reassessments after interventions show your before/after lift.",
+  },
+  {
+    selector: '[data-tour="sidebar-nav"]',
+    title: "That's everything",
+    body: "Settings and verification pages live in the sidebar. You're all set — happy learning!",
+  },
+];
 
 export const Route = createFileRoute("/_authenticated/home")({
   beforeLoad: ({ context }) => {
