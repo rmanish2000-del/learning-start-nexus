@@ -236,6 +236,50 @@ function StudentHomePage() {
         </Card>
       </div>
 
+      {completedOutcomes.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">My progress</CardTitle>
+            <CardDescription>
+              Before and after each completed intervention — proof that the practice worked.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {completedOutcomes.map((o) => {
+              const lift = o.mastery_lift ?? 0;
+              return (
+                <div key={o.id} className="rounded-lg border p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-sm font-medium">{o.subtopic}</p>
+                    <Badge variant={lift >= 10 ? "secondary" : "outline"}>
+                      {OUTCOME_STATUS_LABELS[o.status as OutcomeStatus] ?? o.status}
+                    </Badge>
+                  </div>
+                  <div className="mt-3 flex items-center gap-4">
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Before</p>
+                      <p className="text-lg font-semibold tabular-nums">{o.baseline_score}%</p>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                    <div>
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">After</p>
+                      <p className="text-lg font-semibold tabular-nums">{o.post_score ?? "—"}%</p>
+                    </div>
+                    <div className="ml-auto text-right">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Progress</p>
+                      <p className={`text-lg font-semibold tabular-nums ${lift >= 0 ? "text-primary" : "text-destructive"}`}>
+                        {lift >= 0 ? "+" : ""}{lift} pts
+                      </p>
+                    </div>
+                  </div>
+                  <Progress value={o.post_score ?? o.baseline_score} className="mt-3 h-1.5" />
+                </div>
+              );
+            })}
+          </CardContent>
+        </Card>
+      )}
+
       {(assessmentSessions ?? []).length > 0 && (
         <Card>
           <CardHeader>
