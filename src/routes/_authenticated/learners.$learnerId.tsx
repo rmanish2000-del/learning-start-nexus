@@ -196,6 +196,21 @@ function LearnerProfilePage() {
     },
   });
 
+  // Sprint 4: tutor session aggregates. Conversation content is student-only
+  // by RLS — staff see concept, counts, and status, never the dialogue.
+  const { data: tutorSessions } = useQuery({
+    queryKey: ["tutor-sessions", learnerId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("tutor_sessions")
+        .select("*")
+        .eq("learner_id", learnerId)
+        .order("last_activity_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
   const addEvidenceMutation = useMutation({
     mutationFn: async (input: { title: string; kind: string; note: string }) => {
       const { error } = await supabase.from("learner_evidence").insert({
@@ -315,6 +330,7 @@ function LearnerProfilePage() {
           <TabsTrigger value="progress">Progress</TabsTrigger>
           <TabsTrigger value="plan">Learning plan</TabsTrigger>
           <TabsTrigger value="gaps">Gaps</TabsTrigger>
+          <TabsTrigger value="tutor">AI Tutor</TabsTrigger>
           <TabsTrigger value="evidence">Evidence</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
@@ -512,6 +528,60 @@ function LearnerProfilePage() {
                   No interventions yet — accept a recommendation to plan one.
                 </p>
               )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="tutor" className="pt-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">AI Tutor sessions</CardTitle>
+              <CardDescription>
+                Session aggregates only — what the student asked and said stays private to them.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Concept</TableHead>
+                    <TableHead>Topic</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="text-right">Interactions</TableHead>
+                    <TableHead>Concepts accessed</TableHead>
+                    <TableHead>Last activity</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(tutorSessions ?? []).map((s) => (
+                    <TableRow key={s.id}>
+                      <TableCell className="font-medium">{s.concept}</TableCell>
+                      <TableCell>{s.topic}</TableCell>
+                      <TableCell>
+                        <Badge variant={s.status === "active" ? "default" : "secondary"}>
+                          {s.status === "active" ? "Active" : "Ended"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {s.interaction_count}
+                      </TableCell>
+                      <TableCell className="text-xs text-muted-foreground">
+                        {s.concepts_accessed.join(", ") || "—"}
+                      </TableCell>
+                      <TableCell className="text-xs text-muted-foreground">
+                        {new Date(s.last_activity_at).toLocaleString()}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {(tutorSessions ?? []).length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={6} className="py-8 text-center text-sm text-muted-foreground">
+                        No tutor sessions yet — the student launches the tutor from their focus plan.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </CardContent>
           </Card>
         </TabsContent>
