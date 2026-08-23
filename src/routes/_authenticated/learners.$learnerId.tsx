@@ -355,6 +355,7 @@ function LearnerProfilePage() {
           <TabsTrigger value="gaps">Gaps</TabsTrigger>
           <TabsTrigger value="tutor">AI Tutor</TabsTrigger>
           <TabsTrigger value="evidence">Evidence</TabsTrigger>
+          <TabsTrigger value="outcomes">Outcomes</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
 
