@@ -15,6 +15,8 @@ type Client = SupabaseClient<Database>;
 export type SessionWithMeta = AssessmentSession & {
   learners: { student_user_id: string | null };
   assessments: Pick<Assessment, "title" | "topic" | "grade" | "kind" | "time_limit_minutes" | "status">;
+  // Sprint 5: reassessment sessions link back to the intervention they close.
+  intervention_id?: string | null;
 };
 
 export async function getMyOrgId(supabase: Client, userId: string): Promise<string> {

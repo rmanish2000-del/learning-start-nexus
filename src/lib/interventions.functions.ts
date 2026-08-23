@@ -12,6 +12,7 @@ import {
   updateInterventionSchema,
 } from "./schemas";
 import { INTERVENTION_TRANSITIONS } from "./interventions.server";
+import { openOutcomeForIntervention } from "./outcomes.server";
 
 // Staff: accept a suggested recommendation -> creates a planned intervention.
 // Both writes run as the caller, so RLS itself enforces org + role scope.
@@ -109,7 +110,16 @@ export const updateInterventionStatus = createServerFn({ method: "POST" })
       .update(patch)
       .eq("id", data.interventionId);
     if (updError) throw new Error(updError.message);
-    return { ok: true };
+
+    // Sprint 5: completing an intervention opens a pending outcome (baseline
+    // captured from the gap's diagnostic session) and assigns the published
+    // reassessment to the learner. Idempotent — safe to re-run.
+    let outcome = null;
+    if (data.status === "completed") {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      outcome = await openOutcomeForIntervention(supabaseAdmin, data.interventionId);
+    }
+    return { ok: true, outcome };
   });
 
 // Staff: dismiss a gap (staff override wins over future detection runs for

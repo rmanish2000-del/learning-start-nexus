@@ -2,11 +2,17 @@ import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstac
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { ArrowLeft, KeyRound, Plus } from "lucide-react";
+import { ArrowLeft, CheckCircle2, CircleDashed, KeyRound, PlayCircle, Plus, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { resetLearnerPin } from "@/lib/learners.functions";
+import { getLearnerOutcomes, getOutcomeReport } from "@/lib/outcomes.functions";
+import {
+  buildOutcomeTimeline,
+  OUTCOME_STATUS_LABELS,
+  type OutcomeStatus,
+} from "@/lib/outcome-shared";
 import {
   GAP_STATUS_LABELS,
   INTERVENTION_STATUS_LABELS,
@@ -211,6 +217,23 @@ function LearnerProfilePage() {
     },
   });
 
+  // Sprint 5: outcomes with full evidence-chain reports.
+  const fetchOutcomes = useServerFn(getLearnerOutcomes);
+  const fetchOutcomeReport = useServerFn(getOutcomeReport);
+  const { data: learnerOutcomes } = useQuery({
+    queryKey: ["learner-outcomes", learnerId],
+    queryFn: () => fetchOutcomes({ data: { learnerId } }),
+  });
+  const outcomeIds = (learnerOutcomes ?? []).map((o) => o.id).join(",");
+  const { data: outcomeReports } = useQuery({
+    queryKey: ["learner-outcome-reports", learnerId, outcomeIds],
+    enabled: (learnerOutcomes ?? []).length > 0,
+    queryFn: () =>
+      Promise.all(
+        (learnerOutcomes ?? []).map((o) => fetchOutcomeReport({ data: { outcomeId: o.id } })),
+      ),
+  });
+
   const addEvidenceMutation = useMutation({
     mutationFn: async (input: { title: string; kind: string; note: string }) => {
       const { error } = await supabase.from("learner_evidence").insert({
@@ -332,6 +355,7 @@ function LearnerProfilePage() {
           <TabsTrigger value="gaps">Gaps</TabsTrigger>
           <TabsTrigger value="tutor">AI Tutor</TabsTrigger>
           <TabsTrigger value="evidence">Evidence</TabsTrigger>
+          <TabsTrigger value="outcomes">Outcomes</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
 
@@ -584,6 +608,116 @@ function LearnerProfilePage() {
               </Table>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="outcomes" className="space-y-4 pt-4">
+          {(outcomeReports ?? []).map((report) => {
+            const o = report.outcome;
+            const lift = o.mastery_lift ?? 0;
+            const practiceCount = report.tutorSessions.reduce(
+              (sum, s) => sum + s.interactionCount,
+              0,
+            );
+            const steps = buildOutcomeTimeline({
+              subtopic: o.subtopic,
+              baselineAt: report.baselineSession?.submittedAt ?? null,
+              baselineScore: o.baseline_score,
+              gapAt: report.gap?.firstDetectedAt ?? null,
+              interventionTitle: report.intervention?.title ?? o.subtopic,
+              interventionStartedAt: report.intervention?.startedAt ?? null,
+              interventionCompletedAt: report.intervention?.completedAt ?? null,
+              practiceCount,
+              practiceLastAt: report.tutorSessions[0]?.lastActivityAt ?? null,
+              reassessmentAt: report.reassessmentSession?.submittedAt ?? null,
+              postScore: o.post_score,
+              lift: o.mastery_lift,
+              confidence: o.confidence,
+              status: o.status,
+              completedAt: o.completed_at,
+            });
+            return (
+              <Card key={o.id}>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center gap-2 text-base">
+                      <TrendingUp className="h-4 w-4 text-primary" />
+                      {o.subtopic}
+                    </CardTitle>
+                    <CardDescription>
+                      {o.subject} · {o.topic} — diagnostic vs post-intervention
+                    </CardDescription>
+                  </div>
+                  <Badge variant={o.status === "improvement" ? "secondary" : "outline"}>
+                    {OUTCOME_STATUS_LABELS[o.status as OutcomeStatus] ?? o.status}
+                  </Badge>
+                </CardHeader>
+                <CardContent className="space-y-5">
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {[
+                      { label: "Baseline", value: `${o.baseline_score}%` },
+                      { label: "Post-intervention", value: o.post_score !== null ? `${o.post_score}%` : "—" },
+                      {
+                        label: "Mastery lift",
+                        value: o.mastery_lift !== null ? `${lift >= 0 ? "+" : ""}${lift} pts` : "—",
+                      },
+                      {
+                        label: "Confidence",
+                        value: o.confidence !== null ? `${o.confidence}/100` : "—",
+                      },
+                    ].map((s) => (
+                      <div key={s.label} className="rounded-lg border p-3">
+                        <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                          {s.label}
+                        </p>
+                        <p className="mt-1 text-lg font-semibold tabular-nums">{s.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div>
+                    <p className="mb-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      Outcome timeline
+                    </p>
+                    <ol className="space-y-3">
+                      {steps.map((step) => (
+                        <li key={step.key} className="flex items-start gap-3">
+                          {step.state === "done" ? (
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          ) : step.state === "current" ? (
+                            <PlayCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          ) : (
+                            <CircleDashed className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                          )}
+                          <div className="min-w-0 flex-1">
+                            <p
+                              className={`text-sm ${step.state === "upcoming" ? "text-muted-foreground" : "font-medium"}`}
+                            >
+                              {step.label}
+                            </p>
+                            {step.detail && (
+                              <p className="text-xs text-muted-foreground">{step.detail}</p>
+                            )}
+                          </div>
+                          {step.at && (
+                            <span className="shrink-0 text-xs text-muted-foreground">
+                              {new Date(step.at).toLocaleDateString()}
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+          {(learnerOutcomes ?? []).length === 0 && (
+            <Card>
+              <CardContent className="py-10 text-center text-sm text-muted-foreground">
+                No outcomes yet — complete an intervention to open one, then reassess the learner.
+              </CardContent>
+            </Card>
+          )}
         </TabsContent>
 
         <TabsContent value="evidence" className="pt-4">

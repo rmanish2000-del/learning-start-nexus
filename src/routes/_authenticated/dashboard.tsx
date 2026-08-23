@@ -1,5 +1,6 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, BookOpenCheck, TrendingUp, TriangleAlert, Users } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -7,6 +8,7 @@ import type { Database } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getOrgOutcomeSummary } from "@/lib/outcomes.functions";
 
 type Learner = Database["public"]["Tables"]["learners"]["Row"];
 type Evidence = Database["public"]["Tables"]["learner_evidence"]["Row"];
@@ -40,6 +42,12 @@ export function liftText(lift: number) {
 
 function DashboardPage() {
   const { role, profile } = Route.useRouteContext();
+  const fetchOutcomeSummary = useServerFn(getOrgOutcomeSummary);
+
+  const { data: outcomeSummary } = useQuery({
+    queryKey: ["outcome-summary"],
+    queryFn: () => fetchOutcomeSummary(),
+  });
 
   const { data: learners, isPending } = useQuery({
     queryKey: ["learners"],
@@ -115,6 +123,50 @@ function DashboardPage() {
           </Card>
         ))}
       </div>
+
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            <CardTitle className="text-base">Intervention outcomes</CardTitle>
+            <CardDescription>
+              Reassessment results across the organization — diagnostic vs post-intervention
+            </CardDescription>
+          </div>
+          <Link
+            to="/sprint-5-audit"
+            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+          >
+            Audit <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { label: "Improvement", value: outcomeSummary?.improvement, tone: "text-emerald-600 dark:text-emerald-400" },
+              { label: "No improvement", value: outcomeSummary?.noImprovement, tone: "text-destructive" },
+              { label: "Low confidence", value: outcomeSummary?.lowConfidence, tone: "text-amber-600 dark:text-amber-400" },
+              { label: "Requires review", value: outcomeSummary?.requiresReview, tone: "text-muted-foreground" },
+              {
+                label: "Avg lift",
+                value:
+                  outcomeSummary && outcomeSummary.averageLift !== null
+                    ? `${outcomeSummary.averageLift >= 0 ? "+" : ""}${outcomeSummary.averageLift} pts`
+                    : null,
+                tone: "text-foreground",
+              },
+            ].map((s) => (
+              <div key={s.label} className="rounded-lg border p-3">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  {s.label}
+                </p>
+                <p className={`mt-1 text-xl font-semibold tabular-nums ${s.tone}`}>
+                  {s.value === undefined ? "…" : (s.value ?? "—")}
+                </p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-6 lg:grid-cols-5">
         <Card className="lg:col-span-3">
