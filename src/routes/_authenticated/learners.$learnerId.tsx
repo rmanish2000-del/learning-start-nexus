@@ -690,7 +690,7 @@ function LearnerProfilePage() {
                           )}
                           <div className="min-w-0 flex-1">
                             <p
-                              className={`text-sm ${step.state === "pending" ? "text-muted-foreground" : "font-medium"}`}
+                              className={`text-sm ${step.state === "upcoming" ? "text-muted-foreground" : "font-medium"}`}
                             >
                               {step.label}
                             </p>
