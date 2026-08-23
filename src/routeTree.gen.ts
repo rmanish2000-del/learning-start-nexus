@@ -18,6 +18,8 @@ import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenti
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +67,17 @@ const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   path: '/learners',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVerificationRoute =
+  AuthenticatedVerificationRouteImport.update({
+    id: '/verification',
+    path: '/verification',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedLearnersLearnerIdRoute =
   AuthenticatedLearnersLearnerIdRouteImport.update({
     id: '/$learnerId',
@@ -81,6 +94,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/verification': typeof AuthenticatedVerificationRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
 }
 export interface FileRoutesByTo {
@@ -92,6 +107,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/verification': typeof AuthenticatedVerificationRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
 }
 export interface FileRoutesById {
@@ -105,6 +122,8 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/verification': typeof AuthenticatedVerificationRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
 }
 export interface FileRouteTypes {
@@ -118,6 +137,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/home'
     | '/learners'
+    | '/settings'
+    | '/verification'
     | '/learners/$learnerId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -129,6 +150,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/home'
     | '/learners'
+    | '/settings'
+    | '/verification'
     | '/learners/$learnerId'
   id:
     | '__root__'
@@ -141,6 +164,8 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/home'
     | '/_authenticated/learners'
+    | '/_authenticated/settings'
+    | '/_authenticated/verification'
     | '/_authenticated/learners/$learnerId'
   fileRoutesById: FileRoutesById
 }
@@ -216,6 +241,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLearnersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/verification': {
+      id: '/_authenticated/verification'
+      path: '/verification'
+      fullPath: '/verification'
+      preLoaderRoute: typeof AuthenticatedVerificationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/learners/$learnerId': {
       id: '/_authenticated/learners/$learnerId'
       path: '/$learnerId'
@@ -245,6 +284,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedVerificationRoute: typeof AuthenticatedVerificationRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -253,6 +294,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedVerificationRoute: AuthenticatedVerificationRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
