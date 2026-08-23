@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { resetLearnerPin } from "@/lib/learners.functions";
+import { getLearnerConsent, recordGuardianConsent } from "@/lib/consent.functions";
 import { getLearnerOutcomes, getOutcomeReport } from "@/lib/outcomes.functions";
 import {
   buildOutcomeTimeline,
@@ -255,6 +256,28 @@ function LearnerProfilePage() {
   const resetPinMutation = useMutation({
     mutationFn: (pin: string) => resetPinFn({ data: { learnerId, pin } }),
     onSuccess: () => toast.success("PIN reset. Share the new PIN with the student."),
+    onError: (error) => toast.error(error.message),
+  });
+
+  // Sprint 5A: parent/guardian consent (gates the AI tutor).
+  const fetchConsent = useServerFn(getLearnerConsent);
+  const recordConsent = useServerFn(recordGuardianConsent);
+  const { data: consent } = useQuery({
+    queryKey: ["learner-consent", learnerId],
+    queryFn: () => fetchConsent({ data: { learnerId } }),
+  });
+  const recordConsentMutation = useMutation({
+    mutationFn: (input: {
+      parentName: string;
+      parentEmail: string;
+      parentMobile: string;
+      consentDate: string;
+      consentVersion: string;
+    }) => recordConsent({ data: { learnerId, ...input } }),
+    onSuccess: () => {
+      toast.success("Guardian consent recorded — AI tutor is now unlocked for this learner.");
+      void queryClient.invalidateQueries({ queryKey: ["learner-consent", learnerId] });
+    },
     onError: (error) => toast.error(error.message),
   });
 
@@ -799,6 +822,103 @@ function LearnerProfilePage() {
         </TabsContent>
 
         <TabsContent value="settings" className="space-y-4 pt-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Parent / guardian consent</CardTitle>
+              <CardDescription>
+                Required before this learner can use the AI tutor. Assessments and the learning plan
+                are unaffected. History is append-only — record a new entry when consent is renewed
+                or the version changes.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2 text-sm">
+                {consent?.hasConsent ? (
+                  <>
+                    <Badge variant="secondary">Consent on file</Badge>
+                    <span className="text-muted-foreground">
+                      {consent.latest?.parentName} · {consent.latest?.parentEmail} ·{" "}
+                      {consent.latest?.consentDate} · version{" "}
+                      <span className="font-mono">{consent.latest?.consentVersion}</span>
+                    </span>
+                  </>
+                ) : (
+                  <Badge variant="destructive">No consent on file — AI tutor locked</Badge>
+                )}
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = new FormData(e.currentTarget);
+                  recordConsentMutation.mutate({
+                    parentName: String(form.get("parentName") ?? ""),
+                    parentEmail: String(form.get("parentEmail") ?? ""),
+                    parentMobile: String(form.get("parentMobile") ?? ""),
+                    consentDate: String(form.get("consentDate") ?? ""),
+                    consentVersion: String(form.get("consentVersion") ?? ""),
+                  });
+                  e.currentTarget.reset();
+                }}
+                className="grid gap-3 sm:grid-cols-2"
+              >
+                <div className="space-y-1.5">
+                  <Label htmlFor="parentName">Parent name</Label>
+                  <Input id="parentName" name="parentName" required placeholder="e.g. Rajesh Sharma" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="parentEmail">Parent email</Label>
+                  <Input id="parentEmail" name="parentEmail" type="email" required placeholder="parent@example.com" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="parentMobile">Parent mobile</Label>
+                  <Input id="parentMobile" name="parentMobile" required placeholder="+91 98200 12345" />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="consentDate">Consent date</Label>
+                    <Input
+                      id="consentDate"
+                      name="consentDate"
+                      type="date"
+                      required
+                      defaultValue={new Date().toISOString().slice(0, 10)}
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="consentVersion">Version</Label>
+                    <Input id="consentVersion" name="consentVersion" required defaultValue="v1.0" />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <Button type="submit" disabled={recordConsentMutation.isPending}>
+                    {recordConsentMutation.isPending ? "Recording…" : "Record consent"}
+                  </Button>
+                </div>
+              </form>
+
+              {(consent?.history ?? []).length > 0 && (
+                <div className="space-y-1.5">
+                  <p className="text-xs font-medium text-muted-foreground">
+                    Consent history ({consent?.totalRecords ?? 0})
+                  </p>
+                  {(consent?.history ?? []).map((h) => (
+                    <div
+                      key={h.id}
+                      className="flex flex-wrap items-center gap-x-3 gap-y-0.5 rounded-md border px-3 py-2 text-xs"
+                    >
+                      <span className="font-medium">{h.parentName}</span>
+                      <span className="text-muted-foreground">{h.parentEmail}</span>
+                      <span className="text-muted-foreground">{h.parentMobile}</span>
+                      <span className="ml-auto font-mono">{h.consentVersion}</span>
+                      <span className="text-muted-foreground">{h.consentDate}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Focus note</CardTitle>

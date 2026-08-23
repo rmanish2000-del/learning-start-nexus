@@ -1,0 +1,1 @@
+ALTER VIEW public.rls_policy_audit SET (security_invoker = true);
