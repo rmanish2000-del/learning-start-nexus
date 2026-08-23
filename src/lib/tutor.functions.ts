@@ -39,6 +39,15 @@ export const launchTutorSession = createServerFn({ method: "POST" })
       throw new Error("That intervention isn't assigned to you.");
     }
 
+    // Sprint 5A: AI tutor requires parent/guardian consent on file.
+    // Assessments and the learning plan are unaffected.
+    const { hasGuardianConsent } = await import("@/lib/consent.server");
+    if (!(await hasGuardianConsent(supabase, learner.id))) {
+      throw new Error(
+        "Parent/guardian consent is required before using the AI tutor. Ask your educator to record consent.",
+      );
+    }
+
     // Resume the existing active session for this intervention if there is one.
     const { data: existing } = await supabase
       .from("tutor_sessions")

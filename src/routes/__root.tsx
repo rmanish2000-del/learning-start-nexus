@@ -15,6 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { Toaster } from "@/components/ui/sonner";
+import { CookieConsentBanner } from "@/components/cookie-consent";
 
 function NotFoundComponent() {
   return (
@@ -158,6 +159,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster />
+        <CookieConsentBanner />
       </QueryClientProvider>
     </ThemeProvider>
   );

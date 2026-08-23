@@ -121,3 +121,13 @@ export const learnerIdSchema = z.object({
 export const outcomeIdSchema = z.object({
   outcomeId: z.string().uuid(),
 });
+
+// Sprint 5A: parent/guardian consent
+export const guardianConsentSchema = z.object({
+  learnerId: z.string().uuid(),
+  parentName: z.string().trim().min(2).max(120),
+  parentEmail: z.string().trim().email().max(200),
+  parentMobile: z.string().trim().min(7).max(20),
+  consentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD"),
+  consentVersion: z.string().trim().min(1).max(40),
+});

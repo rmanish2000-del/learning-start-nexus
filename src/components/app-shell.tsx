@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -43,14 +43,15 @@ const NAV_ITEMS: NavItem[] = [
 
 const SYSTEM_ITEMS: NavItem[] = [
   { to: "/settings", label: "Settings", icon: Settings, roles: ["admin", "educator", "student"] },
-  { to: "/verification", label: "Verification", icon: FlaskConical, roles: ["admin", "educator", "student"] },
-  { to: "/assessment-verification", label: "Assessment QA", icon: ClipboardCheck, roles: ["admin", "educator", "student"] },
-  { to: "/rls-verification", label: "RLS Policies", icon: ShieldCheck, roles: ["admin", "educator"] },
-  { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "educator"] },
-  { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "educator"] },
-  { to: "/sprint-3-audit", label: "Sprint 3 Audit", icon: ShieldCheck, roles: ["admin", "educator", "student"] },
-  { to: "/sprint-4-audit", label: "Sprint 4 Audit", icon: Sparkles, roles: ["admin", "educator", "student"] },
-  { to: "/sprint-5-audit", label: "Sprint 5 Audit", icon: TrendingUp, roles: ["admin", "educator", "student"] },
+  { to: "/verification", label: "Verification", icon: FlaskConical, roles: ["admin", "educator", "student", "reviewer"] },
+  { to: "/assessment-verification", label: "Assessment QA", icon: ClipboardCheck, roles: ["admin", "educator", "student", "reviewer"] },
+  { to: "/rls-verification", label: "RLS Policies", icon: ShieldCheck, roles: ["admin", "educator", "reviewer"] },
+  { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "educator", "reviewer"] },
+  { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "educator", "reviewer"] },
+  { to: "/sprint-3-audit", label: "Sprint 3 Audit", icon: ShieldCheck, roles: ["admin", "educator", "student", "reviewer"] },
+  { to: "/sprint-4-audit", label: "Sprint 4 Audit", icon: Sparkles, roles: ["admin", "educator", "student", "reviewer"] },
+  { to: "/sprint-5-audit", label: "Sprint 5 Audit", icon: TrendingUp, roles: ["admin", "educator", "student", "reviewer"] },
+  { to: "/launch-audit", label: "Launch Audit", icon: Rocket, roles: ["admin", "educator", "reviewer"] },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -74,6 +75,7 @@ const TITLES: [RegExp, string][] = [
   [/^\/tutor\/.+/, "AI Tutor"],
   [/^\/sprint-4-audit/, "Sprint 4 audit center"],
   [/^\/sprint-5-audit/, "Sprint 5 audit center"],
+  [/^\/launch-audit/, "Launch readiness audit"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");

@@ -244,6 +244,17 @@ function AuthPage() {
               Student — handle <span className="font-mono">aarav</span> / PIN{" "}
               <span className="font-mono">123456</span>
             </p>
+            <p>
+              Reviewer — <span className="font-mono">reviewer@eduos.global</span> /{" "}
+              <span className="font-mono">Review#2026</span> (read-only, audit pages)
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+            <Link to="/about" className="hover:text-foreground">About</Link>
+            <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-foreground">Terms of Service</Link>
+            <Link to="/contact" className="hover:text-foreground">Contact</Link>
           </div>
         </div>
       </div>

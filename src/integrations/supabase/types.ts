@@ -263,6 +263,60 @@ export type Database = {
           },
         ]
       }
+      guardian_consents: {
+        Row: {
+          consent_date: string
+          consent_version: string
+          created_at: string
+          id: string
+          learner_id: string
+          org_id: string
+          parent_email: string
+          parent_mobile: string
+          parent_name: string
+          recorded_by: string | null
+        }
+        Insert: {
+          consent_date: string
+          consent_version: string
+          created_at?: string
+          id?: string
+          learner_id: string
+          org_id: string
+          parent_email: string
+          parent_mobile: string
+          parent_name: string
+          recorded_by?: string | null
+        }
+        Update: {
+          consent_date?: string
+          consent_version?: string
+          created_at?: string
+          id?: string
+          learner_id?: string
+          org_id?: string
+          parent_email?: string
+          parent_mobile?: string
+          parent_name?: string
+          recorded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "guardian_consents_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "guardian_consents_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       interventions: {
         Row: {
           activity: string
@@ -1105,7 +1159,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "educator" | "student"
+      app_role: "admin" | "educator" | "student" | "reviewer"
       learner_status: "active" | "needs_attention" | "paused"
     }
     CompositeTypes: {
@@ -1234,7 +1288,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "educator", "student"],
+      app_role: ["admin", "educator", "student", "reviewer"],
       learner_status: ["active", "needs_attention", "paused"],
     },
   },
