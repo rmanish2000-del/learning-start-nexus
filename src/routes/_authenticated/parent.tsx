@@ -22,7 +22,6 @@ import {
 } from "recharts";
 
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
 import { getLearnerConsent, recordGuardianConsent } from "@/lib/consent.functions";
 import {
   getOnboardingFlag,
@@ -72,17 +71,16 @@ const PARENT_TOUR: TourStep[] = [
 ];
 
 function ParentPortal() {
-  const { profile, user } = useAuth();
+  const { profile, user } = Route.useRouteContext();
   const queryClient = useQueryClient();
 
   const linksQuery = useQuery({
-    queryKey: ["parent-links", profile?.id],
-    enabled: !!profile,
+    queryKey: ["parent-links", user.id],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("parent_learner_links")
         .select("learner_id, learners(id, full_name, grade, mastery_score, mastery_lift)")
-        .eq("parent_user_id", profile!.id);
+        .eq("parent_user_id", user.id);
       if (error) throw error;
       return (data ?? [])
         .map((row) => row.learners)
