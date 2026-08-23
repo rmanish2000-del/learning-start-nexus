@@ -10,12 +10,16 @@ export const createLearner = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
 
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
+    // Read the caller's own role row (RLS allows self-read) instead of the
+    // internal security-definer RPC, which is not exposed via the API.
+    const { data: adminRole } = await context.supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", context.userId)
+      .eq("role", "admin")
+      .maybeSingle();
     // Educators always own the learners they create; admins may assign anyone.
-    const educatorId = isAdmin && data.educatorId ? data.educatorId : context.userId;
+    const educatorId = adminRole && data.educatorId ? data.educatorId : context.userId;
 
     const { data: profile } = await context.supabase
       .from("profiles")
