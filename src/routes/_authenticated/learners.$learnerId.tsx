@@ -681,16 +681,16 @@ function LearnerProfilePage() {
                     <ol className="space-y-3">
                       {steps.map((step) => (
                         <li key={step.key} className="flex items-start gap-3">
-                          {step.status === "done" ? (
+                          {step.state === "done" ? (
                             <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                          ) : step.status === "current" ? (
+                          ) : step.state === "current" ? (
                             <PlayCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                           ) : (
                             <CircleDashed className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                           )}
                           <div className="min-w-0 flex-1">
                             <p
-                              className={`text-sm ${step.status === "pending" ? "text-muted-foreground" : "font-medium"}`}
+                              className={`text-sm ${step.state === "pending" ? "text-muted-foreground" : "font-medium"}`}
                             >
                               {step.label}
                             </p>
