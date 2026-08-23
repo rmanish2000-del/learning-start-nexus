@@ -42,6 +42,8 @@ export function CookieConsentBanner() {
     } catch {
       // Storage unavailable — still dismiss for this session.
     }
+    // Let the install banner know the bottom edge is free.
+    window.dispatchEvent(new Event("eduos:cookie-consent"));
     setVisible(false);
   };
 
