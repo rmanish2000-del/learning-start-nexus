@@ -122,6 +122,7 @@ export type Database = {
           current_position: number
           due: string | null
           id: string
+          intervention_id: string | null
           last_activity_at: string | null
           learner_id: string
           org_id: string
@@ -142,6 +143,7 @@ export type Database = {
           current_position?: number
           due?: string | null
           id?: string
+          intervention_id?: string | null
           last_activity_at?: string | null
           learner_id: string
           org_id: string
@@ -162,6 +164,7 @@ export type Database = {
           current_position?: number
           due?: string | null
           id?: string
+          intervention_id?: string | null
           last_activity_at?: string | null
           learner_id?: string
           org_id?: string
@@ -179,6 +182,13 @@ export type Database = {
             columns: ["assessment_id"]
             isOneToOne: false
             referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_sessions_intervention_id_fkey"
+            columns: ["intervention_id"]
+            isOneToOne: false
+            referencedRelation: "interventions"
             referencedColumns: ["id"]
           },
           {
@@ -411,6 +421,112 @@ export type Database = {
             columns: ["learner_id"]
             isOneToOne: false
             referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      learner_outcomes: {
+        Row: {
+          baseline_score: number
+          baseline_session_id: string | null
+          completed_at: string | null
+          confidence: number | null
+          created_at: string
+          gap_id: string | null
+          id: string
+          intervention_id: string
+          learner_id: string
+          mastery_lift: number | null
+          org_id: string
+          post_score: number | null
+          reassessment_session_id: string | null
+          status: string
+          subject: string
+          subtopic: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          baseline_score: number
+          baseline_session_id?: string | null
+          completed_at?: string | null
+          confidence?: number | null
+          created_at?: string
+          gap_id?: string | null
+          id?: string
+          intervention_id: string
+          learner_id: string
+          mastery_lift?: number | null
+          org_id: string
+          post_score?: number | null
+          reassessment_session_id?: string | null
+          status?: string
+          subject: string
+          subtopic: string
+          topic: string
+          updated_at?: string
+        }
+        Update: {
+          baseline_score?: number
+          baseline_session_id?: string | null
+          completed_at?: string | null
+          confidence?: number | null
+          created_at?: string
+          gap_id?: string | null
+          id?: string
+          intervention_id?: string
+          learner_id?: string
+          mastery_lift?: number | null
+          org_id?: string
+          post_score?: number | null
+          reassessment_session_id?: string | null
+          status?: string
+          subject?: string
+          subtopic?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learner_outcomes_baseline_session_id_fkey"
+            columns: ["baseline_session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_outcomes_gap_id_fkey"
+            columns: ["gap_id"]
+            isOneToOne: false
+            referencedRelation: "learning_gaps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_outcomes_intervention_id_fkey"
+            columns: ["intervention_id"]
+            isOneToOne: true
+            referencedRelation: "interventions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_outcomes_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_outcomes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_outcomes_reassessment_session_id_fkey"
+            columns: ["reassessment_session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
             referencedColumns: ["id"]
           },
         ]
