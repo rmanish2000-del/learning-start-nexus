@@ -14,6 +14,245 @@ export type Database = {
   }
   public: {
     Tables: {
+      assessment_item_map: {
+        Row: {
+          assessment_id: string
+          item_id: string
+          points: number
+          sort_order: number
+        }
+        Insert: {
+          assessment_id: string
+          item_id: string
+          points?: number
+          sort_order?: number
+        }
+        Update: {
+          assessment_id?: string
+          item_id?: string
+          points?: number
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_item_map_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_item_map_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_items: {
+        Row: {
+          correct_answer: string
+          created_at: string
+          created_by: string | null
+          difficulty: number
+          explanation: string | null
+          grade: number
+          id: string
+          kind: string
+          options: Json | null
+          org_id: string
+          prompt: string
+          subject: string
+          subtopic: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          correct_answer: string
+          created_at?: string
+          created_by?: string | null
+          difficulty?: number
+          explanation?: string | null
+          grade?: number
+          id?: string
+          kind?: string
+          options?: Json | null
+          org_id: string
+          prompt: string
+          subject?: string
+          subtopic: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          correct_answer?: string
+          created_at?: string
+          created_by?: string | null
+          difficulty?: number
+          explanation?: string | null
+          grade?: number
+          id?: string
+          kind?: string
+          options?: Json | null
+          org_id?: string
+          prompt?: string
+          subject?: string
+          subtopic?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_items_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_sessions: {
+        Row: {
+          answers: Json
+          assessment_id: string
+          assigned_by: string | null
+          correct_count: number | null
+          created_at: string
+          current_position: number
+          due: string | null
+          id: string
+          last_activity_at: string | null
+          learner_id: string
+          org_id: string
+          result: Json | null
+          score_pct: number | null
+          started_at: string | null
+          status: string
+          submitted_at: string | null
+          total_count: number | null
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          assessment_id: string
+          assigned_by?: string | null
+          correct_count?: number | null
+          created_at?: string
+          current_position?: number
+          due?: string | null
+          id?: string
+          last_activity_at?: string | null
+          learner_id: string
+          org_id: string
+          result?: Json | null
+          score_pct?: number | null
+          started_at?: string | null
+          status?: string
+          submitted_at?: string | null
+          total_count?: number | null
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          assessment_id?: string
+          assigned_by?: string | null
+          correct_count?: number | null
+          created_at?: string
+          current_position?: number
+          due?: string | null
+          id?: string
+          last_activity_at?: string | null
+          learner_id?: string
+          org_id?: string
+          result?: Json | null
+          score_pct?: number | null
+          started_at?: string | null
+          status?: string
+          submitted_at?: string | null
+          total_count?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_sessions_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_sessions_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_sessions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessments: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          grade: number
+          id: string
+          kind: string
+          org_id: string
+          status: string
+          subject: string
+          time_limit_minutes: number | null
+          title: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          grade?: number
+          id?: string
+          kind?: string
+          org_id: string
+          status?: string
+          subject?: string
+          time_limit_minutes?: number | null
+          title: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          grade?: number
+          id?: string
+          kind?: string
+          org_id?: string
+          status?: string
+          subject?: string
+          time_limit_minutes?: number | null
+          title?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessments_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learner_assessments: {
         Row: {
           created_at: string
