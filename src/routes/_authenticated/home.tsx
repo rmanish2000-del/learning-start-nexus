@@ -9,6 +9,7 @@ import { getMyAssessmentSessions } from "@/lib/assessments.functions";
 import { getMyOutcomes } from "@/lib/outcomes.functions";
 import { OUTCOME_STATUS_LABELS, type OutcomeStatus } from "@/lib/outcome-shared";
 import { launchTutorSession } from "@/lib/tutor.functions";
+import { getLearnerConsent } from "@/lib/consent.functions";
 import { Button } from "@/components/ui/button";
 import { MasteryChart } from "@/components/mastery-chart";
 import { Badge } from "@/components/ui/badge";
@@ -41,6 +42,7 @@ function StudentHomePage() {
   const { user, profile } = Route.useRouteContext();
   const navigate = useNavigate();
   const launchTutor = useServerFn(launchTutorSession);
+  const fetchConsent = useServerFn(getLearnerConsent);
 
   // Sprint 4: launch (or resume) the AI tutor for an assigned intervention.
   const launchTutorMutation = useMutation({
@@ -62,6 +64,14 @@ function StudentHomePage() {
       return data;
     },
   });
+
+  // Sprint 5A: AI tutor requires guardian consent on file.
+  const { data: consent } = useQuery({
+    queryKey: ["my-consent", learner?.id],
+    enabled: !!learner?.id,
+    queryFn: () => fetchConsent({ data: { learnerId: learner!.id } }),
+  });
+  const tutorConsentMissing = consent !== undefined && !consent.hasConsent;
 
   const { data: items } = useQuery({
     queryKey: ["my-learning-items", user.id],
@@ -356,14 +366,24 @@ function StudentHomePage() {
                 <Badge variant={i.status === "in_progress" ? "default" : "outline"}>
                   {i.status === "in_progress" ? "In progress" : "Planned"}
                 </Badge>
-                <Button
-                  size="sm"
-                  disabled={launchTutorMutation.isPending}
-                  onClick={() => launchTutorMutation.mutate(i.id)}
-                >
-                  <Sparkles className="h-3.5 w-3.5" />
-                  AI Tutor
-                </Button>
+                {tutorConsentMissing ? (
+                  <Badge
+                    variant="outline"
+                    className="border-amber-500/40 text-amber-600 dark:text-amber-400"
+                    title="A parent or guardian consent record is required before the AI tutor unlocks. Your educator can record it."
+                  >
+                    Consent needed for tutor
+                  </Badge>
+                ) : (
+                  <Button
+                    size="sm"
+                    disabled={launchTutorMutation.isPending}
+                    onClick={() => launchTutorMutation.mutate(i.id)}
+                  >
+                    <Sparkles className="h-3.5 w-3.5" />
+                    AI Tutor
+                  </Button>
+                )}
               </div>
             ))}
           </CardContent>
