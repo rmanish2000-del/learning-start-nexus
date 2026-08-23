@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -8,7 +9,39 @@ import type { Database } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ContextHelp } from "@/components/context-help";
+import { GuidedTour, type TourStep } from "@/components/guided-tour";
+import { OnboardingChecklist } from "@/components/onboarding-checklist";
+import type { OnboardingStep } from "@/lib/onboarding";
 import { getOrgOutcomeSummary } from "@/lib/outcomes.functions";
+
+const EDUCATOR_TOUR: TourStep[] = [
+  {
+    selector: '[data-tour="educator-checklist"]',
+    title: "Your getting-started checklist",
+    body: "Four steps to a working classroom: add a learner, assign an assessment, approve an intervention, then review outcomes. It checks itself off as you go.",
+  },
+  {
+    selector: '[data-tour="educator-stats"]',
+    title: "Roster health at a glance",
+    body: "Live counts, average mastery and 30-day lift across your learners. Anything below 60% lands in Needs attention.",
+  },
+  {
+    selector: '[data-tour="educator-outcomes"]',
+    title: "Intervention outcomes",
+    body: "Proof the loop works: diagnostic vs reassessment results for every completed intervention, with average mastery lift.",
+  },
+  {
+    selector: '[data-tour="educator-roster"]',
+    title: "Your roster",
+    body: "Sorted by lowest mastery first so you always know who needs you today. Click a learner for their full profile.",
+  },
+  {
+    selector: '[data-tour="sidebar-nav"]',
+    title: "Everything else lives here",
+    body: "Learners, Assessments, Interventions and the audit centers are in the sidebar. That's the tour — you're ready.",
+  },
+];
 
 type Learner = Database["public"]["Tables"]["learners"]["Row"];
 type Evidence = Database["public"]["Tables"]["learner_evidence"]["Row"];
@@ -43,10 +76,33 @@ export function liftText(lift: number) {
 function DashboardPage() {
   const { role, profile } = Route.useRouteContext();
   const fetchOutcomeSummary = useServerFn(getOrgOutcomeSummary);
+  const outcomesRef = useRef<HTMLDivElement>(null);
 
   const { data: outcomeSummary } = useQuery({
     queryKey: ["outcome-summary"],
     queryFn: () => fetchOutcomeSummary(),
+  });
+
+  // Onboarding step signals: has the educator assigned anything yet?
+  const { data: sessionCount } = useQuery({
+    queryKey: ["session-count"],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from("assessment_sessions")
+        .select("id", { count: "exact", head: true });
+      if (error) throw error;
+      return count ?? 0;
+    },
+  });
+  const { data: interventionCount } = useQuery({
+    queryKey: ["intervention-count"],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from("interventions")
+        .select("id", { count: "exact", head: true });
+      if (error) throw error;
+      return count ?? 0;
+    },
   });
 
   const { data: learners, isPending } = useQuery({
