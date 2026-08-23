@@ -15,6 +15,8 @@ export const PROTECTED_ROUTES = [
   "/rls-verification",
   "/assessment-audit",
   "/assessment-proof",
+  "/interventions",
+  "/sprint-3-audit",
   "/home",
 ] as const;
 

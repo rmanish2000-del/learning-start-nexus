@@ -68,11 +68,13 @@ export const runSprint3Probes = createServerFn({ method: "POST" })
     if (!me.orgId) throw new Error("Your account is not linked to an organization.");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const [detection, workflow, crossOrg] = await Promise.all([
-      runDetectionProbe(context.supabase, supabaseAdmin, me.orgId),
-      runWorkflowProbe(context.supabase, supabaseAdmin, me.orgId, context.userId),
-      runSprint3CrossOrgTests(context.supabase, supabaseAdmin, me.orgId),
-    ]);
+    // Sequential: the detection and workflow probes both mutate this org's
+    // gap/recommendation rows — running them concurrently would race the
+    // determinism fingerprint. Cross-org probes target the OTHER org, but
+    // keeping the whole run sequential makes ordering obvious to a reviewer.
+    const detection = await runDetectionProbe(context.supabase, supabaseAdmin, me.orgId);
+    const workflow = await runWorkflowProbe(context.supabase, supabaseAdmin, me.orgId, context.userId);
+    const crossOrg = await runSprint3CrossOrgTests(context.supabase, supabaseAdmin, me.orgId);
 
     return { generatedAt: new Date().toISOString(), detection, workflow, crossOrg };
   });

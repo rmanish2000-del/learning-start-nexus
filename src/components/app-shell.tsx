@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { ClipboardCheck, ClipboardList, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
+import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Settings, ShieldCheck, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -35,6 +35,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
   { to: "/learners", label: "Learners", icon: Users, roles: ["admin", "educator"] },
   { to: "/assessments", label: "Assessments", icon: ClipboardList, roles: ["admin", "educator"] },
+  { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
@@ -47,6 +48,7 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/rls-verification", label: "RLS Policies", icon: ShieldCheck, roles: ["admin", "educator"] },
   { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "educator"] },
   { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "educator"] },
+  { to: "/sprint-3-audit", label: "Sprint 3 Audit", icon: ShieldCheck, roles: ["admin", "educator", "student"] },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -65,6 +67,8 @@ const TITLES: [RegExp, string][] = [
   [/^\/rls-verification/, "RLS verification"],
   [/^\/assessment-audit/, "Assessment audit report"],
   [/^\/assessment-proof/, "Assessment build proof"],
+  [/^\/interventions/, "Interventions"],
+  [/^\/sprint-3-audit/, "Sprint 3 audit center"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");
@@ -115,7 +119,7 @@ function DemoContextBar() {
   });
 
   const { data: myLearner } = useQuery({
-    queryKey: ["my-learner", user.id],
+    queryKey: ["my-learner-educator", user.id],
     enabled: role === "student",
     queryFn: async () => {
       const { data } = await supabase
