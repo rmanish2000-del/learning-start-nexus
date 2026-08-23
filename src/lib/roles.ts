@@ -1,8 +1,9 @@
-export type AppRole = "admin" | "educator" | "student" | "reviewer";
+export type AppRole = "admin" | "educator" | "student" | "reviewer" | "parent";
 
-export function roleHome(role: AppRole): "/dashboard" | "/home" | "/launch-audit" {
+export function roleHome(role: AppRole): "/dashboard" | "/home" | "/launch-audit" | "/parent" {
   if (role === "student") return "/home";
   if (role === "reviewer") return "/launch-audit";
+  if (role === "parent") return "/parent";
   return "/dashboard";
 }
 
@@ -11,6 +12,7 @@ export const ROLE_LABELS: Record<AppRole, string> = {
   educator: "Educator",
   student: "Student",
   reviewer: "Reviewer",
+  parent: "Parent",
 };
 
 // Sprint 5A: reviewers are read-only and limited to audit surfaces. The

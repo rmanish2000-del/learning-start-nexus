@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, HeartHandshake, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -39,6 +39,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
+  { to: "/parent", label: "My Child", icon: HeartHandshake, roles: ["parent"], exact: true },
 ];
 
 const SYSTEM_ITEMS: NavItem[] = [
@@ -64,6 +65,7 @@ const TITLES: [RegExp, string][] = [
   [/^\/admin/, "Admin"],
   [/^\/dashboard/, "Dashboard"],
   [/^\/home/, "My learning"],
+  [/^\/parent/, "Parent portal"],
   [/^\/settings/, "Settings"],
   [/^\/verification/, "Verification"],
   [/^\/assessment-verification/, "Assessment verification"],
@@ -158,7 +160,9 @@ function DemoContextBar() {
         : "Unassigned"
       : role === "educator"
         ? `${profile?.full_name ?? "You"} (you)`
-        : "All educators";
+        : role === "parent"
+          ? "Your child's educator"
+          : "All educators";
 
   return (
     <div className="border-b bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground print:hidden">
@@ -194,7 +198,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </span>
           </Link>
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent data-tour="sidebar-nav">
           <SidebarGroup>
             <SidebarGroupLabel>Workspace</SidebarGroupLabel>
             <SidebarGroupContent>
@@ -244,6 +248,7 @@ function HeaderTitle() {
           role === "admin" && "bg-destructive/10 text-destructive",
           role === "educator" && "bg-primary/10 text-primary",
           role === "student" && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+          role === "parent" && "bg-amber-500/10 text-amber-600 dark:text-amber-400",
         )}
       >
         {ROLE_LABELS[role]}
