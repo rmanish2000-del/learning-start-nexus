@@ -257,6 +257,87 @@ function VerificationPage() {
         </CardContent>
       </Card>
 
+      {/* Route protection report — live probe against this deployment */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Server className="h-4 w-4" /> Route protection report
+          </CardTitle>
+          <CardDescription>
+            Live probe: the server requested each protected route with{" "}
+            <span className="font-medium text-foreground">no cookies</span> — the same as an
+            incognito browser visiting the URL directly. Every route must answer{" "}
+            <span className="font-mono text-xs">302 → /auth</span> before any page content loads.
+            {probe.data && (
+              <>
+                {" "}Probed <span className="font-mono text-xs">{probe.data.origin}</span> at{" "}
+                {new Date(probe.data.probedAt).toLocaleString()}.
+              </>
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Route tested</TableHead>
+                <TableHead>Auth state</TableHead>
+                <TableHead>Result</TableHead>
+                <TableHead>Verdict</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {(probe.data?.results ?? []).map((row) => (
+                <TableRow key={row.route}>
+                  <TableCell className="font-mono text-xs">{row.route}</TableCell>
+                  <TableCell className="text-sm">Anonymous (no cookies)</TableCell>
+                  <TableCell className="font-mono text-xs">
+                    {row.status} → {row.location ?? "—"}
+                  </TableCell>
+                  <TableCell>
+                    {row.redirectedToAuth ? (
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                        <CheckCircle2 className="h-3.5 w-3.5" /> PASS
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-destructive">
+                        <XCircle className="h-3.5 w-3.5" /> FAIL
+                      </span>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+              {!probe.data && (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-sm text-muted-foreground">
+                    {probe.isError ? "Probe failed to run." : "Running probe…"}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+
+          <div className="rounded-lg border bg-muted/40 p-4 text-sm">
+            <p className="mb-2 font-medium">Reproduce manually</p>
+            <ol className="list-decimal space-y-1 pl-5 text-muted-foreground">
+              <li>Open an incognito / private browser window.</li>
+              <li>
+                Visit{" "}
+                <span className="font-mono text-xs text-foreground">
+                  {probe.data?.origin ?? window.location.origin}/dashboard
+                </span>{" "}
+                directly.
+              </li>
+              <li>
+                The server answers <span className="font-mono text-xs">302</span> and the browser
+                lands on <span className="font-mono text-xs">/auth</span> — no dashboard markup or
+                data is ever sent.
+              </li>
+            </ol>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Access matrix */}
       <Card>
         <CardHeader className="pb-3">
