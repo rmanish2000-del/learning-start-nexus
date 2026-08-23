@@ -64,7 +64,7 @@ function StudentHomePage() {
 
   const { data: history } = useQuery({
     queryKey: ["mastery-history", learner?.id],
-    enabled: !!learner,
+    enabled: !!learner?.id,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("mastery_history")
@@ -78,7 +78,7 @@ function StudentHomePage() {
 
   const { data: planItems } = useQuery({
     queryKey: ["plan-items", learner?.id],
-    enabled: !!learner,
+    enabled: !!learner?.id,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("learning_plan_items")
