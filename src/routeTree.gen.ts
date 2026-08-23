@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
+import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +32,19 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
@@ -39,39 +52,71 @@ const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   path: '/learners',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedLearnersLearnerIdRoute =
+  AuthenticatedLearnersLearnerIdRouteImport.update({
+    id: '/$learnerId',
+    path: '/$learnerId',
+    getParentRoute: () => AuthenticatedLearnersRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/learners': typeof AuthenticatedLearnersRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/learners': typeof AuthenticatedLearnersRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/learners': typeof AuthenticatedLearnersRoute
+  '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/learners'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/dashboard'
+    | '/home'
+    | '/learners'
+    | '/learners/$learnerId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/learners'
+  to:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/dashboard'
+    | '/home'
+    | '/learners'
+    | '/learners/$learnerId'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/admin'
     | '/_authenticated/dashboard'
+    | '/_authenticated/home'
     | '/_authenticated/learners'
+    | '/_authenticated/learners/$learnerId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -103,11 +148,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/home': {
+      id: '/_authenticated/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AuthenticatedHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/learners': {
@@ -117,17 +176,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLearnersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/learners/$learnerId': {
+      id: '/_authenticated/learners/$learnerId'
+      path: '/$learnerId'
+      fullPath: '/learners/$learnerId'
+      preLoaderRoute: typeof AuthenticatedLearnersLearnerIdRouteImport
+      parentRoute: typeof AuthenticatedLearnersRoute
+    }
   }
 }
 
+interface AuthenticatedLearnersRouteChildren {
+  AuthenticatedLearnersLearnerIdRoute: typeof AuthenticatedLearnersLearnerIdRoute
+}
+
+const AuthenticatedLearnersRouteChildren: AuthenticatedLearnersRouteChildren = {
+  AuthenticatedLearnersLearnerIdRoute: AuthenticatedLearnersLearnerIdRoute,
+}
+
+const AuthenticatedLearnersRouteWithChildren =
+  AuthenticatedLearnersRoute._addFileChildren(
+    AuthenticatedLearnersRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRoute
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedLearnersRoute: AuthenticatedLearnersRoute,
+  AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =

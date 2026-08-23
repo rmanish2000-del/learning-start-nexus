@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { createFileRoute, redirect, useServerFn } from "@tanstack/react-router";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { Copy, Plus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -89,8 +89,12 @@ function AdminPage() {
     },
   });
 
+  const createStaffFn = useServerFn(createStaffUser);
+  const updateRoleFn = useServerFn(updateUserRole);
+
   const createMutation = useMutation({
-    mutationFn: useServerFn(createStaffUser),
+    mutationFn: (input: { fullName: string; email: string; role: "admin" | "educator" }) =>
+      createStaffFn({ data: input }),
     onSuccess: (result) => {
       setTempPassword(result.tempPassword);
       toast.success("Staff account created.");
@@ -100,7 +104,8 @@ function AdminPage() {
   });
 
   const roleMutation = useMutation({
-    mutationFn: useServerFn(updateUserRole),
+    mutationFn: (input: { userId: string; role: "admin" | "educator" | "student" }) =>
+      updateRoleFn({ data: input }),
     onSuccess: () => {
       toast.success("Role updated.");
       void queryClient.invalidateQueries({ queryKey: ["staff-users"] });
@@ -112,11 +117,9 @@ function AdminPage() {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     createMutation.mutate({
-      data: {
-        fullName: String(form.get("fullName") ?? ""),
-        email: String(form.get("email") ?? ""),
-        role: String(form.get("role") ?? "educator") as "admin" | "educator",
-      },
+      fullName: String(form.get("fullName") ?? ""),
+      email: String(form.get("email") ?? ""),
+      role: String(form.get("role") ?? "educator") as "admin" | "educator",
     });
   };
 
@@ -281,7 +284,8 @@ function AdminPage() {
                       disabled={member.id === user.id || roleMutation.isPending}
                       onValueChange={(role) =>
                         roleMutation.mutate({
-                          data: { userId: member.id, role: role as "admin" | "educator" | "student" },
+                          userId: member.id,
+                          role: role as "admin" | "educator" | "student",
                         })
                       }
                     >

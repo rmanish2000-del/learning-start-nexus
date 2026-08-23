@@ -64,8 +64,8 @@ function LearnerNotFound() {
       <p className="mt-2 text-sm text-muted-foreground">
         This learner doesn't exist or isn't assigned to you.
       </p>
-      <Button className="mt-6" render={<Link to="/learners" />}>
-        Back to learners
+      <Button className="mt-6" asChild>
+        <Link to="/learners">Back to learners</Link>
       </Button>
     </div>
   );
