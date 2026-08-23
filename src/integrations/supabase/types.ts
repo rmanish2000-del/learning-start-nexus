@@ -591,7 +591,17 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      rls_policy_audit: {
+        Row: {
+          cmd: string | null
+          policyname: unknown
+          roles: string | null
+          tablename: unknown
+          using_expression: string | null
+          with_check_expression: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
