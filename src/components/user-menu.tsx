@@ -4,6 +4,7 @@ import { ChevronsUpDown, LogOut } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import { STUDENT_EMAIL_DOMAIN } from "@/lib/auth-utils";
+import { clearSessionMarker } from "@/lib/session-marker";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -38,6 +39,7 @@ export function UserMenu() {
   async function handleSignOut() {
     await queryClient.cancelQueries();
     queryClient.clear();
+    clearSessionMarker();
     await supabase.auth.signOut();
     void navigate({ to: "/auth", replace: true });
   }

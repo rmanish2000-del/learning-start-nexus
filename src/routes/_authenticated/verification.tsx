@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
 import {
   Building2,
@@ -6,6 +7,7 @@ import {
   FlaskConical,
   KeyRound,
   Lock,
+  Server,
   ShieldCheck,
   UserRound,
   Users,
@@ -23,6 +25,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { supabase } from "@/integrations/supabase/client";
+import { probeRouteProtection } from "@/lib/verification.functions";
 import { ROLE_LABELS } from "@/lib/roles";
 
 export const Route = createFileRoute("/_authenticated/verification")({
@@ -99,7 +102,7 @@ const SECURITY_CHECKLIST = [
   "Row Level Security enabled on all 9 tables (organizations, profiles, user_roles, learners, mastery_history, learner_assessments, learner_evidence, learning_plan_items, learning_items)",
   "Every learner-scoped policy filters by org_id = private.current_org_id() — cross-organization reads return zero rows",
   "Role checks use private.has_role() — a security-definer function in the non-API-exposed private schema",
-  "All app routes sit under the _authenticated gate; anonymous users are redirected to /auth before any data loads",
+  "Server middleware answers anonymous document requests to protected routes with 302 → /auth before any HTML/JS ships; the client-side beforeLoad gate re-checks the session with getUser()",
   "Admin/educator/student route guards redirect cross-role access (see access matrix above)",
   "Privileged server functions (create user, create learner, reset PIN, assign educator) re-verify the caller's role server-side",
   "Students authenticate with handle + 6-digit PIN mapped to synthetic emails — no inbox required",
@@ -124,6 +127,15 @@ function AccessCell({ value }: { value: string }) {
 function VerificationPage() {
   const { user, role, profile } = authRoute.useRouteContext();
   const { orgs, learners, myLearner } = useVerificationData(user.id, profile?.org_id ?? null, role);
+
+  // Live anonymous probe against THIS deployment: the server fetches each
+  // protected route with no cookies, exactly like an incognito visitor.
+  const runProbe = useServerFn(probeRouteProtection);
+  const probe = useQuery({
+    queryKey: ["route-protection-probe"],
+    queryFn: () => runProbe(),
+    staleTime: 30_000,
+  });
 
   const visibleLearners = learners.data ?? [];
   const assignedToMe = visibleLearners.filter((l) => l.educator_id === user.id);
@@ -242,6 +254,87 @@ function VerificationPage() {
             Expected: Brightpath staff see 12 learners and 1 organization; Northstar staff see 1
             learner and 1 organization; students see exactly their own record.
           </p>
+        </CardContent>
+      </Card>
+
+      {/* Route protection report — live probe against this deployment */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Server className="h-4 w-4" /> Route protection report
+          </CardTitle>
+          <CardDescription>
+            Live probe: the server requested each protected route with{" "}
+            <span className="font-medium text-foreground">no cookies</span> — the same as an
+            incognito browser visiting the URL directly. Every route must answer{" "}
+            <span className="font-mono text-xs">302 → /auth</span> before any page content loads.
+            {probe.data && (
+              <>
+                {" "}Probed <span className="font-mono text-xs">{probe.data.origin}</span> at{" "}
+                {new Date(probe.data.probedAt).toLocaleString()}.
+              </>
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Route tested</TableHead>
+                <TableHead>Auth state</TableHead>
+                <TableHead>Result</TableHead>
+                <TableHead>Verdict</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {(probe.data?.results ?? []).map((row) => (
+                <TableRow key={row.route}>
+                  <TableCell className="font-mono text-xs">{row.route}</TableCell>
+                  <TableCell className="text-sm">Anonymous (no cookies)</TableCell>
+                  <TableCell className="font-mono text-xs">
+                    {row.status} → {row.location ?? "—"}
+                  </TableCell>
+                  <TableCell>
+                    {row.redirectedToAuth ? (
+                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                        <CheckCircle2 className="h-3.5 w-3.5" /> PASS
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-destructive">
+                        <XCircle className="h-3.5 w-3.5" /> FAIL
+                      </span>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+              {!probe.data && (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-sm text-muted-foreground">
+                    {probe.isError ? "Probe failed to run." : "Running probe…"}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+
+          <div className="rounded-lg border bg-muted/40 p-4 text-sm">
+            <p className="mb-2 font-medium">Reproduce manually</p>
+            <ol className="list-decimal space-y-1 pl-5 text-muted-foreground">
+              <li>Open an incognito / private browser window.</li>
+              <li>
+                Visit{" "}
+                <span className="font-mono text-xs text-foreground">
+                  {probe.data?.origin ?? window.location.origin}/dashboard
+                </span>{" "}
+                directly.
+              </li>
+              <li>
+                The server answers <span className="font-mono text-xs">302</span> and the browser
+                lands on <span className="font-mono text-xs">/auth</span> — no dashboard markup or
+                data is ever sent.
+              </li>
+            </ol>
+          </div>
         </CardContent>
       </Card>
 
