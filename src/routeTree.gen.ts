@@ -26,6 +26,7 @@ import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenti
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
+import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenticated/launch-audit'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -128,6 +129,12 @@ const AuthenticatedInterventionsRoute =
     path: '/interventions',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedLaunchAuditRoute =
+  AuthenticatedLaunchAuditRouteImport.update({
+    id: '/launch-audit',
+    path: '/launch-audit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   id: '/learners',
   path: '/learners',
@@ -210,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
+  '/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -239,6 +247,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
+  '/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
@@ -270,6 +279,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
+  '/_authenticated/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
@@ -301,6 +311,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/home'
     | '/interventions'
+    | '/launch-audit'
     | '/learners'
     | '/rls-verification'
     | '/settings'
@@ -330,6 +341,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/home'
     | '/interventions'
+    | '/launch-audit'
     | '/learners'
     | '/rls-verification'
     | '/settings'
@@ -360,6 +372,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/home'
     | '/_authenticated/interventions'
+    | '/_authenticated/launch-audit'
     | '/_authenticated/learners'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
@@ -505,6 +518,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInterventionsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/launch-audit': {
+      id: '/_authenticated/launch-audit'
+      path: '/launch-audit'
+      fullPath: '/launch-audit'
+      preLoaderRoute: typeof AuthenticatedLaunchAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/learners': {
       id: '/_authenticated/learners'
       path: '/learners'
@@ -608,6 +628,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
+  AuthenticatedLaunchAuditRoute: typeof AuthenticatedLaunchAuditRoute
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
@@ -631,6 +652,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
+  AuthenticatedLaunchAuditRoute: AuthenticatedLaunchAuditRoute,
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
