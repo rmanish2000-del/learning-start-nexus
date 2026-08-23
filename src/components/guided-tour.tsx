@@ -42,7 +42,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
   const findNext = useCallback(
     (from: number): number | null => {
       for (let i = from; i < steps.length; i++) {
-        if (document.querySelector(steps[i].selector)) return i;
+        if (document.querySelector(steps[i]!.selector)) return i;
       }
       return null;
     },
@@ -81,7 +81,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
   useEffect(() => {
     if (active === null) return;
     const update = () => {
-      const el = document.querySelector(steps[active].selector);
+      const el = document.querySelector(steps[active]!.selector);
       if (!el) {
         // Target unmounted mid-tour — advance or finish.
         const next = findNext(active + 1);
@@ -103,7 +103,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
 
   if (active === null || !rect) return null;
 
-  const step = steps[active];
+  const step = steps[active]!;
   const pad = 8;
   const tooltipWidth = 320;
   const spaceBelow = window.innerHeight - (rect.top + rect.height + pad);
@@ -156,7 +156,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
                 className="h-7 px-2 text-xs"
                 onClick={() => {
                   for (let i = active - 1; i >= 0; i--) {
-                    if (document.querySelector(steps[i].selector)) {
+                    if (document.querySelector(steps[i]!.selector)) {
                       setActive(i);
                       return;
                     }
