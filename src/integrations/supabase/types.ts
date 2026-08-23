@@ -810,6 +810,149 @@ export type Database = {
           },
         ]
       }
+      tutor_interactions: {
+        Row: {
+          ai_used: boolean
+          created_at: string
+          id: string
+          kind: string
+          learner_id: string
+          org_id: string
+          practice_correct: boolean | null
+          request_text: string | null
+          response_text: string
+          session_id: string
+          student_user_id: string
+        }
+        Insert: {
+          ai_used?: boolean
+          created_at?: string
+          id?: string
+          kind: string
+          learner_id: string
+          org_id: string
+          practice_correct?: boolean | null
+          request_text?: string | null
+          response_text: string
+          session_id: string
+          student_user_id: string
+        }
+        Update: {
+          ai_used?: boolean
+          created_at?: string
+          id?: string
+          kind?: string
+          learner_id?: string
+          org_id?: string
+          practice_correct?: boolean | null
+          request_text?: string | null
+          response_text?: string
+          session_id?: string
+          student_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tutor_interactions_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tutor_interactions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tutor_interactions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "tutor_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tutor_sessions: {
+        Row: {
+          concept: string
+          concepts_accessed: string[]
+          created_at: string
+          id: string
+          interaction_count: number
+          intervention_id: string | null
+          last_activity_at: string
+          learner_id: string
+          mastery_at_start: number
+          objective: string
+          org_id: string
+          status: string
+          student_user_id: string
+          subject: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          concept: string
+          concepts_accessed?: string[]
+          created_at?: string
+          id?: string
+          interaction_count?: number
+          intervention_id?: string | null
+          last_activity_at?: string
+          learner_id: string
+          mastery_at_start?: number
+          objective: string
+          org_id: string
+          status?: string
+          student_user_id: string
+          subject: string
+          topic: string
+          updated_at?: string
+        }
+        Update: {
+          concept?: string
+          concepts_accessed?: string[]
+          created_at?: string
+          id?: string
+          interaction_count?: number
+          intervention_id?: string | null
+          last_activity_at?: string
+          learner_id?: string
+          mastery_at_start?: number
+          objective?: string
+          org_id?: string
+          status?: string
+          student_user_id?: string
+          subject?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tutor_sessions_intervention_id_fkey"
+            columns: ["intervention_id"]
+            isOneToOne: false
+            referencedRelation: "interventions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tutor_sessions_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tutor_sessions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
