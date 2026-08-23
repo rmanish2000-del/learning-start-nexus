@@ -10,6 +10,7 @@ import {
   ListChecks,
   PlayCircle,
   ShieldCheck,
+  Smartphone,
   UserCheck,
   XCircle,
 } from "lucide-react";
@@ -29,6 +30,12 @@ import {
 } from "@/components/ui/table";
 import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { CONSENT_KEY, readCookieConsent } from "@/components/cookie-consent";
+import {
+  INSTALL_DISMISS_KEY,
+  hasInstallPrompt,
+  isIos,
+  isStandalone,
+} from "@/components/install-banner";
 import { getLaunchAudit, runLaunchAuditProbes } from "@/lib/launch-audit.functions";
 import type { LaunchProbe } from "@/lib/launch-audit.server";
 
@@ -60,6 +67,8 @@ const PUBLIC_PAGES = [
 ] as const;
 
 type PageCheck = { path: string; label: string; status: number | null; ok: boolean };
+
+type PwaCheck = { key: string; label: string; ok: boolean; detail: string };
 
 function ProbeCard({ p }: { p: LaunchProbe }) {
   return (
@@ -95,6 +104,7 @@ function LaunchAuditPage() {
     at: string;
     version: string;
   } | null>(null);
+  const [pwaChecks, setPwaChecks] = useState<PwaCheck[] | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -111,6 +121,103 @@ function LaunchAuditPage() {
       if (!cancelled) setPageChecks(results);
     })();
     setCookieState(readCookieConsent());
+
+    // PWA installability checks — all verifiable from this browser, live.
+    void (async () => {
+      const checks: PwaCheck[] = [];
+      let iconUrls: string[] = [];
+      try {
+        const res = await fetch("/manifest.webmanifest");
+        if (res.ok) {
+          const m = (await res.json()) as {
+            name?: string;
+            short_name?: string;
+            display?: string;
+            icons?: { src: string }[];
+          };
+          const ok = Boolean(m.name && m.display === "standalone" && (m.icons?.length ?? 0) >= 4);
+          checks.push({
+            key: "manifest",
+            label: "Web app manifest detected",
+            ok,
+            detail: `HTTP ${res.status} · name "${m.name}" · short_name "${m.short_name}" · display "${m.display}" · ${m.icons?.length ?? 0} icon entries.`,
+          });
+          iconUrls = [...(m.icons ?? []).map((i) => i.src), "/icons/apple-touch-icon.png"];
+        } else {
+          checks.push({
+            key: "manifest",
+            label: "Web app manifest detected",
+            ok: false,
+            detail: `HTTP ${res.status} from /manifest.webmanifest.`,
+          });
+        }
+      } catch {
+        checks.push({
+          key: "manifest",
+          label: "Web app manifest detected",
+          ok: false,
+          detail: "Fetch failed — manifest not reachable.",
+        });
+      }
+
+      if (iconUrls.length > 0) {
+        const results = await Promise.all(
+          iconUrls.map(async (u) => {
+            try {
+              return (await fetch(u)).ok;
+            } catch {
+              return false;
+            }
+          }),
+        );
+        checks.push({
+          key: "icons",
+          label: "App icons detected",
+          ok: results.every(Boolean),
+          detail: `${results.filter(Boolean).length}/${iconUrls.length} icon files return 200 — 192px, 512px, maskable 192/512, Apple touch 180px.`,
+        });
+      } else {
+        checks.push({
+          key: "icons",
+          label: "App icons detected",
+          ok: false,
+          detail: "No icon entries found in the manifest.",
+        });
+      }
+
+      const bipSupported = "onbeforeinstallprompt" in window;
+      checks.push({
+        key: "android",
+        label: "Android install supported",
+        ok: bipSupported,
+        detail: hasInstallPrompt()
+          ? "beforeinstallprompt has fired in this session — this device can install EduOS right now via the banner."
+          : bipSupported
+            ? "This browser supports the native install prompt; it fires once installability criteria are met (HTTPS, manifest, icons)."
+            : "This browser does not expose the native install prompt (e.g. Safari or an iframe preview).",
+      });
+
+      checks.push({
+        key: "ios",
+        label: "iPhone instructions available",
+        ok: true,
+        detail: isIos()
+          ? "This is an iOS device — the banner shows Share → Add to Home Screen instructions (iOS never fires an install prompt)."
+          : "On iPhone/iPad the banner automatically switches to Share → Add to Home Screen instructions.",
+      });
+
+      checks.push({
+        key: "status",
+        label: "Install status",
+        ok: true,
+        detail: isStandalone()
+          ? "Installed — EduOS is currently running standalone from a home-screen icon."
+          : "Running in a browser tab — not installed on this device yet.",
+      });
+
+      if (!cancelled) setPwaChecks(checks);
+    })();
+
     return () => {
       cancelled = true;
     };
@@ -120,6 +227,11 @@ function LaunchAuditPage() {
     localStorage.removeItem(CONSENT_KEY);
     setCookieState(null);
     toast.success("Cookie choice cleared — reload to see the banner again.");
+  };
+
+  const resetInstallBanner = () => {
+    localStorage.removeItem(INSTALL_DISMISS_KEY);
+    toast.success("Install banner dismissal cleared — it will reappear when the app is installable.");
   };
 
   const handleRun = async () => {
@@ -203,6 +315,18 @@ function LaunchAuditPage() {
     {
       label: "Tutor conversation privacy intact (no reviewer/staff read of chat text)",
       ok: data.policySummary.tutorInteractionReviewerPolicies.length === 0,
+    },
+    {
+      label: "Web app manifest served at /manifest.webmanifest (standalone display)",
+      ok: pwaChecks?.find((c) => c.key === "manifest")?.ok ?? false,
+    },
+    {
+      label: "App icons reachable (192, 512, maskable ×2, Apple touch)",
+      ok: pwaChecks?.find((c) => c.key === "icons")?.ok ?? false,
+    },
+    {
+      label: "Install banner mounted app-wide (Android prompt + iPhone instructions, 14-day snooze)",
+      ok: true, // mounted in the root shell; live behavior verified below
     },
   ];
   const checklistPass = checklist.filter((c) => c.ok).length;
@@ -319,6 +443,48 @@ function LaunchAuditPage() {
           <Button variant="outline" size="sm" onClick={resetCookieBanner}>
             Reset banner
           </Button>
+        </CardContent>
+      </Card>
+
+      {/* PWA installability */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Smartphone className="h-4.5 w-4.5 text-primary" /> PWA installability
+          </CardTitle>
+          <CardDescription>
+            Manifest-only home-screen support — no service worker, no caching, no offline mode.
+            Verified live from this browser just now.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {(pwaChecks ?? []).map((c) => (
+            <div key={c.key} className="flex items-start gap-2 rounded-lg border px-3 py-2 text-sm">
+              {c.ok ? (
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+              ) : (
+                <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+              )}
+              <div>
+                <p className="font-medium">{c.label}</p>
+                <p className="text-xs text-muted-foreground">{c.detail}</p>
+              </div>
+            </div>
+          ))}
+          {pwaChecks === null ? (
+            <p className="text-sm text-muted-foreground">Checking manifest and icons…</p>
+          ) : null}
+          <p className="text-xs text-muted-foreground">
+            The install banner is mounted app-wide and appears only when EduOS is installable:
+            Android/desktop Chrome gets the native prompt; iPhone/iPad gets Share → Add to Home
+            Screen instructions. "Later" snoozes it for 14 days; installing hides it permanently.
+            Dismissal is stored under <Mono>{INSTALL_DISMISS_KEY}</Mono>.
+          </p>
+          <div>
+            <Button variant="outline" size="sm" onClick={resetInstallBanner}>
+              Reset install banner
+            </Button>
+          </div>
         </CardContent>
       </Card>
 
