@@ -357,7 +357,7 @@ export async function runGapProbes(
     name: "P4 — Weak/Medium/Strong categories and risk levels derive from band rank + weight × difficulty",
     pass: p4Pass,
     expectation:
-      "Aarav: NAT_01 strong/low, NAT_02 medium/medium, NAT_03 weak/high. Diya: NAT_01 medium/low, NAT_02 weak/high, NAT_03 weak/high. Benchmark = unit mean of weight × difficulty; 0.9× threshold.",
+      "Aarav: LO_GK3_NAT_01 strong/low, LO_GK3_NAT_02 medium/medium, LO_GK3_NAT_03 weak/high. Diya: LO_GK3_NAT_01 medium/low, LO_GK3_NAT_02 weak/high, LO_GK3_NAT_03 weak/high. Benchmark = unit mean of weight × difficulty; 0.9× threshold.",
     detail: p4Details.join(" · "),
   });
 
