@@ -157,7 +157,7 @@ function AssessmentBuilderPage() {
   const workspaceQuery = useQuery({
     queryKey: ["builder-workspace", bookId, search.unit],
     enabled: !!bookId,
-    queryFn: () => getBuilderWorkspaceFn({ data: { bookId: bookId!, unit: undefined, unitId: search.unit } as never }),
+    queryFn: () => getBuilderWorkspaceFn({ data: { bookId: bookId!, unitId: search.unit } }),
   });
   const workspace = workspaceQuery.data ?? null;
   const outcomes = workspace?.outcomes ?? [];
@@ -682,7 +682,6 @@ function AssessmentBuilderPage() {
               <CardTitle className="flex items-center gap-2 text-base">
                 <ShieldAlert className="h-4 w-4 text-primary" />
                 6 · Gap coverage preview
-              </Title>
               </CardTitle>
               <CardDescription>
                 Assessment → outcomes measured → potential gap areas (from the intervention map). If
