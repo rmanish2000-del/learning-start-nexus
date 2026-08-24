@@ -169,7 +169,7 @@ export async function fetchBookWorkspace(supabase: Client, bookId: string): Prom
       (e): BookEventRow => ({
         id: e.id,
         event: e.event,
-        detail: (e.detail ?? {}) as Record<string, unknown>,
+        detail: (e.detail ?? {}) as EventDetail,
         createdAt: e.created_at,
       }),
     ),
@@ -182,7 +182,7 @@ export async function fetchBookWorkspace(supabase: Client, bookId: string): Prom
 
 async function logEvent(
   supabase: Client,
-  input: { orgId: string; bookId: string; actorId: string; event: string; detail?: Record<string, unknown> },
+  input: { orgId: string; bookId: string; actorId: string; event: string; detail?: EventDetail },
 ): Promise<void> {
   await supabase.from("book_events").insert({
     org_id: input.orgId,
