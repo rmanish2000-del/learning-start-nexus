@@ -123,9 +123,55 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const runImport = useServerFn(importCurriculumFn);
+  const runUpload = useServerFn(uploadBookFileFn);
+  const runExtract = useServerFn(extractCurriculumFn);
   const [importOpen, setImportOpen] = useState(false);
   const [jsonText, setJsonText] = useState("");
   const [busy, setBusy] = useState(false);
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadMeta, setUploadMeta] = useState({ title: "", board: "", grade: "6", subject: "" });
+  const [extractingId, setExtractingId] = useState<string | null>(null);
+
+  const handleUpload = async () => {
+    if (!uploadFile) return;
+    setBusy(true);
+    try {
+      const form = new FormData();
+      form.set("title", uploadMeta.title);
+      form.set("board", uploadMeta.board);
+      form.set("grade", uploadMeta.grade);
+      form.set("subject", uploadMeta.subject);
+      form.set("file", uploadFile);
+      const result = await runUpload({ data: form });
+      toast.success(`Uploaded "${uploadMeta.title}" (${result.fileName}). Extract its curriculum next.`);
+      setUploadOpen(false);
+      setUploadFile(null);
+      setUploadMeta({ title: "", board: "", grade: "6", subject: "" });
+      await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Upload failed.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleExtract = async (bookId: string) => {
+    setExtractingId(bookId);
+    try {
+      const result = await runExtract({ data: { bookId } });
+      toast.success(
+        `Extracted ${result.units} units, ${result.chapters} chapters, ${result.topics} topics, ${result.outcomes} outcomes.`,
+      );
+      await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
+      navigate({ to: "/curriculum", search: { book: bookId, tab: "review" } });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Extraction failed.");
+      await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
+    } finally {
+      setExtractingId(null);
+    }
+  };
 
   const boards = new Map<string, Map<string, BookSummary[]>>();
   for (const b of books) {
