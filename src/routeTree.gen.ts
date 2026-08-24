@@ -23,6 +23,8 @@ import { Route as AuthenticatedAssessmentProofRouteImport } from './routes/_auth
 import { Route as AuthenticatedAssessmentVerificationRouteImport } from './routes/_authenticated/assessment-verification'
 import { Route as AuthenticatedAssessmentsRouteImport } from './routes/_authenticated/assessments'
 import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenticated/assignments'
+import { Route as AuthenticatedCurriculumRouteImport } from './routes/_authenticated/curriculum'
+import { Route as AuthenticatedCurriculumAuditRouteImport } from './routes/_authenticated/curriculum-audit'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
@@ -112,6 +114,17 @@ const AuthenticatedAssignmentsRoute =
   AuthenticatedAssignmentsRouteImport.update({
     id: '/assignments',
     path: '/assignments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCurriculumRoute = AuthenticatedCurriculumRouteImport.update({
+  id: '/curriculum',
+  path: '/curriculum',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCurriculumAuditRoute =
+  AuthenticatedCurriculumAuditRouteImport.update({
+    id: '/curriculum-audit',
+    path: '/curriculum-audit',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
@@ -220,6 +233,8 @@ export interface FileRoutesByFullPath {
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
   '/assignments': typeof AuthenticatedAssignmentsRoute
+  '/curriculum': typeof AuthenticatedCurriculumRoute
+  '/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
@@ -251,6 +266,8 @@ export interface FileRoutesByTo {
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
   '/assignments': typeof AuthenticatedAssignmentsRoute
+  '/curriculum': typeof AuthenticatedCurriculumRoute
+  '/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
@@ -284,6 +301,8 @@ export interface FileRoutesById {
   '/_authenticated/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/_authenticated/assessments': typeof AuthenticatedAssessmentsRoute
   '/_authenticated/assignments': typeof AuthenticatedAssignmentsRoute
+  '/_authenticated/curriculum': typeof AuthenticatedCurriculumRoute
+  '/_authenticated/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
@@ -317,6 +336,8 @@ export interface FileRouteTypes {
     | '/assessment-verification'
     | '/assessments'
     | '/assignments'
+    | '/curriculum'
+    | '/curriculum-audit'
     | '/dashboard'
     | '/home'
     | '/interventions'
@@ -348,6 +369,8 @@ export interface FileRouteTypes {
     | '/assessment-verification'
     | '/assessments'
     | '/assignments'
+    | '/curriculum'
+    | '/curriculum-audit'
     | '/dashboard'
     | '/home'
     | '/interventions'
@@ -380,6 +403,8 @@ export interface FileRouteTypes {
     | '/_authenticated/assessment-verification'
     | '/_authenticated/assessments'
     | '/_authenticated/assignments'
+    | '/_authenticated/curriculum'
+    | '/_authenticated/curriculum-audit'
     | '/_authenticated/dashboard'
     | '/_authenticated/home'
     | '/_authenticated/interventions'
@@ -507,6 +532,20 @@ declare module '@tanstack/react-router' {
       path: '/assignments'
       fullPath: '/assignments'
       preLoaderRoute: typeof AuthenticatedAssignmentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/curriculum': {
+      id: '/_authenticated/curriculum'
+      path: '/curriculum'
+      fullPath: '/curriculum'
+      preLoaderRoute: typeof AuthenticatedCurriculumRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/curriculum-audit': {
+      id: '/_authenticated/curriculum-audit'
+      path: '/curriculum-audit'
+      fullPath: '/curriculum-audit'
+      preLoaderRoute: typeof AuthenticatedCurriculumAuditRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
@@ -644,6 +683,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssessmentVerificationRoute: typeof AuthenticatedAssessmentVerificationRoute
   AuthenticatedAssessmentsRoute: typeof AuthenticatedAssessmentsRoute
   AuthenticatedAssignmentsRoute: typeof AuthenticatedAssignmentsRoute
+  AuthenticatedCurriculumRoute: typeof AuthenticatedCurriculumRoute
+  AuthenticatedCurriculumAuditRoute: typeof AuthenticatedCurriculumAuditRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
@@ -669,6 +710,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedAssessmentVerificationRoute,
   AuthenticatedAssessmentsRoute: AuthenticatedAssessmentsRoute,
   AuthenticatedAssignmentsRoute: AuthenticatedAssignmentsRoute,
+  AuthenticatedCurriculumRoute: AuthenticatedCurriculumRoute,
+  AuthenticatedCurriculumAuditRoute: AuthenticatedCurriculumAuditRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
