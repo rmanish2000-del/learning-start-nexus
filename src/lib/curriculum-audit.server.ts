@@ -97,8 +97,19 @@ export async function fetchCurriculumPolicies(supabase: Client): Promise<PolicyA
 // Pilot book snapshot + processing history
 // ---------------------------------------------------------------------------
 
+export type PilotSampleRow = {
+  unit: string;
+  chapter: string;
+  topic: string;
+  outcomes: number;
+  sampleOutcome: string | null;
+};
+
+export type PilotGraphEdge = { parent: string; child: string };
+
 export type PilotSnapshot = {
   present: boolean;
+  bookId: string;
   title: string | null;
   status: string | null;
   board: string | null;
@@ -109,11 +120,24 @@ export type PilotSnapshot = {
   approvedOutcomes: number;
   nodes: number;
   edges: number;
+  structureOk: boolean;
+  sampleRows: PilotSampleRow[];
+  graphSample: PilotGraphEdge[];
 };
+
+export const PILOT_EXPECTED = {
+  units: 6,
+  chapters: 64,
+  topics: 64,
+  outcomes: 55,
+  nodes: 39,
+  edges: 38,
+} as const;
 
 export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapshot> {
   const empty: PilotSnapshot = {
     present: false,
+    bookId: PILOT_BOOK_ID,
     title: null,
     status: null,
     board: null,
@@ -124,6 +148,9 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
     approvedOutcomes: 0,
     nodes: 0,
     edges: 0,
+    structureOk: false,
+    sampleRows: [],
+    graphSample: [],
   };
   const { data: book } = await supabase
     .from("books")
