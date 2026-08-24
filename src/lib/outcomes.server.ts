@@ -143,19 +143,37 @@ export async function openOutcomeForIntervention(
     .single();
   if (insError) throw new Error(insError.message);
 
-  // Assign the published reassessment for this org/subject/topic, linked to
-  // the intervention. The (assessment_id, learner_id) unique constraint makes
-  // re-assignment a no-op.
-  const { data: reassessment } = await admin
-    .from("assessments")
-    .select("id, title")
-    .eq("org_id", intervention.org_id)
-    .eq("kind", "reassessment")
-    .eq("status", "published")
-    .eq("subject", subject)
-    .eq("topic", topic)
-    .limit(1)
-    .maybeSingle();
+  // Assign the published reassessment for this org, linked to the
+  // intervention. Curriculum baselines match on book + unit first; the
+  // subject/topic match remains as the legacy fallback. The
+  // (assessment_id, learner_id) unique constraint makes re-assignment a no-op.
+  let reassessment: { id: string; title: string } | null = null;
+  if (baselineBookId && baselineUnitId) {
+    const { data } = await admin
+      .from("assessments")
+      .select("id, title")
+      .eq("org_id", intervention.org_id)
+      .eq("kind", "reassessment")
+      .eq("status", "published")
+      .eq("book_id", baselineBookId)
+      .eq("unit_id", baselineUnitId)
+      .limit(1)
+      .maybeSingle();
+    reassessment = data;
+  }
+  if (!reassessment) {
+    const { data } = await admin
+      .from("assessments")
+      .select("id, title")
+      .eq("org_id", intervention.org_id)
+      .eq("kind", "reassessment")
+      .eq("status", "published")
+      .eq("subject", subject)
+      .eq("topic", topic)
+      .limit(1)
+      .maybeSingle();
+    reassessment = data;
+  }
 
   let reassessmentSessionId: string | null = null;
   let reassessmentAssigned = false;
