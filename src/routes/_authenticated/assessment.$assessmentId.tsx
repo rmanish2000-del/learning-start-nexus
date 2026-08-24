@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, CircleCheck, CircleX, Eye } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
-import { DIFFICULTY_LABELS, type AssessmentItem, type ResultEntry } from "@/lib/assessment-shared";
+import { DIFFICULTY_LABELS, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -71,20 +71,63 @@ function AssessmentDetailPage() {
     },
   });
 
+  // Sprint 6R: dual-read — curriculum assessments resolve via
+  // assessment_question_map → question_bank; legacy ones via
+  // assessment_item_map → assessment_items. Both mapped to RunnerQuestion.
   const { data: items } = useQuery({
     queryKey: ["assessment-items-for", assessmentId],
-    queryFn: async () => {
+    queryFn: async (): Promise<RunnerQuestion[]> => {
+      const { data: qMap, error: qError } = await supabase
+        .from("assessment_question_map")
+        .select("sort_order, points, question_bank(*)")
+        .eq("assessment_id", assessmentId)
+        .order("sort_order");
+      if (qError) throw qError;
+      if ((qMap ?? []).length > 0) {
+        const rows = qMap ?? [];
+        const outcomeIds = [
+          ...new Set(rows.map((r) => (r.question_bank as unknown as { outcome_id: string }).outcome_id)),
+        ];
+        const { data: outcomes } = await supabase
+          .from("assessment_outcomes")
+          .select("id, code")
+          .in("id", outcomeIds);
+        const codeById = new Map((outcomes ?? []).map((o) => [o.id, o.code]));
+        return rows.map((row) => {
+          const q = row.question_bank as unknown as {
+            id: string;
+            outcome_id: string;
+            kind: RunnerQuestion["kind"];
+            difficulty: number;
+            prompt: string;
+            options: unknown;
+            correct_answer: string;
+            explanation: string;
+          };
+          return {
+            id: q.id,
+            subtopic: codeById.get(q.outcome_id) ?? "General",
+            difficulty: q.difficulty,
+            kind: q.kind,
+            prompt: q.prompt,
+            options: (q.options as string[] | null) ?? null,
+            correct_answer: q.correct_answer,
+            explanation: q.explanation,
+            sort_order: row.sort_order,
+            points: row.points,
+          };
+        });
+      }
       const { data, error } = await supabase
         .from("assessment_item_map")
         .select("sort_order, points, assessment_items(*)")
         .eq("assessment_id", assessmentId)
         .order("sort_order");
       if (error) throw error;
-      return (data ?? []).map((row) => ({
-        ...(row.assessment_items as unknown as AssessmentItem),
-        sort_order: row.sort_order,
-        points: row.points,
-      }));
+      return (data ?? []).map((row) => {
+        const item = row.assessment_items as unknown as Omit<RunnerQuestion, "sort_order" | "points">;
+        return { ...item, sort_order: row.sort_order, points: row.points };
+      });
     },
   });
 
