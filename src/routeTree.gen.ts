@@ -34,6 +34,7 @@ import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenti
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
 import { Route as AuthenticatedParentRouteImport } from './routes/_authenticated/parent'
 import { Route as AuthenticatedQuestionBankRouteImport } from './routes/_authenticated/question-bank'
+import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_authenticated/question-bank-audit'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
@@ -180,6 +181,12 @@ const AuthenticatedQuestionBankRoute =
     path: '/question-bank',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedQuestionBankAuditRoute =
+  AuthenticatedQuestionBankAuditRouteImport.update({
+    id: '/question-bank-audit',
+    path: '/question-bank-audit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedRlsVerificationRoute =
   AuthenticatedRlsVerificationRouteImport.update({
     id: '/rls-verification',
@@ -265,6 +272,7 @@ export interface FileRoutesByFullPath {
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/parent': typeof AuthenticatedParentRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
+  '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -301,6 +309,7 @@ export interface FileRoutesByTo {
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/parent': typeof AuthenticatedParentRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
+  '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -339,6 +348,7 @@ export interface FileRoutesById {
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
   '/_authenticated/parent': typeof AuthenticatedParentRoute
   '/_authenticated/question-bank': typeof AuthenticatedQuestionBankRoute
+  '/_authenticated/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -377,6 +387,7 @@ export interface FileRouteTypes {
     | '/learners'
     | '/parent'
     | '/question-bank'
+    | '/question-bank-audit'
     | '/rls-verification'
     | '/settings'
     | '/sprint-3-audit'
@@ -413,6 +424,7 @@ export interface FileRouteTypes {
     | '/learners'
     | '/parent'
     | '/question-bank'
+    | '/question-bank-audit'
     | '/rls-verification'
     | '/settings'
     | '/sprint-3-audit'
@@ -450,6 +462,7 @@ export interface FileRouteTypes {
     | '/_authenticated/learners'
     | '/_authenticated/parent'
     | '/_authenticated/question-bank'
+    | '/_authenticated/question-bank-audit'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
     | '/_authenticated/sprint-3-audit'
@@ -650,6 +663,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedQuestionBankRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/question-bank-audit': {
+      id: '/_authenticated/question-bank-audit'
+      path: '/question-bank-audit'
+      fullPath: '/question-bank-audit'
+      preLoaderRoute: typeof AuthenticatedQuestionBankAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/rls-verification': {
       id: '/_authenticated/rls-verification'
       path: '/rls-verification'
@@ -754,6 +774,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
   AuthenticatedParentRoute: typeof AuthenticatedParentRoute
   AuthenticatedQuestionBankRoute: typeof AuthenticatedQuestionBankRoute
+  AuthenticatedQuestionBankAuditRoute: typeof AuthenticatedQuestionBankAuditRoute
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
@@ -785,6 +806,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
   AuthenticatedParentRoute: AuthenticatedParentRoute,
   AuthenticatedQuestionBankRoute: AuthenticatedQuestionBankRoute,
+  AuthenticatedQuestionBankAuditRoute: AuthenticatedQuestionBankAuditRoute,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,

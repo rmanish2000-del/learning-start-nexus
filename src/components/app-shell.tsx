@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { BookOpen, ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { BookOpen, ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -37,6 +37,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/assessments", label: "Assessments", icon: ClipboardList, roles: ["admin", "educator"] },
   { to: "/curriculum", label: "Curriculum", icon: BookOpen, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/assessment-blueprint", label: "Blueprint", icon: Crosshair, roles: ["admin", "educator", "reviewer"], exact: true },
+  { to: "/question-bank", label: "Question Bank", icon: FileQuestion, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
@@ -57,12 +58,15 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/launch-audit", label: "Launch Audit", icon: Rocket, roles: ["admin", "educator", "reviewer"] },
   { to: "/curriculum-audit", label: "Curriculum Audit", icon: GitBranch, roles: ["admin", "educator", "reviewer"] },
   { to: "/assessment-blueprint-audit", label: "Blueprint Audit", icon: Crosshair, roles: ["admin", "educator", "reviewer"] },
+  { to: "/question-bank-audit", label: "Question Bank Audit", icon: FileQuestion, roles: ["admin", "educator", "reviewer"] },
 ];
 
 const TITLES: [RegExp, string][] = [
   [/^\/learners\/.+/, "Learner profile"],
   [/^\/learners/, "Learners"],
   [/^\/assessments/, "Assessments"],
+  [/^\/question-bank-audit/, "Question bank audit center"],
+  [/^\/question-bank/, "Question bank"],
   [/^\/assessment-blueprint-audit/, "Blueprint audit center"],
   [/^\/assessment-blueprint/, "Assessment blueprint"],
   [/^\/assessment\/.+/, "Assessment detail"],
