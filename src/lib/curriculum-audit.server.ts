@@ -274,6 +274,7 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
 export type BookEventDto = {
   id: string;
   event: string;
+  bookTitle: string;
   detail: Record<string, string | number | boolean | null>;
   createdAt: string;
 };
@@ -284,12 +285,17 @@ export async function fetchBookEvents(supabase: Client): Promise<BookEventDto[]>
     .select("id, event, detail, created_at, books(title)")
     .order("created_at", { ascending: false })
     .limit(25);
-  return (data ?? []).map((e) => ({
-    id: e.id as string,
-    event: e.event as string,
-    detail: (e.detail ?? {}) as Record<string, string | number | boolean | null>,
-    createdAt: e.created_at as string,
-  }));
+  return (data ?? []).map((e) => {
+    const joined = (e as { books?: { title?: string } | { title?: string }[] | null }).books;
+    const bookTitle = Array.isArray(joined) ? (joined[0]?.title ?? "—") : (joined?.title ?? "—");
+    return {
+      id: e.id as string,
+      event: e.event as string,
+      bookTitle,
+      detail: (e.detail ?? {}) as Record<string, string | number | boolean | null>,
+      createdAt: e.created_at as string,
+    };
+  });
 }
 
 // ---------------------------------------------------------------------------
