@@ -69,10 +69,12 @@ export type BookSummary = {
 export type GraphNode = { id: string; label: string; depth: number };
 export type GraphEdge = { id: string; parentId: string; childId: string; relation: string };
 
+export type EventDetail = Record<string, string | number | boolean | null>;
+
 export type BookEventRow = {
   id: string;
   event: string;
-  detail: Record<string, unknown>;
+  detail: EventDetail;
   createdAt: string;
 };
 
