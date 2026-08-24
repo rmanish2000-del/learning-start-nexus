@@ -12,9 +12,12 @@ import {
   GitBranch,
   Layers,
   Library,
+  Loader2,
   Pencil,
   Plus,
+  Sparkles,
   Trash2,
+  Upload,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -68,6 +71,7 @@ import {
   createOutcomeFn,
   deleteCurriculumNode,
   deleteOutcomeFn,
+  extractCurriculumFn,
   getBookWorkspace,
   getCurriculumLibrary,
   importCurriculumFn,
@@ -75,6 +79,7 @@ import {
   renameCurriculumNode,
   setBookStatusFn,
   updateOutcomeFn,
+  uploadBookFileFn,
 } from "@/lib/curriculum.functions";
 
 export const Route = createFileRoute("/_authenticated/curriculum")({
