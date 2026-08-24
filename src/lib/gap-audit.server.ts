@@ -47,9 +47,9 @@ export const GAP_EXPECTED = {
       scorePct: 67,
       // code -> [pct, band label, category, risk]
       outcomes: {
-        NAT_01: { pct: 100, band: "Advanced", category: "strong", risk: "low" },
-        NAT_02: { pct: 67, band: "Developing", category: "medium", risk: "medium" },
-        NAT_03: { pct: 33, band: "Beginning", category: "weak", risk: "high" },
+        LO_GK3_NAT_01: { pct: 100, band: "Advanced", category: "strong", risk: "low" },
+        LO_GK3_NAT_02: { pct: 67, band: "Developing", category: "medium", risk: "medium" },
+        LO_GK3_NAT_03: { pct: 33, band: "Beginning", category: "weak", risk: "high" },
       } as Record<string, { pct: number; band: string; category: GapCategory; risk: RiskLevel }>,
     },
     {
@@ -59,9 +59,9 @@ export const GAP_EXPECTED = {
       correctCount: 4,
       scorePct: 44,
       outcomes: {
-        NAT_01: { pct: 67, band: "Developing", category: "medium", risk: "low" },
-        NAT_02: { pct: 33, band: "Beginning", category: "weak", risk: "high" },
-        NAT_03: { pct: 33, band: "Beginning", category: "weak", risk: "high" },
+        LO_GK3_NAT_01: { pct: 67, band: "Developing", category: "medium", risk: "low" },
+        LO_GK3_NAT_02: { pct: 33, band: "Beginning", category: "weak", risk: "high" },
+        LO_GK3_NAT_03: { pct: 33, band: "Beginning", category: "weak", risk: "high" },
       } as Record<string, { pct: number; band: string; category: GapCategory; risk: RiskLevel }>,
     },
   ],
@@ -245,12 +245,20 @@ export async function runGapProbes(
   const otherOrg = me.orgId === ORG_B.orgId ? ORG_A.orgId : ORG_B.orgId;
 
   // Assemble both demo sessions through the same code path the dashboard uses.
-  const assembled: { expected: (typeof GAP_EXPECTED.sessions)[number]; a: AssembledSession | null }[] = [];
+  const assembled: {
+    expected: (typeof GAP_EXPECTED.sessions)[number];
+    a: AssembledSession | null;
+    error: string | null;
+  }[] = [];
   for (const expected of GAP_EXPECTED.sessions) {
     try {
-      assembled.push({ expected, a: await assembleAnalysisInput(supabase, expected.id) });
-    } catch {
-      assembled.push({ expected, a: null });
+      assembled.push({ expected, a: await assembleAnalysisInput(supabase, expected.id), error: null });
+    } catch (err) {
+      assembled.push({
+        expected,
+        a: null,
+        error: err instanceof Error ? err.message : String(err),
+      });
     }
   }
 
