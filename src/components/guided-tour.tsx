@@ -3,10 +3,12 @@ import { createPortal } from "react-dom";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
+  clearOnboardingFlag,
   getOnboardingFlag,
   hasCompletedOnboarding,
   setOnboardingFlag,
   START_TOUR_EVENT,
+  tourReplayKey,
   tourSeenKey,
 } from "@/lib/onboarding";
 

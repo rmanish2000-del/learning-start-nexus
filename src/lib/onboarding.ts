@@ -98,15 +98,21 @@ export function markOnboardingComplete(role: string): void {
   for (const id of ALL_TOUR_IDS) setOnboardingFlag(tourSeenKey(id));
 }
 
+export const tourReplayKey = (tourId: string) => `tour-replay:${tourId}`;
+
 /**
- * Safe reset for testing/support: clears the completion and tour-seen flags so
- * the next visit to the role's home re-runs the guided tour. Returns the tour
- * id that will replay (undefined for roles without a tour).
+ * Safe reset for testing/support: re-arms the role's guided tour so it replays
+ * once on the next visit to the role's home page. Deliberately does NOT clear
+ * the completion flag — "Restart Tour" replays the tour, it must not bring
+ * back the completion celebration. Returns the tour id (undefined for roles
+ * without a tour).
  */
 export function resetOnboarding(role: string): string | undefined {
-  clearOnboardingFlag(celebratedKey(role));
   const tourId = ROLE_TOUR_ID[role];
-  if (tourId) clearOnboardingFlag(tourSeenKey(tourId));
+  if (tourId) {
+    clearOnboardingFlag(tourSeenKey(tourId));
+    setOnboardingFlag(tourReplayKey(tourId));
+  }
   return tourId;
 }
 
