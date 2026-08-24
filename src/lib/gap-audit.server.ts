@@ -272,7 +272,7 @@ export async function runGapProbes(
         a.session.correctCount !== expected.correctCount ||
         a.session.totalCount !== expected.totalCount,
     )
-    .map(({ expected }) => expected.learnerName);
+    .map(({ expected, error }) => `${expected.learnerName}${error ? ` (${error})` : ""}`);
   probes.push({
     key: "seeded_sessions",
     name: "P1 — Seeded diagnostic submissions exist with stored scores",
