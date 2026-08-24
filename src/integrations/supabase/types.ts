@@ -263,6 +263,229 @@ export type Database = {
           },
         ]
       }
+      books: {
+        Row: {
+          created_at: string
+          file_names: string[]
+          file_size_bytes: number
+          grade: number
+          id: string
+          mime_types: string[]
+          org_id: string
+          processed_at: string | null
+          processing_error: string | null
+          status: string
+          storage_paths: string[]
+          subject: string
+          title: string
+          uploaded_by: string
+        }
+        Insert: {
+          created_at?: string
+          file_names?: string[]
+          file_size_bytes?: number
+          grade: number
+          id?: string
+          mime_types?: string[]
+          org_id: string
+          processed_at?: string | null
+          processing_error?: string | null
+          status?: string
+          storage_paths?: string[]
+          subject: string
+          title: string
+          uploaded_by: string
+        }
+        Update: {
+          created_at?: string
+          file_names?: string[]
+          file_size_bytes?: number
+          grade?: number
+          id?: string
+          mime_types?: string[]
+          org_id?: string
+          processed_at?: string | null
+          processing_error?: string | null
+          status?: string
+          storage_paths?: string[]
+          subject?: string
+          title?: string
+          uploaded_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "books_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      curriculum_chapters: {
+        Row: {
+          book_id: string
+          created_at: string
+          id: string
+          org_id: string
+          position: number
+          status: string
+          title: string
+          unit_id: string
+        }
+        Insert: {
+          book_id: string
+          created_at?: string
+          id?: string
+          org_id: string
+          position?: number
+          status?: string
+          title: string
+          unit_id: string
+        }
+        Update: {
+          book_id?: string
+          created_at?: string
+          id?: string
+          org_id?: string
+          position?: number
+          status?: string
+          title?: string
+          unit_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_chapters_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_chapters_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_chapters_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      curriculum_topics: {
+        Row: {
+          book_id: string
+          chapter_id: string
+          created_at: string
+          id: string
+          key_concepts: Json
+          learning_outcomes: Json
+          org_id: string
+          position: number
+          question_opportunities: Json
+          status: string
+          title: string
+        }
+        Insert: {
+          book_id: string
+          chapter_id: string
+          created_at?: string
+          id?: string
+          key_concepts?: Json
+          learning_outcomes?: Json
+          org_id: string
+          position?: number
+          question_opportunities?: Json
+          status?: string
+          title: string
+        }
+        Update: {
+          book_id?: string
+          chapter_id?: string
+          created_at?: string
+          id?: string
+          key_concepts?: Json
+          learning_outcomes?: Json
+          org_id?: string
+          position?: number
+          question_opportunities?: Json
+          status?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_topics_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_topics_chapter_id_fkey"
+            columns: ["chapter_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_chapters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_topics_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      curriculum_units: {
+        Row: {
+          book_id: string
+          created_at: string
+          id: string
+          org_id: string
+          position: number
+          status: string
+          title: string
+        }
+        Insert: {
+          book_id: string
+          created_at?: string
+          id?: string
+          org_id: string
+          position?: number
+          status?: string
+          title: string
+        }
+        Update: {
+          book_id?: string
+          created_at?: string
+          id?: string
+          org_id?: string
+          position?: number
+          status?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_units_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_units_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       guardian_consents: {
         Row: {
           consent_date: string
