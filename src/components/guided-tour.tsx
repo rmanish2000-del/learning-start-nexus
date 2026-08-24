@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   getOnboardingFlag,
+  hasCompletedOnboarding,
   setOnboardingFlag,
   START_TOUR_EVENT,
   tourSeenKey,
@@ -61,9 +62,10 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
     setActive(first);
   }, [findNext]);
 
-  // Auto-start once per browser, after the page settles.
+  // Auto-start once per browser, after the page settles. Never auto-start
+  // for a user who has completed onboarding — no forced tours after that.
   useEffect(() => {
-    if (!autoStart || getOnboardingFlag(tourSeenKey(tourId))) return;
+    if (!autoStart || getOnboardingFlag(tourSeenKey(tourId)) || hasCompletedOnboarding()) return;
     const t = window.setTimeout(start, 900);
     return () => window.clearTimeout(t);
   }, [autoStart, start, tourId]);
