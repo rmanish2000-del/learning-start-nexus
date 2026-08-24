@@ -33,6 +33,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/session/$sessionId")({
@@ -265,13 +266,23 @@ function TakeAssessmentPage() {
                   );
                 })}
               </div>
+            ) : question.kind === "short_answer" ? (
+              <Textarea
+                value={answers[question.id] ?? ""}
+                onChange={(e) => pickAnswer(question.id, e.target.value)}
+                placeholder="Type your answer in a sentence or two"
+                className="min-h-24 text-base"
+                maxLength={1000}
+              />
             ) : (
               <Input
                 value={answers[question.id] ?? ""}
                 onChange={(e) => pickAnswer(question.id, e.target.value)}
-                placeholder="Type your answer"
+                placeholder={
+                  question.kind === "fill_blank" ? "Fill in the blank" : "Type your answer"
+                }
                 className="max-w-xs text-base"
-                inputMode="decimal"
+                inputMode={question.kind === "numeric" ? "decimal" : undefined}
               />
             )}
           </CardContent>
