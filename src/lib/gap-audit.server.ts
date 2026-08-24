@@ -398,21 +398,18 @@ export async function runGapProbes(
     if (!a) continue;
     const { rows } = buildOutcomeAnalyses(a.input);
     for (const r of rows) {
-      const complete =
-        r.traces.length > 0 &&
-        r.traces.some(
-          (t) =>
-            t.learningOutcomeText.length > 0 &&
-            t.topicTitle !== "—" &&
-            t.chapterTitle !== "—" &&
-            t.unitTitle !== "—",
-        );
-      if (!complete) {
+      const good = r.traces.find(
+        (t) =>
+          t.learningOutcomeText.length > 0 &&
+          t.topicTitle !== "—" &&
+          t.chapterTitle !== "—" &&
+          t.unitTitle !== "—",
+      );
+      if (!good) {
         p6Pass = false;
         p6Details.push(`${r.code}: chain broken`);
       } else {
-        const t = r.traces[0];
-        p6Details.push(`${r.code}: ${t.unitTitle} › ${t.chapterTitle} › ${t.topicTitle} › LO`);
+        p6Details.push(`${r.code}: ${good.unitTitle} › ${good.chapterTitle} › ${good.topicTitle} › LO`);
       }
     }
   }
@@ -445,11 +442,11 @@ export async function runGapProbes(
     dbError: crossWrite.error
       ? {
           message: crossWrite.error.message,
-          details: crossWrite.error.details,
-          hint: crossWrite.error.hint,
-          code: crossWrite.error.code,
+          details: crossWrite.error.details ?? null,
+          hint: crossWrite.error.hint ?? null,
+          code: crossWrite.error.code ?? null,
         }
-      : undefined,
+      : null,
   });
 
   // P8: determinism — the analyzer is a pure function over the same rows.
