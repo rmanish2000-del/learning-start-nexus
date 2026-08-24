@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FlaskConical, RefreshCw } from "lucide-react";
+import {
+  CheckCircle2,
+  Crosshair,
+  Database,
+  GitBranch,
+  ListChecks,
+  PlayCircle,
+  ShieldCheck,
+} from "lucide-react";
+import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -14,30 +25,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  DbError,
-  EvidenceList,
-  Kpi,
-  PassBadge,
-  ProbeCard,
-  Section,
-  SummaryStrip,
-} from "@/components/audit-shared";
-import { KIND_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
-import {
-  getBuilderAudit,
-  runBuilderProbesFn,
-} from "@/lib/builder-audit.functions";
+import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
+import { getBuilderAudit, runBuilderProbesFn } from "@/lib/builder-audit.functions";
+import type { BuilderCount, BuilderProbe } from "@/lib/builder-audit.server";
 import { BUILDER_EXPECTED } from "@/lib/builder-audit.server";
+import { KIND_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
+import { TEMPLATE_LABELS } from "@/lib/builder-shared";
 
 export const Route = createFileRoute("/_authenticated/assessment-builder-audit")({
   head: () => ({
     meta: [
-      { title: "Assessment Builder Audit — EduOS" },
+      { title: "Assessment Builder Audit Center — EduOS" },
       {
         name: "description",
         content:
-          "Independent verification of the curriculum-driven assessment builder: seeded build, coverage math, question-chain integrity, cross-org isolation, and role write gates.",
+          "Independently verifiable proof for Sprint 6E: curriculum-driven assessment construction, blueprint alignment, gap coverage, and RLS isolation.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -45,252 +47,340 @@ export const Route = createFileRoute("/_authenticated/assessment-builder-audit")
   component: AssessmentBuilderAuditPage,
 });
 
+type Probes = Awaited<ReturnType<typeof runBuilderProbesFn>>;
+
+function CountRow({ c }: { c: BuilderCount }) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-3">
+      <div>
+        <p className="text-sm font-medium">{c.label}</p>
+        <p className="text-xs text-muted-foreground">
+          <Mono>{c.table}</Mono> — visible to you:{" "}
+          <span className="font-medium text-foreground">
+            {c.visibleToYou === null ? "denied (RLS)" : c.visibleToYou}
+          </span>{" "}
+          · globally (service role):{" "}
+          <span className="font-medium text-foreground">{c.globalAllOrgs}</span>
+        </p>
+        <p className="mt-0.5 text-[11px] text-muted-foreground">{c.note}</p>
+      </div>
+      <Pass pass={c.isolated} />
+    </div>
+  );
+}
+
+function ProbeCard({ p }: { p: BuilderProbe }) {
+  return (
+    <div className="rounded-lg border p-3.5">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-sm font-medium">{p.name}</p>
+        <Pass pass={p.pass} skipped={p.skipped ?? false} />
+      </div>
+      <div className="mt-2 space-y-1.5 text-xs">
+        <p>
+          <span className="text-muted-foreground">Expected: </span>
+          {p.expectation}
+        </p>
+        <p>
+          <span className="text-muted-foreground">Observed: </span>
+          {p.detail}
+        </p>
+        {p.dbError ? (
+          <div className="pt-1">
+            <p className="mb-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+              Verbatim database response
+            </p>
+            <DbErrorBlock error={p.dbError} />
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+const CHECKLIST: { text: string; how: string }[] = [
+  {
+    text: "Assessments are built from a curriculum path (Board → Grade → Subject → Unit → Outcome)",
+    how: "/assessment-builder — the cascading selectors resolve to a book and unit. Probe P3 verifies every mapped question's outcome belongs to the assessment's unit.",
+  },
+  {
+    text: "Outcome-based selection shows coverage, difficulty mix, and question types",
+    how: "/assessment-builder step 2–3 — per-outcome coverage chips plus difficulty/type filters that drive question pre-selection.",
+  },
+  {
+    text: "Coverage view shows blueprint alignment and question count, live",
+    how: "/assessment-builder step 5 — outcome coverage % and blueprint alignment % recompute on every checkbox. Probe P4 re-derives the same math from the database.",
+  },
+  {
+    text: "Diagnostic, Practice, and Reassessment templates exist",
+    how: "/assessment-builder step 7 — the three templates are selectable; the template is stored as the assessment kind.",
+  },
+  {
+    text: "Gap coverage preview shows outcomes measured → potential gaps",
+    how: "/assessment-builder step 6 — for each selected outcome, the intervention map's failure patterns and interventions are previewed.",
+  },
+  {
+    text: "Only approved questions can be built into an assessment",
+    how: "Draft questions are disabled in the picker, and the server function rejects them too. Probe P2 verifies every mapped question is approved.",
+  },
+  {
+    text: "Building never assigns, generates questions, or changes grading",
+    how: "The build function only writes to assessments + assessment_question_map. Assignment stays on the Assessments page; generation stays in the Question Bank.",
+  },
+  {
+    text: "Organization isolation and role gates hold on builder tables",
+    how: "This page → isolation counts + probes P6–P8. Cross-org reads return 0 rows, cross-org writes are rejected, reviewers are read-only.",
+  },
+];
+
 function AssessmentBuilderAuditPage() {
-  const snapshotQuery = useQuery({
+  const runProbes = useServerFn(runBuilderProbesFn);
+  const [probes, setProbes] = useState<Probes | null>(null);
+  const [running, setRunning] = useState(false);
+
+  const { data, isPending } = useQuery({
     queryKey: ["builder-audit"],
     queryFn: () => getBuilderAudit(),
   });
-  const [probeState, setProbeState] = useState<"idle" | "running" | "done">("idle");
-  const probesQuery = useQuery({
-    queryKey: ["builder-audit-probes"],
-    queryFn: () => runBuilderProbesFn(),
-    enabled: false,
-  });
 
-  const data = snapshotQuery.data;
-  const probes = probesQuery.data?.probes ?? [];
-  const passed = probes.filter((p) => p.pass).length;
-
-  const runProbes = async () => {
-    setProbeState("running");
-    await probesQuery.refetch();
-    setProbeState("done");
+  const handleRun = async () => {
+    setRunning(true);
+    try {
+      const result = await runProbes();
+      setProbes(result);
+      const passing = result.probes.filter((p) => p.pass).length;
+      toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+    } finally {
+      setRunning(false);
+    }
   };
 
+  if (isPending || !data) {
+    return (
+      <div className="mx-auto max-w-5xl space-y-4">
+        <Skeleton className="h-8 w-80" />
+        <Skeleton className="h-48 w-full" />
+        <Skeleton className="h-48 w-full" />
+      </div>
+    );
+  }
+
+  const snap = data.snapshot;
+
   return (
-    <div className="mx-auto max-w-6xl space-y-8">
+    <div className="mx-auto max-w-5xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="space-y-1">
-          <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight">
-            <FlaskConical className="h-6 w-6 text-primary" />
-            Assessment Builder Audit
-          </h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Assessment Builder Audit Center</h1>
           <p className="max-w-2xl text-sm text-muted-foreground">
-            Sprint 6E verification for the curriculum-driven assessment builder. Counts are
-            re-queried live: "Visible to you" runs under your RLS policies, "Global" via service
-            role. Construction only — no auto-assign, no auto-generation, no auto-grading.
+            Independently verifiable proof for Sprint 6E — the assessment builder constructs
+            assessments from curriculum outcomes and approved bank questions, with live coverage
+            math. Signed in with role <Mono>{data.me.role}</Mono> in{" "}
+            <Mono>{data.me.orgName ?? "—"}</Mono>.
           </p>
         </div>
-        <div className="flex flex-col items-end gap-2">
-          <Button variant="outline" size="sm" onClick={() => void snapshotQuery.refetch()}>
-            <RefreshCw className="mr-2 h-3.5 w-3.5" />
-            Refresh snapshot
-          </Button>
-          {data && (
-            <p className="text-xs text-muted-foreground">
-              Signed in as <span className="font-medium text-foreground">{data.me.name}</span> ·{" "}
-              {data.me.role} · {data.me.orgName}
-            </p>
-          )}
-        </div>
+        <Button onClick={() => void handleRun()} disabled={running}>
+          <PlayCircle className="h-4 w-4" />
+          {running ? "Running probes…" : "Run probe suite"}
+        </Button>
       </div>
 
-      {data && (
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {data.counts.map((c) => (
-            <Kpi key={c.table} label={c.label} value={c.visibleToYou ?? "—"} />
-          ))}
-        </div>
+      {/* Probe results */}
+      {probes && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-base">
+              <ShieldCheck className="h-4 w-4 text-primary" />
+              Probe suite — {probes.probes.filter((p) => p.pass).length}/{probes.probes.length}{" "}
+              passing
+            </CardTitle>
+            <CardDescription>
+              Ran {fmt(probes.generatedAt)} with role <Mono>{probes.me.role}</Mono> in{" "}
+              <Mono>{probes.me.orgName ?? "—"}</Mono>. The write-gate probe adapts to the caller:
+              staff prove a build/delete round-trip; reviewers prove their writes are rejected.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2.5">
+            {probes.probes.map((p) => (
+              <ProbeCard key={p.key} p={p} />
+            ))}
+          </CardContent>
+        </Card>
       )}
 
-      <Section
-        title="Table isolation"
-        description="Visible-to-you counts run under RLS; global counts run as service role. Visible must never exceed global."
-      >
-        <div className="rounded-lg border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Table</TableHead>
-                <TableHead>Visible to you</TableHead>
-                <TableHead>Global (all orgs)</TableHead>
-                <TableHead>Isolation</TableHead>
-                <TableHead>Note</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {(data?.counts ?? []).map((c) => (
-                <TableRow key={c.table}>
-                  <TableCell className="font-mono text-xs">{c.table}</TableCell>
-                  <TableCell className="text-xs tabular-nums">
-                    {c.visibleToYou === null ? <DbError error={{ code: null, message: "permission denied", details: null, hint: null }} /> : c.visibleToYou}
-                  </TableCell>
-                  <TableCell className="text-xs tabular-nums">{c.globalAllOrgs}</TableCell>
-                  <TableCell><PassBadge pass={c.isolated} /></TableCell>
-                  <TableCell className="max-w-64 text-xs text-muted-foreground">{c.note}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </Section>
-
-      <Section
-        title="Seeded demo build"
-        description={`The migration-seeded build "${BUILDER_EXPECTED.title}" with its full Assessment → Outcomes → Questions chain and live-computed coverage.`}
-      >
-        {data?.snapshot.present ? (
-          <div className="space-y-4">
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <Kpi label="Questions" value={data.snapshot.questions} />
-              <Kpi
-                label="Outcome coverage"
-                value={`${data.snapshot.outcomesMeasured}/${data.snapshot.outcomesTotal} · ${data.snapshot.outcomeCoveragePct}%`}
-              />
-              <Kpi
-                label="Blueprint alignment"
-                value={`${data.snapshot.blueprintAlignmentPct}%`}
-              />
-              <Kpi label="Weight measured" value={`${data.snapshot.weightMeasured}/${data.snapshot.weightTotal}`} />
+      {/* Seeded build snapshot */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Crosshair className="h-4 w-4 text-primary" />
+            Seeded build — “{BUILDER_EXPECTED.title}”
+          </CardTitle>
+          <CardDescription>
+            The migration-seeded demo build on the pilot book (Class 3 GK), re-queried live. Unit:{" "}
+            {snap.unitTitle || "My Country"} · blueprint alignment = measured weight{" "}
+            {snap.weightMeasured} ÷ unit total {snap.weightTotal}.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <Pass pass={snap.present} />
+            <div className="flex flex-wrap gap-1.5 text-xs">
+              <Badge variant="outline">{snap.questions} questions</Badge>
+              <Badge variant="outline">
+                {snap.outcomesMeasured}/{snap.outcomesTotal} outcomes · {snap.outcomeCoveragePct}%
+              </Badge>
+              <Badge variant="outline">alignment {snap.blueprintAlignmentPct}%</Badge>
+              <Badge variant="outline">
+                {TEMPLATE_LABELS[snap.template as keyof typeof TEMPLATE_LABELS] ?? snap.template} ·{" "}
+                {snap.status}
+              </Badge>
             </div>
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="flex flex-wrap items-center gap-2 text-base">
-                  {data.snapshot.title}
-                  <Badge variant="outline" className="text-[10px]">{data.snapshot.template}</Badge>
-                  <Badge variant="secondary" className="text-[10px]">{data.snapshot.status}</Badge>
-                </CardTitle>
-                <CardDescription>
-                  Unit: {data.snapshot.unitTitle} · blueprint alignment = measured weight{" "}
-                  {data.snapshot.weightMeasured} ÷ unit total {data.snapshot.weightTotal}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-10">#</TableHead>
-                      <TableHead>Question</TableHead>
-                      <TableHead>Outcome</TableHead>
-                      <TableHead>Kind</TableHead>
-                      <TableHead>Difficulty</TableHead>
-                      <TableHead>Points</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {data.snapshot.rows.map((r) => (
-                      <TableRow key={r.sortOrder}>
-                        <TableCell className="text-xs tabular-nums">{r.sortOrder}</TableCell>
-                        <TableCell className="max-w-72 truncate text-xs">{r.prompt}</TableCell>
-                        <TableCell className="font-mono text-xs">{r.outcomeCode}</TableCell>
-                        <TableCell className="text-xs">
-                          {KIND_LABELS[r.kind as QuestionKind] ?? r.kind}
-                        </TableCell>
-                        <TableCell className="text-xs tabular-nums">D{r.difficulty}</TableCell>
-                        <TableCell className="text-xs tabular-nums">{r.points}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
           </div>
-        ) : (
-          <Card>
-            <CardContent className="py-6 text-sm text-muted-foreground">
-              Seeded build not visible — check the demo migration ran and your RLS role.
-            </CardContent>
-          </Card>
-        )}
-      </Section>
 
-      <Section
-        title="RLS policies in effect"
-        description="Live from pg_policies for the builder tables."
-      >
-        <div className="rounded-lg border">
+          {snap.present && (
+            <div className="rounded-lg border">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-10">#</TableHead>
+                    <TableHead>Question</TableHead>
+                    <TableHead>Outcome</TableHead>
+                    <TableHead>Kind</TableHead>
+                    <TableHead>Difficulty</TableHead>
+                    <TableHead>Points</TableHead>
+                    <TableHead>Approved</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {snap.rows.map((r) => (
+                    <TableRow key={r.sortOrder}>
+                      <TableCell className="text-xs tabular-nums">{r.sortOrder}</TableCell>
+                      <TableCell className="max-w-72 truncate text-xs">{r.prompt}</TableCell>
+                      <TableCell>
+                        <Mono>{r.outcomeCode}</Mono>
+                      </TableCell>
+                      <TableCell className="text-xs">
+                        {KIND_LABELS[r.kind as QuestionKind] ?? r.kind}
+                      </TableCell>
+                      <TableCell className="text-xs tabular-nums">D{r.difficulty}</TableCell>
+                      <TableCell className="text-xs tabular-nums">{r.points}</TableCell>
+                      <TableCell className="text-xs">
+                        {r.approved ? (
+                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                        ) : (
+                          <span className="font-medium text-destructive">draft</span>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Isolation counts */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Database className="h-4 w-4 text-primary" />
+            Organization isolation — live counts
+          </CardTitle>
+          <CardDescription>
+            Compares what you can see through RLS against the true global count (service role).
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {data.counts.map((c) => (
+            <CountRow key={c.table} c={c} />
+          ))}
+        </CardContent>
+      </Card>
+
+      {/* Policy registry */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <ShieldCheck className="h-4 w-4 text-primary" />
+            Live RLS policy registry
+          </CardTitle>
+          <CardDescription>
+            Read straight from the database catalog (<Mono>pg_policies</Mono>) at request time — the
+            actual policies PostgreSQL enforces on the builder tables.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Table</TableHead>
                 <TableHead>Policy</TableHead>
-                <TableHead>Command</TableHead>
-                <TableHead>Roles</TableHead>
+                <TableHead>Operation</TableHead>
+                <TableHead>Applies to</TableHead>
                 <TableHead>Expression</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {(data?.policies ?? []).map((p) => (
-                <TableRow key={`${p.tablename}-${p.policyname}`}>
-                  <TableCell className="font-mono text-xs">{p.tablename}</TableCell>
+              {data.policies.map((p) => (
+                <TableRow key={`${p.tablename}:${p.policyname}`}>
+                  <TableCell>
+                    <Mono>{p.tablename}</Mono>
+                  </TableCell>
                   <TableCell className="text-xs">{p.policyname}</TableCell>
                   <TableCell className="text-xs">{p.cmd}</TableCell>
                   <TableCell className="text-xs">{p.roles}</TableCell>
-                  <TableCell className="max-w-80 truncate font-mono text-[10px] text-muted-foreground">
-                    {p.qual ?? p.withCheck ?? "—"}
+                  <TableCell className="max-w-72 truncate font-mono text-[10px] text-muted-foreground">
+                    {p.using_expression ?? p.with_check_expression ?? "—"}
                   </TableCell>
                 </TableRow>
               ))}
+              {data.policies.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={5} className="text-center text-xs text-muted-foreground">
+                    No policies visible — the audit view may be missing.
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
-        </div>
-      </Section>
+        </CardContent>
+      </Card>
 
-      <Section
-        title="Probe runner"
-        description="8 live probes: seeded build, question coverage, outcome alignment, blueprint weights, orphan scan, cross-org read/write isolation, and a role-appropriate write gate."
-      >
-        <div className="flex items-center gap-3">
-          <Button onClick={() => void runProbes()} disabled={probeState === "running"}>
-            {probeState === "running" ? "Running probes…" : "Run all probes"}
-          </Button>
-          {probes.length > 0 && (
-            <span className="text-sm text-muted-foreground">
-              {passed}/{probes.length} passed
-            </span>
-          )}
-        </div>
-        {probes.length > 0 && (
-          <>
-            <SummaryStrip
-              items={[
-                { label: "Passed", value: passed },
-                { label: "Failed", value: probes.length - passed },
-                { label: "Total", value: probes.length },
-              ]}
-            />
-            <div className="grid gap-3 md:grid-cols-2">
-              {probes.map((p) => (
-                <ProbeCard
-                  key={p.key}
-                  name={p.name}
-                  expectation={p.expectation}
-                  detail={p.detail}
-                  pass={p.pass}
-                  skipped={p.skipped}
-                  dbError={p.dbError ?? null}
-                />
-              ))}
+      {/* Checklist */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <ListChecks className="h-4 w-4 text-primary" />
+            Sprint 6E acceptance checklist — how to verify by hand
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {CHECKLIST.map((item) => (
+            <div key={item.text} className="flex items-start gap-3 rounded-lg border p-3.5">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+              <div>
+                <p className="text-sm font-medium">{item.text}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{item.how}</p>
+              </div>
             </div>
-          </>
-        )}
-      </Section>
-
-      <EvidenceList
-        items={[
-          "Assessment → unit → outcomes chain verified against live rows",
-          "Mapped questions must exist in the bank and be approved",
-          "Diagnostic weights per unit must sum to 100",
-          "Cross-org read and write probes target a real second organization",
-        ]}
-      />
-
-      <p className="text-xs text-muted-foreground">
-        Related audits:{" "}
-        <Link to="/question-bank-audit" className="underline">Question Bank</Link> ·{" "}
-        <Link to="/assessment-blueprint-audit" className="underline">Blueprint</Link> ·{" "}
-        <Link to="/curriculum-audit" className="underline">Curriculum</Link>
-      </p>
+          ))}
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+            <span className="flex items-center gap-2">
+              <GitBranch className="h-3.5 w-3.5" />
+              Scope note: construction only — no auto-assign, no auto-generation, no auto-grading.
+            </span>
+            <span>
+              Related:{" "}
+              <Link to="/question-bank-audit" className="underline">Question Bank Audit</Link> ·{" "}
+              <Link to="/assessment-blueprint-audit" className="underline">Blueprint Audit</Link> ·{" "}
+              <Link to="/curriculum-audit" className="underline">Curriculum Audit</Link>
+            </span>
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 }
