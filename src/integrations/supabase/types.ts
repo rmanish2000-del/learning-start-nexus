@@ -263,8 +263,54 @@ export type Database = {
           },
         ]
       }
+      book_events: {
+        Row: {
+          actor_id: string | null
+          book_id: string
+          created_at: string
+          detail: Json
+          event: string
+          id: string
+          org_id: string
+        }
+        Insert: {
+          actor_id?: string | null
+          book_id: string
+          created_at?: string
+          detail?: Json
+          event: string
+          id?: string
+          org_id: string
+        }
+        Update: {
+          actor_id?: string | null
+          book_id?: string
+          created_at?: string
+          detail?: Json
+          event?: string
+          id?: string
+          org_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "book_events_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "book_events_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       books: {
         Row: {
+          board: string | null
           created_at: string
           file_names: string[]
           file_size_bytes: number
@@ -281,6 +327,7 @@ export type Database = {
           uploaded_by: string
         }
         Insert: {
+          board?: string | null
           created_at?: string
           file_names?: string[]
           file_size_bytes?: number
@@ -297,6 +344,7 @@ export type Database = {
           uploaded_by: string
         }
         Update: {
+          board?: string | null
           created_at?: string
           file_names?: string[]
           file_size_bytes?: number
@@ -315,6 +363,107 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "books_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      concept_edges: {
+        Row: {
+          book_id: string
+          child_id: string
+          created_at: string
+          id: string
+          org_id: string
+          parent_id: string
+          relation: string
+        }
+        Insert: {
+          book_id: string
+          child_id: string
+          created_at?: string
+          id?: string
+          org_id: string
+          parent_id: string
+          relation?: string
+        }
+        Update: {
+          book_id?: string
+          child_id?: string
+          created_at?: string
+          id?: string
+          org_id?: string
+          parent_id?: string
+          relation?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "concept_edges_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "concept_edges_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "concept_nodes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "concept_edges_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "concept_edges_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "concept_nodes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      concept_nodes: {
+        Row: {
+          book_id: string
+          created_at: string
+          depth: number
+          id: string
+          label: string
+          org_id: string
+        }
+        Insert: {
+          book_id: string
+          created_at?: string
+          depth?: number
+          id?: string
+          label: string
+          org_id: string
+        }
+        Update: {
+          book_id?: string
+          created_at?: string
+          depth?: number
+          id?: string
+          label?: string
+          org_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "concept_nodes_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "concept_nodes_org_id_fkey"
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
@@ -373,6 +522,64 @@ export type Database = {
             columns: ["unit_id"]
             isOneToOne: false
             referencedRelation: "curriculum_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      curriculum_outcomes: {
+        Row: {
+          book_id: string
+          created_at: string
+          id: string
+          org_id: string
+          position: number
+          status: string
+          text: string
+          topic_id: string
+          updated_at: string
+        }
+        Insert: {
+          book_id: string
+          created_at?: string
+          id?: string
+          org_id: string
+          position?: number
+          status?: string
+          text: string
+          topic_id: string
+          updated_at?: string
+        }
+        Update: {
+          book_id?: string
+          created_at?: string
+          id?: string
+          org_id?: string
+          position?: number
+          status?: string
+          text?: string
+          topic_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_outcomes_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_outcomes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_outcomes_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_topics"
             referencedColumns: ["id"]
           },
         ]
