@@ -12,9 +12,12 @@ import {
   GitBranch,
   Layers,
   Library,
+  Loader2,
   Pencil,
   Plus,
+  Sparkles,
   Trash2,
+  Upload,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -68,6 +71,7 @@ import {
   createOutcomeFn,
   deleteCurriculumNode,
   deleteOutcomeFn,
+  extractCurriculumFn,
   getBookWorkspace,
   getCurriculumLibrary,
   importCurriculumFn,
@@ -75,6 +79,7 @@ import {
   renameCurriculumNode,
   setBookStatusFn,
   updateOutcomeFn,
+  uploadBookFileFn,
 } from "@/lib/curriculum.functions";
 
 export const Route = createFileRoute("/_authenticated/curriculum")({
@@ -118,9 +123,55 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const runImport = useServerFn(importCurriculumFn);
+  const runUpload = useServerFn(uploadBookFileFn);
+  const runExtract = useServerFn(extractCurriculumFn);
   const [importOpen, setImportOpen] = useState(false);
   const [jsonText, setJsonText] = useState("");
   const [busy, setBusy] = useState(false);
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadMeta, setUploadMeta] = useState({ title: "", board: "", grade: "6", subject: "" });
+  const [extractingId, setExtractingId] = useState<string | null>(null);
+
+  const handleUpload = async () => {
+    if (!uploadFile) return;
+    setBusy(true);
+    try {
+      const form = new FormData();
+      form.set("title", uploadMeta.title);
+      form.set("board", uploadMeta.board);
+      form.set("grade", uploadMeta.grade);
+      form.set("subject", uploadMeta.subject);
+      form.set("file", uploadFile);
+      const result = await runUpload({ data: form });
+      toast.success(`Uploaded "${uploadMeta.title}" (${result.fileName}). Extract its curriculum next.`);
+      setUploadOpen(false);
+      setUploadFile(null);
+      setUploadMeta({ title: "", board: "", grade: "6", subject: "" });
+      await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Upload failed.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleExtract = async (bookId: string) => {
+    setExtractingId(bookId);
+    try {
+      const result = await runExtract({ data: { bookId } });
+      toast.success(
+        `Extracted ${result.units} units, ${result.chapters} chapters, ${result.topics} topics, ${result.outcomes} outcomes.`,
+      );
+      await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
+      navigate({ to: "/curriculum", search: { book: bookId, tab: "review" } });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Extraction failed.");
+      await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
+    } finally {
+      setExtractingId(null);
+    }
+  };
 
   const boards = new Map<string, Map<string, BookSummary[]>>();
   for (const b of books) {
@@ -162,16 +213,22 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
           </p>
         </div>
         {isStaff && (
-          <Button onClick={() => setImportOpen(true)}>
-            <FileJson className="h-4 w-4" /> Import JSON
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={() => setUploadOpen(true)}>
+              <Upload className="h-4 w-4" /> Upload book
+            </Button>
+            <Button variant="outline" onClick={() => setImportOpen(true)}>
+              <FileJson className="h-4 w-4" /> Import JSON
+            </Button>
+          </div>
         )}
       </div>
 
       {books.length === 0 && (
         <Card>
           <CardContent className="py-12 text-center text-sm text-muted-foreground">
-            No books in your library yet. {isStaff ? "Import a curriculum JSON to get started." : ""}
+            No books in your library yet.{" "}
+            {isStaff ? "Upload a book file or import a curriculum JSON to get started." : ""}
           </CardContent>
         </Card>
       )}
@@ -208,15 +265,39 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
                           {b.counts.approvedOutcomes}/{b.counts.outcomes} outcomes approved
                         </Badge>
                       </div>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() =>
-                          navigate({ to: "/curriculum", search: { book: b.id, tab: "tree" } })
-                        }
-                      >
-                        <BookOpen className="h-4 w-4" /> Open
-                      </Button>
+                      {b.status === "failed" && b.processingError && (
+                        <p className="text-xs text-destructive">{b.processingError}</p>
+                      )}
+                      <div className="flex flex-wrap gap-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() =>
+                            navigate({ to: "/curriculum", search: { book: b.id, tab: "tree" } })
+                          }
+                        >
+                          <BookOpen className="h-4 w-4" /> Open
+                        </Button>
+                        {isStaff && (b.status === "uploaded" || b.status === "failed") && (
+                          <Button
+                            size="sm"
+                            disabled={extractingId === b.id}
+                            onClick={() => void handleExtract(b.id)}
+                          >
+                            {extractingId === b.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <Sparkles className="h-4 w-4" />
+                            )}
+                            {extractingId === b.id ? "Extracting…" : "Extract curriculum"}
+                          </Button>
+                        )}
+                        {b.status === "processing" && (
+                          <Button size="sm" disabled>
+                            <Loader2 className="h-4 w-4 animate-spin" /> Processing…
+                          </Button>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -225,6 +306,83 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
           ))}
         </div>
       ))}
+
+      <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Upload a book</DialogTitle>
+            <DialogDescription>
+              Upload a PDF, TXT, or Markdown file (up to 15 MB). The file is stored privately for
+              your organization; you can then extract its curriculum structure with AI.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="book-file">Book file</Label>
+              <Input
+                id="book-file"
+                type="file"
+                accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown"
+                onChange={(e) => setUploadFile(e.target.files?.[0] ?? null)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="book-title">Title</Label>
+              <Input
+                id="book-title"
+                value={uploadMeta.title}
+                onChange={(e) => setUploadMeta((m) => ({ ...m, title: e.target.value }))}
+                placeholder="e.g. My Book of General Knowledge — Class 3"
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="book-board">Board</Label>
+                <Input
+                  id="book-board"
+                  value={uploadMeta.board}
+                  onChange={(e) => setUploadMeta((m) => ({ ...m, board: e.target.value }))}
+                  placeholder="CBSE"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="book-grade">Grade</Label>
+                <Input
+                  id="book-grade"
+                  type="number"
+                  min={1}
+                  max={12}
+                  value={uploadMeta.grade}
+                  onChange={(e) => setUploadMeta((m) => ({ ...m, grade: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="book-subject">Subject</Label>
+                <Input
+                  id="book-subject"
+                  value={uploadMeta.subject}
+                  onChange={(e) => setUploadMeta((m) => ({ ...m, subject: e.target.value }))}
+                  placeholder="Mathematics"
+                />
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              onClick={() => void handleUpload()}
+              disabled={
+                busy ||
+                !uploadFile ||
+                uploadMeta.title.trim().length < 2 ||
+                uploadMeta.board.trim().length < 2 ||
+                uploadMeta.subject.trim().length < 2
+              }
+            >
+              {busy ? "Uploading…" : "Upload"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={importOpen} onOpenChange={setImportOpen}>
         <DialogContent className="max-w-2xl">

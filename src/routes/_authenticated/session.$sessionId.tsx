@@ -16,7 +16,7 @@ import {
 import { toast } from "sonner";
 
 import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
-import { DIFFICULTY_LABELS, type AssessmentItem, type ResultEntry } from "@/lib/assessment-shared";
+import { DIFFICULTY_LABELS, type RunnerQuestion, type ResultEntry } from "@/lib/assessment-shared";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -33,6 +33,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/session/$sessionId")({
@@ -118,7 +119,7 @@ function TakeAssessmentPage() {
   });
 
   const questions = useMemo(() => data?.questions ?? [], [data]);
-  const question = questions[index] as AssessmentItem | undefined;
+  const question = questions[index] as RunnerQuestion | undefined;
   const answeredCount = useMemo(
     () => questions.filter((q) => (answers[q.id] ?? "").trim() !== "").length,
     [questions, answers],
@@ -148,7 +149,7 @@ function TakeAssessmentPage() {
 
   // ---- Submitted: result view ----
   if (data.session.status === "submitted") {
-    return <ResultView questions={questions as AssessmentItem[]} result={(data.session.result ?? []) as ResultEntry[]} scorePct={data.session.score_pct ?? 0} correct={data.session.correct_count ?? 0} total={data.session.total_count ?? 0} title={data.assessment.title} />;
+    return <ResultView questions={questions as RunnerQuestion[]} result={(data.session.result ?? []) as ResultEntry[]} scorePct={data.session.score_pct ?? 0} correct={data.session.correct_count ?? 0} total={data.session.total_count ?? 0} title={data.assessment.title} />;
   }
 
   const resumed = data.session.status === "in_progress" && Object.keys(data.session.answers ?? {}).length > 0;
@@ -230,11 +231,14 @@ function TakeAssessmentPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="secondary">{question.subtopic}</Badge>
               <Badge variant="outline">{DIFFICULTY_LABELS[question.difficulty] ?? "Core"}</Badge>
-              {question.kind === "numeric" && <Badge variant="outline">Type your answer</Badge>}
+              {(question.kind === "numeric" ||
+                question.kind === "fill_blank" ||
+                question.kind === "short_answer") && <Badge variant="outline">Type your answer</Badge>}
             </div>
             <p className="text-lg font-medium leading-relaxed">{question.prompt}</p>
 
-            {question.kind === "mcq" ? (
+            {(question.kind === "mcq" || question.kind === "true_false") &&
+            (question.options ?? []).length > 0 ? (
               <div className="grid gap-2 sm:grid-cols-2">
                 {(question.options ?? []).map((option) => {
                   const selected = answers[question.id] === option;
@@ -262,13 +266,23 @@ function TakeAssessmentPage() {
                   );
                 })}
               </div>
+            ) : question.kind === "short_answer" ? (
+              <Textarea
+                value={answers[question.id] ?? ""}
+                onChange={(e) => pickAnswer(question.id, e.target.value)}
+                placeholder="Type your answer in a sentence or two"
+                className="min-h-24 text-base"
+                maxLength={1000}
+              />
             ) : (
               <Input
                 value={answers[question.id] ?? ""}
                 onChange={(e) => pickAnswer(question.id, e.target.value)}
-                placeholder="Type your answer"
+                placeholder={
+                  question.kind === "fill_blank" ? "Fill in the blank" : "Type your answer"
+                }
                 className="max-w-xs text-base"
-                inputMode="decimal"
+                inputMode={question.kind === "numeric" ? "decimal" : undefined}
               />
             )}
           </CardContent>
@@ -338,7 +352,7 @@ function ResultView({
   total,
   title,
 }: {
-  questions: AssessmentItem[];
+  questions: RunnerQuestion[];
   result: ResultEntry[];
   scorePct: number;
   correct: number;

@@ -105,12 +105,25 @@ export async function openOutcomeForIntervention(
       baselineSessionId = gap.session_id;
     }
   }
+  let baselineBookId: string | null = null;
+  let baselineUnitId: string | null = null;
   if (baselineSessionId) {
     const { data: baseline } = await sessionsTable(admin)
-      .select("score_pct")
+      .select("score_pct, assessment_id")
       .eq("id", baselineSessionId)
       .maybeSingle();
     baselineScore = (baseline?.score_pct as number | null) ?? 0;
+    // Sprint 6R: curriculum baselines prefer a reassessment generated from the
+    // same book + unit over a loose subject/topic match.
+    if (baseline?.assessment_id) {
+      const { data: ba } = await admin
+        .from("assessments")
+        .select("book_id, unit_id")
+        .eq("id", baseline.assessment_id)
+        .maybeSingle();
+      baselineBookId = (ba?.book_id as string | null) ?? null;
+      baselineUnitId = (ba?.unit_id as string | null) ?? null;
+    }
   }
 
   const { data: outcome, error: insError } = await outcomesTable(admin)
@@ -130,19 +143,37 @@ export async function openOutcomeForIntervention(
     .single();
   if (insError) throw new Error(insError.message);
 
-  // Assign the published reassessment for this org/subject/topic, linked to
-  // the intervention. The (assessment_id, learner_id) unique constraint makes
-  // re-assignment a no-op.
-  const { data: reassessment } = await admin
-    .from("assessments")
-    .select("id, title")
-    .eq("org_id", intervention.org_id)
-    .eq("kind", "reassessment")
-    .eq("status", "published")
-    .eq("subject", subject)
-    .eq("topic", topic)
-    .limit(1)
-    .maybeSingle();
+  // Assign the published reassessment for this org, linked to the
+  // intervention. Curriculum baselines match on book + unit first; the
+  // subject/topic match remains as the legacy fallback. The
+  // (assessment_id, learner_id) unique constraint makes re-assignment a no-op.
+  let reassessment: { id: string; title: string } | null = null;
+  if (baselineBookId && baselineUnitId) {
+    const { data } = await admin
+      .from("assessments")
+      .select("id, title")
+      .eq("org_id", intervention.org_id)
+      .eq("kind", "reassessment")
+      .eq("status", "published")
+      .eq("book_id", baselineBookId)
+      .eq("unit_id", baselineUnitId)
+      .limit(1)
+      .maybeSingle();
+    reassessment = data;
+  }
+  if (!reassessment) {
+    const { data } = await admin
+      .from("assessments")
+      .select("id, title")
+      .eq("org_id", intervention.org_id)
+      .eq("kind", "reassessment")
+      .eq("status", "published")
+      .eq("subject", subject)
+      .eq("topic", topic)
+      .limit(1)
+      .maybeSingle();
+    reassessment = data;
+  }
 
   let reassessmentSessionId: string | null = null;
   let reassessmentAssigned = false;

@@ -40,6 +40,7 @@ function mapBook(row: Database["public"]["Tables"]["books"]["Row"], counts: Book
     fileNames: row.file_names,
     fileSizeBytes: Number(row.file_size_bytes),
     processedAt: row.processed_at,
+    processingError: row.processing_error,
     createdAt: row.created_at,
     counts,
   };
@@ -474,11 +475,52 @@ export async function importCurriculum(
   if (bookError) throw new Error(bookError.message);
   const bookId = book.id;
 
+  const counts = await persistCurriculumTree(supabase, ctx, bookId, input.units);
+
+  await logEvent(supabase, {
+    orgId: ctx.orgId,
+    bookId,
+    actorId: ctx.userId,
+    event: "uploaded",
+    detail: { file: "import.json", format: "json" },
+  });
+  await logEvent(supabase, {
+    orgId: ctx.orgId,
+    bookId,
+    actorId: ctx.userId,
+    event: "imported",
+    detail: {
+      source: "JSON import",
+      units: input.units.length,
+      chapters: counts.chapters,
+      topics: counts.topics,
+      outcomes: counts.outcomes,
+    },
+  });
+
+  return {
+    bookId,
+    counts: { units: input.units.length, ...counts },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Sprint 6R: shared tree persistence. Inserts units → chapters → topics →
+// suggested outcomes into an EXISTING book row. Used by the JSON import and
+// by the AI extraction pipeline (book-upload.server.ts).
+// ---------------------------------------------------------------------------
+
+export async function persistCurriculumTree(
+  supabase: Client,
+  ctx: { orgId: string; userId: string },
+  bookId: string,
+  units: ImportCurriculumInput["units"],
+): Promise<{ chapters: number; topics: number; outcomes: number }> {
   let chapterCount = 0;
   let topicCount = 0;
   let outcomeCount = 0;
 
-  for (const [ui, unit] of input.units.entries()) {
+  for (const [ui, unit] of units.entries()) {
     const { data: u, error } = await supabase
       .from("curriculum_units")
       .insert({ org_id: ctx.orgId, book_id: bookId, title: unit.title, position: ui + 1 })
@@ -530,29 +572,5 @@ export async function importCurriculum(
     }
   }
 
-  await logEvent(supabase, {
-    orgId: ctx.orgId,
-    bookId,
-    actorId: ctx.userId,
-    event: "uploaded",
-    detail: { file: "import.json", format: "json" },
-  });
-  await logEvent(supabase, {
-    orgId: ctx.orgId,
-    bookId,
-    actorId: ctx.userId,
-    event: "imported",
-    detail: {
-      source: "JSON import",
-      units: input.units.length,
-      chapters: chapterCount,
-      topics: topicCount,
-      outcomes: outcomeCount,
-    },
-  });
-
-  return {
-    bookId,
-    counts: { units: input.units.length, chapters: chapterCount, topics: topicCount, outcomes: outcomeCount },
-  };
+  return { chapters: chapterCount, topics: topicCount, outcomes: outcomeCount };
 }

@@ -5,16 +5,22 @@ import {
   scoreItems,
   summarizeBreakdown,
   type Assessment,
-  type AssessmentItem,
+  type ItemKind,
   type AssessmentSession,
   type ResultEntry,
+  type RunnerQuestion,
 } from "./assessment-shared";
 
 type Client = SupabaseClient<Database>;
 
+const NO_ROWS = ["00000000-0000-4000-8000-000000000000"];
+
 export type SessionWithMeta = AssessmentSession & {
   learners: { student_user_id: string | null };
-  assessments: Pick<Assessment, "title" | "topic" | "grade" | "kind" | "time_limit_minutes" | "status">;
+  assessments: Pick<
+    Assessment,
+    "title" | "subject" | "topic" | "grade" | "kind" | "time_limit_minutes" | "status"
+  > & { book_id: string | null; unit_id: string | null };
   // Sprint 5: reassessment sessions link back to the intervention they close.
   intervention_id?: string | null;
 };
@@ -35,7 +41,9 @@ export async function getOwnedSession(
 ): Promise<SessionWithMeta> {
   const { data, error } = await supabase
     .from("assessment_sessions")
-    .select("*, learners!inner(student_user_id), assessments(title, topic, grade, kind, time_limit_minutes, status)")
+    .select(
+      "*, learners!inner(student_user_id), assessments(title, subject, topic, grade, kind, time_limit_minutes, status, book_id, unit_id)",
+    )
     .eq("id", sessionId)
     .maybeSingle();
   if (error) throw new Error(error.message);
@@ -47,12 +55,65 @@ export async function getOwnedSession(
   return session;
 }
 
-// Privileged item fetch: items (and their correct answers) are staff-only at
-// the database level. Callers MUST authorize the user before calling this.
-export async function fetchAssessmentItems(
-  assessmentId: string,
-): Promise<(AssessmentItem & { sort_order: number; points: number })[]> {
+// ---------------------------------------------------------------------------
+// Item loading. Both assessment_items and question_bank are staff-only at the
+// database level (answer keys live on the row), so items are fetched with the
+// service role AFTER the caller has been authorized for the specific
+// session/assessment (see assessments.functions.ts).
+//
+// Sprint 6R: dual-read. Curriculum-pipeline assessments carry their questions
+// in assessment_question_map → question_bank (subtopic = outcome code, so gap
+// detection lands per-outcome). Legacy Sprint 2 assessments still resolve via
+// assessment_item_map → assessment_items. The question map wins when present.
+// ---------------------------------------------------------------------------
+
+type BankRow = {
+  id: string;
+  outcome_id: string;
+  kind: string;
+  difficulty: number;
+  prompt: string;
+  options: unknown;
+  correct_answer: string;
+  explanation: string;
+};
+
+export async function fetchAssessmentItems(assessmentId: string): Promise<RunnerQuestion[]> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+  const { data: qMap, error: qError } = await supabaseAdmin
+    .from("assessment_question_map")
+    .select("sort_order, points, question_bank(*)")
+    .eq("assessment_id", assessmentId)
+    .order("sort_order");
+  if (qError) throw new Error(qError.message);
+
+  if ((qMap ?? []).length > 0) {
+    const rows = qMap ?? [];
+    const outcomeIds = [...new Set(rows.map((r) => (r.question_bank as unknown as BankRow).outcome_id))];
+    const { data: outcomes, error: oError } = await supabaseAdmin
+      .from("assessment_outcomes")
+      .select("id, code")
+      .in("id", outcomeIds.length > 0 ? outcomeIds : NO_ROWS);
+    if (oError) throw new Error(oError.message);
+    const codeById = new Map((outcomes ?? []).map((o) => [o.id, o.code]));
+    return rows.map((row) => {
+      const q = row.question_bank as unknown as BankRow;
+      return {
+        id: q.id,
+        subtopic: codeById.get(q.outcome_id) ?? "General",
+        difficulty: q.difficulty,
+        kind: q.kind as ItemKind,
+        prompt: q.prompt,
+        options: (q.options as string[] | null) ?? null,
+        correct_answer: q.correct_answer,
+        explanation: q.explanation,
+        sort_order: row.sort_order,
+        points: row.points,
+      };
+    });
+  }
+
   const { data, error } = await supabaseAdmin
     .from("assessment_item_map")
     .select("sort_order, points, assessment_items(*)")
@@ -60,16 +121,34 @@ export async function fetchAssessmentItems(
     .order("sort_order");
   if (error) throw new Error(error.message);
   return (data ?? []).map((row) => {
-    const item = row.assessment_items as unknown as AssessmentItem;
-    return { ...item, sort_order: row.sort_order, points: row.points };
+    const item = row.assessment_items as unknown as {
+      id: string;
+      subtopic: string;
+      difficulty: number;
+      kind: string;
+      prompt: string;
+      options: unknown;
+      correct_answer: string;
+      explanation: string | null;
+    };
+    return {
+      id: item.id,
+      subtopic: item.subtopic,
+      difficulty: item.difficulty,
+      kind: item.kind as ItemKind,
+      prompt: item.prompt,
+      options: (item.options as string[] | null) ?? null,
+      correct_answer: item.correct_answer,
+      explanation: item.explanation,
+      sort_order: row.sort_order,
+      points: row.points,
+    };
   });
 }
 
 // Strip answers before a session is submitted: students never receive
 // correct_answer or explanation while taking an assessment.
-export function stripAnswers(
-  items: (AssessmentItem & { sort_order: number; points: number })[],
-): Omit<AssessmentItem, "correct_answer" | "explanation">[] {
+export function stripAnswers(items: RunnerQuestion[]): Omit<RunnerQuestion, "correct_answer" | "explanation">[] {
   return items.map(({ correct_answer: _c, explanation: _e, ...rest }) => rest);
 }
 
@@ -82,7 +161,7 @@ export type ScoringOutcome = {
 };
 
 export function scoreSession(
-  items: { id: string; subtopic: string; kind: "mcq" | "numeric"; correct_answer: string }[],
+  items: { id: string; subtopic: string; kind: ItemKind; correct_answer: string }[],
   answers: Record<string, string>,
   assessmentTitle: string,
 ): ScoringOutcome {

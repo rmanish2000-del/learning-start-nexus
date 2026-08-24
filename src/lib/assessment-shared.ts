@@ -1,7 +1,9 @@
 // Shared assessment-engine types and pure scoring logic.
+// Sprint 6R: the runner also serves curriculum-pipeline questions
+// (question_bank via assessment_question_map) — kinds widened accordingly.
 // Browser-safe: no server-only imports.
 
-export type ItemKind = "mcq" | "numeric";
+export type ItemKind = "mcq" | "numeric" | "true_false" | "fill_blank" | "short_answer";
 
 export type AssessmentItem = {
   id: string;
@@ -64,27 +66,45 @@ export type ResultEntry = {
   correct: boolean;
 };
 
+// The question shape the student runner actually needs. Both pipelines
+// (legacy assessment_items, curriculum question_bank) are mapped into this.
+export type RunnerQuestion = {
+  id: string;
+  subtopic: string; // legacy subtopic label, or the outcome code for curriculum questions
+  difficulty: number;
+  kind: ItemKind;
+  prompt: string;
+  options: string[] | null;
+  correct_answer: string; // stripped for students before submission (see stripAnswers)
+  explanation: string | null;
+  sort_order: number;
+  points: number;
+};
+
 export const DIFFICULTY_LABELS: Record<number, string> = {
   1: "Foundational",
   2: "Core",
   3: "Stretch",
+  4: "Advanced",
+  5: "Mastery",
 };
 
 export function normalizeAnswer(value: string): string {
   return value.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-// Automatic scoring: exact match for MCQ; numeric answers compare as numbers
-// with a small tolerance, falling back to normalized string equality.
+// Automatic scoring: numeric answers compare as numbers with a small
+// tolerance (any kind — a bank question may carry a numeric key); everything
+// else falls back to normalized string equality.
 export function gradeAnswer(
   item: { kind: ItemKind; correct_answer: string },
   given: string | undefined,
 ): boolean {
   if (!given || !given.trim()) return false;
-  if (item.kind === "numeric") {
-    const g = Number(given);
-    const c = Number(item.correct_answer);
-    if (Number.isFinite(g) && Number.isFinite(c)) return Math.abs(g - c) < 0.0001;
+  const g = Number(given);
+  const c = Number(item.correct_answer);
+  if (Number.isFinite(g) && Number.isFinite(c) && item.correct_answer.trim() !== "") {
+    return Math.abs(g - c) < 0.0001;
   }
   return normalizeAnswer(given) === normalizeAnswer(item.correct_answer);
 }
