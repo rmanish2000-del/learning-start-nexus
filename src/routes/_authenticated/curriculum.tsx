@@ -265,15 +265,39 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
                           {b.counts.approvedOutcomes}/{b.counts.outcomes} outcomes approved
                         </Badge>
                       </div>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() =>
-                          navigate({ to: "/curriculum", search: { book: b.id, tab: "tree" } })
-                        }
-                      >
-                        <BookOpen className="h-4 w-4" /> Open
-                      </Button>
+                      {b.status === "failed" && b.processingError && (
+                        <p className="text-xs text-destructive">{b.processingError}</p>
+                      )}
+                      <div className="flex flex-wrap gap-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() =>
+                            navigate({ to: "/curriculum", search: { book: b.id, tab: "tree" } })
+                          }
+                        >
+                          <BookOpen className="h-4 w-4" /> Open
+                        </Button>
+                        {isStaff && (b.status === "uploaded" || b.status === "failed") && (
+                          <Button
+                            size="sm"
+                            disabled={extractingId === b.id}
+                            onClick={() => void handleExtract(b.id)}
+                          >
+                            {extractingId === b.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <Sparkles className="h-4 w-4" />
+                            )}
+                            {extractingId === b.id ? "Extracting…" : "Extract curriculum"}
+                          </Button>
+                        )}
+                        {b.status === "processing" && (
+                          <Button size="sm" disabled>
+                            <Loader2 className="h-4 w-4 animate-spin" /> Processing…
+                          </Button>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
