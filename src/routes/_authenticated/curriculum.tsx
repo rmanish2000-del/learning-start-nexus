@@ -79,8 +79,8 @@ import {
 
 export const Route = createFileRoute("/_authenticated/curriculum")({
   validateSearch: (search: Record<string, unknown>) => ({
-    book: typeof search.book === "string" ? search.book : undefined,
-    tab: typeof search.tab === "string" ? search.tab : undefined,
+    book: typeof search["book"] === "string" ? search["book"] : undefined,
+    tab: typeof search["tab"] === "string" ? search["tab"] : undefined,
   }),
   head: () => ({
     meta: [
@@ -138,7 +138,7 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
       const parsed = importCurriculumSchema.parse(JSON.parse(jsonText));
       const result = await runImport({ data: parsed });
       toast.success(
-        `Imported "${parsed.title}": ${result.counts.units} units, ${result.counts.chapters} chapters, ${result.counts.topics} topics, ${result.counts.outcomes} outcomes.`,
+        `Imported "${parsed.title}": ${result.counts["units"]} units, ${result.counts["chapters"]} chapters, ${result.counts["topics"]} topics, ${result.counts["outcomes"]} outcomes.`,
       );
       setImportOpen(false);
       setJsonText("");
@@ -956,7 +956,7 @@ function WorkspaceView({ bookId, tab, isStaff }: { bookId: string; tab: string; 
             variant="ghost"
             size="sm"
             className="-ml-2 h-7 text-xs"
-            onClick={() => navigate({ to: "/curriculum", search: {} })}
+            onClick={() => navigate({ to: "/curriculum", search: { book: undefined, tab: undefined } })}
           >
             ← Back to library
           </Button>
