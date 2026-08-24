@@ -155,3 +155,27 @@ export const importCurriculumFn = createServerFn({ method: "POST" })
     const orgId = await getMyOrgId(context.supabase, context.userId);
     return importCurriculum(context.supabase, { orgId, userId: context.userId }, data);
   });
+
+// Sprint 6R: real book upload (PDF/TXT/MD → storage) + AI extraction.
+export const uploadBookFileFn = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => {
+    if (!(input instanceof FormData)) throw new Error("Expected form data.");
+    return input;
+  })
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, [...STAFF]);
+    const orgId = await getMyOrgId(context.supabase, context.userId);
+    const { uploadBookFile } = await import("./book-upload.server");
+    return uploadBookFile(context.supabase, { orgId, userId: context.userId }, data);
+  });
+
+export const extractCurriculumFn = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => bookIdSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, [...STAFF]);
+    const orgId = await getMyOrgId(context.supabase, context.userId);
+    const { extractCurriculumFromBook } = await import("./book-upload.server");
+    return extractCurriculumFromBook(context.supabase, { orgId, userId: context.userId }, data.bookId);
+  });
