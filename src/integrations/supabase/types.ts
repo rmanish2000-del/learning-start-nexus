@@ -112,6 +112,82 @@ export type Database = {
           },
         ]
       }
+      assessment_outcomes: {
+        Row: {
+          bloom_level: string
+          book_id: string
+          category: string
+          code: string
+          created_at: string
+          diagnostic_weight: number
+          difficulty: number
+          id: string
+          intervention_strategy: string
+          org_id: string
+          question_types: Json
+          status: string
+          title: string
+          unit_id: string
+          updated_at: string
+        }
+        Insert: {
+          bloom_level: string
+          book_id: string
+          category: string
+          code: string
+          created_at?: string
+          diagnostic_weight?: number
+          difficulty?: number
+          id?: string
+          intervention_strategy?: string
+          org_id: string
+          question_types?: Json
+          status?: string
+          title: string
+          unit_id: string
+          updated_at?: string
+        }
+        Update: {
+          bloom_level?: string
+          book_id?: string
+          category?: string
+          code?: string
+          created_at?: string
+          diagnostic_weight?: number
+          difficulty?: number
+          id?: string
+          intervention_strategy?: string
+          org_id?: string
+          question_types?: Json
+          status?: string
+          title?: string
+          unit_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_outcomes_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_outcomes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_outcomes_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       assessment_sessions: {
         Row: {
           answers: Json
@@ -747,6 +823,64 @@ export type Database = {
           },
         ]
       }
+      intervention_map: {
+        Row: {
+          assessment_outcome_id: string
+          book_id: string
+          created_at: string
+          failure_pattern: string
+          id: string
+          org_id: string
+          priority: number
+          recommended_intervention: string
+          updated_at: string
+        }
+        Insert: {
+          assessment_outcome_id: string
+          book_id: string
+          created_at?: string
+          failure_pattern: string
+          id?: string
+          org_id: string
+          priority?: number
+          recommended_intervention: string
+          updated_at?: string
+        }
+        Update: {
+          assessment_outcome_id?: string
+          book_id?: string
+          created_at?: string
+          failure_pattern?: string
+          id?: string
+          org_id?: string
+          priority?: number
+          recommended_intervention?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intervention_map_assessment_outcome_id_fkey"
+            columns: ["assessment_outcome_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_outcomes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intervention_map_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intervention_map_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       interventions: {
         Row: {
           activity: string
@@ -1275,6 +1409,50 @@ export type Database = {
           },
         ]
       }
+      mastery_levels: {
+        Row: {
+          color: string
+          created_at: string
+          id: string
+          label: string
+          max_score: number
+          min_score: number
+          org_id: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          id?: string
+          label: string
+          max_score: number
+          min_score: number
+          org_id: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          id?: string
+          label?: string
+          max_score?: number
+          min_score?: number
+          org_id?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mastery_levels_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organizations: {
         Row: {
           created_at: string
@@ -1310,6 +1488,62 @@ export type Database = {
           website?: string | null
         }
         Relationships: []
+      }
+      outcome_map: {
+        Row: {
+          assessment_outcome_id: string
+          book_id: string
+          created_at: string
+          curriculum_outcome_id: string
+          id: string
+          org_id: string
+        }
+        Insert: {
+          assessment_outcome_id: string
+          book_id: string
+          created_at?: string
+          curriculum_outcome_id: string
+          id?: string
+          org_id: string
+        }
+        Update: {
+          assessment_outcome_id?: string
+          book_id?: string
+          created_at?: string
+          curriculum_outcome_id?: string
+          id?: string
+          org_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "outcome_map_assessment_outcome_id_fkey"
+            columns: ["assessment_outcome_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_outcomes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outcome_map_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outcome_map_curriculum_outcome_id_fkey"
+            columns: ["curriculum_outcome_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_outcomes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "outcome_map_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       parent_learner_links: {
         Row: {
