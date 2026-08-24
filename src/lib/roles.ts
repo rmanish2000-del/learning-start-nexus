@@ -30,6 +30,8 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/launch-audit",
   "/curriculum",
   "/curriculum-audit",
+  "/assessment-blueprint",
+  "/assessment-blueprint-audit",
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {

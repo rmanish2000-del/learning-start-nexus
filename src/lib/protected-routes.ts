@@ -7,6 +7,8 @@ export const PROTECTED_ROUTES = [
   "/assignments",
   "/assessments",
   "/assessment",
+  "/assessment-blueprint",
+  "/assessment-blueprint-audit",
   "/session",
   "/admin",
   "/settings",
