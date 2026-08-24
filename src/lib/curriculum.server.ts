@@ -571,29 +571,5 @@ export async function persistCurriculumTree(
     }
   }
 
-  await logEvent(supabase, {
-    orgId: ctx.orgId,
-    bookId,
-    actorId: ctx.userId,
-    event: "uploaded",
-    detail: { file: "import.json", format: "json" },
-  });
-  await logEvent(supabase, {
-    orgId: ctx.orgId,
-    bookId,
-    actorId: ctx.userId,
-    event: "imported",
-    detail: {
-      source: "JSON import",
-      units: input.units.length,
-      chapters: chapterCount,
-      topics: topicCount,
-      outcomes: outcomeCount,
-    },
-  });
-
-  return {
-    bookId,
-    counts: { units: input.units.length, chapters: chapterCount, topics: topicCount, outcomes: outcomeCount },
-  };
+  return { chapters: chapterCount, topics: topicCount, outcomes: outcomeCount };
 }
