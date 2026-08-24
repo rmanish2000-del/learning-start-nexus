@@ -9,6 +9,7 @@ import type {
   BookSummary,
   BookWorkspace,
   ChapterNode,
+  EventDetail,
   ImportCurriculumInput,
   NodeKind,
   OutcomeNode,
