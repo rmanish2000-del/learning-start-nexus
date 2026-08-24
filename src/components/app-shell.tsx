@@ -38,6 +38,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/curriculum", label: "Curriculum", icon: BookOpen, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/assessment-blueprint", label: "Blueprint", icon: Crosshair, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/question-bank", label: "Question Bank", icon: FileQuestion, roles: ["admin", "educator", "reviewer"], exact: true },
+  { to: "/assessment-builder", label: "Assessment Builder", icon: ClipboardCheck, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
@@ -59,6 +60,7 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/curriculum-audit", label: "Curriculum Audit", icon: GitBranch, roles: ["admin", "educator", "reviewer"] },
   { to: "/assessment-blueprint-audit", label: "Blueprint Audit", icon: Crosshair, roles: ["admin", "educator", "reviewer"] },
   { to: "/question-bank-audit", label: "Question Bank Audit", icon: FileQuestion, roles: ["admin", "educator", "reviewer"] },
+  { to: "/assessment-builder-audit", label: "Builder Audit", icon: ClipboardCheck, roles: ["admin", "educator", "reviewer"] },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -67,6 +69,8 @@ const TITLES: [RegExp, string][] = [
   [/^\/assessments/, "Assessments"],
   [/^\/question-bank-audit/, "Question bank audit center"],
   [/^\/question-bank/, "Question bank"],
+  [/^\/assessment-builder-audit/, "Assessment builder audit center"],
+  [/^\/assessment-builder/, "Assessment builder"],
   [/^\/assessment-blueprint-audit/, "Blueprint audit center"],
   [/^\/assessment-blueprint/, "Assessment blueprint"],
   [/^\/assessment\/.+/, "Assessment detail"],

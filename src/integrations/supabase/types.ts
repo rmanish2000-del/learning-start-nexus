@@ -188,6 +188,45 @@ export type Database = {
           },
         ]
       }
+      assessment_question_map: {
+        Row: {
+          assessment_id: string
+          created_at: string
+          points: number
+          question_id: string
+          sort_order: number
+        }
+        Insert: {
+          assessment_id: string
+          created_at?: string
+          points?: number
+          question_id: string
+          sort_order: number
+        }
+        Update: {
+          assessment_id?: string
+          created_at?: string
+          points?: number
+          question_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_question_map_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_question_map_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       assessment_sessions: {
         Row: {
           answers: Json
@@ -285,6 +324,7 @@ export type Database = {
       }
       assessments: {
         Row: {
+          book_id: string | null
           created_at: string
           created_by: string | null
           description: string | null
@@ -297,9 +337,11 @@ export type Database = {
           time_limit_minutes: number | null
           title: string
           topic: string
+          unit_id: string | null
           updated_at: string
         }
         Insert: {
+          book_id?: string | null
           created_at?: string
           created_by?: string | null
           description?: string | null
@@ -312,9 +354,11 @@ export type Database = {
           time_limit_minutes?: number | null
           title: string
           topic?: string
+          unit_id?: string | null
           updated_at?: string
         }
         Update: {
+          book_id?: string | null
           created_at?: string
           created_by?: string | null
           description?: string | null
@@ -327,14 +371,29 @@ export type Database = {
           time_limit_minutes?: number | null
           title?: string
           topic?: string
+          unit_id?: string | null
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "assessments_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "assessments_org_id_fkey"
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessments_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_units"
             referencedColumns: ["id"]
           },
         ]
