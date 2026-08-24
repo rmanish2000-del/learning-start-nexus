@@ -179,8 +179,82 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
     count("concept_edges"),
   ]);
 
+  // Tree-ordered sample rows: first 12 topics with unit/chapter context and a
+  // sample outcome, so an auditor can eyeball the extraction without the UI.
+  const [{ data: unitRows }, { data: chapterRows }, { data: topicRows }, { data: outcomeRows }] =
+    await Promise.all([
+      supabase
+        .from("curriculum_units")
+        .select("id, title, position")
+        .eq("book_id", PILOT_BOOK_ID)
+        .order("position"),
+      supabase
+        .from("curriculum_chapters")
+        .select("id, unit_id, title, position")
+        .eq("book_id", PILOT_BOOK_ID)
+        .order("position"),
+      supabase
+        .from("curriculum_topics")
+        .select("id, chapter_id, title, position")
+        .eq("book_id", PILOT_BOOK_ID)
+        .order("position"),
+      supabase
+        .from("curriculum_outcomes")
+        .select("topic_id, text, position")
+        .eq("book_id", PILOT_BOOK_ID)
+        .order("position"),
+    ]);
+
+  const unitById = new Map((unitRows ?? []).map((u) => [u.id as string, u.title as string]));
+  const chapterById = new Map(
+    (chapterRows ?? []).map((c) => [c.id as string, { title: c.title as string, unitId: c.unit_id as string }]),
+  );
+  const outcomesByTopic = new Map<string, string[]>();
+  for (const o of outcomeRows ?? []) {
+    const list = outcomesByTopic.get(o.topic_id as string) ?? [];
+    list.push(o.text as string);
+    outcomesByTopic.set(o.topic_id as string, list);
+  }
+  const chapterOrder = new Map((chapterRows ?? []).map((c, i) => [c.id as string, i]));
+  const sortedTopics = [...(topicRows ?? [])].sort(
+    (a, b) =>
+      (chapterOrder.get(a.chapter_id as string) ?? 0) - (chapterOrder.get(b.chapter_id as string) ?? 0) ||
+      (a.position as number) - (b.position as number),
+  );
+  const sampleRows: PilotSampleRow[] = sortedTopics.slice(0, 12).map((t) => {
+    const chapter = chapterById.get(t.chapter_id as string);
+    const topicOutcomes = outcomesByTopic.get(t.id as string) ?? [];
+    return {
+      unit: (chapter ? unitById.get(chapter.unitId) : null) ?? "—",
+      chapter: chapter?.title ?? "—",
+      topic: t.title as string,
+      outcomes: topicOutcomes.length,
+      sampleOutcome: topicOutcomes[0] ?? null,
+    };
+  });
+
+  // Knowledge graph sample: first 12 edges resolved to concept labels.
+  const [{ data: gNodes }, { data: gEdges }] = await Promise.all([
+    supabase.from("concept_nodes").select("id, label").eq("book_id", PILOT_BOOK_ID),
+    supabase.from("concept_edges").select("parent_id, child_id").eq("book_id", PILOT_BOOK_ID).limit(12),
+  ]);
+  const labelById = new Map((gNodes ?? []).map((n) => [n.id as string, n.label as string]));
+  const graphSample: PilotGraphEdge[] = (gEdges ?? []).map((e) => ({
+    parent: labelById.get(e.parent_id as string) ?? "?",
+    child: labelById.get(e.child_id as string) ?? "?",
+  }));
+
+  const structureOk =
+    units === PILOT_EXPECTED.units &&
+    chapters === PILOT_EXPECTED.chapters &&
+    topics === PILOT_EXPECTED.topics &&
+    outcomes === PILOT_EXPECTED.outcomes &&
+    nodes === PILOT_EXPECTED.nodes &&
+    edges === PILOT_EXPECTED.edges;
+
   return {
     present: true,
+    bookId: PILOT_BOOK_ID,
     title: book.title,
     status: book.status,
     board: book.board,
@@ -191,6 +265,9 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
     approvedOutcomes,
     nodes,
     edges,
+    structureOk,
+    sampleRows,
+    graphSample,
   };
 }
 
