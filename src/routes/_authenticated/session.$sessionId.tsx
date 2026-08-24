@@ -230,11 +230,14 @@ function TakeAssessmentPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="secondary">{question.subtopic}</Badge>
               <Badge variant="outline">{DIFFICULTY_LABELS[question.difficulty] ?? "Core"}</Badge>
-              {question.kind === "numeric" && <Badge variant="outline">Type your answer</Badge>}
+              {(question.kind === "numeric" ||
+                question.kind === "fill_blank" ||
+                question.kind === "short_answer") && <Badge variant="outline">Type your answer</Badge>}
             </div>
             <p className="text-lg font-medium leading-relaxed">{question.prompt}</p>
 
-            {question.kind === "mcq" ? (
+            {(question.kind === "mcq" || question.kind === "true_false") &&
+            (question.options ?? []).length > 0 ? (
               <div className="grid gap-2 sm:grid-cols-2">
                 {(question.options ?? []).map((option) => {
                   const selected = answers[question.id] === option;
