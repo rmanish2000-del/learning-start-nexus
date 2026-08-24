@@ -394,9 +394,7 @@ function AssessmentBuilderPage() {
             <Label>Unit</Label>
             <Select
               value={workspace?.selectedUnitId ?? ""}
-              onValueChange={(v) =>
-                bookId && navigate({ search: { book: bookId, unit: v, built: undefined } })
-              }
+              onValueChange={(v) => bookId && navigate({ search: { book: bookId, unit: v } })}
               disabled={!workspace}
             >
               <SelectTrigger><SelectValue placeholder="Unit" /></SelectTrigger>
@@ -847,15 +845,12 @@ function AssessmentBuilderPage() {
                   <Button
                     size="sm"
                     variant={search.built === a.id ? "secondary" : "outline"}
-                    onClick={() =>
-                      navigate({
-                        search: {
-                          book: bookId!,
-                          unit: workspace.selectedUnitId ?? undefined,
-                          built: search.built === a.id ? undefined : a.id,
-                        },
-                      })
-                    }
+                    onClick={() => {
+                      const next: Search = { book: bookId! };
+                      if (workspace.selectedUnitId) next.unit = workspace.selectedUnitId;
+                      if (search.built !== a.id) next.built = a.id;
+                      navigate({ search: next });
+                    }}
                   >
                     {search.built === a.id ? "Hide coverage" : "View coverage"}
                   </Button>
