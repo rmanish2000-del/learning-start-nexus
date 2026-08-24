@@ -36,6 +36,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/learners", label: "Learners", icon: Users, roles: ["admin", "educator"] },
   { to: "/assessments", label: "Assessments", icon: ClipboardList, roles: ["admin", "educator"] },
   { to: "/curriculum", label: "Curriculum", icon: BookOpen, roles: ["admin", "educator", "reviewer"], exact: true },
+  { to: "/assessment-blueprint", label: "Blueprint", icon: Crosshair, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
