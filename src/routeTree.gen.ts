@@ -33,6 +33,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedDiagnosticEngineRouteImport } from './routes/_authenticated/diagnostic-engine'
 import { Route as AuthenticatedDiagnosticEngineAuditRouteImport } from './routes/_authenticated/diagnostic-engine-audit'
 import { Route as AuthenticatedGapAnalysisRouteImport } from './routes/_authenticated/gap-analysis'
+import { Route as AuthenticatedGapAnalysisAuditRouteImport } from './routes/_authenticated/gap-analysis-audit'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
 import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenticated/launch-audit'
@@ -183,6 +184,12 @@ const AuthenticatedGapAnalysisRoute =
     path: '/gap-analysis',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedGapAnalysisAuditRoute =
+  AuthenticatedGapAnalysisAuditRouteImport.update({
+    id: '/gap-analysis-audit',
+    path: '/gap-analysis-audit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -306,6 +313,7 @@ export interface FileRoutesByFullPath {
   '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
+  '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -348,6 +356,7 @@ export interface FileRoutesByTo {
   '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
+  '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -392,6 +401,7 @@ export interface FileRoutesById {
   '/_authenticated/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/_authenticated/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/_authenticated/gap-analysis': typeof AuthenticatedGapAnalysisRoute
+  '/_authenticated/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
   '/_authenticated/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -436,6 +446,7 @@ export interface FileRouteTypes {
     | '/diagnostic-engine'
     | '/diagnostic-engine-audit'
     | '/gap-analysis'
+    | '/gap-analysis-audit'
     | '/home'
     | '/interventions'
     | '/launch-audit'
@@ -478,6 +489,7 @@ export interface FileRouteTypes {
     | '/diagnostic-engine'
     | '/diagnostic-engine-audit'
     | '/gap-analysis'
+    | '/gap-analysis-audit'
     | '/home'
     | '/interventions'
     | '/launch-audit'
@@ -521,6 +533,7 @@ export interface FileRouteTypes {
     | '/_authenticated/diagnostic-engine'
     | '/_authenticated/diagnostic-engine-audit'
     | '/_authenticated/gap-analysis'
+    | '/_authenticated/gap-analysis-audit'
     | '/_authenticated/home'
     | '/_authenticated/interventions'
     | '/_authenticated/launch-audit'
@@ -721,6 +734,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedGapAnalysisRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/gap-analysis-audit': {
+      id: '/_authenticated/gap-analysis-audit'
+      path: '/gap-analysis-audit'
+      fullPath: '/gap-analysis-audit'
+      preLoaderRoute: typeof AuthenticatedGapAnalysisAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
@@ -873,6 +893,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDiagnosticEngineRoute: typeof AuthenticatedDiagnosticEngineRoute
   AuthenticatedDiagnosticEngineAuditRoute: typeof AuthenticatedDiagnosticEngineAuditRoute
   AuthenticatedGapAnalysisRoute: typeof AuthenticatedGapAnalysisRoute
+  AuthenticatedGapAnalysisAuditRoute: typeof AuthenticatedGapAnalysisAuditRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
   AuthenticatedLaunchAuditRoute: typeof AuthenticatedLaunchAuditRoute
@@ -912,6 +933,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDiagnosticEngineAuditRoute:
     AuthenticatedDiagnosticEngineAuditRoute,
   AuthenticatedGapAnalysisRoute: AuthenticatedGapAnalysisRoute,
+  AuthenticatedGapAnalysisAuditRoute: AuthenticatedGapAnalysisAuditRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
   AuthenticatedLaunchAuditRoute: AuthenticatedLaunchAuditRoute,
