@@ -28,6 +28,12 @@ export const DIAG_EXPECTED = {
   unitId: "66100000-0000-4000-8000-000000000001",
   totalQuestions: 9,
   outcomesInUnit: 3,
+  // Sprint 6G seeded two submitted demo sessions on the diagnostic to power
+  // the Gap Analysis sprint — they are expected and allowed by probe P6.
+  demoSessionIds: [
+    "dd000001-0000-4000-8000-000000000001",
+    "dd000002-0000-4000-8000-000000000002",
+  ],
 } as const;
 
 function shapeError(err: unknown): DbErrorShape {
@@ -354,22 +360,25 @@ export async function runEngineProbes(
   // P6 — No side effects: generated assessments are never assigned and create
   // no sessions, gaps, interventions, or mastery changes.
   {
-    const { count: sessions } = await admin
+    const { data: pairSessions } = await admin
       .from("assessment_sessions")
-      .select("id", { count: "exact", head: true })
+      .select("id")
       .in("assessment_id", [E.diagnosticId, E.reassessmentId]);
+    const nonDemo = (pairSessions ?? []).filter(
+      (s) => !(E.demoSessionIds as readonly string[]).includes(s.id as string),
+    );
     const { data: events } = await admin
       .from("book_events")
       .select("event")
       .eq("book_id", PILOT_BOOK_ID)
       .contains("detail", { engine: "sprint-6f" });
     const eventKinds = [...new Set((events ?? []).map((e) => e.event as string))];
-    const ok = (sessions ?? 0) === 0 && eventKinds.every((e) => e === "diagnostic_generated");
+    const ok = nonDemo.length === 0 && eventKinds.every((e) => e === "diagnostic_generated");
     probes.push({
       key: "no-side-effects",
       name: "P6 — Generation has no side effects",
-      expectation: "Generated assessments have zero assessment sessions (never auto-assigned) and engine events are limited to diagnostic_generated log rows.",
-      detail: `Sessions on the pair: ${sessions ?? 0}; engine event kinds: ${eventKinds.join(", ") || "none"}.`,
+      expectation: `Generated assessments have no sessions beyond the two seeded Sprint 6G demo submissions (${E.demoSessionIds.join(", ")}), and engine events are limited to diagnostic_generated log rows.`,
+      detail: `Sessions on the pair: ${(pairSessions ?? []).length} total, ${nonDemo.length} non-demo; engine event kinds: ${eventKinds.join(", ") || "none"}.`,
       pass: ok,
     });
   }
