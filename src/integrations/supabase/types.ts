@@ -1616,6 +1616,82 @@ export type Database = {
           },
         ]
       }
+      question_bank: {
+        Row: {
+          book_id: string
+          correct_answer: string
+          created_at: string
+          created_by: string | null
+          difficulty: number
+          explanation: string
+          id: string
+          kind: string
+          options: Json | null
+          org_id: string
+          outcome_id: string
+          prompt: string
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          book_id: string
+          correct_answer: string
+          created_at?: string
+          created_by?: string | null
+          difficulty: number
+          explanation: string
+          id?: string
+          kind: string
+          options?: Json | null
+          org_id: string
+          outcome_id: string
+          prompt: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          book_id?: string
+          correct_answer?: string
+          created_at?: string
+          created_by?: string | null
+          difficulty?: number
+          explanation?: string
+          id?: string
+          kind?: string
+          options?: Json | null
+          org_id?: string
+          outcome_id?: string
+          prompt?: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_bank_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_bank_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_bank_outcome_id_fkey"
+            columns: ["outcome_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_outcomes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       recommendations: {
         Row: {
           activity: string
