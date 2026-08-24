@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
-import { Building2, Palette, UserRound } from "lucide-react";
+import { createFileRoute, getRouteApi, useNavigate } from "@tanstack/react-router";
+import { Building2, CheckCircle2, Compass, Palette, RotateCcw, UserRound } from "lucide-react";
+import { toast } from "sonner";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
-import { ROLE_LABELS } from "@/lib/roles";
+import { markOnboardingComplete, resetOnboarding } from "@/lib/onboarding";
+import { ROLE_LABELS, roleHome } from "@/lib/roles";
 
 export const Route = createFileRoute("/_authenticated/settings")({
   head: () => ({
@@ -22,6 +25,26 @@ const authRoute = getRouteApi("/_authenticated");
 
 function SettingsPage() {
   const { user, role, profile } = authRoute.useRouteContext();
+  const navigate = useNavigate();
+
+  // Safe reset for testing/support: clear the completion + tour-seen flags and
+  // return to the role home, where the guided tour replays from step one.
+  const handleRestartTour = () => {
+    const tourId = resetOnboarding(role);
+    if (!tourId) {
+      toast.info("Your role has no guided tour to restart.");
+      return;
+    }
+    toast.success("Onboarding reset — the guided tour will replay.");
+    navigate({ to: roleHome(role) });
+  };
+
+  // Support escape hatch: mark everything complete so no onboarding modal or
+  // forced tour can auto-start again for this browser.
+  const handleMarkComplete = () => {
+    markOnboardingComplete(role);
+    toast.success("Onboarding marked complete — nothing will auto-start again.");
+  };
 
   const { data: org } = useQuery({
     queryKey: ["settings-org", profile?.org_id],
@@ -114,6 +137,29 @@ function SettingsPage() {
         <CardContent className="flex items-center justify-between text-sm">
           <span className="text-muted-foreground">Theme</span>
           <ThemeToggle />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Compass className="h-4 w-4" /> Onboarding
+          </CardTitle>
+          <CardDescription>
+            Testing and support controls for the getting-started checklist and guided tour.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap items-center gap-2">
+          <Button variant="outline" size="sm" onClick={handleRestartTour}>
+            <RotateCcw className="mr-1.5 h-3.5 w-3.5" /> Restart Tour
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleMarkComplete}>
+            <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> Mark Tour Complete
+          </Button>
+          <p className="w-full text-xs text-muted-foreground">
+            Restart returns you to your home page and replays the guided tour. Mark complete stops
+            all onboarding modals and tours from auto-starting.
+          </p>
         </CardContent>
       </Card>
     </div>

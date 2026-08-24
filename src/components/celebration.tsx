@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { PartyPopper, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -11,13 +11,24 @@ interface CelebrationProps {
 
 const CONFETTI_COLORS = ["#017C5D", "#10b981", "#f59e0b", "#38bdf8", "#f472b6", "#a78bfa"];
 
-/** Lightweight milestone celebration: confetti burst + message card. */
+/**
+ * Lightweight milestone celebration: confetti burst + message card.
+ *
+ * Visibility is driven directly by the `show` prop — there is intentionally
+ * no internal "visible" latch. A previous version kept its own state that
+ * only ever flipped to true, so `onClose` could never dismiss the modal and
+ * users were trapped behind the blurred overlay.
+ */
 export function Celebration({ show, title, message, onClose }: CelebrationProps) {
-  const [visible, setVisible] = useState(show);
-
+  // Escape key closes the celebration like any other dismiss path.
   useEffect(() => {
-    if (show) setVisible(true);
-  }, [show]);
+    if (!show) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [show, onClose]);
 
   const pieces = useMemo(
     () =>
@@ -33,7 +44,7 @@ export function Celebration({ show, title, message, onClose }: CelebrationProps)
     [],
   );
 
-  if (!visible) return null;
+  if (!show) return null;
 
   return (
     <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" role="dialog" aria-modal="true">

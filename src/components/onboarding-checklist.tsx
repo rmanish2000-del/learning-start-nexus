@@ -36,13 +36,22 @@ export function OnboardingChecklist({
   const pct = Math.round((doneCount / Math.max(steps.length, 1)) * 100);
   const [celebrating, setCelebrating] = useState(false);
 
-  // Fire the celebration once per role when the final step completes.
+  // Fire the celebration once per role when the final step completes. The
+  // completion flag is persisted immediately so a refresh or re-login while
+  // the modal is open can never re-trigger it.
   useEffect(() => {
     if (allDone && !getOnboardingFlag(celebratedKey(role))) {
       setOnboardingFlag(celebratedKey(role));
       setCelebrating(true);
     }
   }, [allDone, role]);
+
+  // Every dismiss path (Keep going, X, backdrop, Escape) lands here: close
+  // the modal and make sure the completion flag is persisted.
+  const handleClose = () => {
+    setOnboardingFlag(celebratedKey(role));
+    setCelebrating(false);
+  };
 
   return (
     <Card className="border-primary/25 bg-primary/[0.03]">
@@ -110,7 +119,7 @@ export function OnboardingChecklist({
         show={celebrating}
         title="Onboarding complete!"
         message="You've finished every getting-started step. EduOS is ready to work for you."
-        onClose={() => setCelebrating(false)}
+        onClose={handleClose}
       />
     </Card>
   );
