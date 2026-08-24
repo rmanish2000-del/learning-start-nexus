@@ -48,9 +48,67 @@ export function setOnboardingFlag(key: string): void {
   }
 }
 
+export function clearOnboardingFlag(key: string): void {
+  const s = storage();
+  if (!s) return;
+  try {
+    s.removeItem(`${PREFIX}:${key}`);
+  } catch {
+    /* storage unavailable */
+  }
+}
+
 export const tourSeenKey = (tourId: string) => `tour-seen:${tourId}`;
 export const stepFlagKey = (role: string, step: string) => `step:${role}:${step}`;
 export const celebratedKey = (role: string) => `celebrated:${role}`;
+
+// ---------------------------------------------------------------------------
+// Completion state & safe reset (Sprint 5B bug fix)
+// ---------------------------------------------------------------------------
+
+/** Every guided tour in the app. */
+export const ALL_TOUR_IDS = ["educator-dashboard", "student-home", "parent-portal"] as const;
+
+/** The home tour for each role (reviewers have no tour — audit-only). */
+export const ROLE_TOUR_ID: Record<string, string | undefined> = {
+  admin: "educator-dashboard",
+  educator: "educator-dashboard",
+  student: "student-home",
+  parent: "parent-portal",
+  reviewer: undefined,
+};
+
+const ALL_ROLES = ["admin", "educator", "student", "parent", "reviewer"] as const;
+
+/**
+ * True once any role's onboarding has been completed (and celebrated/dismissed)
+ * in this browser. Used to suppress forced tour auto-starts after completion —
+ * a finished user must never see the onboarding modal or an unprompted tour.
+ */
+export function hasCompletedOnboarding(): boolean {
+  return ALL_ROLES.some((r) => getOnboardingFlag(celebratedKey(r)));
+}
+
+/**
+ * Mark onboarding as fully complete for a role: celebration is recorded and
+ * every tour is marked seen, so nothing auto-fires again on login or refresh.
+ */
+export function markOnboardingComplete(role: string): void {
+  setOnboardingFlag(celebratedKey(role));
+  for (const id of ALL_TOUR_IDS) setOnboardingFlag(tourSeenKey(id));
+}
+
+/**
+ * Safe reset for testing/support: clears the completion and tour-seen flags so
+ * the next visit to the role's home re-runs the guided tour. Returns the tour
+ * id that will replay (undefined for roles without a tour).
+ */
+export function resetOnboarding(role: string): string | undefined {
+  clearOnboardingFlag(celebratedKey(role));
+  const tourId = ROLE_TOUR_ID[role];
+  if (tourId) clearOnboardingFlag(tourSeenKey(tourId));
+  return tourId;
+}
 
 /** Event dispatched to (re)start a guided tour from anywhere (e.g. context help). */
 export const START_TOUR_EVENT = "eduos:start-tour";
