@@ -56,12 +56,15 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/sprint-5-audit", label: "Sprint 5 Audit", icon: TrendingUp, roles: ["admin", "educator", "student", "reviewer"] },
   { to: "/launch-audit", label: "Launch Audit", icon: Rocket, roles: ["admin", "educator", "reviewer"] },
   { to: "/curriculum-audit", label: "Curriculum Audit", icon: GitBranch, roles: ["admin", "educator", "reviewer"] },
+  { to: "/assessment-blueprint-audit", label: "Blueprint Audit", icon: Crosshair, roles: ["admin", "educator", "reviewer"] },
 ];
 
 const TITLES: [RegExp, string][] = [
   [/^\/learners\/.+/, "Learner profile"],
   [/^\/learners/, "Learners"],
   [/^\/assessments/, "Assessments"],
+  [/^\/assessment-blueprint-audit/, "Blueprint audit center"],
+  [/^\/assessment-blueprint/, "Assessment blueprint"],
   [/^\/assessment\/.+/, "Assessment detail"],
   [/^\/session\/.+/, "Assessment"],
   [/^\/assignments/, "Assignments"],
