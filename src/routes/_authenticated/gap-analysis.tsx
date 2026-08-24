@@ -445,15 +445,11 @@ function GapAnalysisPage() {
             <Skeleton className="h-10 w-full" />
           ) : books.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              No books yet — upload one in the{" "}
-              <Link to="/curriculum" className="underline">
-                Curriculum workspace
-              </Link>
-              .
+              No books yet — upload one in the Curriculum workspace first.
             </p>
           ) : (
             <Select
-              value={activeBookId ?? undefined}
+              value={activeBookId ?? ""}
               onValueChange={(v) => {
                 setBookId(v);
                 setSessionId(null);
