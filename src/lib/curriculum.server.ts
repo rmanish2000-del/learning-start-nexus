@@ -40,6 +40,7 @@ function mapBook(row: Database["public"]["Tables"]["books"]["Row"], counts: Book
     fileNames: row.file_names,
     fileSizeBytes: Number(row.file_size_bytes),
     processedAt: row.processed_at,
+    processingError: row.processing_error,
     createdAt: row.created_at,
     counts,
   };

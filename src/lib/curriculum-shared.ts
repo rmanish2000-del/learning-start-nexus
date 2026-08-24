@@ -56,6 +56,7 @@ export type BookSummary = {
   fileNames: string[];
   fileSizeBytes: number;
   processedAt: string | null;
+  processingError: string | null;
   createdAt: string;
   counts: {
     units: number;
