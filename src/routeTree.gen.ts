@@ -30,6 +30,8 @@ import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenti
 import { Route as AuthenticatedCurriculumRouteImport } from './routes/_authenticated/curriculum'
 import { Route as AuthenticatedCurriculumAuditRouteImport } from './routes/_authenticated/curriculum-audit'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDiagnosticEngineRouteImport } from './routes/_authenticated/diagnostic-engine'
+import { Route as AuthenticatedDiagnosticEngineAuditRouteImport } from './routes/_authenticated/diagnostic-engine-audit'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
 import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenticated/launch-audit'
@@ -162,6 +164,18 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDiagnosticEngineRoute =
+  AuthenticatedDiagnosticEngineRouteImport.update({
+    id: '/diagnostic-engine',
+    path: '/diagnostic-engine',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDiagnosticEngineAuditRoute =
+  AuthenticatedDiagnosticEngineAuditRouteImport.update({
+    id: '/diagnostic-engine-audit',
+    path: '/diagnostic-engine-audit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -282,6 +296,8 @@ export interface FileRoutesByFullPath {
   '/curriculum': typeof AuthenticatedCurriculumRoute
   '/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
+  '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -321,6 +337,8 @@ export interface FileRoutesByTo {
   '/curriculum': typeof AuthenticatedCurriculumRoute
   '/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
+  '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -362,6 +380,8 @@ export interface FileRoutesById {
   '/_authenticated/curriculum': typeof AuthenticatedCurriculumRoute
   '/_authenticated/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
+  '/_authenticated/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
   '/_authenticated/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -403,6 +423,8 @@ export interface FileRouteTypes {
     | '/curriculum'
     | '/curriculum-audit'
     | '/dashboard'
+    | '/diagnostic-engine'
+    | '/diagnostic-engine-audit'
     | '/home'
     | '/interventions'
     | '/launch-audit'
@@ -442,6 +464,8 @@ export interface FileRouteTypes {
     | '/curriculum'
     | '/curriculum-audit'
     | '/dashboard'
+    | '/diagnostic-engine'
+    | '/diagnostic-engine-audit'
     | '/home'
     | '/interventions'
     | '/launch-audit'
@@ -482,6 +506,8 @@ export interface FileRouteTypes {
     | '/_authenticated/curriculum'
     | '/_authenticated/curriculum-audit'
     | '/_authenticated/dashboard'
+    | '/_authenticated/diagnostic-engine'
+    | '/_authenticated/diagnostic-engine-audit'
     | '/_authenticated/home'
     | '/_authenticated/interventions'
     | '/_authenticated/launch-audit'
@@ -661,6 +687,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/diagnostic-engine': {
+      id: '/_authenticated/diagnostic-engine'
+      path: '/diagnostic-engine'
+      fullPath: '/diagnostic-engine'
+      preLoaderRoute: typeof AuthenticatedDiagnosticEngineRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/diagnostic-engine-audit': {
+      id: '/_authenticated/diagnostic-engine-audit'
+      path: '/diagnostic-engine-audit'
+      fullPath: '/diagnostic-engine-audit'
+      preLoaderRoute: typeof AuthenticatedDiagnosticEngineAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
@@ -810,6 +850,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCurriculumRoute: typeof AuthenticatedCurriculumRoute
   AuthenticatedCurriculumAuditRoute: typeof AuthenticatedCurriculumAuditRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDiagnosticEngineRoute: typeof AuthenticatedDiagnosticEngineRoute
+  AuthenticatedDiagnosticEngineAuditRoute: typeof AuthenticatedDiagnosticEngineAuditRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
   AuthenticatedLaunchAuditRoute: typeof AuthenticatedLaunchAuditRoute
@@ -845,6 +887,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCurriculumRoute: AuthenticatedCurriculumRoute,
   AuthenticatedCurriculumAuditRoute: AuthenticatedCurriculumAuditRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDiagnosticEngineRoute: AuthenticatedDiagnosticEngineRoute,
+  AuthenticatedDiagnosticEngineAuditRoute:
+    AuthenticatedDiagnosticEngineAuditRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
   AuthenticatedLaunchAuditRoute: AuthenticatedLaunchAuditRoute,

@@ -13,6 +13,8 @@ export const PROTECTED_ROUTES = [
   "/question-bank-audit",
   "/assessment-builder",
   "/assessment-builder-audit",
+  "/diagnostic-engine",
+  "/diagnostic-engine-audit",
   "/session",
   "/admin",
   "/settings",
