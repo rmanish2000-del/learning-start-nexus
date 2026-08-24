@@ -58,11 +58,20 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
     setRect(null);
   }, [tourId]);
 
-  const start = useCallback(() => {
-    const first = findNext(0);
-    if (first === null) return;
-    setActive(first);
-  }, [findNext]);
+  const start = useCallback(
+    (attempt = 0) => {
+      const first = findNext(0);
+      if (first === null) {
+        // Tour targets render after data loads (skeletons first) — retry
+        // briefly before giving up so a replay requested from another page
+        // (Settings → Onboarding → Restart Tour) isn't silently dropped.
+        if (attempt < 10) window.setTimeout(() => start(attempt + 1), 600);
+        return;
+      }
+      setActive(first);
+    },
+    [findNext],
+  );
 
   // Auto-start once per browser, after the page settles. Never auto-start
   // for a user who has completed onboarding (no forced tours) — unless a
