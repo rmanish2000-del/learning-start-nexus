@@ -452,19 +452,27 @@ export async function runCurriculumProbes(
     }
   }
 
-  // P5 — book_events is append-only.
+  // P5 — book_events is append-only. With no UPDATE/DELETE policies, RLS silently
+  // filters all rows (0 affected, no error) — so assert zero affected rows, not errors.
   {
-    const del = await (supabase as SupabaseClient).from("book_events").delete().eq("org_id", me.orgId ?? "");
+    const del = await (supabase as SupabaseClient)
+      .from("book_events")
+      .delete()
+      .eq("org_id", me.orgId ?? "")
+      .select("id");
     const upd = await (supabase as SupabaseClient)
       .from("book_events")
       .update({ event: "tampered" })
-      .eq("org_id", me.orgId ?? "");
-    const denied = !!del.error && !!upd.error;
+      .eq("org_id", me.orgId ?? "")
+      .select("id");
+    const delAffected = del.error ? 0 : (del.data?.length ?? 0);
+    const updAffected = upd.error ? 0 : (upd.data?.length ?? 0);
+    const denied = delAffected === 0 && updAffected === 0;
     probes.push({
       key: "events-append-only",
       name: "P5 — Processing history is append-only",
-      expectation: "UPDATE and DELETE on book_events are rejected (no policies grant them).",
-      detail: `DELETE: ${del.error ? del.error.message : "succeeded (0 rows or more)"} · UPDATE: ${upd.error ? upd.error.message : "succeeded (0 rows or more)"}`,
+      expectation: "UPDATE and DELETE on book_events affect zero rows (no policies grant them).",
+      detail: `DELETE affected ${delAffected} rows${del.error ? ` (${del.error.message})` : ""} · UPDATE affected ${updAffected} rows${upd.error ? ` (${upd.error.message})` : ""}.`,
       pass: denied,
       dbError: shapeError(del.error) ?? shapeError(upd.error),
     });
