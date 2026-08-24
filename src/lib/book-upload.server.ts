@@ -14,6 +14,7 @@ import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import { createLovableAiGatewayProvider } from "./ai-gateway.server";
 import { persistCurriculumTree } from "./curriculum.server";
+import type { ImportCurriculumInput } from "./curriculum-shared";
 
 type Client = SupabaseClient<Database>;
 type Ctx = { orgId: string; userId: string };
@@ -233,25 +234,32 @@ export async function extractCurriculumFromBook(
   const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) return fail("AI is not configured for this workspace (missing API key).");
 
-  let units: z.infer<typeof extractionSchema>["units"];
-  try {
-    const gateway = createLovableAiGatewayProvider(apiKey);
-    const { object } = await generateObject({
-      model: gateway(EXTRACTION_MODEL),
-      schema: extractionSchema,
-      system:
-        "You are a curriculum designer converting schoolbook text into a teaching structure. " +
-        "Produce Units → Chapters → Topics that faithfully follow the source material. " +
-        "Each topic gets 2–6 short key concepts and 2–4 measurable learning outcomes " +
-        "(start outcomes with an action verb: identify, explain, solve, compare…). " +
-        "Keep titles concise. Do not invent content that is not in the text.",
-      prompt:
-        `Book: "${book.title}" (${book.board ?? "school"} board, Grade ${book.grade}, ${book.subject}).\n\n` +
-        `Extract the curriculum structure from this text:\n\n${text}`,
-    });
-    units = object.units;
-  } catch (error) {
-    return fail(`AI extraction failed: ${error instanceof Error ? error.message : "unknown error"}`);
+  let units: ImportCurriculumInput["units"] = [];
+  let lastError: string | null = null;
+  for (let attempt = 0; attempt < 2 && units.length === 0; attempt += 1) {
+    try {
+      const gateway = createLovableAiGatewayProvider(apiKey);
+      const { object } = await generateObject({
+        model: gateway(EXTRACTION_MODEL),
+        schema: extractionSchema,
+        system:
+          "You are a curriculum designer converting schoolbook text into a teaching structure. " +
+          "Produce Units → Chapters → Topics that faithfully follow the source material. " +
+          "Each topic gets 2–6 short key concepts and 2–4 measurable learning outcomes " +
+          "(start outcomes with an action verb: identify, explain, solve, compare…). " +
+          "Keep titles concise. Do not invent content that is not in the text.",
+        prompt:
+          `Book: "${book.title}" (${book.board ?? "school"} board, Grade ${book.grade}, ${book.subject}).\n\n` +
+          `Extract the curriculum structure from this text:\n\n${text}`,
+      });
+      units = normalizeUnits(object.units);
+      if (units.length === 0) lastError = "The AI returned no usable units for this text.";
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : "unknown error";
+    }
+  }
+  if (units.length === 0) {
+    return fail(`AI extraction failed: ${lastError ?? "no structured output"}`);
   }
 
   const counts = await persistCurriculumTree(supabase, ctx, bookId, units);
