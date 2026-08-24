@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GraduationCap, HeartHandshake, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { BookOpen, ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileSearch, FlaskConical, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -35,6 +35,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
   { to: "/learners", label: "Learners", icon: Users, roles: ["admin", "educator"] },
   { to: "/assessments", label: "Assessments", icon: ClipboardList, roles: ["admin", "educator"] },
+  { to: "/curriculum", label: "Curriculum", icon: BookOpen, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
@@ -53,6 +54,7 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/sprint-4-audit", label: "Sprint 4 Audit", icon: Sparkles, roles: ["admin", "educator", "student", "reviewer"] },
   { to: "/sprint-5-audit", label: "Sprint 5 Audit", icon: TrendingUp, roles: ["admin", "educator", "student", "reviewer"] },
   { to: "/launch-audit", label: "Launch Audit", icon: Rocket, roles: ["admin", "educator", "reviewer"] },
+  { to: "/curriculum-audit", label: "Curriculum Audit", icon: GitBranch, roles: ["admin", "educator", "reviewer"] },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -78,6 +80,8 @@ const TITLES: [RegExp, string][] = [
   [/^\/sprint-4-audit/, "Sprint 4 audit center"],
   [/^\/sprint-5-audit/, "Sprint 5 audit center"],
   [/^\/launch-audit/, "Launch readiness audit"],
+  [/^\/curriculum-audit/, "Curriculum audit center"],
+  [/^\/curriculum/, "Curriculum"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");

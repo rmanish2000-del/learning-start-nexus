@@ -92,7 +92,7 @@ function ProbeCard({ p }: { p: CurriculumProbe }) {
     <div className="rounded-lg border p-3.5">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm font-medium">{p.name}</p>
-        <Pass pass={p.pass} skipped={p.skipped} />
+        <Pass pass={p.pass} skipped={p.skipped ?? false} />
       </div>
       <div className="mt-2 space-y-1.5 text-xs">
         <p>
@@ -168,7 +168,8 @@ function CurriculumAuditPage() {
     try {
       const result = await runProbes();
       setProbes(result);
-      toast.success(`Probes finished — ${result.summary}.`);
+      const passing = result.probes.filter((p) => p.pass).length;
+      toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Probe run failed.");
     } finally {
@@ -193,9 +194,8 @@ function CurriculumAuditPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Curriculum Audit Center</h1>
           <p className="max-w-2xl text-sm text-muted-foreground">
             Independently verifiable proof for Sprint 6 — the imported curriculum is visible,
-            manageable, approvable, and isolated per organization. Signed in as{" "}
-            <span className="font-medium text-foreground">{data.identity.email}</span> (
-            <Mono>{data.identity.role}</Mono>) in <Mono>{data.identity.orgName}</Mono>.
+            manageable, approvable, and isolated per organization. Signed in with role{" "}
+            <Mono>{data.me.role}</Mono> in <Mono>{data.me.orgName ?? "—"}</Mono>.
           </p>
         </div>
         <Button onClick={() => void handleRun()} disabled={running}>
@@ -210,15 +210,18 @@ function CurriculumAuditPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              Probe suite — {probes.summary}
+              Probe suite — {probes.probes.filter((p) => p.pass).length}/{probes.probes.length}{" "}
+              passing
             </CardTitle>
             <CardDescription>
-              Ran {fmt(probes.ranAt)} as <Mono>{probes.caller.email}</Mono>. {probes.note}
+              Ran {fmt(probes.generatedAt)} with role <Mono>{probes.me.role}</Mono> in{" "}
+              <Mono>{probes.me.orgName ?? "—"}</Mono>. The write-gate probe adapts to the caller:
+              staff prove a create/delete round-trip; reviewers prove their writes are rejected.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2.5">
             {probes.probes.map((p) => (
-              <ProbeCard key={p.id} p={p} />
+              <ProbeCard key={p.key} p={p} />
             ))}
           </CardContent>
         </Card>
@@ -247,7 +250,7 @@ function CurriculumAuditPage() {
               <Badge variant="outline">
                 {data.pilot.approvedOutcomes}/{data.pilot.outcomes} outcomes approved
               </Badge>
-              <Badge variant="outline">{data.pilot.concepts} concepts</Badge>
+              <Badge variant="outline">{data.pilot.nodes} concepts</Badge>
               <Badge variant="outline">{data.pilot.edges} relationships</Badge>
             </div>
           </div>
@@ -390,7 +393,7 @@ function CurriculumAuditPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-1.5">
-          {data.recentEvents.map((e) => (
+          {data.events.map((e) => (
             <div
               key={e.id}
               className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5"
@@ -402,7 +405,7 @@ function CurriculumAuditPage() {
               <span className="text-xs text-muted-foreground">{fmt(e.createdAt)}</span>
             </div>
           ))}
-          {data.recentEvents.length === 0 && (
+          {data.events.length === 0 && (
             <p className="py-4 text-center text-xs text-muted-foreground">No events yet.</p>
           )}
         </CardContent>
