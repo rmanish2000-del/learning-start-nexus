@@ -615,7 +615,7 @@ function QuestionBankPage() {
         <div className="w-full sm:w-72">
           <Select
             value={bookId ?? ""}
-            onValueChange={(v) => navigate({ search: { book: v } })}
+            onValueChange={(v) => navigate({ search: { book: v, outcome: undefined } })}
           >
             <SelectTrigger><SelectValue placeholder="Pick a book" /></SelectTrigger>
             <SelectContent>
