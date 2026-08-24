@@ -128,7 +128,7 @@ const CHECKLIST: { text: string; how: string }[] = [
   },
   {
     text: "Generation never auto-assigns, auto-creates interventions, or changes mastery",
-    how: "Probe P6 requires zero sessions on the generated pair and engine events limited to diagnostic_generated log rows. The generate function writes only assessments, question maps, and book events.",
+    how: "Probe P6 requires the only sessions on the generated pair to be the two seeded Sprint 6G demo submissions, and engine events limited to diagnostic_generated log rows. The generate function writes only assessments, question maps, and book events.",
   },
   {
     text: "Organization isolation and role gates hold on engine outputs",

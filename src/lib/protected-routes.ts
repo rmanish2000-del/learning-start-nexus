@@ -15,6 +15,8 @@ export const PROTECTED_ROUTES = [
   "/assessment-builder-audit",
   "/diagnostic-engine",
   "/diagnostic-engine-audit",
+  "/gap-analysis",
+  "/gap-analysis-audit",
   "/session",
   "/admin",
   "/settings",
