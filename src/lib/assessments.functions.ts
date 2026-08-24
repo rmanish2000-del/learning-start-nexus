@@ -197,10 +197,14 @@ export const submitAssessment = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
 
     // Evidence generation: assessment record + evidence entry on the learner.
+    // Sprint 6R: subject/topic come from the assessment itself (curriculum
+    // pipeline assessments carry the book's subject and the unit title).
+    const subject = session.assessments.subject;
+    const topic = session.assessments.topic;
     await supabaseAdmin.from("learner_assessments").insert({
       learner_id: session.learner_id,
       title: session.assessments.title,
-      subject: "Mathematics",
+      subject,
       taken_on: today,
       score: scoring.scorePct,
       status: "completed",
@@ -214,13 +218,15 @@ export const submitAssessment = createServerFn({ method: "POST" })
     });
 
     // Sprint 3: deterministic gap detection + recommendation generation run
-    // server-side on every submission (idempotent — safe to re-run).
+    // server-side on every submission (idempotent — safe to re-run). For
+    // curriculum assessments the breakdown subtopics ARE outcome codes, so
+    // gaps land per-outcome and feed the Sprint 6C intervention map.
     const gapSummary = await applyGapDetection(supabaseAdmin, {
       orgId: session.org_id,
       learnerId: session.learner_id,
       sessionId: session.id,
-      subject: "Mathematics",
-      topic: "Fractions",
+      subject,
+      topic,
       breakdown: scoring.breakdown,
     });
 
