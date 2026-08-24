@@ -110,22 +110,51 @@ export async function uploadBookFile(
 // Extraction
 // ---------------------------------------------------------------------------
 
+// Lenient schema: strict min/max limits on nested arrays make the model's
+// response fail validation wholesale. Parse loosely, then normalize in code.
 const extractedTopicSchema = z.object({
-  title: z.string().min(1).max(200),
-  keyConcepts: z.array(z.string().max(200)).max(8).optional(),
-  outcomes: z.array(z.string().max(300)).max(6).optional(),
+  title: z.string(),
+  keyConcepts: z.array(z.string()).optional(),
+  outcomes: z.array(z.string()).optional(),
 });
 const extractedChapterSchema = z.object({
-  title: z.string().min(1).max(200),
-  topics: z.array(extractedTopicSchema).min(1).max(12),
+  title: z.string(),
+  topics: z.array(extractedTopicSchema).optional(),
 });
 const extractedUnitSchema = z.object({
-  title: z.string().min(1).max(200),
-  chapters: z.array(extractedChapterSchema).min(1).max(12),
+  title: z.string(),
+  chapters: z.array(extractedChapterSchema).optional(),
 });
 const extractionSchema = z.object({
-  units: z.array(extractedUnitSchema).min(1).max(12),
+  units: z.array(extractedUnitSchema),
 });
+
+const clean = (s: string, max: number) => s.replace(/\s+/g, " ").trim().slice(0, max);
+
+function normalizeUnits(
+  raw: z.infer<typeof extractionSchema>["units"],
+): ImportCurriculumInput["units"] {
+  return raw
+    .map((u) => ({
+      title: clean(u.title ?? "", 200),
+      chapters: (u.chapters ?? [])
+        .map((c) => ({
+          title: clean(c.title ?? "", 200),
+          topics: (c.topics ?? [])
+            .map((t) => ({
+              title: clean(t.title ?? "", 200),
+              keyConcepts: (t.keyConcepts ?? []).map((k) => clean(k, 120)).filter(Boolean).slice(0, 8),
+              outcomes: (t.outcomes ?? []).map((o) => clean(o, 300)).filter((o) => o.length >= 3).slice(0, 6),
+            }))
+            .filter((t) => t.title.length > 0)
+            .slice(0, 12),
+        }))
+        .filter((c) => c.title.length > 0 && c.topics.length > 0)
+        .slice(0, 12),
+    }))
+    .filter((u) => u.title.length > 0 && u.chapters.length > 0)
+    .slice(0, 12);
+}
 
 async function extractTextFromFile(path: string, mimeType: string, bytes: Uint8Array): Promise<string> {
   if (mimeType === "application/pdf" || path.toLowerCase().endsWith(".pdf")) {
