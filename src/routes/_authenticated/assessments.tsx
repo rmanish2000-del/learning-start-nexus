@@ -318,9 +318,14 @@ function AssessmentsPage() {
                           {a.title}
                         </Link>
                       </CardTitle>
-                      <Badge variant={a.status === "published" ? "default" : "secondary"} className="capitalize">
-                        {a.status}
-                      </Badge>
+                      <span className="flex items-center gap-1.5">
+                        {!a.book_id && (
+                          <Badge variant="outline" className="text-[10px] uppercase tracking-wide">Legacy</Badge>
+                        )}
+                        <Badge variant={a.status === "published" ? "default" : "secondary"} className="capitalize">
+                          {a.status}
+                        </Badge>
+                      </span>
                     </div>
                     <CardDescription className="line-clamp-2">{a.description}</CardDescription>
                   </CardHeader>
