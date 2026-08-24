@@ -1,0 +1,2 @@
+ALTER TABLE public.assessments DROP CONSTRAINT assessments_kind_check;
+ALTER TABLE public.assessments ADD CONSTRAINT assessments_kind_check CHECK (kind = ANY (ARRAY['diagnostic'::text, 'quiz'::text, 'checkpoint'::text, 'reassessment'::text, 'practice'::text]));
