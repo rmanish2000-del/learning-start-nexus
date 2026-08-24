@@ -267,7 +267,7 @@ export async function moveNode(
 export async function addNode(
   supabase: Client,
   ctx: { orgId: string; userId: string },
-  input: { kind: NodeKind; bookId: string; parentId?: string | null; title: string },
+  input: { kind: NodeKind; bookId: string; parentId?: string | null | undefined; title: string },
 ): Promise<void> {
   if (input.kind !== "unit" && !input.parentId) {
     throw new Error("A parent is required for chapters and topics.");
@@ -354,9 +354,9 @@ export async function createOutcome(
 export async function updateOutcome(
   supabase: Client,
   ctx: { orgId: string; userId: string },
-  input: { outcomeId: string; text?: string; status?: "suggested" | "approved" },
+  input: { outcomeId: string; text?: string | undefined; status?: "suggested" | "approved" | undefined },
 ): Promise<void> {
-  const patch: Record<string, unknown> = {};
+  const patch: { text?: string; status?: "suggested" | "approved" } = {};
   if (input.text !== undefined) patch.text = input.text;
   if (input.status !== undefined) patch.status = input.status;
   if (Object.keys(patch).length === 0) return;
