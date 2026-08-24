@@ -156,15 +156,61 @@ export async function regenerateRecommendations(
   let created = 0;
   let updated = 0;
 
-  for (const gap of (gaps ?? []) as GapRow[]) {
+  // Sprint 6R: gaps whose subtopic is an outcome code (curriculum pipeline)
+  // resolve their recommendation content from the Sprint 6C intervention map
+  // instead of the generic rule table. Legacy subtopic gaps keep ruleFor.
+  const openGaps = (gaps ?? []) as GapRow[];
+  const orgId = openGaps[0]?.org_id;
+  const mapBySubtopic = new Map<
+    string,
+    { outcomeTitle: string; failurePattern: string; intervention: string; priority: number; outcomeId: string }
+  >();
+  if (orgId && openGaps.length > 0) {
+    const { data: outcomeRows } = await admin
+      .from("assessment_outcomes")
+      .select("id, code, title")
+      .eq("org_id", orgId)
+      .in("code", openGaps.map((g) => g.subtopic));
+    const outcomeIds = (outcomeRows ?? []).map((o) => o.id);
+    if (outcomeIds.length > 0) {
+      const { data: mapRows } = await admin
+        .from("intervention_map")
+        .select("assessment_outcome_id, failure_pattern, recommended_intervention, priority")
+        .in("assessment_outcome_id", outcomeIds)
+        .order("priority");
+      const outcomeById = new Map((outcomeRows ?? []).map((o) => [o.id, o]));
+      for (const m of mapRows ?? []) {
+        const outcome = outcomeById.get(m.assessment_outcome_id);
+        if (!outcome || mapBySubtopic.has(outcome.code)) continue; // lowest priority number wins
+        mapBySubtopic.set(outcome.code, {
+          outcomeTitle: outcome.title,
+          failurePattern: m.failure_pattern,
+          intervention: m.recommended_intervention,
+          priority: m.priority,
+          outcomeId: outcome.id,
+        });
+      }
+    }
+  }
+
+  for (const gap of openGaps) {
+    const mapped = mapBySubtopic.get(gap.subtopic);
     const rule = ruleFor(gap.subtopic, gap.severity as GapSeverity);
-    const content = {
-      rule_id: rule.ruleId,
-      priority: rule.priority,
-      title: rule.title,
-      activity: rule.activity,
-      rationale: rationaleFor(gap),
-    };
+    const content = mapped
+      ? {
+          rule_id: `imap:${mapped.outcomeId}`,
+          priority: mapped.priority,
+          title: `Intervention: ${mapped.outcomeTitle}`,
+          activity: mapped.intervention,
+          rationale: `${mapped.failurePattern} — ${rationaleFor(gap)}`,
+        }
+      : {
+          rule_id: rule.ruleId,
+          priority: rule.priority,
+          title: rule.title,
+          activity: rule.activity,
+          rationale: rationaleFor(gap),
+        };
     const existing = byGap.get(gap.id);
     if (!existing) {
       const { error: insError } = await admin.from("recommendations").insert({
