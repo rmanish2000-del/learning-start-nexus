@@ -157,7 +157,8 @@ export function bandForScore(
   pct: number,
 ): { band: MasteryBandDto | null; rank: number } {
   const idx = levels.findIndex((l) => pct >= l.minScore && pct <= l.maxScore);
-  return { band: idx >= 0 ? levels[idx] : null, rank: idx >= 0 ? idx + 1 : 0 };
+  const band = idx >= 0 ? (levels[idx] ?? null) : null;
+  return { band, rank: idx >= 0 ? idx + 1 : 0 };
 }
 
 export function deriveCategory(rank: number): GapCategory {
