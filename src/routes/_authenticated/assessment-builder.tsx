@@ -55,13 +55,13 @@ import {
 import { KIND_LABELS, QB_DIFFICULTY_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
 import { cn } from "@/lib/utils";
 
-type Search = { book?: string; unit?: string; built?: string };
+type Search = { book?: string | undefined; unit?: string | undefined; built?: string | undefined };
 
 export const Route = createFileRoute("/_authenticated/assessment-builder")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    book: typeof search.book === "string" ? search.book : undefined,
-    unit: typeof search.unit === "string" ? search.unit : undefined,
-    built: typeof search.built === "string" ? search.built : undefined,
+    book: typeof search["book"] === "string" ? (search["book"] as string) : undefined,
+    unit: typeof search["unit"] === "string" ? (search["unit"] as string) : undefined,
+    built: typeof search["built"] === "string" ? (search["built"] as string) : undefined,
   }),
   head: () => ({
     meta: [
