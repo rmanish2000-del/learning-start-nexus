@@ -307,6 +307,83 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
         </div>
       ))}
 
+      <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Upload a book</DialogTitle>
+            <DialogDescription>
+              Upload a PDF, TXT, or Markdown file (up to 15 MB). The file is stored privately for
+              your organization; you can then extract its curriculum structure with AI.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="book-file">Book file</Label>
+              <Input
+                id="book-file"
+                type="file"
+                accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown"
+                onChange={(e) => setUploadFile(e.target.files?.[0] ?? null)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="book-title">Title</Label>
+              <Input
+                id="book-title"
+                value={uploadMeta.title}
+                onChange={(e) => setUploadMeta((m) => ({ ...m, title: e.target.value }))}
+                placeholder="e.g. My Book of General Knowledge — Class 3"
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="book-board">Board</Label>
+                <Input
+                  id="book-board"
+                  value={uploadMeta.board}
+                  onChange={(e) => setUploadMeta((m) => ({ ...m, board: e.target.value }))}
+                  placeholder="CBSE"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="book-grade">Grade</Label>
+                <Input
+                  id="book-grade"
+                  type="number"
+                  min={1}
+                  max={12}
+                  value={uploadMeta.grade}
+                  onChange={(e) => setUploadMeta((m) => ({ ...m, grade: e.target.value }))}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="book-subject">Subject</Label>
+                <Input
+                  id="book-subject"
+                  value={uploadMeta.subject}
+                  onChange={(e) => setUploadMeta((m) => ({ ...m, subject: e.target.value }))}
+                  placeholder="Mathematics"
+                />
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              onClick={() => void handleUpload()}
+              disabled={
+                busy ||
+                !uploadFile ||
+                uploadMeta.title.trim().length < 2 ||
+                uploadMeta.board.trim().length < 2 ||
+                uploadMeta.subject.trim().length < 2
+              }
+            >
+              {busy ? "Uploading…" : "Upload"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={importOpen} onOpenChange={setImportOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
