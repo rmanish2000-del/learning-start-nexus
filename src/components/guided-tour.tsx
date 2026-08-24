@@ -65,9 +65,13 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
   }, [findNext]);
 
   // Auto-start once per browser, after the page settles. Never auto-start
-  // for a user who has completed onboarding — no forced tours after that.
+  // for a user who has completed onboarding (no forced tours) — unless a
+  // replay was explicitly requested via Settings → Onboarding → Restart Tour.
   useEffect(() => {
-    if (!autoStart || getOnboardingFlag(tourSeenKey(tourId)) || hasCompletedOnboarding()) return;
+    if (!autoStart || getOnboardingFlag(tourSeenKey(tourId))) return;
+    const replayRequested = getOnboardingFlag(tourReplayKey(tourId));
+    if (hasCompletedOnboarding() && !replayRequested) return;
+    if (replayRequested) clearOnboardingFlag(tourReplayKey(tourId));
     const t = window.setTimeout(start, 900);
     return () => window.clearTimeout(t);
   }, [autoStart, start, tourId]);
