@@ -105,12 +105,25 @@ export async function openOutcomeForIntervention(
       baselineSessionId = gap.session_id;
     }
   }
+  let baselineBookId: string | null = null;
+  let baselineUnitId: string | null = null;
   if (baselineSessionId) {
     const { data: baseline } = await sessionsTable(admin)
-      .select("score_pct")
+      .select("score_pct, assessment_id")
       .eq("id", baselineSessionId)
       .maybeSingle();
     baselineScore = (baseline?.score_pct as number | null) ?? 0;
+    // Sprint 6R: curriculum baselines prefer a reassessment generated from the
+    // same book + unit over a loose subject/topic match.
+    if (baseline?.assessment_id) {
+      const { data: ba } = await admin
+        .from("assessments")
+        .select("book_id, unit_id")
+        .eq("id", baseline.assessment_id)
+        .maybeSingle();
+      baselineBookId = (ba?.book_id as string | null) ?? null;
+      baselineUnitId = (ba?.unit_id as string | null) ?? null;
+    }
   }
 
   const { data: outcome, error: insError } = await outcomesTable(admin)
