@@ -28,6 +28,8 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/sprint-4-audit",
   "/sprint-5-audit",
   "/launch-audit",
+  "/curriculum",
+  "/curriculum-audit",
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {
