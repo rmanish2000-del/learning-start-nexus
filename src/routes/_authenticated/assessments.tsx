@@ -215,19 +215,27 @@ function AssessmentsPage() {
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Assessments</h2>
           <p className="text-sm text-muted-foreground">
-            Grade 6 · Mathematics · Fractions — build diagnostics from the item bank and assign them to learners.
+            Legacy item-bank diagnostics (Grade 6 · Mathematics · Fractions). New assessments are built from the
+            curriculum via the Assessment Builder or Diagnostic Engine.
           </p>
         </div>
         <Dialog open={createOpen} onOpenChange={setCreateOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button variant="outline">
               <Plus className="h-4 w-4" /> New assessment
+              <Badge variant="secondary" className="ml-1 text-[10px] uppercase tracking-wide">Legacy</Badge>
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle>New diagnostic assessment</DialogTitle>
-              <DialogDescription>Pick questions from the item bank. Scope: Grade 6 · Fractions.</DialogDescription>
+              <DialogTitle className="flex items-center gap-2">
+                New diagnostic assessment
+                <Badge variant="secondary" className="text-[10px] uppercase tracking-wide">Legacy</Badge>
+              </DialogTitle>
+              <DialogDescription>
+                Pick questions from the legacy item bank (Grade 6 · Fractions). Prefer the Assessment Builder for
+                curriculum-linked assessments.
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
               <div className="grid gap-3 sm:grid-cols-2">
