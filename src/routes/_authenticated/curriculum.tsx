@@ -213,16 +213,22 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
           </p>
         </div>
         {isStaff && (
-          <Button onClick={() => setImportOpen(true)}>
-            <FileJson className="h-4 w-4" /> Import JSON
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={() => setUploadOpen(true)}>
+              <Upload className="h-4 w-4" /> Upload book
+            </Button>
+            <Button variant="outline" onClick={() => setImportOpen(true)}>
+              <FileJson className="h-4 w-4" /> Import JSON
+            </Button>
+          </div>
         )}
       </div>
 
       {books.length === 0 && (
         <Card>
           <CardContent className="py-12 text-center text-sm text-muted-foreground">
-            No books in your library yet. {isStaff ? "Import a curriculum JSON to get started." : ""}
+            No books in your library yet.{" "}
+            {isStaff ? "Upload a book file or import a curriculum JSON to get started." : ""}
           </CardContent>
         </Card>
       )}
