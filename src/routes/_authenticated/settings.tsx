@@ -139,6 +139,29 @@ function SettingsPage() {
           <ThemeToggle />
         </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Compass className="h-4 w-4" /> Onboarding
+          </CardTitle>
+          <CardDescription>
+            Testing and support controls for the getting-started checklist and guided tour.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap items-center gap-2">
+          <Button variant="outline" size="sm" onClick={handleRestartTour}>
+            <RotateCcw className="mr-1.5 h-3.5 w-3.5" /> Restart Tour
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleMarkComplete}>
+            <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> Mark Tour Complete
+          </Button>
+          <p className="w-full text-xs text-muted-foreground">
+            Restart returns you to your home page and replays the guided tour. Mark complete stops
+            all onboarding modals and tours from auto-starting.
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 }
