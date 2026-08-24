@@ -655,9 +655,9 @@ function AssessmentBlueprintPage() {
           </p>
         </div>
         <div className="w-64">
-          <Select value={bookId} onValueChange={(v) => void v} disabled>
+          <Select disabled>
             <SelectTrigger>
-              <SelectValue placeholder="Book" />
+              <SelectValue placeholder={books.find((b) => b.id === bookId)?.title ?? "Book"} />
             </SelectTrigger>
             <SelectContent>
               {books.map((b) => (
