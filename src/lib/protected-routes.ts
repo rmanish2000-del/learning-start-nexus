@@ -9,6 +9,8 @@ export const PROTECTED_ROUTES = [
   "/assessment",
   "/assessment-blueprint",
   "/assessment-blueprint-audit",
+  "/question-bank",
+  "/question-bank-audit",
   "/session",
   "/admin",
   "/settings",
