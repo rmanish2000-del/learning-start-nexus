@@ -38,6 +38,8 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/assessment-builder-audit",
   "/diagnostic-engine",
   "/diagnostic-engine-audit",
+  "/gap-analysis",
+  "/gap-analysis-audit",
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {
