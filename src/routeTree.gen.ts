@@ -22,6 +22,7 @@ import { Route as AuthenticatedAssessmentAuditRouteImport } from './routes/_auth
 import { Route as AuthenticatedAssessmentBlueprintRouteImport } from './routes/_authenticated/assessment-blueprint'
 import { Route as AuthenticatedAssessmentBlueprintAuditRouteImport } from './routes/_authenticated/assessment-blueprint-audit'
 import { Route as AuthenticatedAssessmentBuilderRouteImport } from './routes/_authenticated/assessment-builder'
+import { Route as AuthenticatedAssessmentBuilderAuditRouteImport } from './routes/_authenticated/assessment-builder-audit'
 import { Route as AuthenticatedAssessmentProofRouteImport } from './routes/_authenticated/assessment-proof'
 import { Route as AuthenticatedAssessmentVerificationRouteImport } from './routes/_authenticated/assessment-verification'
 import { Route as AuthenticatedAssessmentsRouteImport } from './routes/_authenticated/assessments'
@@ -113,6 +114,12 @@ const AuthenticatedAssessmentBuilderRoute =
   AuthenticatedAssessmentBuilderRouteImport.update({
     id: '/assessment-builder',
     path: '/assessment-builder',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAssessmentBuilderAuditRoute =
+  AuthenticatedAssessmentBuilderAuditRouteImport.update({
+    id: '/assessment-builder-audit',
+    path: '/assessment-builder-audit',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedAssessmentProofRoute =
@@ -267,6 +274,7 @@ export interface FileRoutesByFullPath {
   '/assessment-blueprint': typeof AuthenticatedAssessmentBlueprintRoute
   '/assessment-blueprint-audit': typeof AuthenticatedAssessmentBlueprintAuditRoute
   '/assessment-builder': typeof AuthenticatedAssessmentBuilderRoute
+  '/assessment-builder-audit': typeof AuthenticatedAssessmentBuilderAuditRoute
   '/assessment-proof': typeof AuthenticatedAssessmentProofRoute
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
@@ -305,6 +313,7 @@ export interface FileRoutesByTo {
   '/assessment-blueprint': typeof AuthenticatedAssessmentBlueprintRoute
   '/assessment-blueprint-audit': typeof AuthenticatedAssessmentBlueprintAuditRoute
   '/assessment-builder': typeof AuthenticatedAssessmentBuilderRoute
+  '/assessment-builder-audit': typeof AuthenticatedAssessmentBuilderAuditRoute
   '/assessment-proof': typeof AuthenticatedAssessmentProofRoute
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
@@ -345,6 +354,7 @@ export interface FileRoutesById {
   '/_authenticated/assessment-blueprint': typeof AuthenticatedAssessmentBlueprintRoute
   '/_authenticated/assessment-blueprint-audit': typeof AuthenticatedAssessmentBlueprintAuditRoute
   '/_authenticated/assessment-builder': typeof AuthenticatedAssessmentBuilderRoute
+  '/_authenticated/assessment-builder-audit': typeof AuthenticatedAssessmentBuilderAuditRoute
   '/_authenticated/assessment-proof': typeof AuthenticatedAssessmentProofRoute
   '/_authenticated/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/_authenticated/assessments': typeof AuthenticatedAssessmentsRoute
@@ -385,6 +395,7 @@ export interface FileRouteTypes {
     | '/assessment-blueprint'
     | '/assessment-blueprint-audit'
     | '/assessment-builder'
+    | '/assessment-builder-audit'
     | '/assessment-proof'
     | '/assessment-verification'
     | '/assessments'
@@ -423,6 +434,7 @@ export interface FileRouteTypes {
     | '/assessment-blueprint'
     | '/assessment-blueprint-audit'
     | '/assessment-builder'
+    | '/assessment-builder-audit'
     | '/assessment-proof'
     | '/assessment-verification'
     | '/assessments'
@@ -462,6 +474,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assessment-blueprint'
     | '/_authenticated/assessment-blueprint-audit'
     | '/_authenticated/assessment-builder'
+    | '/_authenticated/assessment-builder-audit'
     | '/_authenticated/assessment-proof'
     | '/_authenticated/assessment-verification'
     | '/_authenticated/assessments'
@@ -590,6 +603,13 @@ declare module '@tanstack/react-router' {
       path: '/assessment-builder'
       fullPath: '/assessment-builder'
       preLoaderRoute: typeof AuthenticatedAssessmentBuilderRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assessment-builder-audit': {
+      id: '/_authenticated/assessment-builder-audit'
+      path: '/assessment-builder-audit'
+      fullPath: '/assessment-builder-audit'
+      preLoaderRoute: typeof AuthenticatedAssessmentBuilderAuditRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/assessment-proof': {
@@ -782,6 +802,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssessmentBlueprintRoute: typeof AuthenticatedAssessmentBlueprintRoute
   AuthenticatedAssessmentBlueprintAuditRoute: typeof AuthenticatedAssessmentBlueprintAuditRoute
   AuthenticatedAssessmentBuilderRoute: typeof AuthenticatedAssessmentBuilderRoute
+  AuthenticatedAssessmentBuilderAuditRoute: typeof AuthenticatedAssessmentBuilderAuditRoute
   AuthenticatedAssessmentProofRoute: typeof AuthenticatedAssessmentProofRoute
   AuthenticatedAssessmentVerificationRoute: typeof AuthenticatedAssessmentVerificationRoute
   AuthenticatedAssessmentsRoute: typeof AuthenticatedAssessmentsRoute
@@ -814,6 +835,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAssessmentBlueprintAuditRoute:
     AuthenticatedAssessmentBlueprintAuditRoute,
   AuthenticatedAssessmentBuilderRoute: AuthenticatedAssessmentBuilderRoute,
+  AuthenticatedAssessmentBuilderAuditRoute:
+    AuthenticatedAssessmentBuilderAuditRoute,
   AuthenticatedAssessmentProofRoute: AuthenticatedAssessmentProofRoute,
   AuthenticatedAssessmentVerificationRoute:
     AuthenticatedAssessmentVerificationRoute,
