@@ -67,24 +67,31 @@ function AdminPage() {
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tempPassword, setTempPassword] = useState<string | null>(null);
+  const orgId = profile?.org_id ?? null;
+  const listStaffFn = useServerFn(listStaffUsers);
+  const createStaffFn = useServerFn(createStaffUser);
+  const updateRoleFn = useServerFn(updateUserRole);
 
   const { data: org } = useQuery({
-    queryKey: ["org", profile?.org_id],
-    enabled: !!profile?.org_id,
+    queryKey: ["org", orgId],
+    enabled: Boolean(orgId),
     queryFn: async () => {
+      if (!orgId) return null;
       const { data, error } = await supabase
         .from("organizations")
         .select("name")
-        .eq("id", profile!.org_id!)
-        .single();
+        .eq("id", orgId)
+        .maybeSingle();
       if (error) throw error;
       return data;
     },
   });
 
-  const { data: staff, isPending } = useQuery({
+  const { data: staff, isPending, isError: staffIsError, error: staffError, refetch: refetchStaff } = useQuery({
     queryKey: ["staff-users"],
-    queryFn: () => listStaffUsers(),
+    queryFn: () => listStaffFn(),
+    retry: false,
+    throwOnError: false,
   });
 
   const { data: learnerCount } = useQuery({
@@ -97,9 +104,6 @@ function AdminPage() {
       return count ?? 0;
     },
   });
-
-  const createStaffFn = useServerFn(createStaffUser);
-  const updateRoleFn = useServerFn(updateUserRole);
 
   const createMutation = useMutation({
     mutationFn: (input: { fullName: string; email: string; role: Exclude<AppRole, "student"> }) =>
@@ -257,65 +261,77 @@ function AdminPage() {
           </Dialog>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead className="text-right">Change role</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {isPending &&
-                [0, 1, 2].map((i) => (
-                  <TableRow key={i}>
-                    <TableCell colSpan={4}>
-                      <Skeleton className="h-8 w-full" />
+          {staffIsError ? (
+            <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm">
+              <p className="font-medium">Staff accounts couldn't be loaded.</p>
+              <p className="mt-1 text-muted-foreground">
+                {staffError instanceof Error ? staffError.message : "Please try again."}
+              </p>
+              <Button size="sm" variant="outline" className="mt-3" onClick={() => void refetchStaff()}>
+                Try again
+              </Button>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead className="text-right">Change role</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {isPending &&
+                  [0, 1, 2].map((i) => (
+                    <TableRow key={i}>
+                      <TableCell colSpan={4}>
+                        <Skeleton className="h-8 w-full" />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                {(staff ?? []).map((member) => (
+                  <TableRow key={member.id}>
+                    <TableCell className="font-medium">
+                      {member.fullName || "—"}
+                      {member.id === user.id && (
+                        <Badge variant="outline" className="ml-2">You</Badge>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">{member.email}</TableCell>
+                    <TableCell>
+                      <Badge variant={member.role === "admin" ? "default" : "secondary"}>
+                        {ROLE_LABELS[member.role] ?? member.role}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Select
+                        value={member.role}
+                        disabled={member.id === user.id || roleMutation.isPending}
+                        onValueChange={(role) =>
+                          roleMutation.mutate({
+                            userId: member.id,
+                            role: role as AppRole,
+                          })
+                        }
+                      >
+                        <SelectTrigger className="ml-auto w-32" aria-label={`Role for ${member.fullName}`}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="educator">Educator</SelectItem>
+                          <SelectItem value="student">Student</SelectItem>
+                          <SelectItem value="parent">Parent</SelectItem>
+                          <SelectItem value="reviewer">Reviewer</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </TableCell>
                   </TableRow>
                 ))}
-              {(staff ?? []).map((member) => (
-                <TableRow key={member.id}>
-                  <TableCell className="font-medium">
-                    {member.fullName || "—"}
-                    {member.id === user.id && (
-                      <Badge variant="outline" className="ml-2">You</Badge>
-                    )}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">{member.email}</TableCell>
-                  <TableCell>
-                    <Badge variant={member.role === "admin" ? "default" : "secondary"}>
-                      {ROLE_LABELS[member.role] ?? member.role}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Select
-                      value={member.role}
-                      disabled={member.id === user.id || roleMutation.isPending}
-                      onValueChange={(role) =>
-                        roleMutation.mutate({
-                          userId: member.id,
-                          role: role as AppRole,
-                        })
-                      }
-                    >
-                      <SelectTrigger className="ml-auto w-32" aria-label={`Role for ${member.fullName}`}>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="admin">Admin</SelectItem>
-                        <SelectItem value="educator">Educator</SelectItem>
-                        <SelectItem value="student">Student</SelectItem>
-                        <SelectItem value="parent">Parent</SelectItem>
-                        <SelectItem value="reviewer">Reviewer</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableBody>
+            </Table>
+          )}
         </CardContent>
       </Card>
 

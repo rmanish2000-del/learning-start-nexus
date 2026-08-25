@@ -7,21 +7,7 @@ import {
   updateUserRoleSchema,
 } from "./schemas";
 import type { AppRole } from "./roles";
-import { requireAnyRole } from "./admin.server";
-
-// Resolve the caller's org via their own session (RLS-scoped read).
-async function callerOrgId(
-  supabase: Parameters<typeof requireAnyRole>[0],
-  userId: string,
-): Promise<string> {
-  const { data } = await supabase
-    .from("profiles")
-    .select("org_id")
-    .eq("id", userId)
-    .single();
-  if (!data?.org_id) throw new Error("Your account is not linked to an organization.");
-  return data.org_id;
-}
+import { callerOrgId, requireAnyRole } from "./admin.server";
 
 export const listStaffUsers = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
