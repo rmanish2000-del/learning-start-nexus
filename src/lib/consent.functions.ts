@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { guardianConsentSchema } from "@/lib/schemas";
+import { requireAnyRole } from "./admin.server";
 
 export const getLearnerConsent = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
@@ -19,6 +20,8 @@ export const recordGuardianConsent = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => guardianConsentSchema.parse(input))
   .handler(async ({ data, context }) => {
+    // Recording consent is a staff action; RLS also restricts the write.
+    await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
     // Look up the learner for the org_id stamp; RLS (consents_insert) then
     // restricts the write to staff who manage this learner.
     const { data: learner, error: learnerError } = await context.supabase
