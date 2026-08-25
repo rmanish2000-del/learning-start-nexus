@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute, getRouteApi, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi, Link, useNavigate } from "@tanstack/react-router";
 import { Building2, CheckCircle2, Compass, LifeBuoy, Palette, RotateCcw, Sparkles, UserRound } from "lucide-react";
 import { toast } from "sonner";
 
