@@ -5,6 +5,9 @@ import { isReviewerAllowedPath, roleHome, type AppRole } from "@/lib/roles";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { AppShell } from "@/components/app-shell";
 
+/** Parents are portal-only, but support pages stay open to them. */
+const PARENT_ALLOWED_PATHS = ["/parent", "/quick-start", "/help"] as const;
+
 export const Route = createFileRoute("/_authenticated")({
   ssr: false,
   beforeLoad: async ({ location }) => {

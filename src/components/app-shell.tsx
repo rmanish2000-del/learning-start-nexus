@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { BookOpen, ClipboardCheck, ClipboardList, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, PieChart, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { BookOpen, ClipboardCheck, ClipboardList, Compass, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, PieChart, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { HowItWorksDialog } from "@/components/how-it-works";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import {
@@ -67,7 +68,14 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/gap-analysis-audit", label: "Gap Audit", icon: PieChart, roles: ["admin", "educator", "reviewer"] },
 ];
 
+const SUPPORT_ITEMS: NavItem[] = [
+  { to: "/quick-start", label: "Quick Start", icon: Compass, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
+  { to: "/help", label: "Help Center", icon: LifeBuoy, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
+];
+
 const TITLES: [RegExp, string][] = [
+  [/^\/quick-start/, "Quick start"],
+  [/^\/help/, "Help center"],
   [/^\/diagnostic-engine-audit/, "Diagnostic engine audit center"],
   [/^\/diagnostic-engine/, "Diagnostic engine"],
   [/^\/gap-analysis-audit/, "Gap analysis audit center"],
@@ -230,6 +238,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </SidebarGroupContent>
           </SidebarGroup>
           <SidebarGroup>
+            <SidebarGroupLabel>Support</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <NavLinks items={SUPPORT_ITEMS} />
+            </SidebarGroupContent>
+          </SidebarGroup>
+          <SidebarGroup>
             <SidebarGroupLabel>System</SidebarGroupLabel>
             <SidebarGroupContent>
               <NavLinks items={SYSTEM_ITEMS} />
@@ -256,6 +270,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <DemoContextBar />
         <main className="min-w-0 flex-1 p-4 md:p-6">{children}</main>
       </SidebarInset>
+      <HowItWorksDialog />
     </SidebarProvider>
   );
 }
