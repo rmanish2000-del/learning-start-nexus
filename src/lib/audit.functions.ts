@@ -3,7 +3,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { requireAnyRole } from "./admin.server";
+import { requireAuditRole } from "./admin.server";
 import {
   fetchAuditChain,
   fetchBuildProofCounts,
@@ -17,6 +17,7 @@ import {
 export const getRlsPolicyAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     const policies = await fetchPolicyAudit(context.supabase);
     return { generatedAt: new Date().toISOString(), me, policies };
@@ -28,7 +29,7 @@ export const getRlsPolicyAudit = createServerFn({ method: "GET" })
 export const runCrossOrgTestRunner = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     if (!me.orgId) throw new Error("Your account is not linked to an organization.");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -42,7 +43,7 @@ export const runCrossOrgTestRunner = createServerFn({ method: "POST" })
 export const getAssessmentAuditReport = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     const chain = await fetchAuditChain(context.supabase);
     return { generatedAt: new Date().toISOString(), me, chain };
@@ -52,6 +53,7 @@ export const getAssessmentAuditReport = createServerFn({ method: "GET" })
 export const getAssessmentBuildProof = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { counts, submittedVisible, submittedGlobal } = await fetchBuildProofCounts(

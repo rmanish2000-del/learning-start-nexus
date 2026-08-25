@@ -4,6 +4,7 @@
 import { createServerFn } from "@tanstack/react-start";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAuditRole } from "./admin.server";
 import { getCallerIdentity } from "./audit.server";
 import {
   fetchConsentOverview,
@@ -16,6 +17,7 @@ import {
 export const getLaunchAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     const [consents, gateDecisions, reviewer, policySummary] = await Promise.all([
       fetchConsentOverview(context.supabase),
@@ -36,6 +38,7 @@ export const getLaunchAudit = createServerFn({ method: "GET" })
 export const runLaunchAuditProbes = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     if (!me.orgId) throw new Error("No organization on your profile.");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");

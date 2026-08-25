@@ -5,6 +5,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAuditRole } from "./admin.server";
 import { PROTECTED_ROUTES } from "@/lib/protected-routes";
 
 export type RouteProbe = {
@@ -16,7 +17,8 @@ export type RouteProbe = {
 
 export const probeRouteProtection = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .handler(async () => {
+  .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const request = getRequest();
     const origin = new URL(request.url).origin;
 

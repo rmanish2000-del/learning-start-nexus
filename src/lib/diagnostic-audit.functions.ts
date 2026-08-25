@@ -3,7 +3,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { requireAnyRole } from "./admin.server";
+import { requireAuditRole } from "./admin.server";
 import { getCallerIdentity } from "./audit.server";
 import {
   fetchEngineCounts,
@@ -12,12 +12,11 @@ import {
   runEngineProbes,
 } from "./diagnostic-audit.server";
 
-const READERS = ["admin", "educator", "reviewer"] as const;
 
 export const getDiagnosticAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, [...READERS]);
+    await requireAuditRole(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const me = await getCallerIdentity(context.supabase, context.userId);
     const [counts, policies, snapshot] = await Promise.all([
@@ -31,9 +30,10 @@ export const getDiagnosticAudit = createServerFn({ method: "GET" })
 export const runEngineProbesFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     // Staff and reviewers both run probes — the write-gate probe adapts to the
     // caller's role (staff round-trip vs reviewer-must-fail).
-    await requireAnyRole(context.supabase, context.userId, [...READERS]);
+    await requireAuditRole(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const me = await getCallerIdentity(context.supabase, context.userId);
     const probes = await runEngineProbes(context.supabase, supabaseAdmin, me);

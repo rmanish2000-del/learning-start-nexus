@@ -3,7 +3,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { requireAnyRole } from "./admin.server";
+import { requireAuditRole } from "./admin.server";
 import { getCallerIdentity } from "./audit.server";
 import {
   fetchOutcomePolicies,
@@ -18,6 +18,7 @@ import {
 export const getSprint5Audit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const [counts, policies, outcomes] = await Promise.all([
@@ -41,7 +42,7 @@ export const getSprint5Audit = createServerFn({ method: "GET" })
 export const runSprint5ProbesFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
+    await requireAuditRole(context.supabase, context.userId);
     const me = await getCallerIdentity(context.supabase, context.userId);
     if (!me.orgId) throw new Error("Your account is not linked to an organization.");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
