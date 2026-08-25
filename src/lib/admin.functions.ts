@@ -54,7 +54,7 @@ export const listStaffUsers = createServerFn({ method: "GET" })
         id: u.id,
         email: u.email ?? "",
         fullName: nameByUser.get(u.id) || (u.user_metadata?.["full_name"] as string) || "",
-        role: (roleByUser.get(u.id) ?? "student") as "admin" | "educator" | "student",
+        role: (roleByUser.get(u.id) ?? "student") as AppRole,
         createdAt: u.created_at,
       }))
       .sort((a, b) => a.fullName.localeCompare(b.fullName));
