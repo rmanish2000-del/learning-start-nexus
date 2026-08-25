@@ -2,11 +2,19 @@ import { useState } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Copy, Plus } from "lucide-react";
+import { Copy, Link2, Plus, Unlink } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
-import { createStaffUser, listStaffUsers, updateUserRole } from "@/lib/admin.functions";
+import {
+  createStaffUser,
+  linkParentToLearner,
+  listParentLinks,
+  listStaffUsers,
+  unlinkParentFromLearner,
+  updateUserRole,
+} from "@/lib/admin.functions";
+import { ROLE_LABELS, type AppRole } from "@/lib/roles";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -94,7 +102,7 @@ function AdminPage() {
   const updateRoleFn = useServerFn(updateUserRole);
 
   const createMutation = useMutation({
-    mutationFn: (input: { fullName: string; email: string; role: "admin" | "educator" }) =>
+    mutationFn: (input: { fullName: string; email: string; role: AppRole }) =>
       createStaffFn({ data: input }),
     onSuccess: (result) => {
       setTempPassword(result.tempPassword);
@@ -105,7 +113,7 @@ function AdminPage() {
   });
 
   const roleMutation = useMutation({
-    mutationFn: (input: { userId: string; role: "admin" | "educator" | "student" }) =>
+    mutationFn: (input: { userId: string; role: AppRole }) =>
       updateRoleFn({ data: input }),
     onSuccess: () => {
       toast.success("Role updated.");
@@ -120,7 +128,7 @@ function AdminPage() {
     createMutation.mutate({
       fullName: String(form.get("fullName") ?? ""),
       email: String(form.get("email") ?? ""),
-      role: String(form.get("role") ?? "educator") as "admin" | "educator",
+      role: String(form.get("role") ?? "educator") as AppRole,
     });
   };
 
@@ -233,6 +241,8 @@ function AdminPage() {
                       <SelectContent>
                         <SelectItem value="educator">Educator</SelectItem>
                         <SelectItem value="admin">Admin</SelectItem>
+                        <SelectItem value="parent">Parent / guardian</SelectItem>
+                        <SelectItem value="reviewer">Reviewer (read-only)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -275,8 +285,8 @@ function AdminPage() {
                   </TableCell>
                   <TableCell className="text-muted-foreground">{member.email}</TableCell>
                   <TableCell>
-                    <Badge variant={member.role === "admin" ? "default" : "secondary"} className="capitalize">
-                      {member.role}
+                    <Badge variant={member.role === "admin" ? "default" : "secondary"}>
+                      {ROLE_LABELS[member.role] ?? member.role}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
@@ -286,7 +296,7 @@ function AdminPage() {
                       onValueChange={(role) =>
                         roleMutation.mutate({
                           userId: member.id,
-                          role: role as "admin" | "educator" | "student",
+                          role: role as AppRole,
                         })
                       }
                     >
@@ -297,6 +307,8 @@ function AdminPage() {
                         <SelectItem value="admin">Admin</SelectItem>
                         <SelectItem value="educator">Educator</SelectItem>
                         <SelectItem value="student">Student</SelectItem>
+                        <SelectItem value="parent">Parent</SelectItem>
+                        <SelectItem value="reviewer">Reviewer</SelectItem>
                       </SelectContent>
                     </Select>
                   </TableCell>
@@ -306,6 +318,153 @@ function AdminPage() {
           </Table>
         </CardContent>
       </Card>
+
+      <ParentAccessCard />
     </div>
+  );
+}
+
+function ParentAccessCard() {
+  const queryClient = useQueryClient();
+  const [parentUserId, setParentUserId] = useState("");
+  const [learnerId, setLearnerId] = useState("");
+
+  const linksFn = useServerFn(listParentLinks);
+  const linkFn = useServerFn(linkParentToLearner);
+  const unlinkFn = useServerFn(unlinkParentFromLearner);
+
+  const { data, isPending, isError, error, refetch } = useQuery({
+    queryKey: ["parent-links-admin"],
+    queryFn: () => linksFn(),
+  });
+
+  const invalidate = () => queryClient.invalidateQueries({ queryKey: ["parent-links-admin"] });
+
+  const linkMutation = useMutation({
+    mutationFn: () => linkFn({ data: { parentUserId, learnerId } }),
+    onSuccess: () => {
+      toast.success("Parent linked to learner.");
+      setParentUserId("");
+      setLearnerId("");
+      void invalidate();
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  const unlinkMutation = useMutation({
+    mutationFn: (linkId: string) => unlinkFn({ data: { linkId } }),
+    onSuccess: () => {
+      toast.success("Link removed.");
+      void invalidate();
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">Parent access</CardTitle>
+        <CardDescription>
+          Link a parent account to a learner. Parents only ever see the learners linked here, and
+          consent they record unlocks the AI Tutor for that learner.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {isError ? (
+          <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm">
+            <p className="font-medium">Parent links couldn't be loaded.</p>
+            <p className="mt-1 text-muted-foreground">
+              {error instanceof Error ? error.message : "Please try again."}
+            </p>
+            <Button size="sm" variant="outline" className="mt-3" onClick={() => void refetch()}>
+              Try again
+            </Button>
+          </div>
+        ) : isPending ? (
+          <Skeleton className="h-24 w-full" />
+        ) : (
+          <>
+            <div className="flex flex-wrap items-end gap-3">
+              <div className="min-w-48 flex-1 space-y-2">
+                <Label htmlFor="parent-select">Parent account</Label>
+                <Select value={parentUserId} onValueChange={setParentUserId}>
+                  <SelectTrigger id="parent-select">
+                    <SelectValue placeholder={data.parents.length ? "Select parent" : "No parent accounts yet"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data.parents.map((p) => (
+                      <SelectItem key={p.id} value={p.id}>
+                        {p.name || "Unnamed parent"}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="min-w-48 flex-1 space-y-2">
+                <Label htmlFor="learner-select">Learner</Label>
+                <Select value={learnerId} onValueChange={setLearnerId}>
+                  <SelectTrigger id="learner-select">
+                    <SelectValue placeholder="Select learner" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data.learners.map((l) => (
+                      <SelectItem key={l.id} value={l.id}>
+                        {l.name}
+                        {l.grade ? ` · Grade ${l.grade}` : ""}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button
+                onClick={() => linkMutation.mutate()}
+                disabled={!parentUserId || !learnerId || linkMutation.isPending}
+              >
+                <Link2 className="h-4 w-4" />
+                {linkMutation.isPending ? "Linking…" : "Link"}
+              </Button>
+            </div>
+
+            {data.parents.length === 0 && (
+              <p className="text-xs text-muted-foreground">
+                Create a parent account first with <span className="font-medium">Add staff → Parent / guardian</span>.
+              </p>
+            )}
+
+            {data.links.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No parent links yet.</p>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Parent</TableHead>
+                    <TableHead>Learner</TableHead>
+                    <TableHead className="text-right">Access</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {data.links.map((row) => (
+                    <TableRow key={row.id}>
+                      <TableCell className="font-medium">{row.parentName}</TableCell>
+                      <TableCell>{row.learnerName}</TableCell>
+                      <TableCell className="text-right">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          disabled={unlinkMutation.isPending}
+                          onClick={() => unlinkMutation.mutate(row.id)}
+                        >
+                          <Unlink className="h-4 w-4" /> Remove
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </>
+        )}
+      </CardContent>
+    </Card>
   );
 }
