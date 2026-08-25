@@ -136,6 +136,56 @@ export function requestTour(tourId: string): void {
 }
 
 // ---------------------------------------------------------------------------
+// Onboarding modal coordination
+// ---------------------------------------------------------------------------
+// The first-login intro and the completion celebration can both become
+// eligible on the same page load (e.g. a fresh browser on an account whose
+// checklist is already complete). Only one onboarding modal may be visible
+// at a time; the loser retries and shows after the winner is dismissed.
+
+const MODAL_CLAIM_KEY = "modal-claim";
+/** Claims expire so a crashed/killed tab can never block modals forever. */
+const MODAL_CLAIM_TTL_MS = 5 * 60_000;
+
+/** Try to claim the onboarding modal slot. True = you may show your modal. */
+export function claimOnboardingModal(owner: string): boolean {
+  const s = storage();
+  if (!s) return true;
+  try {
+    const raw = s.getItem(`${PREFIX}:${MODAL_CLAIM_KEY}`);
+    if (raw) {
+      const parsed = JSON.parse(raw) as { owner?: string; at?: number };
+      if (
+        parsed.owner &&
+        parsed.owner !== owner &&
+        typeof parsed.at === "number" &&
+        Date.now() - parsed.at < MODAL_CLAIM_TTL_MS
+      ) {
+        return false;
+      }
+    }
+    s.setItem(`${PREFIX}:${MODAL_CLAIM_KEY}`, JSON.stringify({ owner, at: Date.now() }));
+    return true;
+  } catch {
+    return true;
+  }
+}
+
+/** Release the slot — only the current owner can release it. */
+export function releaseOnboardingModal(owner: string): void {
+  const s = storage();
+  if (!s) return;
+  try {
+    const raw = s.getItem(`${PREFIX}:${MODAL_CLAIM_KEY}`);
+    if (!raw) return;
+    const parsed = JSON.parse(raw) as { owner?: string };
+    if (parsed.owner === owner) s.removeItem(`${PREFIX}:${MODAL_CLAIM_KEY}`);
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Context help content per page
 // ---------------------------------------------------------------------------
 
