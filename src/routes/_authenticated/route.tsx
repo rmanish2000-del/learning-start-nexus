@@ -1,4 +1,6 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, redirect } from "@tanstack/react-router";
+
+import { Button } from "@/components/ui/button";
 
 import { supabase } from "@/integrations/supabase/client";
 import { isReviewerAllowedPath, roleHome, type AppRole } from "@/lib/roles";
@@ -53,7 +55,43 @@ export const Route = createFileRoute("/_authenticated")({
     };
   },
   component: AuthenticatedLayout,
+  errorComponent: WorkspaceError,
+  notFoundComponent: WorkspaceNotFound,
 });
+
+/** Any unhandled failure inside the workspace still renders a way forward. */
+function WorkspaceError({ error }: { error: Error }) {
+  return (
+    <div className="mx-auto max-w-lg space-y-4 p-8 text-center">
+      <h1 className="text-xl font-semibold tracking-tight">Something went wrong</h1>
+      <p className="text-sm text-muted-foreground">
+        {error?.message?.includes("Unauthorized")
+          ? "Your session expired. Sign in again to continue."
+          : "We couldn't load this page. Try again, or head back to your workspace."}
+      </p>
+      <div className="flex flex-wrap justify-center gap-2">
+        <Button onClick={() => window.location.reload()}>Try again</Button>
+        <Button asChild variant="outline">
+          <Link to="/auth">Sign in</Link>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function WorkspaceNotFound() {
+  return (
+    <div className="mx-auto max-w-lg space-y-4 p-8 text-center">
+      <h1 className="text-xl font-semibold tracking-tight">Page not found</h1>
+      <p className="text-sm text-muted-foreground">
+        This page doesn't exist or you don't have access to it.
+      </p>
+      <Button asChild>
+        <Link to="/">Go home</Link>
+      </Button>
+    </div>
+  );
+}
 
 function AuthenticatedLayout() {
   return (
