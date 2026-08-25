@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, getRouteApi, useNavigate } from "@tanstack/react-router";
-import { Building2, CheckCircle2, Compass, Palette, RotateCcw, UserRound } from "lucide-react";
+import { Building2, CheckCircle2, Compass, LifeBuoy, Palette, RotateCcw, Sparkles, UserRound } from "lucide-react";
 import { toast } from "sonner";
 
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
-import { markOnboardingComplete, resetOnboarding } from "@/lib/onboarding";
+import { markOnboardingComplete, requestIntro, resetOnboarding } from "@/lib/onboarding";
 import { ROLE_LABELS, roleHome } from "@/lib/roles";
 
 export const Route = createFileRoute("/_authenticated/settings")({
@@ -153,12 +153,21 @@ function SettingsPage() {
           <Button variant="outline" size="sm" onClick={handleRestartTour}>
             <RotateCcw className="mr-1.5 h-3.5 w-3.5" /> Restart Tour
           </Button>
+          <Button variant="outline" size="sm" onClick={requestIntro}>
+            <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Replay Intro
+          </Button>
           <Button variant="outline" size="sm" onClick={handleMarkComplete}>
             <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> Mark Tour Complete
           </Button>
+          <Button asChild variant="outline" size="sm">
+            <Link to="/help">
+              <LifeBuoy className="mr-1.5 h-3.5 w-3.5" /> Help Center
+            </Link>
+          </Button>
           <p className="w-full text-xs text-muted-foreground">
-            Restart returns you to your home page and replays the guided tour. Mark complete stops
-            all onboarding modals and tours from auto-starting.
+            Restart returns you to your home page and replays the guided tour. Replay intro opens
+            the "How EduOS Works" first-login dialog. Mark complete stops all onboarding modals and
+            tours from auto-starting.
           </p>
         </CardContent>
       </Card>
