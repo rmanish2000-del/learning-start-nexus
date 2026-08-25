@@ -1,6 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { createStaffUserSchema, updateUserRoleSchema } from "./schemas";
+import {
+  createStaffUserSchema,
+  parentLinkSchema,
+  parentUnlinkSchema,
+  updateUserRoleSchema,
+} from "./schemas";
+import type { AppRole } from "./roles";
 import { requireAnyRole } from "./admin.server";
 
 // Resolve the caller's org via their own session (RLS-scoped read).
