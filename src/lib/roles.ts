@@ -45,7 +45,48 @@ export const REVIEWER_ALLOWED_PATHS = [
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {
-  return REVIEWER_ALLOWED_PATHS.some(
-    (route) => pathname === route || pathname.startsWith(route + "/"),
-  );
+  return matchesPath(REVIEWER_ALLOWED_PATHS, pathname);
+}
+
+// Students only ever reach their own learning surfaces. Every staff, audit and
+// curriculum-authoring route is off limits regardless of navigation links.
+export const STUDENT_ALLOWED_PATHS = [
+  "/home",
+  "/session",
+  "/assessment",
+  "/tutor",
+  "/settings",
+  "/quick-start",
+  "/help",
+] as const;
+
+export function isStudentAllowedPath(pathname: string): boolean {
+  return matchesPath(STUDENT_ALLOWED_PATHS, pathname);
+}
+
+// Audit / verification surfaces are restricted to admins and reviewers.
+export const AUDIT_PATHS = [
+  "/verification",
+  "/assessment-verification",
+  "/rls-verification",
+  "/assessment-audit",
+  "/assessment-proof",
+  "/sprint-3-audit",
+  "/sprint-4-audit",
+  "/sprint-5-audit",
+  "/launch-audit",
+  "/curriculum-audit",
+  "/assessment-blueprint-audit",
+  "/question-bank-audit",
+  "/assessment-builder-audit",
+  "/diagnostic-engine-audit",
+  "/gap-analysis-audit",
+] as const;
+
+export function isAuditPath(pathname: string): boolean {
+  return matchesPath(AUDIT_PATHS, pathname);
+}
+
+function matchesPath(routes: readonly string[], pathname: string): boolean {
+  return routes.some((route) => pathname === route || pathname.startsWith(route + "/"));
 }
