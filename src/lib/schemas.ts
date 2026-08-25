@@ -20,12 +20,21 @@ export const createLearnerSchema = z.object({
 export const createStaffUserSchema = z.object({
   fullName: z.string().trim().min(2, "Name is required").max(80),
   email: z.string().trim().email("Enter a valid email").max(255),
-  role: z.enum(["admin", "educator"]),
+  role: z.enum(["admin", "educator", "parent", "reviewer"]),
 });
 
 export const updateUserRoleSchema = z.object({
   userId: z.string().uuid(),
-  role: z.enum(["admin", "educator", "student"]),
+  role: z.enum(["admin", "educator", "student", "parent", "reviewer"]),
+});
+
+export const parentLinkSchema = z.object({
+  parentUserId: z.string().uuid(),
+  learnerId: z.string().uuid(),
+});
+
+export const parentUnlinkSchema = z.object({
+  linkId: z.string().uuid(),
 });
 
 export const resetPinSchema = z.object({
