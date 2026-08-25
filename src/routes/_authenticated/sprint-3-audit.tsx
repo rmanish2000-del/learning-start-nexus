@@ -145,7 +145,7 @@ const CHECKLIST: { text: string; how: string }[] = [
   },
   {
     text: "Students never see gaps or recommendations",
-    how: "Sign in as aarav (123456) — this page shows 'denied (RLS)' for learning_gaps and recommendations counts.",
+    how: "Sign in as the pilot student — this page shows 'denied (RLS)' for learning_gaps and recommendations counts.",
   },
   {
     text: "Students see accepted interventions only",

@@ -89,13 +89,14 @@ const ACCESS_MATRIX: { route: string; admin: string; educator: string; student: 
   { route: "/home", admin: "redirect:/dashboard", educator: "redirect:/dashboard", student: "allow", anon: "redirect:/auth" },
 ];
 
+// Credentials are never listed in the product. Admins hold them out of band.
 const TEST_ACCOUNTS = [
-  { role: "Admin", org: "Brightpath Learning (Org A)", credential: "admin@eduos.dev", secret: "Admin#2026" },
-  { role: "Educator", org: "Brightpath Learning (Org A)", credential: "priya.nair@eduos.dev", secret: "Teach#2026" },
-  { role: "Educator", org: "Brightpath Learning (Org A)", credential: "marcus.reed@eduos.dev", secret: "Teach#2026" },
-  { role: "Educator", org: "Northstar Tutoring (Org B)", credential: "nina.osei@northstar.education", secret: "Teach#2026" },
-  { role: "Student", org: "Brightpath Learning (Org A)", credential: "handle: aarav", secret: "PIN 123456" },
-  { role: "Student", org: "Northstar Tutoring (Org B)", credential: "handle: tom", secret: "PIN 654321" },
+  { role: "Admin", org: "Brightpath Learning (Org A)", credential: "admin@eduos.dev", secret: "held by admin" },
+  { role: "Educator", org: "Brightpath Learning (Org A)", credential: "priya.nair@eduos.dev", secret: "held by admin" },
+  { role: "Educator", org: "Brightpath Learning (Org A)", credential: "marcus.reed@eduos.dev", secret: "held by admin" },
+  { role: "Educator", org: "Northstar Tutoring (Org B)", credential: "nina.osei@northstar.education", secret: "held by admin" },
+  { role: "Student", org: "Brightpath Learning (Org A)", credential: "handle: aarav", secret: "PIN held by educator" },
+  { role: "Student", org: "Northstar Tutoring (Org B)", credential: "handle: tom", secret: "PIN held by educator" },
 ];
 
 const SECURITY_CHECKLIST = [

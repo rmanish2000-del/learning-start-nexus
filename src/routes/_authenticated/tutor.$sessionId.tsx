@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { Link, createFileRoute, redirect } from "@tanstack/react-router";
 import {
   BookOpen,
   Lightbulb,
   Loader2,
   MessageCircleQuestion,
   PencilLine,
+  ArrowLeft,
   RefreshCw,
   Send,
   Sparkles,
@@ -57,7 +58,7 @@ function TutorPage() {
   const [answer, setAnswer] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const { data, isPending } = useQuery({
+  const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ["tutor-session", sessionId],
     queryFn: () => fetchSession({ data: { sessionId } }),
   });
@@ -81,7 +82,7 @@ function TutorPage() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [interactions.length, mutation.isPending]);
 
-  if (isPending || !data) {
+  if (isPending) {
     return (
       <div className="mx-auto max-w-3xl space-y-4">
         <Skeleton className="h-8 w-72" />
@@ -90,10 +91,39 @@ function TutorPage() {
     );
   }
 
+  // Never leave the student stranded on a blank tutor screen: show what went
+  // wrong and always offer a way back to their learning plan.
+  if (isError || !data) {
+    return (
+      <div className="mx-auto max-w-lg space-y-4 py-12 text-center">
+        <h2 className="text-xl font-semibold tracking-tight">This tutor session didn't open</h2>
+        <p className="text-sm text-muted-foreground">
+          {error instanceof Error && error.message
+            ? error.message
+            : "The session may have ended, or it belongs to a different account."}
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          <Button onClick={() => void refetch()}>Try again</Button>
+          <Button asChild variant="outline">
+            <Link to="/home">
+              <ArrowLeft className="h-4 w-4" /> Back to my learning
+            </Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const { session, interventionTitle } = data;
 
   return (
     <div className="mx-auto max-w-3xl space-y-4">
+      <Button asChild variant="ghost" size="sm" className="-ml-2">
+        <Link to="/home">
+          <ArrowLeft className="h-4 w-4" /> Back to my learning
+        </Link>
+      </Button>
+
       <div className="space-y-1">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-2xl font-semibold tracking-tight">AI Tutor</h2>
@@ -254,6 +284,12 @@ function TutorPage() {
           )}
         </CardContent>
       </Card>
+
+      <div className="flex justify-center">
+        <Button asChild variant="outline" size="sm">
+          <Link to="/home">Finish for now</Link>
+        </Button>
+      </div>
 
       <p className="text-center text-xs text-muted-foreground">
         Practice here is separate from your formal assessments — it's a safe space to make

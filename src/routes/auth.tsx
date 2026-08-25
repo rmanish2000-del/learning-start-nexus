@@ -123,7 +123,7 @@ function AuthPage() {
             </li>
           </ul>
         </div>
-        <p className="text-xs text-primary-foreground/60">Brightpath Learning · Phase 1 demo</p>
+        <p className="text-xs text-primary-foreground/60">Learning intelligence for tutoring centers</p>
       </div>
 
       {/* Sign-in panel */}
@@ -230,29 +230,10 @@ function AuthPage() {
             </TabsContent>
           </Tabs>
 
-          <div className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
-            <p className="mb-2 font-medium text-foreground">Demo accounts</p>
-            <p>
-              Admin — <span className="font-mono">admin@eduos.dev</span> /{" "}
-              <span className="font-mono">Admin#2026</span>
-            </p>
-            <p>
-              Educator — <span className="font-mono">priya.nair@eduos.dev</span> /{" "}
-              <span className="font-mono">Teach#2026</span>
-            </p>
-            <p>
-              Student — handle <span className="font-mono">aarav</span> / PIN{" "}
-              <span className="font-mono">123456</span>
-            </p>
-            <p>
-              Reviewer — <span className="font-mono">reviewer@eduos.global</span> /{" "}
-              <span className="font-mono">Review#2026</span> (read-only, audit pages)
-            </p>
-            <p>
-              Parent — <span className="font-mono">meera.patel@eduos.dev</span> /{" "}
-              <span className="font-mono">Parent#2026</span> (Aarav's guardian, read-only portal)
-            </p>
-          </div>
+          <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
+            Trouble signing in? Your tutoring center admin can reset a staff password or a student
+            PIN. Parents receive their sign-in from the center.
+          </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             <Link to="/about" className="hover:text-foreground">About</Link>

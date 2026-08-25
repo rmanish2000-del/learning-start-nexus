@@ -442,13 +442,13 @@ export const getAssessmentVerification = createServerFn({ method: "GET" })
       probes.push({
         name: "Student writes to item bank",
         expectation: "Rejected by RLS (403 / 42501)",
-        outcome: "Not applicable — sign in as a student (e.g. aarav / 123456) to run this probe",
+        outcome: "Not applicable — sign in as a student to run this probe",
         pass: true,
       });
       probes.push({
         name: "Student creates an assessment",
         expectation: "Rejected by RLS (403 / 42501)",
-        outcome: "Not applicable — sign in as a student (e.g. aarav / 123456) to run this probe",
+        outcome: "Not applicable — sign in as a student to run this probe",
         pass: true,
       });
     }

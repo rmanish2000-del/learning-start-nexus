@@ -146,7 +146,7 @@ function NavLinks({ items }: { items: NavItem[] }) {
   );
 }
 
-// Persistent audit indicator: current role, organization, and assigned educator.
+// Persistent context indicator: current role, organization, and assigned educator.
 function DemoContextBar() {
   const { user, role, profile } = authRoute.useRouteContext();
 
@@ -203,9 +203,6 @@ function DemoContextBar() {
   return (
     <div className="border-b bg-muted/40 px-4 py-1.5 text-xs text-muted-foreground print:hidden">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <span className="rounded-full border border-dashed border-primary/40 px-2 py-0.5 font-medium uppercase tracking-wide text-primary">
-          Demo
-        </span>
         <span>
           Role: <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>
         </span>
