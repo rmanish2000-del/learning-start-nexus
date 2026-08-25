@@ -31,6 +31,12 @@ export const PROTECTED_ROUTES = [
   "/sprint-4-audit",
   "/home",
   "/launch-audit",
+  "/parent",
+  "/curriculum",
+  "/curriculum-audit",
+  "/sprint-5-audit",
+  "/quick-start",
+  "/help",
 ] as const;
 
 export function isProtectedPath(pathname: string): boolean {
