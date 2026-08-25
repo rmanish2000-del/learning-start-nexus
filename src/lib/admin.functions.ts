@@ -125,3 +125,97 @@ export const updateUserRole = createServerFn({ method: "POST" })
 
     return { ok: true };
   });
+
+// ---------------------------------------------------------------------------
+// Parent access: link a provisioned parent account to a learner in the org.
+// Reads/writes go through the caller's RLS-scoped client (links_admin_insert /
+// links_admin_delete already require an admin in the same organization).
+// ---------------------------------------------------------------------------
+
+export const listParentLinks = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+
+    const [{ data: links, error }, { data: learners }, { data: profiles }, { data: roles }] =
+      await Promise.all([
+        context.supabase.from("parent_learner_links").select("id, parent_user_id, learner_id"),
+        context.supabase.from("learners").select("id, full_name, grade"),
+        context.supabase.from("profiles").select("id, full_name"),
+        context.supabase.from("user_roles").select("user_id, role"),
+      ]);
+    if (error) throw new Error(error.message);
+
+    const nameByUser = new Map((profiles ?? []).map((p) => [p.id, p.full_name]));
+    const learnerById = new Map((learners ?? []).map((l) => [l.id, l]));
+
+    return {
+      links: (links ?? []).map((row) => ({
+        id: row.id,
+        parentUserId: row.parent_user_id,
+        parentName: nameByUser.get(row.parent_user_id) ?? "Unknown parent",
+        learnerId: row.learner_id,
+        learnerName: learnerById.get(row.learner_id)?.full_name ?? "Unknown learner",
+      })),
+      parents: (roles ?? [])
+        .filter((r) => r.role === "parent" && nameByUser.has(r.user_id))
+        .map((r) => ({ id: r.user_id, name: nameByUser.get(r.user_id) ?? "" }))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+      learners: (learners ?? [])
+        .map((l) => ({ id: l.id, name: l.full_name, grade: l.grade }))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    };
+  });
+
+export const linkParentToLearner = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => parentLinkSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const orgId = await callerOrgId(context.supabase, context.userId);
+
+    // Both sides must be visible under the caller's org-scoped RLS.
+    const [{ data: parentProfile }, { data: learner }] = await Promise.all([
+      context.supabase.from("profiles").select("id").eq("id", data.parentUserId).maybeSingle(),
+      context.supabase.from("learners").select("id").eq("id", data.learnerId).maybeSingle(),
+    ]);
+    if (!parentProfile) throw new Error("That parent account is not part of your organization.");
+    if (!learner) throw new Error("That learner is not part of your organization.");
+
+    const { data: parentRole } = await context.supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", data.parentUserId)
+      .eq("role", "parent")
+      .maybeSingle();
+    if (!parentRole) throw new Error("That account does not have the parent role.");
+
+    const { data: existing } = await context.supabase
+      .from("parent_learner_links")
+      .select("id")
+      .eq("parent_user_id", data.parentUserId)
+      .eq("learner_id", data.learnerId)
+      .maybeSingle();
+    if (existing) return { ok: true as const, linkId: existing.id };
+
+    const { data: row, error } = await context.supabase
+      .from("parent_learner_links")
+      .insert({ org_id: orgId, parent_user_id: data.parentUserId, learner_id: data.learnerId })
+      .select("id")
+      .single();
+    if (error) throw new Error(error.message);
+    return { ok: true as const, linkId: row.id };
+  });
+
+export const unlinkParentFromLearner = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => parentUnlinkSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const { error } = await context.supabase
+      .from("parent_learner_links")
+      .delete()
+      .eq("id", data.linkId);
+    if (error) throw new Error(error.message);
+    return { ok: true as const };
+  });
