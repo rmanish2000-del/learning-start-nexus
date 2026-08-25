@@ -49,24 +49,28 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/parent", label: "My Child", icon: HeartHandshake, roles: ["parent"], exact: true },
 ];
 
+// Production navigation model: audit/verification surfaces are internal QA
+// tooling and stay limited to admin and reviewer. Educators, students and
+// parents see only workspace + support items.
 const SYSTEM_ITEMS: NavItem[] = [
   { to: "/settings", label: "Settings", icon: Settings, roles: ["admin", "educator", "student"] },
-  { to: "/verification", label: "Verification", icon: FlaskConical, roles: ["admin", "educator", "student", "reviewer"] },
-  { to: "/assessment-verification", label: "Assessment QA", icon: ClipboardCheck, roles: ["admin", "educator", "student", "reviewer"] },
-  { to: "/rls-verification", label: "RLS Policies", icon: ShieldCheck, roles: ["admin", "educator", "reviewer"] },
-  { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "educator", "reviewer"] },
-  { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "educator", "reviewer"] },
-  { to: "/sprint-3-audit", label: "Sprint 3 Audit", icon: ShieldCheck, roles: ["admin", "educator", "student", "reviewer"] },
-  { to: "/sprint-4-audit", label: "Sprint 4 Audit", icon: Sparkles, roles: ["admin", "educator", "student", "reviewer"] },
-  { to: "/sprint-5-audit", label: "Sprint 5 Audit", icon: TrendingUp, roles: ["admin", "educator", "student", "reviewer"] },
-  { to: "/launch-audit", label: "Launch Audit", icon: Rocket, roles: ["admin", "educator", "reviewer"] },
-  { to: "/curriculum-audit", label: "Curriculum Audit", icon: GitBranch, roles: ["admin", "educator", "reviewer"] },
-  { to: "/assessment-blueprint-audit", label: "Blueprint Audit", icon: Crosshair, roles: ["admin", "educator", "reviewer"] },
-  { to: "/question-bank-audit", label: "Question Bank Audit", icon: FileQuestion, roles: ["admin", "educator", "reviewer"] },
-  { to: "/assessment-builder-audit", label: "Builder Audit", icon: ClipboardCheck, roles: ["admin", "educator", "reviewer"] },
-  { to: "/diagnostic-engine-audit", label: "Diagnostic Audit", icon: Gauge, roles: ["admin", "educator", "reviewer"] },
-  { to: "/gap-analysis-audit", label: "Gap Audit", icon: PieChart, roles: ["admin", "educator", "reviewer"] },
+  { to: "/verification", label: "Verification", icon: FlaskConical, roles: ["admin", "reviewer"] },
+  { to: "/assessment-verification", label: "Assessment QA", icon: ClipboardCheck, roles: ["admin", "reviewer"] },
+  { to: "/rls-verification", label: "RLS Policies", icon: ShieldCheck, roles: ["admin", "reviewer"] },
+  { to: "/assessment-audit", label: "Audit Trail", icon: FileSearch, roles: ["admin", "reviewer"] },
+  { to: "/assessment-proof", label: "Build Proof", icon: FileCheck2, roles: ["admin", "reviewer"] },
+  { to: "/sprint-3-audit", label: "Sprint 3 Audit", icon: ShieldCheck, roles: ["admin", "reviewer"] },
+  { to: "/sprint-4-audit", label: "Sprint 4 Audit", icon: Sparkles, roles: ["admin", "reviewer"] },
+  { to: "/sprint-5-audit", label: "Sprint 5 Audit", icon: TrendingUp, roles: ["admin", "reviewer"] },
+  { to: "/launch-audit", label: "Launch Audit", icon: Rocket, roles: ["admin", "reviewer"] },
+  { to: "/curriculum-audit", label: "Curriculum Audit", icon: GitBranch, roles: ["admin", "reviewer"] },
+  { to: "/assessment-blueprint-audit", label: "Blueprint Audit", icon: Crosshair, roles: ["admin", "reviewer"] },
+  { to: "/question-bank-audit", label: "Question Bank Audit", icon: FileQuestion, roles: ["admin", "reviewer"] },
+  { to: "/assessment-builder-audit", label: "Builder Audit", icon: ClipboardCheck, roles: ["admin", "reviewer"] },
+  { to: "/diagnostic-engine-audit", label: "Diagnostic Audit", icon: Gauge, roles: ["admin", "reviewer"] },
+  { to: "/gap-analysis-audit", label: "Gap Audit", icon: PieChart, roles: ["admin", "reviewer"] },
 ];
+
 
 const SUPPORT_ITEMS: NavItem[] = [
   { to: "/quick-start", label: "Quick Start", icon: Compass, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
