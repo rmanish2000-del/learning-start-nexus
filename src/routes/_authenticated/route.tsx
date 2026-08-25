@@ -5,6 +5,9 @@ import { isReviewerAllowedPath, roleHome, type AppRole } from "@/lib/roles";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { AppShell } from "@/components/app-shell";
 
+/** Parents are portal-only, but support pages stay open to them. */
+const PARENT_ALLOWED_PATHS = ["/parent", "/quick-start", "/help"] as const;
+
 export const Route = createFileRoute("/_authenticated")({
   ssr: false,
   beforeLoad: async ({ location }) => {
@@ -29,9 +32,14 @@ export const Route = createFileRoute("/_authenticated")({
       throw redirect({ to: "/launch-audit" });
     }
 
-    // Sprint 5B: parents get the read-only portal only; everyone else is
-    // bounced away from it.
-    if (role === "parent" && location.pathname !== "/parent") {
+    // Sprint 5B: parents get the read-only portal plus the support pages
+    // (quick start, help center); everyone else is bounced away from /parent.
+    if (
+      role === "parent" &&
+      !PARENT_ALLOWED_PATHS.some(
+        (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
+      )
+    ) {
       throw redirect({ to: "/parent" });
     }
     if (role !== "parent" && location.pathname === "/parent") {

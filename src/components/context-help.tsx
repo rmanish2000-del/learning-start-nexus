@@ -26,6 +26,19 @@ export function ContextHelp({ page }: { page: string }) {
             </li>
           ))}
         </ul>
+        {content.next && content.next.length > 0 && (
+          <div className="mt-3 rounded-lg border bg-muted/40 p-3">
+            <p className="text-xs font-semibold">What do I do next?</p>
+            <ol className="mt-1.5 space-y-1.5">
+              {content.next.map((step, i) => (
+                <li key={i} className="flex gap-2 text-xs leading-relaxed text-muted-foreground">
+                  <span className="shrink-0 font-medium text-primary">{i + 1}.</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
         {content.tourId && (
           <Button
             variant="outline"
