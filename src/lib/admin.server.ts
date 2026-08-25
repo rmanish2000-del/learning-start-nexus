@@ -16,6 +16,38 @@ export async function requireAnyRole(
     .select("role")
     .eq("user_id", userId)
     .in("role", roles);
-  if (!error && data && data.length > 0) return;
+
+  if (error) {
+    console.error("Admin role verification failed", {
+      code: error.code,
+      message: error.message,
+    });
+    throw new Error("We couldn't verify your permissions. Please refresh and try again.");
+  }
+
+  if ((data ?? []).some((row) => roles.includes(row.role))) return;
   throw new Error("You do not have permission to perform this action.");
+}
+
+// Resolve the caller's org via their own session (RLS-scoped read).
+export async function callerOrgId(
+  supabase: SupabaseClient<Database>,
+  userId: string,
+): Promise<string> {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("org_id")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Caller organization lookup failed", {
+      code: error.code,
+      message: error.message,
+    });
+    throw new Error("We couldn't load your organization. Please refresh and try again.");
+  }
+
+  if (!data?.org_id) throw new Error("Your account is not linked to an organization.");
+  return data.org_id;
 }

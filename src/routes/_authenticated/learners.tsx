@@ -63,6 +63,7 @@ function LearnersPage() {
   // /learners/$learnerId nests under this route — hand off to the child.
   const hasChild = useChildMatches().length > 0;
   const createLearnerFn = useServerFn(createLearner);
+  const listStaffFn = useServerFn(listStaffUsers);
 
   const [search, setSearch] = useState("");
   const [subject, setSubject] = useState("all");
@@ -88,10 +89,12 @@ function LearnersPage() {
     },
   });
 
-  const { data: staff } = useQuery({
+  const { data: staff, isError: staffIsError, error: staffError } = useQuery({
     queryKey: ["staff-users"],
-    queryFn: () => listStaffUsers(),
+    queryFn: () => listStaffFn(),
     enabled: role === "admin",
+    retry: false,
+    throwOnError: false,
   });
 
   const educatorName = useMemo(() => {
@@ -204,6 +207,11 @@ function LearnersPage() {
               {role === "admin" && (
                 <div className="space-y-2">
                   <Label htmlFor="educatorId">Educator</Label>
+                  {staffIsError && (
+                    <p className="text-xs text-destructive">
+                      {staffError instanceof Error ? staffError.message : "Educators couldn't be loaded."}
+                    </p>
+                  )}
                   <Select name="educatorId">
                     <SelectTrigger id="educatorId">
                       <SelectValue placeholder="Assign educator…" />

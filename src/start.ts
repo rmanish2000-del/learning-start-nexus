@@ -4,11 +4,18 @@ import { renderErrorPage } from "./lib/error-page";
 import { isProtectedPath } from "./lib/protected-routes";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 
-const errorMiddleware = createMiddleware().server(async ({ next }) => {
+const errorMiddleware = createMiddleware().server(async ({ next, handlerType, request }) => {
   try {
     return await next();
   } catch (error) {
+    if (handlerType === "serverFn") {
+      throw error;
+    }
     if (error != null && typeof error === "object" && "statusCode" in error) {
+      throw error;
+    }
+    const accept = request.headers.get("accept") ?? "";
+    if (!accept.includes("text/html")) {
       throw error;
     }
     console.error(error);
