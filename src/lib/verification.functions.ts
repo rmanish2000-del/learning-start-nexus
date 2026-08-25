@@ -5,6 +5,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAuditRole } from "./admin.server";
 import { PROTECTED_ROUTES } from "@/lib/protected-routes";
 
 export type RouteProbe = {

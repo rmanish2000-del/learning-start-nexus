@@ -5,6 +5,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireAuditRole } from "./admin.server";
 import type { ResultEntry } from "./assessment-shared";
 
 type CountComparison = {
@@ -103,6 +104,7 @@ export type AssessmentVerificationReport = {
 export const getAssessmentVerification = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }): Promise<AssessmentVerificationReport> => {
+    await requireAuditRole(context.supabase, context.userId);
     const { supabase, userId } = context;
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 

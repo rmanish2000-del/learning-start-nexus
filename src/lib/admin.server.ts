@@ -51,3 +51,13 @@ export async function callerOrgId(
   if (!data?.org_id) throw new Error("Your account is not linked to an organization.");
   return data.org_id;
 }
+
+// Audit / verification surfaces are admin + reviewer only. The client route
+// gate in _authenticated/route.tsx blocks navigation, but every audit server
+// function is directly callable over RPC, so it needs the same check.
+export async function requireAuditRole(
+  supabase: SupabaseClient<Database>,
+  userId: string,
+): Promise<void> {
+  await requireAnyRole(supabase, userId, ["admin", "reviewer"]);
+}
