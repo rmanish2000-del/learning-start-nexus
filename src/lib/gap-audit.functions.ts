@@ -9,7 +9,10 @@ import { getGapAudit, runGapProbes } from "./gap-audit.server";
 
 export const getGapAuditFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .handler(async ({ context }) => getGapAudit(context.supabase, context.userId));
+  .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
+    return getGapAudit(context.supabase, context.userId);
+  });
 
 export const runGapProbesFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])

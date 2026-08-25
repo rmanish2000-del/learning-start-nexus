@@ -12,7 +12,6 @@ import {
   runBuilderProbes,
 } from "./builder-audit.server";
 
-const READERS = ["admin", "educator", "reviewer"] as const;
 
 export const getBuilderAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

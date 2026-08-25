@@ -11,7 +11,6 @@ import {
   runBlueprintProbes,
 } from "./blueprint-audit.server";
 
-const READERS = ["admin", "educator", "reviewer"] as const;
 
 export const getBlueprintAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

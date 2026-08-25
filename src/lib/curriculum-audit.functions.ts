@@ -12,7 +12,6 @@ import {
   runCurriculumProbes,
 } from "./curriculum-audit.server";
 
-const READERS = ["admin", "educator", "reviewer"] as const;
 
 export const getCurriculumAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

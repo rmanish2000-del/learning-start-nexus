@@ -12,7 +12,6 @@ import {
   runEngineProbes,
 } from "./diagnostic-audit.server";
 
-const READERS = ["admin", "educator", "reviewer"] as const;
 
 export const getDiagnosticAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

@@ -11,7 +11,6 @@ import {
   runQuestionBankProbes,
 } from "./question-bank-audit.server";
 
-const READERS = ["admin", "educator", "reviewer"] as const;
 
 export const getQuestionBankAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])

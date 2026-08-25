@@ -17,7 +17,8 @@ export type RouteProbe = {
 
 export const probeRouteProtection = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .handler(async () => {
+  .handler(async ({ context }) => {
+    await requireAuditRole(context.supabase, context.userId);
     const request = getRequest();
     const origin = new URL(request.url).origin;
 
