@@ -100,6 +100,17 @@ export function markOnboardingComplete(role: string): void {
 
 export const tourReplayKey = (tourId: string) => `tour-replay:${tourId}`;
 
+/** Per-role flag for the first-login "How EduOS Works" intro dialog. */
+export const introSeenKey = (role: string) => `intro-seen:${role}`;
+
+/** Event dispatched to open the "How EduOS Works" intro on demand. */
+export const SHOW_INTRO_EVENT = "eduos:show-intro";
+
+export function requestIntro(): void {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent(SHOW_INTRO_EVENT));
+}
+
 /**
  * Safe reset for testing/support: re-arms the role's guided tour so it replays
  * once on the next visit to the role's home page. Deliberately does NOT clear
