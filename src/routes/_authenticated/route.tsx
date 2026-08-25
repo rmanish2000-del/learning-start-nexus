@@ -3,7 +3,13 @@ import { createFileRoute, Link, Outlet, redirect } from "@tanstack/react-router"
 import { Button } from "@/components/ui/button";
 
 import { supabase } from "@/integrations/supabase/client";
-import { isReviewerAllowedPath, roleHome, type AppRole } from "@/lib/roles";
+import {
+  isAuditPath,
+  isReviewerAllowedPath,
+  isStudentAllowedPath,
+  roleHome,
+  type AppRole,
+} from "@/lib/roles";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { AppShell } from "@/components/app-shell";
 
@@ -44,6 +50,16 @@ export const Route = createFileRoute("/_authenticated")({
     ) {
       throw redirect({ to: "/parent" });
     }
+    // Students never reach staff, curriculum-authoring or audit surfaces.
+    if (role === "student" && !isStudentAllowedPath(location.pathname)) {
+      throw redirect({ to: "/home" });
+    }
+
+    // Audit and verification surfaces: admins and reviewers only.
+    if (isAuditPath(location.pathname) && role !== "admin" && role !== "reviewer") {
+      throw redirect({ to: roleHome(role) });
+    }
+
     if (role !== "parent" && location.pathname === "/parent") {
       throw redirect({ to: roleHome(role) });
     }
