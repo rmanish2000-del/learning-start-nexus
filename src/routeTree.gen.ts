@@ -34,6 +34,7 @@ import { Route as AuthenticatedDiagnosticEngineRouteImport } from './routes/_aut
 import { Route as AuthenticatedDiagnosticEngineAuditRouteImport } from './routes/_authenticated/diagnostic-engine-audit'
 import { Route as AuthenticatedGapAnalysisRouteImport } from './routes/_authenticated/gap-analysis'
 import { Route as AuthenticatedGapAnalysisAuditRouteImport } from './routes/_authenticated/gap-analysis-audit'
+import { Route as AuthenticatedHelpRouteImport } from './routes/_authenticated/help'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
 import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenticated/launch-audit'
@@ -41,6 +42,7 @@ import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedParentRouteImport } from './routes/_authenticated/parent'
 import { Route as AuthenticatedQuestionBankRouteImport } from './routes/_authenticated/question-bank'
 import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_authenticated/question-bank-audit'
+import { Route as AuthenticatedQuickStartRouteImport } from './routes/_authenticated/quick-start'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
@@ -190,6 +192,11 @@ const AuthenticatedGapAnalysisAuditRoute =
     path: '/gap-analysis-audit',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedHelpRoute = AuthenticatedHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -229,6 +236,11 @@ const AuthenticatedQuestionBankAuditRoute =
     path: '/question-bank-audit',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedQuickStartRoute = AuthenticatedQuickStartRouteImport.update({
+  id: '/quick-start',
+  path: '/quick-start',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedRlsVerificationRoute =
   AuthenticatedRlsVerificationRouteImport.update({
     id: '/rls-verification',
@@ -314,6 +326,7 @@ export interface FileRoutesByFullPath {
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
+  '/help': typeof AuthenticatedHelpRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -321,6 +334,7 @@ export interface FileRoutesByFullPath {
   '/parent': typeof AuthenticatedParentRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
+  '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -357,6 +371,7 @@ export interface FileRoutesByTo {
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
+  '/help': typeof AuthenticatedHelpRoute
   '/home': typeof AuthenticatedHomeRoute
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -364,6 +379,7 @@ export interface FileRoutesByTo {
   '/parent': typeof AuthenticatedParentRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
+  '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -402,6 +418,7 @@ export interface FileRoutesById {
   '/_authenticated/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/_authenticated/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/_authenticated/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
+  '/_authenticated/help': typeof AuthenticatedHelpRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
   '/_authenticated/launch-audit': typeof AuthenticatedLaunchAuditRoute
@@ -409,6 +426,7 @@ export interface FileRoutesById {
   '/_authenticated/parent': typeof AuthenticatedParentRoute
   '/_authenticated/question-bank': typeof AuthenticatedQuestionBankRoute
   '/_authenticated/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
+  '/_authenticated/quick-start': typeof AuthenticatedQuickStartRoute
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
@@ -447,6 +465,7 @@ export interface FileRouteTypes {
     | '/diagnostic-engine-audit'
     | '/gap-analysis'
     | '/gap-analysis-audit'
+    | '/help'
     | '/home'
     | '/interventions'
     | '/launch-audit'
@@ -454,6 +473,7 @@ export interface FileRouteTypes {
     | '/parent'
     | '/question-bank'
     | '/question-bank-audit'
+    | '/quick-start'
     | '/rls-verification'
     | '/settings'
     | '/sprint-3-audit'
@@ -490,6 +510,7 @@ export interface FileRouteTypes {
     | '/diagnostic-engine-audit'
     | '/gap-analysis'
     | '/gap-analysis-audit'
+    | '/help'
     | '/home'
     | '/interventions'
     | '/launch-audit'
@@ -497,6 +518,7 @@ export interface FileRouteTypes {
     | '/parent'
     | '/question-bank'
     | '/question-bank-audit'
+    | '/quick-start'
     | '/rls-verification'
     | '/settings'
     | '/sprint-3-audit'
@@ -534,6 +556,7 @@ export interface FileRouteTypes {
     | '/_authenticated/diagnostic-engine-audit'
     | '/_authenticated/gap-analysis'
     | '/_authenticated/gap-analysis-audit'
+    | '/_authenticated/help'
     | '/_authenticated/home'
     | '/_authenticated/interventions'
     | '/_authenticated/launch-audit'
@@ -541,6 +564,7 @@ export interface FileRouteTypes {
     | '/_authenticated/parent'
     | '/_authenticated/question-bank'
     | '/_authenticated/question-bank-audit'
+    | '/_authenticated/quick-start'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
     | '/_authenticated/sprint-3-audit'
@@ -741,6 +765,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedGapAnalysisAuditRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/help': {
+      id: '/_authenticated/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof AuthenticatedHelpRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
@@ -788,6 +819,13 @@ declare module '@tanstack/react-router' {
       path: '/question-bank-audit'
       fullPath: '/question-bank-audit'
       preLoaderRoute: typeof AuthenticatedQuestionBankAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/quick-start': {
+      id: '/_authenticated/quick-start'
+      path: '/quick-start'
+      fullPath: '/quick-start'
+      preLoaderRoute: typeof AuthenticatedQuickStartRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/rls-verification': {
@@ -894,6 +932,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDiagnosticEngineAuditRoute: typeof AuthenticatedDiagnosticEngineAuditRoute
   AuthenticatedGapAnalysisRoute: typeof AuthenticatedGapAnalysisRoute
   AuthenticatedGapAnalysisAuditRoute: typeof AuthenticatedGapAnalysisAuditRoute
+  AuthenticatedHelpRoute: typeof AuthenticatedHelpRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
   AuthenticatedLaunchAuditRoute: typeof AuthenticatedLaunchAuditRoute
@@ -901,6 +940,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedParentRoute: typeof AuthenticatedParentRoute
   AuthenticatedQuestionBankRoute: typeof AuthenticatedQuestionBankRoute
   AuthenticatedQuestionBankAuditRoute: typeof AuthenticatedQuestionBankAuditRoute
+  AuthenticatedQuickStartRoute: typeof AuthenticatedQuickStartRoute
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
@@ -934,6 +974,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedDiagnosticEngineAuditRoute,
   AuthenticatedGapAnalysisRoute: AuthenticatedGapAnalysisRoute,
   AuthenticatedGapAnalysisAuditRoute: AuthenticatedGapAnalysisAuditRoute,
+  AuthenticatedHelpRoute: AuthenticatedHelpRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
   AuthenticatedLaunchAuditRoute: AuthenticatedLaunchAuditRoute,
@@ -941,6 +982,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedParentRoute: AuthenticatedParentRoute,
   AuthenticatedQuestionBankRoute: AuthenticatedQuestionBankRoute,
   AuthenticatedQuestionBankAuditRoute: AuthenticatedQuestionBankAuditRoute,
+  AuthenticatedQuickStartRoute: AuthenticatedQuickStartRoute,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,

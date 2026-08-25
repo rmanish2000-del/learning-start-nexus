@@ -29,9 +29,14 @@ export const Route = createFileRoute("/_authenticated")({
       throw redirect({ to: "/launch-audit" });
     }
 
-    // Sprint 5B: parents get the read-only portal only; everyone else is
-    // bounced away from it.
-    if (role === "parent" && location.pathname !== "/parent") {
+    // Sprint 5B: parents get the read-only portal plus the support pages
+    // (quick start, help center); everyone else is bounced away from /parent.
+    if (
+      role === "parent" &&
+      !PARENT_ALLOWED_PATHS.some(
+        (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
+      )
+    ) {
       throw redirect({ to: "/parent" });
     }
     if (role !== "parent" && location.pathname === "/parent") {

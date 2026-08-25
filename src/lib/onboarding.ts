@@ -142,6 +142,8 @@ export function requestTour(tourId: string): void {
 export interface ContextHelpContent {
   title: string;
   tips: string[];
+  /** "What do I do next?" — ordered next actions for this page. */
+  next?: string[];
   tourId?: string;
 }
 
@@ -153,6 +155,11 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
       "Needs attention lists learners with open gaps or pending interventions — start there each morning.",
       "Stats update live as students submit assessments.",
     ],
+    next: [
+      "Check Needs attention and open the first learner listed.",
+      "Approve any pending intervention recommendations.",
+      "If a learner has no diagnostic yet, assign one from Assessments.",
+    ],
     tourId: "educator-dashboard",
   },
   "/learners": {
@@ -161,6 +168,11 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
       "Add learners here, then open a profile to see assessments, gaps, interventions and outcomes in one place.",
       "Each learner profile has tabs for the full learning journey — evidence is never edited, only appended.",
     ],
+    next: [
+      "Add any missing learners with the Add learner button.",
+      "Open a learner profile and check the Gaps tab.",
+      "Assign a diagnostic to any learner without a recent score.",
+    ],
   },
   "/assessments": {
     title: "Assessments",
@@ -168,12 +180,22 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
       "Assign a published diagnostic to a learner — they see it on their home screen immediately.",
       "Scores under 70% automatically open a learning gap with a recommended intervention.",
     ],
+    next: [
+      "Assign a published diagnostic to each learner who needs one.",
+      "When results come in, review the new gaps in Gap Analysis.",
+      "Approve the recommended interventions they produced.",
+    ],
   },
   "/interventions": {
     title: "Interventions",
     tips: [
       "Recommendations arrive from gap detection. Approving one creates an intervention the student can see.",
       "Approved interventions unlock the AI Tutor for that learner — the tutor only works within approved scope.",
+    ],
+    next: [
+      "Approve pending recommendations so learners can start practicing.",
+      "Confirm parents have recorded consent so the AI Tutor unlocks.",
+      "Schedule reassessments for learners with completed practice.",
     ],
   },
   "/home": {
@@ -183,6 +205,11 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
       "The AI Tutor needs guardian consent — ask a parent to approve it if the button is locked.",
       "Your mastery ring fills as you complete reassessments.",
     ],
+    next: [
+      "Finish any assigned diagnostic waiting at the top of the page.",
+      "Practice one focus area with the AI Tutor.",
+      "Take a reassessment when your educator assigns one.",
+    ],
     tourId: "student-home",
   },
   "/parent": {
@@ -190,6 +217,11 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
     tips: [
       "Record consent first — it unlocks the AI Tutor for your child. Assessments and plans work either way.",
       "Progress shows live mastery, recent assessment scores and active interventions. Everything is read-only.",
+    ],
+    next: [
+      "Record consent if you haven't — it unlocks the AI Tutor.",
+      "Review your child's latest assessment scores below.",
+      "Talk to the educator about anything that surprises you.",
     ],
     tourId: "parent-portal",
   },
