@@ -4,9 +4,11 @@ import { Compass, Play, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HOW_IT_WORKS } from "@/lib/help-center";
 import {
+  claimOnboardingModal,
   getOnboardingFlag,
   hasCompletedOnboarding,
   introSeenKey,
+  releaseOnboardingModal,
   requestTour,
   setOnboardingFlag,
   SHOW_INTRO_EVENT,
@@ -31,24 +33,44 @@ export function HowItWorksDialog() {
   const [show, setShow] = useState(false);
 
   // Auto-show once, shortly after the first authenticated page settles.
+  // The modal claim prevents stacking with the completion celebration:
+  // whoever loses the claim retries a few times, then gives up silently
+  // (the intro stays replayable on demand via requestIntro()).
   useEffect(() => {
-    const t = window.setTimeout(() => {
+    let cancelled = false;
+    let timer: number | undefined;
+    const attempt = (tries: number) => {
+      if (cancelled) return;
       if (getOnboardingFlag(introSeenKey(role))) return;
       if (hasCompletedOnboarding()) return;
+      if (!claimOnboardingModal("intro")) {
+        if (tries < 8) timer = window.setTimeout(() => attempt(tries + 1), 2500);
+        return;
+      }
       setShow(true);
-    }, 600);
-    return () => window.clearTimeout(t);
+    };
+    timer = window.setTimeout(() => attempt(0), 600);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, [role]);
 
-  // Manual replays (Settings, Quick Start, Help Center).
+  // Manual replays (Settings, Quick Start, Help Center) — the user asked
+  // explicitly, so force the claim past any stale holder.
   useEffect(() => {
-    const handler = () => setShow(true);
+    const handler = () => {
+      releaseOnboardingModal("intro");
+      claimOnboardingModal("intro");
+      setShow(true);
+    };
     window.addEventListener(SHOW_INTRO_EVENT, handler);
     return () => window.removeEventListener(SHOW_INTRO_EVENT, handler);
   }, []);
 
   const close = useCallback(() => {
     setOnboardingFlag(introSeenKey(role));
+    releaseOnboardingModal("intro");
     setShow(false);
   }, [role]);
 

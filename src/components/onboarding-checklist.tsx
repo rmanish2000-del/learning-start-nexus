@@ -8,7 +8,9 @@ import { Progress } from "@/components/ui/progress";
 import { Celebration } from "@/components/celebration";
 import {
   celebratedKey,
+  claimOnboardingModal,
   getOnboardingFlag,
+  releaseOnboardingModal,
   requestTour,
   setOnboardingFlag,
   type OnboardingStep,
@@ -38,18 +40,34 @@ export function OnboardingChecklist({
 
   // Fire the celebration once per role when the final step completes. The
   // completion flag is persisted immediately so a refresh or re-login while
-  // the modal is open can never re-trigger it.
+  // the modal is open can never re-trigger it. The modal claim keeps the
+  // celebration from stacking on top of the first-login intro — if the
+  // intro is showing, we retry until it's dismissed (claim released).
   useEffect(() => {
-    if (allDone && !getOnboardingFlag(celebratedKey(role))) {
-      setOnboardingFlag(celebratedKey(role));
+    if (!allDone || getOnboardingFlag(celebratedKey(role))) return;
+    setOnboardingFlag(celebratedKey(role));
+    let cancelled = false;
+    let timer: number | undefined;
+    const attempt = () => {
+      if (cancelled) return;
+      if (!claimOnboardingModal("celebration")) {
+        timer = window.setTimeout(attempt, 2500);
+        return;
+      }
       setCelebrating(true);
-    }
+    };
+    attempt();
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, [allDone, role]);
 
   // Every dismiss path (Keep going, X, backdrop, Escape) lands here: close
   // the modal and make sure the completion flag is persisted.
   const handleClose = () => {
     setOnboardingFlag(celebratedKey(role));
+    releaseOnboardingModal("celebration");
     setCelebrating(false);
   };
 
