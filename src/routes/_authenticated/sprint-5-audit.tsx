@@ -122,7 +122,7 @@ const CHECKLIST: { text: string; how: string }[] = [
   },
   {
     text: "Submitting a reassessment finalizes the outcome deterministically",
-    how: "Sign in as aarav (PIN 123456), complete the assigned Fractions Mastery Reassessment. Lift, confidence, and status are computed in code — probe P1 recomputes them from raw rows and demands an exact match.",
+    how: "Sign in as the pilot student, complete the assigned Fractions Mastery Reassessment. Lift, confidence, and status are computed in code — probe P1 recomputes them from raw rows and demands an exact match.",
   },
   {
     text: "Mastery lift updates the learner's mastery index",
