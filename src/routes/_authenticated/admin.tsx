@@ -102,7 +102,7 @@ function AdminPage() {
   const updateRoleFn = useServerFn(updateUserRole);
 
   const createMutation = useMutation({
-    mutationFn: (input: { fullName: string; email: string; role: AppRole }) =>
+    mutationFn: (input: { fullName: string; email: string; role: Exclude<AppRole, "student"> }) =>
       createStaffFn({ data: input }),
     onSuccess: (result) => {
       setTempPassword(result.tempPassword);
@@ -128,7 +128,7 @@ function AdminPage() {
     createMutation.mutate({
       fullName: String(form.get("fullName") ?? ""),
       email: String(form.get("email") ?? ""),
-      role: String(form.get("role") ?? "educator") as AppRole,
+      role: String(form.get("role") ?? "educator") as Exclude<AppRole, "student">,
     });
   };
 
