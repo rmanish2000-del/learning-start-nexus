@@ -52,6 +52,7 @@ import { Route as AuthenticatedSprint4AuditRouteImport } from './routes/_authent
 import { Route as AuthenticatedSprint5AuditRouteImport } from './routes/_authenticated/sprint-5-audit'
 import { Route as AuthenticatedUxPhase1PlanRouteImport } from './routes/_authenticated/ux-phase1-plan'
 import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
+import { Route as DiagnosticIndexRouteImport } from './routes/diagnostic.index'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
@@ -297,6 +298,11 @@ const AuthenticatedVerificationRoute =
     path: '/verification',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const DiagnosticIndexRoute = DiagnosticIndexRouteImport.update({
+  id: '/diagnostic/',
+  path: '/diagnostic/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAssessmentAssessmentIdRoute =
   AuthenticatedAssessmentAssessmentIdRouteImport.update({
     id: '/assessment/$assessmentId',
@@ -365,6 +371,7 @@ export interface FileRoutesByFullPath {
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
+  '/diagnostic/': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
@@ -413,6 +420,7 @@ export interface FileRoutesByTo {
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
+  '/diagnostic': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
@@ -463,6 +471,7 @@ export interface FileRoutesById {
   '/_authenticated/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/_authenticated/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/_authenticated/verification': typeof AuthenticatedVerificationRoute
+  '/diagnostic/': typeof DiagnosticIndexRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
@@ -513,6 +522,7 @@ export interface FileRouteTypes {
     | '/sprint-5-audit'
     | '/ux-phase1-plan'
     | '/verification'
+    | '/diagnostic/'
     | '/assessment/$assessmentId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
@@ -561,6 +571,7 @@ export interface FileRouteTypes {
     | '/sprint-5-audit'
     | '/ux-phase1-plan'
     | '/verification'
+    | '/diagnostic'
     | '/assessment/$assessmentId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
@@ -610,6 +621,7 @@ export interface FileRouteTypes {
     | '/_authenticated/sprint-5-audit'
     | '/_authenticated/ux-phase1-plan'
     | '/_authenticated/verification'
+    | '/diagnostic/'
     | '/_authenticated/assessment/$assessmentId'
     | '/_authenticated/learners/$learnerId'
     | '/_authenticated/session/$sessionId'
@@ -625,6 +637,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  DiagnosticIndexRoute: typeof DiagnosticIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -930,6 +943,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVerificationRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/diagnostic/': {
+      id: '/diagnostic/'
+      path: '/diagnostic'
+      fullPath: '/diagnostic/'
+      preLoaderRoute: typeof DiagnosticIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/assessment/$assessmentId': {
       id: '/_authenticated/assessment/$assessmentId'
       path: '/assessment/$assessmentId'
@@ -1073,6 +1093,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  DiagnosticIndexRoute: DiagnosticIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

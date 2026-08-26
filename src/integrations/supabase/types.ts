@@ -1622,6 +1622,54 @@ export type Database = {
           },
         ]
       }
+      parent_entitlements: {
+        Row: {
+          consumed_at: string | null
+          created_at: string
+          expires_at: string | null
+          granted_at: string
+          id: string
+          kind: string
+          learner_id: string | null
+          order_id: string
+        }
+        Insert: {
+          consumed_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+          granted_at?: string
+          id?: string
+          kind: string
+          learner_id?: string | null
+          order_id: string
+        }
+        Update: {
+          consumed_at?: string | null
+          created_at?: string
+          expires_at?: string | null
+          granted_at?: string
+          id?: string
+          kind?: string
+          learner_id?: string | null
+          order_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parent_entitlements_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_entitlements_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "parent_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       parent_learner_links: {
         Row: {
           created_at: string
@@ -1657,6 +1705,146 @@ export type Database = {
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      parent_orders: {
+        Row: {
+          access_token: string
+          amount_paise: number
+          assessment_id: string | null
+          board: string | null
+          book_id: string | null
+          child_first_name: string | null
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          created_at: string
+          currency: string
+          grade: number | null
+          id: string
+          learner_id: string | null
+          order_ref: string
+          org_id: string | null
+          paid_at: string | null
+          parent_order_id: string | null
+          provider: string
+          provider_payment_ref: string | null
+          purpose: string
+          session_id: string | null
+          status: string
+          subject: string | null
+          unit_id: string | null
+          updated_at: string
+          utm: Json
+        }
+        Insert: {
+          access_token: string
+          amount_paise: number
+          assessment_id?: string | null
+          board?: string | null
+          book_id?: string | null
+          child_first_name?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          currency?: string
+          grade?: number | null
+          id?: string
+          learner_id?: string | null
+          order_ref: string
+          org_id?: string | null
+          paid_at?: string | null
+          parent_order_id?: string | null
+          provider?: string
+          provider_payment_ref?: string | null
+          purpose: string
+          session_id?: string | null
+          status?: string
+          subject?: string | null
+          unit_id?: string | null
+          updated_at?: string
+          utm?: Json
+        }
+        Update: {
+          access_token?: string
+          amount_paise?: number
+          assessment_id?: string | null
+          board?: string | null
+          book_id?: string | null
+          child_first_name?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          currency?: string
+          grade?: number | null
+          id?: string
+          learner_id?: string | null
+          order_ref?: string
+          org_id?: string | null
+          paid_at?: string | null
+          parent_order_id?: string | null
+          provider?: string
+          provider_payment_ref?: string | null
+          purpose?: string
+          session_id?: string | null
+          status?: string
+          subject?: string | null
+          unit_id?: string | null
+          updated_at?: string
+          utm?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parent_orders_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_parent_order_id_fkey"
+            columns: ["parent_order_id"]
+            isOneToOne: false
+            referencedRelation: "parent_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_units"
             referencedColumns: ["id"]
           },
         ]
