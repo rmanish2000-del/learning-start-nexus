@@ -387,9 +387,20 @@ function AuthPage() {
           </Tabs>
 
           <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
-            Trouble signing in? Your tutoring center admin can reset a staff password or a student
-            PIN. Parents receive their sign-in from the center.
+            Trouble signing in? Parents can reset from this page; your tutoring centre admin resets
+            staff passwords and student PINs.
           </p>
+
+          {tab !== "staff" ? (
+            <button
+              type="button"
+              onClick={() => setTab("staff")}
+              className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+            >
+              Staff access
+            </button>
+          ) : null}
+
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             <Link to="/about" className="hover:text-foreground">About</Link>
