@@ -214,7 +214,7 @@ function ParentPortal() {
               {t(
                 "portal.welcome",
                 `Welcome${profile?.full_name ? `, ${profile.full_name}` : ""}. Follow progress and manage consent — everything here is read-only.`,
-                { name: profile?.full_name ?? "" },
+                { name: profile?.full_name ? `, ${profile.full_name}` : "" },
               )}
             </p>
           </div>
