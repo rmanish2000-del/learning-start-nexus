@@ -22,15 +22,19 @@ import {
 } from "recharts";
 
 import { supabase } from "@/integrations/supabase/client";
-import { getLearnerConsent, recordGuardianConsent } from "@/lib/consent.functions";
+import {
+  getLearnerConsent,
+  recordGuardianConsent,
+  withdrawGuardianConsent,
+} from "@/lib/consent.functions";
 import {
   getOnboardingFlag,
   setOnboardingFlag,
   stepFlagKey,
   type OnboardingStep,
 } from "@/lib/onboarding";
-import { AppShell } from "@/components/app-shell";
 import { ContextHelp } from "@/components/context-help";
+import { QueryError } from "@/components/query-error";
 import { EmptyState } from "@/components/empty-state";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
 import { OnboardingChecklist } from "@/components/onboarding-checklist";
@@ -172,7 +176,7 @@ function ParentPortal() {
   };
 
   return (
-    <AppShell>
+    <>
       <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -195,7 +199,13 @@ function ParentPortal() {
           />
         </div>
 
-        {linksQuery.isLoading ? (
+        {linksQuery.isError ? (
+          <QueryError
+            title="We couldn't load your children"
+            error={linksQuery.error}
+            onRetry={() => void linksQuery.refetch()}
+          />
+        ) : linksQuery.isLoading ? (
           <Skeleton className="h-40 w-full" />
         ) : learners.length === 0 ? (
           <EmptyState
@@ -388,7 +398,7 @@ function ParentPortal() {
         )}
       </div>
       <GuidedTour tourId="parent-portal" steps={PARENT_TOUR} />
-    </AppShell>
+    </>
   );
 }
 
@@ -408,6 +418,7 @@ interface ConsentCardProps {
           parentEmail: string;
           consentVersion: string;
           recordedAt: string;
+          action: "granted" | "withdrawn";
         }[];
       }
     | undefined;
@@ -445,6 +456,16 @@ function ConsentCard({
       onRecorded();
     },
     onError: (e) => toast.error(e instanceof Error ? e.message : "Could not record consent"),
+  });
+
+  // Withdrawal appends a new event; nothing in the history is removed.
+  const withdrawMutation = useMutation({
+    mutationFn: () => withdrawGuardianConsent({ data: { learnerId } }),
+    onSuccess: () => {
+      toast.success("Consent withdrawn — AI Tutor is now locked");
+      onRecorded();
+    },
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Could not withdraw consent"),
   });
 
   return (
@@ -491,12 +512,30 @@ function ConsentCard({
                 </Button>
               </div>
             )}
+            {consent?.hasConsent && (
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border p-4">
+                <p className="min-w-48 flex-1 text-sm text-muted-foreground">
+                  You can withdraw consent at any time. The AI Tutor locks immediately; assessments
+                  and learning plans keep working, and the consent history is preserved.
+                </p>
+                <Button
+                  variant="outline"
+                  disabled={withdrawMutation.isPending}
+                  onClick={() => withdrawMutation.mutate()}
+                >
+                  {withdrawMutation.isPending ? "Withdrawing…" : "Withdraw consent"}
+                </Button>
+              </div>
+            )}
             {consent && consent.history.length > 0 && (
               <div className="space-y-1.5">
                 <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Consent history</p>
                 {consent.history.map((h) => (
                   <div key={h.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5 text-xs">
-                    <span>
+                    <span className="flex items-center gap-2">
+                      <Badge variant={h.action === "withdrawn" ? "secondary" : "outline"}>
+                        {h.action === "withdrawn" ? "Withdrawn" : "Granted"}
+                      </Badge>
                       {h.parentName} · {h.parentEmail}
                     </span>
                     <span className="text-muted-foreground">

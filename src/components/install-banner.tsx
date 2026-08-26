@@ -140,10 +140,14 @@ export function InstallBanner() {
     setVariant(null);
   };
 
-  if (!variant) return null;
+  // Mount marker: lets the launch audit verify from the live DOM that the
+  // banner component is actually mounted app-wide, even when the browser has
+  // no install prompt to show.
+  if (!variant) return <span data-eduos-install-banner="mounted" hidden />;
 
   return (
     <div
+      data-eduos-install-banner="visible"
       role="region"
       aria-label="Install EduOS"
       className="fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 shadow-lg backdrop-blur print:hidden"

@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
+import { QueryError } from "@/components/query-error";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -96,7 +97,7 @@ function LearnerProfilePage() {
   const resetPinFn = useServerFn(resetLearnerPin);
   const [evidenceOpen, setEvidenceOpen] = useState(false);
 
-  const { data: learner, isPending, isError } = useQuery({
+  const { data: learner, isPending, isError, error, refetch } = useQuery({
     queryKey: ["learner", learnerId],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -294,7 +295,19 @@ function LearnerProfilePage() {
     onError: (error) => toast.error(error.message),
   });
 
-  if (isError) throw notFound();
+  // A load failure is not the same as "learner doesn't exist" — surface the
+  // real reason (usually a permission error) with a retry instead of a 404.
+  if (isError) {
+    return (
+      <div className="mx-auto max-w-3xl p-2">
+        <QueryError
+          title="We couldn't load this learner"
+          error={error}
+          onRetry={() => void refetch()}
+        />
+      </div>
+    );
+  }
 
   if (isPending || !learner) {
     return (

@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { Circle } from "lucide-react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
@@ -418,13 +419,13 @@ function Sprint4AuditPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <ListChecks className="h-4 w-4" /> Acceptance checklist
+            <ListChecks className="h-4 w-4" /> Acceptance checklist — manual steps, not auto-verified
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {CHECKLIST.map((item) => (
             <div key={item.text} className="flex items-start gap-3 rounded-lg border p-3">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
               <div>
                 <p className="text-sm font-medium">{item.text}</p>
                 <p className="mt-0.5 text-xs text-muted-foreground">{item.how}</p>

@@ -13,6 +13,7 @@ import {
   RefreshCw,
   ShieldCheck,
 } from "lucide-react";
+import { Circle } from "lucide-react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
@@ -606,7 +607,7 @@ function Sprint3AuditPage() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <ListChecks className="h-4 w-4 text-muted-foreground" /> 7 — Acceptance checklist
+            <ListChecks className="h-4 w-4 text-muted-foreground" /> 7 — Acceptance checklist — manual steps, not auto-verified
           </CardTitle>
           <CardDescription>
             Each item names the observable evidence for it — an independent reviewer can validate
@@ -616,7 +617,7 @@ function Sprint3AuditPage() {
         <CardContent className="space-y-3">
           {CHECKLIST.map((c) => (
             <div key={c.text} className="flex gap-3 rounded-lg border p-3">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+              <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
               <div>
                 <p className="text-sm font-medium">{c.text}</p>
                 <p className="mt-0.5 text-xs text-muted-foreground">{c.how}</p>

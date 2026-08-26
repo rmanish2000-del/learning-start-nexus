@@ -11,6 +11,7 @@ import {
   linkParentToLearner,
   listParentLinks,
   listStaffUsers,
+  resetStaffPassword,
   unlinkParentFromLearner,
   updateUserRole,
 } from "@/lib/admin.functions";
@@ -70,6 +71,19 @@ function AdminPage() {
   const orgId = profile?.org_id ?? null;
   const listStaffFn = useServerFn(listStaffUsers);
   const createStaffFn = useServerFn(createStaffUser);
+  const resetPasswordFn = useServerFn(resetStaffPassword);
+  const [resetResult, setResetResult] = useState<{ name: string; password: string } | null>(null);
+
+  // P0 kernel: admin issues a one-time temporary password, shown once.
+  const resetPasswordMutation = useMutation({
+    mutationFn: (userId: string) => resetPasswordFn({ data: { userId } }),
+    onSuccess: (res) => {
+      setResetResult({ name: res.fullName || "This account", password: res.tempPassword });
+      toast.success("Temporary password issued.");
+    },
+    onError: (err) =>
+      toast.error(err instanceof Error ? err.message : "Could not reset that password."),
+  });
   const updateRoleFn = useServerFn(updateUserRole);
 
   const { data: org } = useQuery({
@@ -279,13 +293,14 @@ function AdminPage() {
                   <TableHead>Email</TableHead>
                   <TableHead>Role</TableHead>
                   <TableHead className="text-right">Change role</TableHead>
+                  <TableHead className="text-right">Password</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {isPending &&
                   [0, 1, 2].map((i) => (
                     <TableRow key={i}>
-                      <TableCell colSpan={4}>
+                      <TableCell colSpan={5}>
                         <Skeleton className="h-8 w-full" />
                       </TableCell>
                     </TableRow>
@@ -327,10 +342,38 @@ function AdminPage() {
                         </SelectContent>
                       </Select>
                     </TableCell>
+                    <TableCell className="text-right">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        disabled={member.id === user.id || resetPasswordMutation.isPending}
+                        onClick={() => resetPasswordMutation.mutate(member.id)}
+                      >
+                        Reset password
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
+          )}
+          {resetResult && (
+            <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm">
+              <p className="font-medium">Temporary password for {resetResult.name}</p>
+              <p className="mt-1 font-mono text-base">{resetResult.password}</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Shown once. Share it directly with the person and ask them to change it in Settings
+                after signing in.
+              </p>
+              <Button
+                size="sm"
+                variant="outline"
+                className="mt-3"
+                onClick={() => setResetResult(null)}
+              >
+                Done
+              </Button>
+            </div>
           )}
         </CardContent>
       </Card>
