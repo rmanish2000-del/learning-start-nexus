@@ -176,3 +176,56 @@ export const setQuestionStatusSchema = z.object({
   questionId: z.string().uuid(),
   status: z.enum(["draft", "approved", "retired"]),
 });
+
+// ---------------------------------------------------------------------------
+// Batch generation (all outcomes in a book / unit in one action)
+// ---------------------------------------------------------------------------
+
+export const batchGenerateSchema = z.object({
+  bookId: z.string().uuid(),
+  // null / omitted = every unit in the book.
+  unitId: z.string().uuid().nullable().optional(),
+  perOutcome: z.number().int().min(1).max(6),
+  style: z
+    .enum(["auto", "case_study", "assertion_reason", "data_interpretation", "applied_mcq"])
+    .optional(),
+  // Skip outcomes that already have at least this many questions (0 = never skip).
+  skipIfAtLeast: z.number().int().min(0).max(50).optional(),
+});
+
+export type BatchOutcomeResult = {
+  outcomeId: string;
+  code: string;
+  title: string;
+  unitTitle: string;
+  before: number;
+  requested: number;
+  inserted: number;
+  status: "generated" | "skipped" | "failed";
+  error: string | null;
+  latencyMs: number | null;
+};
+
+export type BatchGenerationReport = {
+  bookTitle: string;
+  unitTitle: string | null;
+  startedAt: string;
+  finishedAt: string;
+  durationMs: number;
+  totals: {
+    outcomes: number;
+    generated: number;
+    skipped: number;
+    failed: number;
+    questionsInserted: number;
+  };
+  coverage: {
+    outcomesWithQuestionsBefore: number;
+    outcomesWithQuestionsAfter: number;
+    coveragePctBefore: number;
+    coveragePctAfter: number;
+    questionsBefore: number;
+    questionsAfter: number;
+  };
+  results: BatchOutcomeResult[];
+};
