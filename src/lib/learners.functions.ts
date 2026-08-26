@@ -43,7 +43,8 @@ export const createLearner = createServerFn({ method: "POST" })
       email: studentEmail(data.handle),
       password: studentPassword(data.handle, data.pin),
       email_confirm: true,
-      user_metadata: { full_name: data.fullName },
+      // signup_role drives the role row written by the handle_new_user trigger.
+      user_metadata: { full_name: data.fullName, signup_role: "student" },
     });
     if (error) {
       throw new Error(
