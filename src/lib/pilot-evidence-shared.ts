@@ -162,3 +162,65 @@ export const VERIFICATION_RULES: string[] = [
   "Verifying stamps the question with the reviewer's identity (verified by) and timestamp (verified on).",
   "Every verification is written to an append-only log: no update or delete grant exists on the trail for any signed-in role.",
 ];
+
+// ---------------------------------------------------------------------------
+// Cohort metrics — pilot-level participation and score distributions
+// ---------------------------------------------------------------------------
+
+export type ScoreBand = {
+  label: string;
+  min: number;
+  max: number;
+  count: number;
+};
+
+export const SCORE_BANDS: readonly { label: string; min: number; max: number }[] = [
+  { label: "Beginning (0–49)", min: 0, max: 49 },
+  { label: "Developing (50–69)", min: 50, max: 69 },
+  { label: "Proficient (70–84)", min: 70, max: 84 },
+  { label: "Advanced (85–100)", min: 85, max: 100 },
+];
+
+/** Bucket a list of percentage scores into the four mastery bands. */
+export function bandScores(scores: number[]): ScoreBand[] {
+  return SCORE_BANDS.map((band) => ({
+    ...band,
+    count: scores.filter((s) => s >= band.min && s <= band.max).length,
+  }));
+}
+
+export function meanScore(scores: number[]): number | null {
+  if (scores.length === 0) return null;
+  return Math.round(scores.reduce((sum, s) => sum + s, 0) / scores.length);
+}
+
+export type CohortMetrics = {
+  /** Learners on the roster in this organization. */
+  cohortSize: number;
+  /** Learners with at least one assigned assessment. */
+  learnersAssigned: number;
+  /** Learners who submitted at least one assessment. */
+  learnersCompleted: number;
+  assigned: number;
+  submitted: number;
+  inProgress: number;
+  /** Started but idle for more than the dropout window, or never started past due. */
+  droppedOut: number;
+  completionRatePct: number;
+  dropoutRatePct: number;
+  baseline: { scores: number[]; bands: ScoreBand[]; mean: number | null };
+  reassessment: { scores: number[]; bands: ScoreBand[]; mean: number | null };
+  meanLift: number | null;
+};
+
+/** Sessions idle this long (or never started, past due) count as dropped out. */
+export const DROPOUT_IDLE_DAYS = 14;
+
+export const COHORT_FORMULAS: string[] = [
+  "Cohort size: learners on the roster in your organization.",
+  "Completion rate: submitted assessment sessions ÷ all assigned sessions.",
+  `Dropout rate: sessions started but idle for more than ${DROPOUT_IDLE_DAYS} days, or assigned and never started past their due date, ÷ all assigned sessions.`,
+  "Baseline distribution: score of the first submitted diagnostic per learner-outcome, bucketed into the four mastery bands.",
+  "Reassessment distribution: score of the matching reassessment for the same learner-outcome, same bands.",
+  "Mean lift: mean reassessment score − mean baseline score, over outcomes that have both.",
+];
