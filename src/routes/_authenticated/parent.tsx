@@ -34,6 +34,9 @@ import {
   type OnboardingStep,
 } from "@/lib/onboarding";
 import { ContextHelp } from "@/components/context-help";
+import { ClosureHeader } from "@/components/closure-header";
+import { getParentOutcomeView } from "@/lib/outcome-dashboard.functions";
+import { summariseClosure } from "@/lib/closure-shared";
 import { QueryError } from "@/components/query-error";
 import { EmptyState } from "@/components/empty-state";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
@@ -175,6 +178,24 @@ function ParentPortal() {
     }
   };
 
+  // UX Phase 1 · UX-02: the same four closure numbers parents' educators see.
+  const fetchParentClosure = useServerFn(getParentOutcomeView);
+  const {
+    data: closureView,
+    isPending: closurePending,
+    error: closureError,
+    refetch: refetchClosure,
+  } = useQuery({
+    queryKey: ["closure-header", "parent"],
+    queryFn: () => fetchParentClosure(),
+  });
+  const closureSummary = closureView
+    ? summariseClosure(
+        closureView.children.length === 1 ? "Your child" : "Your children",
+        closureView.combined,
+      )
+    : null;
+
   return (
     <>
       <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-8">
@@ -187,6 +208,13 @@ function ParentPortal() {
           </div>
           <ContextHelp page="/parent" />
         </div>
+
+        <ClosureHeader
+          summary={closureSummary}
+          isPending={closurePending}
+          error={closureError}
+          onRetry={() => void refetchClosure()}
+        />
 
         <div data-tour="parent-checklist">
           <OnboardingChecklist
