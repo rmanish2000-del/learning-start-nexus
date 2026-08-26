@@ -23,7 +23,8 @@ type Handler = (ctx: { request: Request }) => Promise<Response>;
 
 async function post(body: unknown, signature?: string | null): Promise<Response> {
   const { Route } = await import("@/routes/api/public/razorpay-webhook");
-  const handler = (Route.options as { server: { handlers: { POST: Handler } } }).server.handlers.POST;
+  const handler = (Route.options as unknown as { server: { handlers: { POST: Handler } } }).server.handlers
+    .POST;
   const raw = typeof body === "string" ? body : JSON.stringify(body);
   const headers = new Headers({ "content-type": "application/json" });
   const sig = signature === undefined ? createHmac("sha256", WEBHOOK_SECRET).update(raw).digest("hex") : signature;
