@@ -223,7 +223,7 @@ function CentreView() {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <Select
-          value={data.selectedCentreId ?? undefined}
+          {...(data.selectedCentreId ? { value: data.selectedCentreId } : {})}
           onValueChange={(value) => setCentreId(value)}
         >
           <SelectTrigger className="w-[280px]">
