@@ -136,16 +136,19 @@ function TakeAssessmentPage() {
 
   if (error || !data) {
     return (
-      <div className="mx-auto max-w-3xl py-16 text-center">
-        <p className="text-sm text-muted-foreground">
-          {error instanceof Error ? error.message : "Could not load this assessment."}
-        </p>
-        <Button asChild variant="outline" className="mt-4">
+      <div className="mx-auto max-w-3xl space-y-4 py-8">
+        <QueryError
+          title="This assessment didn't load"
+          error={error ?? new Error("Could not load this assessment.")}
+          onRetry={() => void refetch()}
+        />
+        <Button asChild variant="outline">
           <Link to="/home">Back to My Learning</Link>
         </Button>
       </div>
     );
   }
+
 
   // ---- Submitted: result view ----
   if (data.session.status === "submitted") {
