@@ -15,7 +15,9 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import { QueryError } from "@/components/query-error";
 import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
+
 import { DIFFICULTY_LABELS, type RunnerQuestion, type ResultEntry } from "@/lib/assessment-shared";
 import {
   AlertDialog,
