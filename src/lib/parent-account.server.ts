@@ -31,7 +31,7 @@ function handleFor(name: string): string {
 /** Creates or refreshes the parent profile and guarantees the `parent` role. */
 export async function ensureParentAccount(
   userId: string,
-  input: { fullName: string; email: string; phone: string },
+  input: { fullName: string; email?: string; phone?: string | null },
 ): Promise<{ ok: true }> {
   const orgId = await defaultOrgId();
 
@@ -40,7 +40,7 @@ export async function ensureParentAccount(
       id: userId,
       org_id: orgId,
       full_name: input.fullName,
-      phone: input.phone,
+      ...(input.phone ? { phone: input.phone } : {}),
     },
     { onConflict: "id" },
   );
