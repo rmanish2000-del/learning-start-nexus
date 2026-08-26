@@ -57,13 +57,14 @@ export async function fetchBuilderCounts(supabase: Client, admin: Client): Promi
   ] as const;
   const out: BuilderCount[] = [];
   for (const spec of specs) {
+    // assessment_question_map has no id column — count by assessment_id.
+    const countCol = spec.table === "assessments" ? "id" : "assessment_id";
     const visible = await (supabase as SupabaseClient)
       .from(spec.table)
-      .select("id", { count: "exact", head: true });
-    // assessment_question_map has no id column — count by assessment_id.
+      .select(countCol, { count: "exact", head: true });
     const global = await (admin as SupabaseClient)
       .from(spec.table)
-      .select(spec.table === "assessments" ? "id" : "assessment_id", { count: "exact", head: true });
+      .select(countCol, { count: "exact", head: true });
     const visibleToYou = visible.error ? null : (visible.count ?? 0);
     const globalAllOrgs = global.count ?? 0;
     out.push({
