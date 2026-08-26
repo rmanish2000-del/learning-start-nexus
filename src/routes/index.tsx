@@ -212,21 +212,16 @@ function Hero() {
           "EduOS runs the whole loop — diagnostic, gap detection, approved intervention, Socratic AI tutor, fresh-item reassessment — and ends with evidence a reviewer has signed.",
         )}
       </p>
-      <div className="mt-7 flex flex-wrap items-center gap-3">
-        <Button asChild size="lg">
-          <a href="#pilot">
-            {t("landing.hero.ctaPrimary", "Apply for the pilot")} <ArrowRight className="h-4 w-4" />
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="outline">
-          <a href="#evidence">{t("landing.hero.ctaSecondary", "See a sample outcome report")}</a>
-        </Button>
+      <ParentCtas size="lg" />
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <a href="#pilot" className="font-medium text-primary hover:underline">
+          {t("landing.hero.ctaPrimary", "Apply for the pilot")} →
+        </a>
+        <a href="#evidence" className="text-muted-foreground hover:text-foreground">
+          {t("landing.hero.ctaSecondary", "See a sample outcome report")}
+        </a>
       </div>
-      <p className="mt-4 text-sm">
-        <Link to="/diagnostic" className="font-medium text-primary hover:underline">
-          {t("landing.hero.parentCta", "A parent? Get your child's ₹199 diagnostic")} →
-        </Link>
-      </p>
+
 
       <div className="mt-12 grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3">
         {PROOF_STRIP.map((s, i) => (
