@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi, useNavigate } from "@tanstack/react-router";
 import {
   ArrowRight,
   Crosshair,
@@ -633,6 +633,7 @@ function AssessmentBlueprintPage() {
     queryFn: () => getMasteryLevels(),
   });
 
+  const navigate = useNavigate({ from: "/assessment-blueprint" });
   const pageQueryClient = useQueryClient();
   const runGenerateOutcomes = useServerFn(generateBlueprintOutcomesFn);
   const [generating, setGenerating] = useState(false);
