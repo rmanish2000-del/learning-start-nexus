@@ -3,7 +3,7 @@ import { beforeAll, describe, expect, it } from "vitest";
 // The encryption key is HKDF-derived from the service-role key. A fixed test
 // value keeps the round-trip deterministic without touching real secrets.
 beforeAll(() => {
-  process.env.SUPABASE_SERVICE_ROLE_KEY = "test-service-role-key-for-crypto";
+  process.env["SUPABASE_SERVICE_ROLE_KEY"] = "test-service-role-key-for-crypto";
 });
 
 describe("payment credential encryption at rest", () => {
