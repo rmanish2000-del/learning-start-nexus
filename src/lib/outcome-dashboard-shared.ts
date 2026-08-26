@@ -5,7 +5,7 @@
 export type GapRow = {
   id: string;
   learner_id: string;
-  status: string; // 'open' | 'resolved' | ...
+  status: string; // 'open' | 'addressed'
   first_detected_at: string;
   updated_at: string;
 };
@@ -44,7 +44,7 @@ export type OutcomeMetrics = {
 export const METRIC_FORMULAS: { metric: string; formula: string }[] = [
   {
     metric: "Gap Closure Rate",
-    formula: "resolved learning gaps ÷ all detected learning gaps × 100",
+    formula: "closed (addressed) learning gaps ÷ all detected learning gaps × 100",
   },
   {
     metric: "Mastery Lift",
@@ -89,7 +89,8 @@ export function computeOutcomeMetrics(input: {
   const gaps = input.gaps.filter((g) => scope.has(g.learner_id));
   const outcomes = input.outcomes.filter((o) => scope.has(o.learner_id));
 
-  const gapsClosed = gaps.filter((g) => g.status === "resolved").length;
+  // A gap is closed once reassessment evidence marks it addressed/resolved.
+  const gapsClosed = gaps.filter((g) => g.status === "addressed" || g.status === "resolved").length;
 
   const measured = outcomes.filter((o) => o.post_score !== null && o.status !== "pending");
   const lifts = measured
