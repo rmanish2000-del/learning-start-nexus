@@ -1,7 +1,7 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { CircleCheck, CircleX, Crosshair, Lightbulb, Play } from "lucide-react";
+import { CircleCheck, CircleX, Clock, Crosshair, Lightbulb, Play } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +11,8 @@ import {
   dismissRecommendation,
   updateInterventionStatus,
 } from "@/lib/interventions.functions";
+import { getInterventionQueue } from "@/lib/educator-board.functions";
+import { URGENCY_RULE_TEXT } from "@/lib/educator-board-shared";
 import {
   GAP_STATUS_LABELS,
   INTERVENTION_STATUS_LABELS,
@@ -20,6 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+
 
 export const Route = createFileRoute("/_authenticated/interventions")({
   beforeLoad: ({ context }) => {
