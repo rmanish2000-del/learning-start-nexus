@@ -575,6 +575,15 @@ function OutcomePanel({
                 ))}
               </SelectContent>
             </Select>
+            <Select value={genStyle} onValueChange={(v) => setGenStyle(v as "auto" | CbseKind)}>
+              <SelectTrigger className="w-52"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="auto">Auto (outcome question types)</SelectItem>
+                {CBSE_KINDS.map((k) => (
+                  <SelectItem key={k} value={k}>{CBSE_KIND_LABELS[k]}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Button size="sm" onClick={() => void handleGenerate()} disabled={generating}>
               <Sparkles className="h-3.5 w-3.5" />
               {generating ? "Generating…" : "Generate with AI"}
