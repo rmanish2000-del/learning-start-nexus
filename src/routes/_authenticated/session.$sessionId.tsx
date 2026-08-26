@@ -58,11 +58,14 @@ function TakeAssessmentPage() {
   const saveFn = useServerFn(saveSessionProgress);
   const submitFn = useServerFn(submitAssessment);
 
-  const { data, isPending, error } = useQuery({
+  const { data, isPending, error, refetch } = useQuery({
     queryKey: ["student-session", sessionId],
     queryFn: () => getSession({ data: { sessionId } }),
     staleTime: Infinity,
+    retry: false,
+    throwOnError: false,
   });
+
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [index, setIndex] = useState(0);
