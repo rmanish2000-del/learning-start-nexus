@@ -57,6 +57,16 @@ import {
   setQuestionStatusFn,
   updateQuestionFn,
 } from "@/lib/question-bank.functions";
+import {
+  ASSERTION_REASON_OPTIONS,
+  CBSE_KIND_LABELS,
+  CBSE_KIND_RULES,
+  CBSE_KINDS,
+  isOptionKind,
+  requiresStimulus,
+  VERIFICATION_LABELS,
+  type CbseKind,
+} from "@/lib/pilot-evidence-shared";
 
 export const Route = createFileRoute("/_authenticated/question-bank")({
   validateSearch: (search: Record<string, unknown>) => ({
