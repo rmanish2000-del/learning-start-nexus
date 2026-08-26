@@ -56,9 +56,12 @@ function mapQuestion(row: QuestionRow): QuestionDto {
 // ---------------------------------------------------------------------------
 
 export async function fetchBuilderBooks(supabase: Client): Promise<BuilderBookDto[]> {
+  // Archived packs (e.g. the Grade 3 pilot) stay in the database for the
+  // Verification centres but must not appear in commercial builder surfaces.
   const { data, error } = await supabase
     .from("books")
     .select("id, title, board, grade, subject, status")
+    .neq("status", "archived")
     .order("title");
   if (error) throw new Error(error.message);
   return (data ?? []).map((b) => ({
