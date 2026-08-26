@@ -71,6 +71,15 @@ function InterventionsPage() {
   const dismissRecFn = useServerFn(dismissRecommendation);
   const transitionFn = useServerFn(updateInterventionStatus);
   const dismissGapFn = useServerFn(dismissGap);
+  const fetchQueue = useServerFn(getInterventionQueue);
+
+  // UX Phase 1 · UX-04: prioritised worklist (server-ranked, deterministic).
+  const { data: workQueue, isPending: queuePending } = useQuery({
+    queryKey: ["gap-board", "work-queue"],
+    queryFn: () => fetchQueue(),
+  });
+
+
 
   const { data: gaps, isPending: gapsPending } = useQuery({
     queryKey: ["gap-board", "gaps"],
