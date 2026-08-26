@@ -38,6 +38,7 @@ import { ContextHelp } from "@/components/context-help";
 import { ClosureHeader } from "@/components/closure-header";
 import { getParentOutcomeView } from "@/lib/outcome-dashboard.functions";
 import { summariseClosure } from "@/lib/closure-shared";
+import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
 import { EmptyState } from "@/components/empty-state";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
@@ -79,6 +80,7 @@ const PARENT_TOUR: TourStep[] = [
 ];
 
 function ParentPortal() {
+  const { t } = useI18n();
   const { profile, user } = Route.useRouteContext();
   const queryClient = useQueryClient();
 
@@ -151,21 +153,24 @@ function ParentPortal() {
   const steps: OnboardingStep[] = [
     {
       key: "consent",
-      title: "Review & record consent",
+      title: t("portal.step.consent.title", "Review & record consent"),
       description: consent?.hasConsent
-        ? "Consent is active — the AI Tutor is unlocked."
-        : "Consent unlocks the AI Tutor. Assessments and plans work either way.",
+        ? t("portal.step.consent.done", "Consent is active — the AI Tutor is unlocked.")
+        : t("portal.step.consent.todo", "Consent unlocks the AI Tutor. Assessments and plans work either way."),
       done: !!consent?.hasConsent,
       action: "scroll-consent",
-      ctaLabel: "Review consent",
+      ctaLabel: t("portal.step.consent.cta", "Review consent"),
     },
     {
       key: "progress",
-      title: "View progress",
-      description: "See live mastery, recent assessment scores and active interventions.",
+      title: t("portal.step.progress.title", "View progress"),
+      description: t(
+        "portal.step.progress.body",
+        "See live mastery, recent assessment scores and active interventions.",
+      ),
       done: getOnboardingFlag(stepFlagKey("parent", "progress")),
       action: "scroll-progress",
-      ctaLabel: "View progress",
+      ctaLabel: t("portal.step.progress.cta", "View progress"),
     },
   ];
 
@@ -192,7 +197,9 @@ function ParentPortal() {
   });
   const closureSummary = closureView
     ? summariseClosure(
-        closureView.children.length === 1 ? "Your child" : "Your children",
+        closureView.children.length === 1
+          ? t("portal.child.one", "Your child")
+          : t("portal.child.many", "Your children"),
         closureView.combined,
       )
     : null;
@@ -202,9 +209,13 @@ function ParentPortal() {
       <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Parent portal</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">{t("portal.title", "Parent portal")}</h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              Welcome{profile?.full_name ? `, ${profile.full_name}` : ""}. Follow progress and manage consent — everything here is read-only.
+              {t(
+                "portal.welcome",
+                `Welcome${profile?.full_name ? `, ${profile.full_name}` : ""}. Follow progress and manage consent — everything here is read-only.`,
+                { name: profile?.full_name ?? "" },
+              )}
             </p>
           </div>
           <ContextHelp page="/parent" />
@@ -220,8 +231,8 @@ function ParentPortal() {
         <div data-tour="parent-checklist">
           <OnboardingChecklist
             role="parent"
-            title="Getting started as a parent"
-            description="Two quick steps to set up your family's experience."
+            title={t("portal.checklist.title", "Getting started as a parent")}
+            description={t("portal.checklist.body", "Two quick steps to set up your family's experience.")}
             steps={steps}
             tourId="parent-portal"
             onAction={handleAction}
@@ -230,7 +241,7 @@ function ParentPortal() {
 
         {linksQuery.isError ? (
           <QueryError
-            title="We couldn't load your children"
+            title={t("portal.children.error", "We couldn't load your children")}
             error={linksQuery.error}
             onRetry={() => void linksQuery.refetch()}
           />
@@ -239,9 +250,12 @@ function ParentPortal() {
         ) : learners.length === 0 ? (
           <EmptyState
             icon={Users}
-            title="No linked children yet"
-            description="Your account isn't linked to a learner. Ask your tutoring center's admin to link your child to this account."
-            hint="Once linked, progress and consent controls appear here automatically."
+            title={t("portal.children.empty.title", "No linked children yet")}
+            description={t(
+              "portal.children.empty.body",
+              "Your account isn't linked to a learner. Ask your tutoring center's admin to link your child to this account.",
+            )}
+            hint={t("portal.children.empty.hint", "Once linked, progress and consent controls appear here automatically.")}
           />
         ) : (
           <>
