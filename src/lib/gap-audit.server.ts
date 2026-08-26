@@ -98,9 +98,17 @@ async function isoCount(
   // The expectation is derived live from the service-role view of the caller's
   // own organization — never a hardcoded count, so seeding, generation and
   // cleanup runs cannot make the probe drift out of date.
-  const { count: orgCount } = callerOrgId
-    ? await supabaseAdmin.from(table).select("*", { count: "exact", head: true }).eq("org_id", callerOrgId)
-    : { count: null as number | null };
+  const hasOrgColumn = table !== "assessment_question_map";
+  const { count: orgCount } =
+    callerOrgId && hasOrgColumn
+      ? await (supabaseAdmin.from(table) as unknown as {
+          select: (c: string, o: { count: "exact"; head: boolean }) => {
+            eq: (col: string, val: string) => PromiseLike<{ count: number | null }>;
+          };
+        })
+          .select("*", { count: "exact", head: true })
+          .eq("org_id", callerOrgId)
+      : { count: null as number | null };
   const visibleToYou = error ? null : (visible ?? 0);
   const globalAllOrgs = globalCount ?? 0;
   return {
