@@ -303,6 +303,54 @@ function PaymentSettingsPage() {
           </form>
         </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <History className="size-4" /> Credential audit log
+          </CardTitle>
+          <CardDescription>
+            Append-only record of key updates, secret updates, environment switches and connection
+            tests. Entries cannot be edited or deleted.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {!auditEntries || auditEntries.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No credential changes recorded yet.</p>
+          ) : (
+            <ul className="divide-y">
+              {auditEntries.map((entry) => (
+                <li
+                  key={entry.id}
+                  className="flex flex-wrap items-center justify-between gap-2 py-2.5 text-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <Badge
+                      variant={
+                        entry.action === "save"
+                          ? "default"
+                          : entry.action === "clear"
+                            ? "destructive"
+                            : "secondary"
+                      }
+                      className="uppercase"
+                    >
+                      {entry.action}
+                    </Badge>
+                    <span>
+                      {entry.prevMode} / {entry.prevSource} → {entry.newMode} / {entry.newSource}
+                      {entry.maskedKeyId ? ` · ${entry.maskedKeyId}` : ""}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(entry.createdAt).toLocaleString("en-IN")}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
