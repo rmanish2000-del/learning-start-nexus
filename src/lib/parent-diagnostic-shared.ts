@@ -312,9 +312,16 @@ export const createDiagnosticOrderSchema = z.object({
 
 export const orderRefSchema = z.object({ orderRef: z.string().min(8).max(64) });
 
-export const confirmPaymentSchema = z.object({
+export const verifyPaymentSchema = z.object({
   orderRef: z.string().min(8).max(64),
-  outcome: z.enum(["success", "failure"]).default("success"),
+  razorpayOrderId: z.string().min(4).max(80),
+  razorpayPaymentId: z.string().min(4).max(80),
+  signature: z.string().min(16).max(256),
+});
+
+export const paymentFailureSchema = z.object({
+  orderRef: z.string().min(8).max(64),
+  reason: z.string().trim().min(1).max(300).default("Payment not completed"),
 });
 
 export const setupDiagnosticSchema = z.object({
