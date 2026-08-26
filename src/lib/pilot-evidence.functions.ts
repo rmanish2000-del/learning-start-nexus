@@ -7,6 +7,7 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { callerOrgId, requireAnyRole } from "./admin.server";
 import {
   fetchCbseCoverage,
+  fetchCohortMetrics,
   fetchTutorEvidence,
   fetchVerificationQueue,
   recordQuestionVerification,
@@ -22,12 +23,13 @@ export const getPilotEvidenceFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await requireAnyRole(context.supabase, context.userId, ["admin", "educator", "reviewer"]);
-    const [tutor, coverage, verification] = await Promise.all([
+    const [tutor, coverage, verification, cohort] = await Promise.all([
       fetchTutorEvidence(context.supabase),
       fetchCbseCoverage(context.supabase),
       fetchVerificationQueue(context.supabase),
+      fetchCohortMetrics(context.supabase),
     ]);
-    return { tutor, coverage, verification };
+    return { tutor, coverage, verification, cohort };
   });
 
 export const verifyQuestionFn = createServerFn({ method: "POST" })

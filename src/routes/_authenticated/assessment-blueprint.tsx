@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi, useNavigate } from "@tanstack/react-router";
 import {
   ArrowRight,
   Crosshair,
@@ -59,6 +59,7 @@ import {
   getLearnerOptions,
   getMasteryLevels,
   getMasteryPreview,
+  generateBlueprintOutcomesFn,
   updateMasteryLevelFn,
 } from "@/lib/blueprint.functions";
 import { getCurriculumLibrary } from "@/lib/curriculum.functions";
@@ -632,6 +633,31 @@ function AssessmentBlueprintPage() {
     queryFn: () => getMasteryLevels(),
   });
 
+  const navigate = useNavigate({ from: "/assessment-blueprint" });
+  const pageQueryClient = useQueryClient();
+  const runGenerateOutcomes = useServerFn(generateBlueprintOutcomesFn);
+  const [generating, setGenerating] = useState(false);
+
+  const handleGenerateOutcomes = async () => {
+    if (!bookId) return;
+    setGenerating(true);
+    try {
+      const result = await runGenerateOutcomes({ data: { bookId } });
+      if (result.created === 0) {
+        toast.info("Every unit in this book already has assessment outcomes.");
+      } else {
+        toast.success(
+          `Created ${result.created} assessment outcome${result.created === 1 ? "" : "s"} · ${result.mapped} curriculum link${result.mapped === 1 ? "" : "s"}.`,
+        );
+      }
+      await pageQueryClient.invalidateQueries({ queryKey: ["blueprint-workspace", bookId] });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not generate outcomes.");
+    } finally {
+      setGenerating(false);
+    }
+  };
+
   if (libraryPending) {
     return (
       <div className="mx-auto max-w-6xl space-y-4">
@@ -654,19 +680,36 @@ function AssessmentBlueprintPage() {
             strategies, and projected mastery — no question generation yet.
           </p>
         </div>
-        <div className="w-64">
-          <Select disabled>
-            <SelectTrigger>
-              <SelectValue placeholder={books.find((b) => b.id === bookId)?.title ?? "Book"} />
-            </SelectTrigger>
-            <SelectContent>
-              {books.map((b) => (
-                <SelectItem key={b.id} value={b.id}>
-                  {b.title}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="w-64">
+            <Select
+              {...(bookId ? { value: bookId } : {})}
+              onValueChange={(value) => {
+                void navigate({ search: (s) => ({ ...s, book: value }) });
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Book" />
+              </SelectTrigger>
+              <SelectContent>
+                {books.map((b) => (
+                  <SelectItem key={b.id} value={b.id}>
+                    {b.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          {isStaff && (
+            <Button
+              variant="outline"
+              disabled={!bookId || generating}
+              onClick={() => void handleGenerateOutcomes()}
+            >
+              <ListChecks className="h-4 w-4" />
+              {generating ? "Generating…" : "Generate outcomes from curriculum"}
+            </Button>
+          )}
         </div>
       </div>
 

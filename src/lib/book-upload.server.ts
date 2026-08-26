@@ -9,7 +9,7 @@
 // book_events, so the audit trail matches the rest of Sprint 6.
 
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { generateObject } from "ai";
+import { generateObject, generateText } from "ai";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import { createLovableAiGatewayProvider } from "./ai-gateway.server";
@@ -157,6 +157,95 @@ function normalizeUnits(
     .slice(0, 12);
 }
 
+
+// Some gateway models return only titles and drop the nested key-concept /
+// outcome arrays. A second, narrower pass fills those in per chapter so every
+// extracted book reaches the blueprint stage with usable learning outcomes.
+const enrichmentSchema = z.object({
+  topics: z.array(
+    z.object({
+      title: z.string(),
+      keyConcepts: z.array(z.string()).optional(),
+      outcomes: z.array(z.string()).optional(),
+    }),
+  ),
+});
+
+function parseLooseJson(text: string): unknown {
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  const raw = fenced?.[1]?.trim() ?? text.trim();
+  const start = raw.indexOf("{");
+  const end = raw.lastIndexOf("}");
+  if (start === -1 || end === -1) throw new Error("No JSON object in AI response.");
+  return JSON.parse(raw.slice(start, end + 1));
+}
+
+async function enrichUnits(
+  apiKey: string,
+  book: { title: string; board: string | null; grade: number; subject: string },
+  units: ImportCurriculumInput["units"],
+  sourceText: string,
+): Promise<ImportCurriculumInput["units"]> {
+  const gateway = createLovableAiGatewayProvider(apiKey);
+  const system =
+    "You write measurable learning outcomes and key concepts for school curriculum topics. " +
+    "Each topic needs 2-6 short key concepts and 2-4 outcomes that start with an action verb " +
+    "(identify, explain, solve, compare, balance...). Stay faithful to the source text.";
+
+  for (const unit of units) {
+    for (const chapter of unit.chapters) {
+      const needs = chapter.topics.filter(
+        (t) => (t.outcomes?.length ?? 0) === 0 || (t.keyConcepts?.length ?? 0) === 0,
+      );
+      if (needs.length === 0) continue;
+      const prompt =
+        `Book: "${book.title}" (${book.board ?? "school"} board, Grade ${book.grade}, ${book.subject}).\n` +
+        `Chapter: "${chapter.title}".\nTopics: ${needs.map((t) => t.title).join("; ")}.\n\n` +
+        `Source text (excerpt):\n${sourceText.slice(0, 12_000)}`;
+      let parsed: z.infer<typeof enrichmentSchema> | null = null;
+      try {
+        const { object } = await generateObject({
+          model: gateway(EXTRACTION_MODEL),
+          schema: enrichmentSchema,
+          system,
+          prompt,
+        });
+        parsed = object;
+      } catch {
+        try {
+          const { text } = await generateText({
+            model: gateway(EXTRACTION_MODEL),
+            system:
+              system +
+              '\n\nRespond with JSON only: {"topics":[{"title":"...","keyConcepts":["..."],"outcomes":["..."]}]}',
+            prompt,
+          });
+          parsed = enrichmentSchema.parse(parseLooseJson(text));
+        } catch {
+          parsed = null;
+        }
+      }
+      if (!parsed) continue;
+      for (const topic of chapter.topics) {
+        const match = parsed.topics.find(
+          (t) => t.title.trim().toLowerCase() === topic.title.trim().toLowerCase(),
+        );
+        if (!match) continue;
+        if ((topic.keyConcepts?.length ?? 0) === 0) {
+          topic.keyConcepts = (match.keyConcepts ?? []).map((k) => clean(k, 120)).filter(Boolean).slice(0, 8);
+        }
+        if ((topic.outcomes?.length ?? 0) === 0) {
+          topic.outcomes = (match.outcomes ?? [])
+            .map((o) => clean(o, 300))
+            .filter((o) => o.length >= 3)
+            .slice(0, 6);
+        }
+      }
+    }
+  }
+  return units;
+}
+
 async function extractTextFromFile(path: string, mimeType: string, bytes: Uint8Array): Promise<string> {
   if (mimeType === "application/pdf" || path.toLowerCase().endsWith(".pdf")) {
     const { extractText } = await import("unpdf");
@@ -260,6 +349,18 @@ export async function extractCurriculumFromBook(
   }
   if (units.length === 0) {
     return fail(`AI extraction failed: ${lastError ?? "no structured output"}`);
+  }
+
+  // Fill in any missing key concepts / learning outcomes before persisting.
+  const hasOutcomes = units.some((u) =>
+    u.chapters.some((c) => c.topics.some((t) => (t.outcomes?.length ?? 0) > 0)),
+  );
+  if (!hasOutcomes) {
+    try {
+      units = await enrichUnits(apiKey, book, units, text);
+    } catch {
+      // Enrichment is best-effort: a bare tree still imports.
+    }
   }
 
   const counts = await persistCurriculumTree(supabase, ctx, bookId, units);
