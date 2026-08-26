@@ -2,6 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { GraduationCap } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { Button } from "@/components/ui/button";
+
+
 // Shared chrome for the public marketing/legal pages (About, Privacy, Terms,
 // Contact). App-owned content published by the EduOS demo operator.
 export function PublicPageLayout({
