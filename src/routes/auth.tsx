@@ -51,14 +51,32 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-async function fetchRole(userId: string): Promise<AppRole> {
+/**
+ * Resolves the workspace role for a signed-in user.
+ *
+ * Self-service signup only exists for parents, so an account that reaches this
+ * page with no role row was created by the parent form and had its profile
+ * write deferred by email confirmation. Claim the `parent` role here instead of
+ * silently defaulting to `student`.
+ */
+async function resolveRole(user: { id: string; user_metadata?: Record<string, unknown> }): Promise<AppRole> {
   const { data } = await supabase
     .from("user_roles")
     .select("role")
-    .eq("user_id", userId)
+    .eq("user_id", user.id)
     .limit(1)
     .maybeSingle();
-  return (data?.role as AppRole | undefined) ?? "student";
+  if (data?.role) return data.role as AppRole;
+
+  const meta = user.user_metadata ?? {};
+  const fullName = typeof meta["full_name"] === "string" ? meta["full_name"] : "";
+  const phone = typeof meta["phone"] === "string" ? meta["phone"] : "";
+  try {
+    await claimParentRole({ data: { fullName, ...(phone ? { phone } : {}) } });
+    return "parent";
+  } catch {
+    return "student";
+  }
 }
 
 function AuthPage() {
