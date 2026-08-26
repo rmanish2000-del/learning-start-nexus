@@ -4,7 +4,9 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { UserCog } from "lucide-react";
 import { toast } from "sonner";
+import { QueryError } from "@/components/query-error";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
 import {
   Card,
   CardContent,
@@ -68,7 +70,13 @@ function AssignmentsPage() {
   const runAssign = useServerFn(assignEducator);
   const [savingId, setSavingId] = useState<string | null>(null);
 
-  const { data: learners, isLoading: learnersLoading } = useQuery({
+  const {
+    data: learners,
+    isLoading: learnersLoading,
+    isError: learnersIsError,
+    error: learnersError,
+    refetch: refetchLearners,
+  } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -78,12 +86,22 @@ function AssignmentsPage() {
       if (error) throw new Error(error.message);
       return data as LearnerRow[];
     },
+    retry: false,
+    throwOnError: false,
   });
 
-  const { data: staff } = useQuery({
+  const {
+    data: staff,
+    isError: staffIsError,
+    error: staffError,
+    refetch: refetchStaff,
+  } = useQuery({
     queryKey: ["staff-users"],
     queryFn: () => fetchStaff(),
+    retry: false,
+    throwOnError: false,
   });
+
   const educators = (staff ?? []).filter((s) => s.role === "educator");
 
   const assignMutation = useMutation({
@@ -112,6 +130,24 @@ function AssignmentsPage() {
             Assign each learner to an educator in your organization.
           </p>
         </div>
+
+        {learnersIsError && (
+          <QueryError
+            title="Learner roster didn't load"
+            error={learnersError}
+            onRetry={() => void refetchLearners()}
+          />
+        )}
+        {staffIsError && (
+          <QueryError
+            title="Educator list didn't load"
+            error={staffError}
+            onRetry={() => void refetchStaff()}
+            compact
+          />
+        )}
+
+
 
         <Card>
           <CardHeader>

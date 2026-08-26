@@ -15,7 +15,9 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import { QueryError } from "@/components/query-error";
 import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
+
 import { DIFFICULTY_LABELS, type RunnerQuestion, type ResultEntry } from "@/lib/assessment-shared";
 import {
   AlertDialog,
@@ -58,11 +60,14 @@ function TakeAssessmentPage() {
   const saveFn = useServerFn(saveSessionProgress);
   const submitFn = useServerFn(submitAssessment);
 
-  const { data, isPending, error } = useQuery({
+  const { data, isPending, error, refetch } = useQuery({
     queryKey: ["student-session", sessionId],
     queryFn: () => getSession({ data: { sessionId } }),
     staleTime: Infinity,
+    retry: false,
+    throwOnError: false,
   });
+
 
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [index, setIndex] = useState(0);
@@ -136,16 +141,19 @@ function TakeAssessmentPage() {
 
   if (error || !data) {
     return (
-      <div className="mx-auto max-w-3xl py-16 text-center">
-        <p className="text-sm text-muted-foreground">
-          {error instanceof Error ? error.message : "Could not load this assessment."}
-        </p>
-        <Button asChild variant="outline" className="mt-4">
+      <div className="mx-auto max-w-3xl space-y-4 py-8">
+        <QueryError
+          title="This assessment didn't load"
+          error={error ?? new Error("Could not load this assessment.")}
+          onRetry={() => void refetch()}
+        />
+        <Button asChild variant="outline">
           <Link to="/home">Back to My Learning</Link>
         </Button>
       </div>
     );
   }
+
 
   // ---- Submitted: result view ----
   if (data.session.status === "submitted") {

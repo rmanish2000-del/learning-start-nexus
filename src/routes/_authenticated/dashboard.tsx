@@ -10,6 +10,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ContextHelp } from "@/components/context-help";
+import { QueryError } from "@/components/query-error";
+
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
 import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import type { OnboardingStep } from "@/lib/onboarding";
@@ -105,14 +107,23 @@ function DashboardPage() {
     },
   });
 
-  const { data: learners, isPending } = useQuery({
+  const {
+    data: learners,
+    isPending,
+    isError: learnersIsError,
+    error: learnersError,
+    refetch: refetchLearners,
+  } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase.from("learners").select("*").order("full_name");
       if (error) throw error;
       return data;
     },
+    retry: false,
+    throwOnError: false,
   });
+
 
   const { data: evidence } = useQuery({
     queryKey: ["recent-evidence"],
@@ -194,6 +205,15 @@ function DashboardPage() {
         </div>
         <ContextHelp page="/dashboard" />
       </div>
+
+      {learnersIsError && (
+        <QueryError
+          title="Your roster didn't load"
+          error={learnersError}
+          onRetry={() => void refetchLearners()}
+        />
+      )}
+
 
       <div data-tour="educator-checklist">
         <OnboardingChecklist
