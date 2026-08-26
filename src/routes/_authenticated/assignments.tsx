@@ -68,7 +68,13 @@ function AssignmentsPage() {
   const runAssign = useServerFn(assignEducator);
   const [savingId, setSavingId] = useState<string | null>(null);
 
-  const { data: learners, isLoading: learnersLoading } = useQuery({
+  const {
+    data: learners,
+    isLoading: learnersLoading,
+    isError: learnersIsError,
+    error: learnersError,
+    refetch: refetchLearners,
+  } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -78,12 +84,22 @@ function AssignmentsPage() {
       if (error) throw new Error(error.message);
       return data as LearnerRow[];
     },
+    retry: false,
+    throwOnError: false,
   });
 
-  const { data: staff } = useQuery({
+  const {
+    data: staff,
+    isError: staffIsError,
+    error: staffError,
+    refetch: refetchStaff,
+  } = useQuery({
     queryKey: ["staff-users"],
     queryFn: () => fetchStaff(),
+    retry: false,
+    throwOnError: false,
   });
+
   const educators = (staff ?? []).filter((s) => s.role === "educator");
 
   const assignMutation = useMutation({
