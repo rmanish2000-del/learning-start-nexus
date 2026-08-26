@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, PieChart, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, CreditCard, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, PieChart, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
 import { HowItWorksDialog } from "@/components/how-it-works";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
