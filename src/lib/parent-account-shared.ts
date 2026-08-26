@@ -18,6 +18,17 @@ export const registerParentSchema = z.object({
     .regex(/^[0-9+\-\s]{10,15}$/, "Enter a valid mobile number"),
 });
 
+// Post-email-confirmation claim: the auth user already exists, so the mobile
+// number may only be available from signup metadata (or not at all yet).
+export const claimParentSchema = z.object({
+  fullName: z.string().trim().min(1).max(80),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[0-9+\-\s]{10,15}$/)
+    .optional(),
+});
+
 export const addStudentSchema = z.object({
   fullName: z.string().trim().min(2, "Enter the student's name").max(80),
   grade: z.number().int().min(1).max(12),
