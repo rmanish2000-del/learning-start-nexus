@@ -173,10 +173,17 @@ function DiagnosticPurchasePage() {
       toast.error(t("diag.toast.chooseFirst", "Choose a subject and a chapter group first."));
       return;
     }
+    if (!detailsComplete) {
+      toast.error(
+        t("diag.toast.completeDetails", "Add your name and mobile number before paying."),
+      );
+      return;
+    }
     if (!activeStudentId) {
       toast.error(t("diag.toast.chooseStudent", "Add or select a student profile first."));
       return;
     }
+
     setPending(true);
     try {
       // Persist the selection before checkout opens so a dropped payment can
