@@ -55,8 +55,14 @@ export async function createRazorpayOrder(input: {
     | null;
   if (!res.ok || !body?.id) {
     console.error("[razorpay] order create failed", res.status, body?.error?.description);
+    if (res.status === 401) {
+      throw new Error(
+        "Payments are not live yet: the gateway rejected the configured keys. An admin can fix this on the Payment Settings page.",
+      );
+    }
     throw new Error("The payment gateway could not start this order. Please try again.");
   }
+
   return { id: body.id, amount: body.amount, currency: body.currency, status: body.status };
 }
 
