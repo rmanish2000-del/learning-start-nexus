@@ -236,25 +236,26 @@ function Hero() {
 }
 
 function HowItWorks() {
+  const { t } = useI18n();
   return (
     <Section
       id="how"
-      eyebrow="How EduOS works"
-      title="One loop, three jobs"
-      lede="Everyone in the centre works the same loop from their own side."
+      eyebrow={t("landing.how.eyebrow", "How EduOS works")}
+      title={t("landing.how.title", "One loop, three jobs")}
+      lede={t("landing.how.lede", "Everyone in the centre works the same loop from their own side.")}
       muted
     >
       <div className="grid gap-4 md:grid-cols-3">
         {ROLE_LANES.map((lane) => (
           <div key={lane.role} className="rounded-xl border bg-card p-5">
-            <h3 className="text-sm font-semibold">{lane.role}</h3>
+            <h3 className="text-sm font-semibold">{t(`landing.role.${lane.role}`, lane.role)}</h3>
             <ol className="mt-3 space-y-2.5">
               {lane.jobs.map((job, i) => (
                 <li key={job} className="flex gap-3 text-sm text-muted-foreground">
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-accent-foreground tabular-nums">
                     {i + 1}
                   </span>
-                  <span>{job}</span>
+                  <span>{t(`landing.role.${lane.role}.${i}`, job)}</span>
                 </li>
               ))}
             </ol>
@@ -266,13 +267,20 @@ function HowItWorks() {
 }
 
 function ClosureLoop() {
+  const { t } = useI18n();
   const [open, setOpen] = useState<string>(LOOP_STEPS[0]!.key);
   return (
     <Section
       id="loop"
-      eyebrow="The closure loop"
-      title="Diagnostic → Gap → Intervention → Tutor → Reassessment → Evidence"
-      lede="Follow one anonymised learner through every stage. Each step produces a real artefact — select a step to see it."
+      eyebrow={t("landing.loop.eyebrow", "The closure loop")}
+      title={t(
+        "landing.loop.title",
+        "Diagnostic → Gap → Intervention → Tutor → Reassessment → Evidence",
+      )}
+      lede={t(
+        "landing.loop.lede",
+        "Follow one anonymised learner through every stage. Each step produces a real artefact — select a step to see it.",
+      )}
     >
       <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {LOOP_STEPS.map((step, i) => {
@@ -288,10 +296,14 @@ function ClosureLoop() {
               }`}
             >
               <span className="text-[11px] font-semibold text-muted-foreground tabular-nums">
-                Step {i + 1}
+                {t("landing.loop.step", `Step ${i + 1}`, { n: i + 1 })}
               </span>
-              <span className="mt-1 block text-sm font-medium">{step.title}</span>
-              <span className="mt-0.5 block text-xs text-muted-foreground">{step.artefact}</span>
+              <span className="mt-1 block text-sm font-medium">
+                {t(`landing.loop.${step.key}.title`, step.title)}
+              </span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">
+                {t(`landing.loop.${step.key}.artefact`, step.artefact)}
+              </span>
             </button>
           );
         })}
@@ -300,10 +312,12 @@ function ClosureLoop() {
       {LOOP_STEPS.filter((s) => s.key === open).map((s) => (
         <div key={s.key} className="mt-5 rounded-xl border bg-card p-5">
           <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-sm font-semibold">{s.title}</h3>
+            <h3 className="text-sm font-semibold">{t(`landing.loop.${s.key}.title`, s.title)}</h3>
             <SampleTag />
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">{s.detail}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t(`landing.loop.${s.key}.detail`, s.detail)}
+          </p>
           <p className="mt-3 rounded-lg bg-muted p-3 font-mono text-xs">{s.sample}</p>
         </div>
       ))}
