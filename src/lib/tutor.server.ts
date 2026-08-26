@@ -72,6 +72,9 @@ export async function callTutorAi(
       system,
       messages,
       maxOutputTokens: 400,
+      // A hung gateway must never strand the student on "Thinking…" —
+      // abort and fall back to the static library instead.
+      abortSignal: AbortSignal.timeout(30_000),
     });
     const trimmed = text.trim();
     if (!trimmed) return null;
