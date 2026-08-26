@@ -47,6 +47,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
+  { to: "/payment-settings", label: "Payment Settings", icon: CreditCard, roles: ["admin"], exact: true },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
   { to: "/parent", label: "My Child", icon: HeartHandshake, roles: ["parent"], exact: true },
 ];
@@ -73,6 +74,7 @@ const TITLES: [RegExp, string][] = [
   [/^\/diagnostic-engine/, "Diagnostic engine"],
   [/^\/gap-analysis-audit/, "Gap analysis audit center"],
   [/^\/payment-audit/, "Payment audit dashboard"],
+  [/^\/payment-settings/, "Payment settings"],
   [/^\/gap-analysis/, "Gap analysis"],
   [/^\/learners\/.+/, "Learner profile"],
   [/^\/learners/, "Learners"],
