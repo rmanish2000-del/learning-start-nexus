@@ -105,6 +105,7 @@ function PaymentSettingsPage() {
     onSuccess: (result) => {
       if (result.ok) toast.success(result.message);
       else toast.error(result.message);
+      void refresh();
     },
     onError: (err: Error) => toast.error(err.message),
   });
