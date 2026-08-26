@@ -58,6 +58,7 @@ import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './route
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
 import { Route as AuthenticatedTutorSessionIdRouteImport } from './routes/_authenticated/tutor.$sessionId'
+import { Route as ApiPublicRazorpayWebhookRouteImport } from './routes/api/public/razorpay-webhook'
 import { Route as DiagnosticCheckoutOrderRefRouteImport } from './routes/diagnostic.checkout.$orderRef'
 import { Route as DiagnosticReportTokenRouteImport } from './routes/diagnostic.report.$token'
 import { Route as DiagnosticSessionTokenRouteImport } from './routes/diagnostic.session.$token'
@@ -336,6 +337,12 @@ const AuthenticatedTutorSessionIdRoute =
     path: '/tutor/$sessionId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiPublicRazorpayWebhookRoute =
+  ApiPublicRazorpayWebhookRouteImport.update({
+    id: '/api/public/razorpay-webhook',
+    path: '/api/public/razorpay-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DiagnosticCheckoutOrderRefRoute =
   DiagnosticCheckoutOrderRefRouteImport.update({
     id: '/diagnostic/checkout/$orderRef',
@@ -402,6 +409,7 @@ export interface FileRoutesByFullPath {
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
+  '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
   '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
@@ -455,6 +463,7 @@ export interface FileRoutesByTo {
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
+  '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
   '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
@@ -510,6 +519,7 @@ export interface FileRoutesById {
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/_authenticated/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
+  '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
   '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
@@ -565,6 +575,7 @@ export interface FileRouteTypes {
     | '/learners/$learnerId'
     | '/session/$sessionId'
     | '/tutor/$sessionId'
+    | '/api/public/razorpay-webhook'
     | '/diagnostic/checkout/$orderRef'
     | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
@@ -618,6 +629,7 @@ export interface FileRouteTypes {
     | '/learners/$learnerId'
     | '/session/$sessionId'
     | '/tutor/$sessionId'
+    | '/api/public/razorpay-webhook'
     | '/diagnostic/checkout/$orderRef'
     | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
@@ -672,6 +684,7 @@ export interface FileRouteTypes {
     | '/_authenticated/learners/$learnerId'
     | '/_authenticated/session/$sessionId'
     | '/_authenticated/tutor/$sessionId'
+    | '/api/public/razorpay-webhook'
     | '/diagnostic/checkout/$orderRef'
     | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
@@ -688,6 +701,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   UpgradeTokenRoute: typeof UpgradeTokenRoute
   DiagnosticIndexRoute: typeof DiagnosticIndexRoute
+  ApiPublicRazorpayWebhookRoute: typeof ApiPublicRazorpayWebhookRoute
   DiagnosticCheckoutOrderRefRoute: typeof DiagnosticCheckoutOrderRefRoute
   DiagnosticReportTokenRoute: typeof DiagnosticReportTokenRoute
   DiagnosticSessionTokenRoute: typeof DiagnosticSessionTokenRoute
@@ -1038,6 +1052,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTutorSessionIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/razorpay-webhook': {
+      id: '/api/public/razorpay-webhook'
+      path: '/api/public/razorpay-webhook'
+      fullPath: '/api/public/razorpay-webhook'
+      preLoaderRoute: typeof ApiPublicRazorpayWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/diagnostic/checkout/$orderRef': {
       id: '/diagnostic/checkout/$orderRef'
       path: '/diagnostic/checkout/$orderRef'
@@ -1176,6 +1197,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   UpgradeTokenRoute: UpgradeTokenRoute,
   DiagnosticIndexRoute: DiagnosticIndexRoute,
+  ApiPublicRazorpayWebhookRoute: ApiPublicRazorpayWebhookRoute,
   DiagnosticCheckoutOrderRefRoute: DiagnosticCheckoutOrderRefRoute,
   DiagnosticReportTokenRoute: DiagnosticReportTokenRoute,
   DiagnosticSessionTokenRoute: DiagnosticSessionTokenRoute,

@@ -16,9 +16,12 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   completeDiagnosticSetup,
+  createPaymentIntent,
   fetchOrder,
-  payDiagnosticOrder,
+  reportPaymentFailure,
+  verifyPayment,
 } from "@/lib/parent-diagnostic.functions";
+import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { formatInr, setupDiagnosticSchema } from "@/lib/parent-diagnostic-shared";
 
 const TITLE = "Checkout — Class 10 Diagnostic | EduOS";
