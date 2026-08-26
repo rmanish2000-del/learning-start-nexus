@@ -208,7 +208,7 @@ function DiagnosticPurchasePage() {
       size="lg"
       className="w-full sm:w-auto"
       onClick={beginCheckout}
-      disabled={pending || !unitId || !activeStudentId}
+      disabled={pending || !unitId || !activeStudentId || !detailsComplete}
     >
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
       {t("diag.cta", `Start the diagnostic — ${formatInr(PRICING.diagnosticPaise)}`, {
