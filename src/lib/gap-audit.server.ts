@@ -217,11 +217,11 @@ export async function getGapAudit(supabase: Client, userId: string): Promise<Gap
   const pilotOrg = me.orgName === ORG_A.name;
 
   const counts = await Promise.all([
-    isoCount(supabase, "assessment_sessions", "Assessment sessions", pilotOrg, 21, "Sprint 2 demo sessions + the two Sprint 6G submissions"),
-    isoCount(supabase, "assessment_question_map", "Assessment question map", pilotOrg, 30, "Builder demo + 6F generated pair"),
-    isoCount(supabase, "question_bank", "Question bank", pilotOrg, 28, "Seeded + AI-generated drafts for the pilot book"),
-    isoCount(supabase, "intervention_map", "Intervention map", pilotOrg, 6, "Failure patterns per blueprint outcome"),
-    isoCount(supabase, "mastery_levels", "Mastery levels", pilotOrg, 4, "Beginning / Developing / Proficient / Advanced"),
+    isoCount(supabase, "assessment_sessions", "Assessment sessions", pilotOrg, me.orgId, "Sprint 2 demo sessions + the two Sprint 6G submissions"),
+    isoCount(supabase, "assessment_question_map", "Assessment question map", pilotOrg, me.orgId, "Builder demo + 6F generated pair"),
+    isoCount(supabase, "question_bank", "Question bank", pilotOrg, me.orgId, "Seeded + AI-generated drafts for the pilot book"),
+    isoCount(supabase, "intervention_map", "Intervention map", pilotOrg, me.orgId, "Failure patterns per blueprint outcome"),
+    isoCount(supabase, "mastery_levels", "Mastery levels", pilotOrg, me.orgId, "Beginning / Developing / Proficient / Advanced"),
   ]);
 
   const policies = (await fetchPolicyAudit(supabase)).filter((p) =>
