@@ -292,7 +292,7 @@ export async function generateQuestions(
       : `Use only these question kinds: ${baseKinds.join(", ")}.`;
 
   const system = [
-    `You write assessment questions for a Grade ${book.grade} ${book.subject} book ("${book.title}").`,
+    `You write CBSE competency-based assessment questions for a Grade ${book.grade} ${book.subject} book ("${book.title}").`,
     "Every question must test exactly the given assessment outcome — nothing else.",
     kindInstruction,
     "Rules:",
@@ -303,11 +303,13 @@ export async function generateQuestions(
     "- short_answer: the answer key is a model answer or an 'Any one of:' list an educator can mark against.",
     "- Every question needs an explanation: 1–2 sentences teaching why the answer key is correct.",
     "- Difficulty 1–5: 1 recall of a single fact, 5 multi-step reasoning. Spread difficulties across the set.",
-    // M7: CBSE competency-based types.
-    `- case_study: put a 2–4 sentence real-life passage in "stimulus"; the prompt asks something answerable only from that passage; 4 options, one correct.`,
-    `- assertion_reason: "stimulus" contains exactly two lines — "Assertion (A): ..." and "Reason (R): ..."; the options MUST be exactly ${JSON.stringify(ASSERTION_REASON_OPTIONS)} and the answer key must match one of them verbatim.`,
-    `- data_interpretation: "stimulus" contains a small plain-text table or list of values; the prompt requires reading or computing from that data; 4 options, one correct.`,
-    "- applied_mcq: an unfamiliar real-life situation inside the prompt; 4 options, one correct; tests application, not recall.",
+    "- Never paraphrase textbook sentences. Invent fresh contexts, names, places and numbers.",
+    "- Never open a competency question with 'What is', 'Define', 'Name the', 'State the' or 'List the'.",
+    // M7 + Competency Quality Upgrade: CBSE competency-based types.
+    `- case_study: "stimulus" is an ORIGINAL 3–5 sentence real-world scenario (a named learner, farmer, technician, lab team, shop, village…) with concrete details or numbers. The prompt must need at least TWO reasoning steps — read the scenario, then apply the concept to it. The correct answer must NOT be copyable verbatim from the passage. 4 options, one correct.`,
+    `- assertion_reason: "stimulus" contains exactly two lines — "Assertion (A): ..." and "Reason (R): ...". Both must be complete standalone statements; R must be a candidate CAUSAL explanation of A (never a restatement, never an unrelated fact). Vary which of the four combinations is correct across the set. Options MUST be exactly ${JSON.stringify(ASSERTION_REASON_OPTIONS)} and the answer key must match one verbatim.`,
+    `- data_interpretation: "stimulus" is a small labelled table, a described graph, or an experimental observation log with AT LEAST three data points, explicit units and variable names. The prompt must require comparing, computing, spotting a trend, or identifying the variable that was changed/controlled — never reading one cell. 4 options, one correct.`,
+    "- applied_mcq: describe a NOVEL everyday situation (2–3 sentences, not an example from the textbook) and ask the learner to transfer the concept to it. Distractors must be plausible misconceptions. Exactly 4 options, one correct.",
     "- stimulus must be null for mcq, true_false, fill_blank and short_answer.",
   ].join("\n");
 
@@ -320,17 +322,42 @@ export async function generateQuestions(
     `Write ${input.count} new questions for this outcome.`,
   ].join("\n");
 
+  // Generate, then run the deterministic competency quality gate. A weak set
+  // gets one corrective retry before we give up — we never store filler.
   let questions: GeneratedQuestion[];
   let latencyMs: number;
   try {
-    const result = await callQuestionAi(system, prompt);
-    questions = result.questions;
-    latencyMs = result.latencyMs;
+    const first = await callQuestionAi(system, prompt);
+    latencyMs = first.latencyMs;
+    const graded = first.questions.map((q) => ({ q, issues: competencyQualityIssues(q) }));
+    const weak = graded.filter((g) => g.issues.length > 0);
+    if (weak.length === 0) {
+      questions = first.questions;
+    } else {
+      const feedback = [
+        prompt,
+        "",
+        "A previous attempt was REJECTED by the competency quality gate for these reasons:",
+        ...weak.map((g) => `- ${g.q.kind}: ${g.issues.join("; ")}`),
+        "",
+        "Rewrite the full set so every question clears the bar. Richer scenarios, real data, causal reasoning, novel transfer contexts.",
+      ].join("\n");
+      const second = await callQuestionAi(system, feedback);
+      latencyMs = first.latencyMs + second.latencyMs;
+      const passing = second.questions.filter((q) => competencyQualityIssues(q).length === 0);
+      if (passing.length === 0) {
+        throw new Error(
+          `all generated questions failed the competency quality gate (${weak[0]?.issues[0] ?? "low quality"})`,
+        );
+      }
+      questions = passing;
+    }
   } catch (error) {
     // Surface the gateway failure verbatim — never silently fall back to
     // made-up questions.
     throw new Error(`Question generation failed: ${describeGenerationError(error)}`);
   }
+
 
   // Validate + normalize before insert. MCQ answer keys must match an option.
   const cleaned = questions.map((q) => {
