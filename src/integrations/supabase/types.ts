@@ -1225,6 +1225,7 @@ export type Database = {
       }
       learners: {
         Row: {
+          board: string | null
           created_at: string
           educator_id: string | null
           focus_note: string | null
@@ -1242,6 +1243,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          board?: string | null
           created_at?: string
           educator_id?: string | null
           focus_note?: string | null
@@ -1259,6 +1261,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          board?: string | null
           created_at?: string
           educator_id?: string | null
           focus_note?: string | null
@@ -1632,6 +1635,7 @@ export type Database = {
           kind: string
           learner_id: string | null
           order_id: string
+          parent_user_id: string | null
         }
         Insert: {
           consumed_at?: string | null
@@ -1642,6 +1646,7 @@ export type Database = {
           kind: string
           learner_id?: string | null
           order_id: string
+          parent_user_id?: string | null
         }
         Update: {
           consumed_at?: string | null
@@ -1652,6 +1657,7 @@ export type Database = {
           kind?: string
           learner_id?: string | null
           order_id?: string
+          parent_user_id?: string | null
         }
         Relationships: [
           {
@@ -1730,6 +1736,7 @@ export type Database = {
           org_id: string | null
           paid_at: string | null
           parent_order_id: string | null
+          parent_user_id: string | null
           provider: string
           provider_order_id: string | null
           provider_payment_ref: string | null
@@ -1761,6 +1768,7 @@ export type Database = {
           org_id?: string | null
           paid_at?: string | null
           parent_order_id?: string | null
+          parent_user_id?: string | null
           provider?: string
           provider_order_id?: string | null
           provider_payment_ref?: string | null
@@ -1792,6 +1800,7 @@ export type Database = {
           org_id?: string | null
           paid_at?: string | null
           parent_order_id?: string | null
+          parent_user_id?: string | null
           provider?: string
           provider_order_id?: string | null
           provider_payment_ref?: string | null
@@ -1953,6 +1962,7 @@ export type Database = {
           full_name: string
           id: string
           org_id: string | null
+          phone: string | null
           updated_at: string
         }
         Insert: {
@@ -1960,6 +1970,7 @@ export type Database = {
           full_name?: string
           id: string
           org_id?: string | null
+          phone?: string | null
           updated_at?: string
         }
         Update: {
@@ -1967,6 +1978,7 @@ export type Database = {
           full_name?: string
           id?: string
           org_id?: string | null
+          phone?: string | null
           updated_at?: string
         }
         Relationships: [

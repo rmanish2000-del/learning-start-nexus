@@ -22,8 +22,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
+import { createStudentProfile, getParentAccount } from "@/lib/parent-account.functions";
+import { BOARDS, CLASSES, addStudentSchema } from "@/lib/parent-account-shared";
+import { ParentAuthGate } from "@/components/parent-auth-gate";
+import { useSupabaseUser } from "@/lib/use-supabase-user";
+import { Input } from "@/components/ui/input";
 import { PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 import { useI18n } from "@/lib/i18n/context";
 
@@ -101,7 +107,48 @@ function DiagnosticPurchasePage() {
   const { t } = useI18n();
   const catalogFn = useServerFn(getDiagnosticCatalog);
   const startFn = useServerFn(startDiagnosticOrder);
+  const accountFn = useServerFn(getParentAccount);
+  const addStudentFn = useServerFn(createStudentProfile);
   const navigate = useNavigate();
+  const { data: user } = useSupabaseUser();
+
+  // Identity-first: the account and its student profiles are loaded before any
+  // order can be created. Anonymous visitors never reach this query.
+  const account = useQuery({
+    queryKey: ["parent-account"],
+    queryFn: () => accountFn(),
+    enabled: Boolean(user),
+  });
+  const students = account.data?.students ?? [];
+  const [learnerId, setLearnerId] = useState<string>("");
+  const [newStudent, setNewStudent] = useState({ fullName: "", grade: "10", board: "CBSE" });
+  const [addingStudent, setAddingStudent] = useState(false);
+
+  const activeStudentId = learnerId || (students.length === 1 ? students[0]!.id : "");
+
+  async function addStudent() {
+    const parsed = addStudentSchema.safeParse({
+      fullName: newStudent.fullName,
+      grade: Number(newStudent.grade),
+      board: newStudent.board,
+    });
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Check the student details.");
+      return;
+    }
+    setAddingStudent(true);
+    try {
+      const created = await addStudentFn({ data: parsed.data });
+      setLearnerId(created.id);
+      setNewStudent({ fullName: "", grade: "10", board: "CBSE" });
+      await account.refetch();
+      toast.success("Student profile added.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not add the student.");
+    } finally {
+      setAddingStudent(false);
+    }
+  }
 
   const query = useQuery({ queryKey: ["diagnostic-catalog"], queryFn: () => catalogFn() });
   const catalog = query.data ?? [];
@@ -124,6 +171,10 @@ function DiagnosticPurchasePage() {
       toast.error(t("diag.toast.chooseFirst", "Choose a subject and a chapter group first."));
       return;
     }
+    if (!activeStudentId) {
+      toast.error(t("diag.toast.chooseStudent", "Add or select a student profile first."));
+      return;
+    }
     setPending(true);
     try {
       // Persist the selection before checkout opens so a dropped payment can
@@ -133,7 +184,7 @@ function DiagnosticPurchasePage() {
       } catch {
         /* storage unavailable — non-fatal */
       }
-      const order = await startFn({ data: { bookId, unitId } });
+      const order = await startFn({ data: { bookId, unitId, learnerId: activeStudentId } });
       await navigate({ to: "/diagnostic/checkout/$orderRef", params: { orderRef: order.orderRef } });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : t("diag.toast.startFailed", "Could not start checkout."));
@@ -142,7 +193,12 @@ function DiagnosticPurchasePage() {
   }
 
   const cta = (
-    <Button size="lg" className="w-full sm:w-auto" onClick={beginCheckout} disabled={pending || !unitId}>
+    <Button
+      size="lg"
+      className="w-full sm:w-auto"
+      onClick={beginCheckout}
+      disabled={pending || !unitId || !activeStudentId}
+    >
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
       {t("diag.cta", `Start the diagnostic — ${formatInr(PRICING.diagnosticPaise)}`, {
         price: formatInr(PRICING.diagnosticPaise),
@@ -175,6 +231,7 @@ function DiagnosticPurchasePage() {
           <CardTitle className="text-base">{t("diag.choose.title", "Choose what to diagnose")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+          <ParentAuthGate next="/diagnostic">
           {query.isLoading ? (
             <div className="space-y-3">
               <Skeleton className="h-10 w-full" />
@@ -246,9 +303,98 @@ function DiagnosticPurchasePage() {
                   )}
                 </p>
               ) : null}
+              <Separator />
+
+              <div className="space-y-3">
+                <div>
+                  <p className="text-sm font-medium">{t("diag.student.title", "Who is this for?")}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {t(
+                      "diag.student.lede",
+                      "The diagnostic, the report and the plan are stored against this student profile in your account.",
+                    )}
+                  </p>
+                </div>
+
+                {account.isLoading ? (
+                  <Skeleton className="h-10 w-full" />
+                ) : students.length > 0 ? (
+                  <div className="space-y-1.5">
+                    <Label htmlFor="diag-student">{t("diag.field.student", "Student")}</Label>
+                    <Select value={activeStudentId} onValueChange={setLearnerId}>
+                      <SelectTrigger id="diag-student">
+                        <SelectValue placeholder={t("diag.field.student.placeholder", "Select student")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {students.map((st) => (
+                          <SelectItem key={st.id} value={st.id}>
+                            {`${st.fullName} · ${st.board} Class ${st.grade}`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    {t("diag.student.none", "Add your child's profile to continue — it takes one line.")}
+                  </p>
+                )}
+
+                <div className="grid gap-3 sm:grid-cols-[1.4fr_0.8fr_1fr_auto]">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-student-name">{t("diag.student.name", "Student name")}</Label>
+                    <Input
+                      id="new-student-name"
+                      value={newStudent.fullName}
+                      onChange={(e) => setNewStudent((v) => ({ ...v, fullName: e.target.value }))}
+                      placeholder="Aarav Sharma"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-student-class">{t("diag.student.class", "Class")}</Label>
+                    <Select
+                      value={newStudent.grade}
+                      onValueChange={(v) => setNewStudent((s2) => ({ ...s2, grade: v }))}
+                    >
+                      <SelectTrigger id="new-student-class">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CLASSES.map((c) => (
+                          <SelectItem key={c} value={String(c)}>{`Class ${c}`}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-student-board">{t("diag.student.board", "Board")}</Label>
+                    <Select
+                      value={newStudent.board}
+                      onValueChange={(v) => setNewStudent((s2) => ({ ...s2, board: v }))}
+                    >
+                      <SelectTrigger id="new-student-board">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {BOARDS.map((b) => (
+                          <SelectItem key={b} value={b}>{b}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-end">
+                    <Button variant="outline" onClick={addStudent} disabled={addingStudent}>
+                      {addingStudent ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                      {t("diag.student.add", "Add student")}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
               {cta}
             </>
           )}
+          </ParentAuthGate>
         </CardContent>
       </Card>
 

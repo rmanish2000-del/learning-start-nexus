@@ -4,6 +4,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { AlertTriangle, ArrowRight, CheckCircle2, Printer, Share2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
+import { ParentAuthGate } from "@/components/parent-auth-gate";
+import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { BandPill, DiagnosticShell } from "@/components/diagnostic-shell";
 import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
@@ -43,7 +45,30 @@ export const Route = createFileRoute("/diagnostic/report/$token")({
   component: DiagnosticReportPage,
 });
 
+
+// Identity gate: the report, the run and the upgrade are account-owned. The
+// server re-checks ownership on every call; this only keeps the UI honest.
 function DiagnosticReportPage() {
+  const { token } = Route.useParams();
+  const { data: user, isLoading } = useSupabaseUser();
+  if (isLoading) {
+    return (
+      <DiagnosticShell>
+        <Skeleton className="h-64 w-full" />
+      </DiagnosticShell>
+    );
+  }
+  if (!user) {
+    return (
+      <DiagnosticShell>
+        <ParentAuthGate next={`/diagnostic/report/${token}`}>{null}</ParentAuthGate>
+      </DiagnosticShell>
+    );
+  }
+  return <DiagnosticReportPageBody />;
+}
+
+function DiagnosticReportPageBody() {
   const { t } = useI18n();
   const { token } = Route.useParams();
   const reportFn = useServerFn(fetchDiagnosticReport);

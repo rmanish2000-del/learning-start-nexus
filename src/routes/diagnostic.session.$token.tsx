@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
 
+import { ParentAuthGate } from "@/components/parent-auth-gate";
+import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { DiagnosticShell } from "@/components/diagnostic-shell";
 import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
@@ -40,7 +42,30 @@ export const Route = createFileRoute("/diagnostic/session/$token")({
   component: DiagnosticSessionPage,
 });
 
+
+// Identity gate: the report, the run and the upgrade are account-owned. The
+// server re-checks ownership on every call; this only keeps the UI honest.
 function DiagnosticSessionPage() {
+  const { token } = Route.useParams();
+  const { data: user, isLoading } = useSupabaseUser();
+  if (isLoading) {
+    return (
+      <DiagnosticShell>
+        <Skeleton className="h-64 w-full" />
+      </DiagnosticShell>
+    );
+  }
+  if (!user) {
+    return (
+      <DiagnosticShell>
+        <ParentAuthGate next={`/diagnostic/session/${token}`}>{null}</ParentAuthGate>
+      </DiagnosticShell>
+    );
+  }
+  return <DiagnosticSessionPageBody />;
+}
+
+function DiagnosticSessionPageBody() {
   const { t } = useI18n();
   const { token } = Route.useParams();
   const runFn = useServerFn(fetchDiagnosticRun);
