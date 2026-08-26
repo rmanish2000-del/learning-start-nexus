@@ -182,7 +182,7 @@ function SchoolView() {
       <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
         <Badge variant="secondary">{query.data.orgName}</Badge>
         <span>
-          {query.data.totals.learners} learners · {query.data.totals.outcomesPending} outcomes awaiting
+          {query.data.totals.learners} learner{query.data.totals.learners === 1 ? "" : "s"} · {query.data.totals.outcomesPending} outcomes awaiting
           reassessment
         </span>
       </div>
@@ -238,7 +238,7 @@ function CentreView() {
           </SelectContent>
         </Select>
         <span className="text-sm text-muted-foreground">
-          {data.totals.learners} learners · {data.totals.outcomesPending} awaiting reassessment
+          {data.totals.learners} learner{data.totals.learners === 1 ? "" : "s"} · {data.totals.outcomesPending} awaiting reassessment
         </span>
       </div>
       <MetricCards metrics={data.totals} />
