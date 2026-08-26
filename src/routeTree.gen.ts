@@ -42,6 +42,7 @@ import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedOutcomeProofRouteImport } from './routes/_authenticated/outcome-proof'
 import { Route as AuthenticatedParentRouteImport } from './routes/_authenticated/parent'
 import { Route as AuthenticatedPaymentAuditRouteImport } from './routes/_authenticated/payment-audit'
+import { Route as AuthenticatedPaymentSettingsRouteImport } from './routes/_authenticated/payment-settings'
 import { Route as AuthenticatedPilotEvidenceRouteImport } from './routes/_authenticated/pilot-evidence'
 import { Route as AuthenticatedQuestionBankRouteImport } from './routes/_authenticated/question-bank'
 import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_authenticated/question-bank-audit'
@@ -246,6 +247,12 @@ const AuthenticatedPaymentAuditRoute =
     path: '/payment-audit',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPaymentSettingsRoute =
+  AuthenticatedPaymentSettingsRouteImport.update({
+    id: '/payment-settings',
+    path: '/payment-settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPilotEvidenceRoute =
   AuthenticatedPilotEvidenceRouteImport.update({
     id: '/pilot-evidence',
@@ -400,6 +407,7 @@ export interface FileRoutesByFullPath {
   '/outcome-proof': typeof AuthenticatedOutcomeProofRoute
   '/parent': typeof AuthenticatedParentRoute
   '/payment-audit': typeof AuthenticatedPaymentAuditRoute
+  '/payment-settings': typeof AuthenticatedPaymentSettingsRoute
   '/pilot-evidence': typeof AuthenticatedPilotEvidenceRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
@@ -455,6 +463,7 @@ export interface FileRoutesByTo {
   '/outcome-proof': typeof AuthenticatedOutcomeProofRoute
   '/parent': typeof AuthenticatedParentRoute
   '/payment-audit': typeof AuthenticatedPaymentAuditRoute
+  '/payment-settings': typeof AuthenticatedPaymentSettingsRoute
   '/pilot-evidence': typeof AuthenticatedPilotEvidenceRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
@@ -512,6 +521,7 @@ export interface FileRoutesById {
   '/_authenticated/outcome-proof': typeof AuthenticatedOutcomeProofRoute
   '/_authenticated/parent': typeof AuthenticatedParentRoute
   '/_authenticated/payment-audit': typeof AuthenticatedPaymentAuditRoute
+  '/_authenticated/payment-settings': typeof AuthenticatedPaymentSettingsRoute
   '/_authenticated/pilot-evidence': typeof AuthenticatedPilotEvidenceRoute
   '/_authenticated/question-bank': typeof AuthenticatedQuestionBankRoute
   '/_authenticated/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
@@ -569,6 +579,7 @@ export interface FileRouteTypes {
     | '/outcome-proof'
     | '/parent'
     | '/payment-audit'
+    | '/payment-settings'
     | '/pilot-evidence'
     | '/question-bank'
     | '/question-bank-audit'
@@ -624,6 +635,7 @@ export interface FileRouteTypes {
     | '/outcome-proof'
     | '/parent'
     | '/payment-audit'
+    | '/payment-settings'
     | '/pilot-evidence'
     | '/question-bank'
     | '/question-bank-audit'
@@ -680,6 +692,7 @@ export interface FileRouteTypes {
     | '/_authenticated/outcome-proof'
     | '/_authenticated/parent'
     | '/_authenticated/payment-audit'
+    | '/_authenticated/payment-settings'
     | '/_authenticated/pilot-evidence'
     | '/_authenticated/question-bank'
     | '/_authenticated/question-bank-audit'
@@ -953,6 +966,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPaymentAuditRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/payment-settings': {
+      id: '/_authenticated/payment-settings'
+      path: '/payment-settings'
+      fullPath: '/payment-settings'
+      preLoaderRoute: typeof AuthenticatedPaymentSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/pilot-evidence': {
       id: '/_authenticated/pilot-evidence'
       path: '/pilot-evidence'
@@ -1142,6 +1162,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOutcomeProofRoute: typeof AuthenticatedOutcomeProofRoute
   AuthenticatedParentRoute: typeof AuthenticatedParentRoute
   AuthenticatedPaymentAuditRoute: typeof AuthenticatedPaymentAuditRoute
+  AuthenticatedPaymentSettingsRoute: typeof AuthenticatedPaymentSettingsRoute
   AuthenticatedPilotEvidenceRoute: typeof AuthenticatedPilotEvidenceRoute
   AuthenticatedQuestionBankRoute: typeof AuthenticatedQuestionBankRoute
   AuthenticatedQuestionBankAuditRoute: typeof AuthenticatedQuestionBankAuditRoute
@@ -1188,6 +1209,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOutcomeProofRoute: AuthenticatedOutcomeProofRoute,
   AuthenticatedParentRoute: AuthenticatedParentRoute,
   AuthenticatedPaymentAuditRoute: AuthenticatedPaymentAuditRoute,
+  AuthenticatedPaymentSettingsRoute: AuthenticatedPaymentSettingsRoute,
   AuthenticatedPilotEvidenceRoute: AuthenticatedPilotEvidenceRoute,
   AuthenticatedQuestionBankRoute: AuthenticatedQuestionBankRoute,
   AuthenticatedQuestionBankAuditRoute: AuthenticatedQuestionBankAuditRoute,

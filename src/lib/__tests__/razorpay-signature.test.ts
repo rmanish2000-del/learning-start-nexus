@@ -23,14 +23,14 @@ describe("checkout signature verification", () => {
     const signature = createHmac("sha256", KEY_SECRET)
       .update(`${razorpayOrderId}|${razorpayPaymentId}`)
       .digest("hex");
-    expect(verifyCheckoutSignature({ razorpayOrderId, razorpayPaymentId, signature })).toBe(true);
+    expect(await verifyCheckoutSignature({ razorpayOrderId, razorpayPaymentId, signature })).toBe(true);
   });
 
   it("rejects a tampered payment id", async () => {
     const { verifyCheckoutSignature } = await mod();
     const signature = createHmac("sha256", KEY_SECRET).update("order_123|pay_456").digest("hex");
     expect(
-      verifyCheckoutSignature({
+      await verifyCheckoutSignature({
         razorpayOrderId: "order_123",
         razorpayPaymentId: "pay_EVIL",
         signature,
@@ -42,7 +42,7 @@ describe("checkout signature verification", () => {
     const { verifyCheckoutSignature } = await mod();
     const signature = createHmac("sha256", "not_the_secret").update("order_123|pay_456").digest("hex");
     expect(
-      verifyCheckoutSignature({
+      await verifyCheckoutSignature({
         razorpayOrderId: "order_123",
         razorpayPaymentId: "pay_456",
         signature,
@@ -55,7 +55,7 @@ describe("checkout signature verification", () => {
     const good = createHmac("sha256", KEY_SECRET).update("order_123|pay_456").digest("hex");
     for (const signature of ["", good.slice(0, 10)]) {
       expect(
-        verifyCheckoutSignature({
+        await verifyCheckoutSignature({
           razorpayOrderId: "order_123",
           razorpayPaymentId: "pay_456",
           signature,
@@ -71,25 +71,25 @@ describe("webhook signature verification", () => {
   it("accepts the HMAC over the exact raw body", async () => {
     const { verifyWebhookSignature } = await mod();
     const signature = createHmac("sha256", WEBHOOK_SECRET).update(body).digest("hex");
-    expect(verifyWebhookSignature(body, signature)).toBe(true);
+    expect(await verifyWebhookSignature(body, signature)).toBe(true);
   });
 
   it("rejects when the body was modified after signing", async () => {
     const { verifyWebhookSignature } = await mod();
     const signature = createHmac("sha256", WEBHOOK_SECRET).update(body).digest("hex");
-    expect(verifyWebhookSignature(body.replace("pay_1", "pay_2"), signature)).toBe(false);
+    expect(await verifyWebhookSignature(body.replace("pay_1", "pay_2"), signature)).toBe(false);
   });
 
   it("rejects a missing signature header", async () => {
     const { verifyWebhookSignature } = await mod();
-    expect(verifyWebhookSignature(body, null)).toBe(false);
+    expect(await verifyWebhookSignature(body, null)).toBe(false);
   });
 });
 
 describe("gateway mode", () => {
   it("reports test mode for an rzp_test key", async () => {
     const { razorpayMode, razorpayKeyId } = await mod();
-    expect(razorpayKeyId()).toBe(KEY_ID);
-    expect(razorpayMode()).toBe("test");
+    expect(await razorpayKeyId()).toBe(KEY_ID);
+    expect(await razorpayMode()).toBe("test");
   });
 });

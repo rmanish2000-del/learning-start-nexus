@@ -39,6 +39,7 @@ export const PROTECTED_ROUTES = [
   "/help",
   "/outcome-proof",
   "/payment-audit",
+  "/payment-settings",
   "/ux-phase1-plan",
 ] as const;
 

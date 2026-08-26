@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/public/razorpay-webhook")({
         const { verifyWebhookSignature } = await import("@/lib/razorpay.server");
         const { logWebhookEvent } = await import("@/lib/payment-observability.server");
 
-        if (!verifyWebhookSignature(raw, request.headers.get("x-razorpay-signature"))) {
+        if (!(await verifyWebhookSignature(raw, request.headers.get("x-razorpay-signature")))) {
           await logWebhookEvent({
             eventId,
             eventType: "unverified",

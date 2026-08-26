@@ -1864,6 +1864,33 @@ export type Database = {
           },
         ]
       }
+      payment_credentials: {
+        Row: {
+          id: string
+          key_id: string
+          key_secret: string
+          updated_at: string
+          updated_by: string | null
+          webhook_secret: string | null
+        }
+        Insert: {
+          id?: string
+          key_id: string
+          key_secret: string
+          updated_at?: string
+          updated_by?: string | null
+          webhook_secret?: string | null
+        }
+        Update: {
+          id?: string
+          key_id?: string
+          key_secret?: string
+          updated_at?: string
+          updated_by?: string | null
+          webhook_secret?: string | null
+        }
+        Relationships: []
+      }
       payment_webhook_events: {
         Row: {
           created_at: string

@@ -6,6 +6,8 @@
 
 import { createHmac, timingSafeEqual } from "crypto";
 
+import { resolveRazorpayCredentials } from "./payment-credentials.server";
+
 export type RazorpayOrder = {
   id: string;
   amount: number;
@@ -13,19 +15,18 @@ export type RazorpayOrder = {
   status: string;
 };
 
-function credentials(): { keyId: string; keySecret: string } {
-  const keyId = process.env["RAZORPAY_KEY_ID"];
-  const keySecret = process.env["RAZORPAY_KEY_SECRET"];
-  if (!keyId || !keySecret) throw new Error("Payments are not configured.");
-  return { keyId, keySecret };
+async function credentials(): Promise<{ keyId: string; keySecret: string; webhookSecret: string | null }> {
+  const resolved = await resolveRazorpayCredentials();
+  if (!resolved) throw new Error("Payments are not configured.");
+  return { keyId: resolved.keyId, keySecret: resolved.keySecret, webhookSecret: resolved.webhookSecret };
 }
 
-export function razorpayKeyId(): string {
-  return credentials().keyId;
+export async function razorpayKeyId(): Promise<string> {
+  return (await credentials()).keyId;
 }
 
-export function razorpayMode(): "test" | "live" {
-  return credentials().keyId.startsWith("rzp_live_") ? "live" : "test";
+export async function razorpayMode(): Promise<"test" | "live"> {
+  return (await credentials()).keyId.startsWith("rzp_live_") ? "live" : "test";
 }
 
 export async function createRazorpayOrder(input: {
@@ -33,7 +34,7 @@ export async function createRazorpayOrder(input: {
   receipt: string;
   notes?: Record<string, string>;
 }): Promise<RazorpayOrder> {
-  const { keyId, keySecret } = credentials();
+  const { keyId, keySecret } = await credentials();
   const res = await fetch("https://api.razorpay.com/v1/orders", {
     method: "POST",
     headers: {
@@ -67,12 +68,12 @@ function safeEqualHex(a: string, b: string): boolean {
 }
 
 /** Verifies the signature returned by Razorpay Checkout to the browser. */
-export function verifyCheckoutSignature(input: {
+export async function verifyCheckoutSignature(input: {
   razorpayOrderId: string;
   razorpayPaymentId: string;
   signature: string;
-}): boolean {
-  const { keySecret } = credentials();
+}): Promise<boolean> {
+  const { keySecret } = await credentials();
   const expected = createHmac("sha256", keySecret)
     .update(`${input.razorpayOrderId}|${input.razorpayPaymentId}`)
     .digest("hex");
@@ -80,8 +81,10 @@ export function verifyCheckoutSignature(input: {
 }
 
 /** Verifies the `X-Razorpay-Signature` header over the raw webhook body. */
-export function verifyWebhookSignature(rawBody: string, signature: string | null): boolean {
-  const secret = process.env["RAZORPAY_WEBHOOK_SECRET"];
+export async function verifyWebhookSignature(rawBody: string, signature: string | null): Promise<boolean> {
+  const secret = await resolveRazorpayCredentials()
+    .then((c) => c?.webhookSecret ?? process.env["RAZORPAY_WEBHOOK_SECRET"] ?? null)
+    .catch(() => process.env["RAZORPAY_WEBHOOK_SECRET"] ?? null);
   if (!secret || !signature) return false;
   const expected = createHmac("sha256", secret).update(rawBody).digest("hex");
   return safeEqualHex(expected, signature);
