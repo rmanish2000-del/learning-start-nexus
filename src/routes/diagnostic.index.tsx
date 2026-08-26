@@ -305,7 +305,10 @@ function DiagnosticPurchasePage() {
               ) : null}
               <Separator />
 
+              <ParentDetailsCard profile={account.data?.profile} onSaved={() => account.refetch()} />
+
               <div className="space-y-3">
+
                 <div>
                   <p className="text-sm font-medium">{t("diag.student.title", "Who is this for?")}</p>
                   <p className="text-xs text-muted-foreground">
