@@ -108,6 +108,19 @@ const TITLES: [RegExp, string][] = [
 
 const authRoute = getRouteApi("/_authenticated");
 
+function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
+  const { role } = authRoute.useRouteContext();
+  if (!items.some((item) => item.roles.includes(role))) return null;
+  return (
+    <SidebarGroup>
+      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <SidebarGroupContent>
+        <NavLinks items={items} />
+      </SidebarGroupContent>
+    </SidebarGroup>
+  );
+}
+
 function NavLinks({ items }: { items: NavItem[] }) {
   const { role } = authRoute.useRouteContext();
   const { isMobile, setOpenMobile } = useSidebar();
@@ -222,24 +235,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </Link>
         </SidebarHeader>
         <SidebarContent data-tour="sidebar-nav">
-          <SidebarGroup>
-            <SidebarGroupLabel>Workspace</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <NavLinks items={NAV_ITEMS} />
-            </SidebarGroupContent>
-          </SidebarGroup>
-          <SidebarGroup>
-            <SidebarGroupLabel>Support</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <NavLinks items={SUPPORT_ITEMS} />
-            </SidebarGroupContent>
-          </SidebarGroup>
-          <SidebarGroup>
-            <SidebarGroupLabel>System</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <NavLinks items={SYSTEM_ITEMS} />
-            </SidebarGroupContent>
-          </SidebarGroup>
+          <NavGroup label="Workspace" items={NAV_ITEMS} />
+          <NavGroup label="Support" items={SUPPORT_ITEMS} />
+          <NavGroup label="System" items={SYSTEM_ITEMS} />
         </SidebarContent>
         <SidebarFooter className="p-3">
           <p className="truncate text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
