@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { KeyRound, Radio, ShieldCheck, Webhook } from "lucide-react";
+import { History, KeyRound, Radio, ShieldCheck, Webhook } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
