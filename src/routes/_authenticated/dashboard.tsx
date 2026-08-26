@@ -204,6 +204,15 @@ function DashboardPage() {
         <ContextHelp page="/dashboard" />
       </div>
 
+      {learnersIsError && (
+        <QueryError
+          title="Your roster didn't load"
+          error={learnersError}
+          onRetry={() => void refetchLearners()}
+        />
+      )}
+
+
       <div data-tour="educator-checklist">
         <OnboardingChecklist
           role="educator"
