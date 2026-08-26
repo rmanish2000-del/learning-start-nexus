@@ -26,6 +26,8 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
 import { createStudentProfile, getParentAccount } from "@/lib/parent-account.functions";
+import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
+
 import { BOARDS, CLASSES, addStudentSchema } from "@/lib/parent-account-shared";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
 import { useSupabaseUser } from "@/lib/use-supabase-user";
