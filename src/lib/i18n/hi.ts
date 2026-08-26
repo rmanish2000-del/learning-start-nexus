@@ -11,6 +11,19 @@ export const HI: Record<string, string> = {
   // ---------------------------------------------------------------- common
   "common.language": "भाषा",
   "common.signIn": "साइन इन करें",
+  "common.createAccount": "खाता बनाएँ",
+  "common.staffAccess": "स्टाफ़ लॉगिन",
+  "landing.cta.startDiagnostic": "जाँच शुरू करें",
+  "landing.cta.createParent": "अभिभावक खाता बनाएँ",
+  "landing.pricing.diagnostic.title": "जाँच",
+  "landing.pricing.diagnostic.body":
+    "पाठ्यक्रम से जुड़ी एक जाँच, विषयवार कमियों की रिपोर्ट और सुझाया गया अभ्यास।",
+  "landing.pricing.plan.title": "पूर्ण सफलता योजना",
+  "landing.pricing.plan.body":
+    "निर्देशित अभ्यास, अभिभावक की सहमति के साथ एआई शिक्षक, नए प्रश्नों पर दोबारा जाँच और प्रमाणित सुधार।",
+  "landing.footer.cta": "अपने बच्चे की असली कमियाँ देखने के लिए तैयार हैं?",
+  "landing.footer.ctaNote": "अभिभावक खाता बनाइए, बच्चे को जोड़िए, ₹199 की जाँच शुरू कीजिए।",
+
   "common.back": "पीछे",
   "common.next": "आगे",
   "common.retry": "फिर कोशिश करें",

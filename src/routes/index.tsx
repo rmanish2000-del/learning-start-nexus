@@ -127,6 +127,30 @@ function hasSessionMarker() {
   return typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie);
 }
 
+/**
+ * Parent-first conversion pair. Repeated in the hero, the pricing block and
+ * the footer so account creation is reachable without entering the
+ * diagnostic flow first.
+ */
+function ParentCtas({ size = "default" }: { size?: "default" | "lg" }) {
+  const { t } = useI18n();
+  return (
+    <div className="mt-7 flex flex-wrap items-center gap-3">
+      <Button asChild size={size}>
+        <Link to="/diagnostic">
+          {t("landing.cta.startDiagnostic", "Start Diagnostic")} <ArrowRight className="h-4 w-4" />
+        </Link>
+      </Button>
+      <Button asChild size={size} variant="outline">
+        <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
+          {t("landing.cta.createParent", "Create Parent Account")}
+        </Link>
+      </Button>
+    </div>
+  );
+}
+
+
 function LandingPage() {
   const navigate = useNavigate();
 
@@ -166,24 +190,31 @@ function SiteHeader() {
           </span>
           <span className="text-base font-semibold tracking-tight">EduOS</span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav className="flex items-center gap-3 text-sm">
           <a href="#how" className="hidden text-muted-foreground hover:text-foreground lg:inline">
             {t("landing.nav.how", "How it works")}
           </a>
           <a href="#evidence" className="hidden text-muted-foreground hover:text-foreground lg:inline">
             {t("landing.nav.evidence", "Evidence")}
           </a>
-          <a href="#faq" className="hidden text-muted-foreground hover:text-foreground lg:inline">
-            {t("landing.nav.faq", "FAQ")}
+          <a href="#pilot" className="hidden text-muted-foreground hover:text-foreground lg:inline">
+            {t("landing.nav.pilot", "Apply for the pilot")}
           </a>
           <LanguageToggle />
-          <Link to="/auth" className="text-muted-foreground hover:text-foreground">
-            {t("common.signIn", "Sign in")}
+          <Link
+            to="/auth"
+            search={{ tab: "parent", mode: "signin" }}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            {t("common.signIn", "Sign In")}
           </Link>
           <Button asChild size="sm">
-            <a href="#pilot">{t("landing.nav.pilot", "Apply for the pilot")}</a>
+            <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
+              {t("common.createAccount", "Create Account")}
+            </Link>
           </Button>
         </nav>
+
       </div>
     </header>
   );
@@ -205,21 +236,16 @@ function Hero() {
           "EduOS runs the whole loop — diagnostic, gap detection, approved intervention, Socratic AI tutor, fresh-item reassessment — and ends with evidence a reviewer has signed.",
         )}
       </p>
-      <div className="mt-7 flex flex-wrap items-center gap-3">
-        <Button asChild size="lg">
-          <a href="#pilot">
-            {t("landing.hero.ctaPrimary", "Apply for the pilot")} <ArrowRight className="h-4 w-4" />
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="outline">
-          <a href="#evidence">{t("landing.hero.ctaSecondary", "See a sample outcome report")}</a>
-        </Button>
+      <ParentCtas size="lg" />
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <a href="#pilot" className="font-medium text-primary hover:underline">
+          {t("landing.hero.ctaPrimary", "Apply for the pilot")} →
+        </a>
+        <a href="#evidence" className="text-muted-foreground hover:text-foreground">
+          {t("landing.hero.ctaSecondary", "See a sample outcome report")}
+        </a>
       </div>
-      <p className="mt-4 text-sm">
-        <Link to="/diagnostic" className="font-medium text-primary hover:underline">
-          {t("landing.hero.parentCta", "A parent? Get your child's ₹199 diagnostic")} →
-        </Link>
-      </p>
+
 
       <div className="mt-12 grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3">
         {PROOF_STRIP.map((s, i) => (
@@ -461,7 +487,36 @@ function ParentTrust() {
           <p className="mt-4 text-sm text-muted-foreground">{PARENT_REPORT.narrative}</p>
         </div>
       </div>
+
+      <div id="pricing" className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="rounded-xl border bg-card p-5">
+          <h3 className="text-sm font-semibold">
+            {t("landing.pricing.diagnostic.title", "Diagnostic")}
+          </h3>
+          <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹199</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t(
+              "landing.pricing.diagnostic.body",
+              "One curriculum-mapped diagnostic, an outcome-level gap report and a recommended practice plan.",
+            )}
+          </p>
+        </div>
+        <div className="rounded-xl border bg-card p-5">
+          <h3 className="text-sm font-semibold">
+            {t("landing.pricing.plan.title", "Full Success Plan")}
+          </h3>
+          <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹2,999</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t(
+              "landing.pricing.plan.body",
+              "Guided practice, AI tutor access with guardian consent, reassessment on fresh items and verified mastery lift.",
+            )}
+          </p>
+        </div>
+      </div>
+      <ParentCtas />
     </Section>
+
   );
 }
 
@@ -533,14 +588,33 @@ function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer className="border-t">
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-8 text-sm text-muted-foreground">
-        <Link to="/about" className="hover:text-foreground">{t("common.about", "About")}</Link>
-        <Link to="/privacy" className="hover:text-foreground">{t("common.privacy", "Privacy Policy")}</Link>
-        <Link to="/terms" className="hover:text-foreground">{t("common.terms", "Terms of Service")}</Link>
-        <Link to="/contact" className="hover:text-foreground">{t("common.contact", "Contact")}</Link>
-        <Link to="/auth" className="hover:text-foreground">{t("common.signIn", "Sign in")}</Link>
-        <span className="ml-auto text-xs">EduOS — Brightpath Learning</span>
+      <div className="mx-auto max-w-5xl px-4 py-10">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium">
+              {t("landing.footer.cta", "Ready to see your child's real gaps?")}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {t("landing.footer.ctaNote", "Create a parent account, add your child, start the ₹199 diagnostic.")}
+            </p>
+          </div>
+          <ParentCtas />
+        </div>
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-sm text-muted-foreground">
+          <Link to="/about" className="hover:text-foreground">{t("common.about", "About")}</Link>
+          <Link to="/privacy" className="hover:text-foreground">{t("common.privacy", "Privacy Policy")}</Link>
+          <Link to="/terms" className="hover:text-foreground">{t("common.terms", "Terms of Service")}</Link>
+          <Link to="/contact" className="hover:text-foreground">{t("common.contact", "Contact")}</Link>
+          <Link to="/auth" search={{ tab: "parent", mode: "signin" }} className="hover:text-foreground">
+            {t("common.signIn", "Sign In")}
+          </Link>
+          <Link to="/auth" search={{ tab: "staff", mode: "signin" }} className="text-xs hover:text-foreground">
+            {t("common.staffAccess", "Staff Access")}
+          </Link>
+          <span className="ml-auto text-xs">EduOS — Brightpath Learning</span>
+        </div>
       </div>
     </footer>
   );
+
 }

@@ -19,23 +19,35 @@ type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "sig
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
+    // Parents are the default audience. Staff must ask for their tab
+    // explicitly with ?tab=staff.
     tab:
       search["tab"] === "parent" || search["tab"] === "student" || search["tab"] === "staff"
         ? search["tab"]
-        : "staff",
+        : "parent",
     mode: search["mode"] === "signup" ? "signup" : "signin",
     ...(typeof search["next"] === "string" && search["next"].startsWith("/")
       ? { next: search["next"] }
       : {}),
   }),
+
   head: () => ({
     meta: [
-      { title: "Sign in — EduOS" },
-      { name: "description", content: "Sign in to EduOS with your staff email or student handle and PIN." },
-      { property: "og:title", content: "Sign in — EduOS" },
-      { property: "og:description", content: "Sign in to EduOS with your staff email or student handle and PIN." },
+      { title: "Sign in or create a parent account — EduOS" },
+      {
+        name: "description",
+        content:
+          "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress. Staff and students sign in here too.",
+      },
+      { property: "og:title", content: "Sign in or create a parent account — EduOS" },
+      {
+        property: "og:description",
+        content:
+          "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress.",
+      },
     ],
   }),
+
   component: AuthPage,
 });
 
@@ -54,6 +66,8 @@ function AuthPage() {
   const search = Route.useSearch();
   const [pending, setPending] = useState(false);
   const [parentMode, setParentMode] = useState<"signin" | "signup">(search.mode ?? "signin");
+  const [tab, setTab] = useState<"staff" | "student" | "parent">(search.tab ?? "parent");
+
 
   // Already signed in? Route to the right home for the role.
   useEffect(() => {
@@ -218,18 +232,25 @@ function AuthPage() {
               </div>
               <span className="text-lg font-semibold tracking-tight">EduOS</span>
             </div>
-            <h2 className="text-2xl font-semibold tracking-tight">Sign in</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">
+              {tab === "parent" && parentMode === "signup" ? "Create your parent account" : "Sign in"}
+            </h2>
             <p className="text-sm text-muted-foreground">
-              Staff use their work email. Students use their handle and PIN.
+              {tab === "staff"
+                ? "Staff use their work email and password."
+                : tab === "student"
+                  ? "Students use the handle and PIN from their educator."
+                  : "Parents sign in with email. New here? Create an account in under a minute."}
             </p>
           </div>
 
-          <Tabs defaultValue={search.tab ?? "staff"}>
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="staff">Staff</TabsTrigger>
-              <TabsTrigger value="student">Student</TabsTrigger>
+          <Tabs value={tab} onValueChange={(value) => setTab(value as typeof tab)}>
+            <TabsList className={tab === "staff" ? "grid w-full grid-cols-3" : "grid w-full grid-cols-2"}>
               <TabsTrigger value="parent">Parent</TabsTrigger>
+              <TabsTrigger value="student">Student</TabsTrigger>
+              {tab === "staff" ? <TabsTrigger value="staff">Staff</TabsTrigger> : null}
             </TabsList>
+
 
             <TabsContent value="staff" className="pt-6">
               <form onSubmit={onStaffSubmit} className="space-y-4">
@@ -375,9 +396,20 @@ function AuthPage() {
           </Tabs>
 
           <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
-            Trouble signing in? Your tutoring center admin can reset a staff password or a student
-            PIN. Parents receive their sign-in from the center.
+            Trouble signing in? Parents can reset from this page; your tutoring centre admin resets
+            staff passwords and student PINs.
           </p>
+
+          {tab !== "staff" ? (
+            <button
+              type="button"
+              onClick={() => setTab("staff")}
+              className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+            >
+              Staff access
+            </button>
+          ) : null}
+
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             <Link to="/about" className="hover:text-foreground">About</Link>

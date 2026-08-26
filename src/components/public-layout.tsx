@@ -2,6 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { GraduationCap } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { Button } from "@/components/ui/button";
+
+
 // Shared chrome for the public marketing/legal pages (About, Privacy, Terms,
 // Contact). App-owned content published by the EduOS demo operator.
 export function PublicPageLayout({
@@ -23,9 +26,21 @@ export function PublicPageLayout({
             </span>
             <span className="text-base font-semibold tracking-tight">EduOS</span>
           </Link>
-          <Link to="/auth" className="text-sm font-medium text-primary hover:underline">
-            Sign in
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              to="/auth"
+              search={{ tab: "parent", mode: "signin" }}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              Sign In
+            </Link>
+            <Button asChild size="sm">
+              <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
+                Create Account
+              </Link>
+            </Button>
+          </div>
+
         </div>
       </header>
 
