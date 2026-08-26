@@ -14,10 +14,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  createPaymentIntent,
   fetchDiagnosticReport,
-  payDiagnosticOrder,
+  reportPaymentFailure,
   startUpgradeOrder,
+  verifyPayment,
 } from "@/lib/parent-diagnostic.functions";
+import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { CHAPTER_GROUP_MARKS, PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 
 const TITLE = "Board Success Plan — ₹2,999 a year | EduOS";
