@@ -25,6 +25,7 @@ import {
   CBSE_KIND_LABELS,
   CBSE_KIND_RULES,
   CBSE_KINDS,
+  COHORT_FORMULAS,
   TUTOR_MINUTES_FORMULA,
   VERIFICATION_LABELS,
   VERIFICATION_RULES,
@@ -99,7 +100,7 @@ function PilotEvidencePage() {
     );
   }
 
-  const { tutor, coverage, verification } = query.data;
+  const { tutor, coverage, verification, cohort } = query.data;
   const canVerify = role === "admin" || role === "reviewer";
 
   return (
@@ -117,6 +118,7 @@ function PilotEvidencePage() {
           <TabsTrigger value="tutor">Tutor evidence</TabsTrigger>
           <TabsTrigger value="cbse">CBSE question types</TabsTrigger>
           <TabsTrigger value="verification">Reviewer verification</TabsTrigger>
+          <TabsTrigger value="cohort">Cohort metrics</TabsTrigger>
         </TabsList>
 
         {/* -------------------------------------------------- M6 */}
@@ -402,6 +404,111 @@ function PilotEvidencePage() {
                   ))}
                 </ul>
               )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* -------------------------------------------------- Cohort */}
+        <TabsContent value="cohort" className="space-y-4 pt-4">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { label: "Cohort size", value: String(cohort.cohortSize) },
+              { label: "Completion rate", value: `${cohort.completionRatePct}%` },
+              { label: "Dropout rate", value: `${cohort.dropoutRatePct}%` },
+              { label: "Assessments assigned", value: String(cohort.assigned) },
+              { label: "Assessments submitted", value: String(cohort.submitted) },
+            ].map((stat) => (
+              <Card key={stat.label}>
+                <CardHeader className="pb-2">
+                  <CardDescription>{stat.label}</CardDescription>
+                  <CardTitle className="text-2xl tabular-nums">{stat.value}</CardTitle>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            {[
+              { title: "Baseline distribution", data: cohort.baseline },
+              { title: "Reassessment distribution", data: cohort.reassessment },
+            ].map((panel) => {
+              const total = panel.data.scores.length;
+              return (
+                <Card key={panel.title}>
+                  <CardHeader>
+                    <CardTitle className="text-base">{panel.title}</CardTitle>
+                    <CardDescription>
+                      {total} scored {total === 1 ? "outcome" : "outcomes"}
+                      {panel.data.mean !== null ? ` · mean ${panel.data.mean}%` : ""}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {panel.data.bands.map((band) => (
+                      <div key={band.label} className="space-y-1">
+                        <div className="flex items-center justify-between text-sm">
+                          <span>{band.label}</span>
+                          <span className="text-muted-foreground tabular-nums">{band.count}</span>
+                        </div>
+                        <div className="bg-muted h-2 w-full overflow-hidden rounded-full">
+                          <div
+                            className="bg-primary h-full rounded-full"
+                            style={{ width: `${total === 0 ? 0 : (band.count / total) * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    {total === 0 ? (
+                      <p className="text-muted-foreground text-sm">
+                        No scored outcomes yet — the distribution fills as the pilot runs.
+                      </p>
+                    ) : null}
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Participation detail</CardTitle>
+              <CardDescription>
+                Mean lift{" "}
+                {cohort.meanLift === null
+                  ? "—"
+                  : `${cohort.meanLift > 0 ? "+" : ""}${cohort.meanLift} pts`}{" "}
+                across outcomes with both a baseline and a reassessment.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+              <div>
+                <p className="text-muted-foreground">Learners assigned</p>
+                <p className="text-lg tabular-nums">{cohort.learnersAssigned}</p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">Learners completed</p>
+                <p className="text-lg tabular-nums">{cohort.learnersCompleted}</p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">In progress</p>
+                <p className="text-lg tabular-nums">{cohort.inProgress}</p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">Dropped out</p>
+                <p className="text-lg tabular-nums">{cohort.droppedOut}</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">How these numbers are produced</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {COHORT_FORMULAS.map((line) => (
+                <p key={line} className="text-muted-foreground text-sm">
+                  {line}
+                </p>
+              ))}
             </CardContent>
           </Card>
         </TabsContent>
