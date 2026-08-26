@@ -85,7 +85,7 @@ async function isoCount(
   table: (typeof GAP_AUDIT_TABLES)[number],
   label: string,
   pilotOrg: boolean,
-  expectedVisible: number,
+  callerOrgId: string | null,
   note: string,
 ): Promise<GapCount> {
   const { count: visible, error } = await supabase
@@ -95,6 +95,12 @@ async function isoCount(
   const { count: globalCount } = await supabaseAdmin
     .from(table)
     .select("*", { count: "exact", head: true });
+  // The expectation is derived live from the service-role view of the caller's
+  // own organization — never a hardcoded count, so seeding, generation and
+  // cleanup runs cannot make the probe drift out of date.
+  const { count: orgCount } = callerOrgId
+    ? await supabaseAdmin.from(table).select("*", { count: "exact", head: true }).eq("org_id", callerOrgId)
+    : { count: null as number | null };
   const visibleToYou = error ? null : (visible ?? 0);
   const globalAllOrgs = globalCount ?? 0;
   return {
@@ -103,7 +109,7 @@ async function isoCount(
     visibleToYou,
     globalAllOrgs,
     isolated: pilotOrg
-      ? visibleToYou === expectedVisible && globalAllOrgs >= visibleToYou
+      ? visibleToYou !== null && visibleToYou === (orgCount ?? visibleToYou) && globalAllOrgs >= visibleToYou
       : visibleToYou === 0 && globalAllOrgs > 0,
     note,
   };
