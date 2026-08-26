@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Copy, Link2, Plus, Unlink } from "lucide-react";
+import { Copy, KeyRound, Link2, Plus, Unlink } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +11,7 @@ import {
   linkParentToLearner,
   listParentLinks,
   listStaffUsers,
+  resetStaffPassword,
   unlinkParentFromLearner,
   updateUserRole,
 } from "@/lib/admin.functions";
@@ -71,6 +72,9 @@ function AdminPage() {
   const listStaffFn = useServerFn(listStaffUsers);
   const createStaffFn = useServerFn(createStaffUser);
   const updateRoleFn = useServerFn(updateUserRole);
+  const resetPasswordFn = useServerFn(resetStaffPassword);
+  const [resetTarget, setResetTarget] = useState<{ id: string; label: string } | null>(null);
+  const [resetResult, setResetResult] = useState<string | null>(null);
 
   const { data: org } = useQuery({
     queryKey: ["org", orgId],
@@ -123,6 +127,12 @@ function AdminPage() {
       toast.success("Role updated.");
       void queryClient.invalidateQueries({ queryKey: ["staff-users"] });
     },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const resetMutation = useMutation({
+    mutationFn: (userId: string) => resetPasswordFn({ data: { userId } }),
+    onSuccess: (result) => setResetResult(result.tempPassword),
     onError: (error) => toast.error(error.message),
   });
 
@@ -279,13 +289,14 @@ function AdminPage() {
                   <TableHead>Email</TableHead>
                   <TableHead>Role</TableHead>
                   <TableHead className="text-right">Change role</TableHead>
+                  <TableHead className="w-12"><span className="sr-only">Actions</span></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {isPending &&
                   [0, 1, 2].map((i) => (
                     <TableRow key={i}>
-                      <TableCell colSpan={4}>
+                      <TableCell colSpan={5}>
                         <Skeleton className="h-8 w-full" />
                       </TableCell>
                     </TableRow>
@@ -327,6 +338,17 @@ function AdminPage() {
                         </SelectContent>
                       </Select>
                     </TableCell>
+                    <TableCell>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        aria-label={`Reset password for ${member.fullName || member.email}`}
+                        title="Reset password"
+                        onClick={() => setResetTarget({ id: member.id, label: member.fullName || member.email })}
+                      >
+                        <KeyRound className="h-4 w-4" />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -336,6 +358,75 @@ function AdminPage() {
       </Card>
 
       <ParentAccessCard />
+
+      <Dialog
+        open={!!resetTarget}
+        onOpenChange={(open) => {
+          if (!open) {
+            setResetTarget(null);
+            setResetResult(null);
+          }
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reset password</DialogTitle>
+            <DialogDescription>
+              {resetResult
+                ? `Share this temporary password with ${resetTarget?.label}.`
+                : `Issue a new temporary password for ${resetTarget?.label}? Their current password stops working immediately.`}
+            </DialogDescription>
+          </DialogHeader>
+          {resetResult ? (
+            <div className="space-y-4">
+              <div className="rounded-lg border bg-muted/50 p-4">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Temporary password
+                </p>
+                <div className="mt-2 flex items-center justify-between gap-2">
+                  <code className="text-sm font-semibold">{resetResult}</code>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    aria-label="Copy temporary password"
+                    onClick={() => {
+                      void navigator.clipboard.writeText(resetResult);
+                      toast.success("Copied.");
+                    }}
+                  >
+                    <Copy className="h-4 w-4" />
+                  </Button>
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Shown once — you can issue another reset any time.
+                </p>
+              </div>
+              <DialogFooter>
+                <Button
+                  onClick={() => {
+                    setResetTarget(null);
+                    setResetResult(null);
+                  }}
+                >
+                  Done
+                </Button>
+              </DialogFooter>
+            </div>
+          ) : (
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setResetTarget(null)}>
+                Cancel
+              </Button>
+              <Button
+                disabled={resetMutation.isPending}
+                onClick={() => resetTarget && resetMutation.mutate(resetTarget.id)}
+              >
+                {resetMutation.isPending ? "Resetting…" : "Reset password"}
+              </Button>
+            </DialogFooter>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

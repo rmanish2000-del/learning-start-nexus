@@ -4,6 +4,7 @@ import {
   createStaffUserSchema,
   parentLinkSchema,
   parentUnlinkSchema,
+  resetStaffPasswordSchema,
   updateUserRoleSchema,
 } from "./schemas";
 import type { AppRole } from "./roles";
@@ -77,6 +78,33 @@ export const createStaffUser = createServerFn({ method: "POST" })
     if (roleError) throw new Error(roleError.message);
 
     return { id: created.user.id, tempPassword };
+  });
+
+// Issue a fresh temporary password for a staff account in the caller's org.
+// This is the recovery path when the one-time password from creation was lost.
+export const resetStaffPassword = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => resetStaffPasswordSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+
+    // Org-scoped profiles RLS: the target is only readable inside the caller's org.
+    const { data: targetProfile } = await context.supabase
+      .from("profiles")
+      .select("id")
+      .eq("id", data.userId)
+      .maybeSingle();
+    if (!targetProfile) throw new Error("That user is not part of your organization.");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const tempPassword = `EduOS-${crypto.randomUUID().replace(/-/g, "").slice(0, 10)}!`;
+
+    const { error } = await supabaseAdmin.auth.admin.updateUserById(data.userId, {
+      password: tempPassword,
+    });
+    if (error) throw new Error(error.message);
+
+    return { tempPassword };
   });
 
 export const updateUserRole = createServerFn({ method: "POST" })

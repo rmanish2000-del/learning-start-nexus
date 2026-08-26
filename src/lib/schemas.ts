@@ -28,6 +28,10 @@ export const updateUserRoleSchema = z.object({
   role: z.enum(["admin", "educator", "student", "parent", "reviewer"]),
 });
 
+export const resetStaffPasswordSchema = z.object({
+  userId: z.string().uuid(),
+});
+
 export const parentLinkSchema = z.object({
   parentUserId: z.string().uuid(),
   learnerId: z.string().uuid(),
