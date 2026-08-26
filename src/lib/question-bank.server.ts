@@ -197,7 +197,7 @@ async function callQuestionAi(
 export async function generateQuestions(
   supabase: Client,
   ctx: { orgId: string; userId: string },
-  input: { outcomeId: string; count: number },
+  input: { outcomeId: string; count: number; style?: CbseKind | "auto" | undefined },
 ): Promise<{ inserted: number; aiUsed: boolean; latencyMs: number | null }> {
   // Load the outcome + book through the caller's RLS client — a cross-org or
   // non-staff caller simply sees nothing here.
