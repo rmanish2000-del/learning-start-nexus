@@ -31,6 +31,9 @@ vi.mock("../razorpay.server", async (importOriginal) => {
 
 const DIAG_ORDER = "11111111-1111-4111-8111-111111111111";
 const PLAN_ORDER = "22222222-2222-4222-8222-222222222222";
+// Identity-first: every order belongs to a parent auth user and a student.
+const PARENT_USER = "33333333-3333-4333-8333-333333333333";
+const OTHER_USER = "44444444-4444-4444-8444-444444444444";
 
 beforeAll(() => {
   process.env["RAZORPAY_KEY_ID"] = "rzp_test_abc123";
@@ -52,6 +55,7 @@ function baseOrder(overrides: Row): Row {
     child_first_name: "Aarav",
     contact_email: "p@example.com",
     org_id: "org_1",
+    parent_user_id: PARENT_USER,
     learner_id: "learner_1",
     assessment_id: "assessment_1",
     session_id: "session_1",
@@ -137,13 +141,14 @@ function expectAuditClean() {
 /** Completes a browser checkout for an order ref, returning the payment id. */
 async function payThroughCheckout(ref: string, paymentId: string) {
   const { startRazorpayCheckout, verifyRazorpayCheckout } = await api();
-  const intent = await startRazorpayCheckout(ref);
+  const intent = await startRazorpayCheckout(ref, PARENT_USER);
   const gatewayOrderId = intent.razorpayOrderId!;
   await verifyRazorpayCheckout({
     orderRef: ref,
     razorpayOrderId: gatewayOrderId,
     razorpayPaymentId: paymentId,
     signature: signCheckout(gatewayOrderId, paymentId),
+    userId: PARENT_USER,
   });
   return { gatewayOrderId, paymentId };
 }
@@ -153,7 +158,7 @@ beforeEach(seed);
 describe("A. New user purchase", () => {
   it("creates a pending order with a gateway order id and no entitlement", async () => {
     const { startRazorpayCheckout } = await api();
-    const intent = await startRazorpayCheckout("EDUDIAG1");
+    const intent = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
 
     expect(intent.amountPaise).toBe(19900);
     expect(intent.currency).toBe("INR");
@@ -190,10 +195,11 @@ describe("B. Successful payment", () => {
 
   it("rejects a forged signature and grants nothing", async () => {
     const { startRazorpayCheckout, verifyRazorpayCheckout } = await api();
-    const intent = await startRazorpayCheckout("EDUDIAG1");
+    const intent = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
 
     await expect(
       verifyRazorpayCheckout({
+        userId: PARENT_USER,
         orderRef: "EDUDIAG1",
         razorpayOrderId: intent.razorpayOrderId!,
         razorpayPaymentId: "pay_forged",
@@ -209,7 +215,7 @@ describe("B. Successful payment", () => {
 describe("C. Failed payment", () => {
   it("marks the order failed with the gateway reason and grants nothing", async () => {
     const { startRazorpayCheckout, failFromWebhook } = await api();
-    const intent = await startRazorpayCheckout("EDUDIAG1");
+    const intent = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
     const result = await failFromWebhook({
       providerOrderId: intent.razorpayOrderId!,
       reason: "Card declined by issuing bank",
@@ -226,7 +232,7 @@ describe("C. Failed payment", () => {
 describe("D. Cancelled payment", () => {
   it("records the abandoned checkout and still allows a later successful retry", async () => {
     const { recordRazorpayFailure } = await api();
-    await recordRazorpayFailure({ orderRef: "EDUDIAG1", reason: "Checkout closed by parent" });
+    await recordRazorpayFailure({ orderRef: "EDUDIAG1", reason: "Checkout closed by parent", userId: PARENT_USER });
     expect(orderByRef("EDUDIAG1")["status"]).toBe("failed");
     expect(entitlements()).toHaveLength(0);
 
@@ -274,9 +280,9 @@ describe("F. Delayed webhook", () => {
 describe("G. Refresh during checkout", () => {
   it("reuses the same gateway order instead of creating a second one", async () => {
     const { startRazorpayCheckout } = await api();
-    const first = await startRazorpayCheckout("EDUDIAG1");
-    const second = await startRazorpayCheckout("EDUDIAG1");
-    const third = await startRazorpayCheckout("EDUDIAG1");
+    const first = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
+    const second = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
+    const third = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
 
     expect(second.razorpayOrderId).toBe(first.razorpayOrderId);
     expect(third.razorpayOrderId).toBe(first.razorpayOrderId);
@@ -288,7 +294,7 @@ describe("G. Refresh during checkout", () => {
   it("does not re-open a gateway order once the payment is captured", async () => {
     const { startRazorpayCheckout } = await api();
     await payThroughCheckout("EDUDIAG1", "pay_ok");
-    const after = await startRazorpayCheckout("EDUDIAG1");
+    const after = await startRazorpayCheckout("EDUDIAG1", PARENT_USER);
 
     expect(after.status).toBe("paid");
     expect(after.razorpayOrderId).toBeNull();
@@ -304,7 +310,7 @@ describe("H. Logout and login after payment", () => {
     // A new "session": fresh module import, order fetched by its public ref.
     vi.resetModules();
     const { getOrder } = await api();
-    const view = await getOrder("EDUDIAG1");
+    const view = await getOrder("EDUDIAG1", PARENT_USER);
 
     expect(view.status).toBe("paid");
     expect(view.accessToken).toBe("tok_diag");
@@ -409,5 +415,24 @@ describe("Entitlement audit invariants", () => {
     );
     expect(rows[0]!.grantedOnce).toBe(false);
     expect(rows[0]!.ok).toBe(false);
+  });
+});
+
+describe("K. Purchase ownership", () => {
+  it("refuses checkout for an anonymous caller and for a different account", async () => {
+    const { startRazorpayCheckout, getOrder } = await api();
+
+    await expect(startRazorpayCheckout("EDUDIAG1", null)).rejects.toThrow(/Sign in with the account/);
+    await expect(startRazorpayCheckout("EDUDIAG1", OTHER_USER)).rejects.toThrow(/Sign in with the account/);
+    await expect(getOrder("EDUDIAG1", OTHER_USER)).rejects.toThrow(/Sign in with the account/);
+
+    // Nothing was created at the gateway and no entitlement was granted.
+    expect(createRazorpayOrder).not.toHaveBeenCalled();
+    expect(entitlements()).toHaveLength(0);
+  });
+
+  it("stamps the owning parent account on the entitlement it grants", async () => {
+    await payThroughCheckout("EDUDIAG1", "pay_owner");
+    expect(entitlements()[0]!["parent_user_id"]).toBe(PARENT_USER);
   });
 });
