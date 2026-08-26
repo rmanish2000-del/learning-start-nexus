@@ -43,6 +43,7 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/quick-start",
   "/help",
   "/outcome-proof",
+  "/pilot-evidence",
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {
