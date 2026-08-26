@@ -153,6 +153,11 @@ export function buildDiagnosticReport(items: GradedItem[]): DiagnosticReport {
 
   const strategyByOutcome = new Map(items.map((i) => [i.outcomeId, i.interventionStrategy]));
 
+  // Blueprint weights are not guaranteed to sum to 100 across the outcomes we
+  // actually assessed, so marks at risk are expressed as each outcome's share
+  // of the assessed weight — the totals can never exceed the chapter group.
+  const assessedWeight = outcomes.reduce((s, o) => s + o.weight, 0) || 1;
+
   const gaps: GapCard[] = outcomes
     .filter((o) => o.pct < GAP_THRESHOLD_PCT)
     .map((o) => ({
@@ -165,7 +170,7 @@ export function buildDiagnosticReport(items: GradedItem[]): DiagnosticReport {
       severity: severityFor(o.pct),
       questionsMissed: o.total - o.correct,
       questionsTotal: o.total,
-      marksAtRisk: Math.max(1, Math.round((o.weight / 100) * CHAPTER_GROUP_MARKS)),
+      marksAtRisk: Math.max(1, Math.round((o.weight / assessedWeight) * CHAPTER_GROUP_MARKS)),
       intervention: strategyByOutcome.get(o.outcomeId) ?? "Targeted re-teach followed by a fresh-item re-check.",
       priorityScore: o.weight * (100 - o.pct),
     }))
