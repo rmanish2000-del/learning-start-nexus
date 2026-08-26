@@ -177,6 +177,15 @@ const generationResultSchema = z.object({
 
 type GeneratedQuestion = z.infer<typeof generatedQuestionSchema>;
 
+function extractJson(text: string): unknown {
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+  const raw = fenced?.[1]?.trim() ?? text.trim();
+  const start = raw.indexOf("{");
+  const end = raw.lastIndexOf("}");
+  if (start === -1 || end === -1) throw new Error("AI response contained no JSON object.");
+  return JSON.parse(raw.slice(start, end + 1));
+}
+
 async function callQuestionAi(
   system: string,
   prompt: string,
@@ -185,14 +194,27 @@ async function callQuestionAi(
   if (!apiKey) throw new Error("AI is not configured for this workspace (missing API key).");
   const started = Date.now();
   const gateway = createLovableAiGatewayProvider(apiKey);
-  const { object } = await generateObject({
-    model: gateway(QUESTION_MODEL),
-    schema: generationResultSchema,
-    system,
-    prompt,
-  });
-  return { questions: object.questions, latencyMs: Date.now() - started };
+  try {
+    const { object } = await generateObject({
+      model: gateway(QUESTION_MODEL),
+      schema: generationResultSchema,
+      system,
+      prompt,
+    });
+    return { questions: object.questions, latencyMs: Date.now() - started };
+  } catch {
+    // Some gateway models do not support structured outputs; fall back to a
+    // plain text completion and parse/validate the JSON ourselves.
+    const { text } = await generateText({
+      model: gateway(QUESTION_MODEL),
+      system: `${system}\n\nRespond with JSON only, shaped as {"questions":[{"kind":"...","stimulus":null,"difficulty":1,"prompt":"...","options":["..."]|null,"correct_answer":"...","explanation":"..."}]}. No prose, no markdown fences.`,
+      prompt,
+    });
+    const parsed = generationResultSchema.parse(extractJson(text));
+    return { questions: parsed.questions, latencyMs: Date.now() - started };
+  }
 }
+
 
 export async function generateQuestions(
   supabase: Client,
