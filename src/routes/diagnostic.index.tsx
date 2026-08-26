@@ -127,6 +127,8 @@ function DiagnosticPurchasePage() {
   const [addingStudent, setAddingStudent] = useState(false);
 
   const activeStudentId = learnerId || (students.length === 1 ? students[0]!.id : "");
+  const detailsComplete = parentDetailsComplete(account.data?.profile);
+
 
   async function addStudent() {
     const parsed = addStudentSchema.safeParse({
