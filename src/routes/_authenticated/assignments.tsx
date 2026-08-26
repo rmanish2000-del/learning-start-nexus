@@ -5,13 +5,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { UserCog } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -105,121 +99,121 @@ function AssignmentsPage() {
 
   return (
     <div className="space-y-6">
-        <div>
-          <h2 className="text-xl font-semibold tracking-tight">Educator assignments</h2>
-          <p className="text-sm text-muted-foreground">
-            Assign each learner to an educator in your organization.
-          </p>
-        </div>
+      <div>
+        <h2 className="text-xl font-semibold tracking-tight">Educator assignments</h2>
+        <p className="text-sm text-muted-foreground">
+          Assign each learner to an educator in your organization.
+        </p>
+      </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <UserCog className="h-4 w-4 text-muted-foreground" />
-              Learner roster
-            </CardTitle>
-            <CardDescription>
-              {unassignedCount > 0
-                ? `${unassignedCount} learner${unassignedCount === 1 ? "" : "s"} without an assigned educator.`
-                : "Every learner has an assigned educator."}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="rounded-b-xl border-t">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Learner</TableHead>
-                    <TableHead className="w-16">Grade</TableHead>
-                    <TableHead className="w-32">Subject</TableHead>
-                    <TableHead className="w-36">Status</TableHead>
-                    <TableHead className="w-64">Assigned educator</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {learnersLoading
-                    ? Array.from({ length: 5 }, (_, i) => (
-                        <TableRow key={i}>
-                          {Array.from({ length: 5 }, (_, j) => (
-                            <TableCell key={j}>
-                              <Skeleton className="h-5 w-full max-w-40" />
-                            </TableCell>
-                          ))}
-                        </TableRow>
-                      ))
-                    : (learners ?? []).map((learner) => (
-                        <TableRow key={learner.id}>
-                          <TableCell>
-                            <div className="flex items-center gap-3">
-                              <Avatar className="h-8 w-8">
-                                <AvatarFallback className="bg-primary/10 text-[11px] font-medium text-primary">
-                                  {learner.full_name
-                                    .split(" ")
-                                    .map((p) => p[0])
-                                    .slice(0, 2)
-                                    .join("")}
-                                </AvatarFallback>
-                              </Avatar>
-                              <span className="font-medium">{learner.full_name}</span>
-                            </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <UserCog className="h-4 w-4 text-muted-foreground" />
+            Learner roster
+          </CardTitle>
+          <CardDescription>
+            {unassignedCount > 0
+              ? `${unassignedCount} learner${unassignedCount === 1 ? "" : "s"} without an assigned educator.`
+              : "Every learner has an assigned educator."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="rounded-b-xl border-t">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Learner</TableHead>
+                  <TableHead className="w-16">Grade</TableHead>
+                  <TableHead className="w-32">Subject</TableHead>
+                  <TableHead className="w-36">Status</TableHead>
+                  <TableHead className="w-64">Assigned educator</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {learnersLoading
+                  ? Array.from({ length: 5 }, (_, i) => (
+                      <TableRow key={i}>
+                        {Array.from({ length: 5 }, (_, j) => (
+                          <TableCell key={j}>
+                            <Skeleton className="h-5 w-full max-w-40" />
                           </TableCell>
-                          <TableCell>G{learner.grade}</TableCell>
-                          <TableCell className="text-muted-foreground">{learner.subject}</TableCell>
-                          <TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                  : (learners ?? []).map((learner) => (
+                      <TableRow key={learner.id}>
+                        <TableCell>
+                          <div className="flex items-center gap-3">
+                            <Avatar className="h-8 w-8">
+                              <AvatarFallback className="bg-primary/10 text-[11px] font-medium text-primary">
+                                {learner.full_name
+                                  .split(" ")
+                                  .map((p) => p[0])
+                                  .slice(0, 2)
+                                  .join("")}
+                              </AvatarFallback>
+                            </Avatar>
+                            <span className="font-medium">{learner.full_name}</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>G{learner.grade}</TableCell>
+                        <TableCell className="text-muted-foreground">{learner.subject}</TableCell>
+                        <TableCell>
+                          <span
+                            className={cn(
+                              "inline-flex items-center gap-1.5 text-xs",
+                              learner.status === "active" &&
+                                "text-emerald-600 dark:text-emerald-400",
+                              learner.status === "needs_attention" && "text-amber-600",
+                              learner.status === "paused" && "text-muted-foreground",
+                            )}
+                          >
                             <span
                               className={cn(
-                                "inline-flex items-center gap-1.5 text-xs",
-                                learner.status === "active" &&
-                                  "text-emerald-600 dark:text-emerald-400",
-                                learner.status === "needs_attention" && "text-amber-600",
-                                learner.status === "paused" && "text-muted-foreground",
+                                "h-1.5 w-1.5 rounded-full",
+                                learner.status === "active" && "bg-emerald-500",
+                                learner.status === "needs_attention" && "bg-amber-500",
+                                learner.status === "paused" && "bg-muted-foreground",
                               )}
-                            >
-                              <span
-                                className={cn(
-                                  "h-1.5 w-1.5 rounded-full",
-                                  learner.status === "active" && "bg-emerald-500",
-                                  learner.status === "needs_attention" && "bg-amber-500",
-                                  learner.status === "paused" && "bg-muted-foreground",
-                                )}
-                              />
-                              {learner.status.replace("_", " ")}
-                            </span>
-                          </TableCell>
-                          <TableCell>
-                            <Select
-                              value={learner.educator_id ?? UNASSIGNED}
-                              disabled={savingId === learner.id}
-                              onValueChange={(value) => {
-                                if (!value || value === UNASSIGNED) return;
-                                assignMutation.mutate({
-                                  learnerId: learner.id,
-                                  educatorId: value,
-                                });
-                              }}
-                            >
-                              <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Unassigned" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value={UNASSIGNED} disabled>
-                                  Unassigned
+                            />
+                            {learner.status.replace("_", " ")}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <Select
+                            value={learner.educator_id ?? UNASSIGNED}
+                            disabled={savingId === learner.id}
+                            onValueChange={(value) => {
+                              if (!value || value === UNASSIGNED) return;
+                              assignMutation.mutate({
+                                learnerId: learner.id,
+                                educatorId: value,
+                              });
+                            }}
+                          >
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Unassigned" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value={UNASSIGNED} disabled>
+                                Unassigned
+                              </SelectItem>
+                              {educators.map((educator) => (
+                                <SelectItem key={educator.id} value={educator.id}>
+                                  {educator.fullName || educator.email}
                                 </SelectItem>
-                                {educators.map((educator) => (
-                                  <SelectItem key={educator.id} value={educator.id}>
-                                    {educator.fullName || educator.email}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

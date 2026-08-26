@@ -52,7 +52,10 @@ export const Route = createFileRoute("/_authenticated/learners")({
       { title: "Learners — EduOS" },
       { name: "description", content: "Browse, filter, and manage every learner at your center." },
       { property: "og:title", content: "Learners — EduOS" },
-      { property: "og:description", content: "Browse, filter, and manage every learner at your center." },
+      {
+        property: "og:description",
+        content: "Browse, filter, and manage every learner at your center.",
+      },
     ],
   }),
   component: LearnersPage,
@@ -72,7 +75,13 @@ function LearnersPage() {
   const [status, setStatus] = useState("all");
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const { data: learners, isPending, isError: rosterFailed, error: rosterError, refetch: refetchRoster } = useQuery({
+  const {
+    data: learners,
+    isPending,
+    isError: rosterFailed,
+    error: rosterError,
+    refetch: refetchRoster,
+  } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase.from("learners").select("*").order("full_name");
@@ -90,7 +99,11 @@ function LearnersPage() {
     },
   });
 
-  const { data: staff, isError: staffIsError, error: staffError } = useQuery({
+  const {
+    data: staff,
+    isError: staffIsError,
+    error: staffError,
+  } = useQuery({
     queryKey: ["staff-users"],
     queryFn: () => listStaffFn(),
     enabled: role === "admin",
@@ -113,7 +126,11 @@ function LearnersPage() {
   );
 
   const filtered = (learners ?? []).filter((l) => {
-    if (search && !l.full_name.toLowerCase().includes(search.toLowerCase()) && !l.handle.includes(search.toLowerCase()))
+    if (
+      search &&
+      !l.full_name.toLowerCase().includes(search.toLowerCase()) &&
+      !l.handle.includes(search.toLowerCase())
+    )
       return false;
     if (subject !== "all" && l.subject !== subject) return false;
     if (grade !== "all" && l.grade !== Number(grade)) return false;
@@ -164,76 +181,103 @@ function LearnersPage() {
                 <Plus className="h-4 w-4" /> Add learner
               </Button>
             </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Add learner</DialogTitle>
-              <DialogDescription>
-                Creates the learner profile and their student sign-in (handle + PIN).
-              </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={onAddSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Full name</Label>
-                <Input id="fullName" name="fullName" placeholder="Aarav Sharma" required />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Add learner</DialogTitle>
+                <DialogDescription>
+                  Creates the learner profile and their student sign-in (handle + PIN).
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={onAddSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="handle">Handle</Label>
-                  <Input id="handle" name="handle" placeholder="aarav" autoCapitalize="none" required />
+                  <Label htmlFor="fullName">Full name</Label>
+                  <Input id="fullName" name="fullName" placeholder="Aarav Sharma" required />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="pin">6-digit PIN</Label>
-                  <Input id="pin" name="pin" inputMode="numeric" maxLength={6} placeholder="123456" required />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="handle">Handle</Label>
+                    <Input
+                      id="handle"
+                      name="handle"
+                      placeholder="aarav"
+                      autoCapitalize="none"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="pin">6-digit PIN</Label>
+                    <Input
+                      id="pin"
+                      name="pin"
+                      inputMode="numeric"
+                      maxLength={6}
+                      placeholder="123456"
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="grade">Grade</Label>
-                  <Input id="grade" name="grade" type="number" min={1} max={12} defaultValue={6} required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Select name="subject" defaultValue="Mathematics">
-                    <SelectTrigger id="subject">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {["Mathematics", "English", "Science"].map((s) => (
-                        <SelectItem key={s} value={s}>{s}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              {role === "admin" && (
-                <div className="space-y-2">
-                  <Label htmlFor="educatorId">Educator</Label>
-                  {staffIsError && (
-                    <p className="text-xs text-destructive">
-                      {staffError instanceof Error ? staffError.message : "Educators couldn't be loaded."}
-                    </p>
-                  )}
-                  <Select name="educatorId">
-                    <SelectTrigger id="educatorId">
-                      <SelectValue placeholder="Assign educator…" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {(staff ?? [])
-                        .filter((u) => u.role === "educator")
-                        .map((u) => (
-                          <SelectItem key={u.id} value={u.id}>{u.fullName}</SelectItem>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="grade">Grade</Label>
+                    <Input
+                      id="grade"
+                      name="grade"
+                      type="number"
+                      min={1}
+                      max={12}
+                      defaultValue={6}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">Subject</Label>
+                    <Select name="subject" defaultValue="Mathematics">
+                      <SelectTrigger id="subject">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {["Mathematics", "English", "Science"].map((s) => (
+                          <SelectItem key={s} value={s}>
+                            {s}
+                          </SelectItem>
                         ))}
-                    </SelectContent>
-                  </Select>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-              )}
-              <DialogFooter>
-                <Button type="submit" disabled={addMutation.isPending}>
-                  {addMutation.isPending ? "Adding…" : "Add learner"}
-                </Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
+                {role === "admin" && (
+                  <div className="space-y-2">
+                    <Label htmlFor="educatorId">Educator</Label>
+                    {staffIsError && (
+                      <p className="text-xs text-destructive">
+                        {staffError instanceof Error
+                          ? staffError.message
+                          : "Educators couldn't be loaded."}
+                      </p>
+                    )}
+                    <Select name="educatorId">
+                      <SelectTrigger id="educatorId">
+                        <SelectValue placeholder="Assign educator…" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {(staff ?? [])
+                          .filter((u) => u.role === "educator")
+                          .map((u) => (
+                            <SelectItem key={u.id} value={u.id}>
+                              {u.fullName}
+                            </SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+                <DialogFooter>
+                  <Button type="submit" disabled={addMutation.isPending}>
+                    {addMutation.isPending ? "Adding…" : "Add learner"}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
           </Dialog>
         </div>
       </div>
@@ -255,107 +299,116 @@ function LearnersPage() {
         />
       ) : (
         <>
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="relative min-w-56 flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search name or handle…"
-            className="pl-9"
-          />
-        </div>
-        <Select value={subject} onValueChange={setSubject}>
-          <SelectTrigger className="w-40" aria-label="Filter by subject">
-            <SelectValue placeholder="Subject" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All subjects</SelectItem>
-            {subjects.map((s) => (
-              <SelectItem key={s} value={s}>{s}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Select value={grade} onValueChange={setGrade}>
-          <SelectTrigger className="w-32" aria-label="Filter by grade">
-            <SelectValue placeholder="Grade" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All grades</SelectItem>
-            {grades.map((g) => (
-              <SelectItem key={g} value={String(g)}>Grade {g}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Select value={status} onValueChange={setStatus}>
-          <SelectTrigger className="w-40" aria-label="Filter by status">
-            <SelectValue placeholder="Status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All statuses</SelectItem>
-            <SelectItem value="active">Active</SelectItem>
-            <SelectItem value="needs_attention">Needs attention</SelectItem>
-            <SelectItem value="paused">Paused</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="relative min-w-56 flex-1">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search name or handle…"
+                className="pl-9"
+              />
+            </div>
+            <Select value={subject} onValueChange={setSubject}>
+              <SelectTrigger className="w-40" aria-label="Filter by subject">
+                <SelectValue placeholder="Subject" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All subjects</SelectItem>
+                {subjects.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    {s}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={grade} onValueChange={setGrade}>
+              <SelectTrigger className="w-32" aria-label="Filter by grade">
+                <SelectValue placeholder="Grade" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All grades</SelectItem>
+                {grades.map((g) => (
+                  <SelectItem key={g} value={String(g)}>
+                    Grade {g}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={status} onValueChange={setStatus}>
+              <SelectTrigger className="w-40" aria-label="Filter by status">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All statuses</SelectItem>
+                <SelectItem value="active">Active</SelectItem>
+                <SelectItem value="needs_attention">Needs attention</SelectItem>
+                <SelectItem value="paused">Paused</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-      <div className="rounded-lg border bg-card">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Learner</TableHead>
-              <TableHead>Grade</TableHead>
-              <TableHead>Subject</TableHead>
-              <TableHead>Educator</TableHead>
-              <TableHead className="text-right">Mastery</TableHead>
-              <TableHead className="text-right">30-day lift</TableHead>
-              <TableHead>Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {isPending &&
-              [0, 1, 2, 3, 4].map((i) => (
-                <TableRow key={i}>
-                  <TableCell colSpan={7}>
-                    <Skeleton className="h-8 w-full" />
-                  </TableCell>
+          <div className="rounded-lg border bg-card">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Learner</TableHead>
+                  <TableHead>Grade</TableHead>
+                  <TableHead>Subject</TableHead>
+                  <TableHead>Educator</TableHead>
+                  <TableHead className="text-right">Mastery</TableHead>
+                  <TableHead className="text-right">30-day lift</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              ))}
-            {!isPending && filtered.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={7} className="py-10 text-center text-sm text-muted-foreground">
-                  No learners match these filters.
-                </TableCell>
-              </TableRow>
-            )}
-            {filtered.map((learner) => (
-              <TableRow key={learner.id}>
-                <TableCell>
-                  <Link
-                    to="/learners/$learnerId"
-                    params={{ learnerId: learner.id }}
-                    className="font-medium hover:underline"
-                  >
-                    {learner.full_name}
-                  </Link>
-                  <p className="text-xs text-muted-foreground">@{learner.handle}</p>
-                </TableCell>
-                <TableCell>{learner.grade}</TableCell>
-                <TableCell>{learner.subject}</TableCell>
-                <TableCell className="text-muted-foreground">{educatorName(learner.educator_id)}</TableCell>
-                <TableCell className="text-right font-semibold tabular-nums">
-                  {learner.mastery_score}%
-                </TableCell>
-                <TableCell className="text-right tabular-nums">
-                  {liftText(Number(learner.mastery_lift))}
-                </TableCell>
-                <TableCell>{statusBadge(learner.status)}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+              </TableHeader>
+              <TableBody>
+                {isPending &&
+                  [0, 1, 2, 3, 4].map((i) => (
+                    <TableRow key={i}>
+                      <TableCell colSpan={7}>
+                        <Skeleton className="h-8 w-full" />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                {!isPending && filtered.length === 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={7}
+                      className="py-10 text-center text-sm text-muted-foreground"
+                    >
+                      No learners match these filters.
+                    </TableCell>
+                  </TableRow>
+                )}
+                {filtered.map((learner) => (
+                  <TableRow key={learner.id}>
+                    <TableCell>
+                      <Link
+                        to="/learners/$learnerId"
+                        params={{ learnerId: learner.id }}
+                        className="font-medium hover:underline"
+                      >
+                        {learner.full_name}
+                      </Link>
+                      <p className="text-xs text-muted-foreground">@{learner.handle}</p>
+                    </TableCell>
+                    <TableCell>{learner.grade}</TableCell>
+                    <TableCell>{learner.subject}</TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {educatorName(learner.educator_id)}
+                    </TableCell>
+                    <TableCell className="text-right font-semibold tabular-nums">
+                      {learner.mastery_score}%
+                    </TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {liftText(Number(learner.mastery_lift))}
+                    </TableCell>
+                    <TableCell>{statusBadge(learner.status)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </>
       )}
     </div>

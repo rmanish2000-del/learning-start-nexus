@@ -4,7 +4,10 @@ export const handleSchema = z
   .string()
   .trim()
   .toLowerCase()
-  .regex(/^[a-z0-9][a-z0-9._-]{1,29}$/, "2–30 characters: lowercase letters, numbers, dot, dash, underscore");
+  .regex(
+    /^[a-z0-9][a-z0-9._-]{1,29}$/,
+    "2–30 characters: lowercase letters, numbers, dot, dash, underscore",
+  );
 
 export const pinSchema = z.string().regex(/^\d{6}$/, "PIN must be exactly 6 digits");
 
@@ -63,7 +66,10 @@ export const createAssessmentSchema = z.object({
 export const assignAssessmentSchema = z.object({
   assessmentId: z.string().uuid(),
   learnerIds: z.array(z.string().uuid()).min(1, "Pick at least one learner").max(100),
-  dueDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  dueDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .optional(),
 });
 
 export const sessionIdSchema = z.object({
@@ -143,4 +149,8 @@ export const guardianConsentSchema = z.object({
   parentMobile: z.string().trim().min(7).max(20),
   consentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD"),
   consentVersion: z.string().trim().min(1).max(40),
+});
+
+export const revokeConsentSchema = z.object({
+  learnerId: z.string().uuid(),
 });

@@ -2,7 +2,16 @@ import { useRef, useState } from "react";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, BookOpen, CircleCheck, CircleDashed, ClipboardList, Loader, Play, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  CircleCheck,
+  CircleDashed,
+  ClipboardList,
+  Loader,
+  Play,
+  Sparkles,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -110,14 +119,22 @@ function StudentHomePage() {
   });
 
   // Sprint 5A: AI tutor requires guardian consent on file.
-  const { data: consent, isError: consentFailed, refetch: refetchConsent } = useQuery({
+  const {
+    data: consent,
+    isError: consentFailed,
+    refetch: refetchConsent,
+  } = useQuery({
     queryKey: ["my-consent", learner?.id],
     enabled: !!learner?.id,
     queryFn: () => fetchConsent({ data: { learnerId: learner!.id } }),
   });
   const tutorConsentMissing = consent !== undefined && !consent.hasConsent;
 
-  const { data: items, isError: itemsFailed, refetch: refetchItems } = useQuery({
+  const {
+    data: items,
+    isError: itemsFailed,
+    refetch: refetchItems,
+  } = useQuery({
     queryKey: ["my-learning-items", user.id],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -130,7 +147,11 @@ function StudentHomePage() {
     },
   });
 
-  const { data: history, isError: historyFailed, refetch: refetchHistory } = useQuery({
+  const {
+    data: history,
+    isError: historyFailed,
+    refetch: refetchHistory,
+  } = useQuery({
     queryKey: ["mastery-history", learner?.id],
     enabled: !!learner?.id,
     queryFn: async () => {
@@ -144,7 +165,11 @@ function StudentHomePage() {
     },
   });
 
-  const { data: planItems, isError: planFailed, refetch: refetchPlan } = useQuery({
+  const {
+    data: planItems,
+    isError: planFailed,
+    refetch: refetchPlan,
+  } = useQuery({
     queryKey: ["plan-items", learner?.id],
     enabled: !!learner?.id,
     queryFn: async () => {
@@ -160,13 +185,21 @@ function StudentHomePage() {
 
   const fetchSessions = useServerFn(getMyAssessmentSessions);
   const fetchOutcomes = useServerFn(getMyOutcomes);
-  const { data: assessmentSessions, isError: sessionsFailed, refetch: refetchSessions } = useQuery({
+  const {
+    data: assessmentSessions,
+    isError: sessionsFailed,
+    refetch: refetchSessions,
+  } = useQuery({
     queryKey: ["my-assessment-sessions"],
     queryFn: () => fetchSessions(),
   });
 
   // Sprint 5: the student's own before/after outcome view.
-  const { data: outcomes, isError: outcomesFailed, refetch: refetchOutcomes } = useQuery({
+  const {
+    data: outcomes,
+    isError: outcomesFailed,
+    refetch: refetchOutcomes,
+  } = useQuery({
     queryKey: ["my-outcomes"],
     queryFn: () => fetchOutcomes(),
   });
@@ -174,7 +207,11 @@ function StudentHomePage() {
 
   // Sprint 3: accepted interventions are the student's focus plan. Gaps and
   // recommendations stay staff-only — students never see them.
-  const { data: focusPlan, isError: focusFailed, refetch: refetchFocus } = useQuery({
+  const {
+    data: focusPlan,
+    isError: focusFailed,
+    refetch: refetchFocus,
+  } = useQuery({
     queryKey: ["my-interventions", learner?.id],
     enabled: !!learner?.id,
     queryFn: async () => {
@@ -190,7 +227,9 @@ function StudentHomePage() {
   });
 
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
-  const continueItem = (items ?? []).find((i) => i.status === "in_progress") ?? (items ?? []).find((i) => i.status === "not_started");
+  const continueItem =
+    (items ?? []).find((i) => i.status === "in_progress") ??
+    (items ?? []).find((i) => i.status === "not_started");
   const completed = (items ?? []).filter((i) => i.status === "completed").length;
   const chartData = (history ?? []).map((h) => ({ date: h.recorded_on.slice(5), score: h.score }));
   const nextPlanItems = (planItems ?? []).filter((p) => p.status !== "completed").slice(0, 3);
@@ -206,10 +245,14 @@ function StudentHomePage() {
     {
       key: "diagnostic",
       title: "Take your diagnostic",
-      description: "A short check-up from your educator — progress saves automatically, resume anytime.",
+      description:
+        "A short check-up from your educator — progress saves automatically, resume anytime.",
       done: submittedSession,
       ...(pendingSession
-        ? { action: "take-diagnostic", ctaLabel: pendingSession.status === "in_progress" ? "Resume" : "Start" }
+        ? {
+            action: "take-diagnostic",
+            ctaLabel: pendingSession.status === "in_progress" ? "Resume" : "Start",
+          }
         : submittedSession
           ? {}
           : { blockedHint: "Your educator will assign one soon" }),
@@ -226,7 +269,8 @@ function StudentHomePage() {
     {
       key: "tutor",
       title: "Practice with the AI Tutor",
-      description: "A Socratic companion that explains, hints and practices with you — inside your approved plan.",
+      description:
+        "A Socratic companion that explains, hints and practices with you — inside your approved plan.",
       done: getOnboardingFlag(stepFlagKey("student", "tutor")),
       ...(tutorConsentMissing
         ? { blockedHint: "Needs guardian consent" }
@@ -353,10 +397,14 @@ function StudentHomePage() {
                   value={continueItem.progress_pct}
                   className="h-1.5 max-w-48 bg-primary-foreground/20"
                 />
-                <span className="text-xs text-primary-foreground/80">{continueItem.progress_pct}%</span>
+                <span className="text-xs text-primary-foreground/80">
+                  {continueItem.progress_pct}%
+                </span>
               </div>
             </div>
-            <Badge variant="secondary" className="capitalize">{continueItem.kind}</Badge>
+            <Badge variant="secondary" className="capitalize">
+              {continueItem.kind}
+            </Badge>
           </CardContent>
         </Card>
       )}
@@ -386,7 +434,9 @@ function StudentHomePage() {
             <p className="text-3xl font-semibold tabular-nums">
               {completed}/{(items ?? []).length}
             </p>
-            <p className="mt-1 text-xs text-muted-foreground">Keep going — you're building momentum</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Keep going — you're building momentum
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -412,18 +462,27 @@ function StudentHomePage() {
                   </div>
                   <div className="mt-3 flex items-center gap-4">
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Before</p>
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                        Before
+                      </p>
                       <p className="text-lg font-semibold tabular-nums">{o.baseline_score}%</p>
                     </div>
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">After</p>
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                        After
+                      </p>
                       <p className="text-lg font-semibold tabular-nums">{o.post_score ?? "—"}%</p>
                     </div>
                     <div className="ml-auto text-right">
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">Progress</p>
-                      <p className={`text-lg font-semibold tabular-nums ${lift >= 0 ? "text-primary" : "text-destructive"}`}>
-                        {lift >= 0 ? "+" : ""}{lift} pts
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                        Progress
+                      </p>
+                      <p
+                        className={`text-lg font-semibold tabular-nums ${lift >= 0 ? "text-primary" : "text-destructive"}`}
+                      >
+                        {lift >= 0 ? "+" : ""}
+                        {lift} pts
                       </p>
                     </div>
                   </div>
@@ -439,7 +498,9 @@ function StudentHomePage() {
         <Card data-tour="student-assessments">
           <CardHeader>
             <CardTitle className="text-base">My assessments</CardTitle>
-            <CardDescription>Diagnostics assigned by your educator — progress saves automatically.</CardDescription>
+            <CardDescription>
+              Diagnostics assigned by your educator — progress saves automatically.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {(assessmentSessions ?? []).map((s) => (
@@ -448,7 +509,9 @@ function StudentHomePage() {
                   <ClipboardList className="h-4 w-4 text-primary" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium">{s.assessments?.title ?? "Assessment"}</p>
+                  <p className="truncate text-sm font-medium">
+                    {s.assessments?.title ?? "Assessment"}
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     {s.status === "submitted"
                       ? `Scored ${s.score_pct}%`
@@ -456,10 +519,16 @@ function StudentHomePage() {
                         ? "In progress — resume anytime"
                         : "Not started"}
                     {s.due ? ` · due ${s.due}` : ""}
-                    {s.assessments?.time_limit_minutes ? ` · ${s.assessments.time_limit_minutes} min` : ""}
+                    {s.assessments?.time_limit_minutes
+                      ? ` · ${s.assessments.time_limit_minutes} min`
+                      : ""}
                   </p>
                 </div>
-                <Button asChild size="sm" variant={s.status === "submitted" ? "outline" : "default"}>
+                <Button
+                  asChild
+                  size="sm"
+                  variant={s.status === "submitted" ? "outline" : "default"}
+                >
                   <Link to="/session/$sessionId" params={{ sessionId: s.id }}>
                     {s.status === "submitted" ? (
                       "Review"
@@ -477,9 +546,9 @@ function StudentHomePage() {
         </Card>
       )}
 
-        <Card data-tour="student-mastery">
-          <CardHeader>
-            <CardTitle className="text-base">My mastery</CardTitle>
+      <Card data-tour="student-mastery">
+        <CardHeader>
+          <CardTitle className="text-base">My mastery</CardTitle>
           <CardDescription>How your score has grown</CardDescription>
         </CardHeader>
         <CardContent>
@@ -559,7 +628,9 @@ function StudentHomePage() {
               </div>
             ))}
             {(items ?? []).length === 0 && (
-              <p className="py-6 text-center text-sm text-muted-foreground">No activities assigned yet.</p>
+              <p className="py-6 text-center text-sm text-muted-foreground">
+                No activities assigned yet.
+              </p>
             )}
           </CardContent>
         </Card>

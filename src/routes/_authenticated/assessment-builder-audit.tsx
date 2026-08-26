@@ -375,9 +375,17 @@ function AssessmentBuilderAuditPage() {
             </span>
             <span>
               Related:{" "}
-              <Link to="/question-bank-audit" className="underline">Question Bank Audit</Link> ·{" "}
-              <Link to="/assessment-blueprint-audit" className="underline">Blueprint Audit</Link> ·{" "}
-              <Link to="/curriculum-audit" className="underline">Curriculum Audit</Link>
+              <Link to="/question-bank-audit" className="underline">
+                Question Bank Audit
+              </Link>{" "}
+              ·{" "}
+              <Link to="/assessment-blueprint-audit" className="underline">
+                Blueprint Audit
+              </Link>{" "}
+              ·{" "}
+              <Link to="/curriculum-audit" className="underline">
+                Curriculum Audit
+              </Link>
             </span>
           </p>
         </CardContent>

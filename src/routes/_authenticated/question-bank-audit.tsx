@@ -173,8 +173,8 @@ function QuestionBankAuditPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Question Bank Audit Center</h1>
           <p className="max-w-2xl text-sm text-muted-foreground">
             Independently verifiable proof for Sprint 6D — the question bank engine links outcomes
-            to reviewed questions, each with a difficulty, an answer key, and an explanation.
-            Signed in with role <Mono>{data.me.role}</Mono> in <Mono>{data.me.orgName ?? "—"}</Mono>.
+            to reviewed questions, each with a difficulty, an answer key, and an explanation. Signed
+            in with role <Mono>{data.me.role}</Mono> in <Mono>{data.me.orgName ?? "—"}</Mono>.
           </p>
         </div>
         <Button onClick={() => void handleRun()} disabled={running}>

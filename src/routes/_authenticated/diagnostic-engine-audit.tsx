@@ -231,8 +231,12 @@ function DiagnosticEngineAuditPage() {
           <div className="flex flex-wrap items-center gap-2">
             <Pass pass={snap.diagnosticPresent && snap.reassessmentPresent} />
             <div className="flex flex-wrap gap-1.5 text-xs">
-              <Badge variant="outline">diagnostic: {snap.diagnosticQuestions}q · {snap.diagnosticStatus}</Badge>
-              <Badge variant="outline">reassessment: {snap.reassessmentQuestions}q · {snap.reassessmentStatus}</Badge>
+              <Badge variant="outline">
+                diagnostic: {snap.diagnosticQuestions}q · {snap.diagnosticStatus}
+              </Badge>
+              <Badge variant="outline">
+                reassessment: {snap.reassessmentQuestions}q · {snap.reassessmentStatus}
+              </Badge>
               <Badge variant={snap.overlapCount === 0 ? "outline" : "destructive"}>
                 overlap: {snap.overlapCount}
               </Badge>
@@ -408,13 +412,22 @@ function DiagnosticEngineAuditPage() {
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             <span className="flex items-center gap-2">
               <GitBranch className="h-3.5 w-3.5" />
-              Scope note: generation only — no auto-assign, no auto-interventions, no mastery changes.
+              Scope note: generation only — no auto-assign, no auto-interventions, no mastery
+              changes.
             </span>
             <span>
               Related:{" "}
-              <Link to="/assessment-builder-audit" className="underline">Builder Audit</Link> ·{" "}
-              <Link to="/question-bank-audit" className="underline">Question Bank Audit</Link> ·{" "}
-              <Link to="/assessment-blueprint-audit" className="underline">Blueprint Audit</Link>
+              <Link to="/assessment-builder-audit" className="underline">
+                Builder Audit
+              </Link>{" "}
+              ·{" "}
+              <Link to="/question-bank-audit" className="underline">
+                Question Bank Audit
+              </Link>{" "}
+              ·{" "}
+              <Link to="/assessment-blueprint-audit" className="underline">
+                Blueprint Audit
+              </Link>
             </span>
           </p>
         </CardContent>

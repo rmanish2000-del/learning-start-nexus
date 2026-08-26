@@ -269,7 +269,9 @@ export async function buildTutorContext(
   };
 }
 
-function interactionHistory(rows: InteractionRow[]): { role: "user" | "assistant"; content: string }[] {
+function interactionHistory(
+  rows: InteractionRow[],
+): { role: "user" | "assistant"; content: string }[] {
   const history: { role: "user" | "assistant"; content: string }[] = [];
   for (const row of rows) {
     if (row.request_text) history.push({ role: "user", content: row.request_text });
@@ -279,10 +281,7 @@ function interactionHistory(rows: InteractionRow[]): { role: "user" | "assistant
 }
 
 // Find the library item behind the most recent unanswered question.
-function activePracticeItem(
-  rows: InteractionRow[],
-  concept: string,
-): PracticeItem | null {
+function activePracticeItem(rows: InteractionRow[], concept: string): PracticeItem | null {
   const content = conceptContent(concept);
   const allItems = [content.tryQuestion, ...content.practice];
   for (let i = rows.length - 1; i >= 0; i--) {

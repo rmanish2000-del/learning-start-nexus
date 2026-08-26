@@ -223,9 +223,7 @@ function Sprint4AuditPage() {
           <CardTitle className="flex items-center gap-2 text-base">
             <Bot className="h-4 w-4" /> Build summary
           </CardTitle>
-          <CardDescription>
-            What Sprint 4 shipped and the contract it must hold.
-          </CardDescription>
+          <CardDescription>What Sprint 4 shipped and the contract it must hold.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
           <p>
@@ -233,12 +231,14 @@ function Sprint4AuditPage() {
             the student's name, grade, subject, topic, concept, current mastery index, the active
             intervention plan, and the known gap — then teaches Socratically: explain, progressive
             hints, worked examples, rephrasing, try-it questions, and guiding questions. Practice
-            mode grades deterministically and stores activity in{" "}
-            <Mono>tutor_interactions</Mono>, separate from formal assessment evidence.
+            mode grades deterministically and stores activity in <Mono>tutor_interactions</Mono>,
+            separate from formal assessment evidence.
           </p>
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">Model: {data.aiModel}</Badge>
-            <Badge variant="outline">Failsafe: static library ({data.library.length} concepts)</Badge>
+            <Badge variant="outline">
+              Failsafe: static library ({data.library.length} concepts)
+            </Badge>
             <Badge variant="outline">Tables: tutor_sessions, tutor_interactions</Badge>
           </div>
           <div className="rounded-lg border bg-muted/40 p-3">
@@ -280,8 +280,7 @@ function Sprint4AuditPage() {
             <Sparkles className="h-4 w-4" /> Tutor sessions visible to you
           </CardTitle>
           <CardDescription>
-            The educator view: concept, status, and interaction counts — never conversation
-            content.
+            The educator view: concept, status, and interaction counts — never conversation content.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -368,8 +367,8 @@ function Sprint4AuditPage() {
             <Library className="h-4 w-4" /> Failsafe content library
           </CardTitle>
           <CardDescription>
-            Served verbatim whenever the AI is unavailable — the student always gets an
-            explanation, hints, an example, and practice.
+            Served verbatim whenever the AI is unavailable — the student always gets an explanation,
+            hints, an example, and practice.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -406,7 +405,9 @@ function Sprint4AuditPage() {
                 : "No probe results yet — ask an educator or admin to run them."}
             </p>
           )}
-          {probes?.probes.map((p) => <ProbeCard key={p.key} p={p} />)}
+          {probes?.probes.map((p) => (
+            <ProbeCard key={p.key} p={p} />
+          ))}
           {probes && (
             <p className="text-xs text-muted-foreground">
               Ran {fmt(probes.generatedAt)} by {probes.me.role} in {probes.me.orgName}.

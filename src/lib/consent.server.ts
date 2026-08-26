@@ -11,6 +11,8 @@ export interface ConsentRecord {
   consentDate: string;
   consentVersion: string;
   recordedAt: string;
+  action: "granted" | "revoked";
+  recordedByName: string | null;
 }
 
 export interface ConsentStatus {
@@ -21,7 +23,7 @@ export interface ConsentStatus {
 
 type ConsentRow = Database["public"]["Tables"]["guardian_consents"]["Row"];
 
-function mapConsent(row: ConsentRow): ConsentRecord {
+function mapConsent(row: ConsentRow, nameByUser?: Map<string, string | null>): ConsentRecord {
   return {
     id: row.id,
     learnerId: row.learner_id,
@@ -31,11 +33,14 @@ function mapConsent(row: ConsentRow): ConsentRecord {
     consentDate: row.consent_date,
     consentVersion: row.consent_version,
     recordedAt: row.created_at,
+    action: row.action === "revoked" ? "revoked" : "granted",
+    recordedByName: (row.recorded_by && nameByUser?.get(row.recorded_by)) || null,
   };
 }
 
 // Latest consent record for a learner. Consent history is append-only, so the
-// newest row by consent_date (then creation time) is the current state.
+// newest row (by creation time) is the current state — a revocation row after
+// a grant means consent is withdrawn.
 export async function getConsentStatus(
   supabase: SupabaseClient<Database>,
   learnerId: string,
@@ -44,13 +49,12 @@ export async function getConsentStatus(
     .from("guardian_consents")
     .select("*")
     .eq("learner_id", learnerId)
-    .order("consent_date", { ascending: false })
     .order("created_at", { ascending: false });
   if (error) throw error;
   const rows = data ?? [];
   const first = rows[0];
   return {
-    hasConsent: rows.length > 0,
+    hasConsent: !!first && first.action !== "revoked",
     latest: first ? mapConsent(first) : null,
     totalRecords: rows.length,
   };
@@ -72,8 +76,20 @@ export async function listConsentHistory(
     .from("guardian_consents")
     .select("*")
     .eq("learner_id", learnerId)
-    .order("consent_date", { ascending: false })
     .order("created_at", { ascending: false });
   if (error) throw error;
-  return (data ?? []).map(mapConsent);
+  const rows = data ?? [];
+
+  // Resolve recorder names so history shows who captured each entry.
+  const recorderIds = [...new Set(rows.map((r) => r.recorded_by).filter((v): v is string => !!v))];
+  let nameByUser: Map<string, string | null> | undefined;
+  if (recorderIds.length > 0) {
+    const { data: profiles } = await supabase
+      .from("profiles")
+      .select("id, full_name")
+      .in("id", recorderIds);
+    nameByUser = new Map((profiles ?? []).map((p) => [p.id, p.full_name]));
+  }
+
+  return rows.map((row) => mapConsent(row, nameByUser));
 }

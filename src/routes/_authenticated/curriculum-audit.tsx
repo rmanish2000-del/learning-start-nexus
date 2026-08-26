@@ -236,8 +236,8 @@ function CurriculumAuditPage() {
           </CardTitle>
           <CardDescription>
             “{data.pilot.title}” — <Mono>{data.pilot.bookId}</Mono>. Verified from the database on
-            every load; expected 6 units / 64 chapters / 64 topics / 55 outcomes / 39 concepts /
-            38 relationships.
+            every load; expected 6 units / 64 chapters / 64 topics / 55 outcomes / 39 concepts / 38
+            relationships.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -324,8 +324,8 @@ function CurriculumAuditPage() {
           </CardTitle>
           <CardDescription>
             Each row compares what you can see through RLS against the true global count. Isolation
-            holds when your count stays below the global count (both organizations carry pilot
-            data) or matches it exactly (your org owns all rows).
+            holds when your count stays below the global count (both organizations carry pilot data)
+            or matches it exactly (your org owns all rows).
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">

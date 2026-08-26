@@ -22,7 +22,11 @@ import {
 } from "recharts";
 
 import { supabase } from "@/integrations/supabase/client";
-import { getLearnerConsent, recordGuardianConsent } from "@/lib/consent.functions";
+import {
+  getLearnerConsent,
+  recordGuardianConsent,
+  revokeGuardianConsent,
+} from "@/lib/consent.functions";
 import {
   getOnboardingFlag,
   setOnboardingFlag,
@@ -45,7 +49,10 @@ export const Route = createFileRoute("/_authenticated/parent")({
   head: () => ({
     meta: [
       { title: "Parent Portal — EduOS" },
-      { name: "description", content: "Follow your child's learning progress and manage guardian consent." },
+      {
+        name: "description",
+        content: "Follow your child's learning progress and manage guardian consent.",
+      },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -127,7 +134,9 @@ function ParentPortal() {
           .eq("learner_id", learner!.id)
           .order("created_at", { ascending: false }),
       ]);
-      const failed = [mastery.error, outcomes.error, sessions.error, interventions.error].find(Boolean);
+      const failed = [mastery.error, outcomes.error, sessions.error, interventions.error].find(
+        Boolean,
+      );
       if (failed) throw failed;
       return {
         mastery: mastery.data ?? [],
@@ -167,7 +176,8 @@ function ParentPortal() {
 
   const [, forceRender] = useState(0);
   const handleAction = (action: string) => {
-    if (action === "scroll-consent") consentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (action === "scroll-consent")
+      consentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     if (action === "scroll-progress") {
       setOnboardingFlag(stepFlagKey("parent", "progress"));
       forceRender((n) => n + 1);
@@ -182,7 +192,8 @@ function ParentPortal() {
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Parent portal</h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              Welcome{profile?.full_name ? `, ${profile.full_name}` : ""}. Follow progress and manage consent — everything here is read-only.
+              Welcome{profile?.full_name ? `, ${profile.full_name}` : ""}. Follow progress and
+              manage consent — everything here is read-only.
             </p>
           </div>
           <ContextHelp page="/parent" />
@@ -242,12 +253,18 @@ function ParentPortal() {
                     defaultName={profile?.full_name ?? ""}
                     defaultEmail={user?.email ?? ""}
                     onRecorded={() => {
-                      void queryClient.invalidateQueries({ queryKey: ["parent-consent", learner.id] });
+                      void queryClient.invalidateQueries({
+                        queryKey: ["parent-consent", learner.id],
+                      });
                     }}
                   />
                 </div>
 
-                <div ref={progressRef} data-tour="parent-progress" className="scroll-mt-20 space-y-6">
+                <div
+                  ref={progressRef}
+                  data-tour="parent-progress"
+                  className="scroll-mt-20 space-y-6"
+                >
                   {progressQuery.isError && (
                     <QueryError
                       title="Progress couldn't be loaded right now."
@@ -293,7 +310,9 @@ function ParentPortal() {
                       </CardHeader>
                       <CardContent>
                         <p className="text-3xl font-semibold">
-                          {progress?.interventions.filter((i) => i.status === "active" || i.status === "approved").length ?? 0}
+                          {progress?.interventions.filter(
+                            (i) => i.status === "active" || i.status === "approved",
+                          ).length ?? 0}
                         </p>
                         <p className="mt-1 text-xs text-muted-foreground">active</p>
                       </CardContent>
@@ -314,15 +333,23 @@ function ParentPortal() {
                       ) : (
                         <div className="h-56">
                           <ResponsiveContainer width="100%" height="100%">
-                            <LineChart data={progress.mastery.map((m) => ({
-                              date: format(new Date(m.recorded_on), "MMM d"),
-                              mastery: m.score,
-                            }))}>
+                            <LineChart
+                              data={progress.mastery.map((m) => ({
+                                date: format(new Date(m.recorded_on), "MMM d"),
+                                mastery: m.score,
+                              }))}
+                            >
                               <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
                               <XAxis dataKey="date" tick={{ fontSize: 11 }} />
                               <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} />
                               <Tooltip />
-                              <Line type="monotone" dataKey="mastery" stroke="var(--primary)" strokeWidth={2} dot />
+                              <Line
+                                type="monotone"
+                                dataKey="mastery"
+                                stroke="var(--primary)"
+                                strokeWidth={2}
+                                dot
+                              />
                             </LineChart>
                           </ResponsiveContainer>
                         </div>
@@ -337,20 +364,29 @@ function ParentPortal() {
                       </CardHeader>
                       <CardContent className="space-y-2">
                         {!progress || progress.sessions.length === 0 ? (
-                          <p className="text-sm text-muted-foreground">No assessments assigned yet.</p>
+                          <p className="text-sm text-muted-foreground">
+                            No assessments assigned yet.
+                          </p>
                         ) : (
                           progress.sessions.map((s) => (
-                            <div key={s.id} className="flex items-center justify-between rounded-lg border p-3">
+                            <div
+                              key={s.id}
+                              className="flex items-center justify-between rounded-lg border p-3"
+                            >
                               <div>
                                 <p className="text-sm font-medium">
-                                  {s.status === "submitted" ? "Assessment submitted" : "Assessment in progress"}
+                                  {s.status === "submitted"
+                                    ? "Assessment submitted"
+                                    : "Assessment in progress"}
                                 </p>
                                 <p className="text-xs text-muted-foreground">
                                   {format(new Date(s.submitted_at ?? s.created_at), "MMM d, yyyy")}
                                 </p>
                               </div>
                               {s.score_pct !== null && (
-                                <Badge variant={s.score_pct >= 70 ? "default" : "secondary"}>{s.score_pct}%</Badge>
+                                <Badge variant={s.score_pct >= 70 ? "default" : "secondary"}>
+                                  {s.score_pct}%
+                                </Badge>
                               )}
                             </div>
                           ))
@@ -362,14 +398,19 @@ function ParentPortal() {
                         <CardTitle className="text-base">Interventions & outcomes</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-2">
-                        {!progress || (progress.interventions.length === 0 && progress.outcomes.length === 0) ? (
+                        {!progress ||
+                        (progress.interventions.length === 0 && progress.outcomes.length === 0) ? (
                           <p className="text-sm text-muted-foreground">
-                            No interventions yet — they appear when gap detection finds an area to strengthen.
+                            No interventions yet — they appear when gap detection finds an area to
+                            strengthen.
                           </p>
                         ) : (
                           <>
                             {progress.interventions.map((i) => (
-                              <div key={i.id} className="flex items-center justify-between rounded-lg border p-3">
+                              <div
+                                key={i.id}
+                                className="flex items-center justify-between rounded-lg border p-3"
+                              >
                                 <div>
                                   <p className="text-sm font-medium">{i.title}</p>
                                   {i.target_date && (
@@ -379,11 +420,16 @@ function ParentPortal() {
                                     </p>
                                   )}
                                 </div>
-                                <Badge variant="outline" className="capitalize">{i.status}</Badge>
+                                <Badge variant="outline" className="capitalize">
+                                  {i.status}
+                                </Badge>
                               </div>
                             ))}
                             {progress.outcomes.map((o) => (
-                              <div key={o.id} className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/[0.03] p-3">
+                              <div
+                                key={o.id}
+                                className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/[0.03] p-3"
+                              >
                                 <p className="text-sm font-medium">
                                   Outcome: {o.baseline_score ?? "—"}% →{" "}
                                   {o.post_score !== null ? `${o.post_score}%` : "pending"}
@@ -425,6 +471,8 @@ interface ConsentCardProps {
           parentEmail: string;
           consentVersion: string;
           recordedAt: string;
+          action: "granted" | "revoked";
+          recordedByName: string | null;
         }[];
       }
     | undefined;
@@ -444,6 +492,16 @@ function ConsentCard({
   onRecorded,
 }: ConsentCardProps) {
   const [mobile, setMobile] = useState("");
+  const [confirmingRevoke, setConfirmingRevoke] = useState(false);
+  const revokeMutation = useMutation({
+    mutationFn: () => revokeGuardianConsent({ data: { learnerId } }),
+    onSuccess: () => {
+      toast.success("Consent withdrawn — the AI Tutor is now locked.");
+      setConfirmingRevoke(false);
+      onRecorded();
+    },
+    onError: (e) => toast.error(e instanceof Error ? e.message : "Could not withdraw consent"),
+  });
   const mutation = useMutation({
     mutationFn: () =>
       recordGuardianConsent({
@@ -479,7 +537,8 @@ function ConsentCard({
           )}
         </div>
         <p className="text-sm text-muted-foreground">
-          Consent unlocks the AI Tutor. Assessments and learning plans are available regardless. Consent history is append-only and never deleted.
+          Consent unlocks the AI Tutor. Assessments and learning plans are available regardless.
+          Consent history is append-only and never deleted.
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -488,36 +547,119 @@ function ConsentCard({
         ) : (
           <>
             {!consent?.hasConsent && (
-              <div className="flex flex-wrap items-end gap-3 rounded-lg border border-dashed p-4">
-                <div className="min-w-48 flex-1 space-y-1.5">
-                  <Label htmlFor="guardian-mobile" className="text-xs">
-                    Your mobile number
-                  </Label>
-                  <Input
-                    id="guardian-mobile"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                    placeholder="+1 555 010 2030"
-                  />
+              <div className="space-y-3 rounded-lg border border-dashed p-4">
+                <div className="rounded-lg bg-muted/50 p-3 text-xs">
+                  <p className="font-medium">What you're agreeing to (v1.0)</p>
+                  <ul className="mt-1.5 list-disc space-y-1 pl-4 text-muted-foreground">
+                    <li>
+                      {learnerName} can use the AI Tutor for guided practice inside their approved
+                      learning plan.
+                    </li>
+                    <li>
+                      Tutor conversations stay private to {learnerName}; staff see only topics and
+                      activity counts.
+                    </li>
+                    <li>
+                      You can withdraw consent at any time from this page — the AI Tutor locks
+                      immediately.
+                    </li>
+                  </ul>
+                  <p className="mt-2 text-muted-foreground">
+                    Recorded as{" "}
+                    <span className="font-medium text-foreground">
+                      {defaultName || "Parent / Guardian"}
+                    </span>
+                    {defaultEmail ? <> · {defaultEmail}</> : null}
+                  </p>
                 </div>
-                <Button
-                  disabled={mobile.trim().length < 7 || mutation.isPending}
-                  onClick={() => mutation.mutate()}
-                >
-                  {mutation.isPending ? "Recording…" : "Record consent"}
-                </Button>
+                <div className="flex flex-wrap items-end gap-3">
+                  <div className="min-w-48 flex-1 space-y-1.5">
+                    <Label htmlFor="guardian-mobile" className="text-xs">
+                      Your mobile number
+                    </Label>
+                    <Input
+                      id="guardian-mobile"
+                      type="tel"
+                      inputMode="tel"
+                      value={mobile}
+                      onChange={(e) => setMobile(e.target.value)}
+                      placeholder="+1 555 010 2030"
+                    />
+                  </div>
+                  <Button
+                    disabled={mobile.trim().length < 7 || mutation.isPending}
+                    onClick={() => mutation.mutate()}
+                  >
+                    {mutation.isPending ? "Recording…" : "Agree & record consent"}
+                  </Button>
+                </div>
+                {mobile.length > 0 && mobile.trim().length < 7 && (
+                  <p className="text-xs text-muted-foreground">
+                    Enter at least 7 digits to continue.
+                  </p>
+                )}
+              </div>
+            )}
+            {consent?.hasConsent && (
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dashed p-3">
+                {confirmingRevoke ? (
+                  <>
+                    <p className="text-sm">
+                      Withdraw consent? The AI Tutor locks for {learnerName} immediately. You can
+                      consent again later.
+                    </p>
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setConfirmingRevoke(false)}
+                      >
+                        Keep consent
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="destructive"
+                        disabled={revokeMutation.isPending}
+                        onClick={() => revokeMutation.mutate()}
+                      >
+                        {revokeMutation.isPending ? "Withdrawing…" : "Withdraw consent"}
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm text-muted-foreground">
+                      You can withdraw consent at any time — it takes effect immediately.
+                    </p>
+                    <Button size="sm" variant="outline" onClick={() => setConfirmingRevoke(true)}>
+                      Withdraw consent
+                    </Button>
+                  </>
+                )}
               </div>
             )}
             {consent && consent.history.length > 0 && (
               <div className="space-y-1.5">
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Consent history</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Consent history
+                </p>
                 {consent.history.map((h) => (
-                  <div key={h.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5 text-xs">
-                    <span>
+                  <div
+                    key={h.id}
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5 text-xs"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Badge
+                        variant={h.action === "revoked" ? "secondary" : "default"}
+                        className="text-[10px] uppercase"
+                      >
+                        {h.action === "revoked" ? "Withdrawn" : "Granted"}
+                      </Badge>
                       {h.parentName} · {h.parentEmail}
                     </span>
                     <span className="text-muted-foreground">
                       {h.consentVersion} · {format(new Date(h.recordedAt), "MMM d, yyyy")}
+                      {h.recordedByName ? <> · recorded by {h.recordedByName}</> : null}
                     </span>
                   </div>
                 ))}

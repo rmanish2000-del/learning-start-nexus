@@ -73,8 +73,8 @@ function AssessmentAuditPage() {
           <CardHeader>
             <CardTitle className="text-base">Assessment Audit Report</CardTitle>
             <CardDescription>
-              The audit chain reads staff-scoped records. Sign in as an admin or educator to
-              view it.
+              The audit chain reads staff-scoped records. Sign in as an admin or educator to view
+              it.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -92,8 +92,8 @@ function AssessmentAuditPage() {
             <ClipboardCheck className="h-5 w-5 text-primary" /> Assessment Audit Report
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            The most recently submitted assessment in your organization, traced end-to-end
-            through every database record it produced.
+            The most recently submitted assessment in your organization, traced end-to-end through
+            every database record it produced.
           </p>
         </div>
         <Button
@@ -118,8 +118,8 @@ function AssessmentAuditPage() {
       ) : !chain ? (
         <Card>
           <CardContent className="py-8 text-center text-sm text-muted-foreground">
-            No submitted assessment exists in your organization yet. Have a student complete
-            one, then reload this page.
+            No submitted assessment exists in your organization yet. Have a student complete one,
+            then reload this page.
           </CardContent>
         </Card>
       ) : (
@@ -199,9 +199,7 @@ function AssessmentAuditPage() {
             <CardContent className="space-y-3">
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <Field label="Score">
-                  <span className="text-lg font-semibold">
-                    {chain.scoring.scorePct ?? "—"}%
-                  </span>
+                  <span className="text-lg font-semibold">{chain.scoring.scorePct ?? "—"}%</span>
                 </Field>
                 <Field label="Correct">
                   {chain.scoring.correctCount ?? "—"} / {chain.scoring.totalCount ?? "—"}
@@ -303,9 +301,9 @@ function AssessmentAuditPage() {
 
           <p className="pt-1 text-xs text-muted-foreground">
             Join keys: learner <Mono>{chain.joinKeys.learnerId}</Mono> · assessment title “
-            {chain.joinKeys.assessmentTitle}” · submitted {fmt(chain.joinKeys.submittedAt)}.
-            Records 4–5 are written in the same server request as the submission and matched
-            within a 10-minute window.
+            {chain.joinKeys.assessmentTitle}” · submitted {fmt(chain.joinKeys.submittedAt)}. Records
+            4–5 are written in the same server request as the submission and matched within a
+            10-minute window.
           </p>
         </div>
       )}

@@ -24,7 +24,9 @@ export function QueryError({ title, error, onRetry, className }: QueryErrorProps
         {title}
       </p>
       <p className="mt-1 text-muted-foreground">
-        {error instanceof Error && error.message ? error.message : "Please check your connection and try again."}
+        {error instanceof Error && error.message
+          ? error.message
+          : "Please check your connection and try again."}
       </p>
       {onRetry && (
         <Button size="sm" variant="outline" className="mt-3" onClick={onRetry}>

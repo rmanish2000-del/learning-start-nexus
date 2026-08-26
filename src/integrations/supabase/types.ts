@@ -830,6 +830,7 @@ export type Database = {
       }
       guardian_consents: {
         Row: {
+          action: string
           consent_date: string
           consent_version: string
           created_at: string
@@ -842,6 +843,7 @@ export type Database = {
           recorded_by: string | null
         }
         Insert: {
+          action?: string
           consent_date: string
           consent_version: string
           created_at?: string
@@ -854,6 +856,7 @@ export type Database = {
           recorded_by?: string | null
         }
         Update: {
+          action?: string
           consent_date?: string
           consent_version?: string
           created_at?: string

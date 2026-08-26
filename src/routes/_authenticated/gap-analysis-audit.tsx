@@ -115,8 +115,8 @@ function SessionSnapshot({ s }: { s: GapSnapshotSession }) {
               variant={s.storedScorePct === s.recomputedScorePct ? "outline" : "destructive"}
               className="tabular-nums"
             >
-              stored {s.storedScorePct}% · recomputed {s.recomputedScorePct}% (
-              {s.recomputedCorrect}/{s.recomputedTotal})
+              stored {s.storedScorePct}% · recomputed {s.recomputedScorePct}% ({s.recomputedCorrect}
+              /{s.recomputedTotal})
             </Badge>
           )}
         </div>
@@ -263,9 +263,9 @@ function GapAnalysisAuditPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Gap Analysis Audit Center</h1>
           <p className="max-w-2xl text-sm text-muted-foreground">
             Independently verifiable proof for Sprint 6G — submitted diagnostics are scored per
-            outcome, mapped to mastery bands, categorized Weak/Medium/Strong, and traced through
-            the curriculum, all deterministically. Signed in with role <Mono>{data.me.role}</Mono>{" "}
-            in <Mono>{data.me.orgName ?? "—"}</Mono>.
+            outcome, mapped to mastery bands, categorized Weak/Medium/Strong, and traced through the
+            curriculum, all deterministically. Signed in with role <Mono>{data.me.role}</Mono> in{" "}
+            <Mono>{data.me.orgName ?? "—"}</Mono>.
           </p>
         </div>
         <Button onClick={() => void handleRun()} disabled={running}>

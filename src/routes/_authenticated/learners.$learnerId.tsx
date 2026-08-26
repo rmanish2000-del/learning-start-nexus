@@ -1,8 +1,23 @@
-import { createFileRoute, isNotFound, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  isNotFound,
+  Link,
+  notFound,
+  redirect,
+  useNavigate,
+} from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, CircleDashed, KeyRound, PlayCircle, Plus, TrendingUp } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  CircleDashed,
+  KeyRound,
+  PlayCircle,
+  Plus,
+  TrendingUp,
+} from "lucide-react";
 import { QueryError } from "@/components/query-error";
 import { toast } from "sonner";
 
@@ -61,9 +76,15 @@ export const Route = createFileRoute("/_authenticated/learners/$learnerId")({
   head: () => ({
     meta: [
       { title: "Learner profile — EduOS" },
-      { name: "description", content: "Mastery, progress, learning plan, and evidence for this learner." },
+      {
+        name: "description",
+        content: "Mastery, progress, learning plan, and evidence for this learner.",
+      },
       { property: "og:title", content: "Learner profile — EduOS" },
-      { property: "og:description", content: "Mastery, progress, learning plan, and evidence for this learner." },
+      {
+        property: "og:description",
+        content: "Mastery, progress, learning plan, and evidence for this learner.",
+      },
     ],
   }),
   notFoundComponent: LearnerNotFound,
@@ -97,7 +118,13 @@ function LearnerProfilePage() {
   const resetPinFn = useServerFn(resetLearnerPin);
   const [evidenceOpen, setEvidenceOpen] = useState(false);
 
-  const { data: learner, isPending, isError, error, refetch } = useQuery({
+  const {
+    data: learner,
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ["learner", learnerId],
     retry: (failureCount, err) => !isNotFound(err) && failureCount < 2,
     queryFn: async () => {
@@ -284,7 +311,10 @@ function LearnerProfilePage() {
   });
 
   const updateLearnerMutation = useMutation({
-    mutationFn: async (patch: { focus_note?: string; status?: "active" | "needs_attention" | "paused" }) => {
+    mutationFn: async (patch: {
+      focus_note?: string;
+      status?: "active" | "needs_attention" | "paused";
+    }) => {
       const { error } = await supabase.from("learners").update(patch).eq("id", learnerId);
       if (error) throw error;
     },
@@ -335,7 +365,11 @@ function LearnerProfilePage() {
         </button>
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted text-sm font-semibold">
-            {learner.full_name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+            {learner.full_name
+              .split(" ")
+              .map((p) => p[0])
+              .slice(0, 2)
+              .join("")}
           </div>
           <div className="mr-auto">
             <h2 className="text-2xl font-semibold tracking-tight">{learner.full_name}</h2>
@@ -350,7 +384,9 @@ function LearnerProfilePage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">Mastery</CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">
+              Mastery
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold tabular-nums">{learner.mastery_score}%</p>
@@ -358,15 +394,21 @@ function LearnerProfilePage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">30-day lift</CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">
+              30-day lift
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-semibold tabular-nums">{liftText(Number(learner.mastery_lift))} pts</p>
+            <p className="text-2xl font-semibold tabular-nums">
+              {liftText(Number(learner.mastery_lift))} pts
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">Plan progress</CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">
+              Plan progress
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold tabular-nums">
@@ -379,7 +421,9 @@ function LearnerProfilePage() {
       {learner.focus_note && (
         <Card className="border-l-4 border-l-primary">
           <CardContent className="py-4">
-            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Current focus</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Current focus
+            </p>
             <p className="mt-1 text-sm">{learner.focus_note}</p>
           </CardContent>
         </Card>
@@ -453,7 +497,10 @@ function LearnerProfilePage() {
                   ))}
                   {(assessments ?? []).length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={5} className="py-8 text-center text-sm text-muted-foreground">
+                      <TableCell
+                        colSpan={5}
+                        className="py-8 text-center text-sm text-muted-foreground"
+                      >
                         No assessments yet.
                       </TableCell>
                     </TableRow>
@@ -479,7 +526,9 @@ function LearnerProfilePage() {
                     <p className="text-sm font-medium">{item.focus}</p>
                     <p className="mt-0.5 text-sm text-muted-foreground">{item.activity}</p>
                     {item.target_date && (
-                      <p className="mt-1 text-xs text-muted-foreground">Target: {item.target_date}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Target: {item.target_date}
+                      </p>
                     )}
                   </div>
                   {planStatusBadge(item.status)}
@@ -503,7 +552,10 @@ function LearnerProfilePage() {
             </CardHeader>
             <CardContent className="space-y-3">
               {(gaps ?? []).map((gap) => (
-                <div key={gap.id} className="flex flex-wrap items-center gap-3 rounded-lg border p-4">
+                <div
+                  key={gap.id}
+                  className="flex flex-wrap items-center gap-3 rounded-lg border p-4"
+                >
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <p className="text-sm font-medium">{gap.subtopic}</p>
@@ -516,8 +568,8 @@ function LearnerProfilePage() {
                       )}
                     </div>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      {gap.items_correct}/{gap.items_total} correct ({gap.gap_score_pct}%) · detected{" "}
-                      {gap.detected_at.slice(0, 10)}
+                      {gap.items_correct}/{gap.items_total} correct ({gap.gap_score_pct}%) ·
+                      detected {gap.detected_at.slice(0, 10)}
                     </p>
                   </div>
                   <Badge variant={gap.status === "open" ? "outline" : "secondary"}>
@@ -542,11 +594,16 @@ function LearnerProfilePage() {
             </CardHeader>
             <CardContent className="space-y-3">
               {(recommendations ?? []).map((rec) => (
-                <div key={rec.id} className="flex flex-wrap items-center gap-3 rounded-lg border p-4">
+                <div
+                  key={rec.id}
+                  className="flex flex-wrap items-center gap-3 rounded-lg border p-4"
+                >
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <p className="text-sm font-medium">{rec.title}</p>
-                      <Badge variant="outline" className="font-mono text-[10px]">{rec.rule_id}</Badge>
+                      <Badge variant="outline" className="font-mono text-[10px]">
+                        {rec.rule_id}
+                      </Badge>
                     </div>
                     <p className="mt-0.5 text-sm text-muted-foreground">{rec.activity}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{rec.rationale}</p>
@@ -637,8 +694,12 @@ function LearnerProfilePage() {
                   ))}
                   {(tutorSessions ?? []).length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={6} className="py-8 text-center text-sm text-muted-foreground">
-                        No tutor sessions yet — the student launches the tutor from their focus plan.
+                      <TableCell
+                        colSpan={6}
+                        className="py-8 text-center text-sm text-muted-foreground"
+                      >
+                        No tutor sessions yet — the student launches the tutor from their focus
+                        plan.
                       </TableCell>
                     </TableRow>
                   )}
@@ -693,7 +754,10 @@ function LearnerProfilePage() {
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {[
                       { label: "Baseline", value: `${o.baseline_score}%` },
-                      { label: "Post-intervention", value: o.post_score !== null ? `${o.post_score}%` : "—" },
+                      {
+                        label: "Post-intervention",
+                        value: o.post_score !== null ? `${o.post_score}%` : "—",
+                      },
                       {
                         label: "Mastery lift",
                         value: o.mastery_lift !== null ? `${lift >= 0 ? "+" : ""}${lift} pts` : "—",
@@ -821,16 +885,22 @@ function LearnerProfilePage() {
             <CardContent className="space-y-3">
               {(evidence ?? []).map((item) => (
                 <div key={item.id} className="flex items-start gap-3 rounded-lg border p-4">
-                  <Badge variant="outline" className="mt-0.5 capitalize">{item.kind}</Badge>
+                  <Badge variant="outline" className="mt-0.5 capitalize">
+                    {item.kind}
+                  </Badge>
                   <div className="min-w-0">
                     <p className="text-sm font-medium">{item.title}</p>
-                    {item.note && <p className="mt-0.5 text-sm text-muted-foreground">{item.note}</p>}
+                    {item.note && (
+                      <p className="mt-0.5 text-sm text-muted-foreground">{item.note}</p>
+                    )}
                     <p className="mt-1 text-xs text-muted-foreground">{item.recorded_on}</p>
                   </div>
                 </div>
               ))}
               {(evidence ?? []).length === 0 && (
-                <p className="py-8 text-center text-sm text-muted-foreground">No evidence logged yet.</p>
+                <p className="py-8 text-center text-sm text-muted-foreground">
+                  No evidence logged yet.
+                </p>
               )}
             </CardContent>
           </Card>
@@ -879,15 +949,31 @@ function LearnerProfilePage() {
               >
                 <div className="space-y-1.5">
                   <Label htmlFor="parentName">Parent name</Label>
-                  <Input id="parentName" name="parentName" required placeholder="e.g. Rajesh Sharma" />
+                  <Input
+                    id="parentName"
+                    name="parentName"
+                    required
+                    placeholder="e.g. Rajesh Sharma"
+                  />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="parentEmail">Parent email</Label>
-                  <Input id="parentEmail" name="parentEmail" type="email" required placeholder="parent@example.com" />
+                  <Input
+                    id="parentEmail"
+                    name="parentEmail"
+                    type="email"
+                    required
+                    placeholder="parent@example.com"
+                  />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="parentMobile">Parent mobile</Label>
-                  <Input id="parentMobile" name="parentMobile" required placeholder="+91 98200 12345" />
+                  <Input
+                    id="parentMobile"
+                    name="parentMobile"
+                    required
+                    placeholder="+91 98200 12345"
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
@@ -937,7 +1023,9 @@ function LearnerProfilePage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Focus note</CardTitle>
-              <CardDescription>Shown at the top of this profile and on the student's home.</CardDescription>
+              <CardDescription>
+                Shown at the top of this profile and on the student's home.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <form
@@ -948,8 +1036,14 @@ function LearnerProfilePage() {
                 }}
                 className="flex gap-3"
               >
-                <Input name="focusNote" defaultValue={learner.focus_note ?? ""} placeholder="What should this learner focus on?" />
-                <Button type="submit" disabled={updateLearnerMutation.isPending}>Save</Button>
+                <Input
+                  name="focusNote"
+                  defaultValue={learner.focus_note ?? ""}
+                  placeholder="What should this learner focus on?"
+                />
+                <Button type="submit" disabled={updateLearnerMutation.isPending}>
+                  Save
+                </Button>
               </form>
             </CardContent>
           </Card>
@@ -962,7 +1056,9 @@ function LearnerProfilePage() {
               <Select
                 value={learner.status}
                 onValueChange={(v) =>
-                  updateLearnerMutation.mutate({ status: v as "active" | "needs_attention" | "paused" })
+                  updateLearnerMutation.mutate({
+                    status: v as "active" | "needs_attention" | "paused",
+                  })
                 }
               >
                 <SelectTrigger className="w-56" aria-label="Learner status">
@@ -981,8 +1077,8 @@ function LearnerProfilePage() {
             <CardHeader>
               <CardTitle className="text-base">Student sign-in</CardTitle>
               <CardDescription>
-                Handle: <span className="font-mono">{learner.handle}</span> — reset the PIN if the student
-                can't sign in.
+                Handle: <span className="font-mono">{learner.handle}</span> — reset the PIN if the
+                student can't sign in.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -1000,7 +1096,13 @@ function LearnerProfilePage() {
               >
                 <div className="relative flex-1">
                   <KeyRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input name="pin" inputMode="numeric" maxLength={6} placeholder="New 6-digit PIN" className="pl-9" />
+                  <Input
+                    name="pin"
+                    inputMode="numeric"
+                    maxLength={6}
+                    placeholder="New 6-digit PIN"
+                    className="pl-9"
+                  />
                 </div>
                 <Button type="submit" variant="secondary" disabled={resetPinMutation.isPending}>
                   Reset PIN

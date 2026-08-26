@@ -236,15 +236,18 @@ function Sprint5AuditPage() {
           <CardTitle className="flex items-center gap-2 text-base">
             <TrendingUp className="h-4 w-4" /> Build summary
           </CardTitle>
-          <CardDescription>The MVP loop, closed: diagnostic → gap → intervention → AI tutor → reassessment → mastery lift.</CardDescription>
+          <CardDescription>
+            The MVP loop, closed: diagnostic → gap → intervention → AI tutor → reassessment →
+            mastery lift.
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
           <p>
             When staff complete an intervention, EduOS opens a pending outcome capturing the
             baseline score from the diagnostic that found the gap, and assigns a fresh reassessment
-            to the learner. When the learner submits it, the outcome is finalized
-            deterministically: post score, mastery lift, confidence, and status — plus an updated
-            mastery index, a mastery history point, and an evidence entry.
+            to the learner. When the learner submits it, the outcome is finalized deterministically:
+            post score, mastery lift, confidence, and status — plus an updated mastery index, a
+            mastery history point, and an evidence entry.
           </p>
           <div className="flex flex-wrap gap-2">
             <Badge variant="outline">Table: learner_outcomes</Badge>
@@ -256,7 +259,9 @@ function Sprint5AuditPage() {
               <FunctionSquare className="h-3.5 w-3.5" /> Outcome formula (verbatim)
             </p>
             <ul className="space-y-1 text-xs">
-              <li><Mono>{data.formula.lift}</Mono></li>
+              <li>
+                <Mono>{data.formula.lift}</Mono>
+              </li>
               {data.formula.confidence.map((c) => (
                 <li key={c}>· {c}</li>
               ))}
@@ -392,7 +397,9 @@ function Sprint5AuditPage() {
                 : "No probe results yet — ask an educator or admin to run them."}
             </p>
           )}
-          {probes?.probes.map((p) => <ProbeCard key={p.key} p={p} />)}
+          {probes?.probes.map((p) => (
+            <ProbeCard key={p.key} p={p} />
+          ))}
           {probes && (
             <p className="text-xs text-muted-foreground">
               Ran {fmt(probes.generatedAt)} by {probes.me.role} in {probes.me.orgName}.
