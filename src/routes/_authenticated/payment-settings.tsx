@@ -317,6 +317,81 @@ function PaymentSettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
+            <Webhook className="size-4" /> Webhook status
+          </CardTitle>
+          <CardDescription>
+            Latest signature verification result and the most recent event received from Razorpay.
+            Refreshes automatically every 30 seconds.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {webhookLoading || !webhook ? (
+            <Skeleton className="h-24 w-full" />
+          ) : !webhook.lastEvent ? (
+            <p className="text-sm text-muted-foreground">
+              No webhook deliveries received yet. Once Razorpay posts to{" "}
+              <code className="rounded bg-muted px-1 py-0.5 text-[11px]">
+                /api/public/razorpay-webhook
+              </code>
+              , the result appears here.
+            </p>
+          ) : (
+            <>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant={webhook.lastEvent.signatureValid ? "default" : "destructive"}>
+                  {webhook.lastEvent.signatureValid
+                    ? "Signature verified"
+                    : "Signature rejected"}
+                </Badge>
+                {webhook.lastEvent.isDuplicate ? (
+                  <Badge variant="secondary">Replay of a seen event</Badge>
+                ) : null}
+                <span className="text-xs text-muted-foreground">
+                  {new Date(webhook.lastEvent.createdAt).toLocaleString("en-IN")}
+                </span>
+              </div>
+
+              <dl className="grid gap-3 sm:grid-cols-2">
+                <Field label="Last event type" value={webhook.lastEvent.eventType} />
+                <Field label="Outcome" value={webhook.lastEvent.outcome} />
+                <Field label="Gateway order id" value={webhook.lastEvent.providerOrderId ?? "—"} />
+                <Field
+                  label="Gateway payment id"
+                  value={webhook.lastEvent.providerPaymentId ?? "—"}
+                />
+                <Field
+                  label="Last verified delivery"
+                  value={
+                    webhook.lastVerified
+                      ? `${webhook.lastVerified.eventType} · ${new Date(webhook.lastVerified.createdAt).toLocaleString("en-IN")}`
+                      : "None yet"
+                  }
+                  tone={webhook.lastVerified ? "ok" : undefined}
+                />
+                <Field
+                  label="Last rejected delivery"
+                  value={
+                    webhook.lastRejected
+                      ? `${webhook.lastRejected.eventType} · ${new Date(webhook.lastRejected.createdAt).toLocaleString("en-IN")}`
+                      : "None"
+                  }
+                  tone={webhook.lastRejected ? "bad" : undefined}
+                />
+              </dl>
+
+              <p className="text-xs text-muted-foreground">
+                Last 200 deliveries: {webhook.totals.received} received ·{" "}
+                {webhook.totals.verified} verified · {webhook.totals.rejected} rejected ·{" "}
+                {webhook.totals.duplicates} replays.
+              </p>
+            </>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
             <History className="size-4" /> Credential audit log
           </CardTitle>
           <CardDescription>
