@@ -7,6 +7,8 @@ import { toast } from "sonner";
 
 import { ContextHelp } from "@/components/context-help";
 import { EmptyState } from "@/components/empty-state";
+import { QueryError } from "@/components/query-error";
+
 
 import { supabase } from "@/integrations/supabase/client";
 import { createLearner } from "@/lib/learners.functions";
