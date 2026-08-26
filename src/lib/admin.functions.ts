@@ -4,6 +4,7 @@ import {
   createStaffUserSchema,
   parentLinkSchema,
   parentUnlinkSchema,
+  resetStaffPasswordSchema,
   updateUserRoleSchema,
 } from "./schemas";
 import type { AppRole } from "./roles";
@@ -110,6 +111,40 @@ export const updateUserRole = createServerFn({ method: "POST" })
     if (insertError) throw new Error(insertError.message);
 
     return { ok: true };
+  });
+
+// ---------------------------------------------------------------------------
+// Password reset (P0 kernel): an admin issues a one-time temporary password
+// for a staff/parent account inside their own organization. The password is
+// returned once to the admin to hand over out-of-band; it is never stored or
+// logged. Admins cannot reset their own password this way.
+// ---------------------------------------------------------------------------
+
+export const resetStaffPassword = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => resetStaffPasswordSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    if (data.userId === context.userId) {
+      throw new Error("Use Settings to change your own password.");
+    }
+
+    // Org-scoped RLS: the target profile is only visible inside the caller's org.
+    const { data: targetProfile } = await context.supabase
+      .from("profiles")
+      .select("id, full_name")
+      .eq("id", data.userId)
+      .maybeSingle();
+    if (!targetProfile) throw new Error("That user is not part of your organization.");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const tempPassword = `EduOS-${crypto.randomUUID().replace(/-/g, "").slice(0, 10)}!`;
+    const { error } = await supabaseAdmin.auth.admin.updateUserById(data.userId, {
+      password: tempPassword,
+    });
+    if (error) throw new Error(error.message);
+
+    return { ok: true as const, tempPassword, fullName: targetProfile.full_name };
   });
 
 // ---------------------------------------------------------------------------

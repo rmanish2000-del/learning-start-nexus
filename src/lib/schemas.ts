@@ -28,6 +28,10 @@ export const updateUserRoleSchema = z.object({
   role: z.enum(["admin", "educator", "student", "parent", "reviewer"]),
 });
 
+export const resetStaffPasswordSchema = z.object({
+  userId: z.string().uuid(),
+});
+
 export const parentLinkSchema = z.object({
   parentUserId: z.string().uuid(),
   learnerId: z.string().uuid(),
@@ -139,4 +143,9 @@ export const guardianConsentSchema = z.object({
   parentMobile: z.string().trim().min(7).max(20),
   consentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD"),
   consentVersion: z.string().trim().min(1).max(40),
+});
+
+export const withdrawConsentSchema = z.object({
+  learnerId: z.string().uuid(),
+  reason: z.string().trim().max(300).optional(),
 });
