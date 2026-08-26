@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
 
 import { DiagnosticShell } from "@/components/diagnostic-shell";
+import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,7 @@ export const Route = createFileRoute("/diagnostic/session/$token")({
 });
 
 function DiagnosticSessionPage() {
+  const { t } = useI18n();
   const { token } = Route.useParams();
   const runFn = useServerFn(fetchDiagnosticRun);
   const saveFn = useServerFn(saveDiagnosticAnswer);
@@ -87,7 +89,7 @@ function DiagnosticSessionPage() {
     try {
       await saveFn({ data: { token, questionId: question.id, answer: value, position: nextIndex } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "That answer could not be saved.");
+      toast.error(error instanceof Error ? error.message : t("session.error.save", "That answer could not be saved."));
     } finally {
       setSaving(false);
     }
@@ -109,7 +111,7 @@ function DiagnosticSessionPage() {
       await submitFn({ data: { token } });
       await navigate({ to: "/diagnostic/report/$token", params: { token } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "The diagnostic could not be submitted.");
+      toast.error(error instanceof Error ? error.message : t("session.error.submit", "The diagnostic could not be submitted."));
       setSubmitting(false);
     }
   }
@@ -124,7 +126,7 @@ function DiagnosticSessionPage() {
   if (query.isError || !run) {
     return (
       <DiagnosticShell>
-        <QueryError title="This diagnostic link is not valid" error={query.error} onRetry={() => void query.refetch()} />
+        <QueryError title={t("session.invalid", "This diagnostic link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
       </DiagnosticShell>
     );
   }
@@ -137,15 +139,24 @@ function DiagnosticSessionPage() {
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-xl font-semibold tracking-tight">
-            {run.childFirstName}'s diagnostic · {run.subject}
+            {t("session.title", `${run.childFirstName}'s diagnostic · ${run.subject}`, {
+              name: run.childFirstName,
+              subject: run.subject,
+            })}
           </h1>
           <Badge variant="secondary">
-            {answeredCount} of {questions.length} answered
+            {t("session.answered", `${answeredCount} of ${questions.length} answered`, {
+              n: answeredCount,
+              total: questions.length,
+            })}
           </Badge>
         </div>
         <Progress value={questions.length === 0 ? 0 : (answeredCount / questions.length) * 100} />
         <p className="text-xs text-muted-foreground">
-          Every answer is saved as you go — you can close this page and return to the same link.
+          {t(
+            "session.saveNote",
+            "Every answer is saved as you go — you can close this page and return to the same link.",
+          )}
         </p>
       </div>
 
@@ -154,11 +165,15 @@ function DiagnosticSessionPage() {
           <CardHeader className="space-y-2">
             <div className="flex items-center justify-between gap-3">
               <span className="text-xs font-medium text-muted-foreground">
-                Question {index + 1} of {questions.length} · Outcome {question.outcomeCode}
+                {t(
+                  "session.question",
+                  `Question ${index + 1} of ${questions.length} · Outcome ${question.outcomeCode}`,
+                  { n: index + 1, total: questions.length, code: question.outcomeCode },
+                )}
               </span>
               {saving ? (
                 <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Save className="h-3.5 w-3.5" /> Saving…
+                  <Save className="h-3.5 w-3.5" /> {t("session.saving", "Saving…")}
                 </span>
               ) : null}
             </div>
@@ -188,37 +203,39 @@ function DiagnosticSessionPage() {
               </RadioGroup>
             ) : (
               <div className="space-y-1.5">
-                <Label htmlFor="free-answer">Your answer</Label>
+                <Label htmlFor="free-answer">{t("session.freeAnswer", "Your answer")}</Label>
                 <Textarea
                   id="free-answer"
                   rows={4}
                   value={answers[question.id] ?? ""}
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))}
                   onBlur={(e) => void persist(e.target.value, index)}
-                  placeholder="Type the answer"
+                  placeholder={t("session.freeAnswer.placeholder", "Type the answer")}
                 />
               </div>
             )}
 
             <div className="flex items-center justify-between gap-3">
               <Button variant="outline" onClick={() => setIndex(Math.max(0, index - 1))} disabled={index === 0}>
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                <ArrowLeft className="mr-2 h-4 w-4" /> {t("common.back", "Back")}
               </Button>
               {isLast ? (
                 <Button onClick={submit} disabled={submitting}>
                   {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  Submit and score
+                  {t("session.submit", "Submit and score")}
                 </Button>
               ) : (
                 <Button onClick={goNext}>
-                  Next <ArrowRight className="ml-2 h-4 w-4" />
+                  {t("common.next", "Next")} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               )}
             </div>
           </CardContent>
         </Card>
       ) : (
-        <p className="mt-6 text-sm text-muted-foreground">This diagnostic has no questions assigned.</p>
+        <p className="mt-6 text-sm text-muted-foreground">
+          {t("session.empty", "This diagnostic has no questions assigned.")}
+        </p>
       )}
     </DiagnosticShell>
   );
