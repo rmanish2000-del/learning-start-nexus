@@ -487,7 +487,36 @@ function ParentTrust() {
           <p className="mt-4 text-sm text-muted-foreground">{PARENT_REPORT.narrative}</p>
         </div>
       </div>
+
+      <div id="pricing" className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="rounded-xl border bg-card p-5">
+          <h3 className="text-sm font-semibold">
+            {t("landing.pricing.diagnostic.title", "Diagnostic")}
+          </h3>
+          <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹199</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t(
+              "landing.pricing.diagnostic.body",
+              "One curriculum-mapped diagnostic, an outcome-level gap report and a recommended practice plan.",
+            )}
+          </p>
+        </div>
+        <div className="rounded-xl border bg-card p-5">
+          <h3 className="text-sm font-semibold">
+            {t("landing.pricing.plan.title", "Full Success Plan")}
+          </h3>
+          <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹2,999</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t(
+              "landing.pricing.plan.body",
+              "Guided practice, AI tutor access with guardian consent, reassessment on fresh items and verified mastery lift.",
+            )}
+          </p>
+        </div>
+      </div>
+      <ParentCtas />
     </Section>
+
   );
 }
 
