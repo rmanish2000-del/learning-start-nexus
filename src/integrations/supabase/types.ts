@@ -1855,6 +1855,56 @@ export type Database = {
           },
         ]
       }
+      payment_webhook_events: {
+        Row: {
+          created_at: string
+          event_id: string | null
+          event_type: string
+          id: string
+          is_duplicate: boolean
+          order_id: string | null
+          outcome: string
+          provider: string
+          provider_order_id: string | null
+          provider_payment_id: string | null
+          signature_valid: boolean
+        }
+        Insert: {
+          created_at?: string
+          event_id?: string | null
+          event_type: string
+          id?: string
+          is_duplicate?: boolean
+          order_id?: string | null
+          outcome: string
+          provider?: string
+          provider_order_id?: string | null
+          provider_payment_id?: string | null
+          signature_valid?: boolean
+        }
+        Update: {
+          created_at?: string
+          event_id?: string | null
+          event_type?: string
+          id?: string
+          is_duplicate?: boolean
+          order_id?: string | null
+          outcome?: string
+          provider?: string
+          provider_order_id?: string | null
+          provider_payment_id?: string | null
+          signature_valid?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_webhook_events_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "parent_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pilot_leads: {
         Row: {
           boards_grades: string | null
