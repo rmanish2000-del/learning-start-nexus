@@ -11,6 +11,7 @@ import {
   PlayCircle,
   ShieldCheck,
 } from "lucide-react";
+import { Circle } from "lucide-react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
