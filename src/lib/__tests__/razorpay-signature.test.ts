@@ -30,7 +30,7 @@ describe("checkout signature verification", () => {
     const { verifyCheckoutSignature } = await mod();
     const signature = createHmac("sha256", KEY_SECRET).update("order_123|pay_456").digest("hex");
     expect(
-      verifyCheckoutSignature({
+      await verifyCheckoutSignature({
         razorpayOrderId: "order_123",
         razorpayPaymentId: "pay_EVIL",
         signature,
@@ -42,7 +42,7 @@ describe("checkout signature verification", () => {
     const { verifyCheckoutSignature } = await mod();
     const signature = createHmac("sha256", "not_the_secret").update("order_123|pay_456").digest("hex");
     expect(
-      verifyCheckoutSignature({
+      await verifyCheckoutSignature({
         razorpayOrderId: "order_123",
         razorpayPaymentId: "pay_456",
         signature,
@@ -55,7 +55,7 @@ describe("checkout signature verification", () => {
     const good = createHmac("sha256", KEY_SECRET).update("order_123|pay_456").digest("hex");
     for (const signature of ["", good.slice(0, 10)]) {
       expect(
-        verifyCheckoutSignature({
+        await verifyCheckoutSignature({
           razorpayOrderId: "order_123",
           razorpayPaymentId: "pay_456",
           signature,
