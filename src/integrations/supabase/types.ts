@@ -1743,6 +1743,7 @@ export type Database = {
           created_by: string | null
           difficulty: number
           explanation: string
+          external_ref: string | null
           id: string
           kind: string
           options: Json | null
@@ -1767,6 +1768,7 @@ export type Database = {
           created_by?: string | null
           difficulty: number
           explanation: string
+          external_ref?: string | null
           id?: string
           kind: string
           options?: Json | null
@@ -1791,6 +1793,7 @@ export type Database = {
           created_by?: string | null
           difficulty?: number
           explanation?: string
+          external_ref?: string | null
           id?: string
           kind?: string
           options?: Json | null
