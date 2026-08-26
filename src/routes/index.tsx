@@ -30,6 +30,8 @@ import {
   TUTOR_FALLBACK,
   TUTOR_SAFETY,
 } from "@/lib/landing-content";
+import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n } from "@/lib/i18n/context";
 
 const TITLE = "EduOS — Prove the learning gap closed, don't claim it";
 const DESCRIPTION =
@@ -86,9 +88,10 @@ export const Route = createFileRoute("/")({
 });
 
 function SampleTag() {
+  const { t } = useI18n();
   return (
     <Badge variant="outline" className="font-normal text-muted-foreground">
-      {SAMPLE_LABEL}
+      {t("landing.sample.label", SAMPLE_LABEL)}
     </Badge>
   );
 }
@@ -153,6 +156,7 @@ function LandingPage() {
 }
 
 function SiteHeader() {
+  const { t } = useI18n();
   return (
     <header className="sticky top-0 z-30 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
@@ -162,21 +166,22 @@ function SiteHeader() {
           </span>
           <span className="text-base font-semibold tracking-tight">EduOS</span>
         </Link>
-        <nav className="flex items-center gap-5 text-sm">
-          <a href="#how" className="hidden text-muted-foreground hover:text-foreground sm:inline">
-            How it works
+        <nav className="flex items-center gap-4 text-sm">
+          <a href="#how" className="hidden text-muted-foreground hover:text-foreground lg:inline">
+            {t("landing.nav.how", "How it works")}
           </a>
-          <a href="#evidence" className="hidden text-muted-foreground hover:text-foreground sm:inline">
-            Evidence
+          <a href="#evidence" className="hidden text-muted-foreground hover:text-foreground lg:inline">
+            {t("landing.nav.evidence", "Evidence")}
           </a>
-          <a href="#faq" className="hidden text-muted-foreground hover:text-foreground sm:inline">
-            FAQ
+          <a href="#faq" className="hidden text-muted-foreground hover:text-foreground lg:inline">
+            {t("landing.nav.faq", "FAQ")}
           </a>
+          <LanguageToggle />
           <Link to="/auth" className="text-muted-foreground hover:text-foreground">
-            Sign in
+            {t("common.signIn", "Sign in")}
           </Link>
           <Button asChild size="sm">
-            <a href="#pilot">Apply for the pilot</a>
+            <a href="#pilot">{t("landing.nav.pilot", "Apply for the pilot")}</a>
           </Button>
         </nav>
       </div>
@@ -185,39 +190,47 @@ function SiteHeader() {
 }
 
 function Hero() {
+  const { t } = useI18n();
   return (
     <section className="mx-auto max-w-5xl px-4 pt-16 pb-12 sm:pt-24 sm:pb-16">
       <Badge variant="secondary" className="font-normal">
-        Learning intelligence for tutoring centres
+        {t("landing.hero.badge", "Learning intelligence for tutoring centres")}
       </Badge>
       <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-        Prove the learning gap closed. Don't claim it.
+        {t("landing.hero.title", "Prove the learning gap closed. Don't claim it.")}
       </h1>
       <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-        EduOS runs the whole loop — diagnostic, gap detection, approved intervention, Socratic AI
-        tutor, fresh-item reassessment — and ends with evidence a reviewer has signed.
+        {t(
+          "landing.hero.lede",
+          "EduOS runs the whole loop — diagnostic, gap detection, approved intervention, Socratic AI tutor, fresh-item reassessment — and ends with evidence a reviewer has signed.",
+        )}
       </p>
       <div className="mt-7 flex flex-wrap items-center gap-3">
         <Button asChild size="lg">
           <a href="#pilot">
-            Apply for the pilot <ArrowRight className="h-4 w-4" />
+            {t("landing.hero.ctaPrimary", "Apply for the pilot")} <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <a href="#evidence">See a sample outcome report</a>
+          <a href="#evidence">{t("landing.hero.ctaSecondary", "See a sample outcome report")}</a>
         </Button>
       </div>
+      <p className="mt-4 text-sm">
+        <Link to="/diagnostic" className="font-medium text-primary hover:underline">
+          {t("landing.hero.parentCta", "A parent? Get your child's ₹199 diagnostic")} →
+        </Link>
+      </p>
 
       <div className="mt-12 grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3">
-        {PROOF_STRIP.map((s) => (
+        {PROOF_STRIP.map((s, i) => (
           <div key={s.label} className="bg-card p-5">
             <p className="text-3xl font-semibold tabular-nums tracking-tight">{s.value}</p>
-            <p className="mt-1 text-sm font-medium">{s.label}</p>
-            <p className="mt-1 text-xs text-muted-foreground">{s.note}</p>
+            <p className="mt-1 text-sm font-medium">{t(`landing.proof.${i}.label`, s.label)}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{t(`landing.proof.${i}.note`, s.note)}</p>
           </div>
         ))}
       </div>
-      <p className="mt-3 text-xs text-muted-foreground">{SAMPLE_LABEL}.</p>
+      <p className="mt-3 text-xs text-muted-foreground">{t("landing.sample.label", SAMPLE_LABEL)}.</p>
     </section>
   );
 }

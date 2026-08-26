@@ -17,6 +17,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieConsentBanner } from "@/components/cookie-consent";
 import { InstallBanner } from "@/components/install-banner";
+import { LanguageProvider } from "@/lib/i18n/context";
 
 function NotFoundComponent() {
   return (
@@ -164,13 +165,15 @@ function RootComponent() {
 
   return (
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-        <Toaster />
-        <CookieConsentBanner />
-        <InstallBanner />
-      </QueryClientProvider>
+      <LanguageProvider>
+        <QueryClientProvider client={queryClient}>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+          <Toaster />
+          <CookieConsentBanner />
+          <InstallBanner />
+        </QueryClientProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { GraduationCap, Lock } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n } from "@/lib/i18n/context";
 import { BAND_LABELS, type MasteryBand } from "@/lib/parent-diagnostic-shared";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +19,7 @@ export function DiagnosticShell({
   footerNote?: string;
   wide?: boolean;
 }) {
+  const { t } = useI18n();
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="border-b">
@@ -27,9 +30,12 @@ export function DiagnosticShell({
             </span>
             <span className="text-base font-semibold tracking-tight">EduOS</span>
           </Link>
-          <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Lock className="h-3.5 w-3.5" /> Secure checkout
-          </span>
+          <div className="flex items-center gap-3">
+            <LanguageToggle />
+            <span className="hidden items-center gap-1.5 text-xs text-muted-foreground sm:flex">
+              <Lock className="h-3.5 w-3.5" /> {t("common.secureCheckout", "Secure checkout")}
+            </span>
+          </div>
         </div>
       </header>
       <main className={cn("mx-auto w-full flex-1 px-4 py-10", wide ? "max-w-5xl" : "max-w-3xl")}>{children}</main>
@@ -41,13 +47,13 @@ export function DiagnosticShell({
           )}
         >
           <Link to="/privacy" className="hover:text-foreground">
-            Privacy
+            {t("common.privacy", "Privacy")}
           </Link>
           <Link to="/terms" className="hover:text-foreground">
-            Terms
+            {t("common.terms", "Terms")}
           </Link>
           <Link to="/contact" className="hover:text-foreground">
-            Contact
+            {t("common.contact", "Contact")}
           </Link>
           {footerNote ? <span className="ml-auto">{footerNote}</span> : null}
         </div>
@@ -65,6 +71,7 @@ const BAND_CLASS: Record<MasteryBand, string> = {
 
 // Band is never communicated by colour alone — the label always ships with it.
 export function BandPill({ band, suffix }: { band: MasteryBand; suffix?: string }) {
+  const { t } = useI18n();
   return (
     <span
       className={cn(
@@ -72,7 +79,7 @@ export function BandPill({ band, suffix }: { band: MasteryBand; suffix?: string 
         BAND_CLASS[band],
       )}
     >
-      {BAND_LABELS[band]}
+      {t(`band.${band}`, BAND_LABELS[band])}
       {suffix ? <span className="font-normal opacity-80">{suffix}</span> : null}
     </span>
   );
