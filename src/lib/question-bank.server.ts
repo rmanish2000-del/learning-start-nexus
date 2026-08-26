@@ -22,6 +22,7 @@ import type {
 import {
   ASSERTION_REASON_OPTIONS,
   CBSE_KIND_RULES,
+  competencyQualityIssues,
   isOptionKind,
   requiresStimulus,
   type CbseKind,
