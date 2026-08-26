@@ -204,7 +204,7 @@ function UpgradePage() {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                This pilot checkout is a simulation — no money moves and no card details are collected.
+                Payments are processed securely by Razorpay. EduOS never sees or stores your card details.
               </AlertDescription>
             </Alert>
 

@@ -5,10 +5,9 @@
 // authorised by a single unguessable per-order access token. Nothing on this
 // path trusts a client-supplied price, question list, or entitlement.
 //
-// Payment is SIMULATED in this MVP: `confirmDiagnosticPayment` stands in for
-// the Razorpay `payment.captured` webhook and is the only writer of
-// entitlements. Swapping in the real webhook means replacing that one call
-// site — the entitlement, provisioning, and scoring code is unchanged.
+// Payment runs on Razorpay. `markOrderPaid` is the only writer of
+// entitlements and is reached by two idempotent paths: the signature-verified
+// checkout handler and the signature-verified `payment.captured` webhook.
 
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { buildDiagnosticPlan, type EngineOutcome } from "./diagnostic-shared";

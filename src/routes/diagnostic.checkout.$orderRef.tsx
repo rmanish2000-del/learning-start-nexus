@@ -188,8 +188,8 @@ function DiagnosticCheckoutPage() {
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  This pilot checkout is a simulation — no money moves and no card details are collected. It creates the
-                  same order, entitlement, and report as the live flow.
+                  Payments are processed securely by Razorpay. EduOS never sees or stores your card details — the
+                  diagnostic is built the moment the payment is confirmed.
                 </AlertDescription>
               </Alert>
 
