@@ -149,8 +149,8 @@ function countNumbers(text: string): number {
 export function competencyQualityIssues(q: {
   kind: string;
   prompt: string;
-  stimulus?: string | null;
-  options?: string[] | null;
+  stimulus?: string | null | undefined;
+  options?: string[] | null | undefined;
 }): string[] {
   const issues: string[] = [];
   const stimulus = (q.stimulus ?? "").trim();
