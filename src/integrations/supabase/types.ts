@@ -1864,6 +1864,42 @@ export type Database = {
           },
         ]
       }
+      payment_credential_audit: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          id: string
+          masked_key_id: string | null
+          new_mode: string
+          new_source: string
+          prev_mode: string
+          prev_source: string
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          masked_key_id?: string | null
+          new_mode?: string
+          new_source?: string
+          prev_mode?: string
+          prev_source?: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          masked_key_id?: string | null
+          new_mode?: string
+          new_source?: string
+          prev_mode?: string
+          prev_source?: string
+        }
+        Relationships: []
+      }
       payment_credentials: {
         Row: {
           id: string

@@ -69,6 +69,15 @@ export const Route = createFileRoute("/_authenticated")({
       throw redirect({ to: roleHome(role) });
     }
 
+    // Payment settings are admin-only (keys, secrets, environment switch).
+    if (
+      (location.pathname === "/payment-settings" ||
+        location.pathname.startsWith("/payment-settings/")) &&
+      role !== "admin"
+    ) {
+      throw redirect({ to: roleHome(role) });
+    }
+
     if (role !== "parent" && location.pathname === "/parent") {
       throw redirect({ to: roleHome(role) });
     }

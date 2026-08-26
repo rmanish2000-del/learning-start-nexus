@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { KeyRound, Radio, ShieldCheck, Webhook } from "lucide-react";
+import { History, KeyRound, Radio, ShieldCheck, Webhook } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -14,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   clearPaymentSettingsFn,
   getPaymentSettingsFn,
+  listPaymentAuditFn,
   savePaymentSettingsFn,
   testPaymentSettingsFn,
 } from "@/lib/payment-settings.functions";
@@ -67,7 +68,17 @@ function PaymentSettingsPage() {
     enabled: role === "admin",
   });
 
-  const refresh = () => queryClient.invalidateQueries({ queryKey: ["payment-settings"] });
+  const auditLoad = useServerFn(listPaymentAuditFn);
+  const { data: auditEntries } = useQuery({
+    queryKey: ["payment-settings-audit"],
+    queryFn: () => auditLoad({}),
+    enabled: role === "admin",
+  });
+
+  const refresh = () => {
+    queryClient.invalidateQueries({ queryKey: ["payment-settings"] });
+    queryClient.invalidateQueries({ queryKey: ["payment-settings-audit"] });
+  };
 
   const saveMutation = useMutation({
     mutationFn: () => save({ data: { keyId, keySecret, webhookSecret } }),
@@ -94,6 +105,7 @@ function PaymentSettingsPage() {
     onSuccess: (result) => {
       if (result.ok) toast.success(result.message);
       else toast.error(result.message);
+      void refresh();
     },
     onError: (err: Error) => toast.error(err.message),
   });
@@ -289,6 +301,54 @@ function PaymentSettingsPage() {
               </Button>
             </div>
           </form>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <History className="size-4" /> Credential audit log
+          </CardTitle>
+          <CardDescription>
+            Append-only record of key updates, secret updates, environment switches and connection
+            tests. Entries cannot be edited or deleted.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {!auditEntries || auditEntries.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No credential changes recorded yet.</p>
+          ) : (
+            <ul className="divide-y">
+              {auditEntries.map((entry) => (
+                <li
+                  key={entry.id}
+                  className="flex flex-wrap items-center justify-between gap-2 py-2.5 text-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <Badge
+                      variant={
+                        entry.action === "save"
+                          ? "default"
+                          : entry.action === "clear"
+                            ? "destructive"
+                            : "secondary"
+                      }
+                      className="uppercase"
+                    >
+                      {entry.action}
+                    </Badge>
+                    <span>
+                      {entry.prevMode} / {entry.prevSource} → {entry.newMode} / {entry.newSource}
+                      {entry.maskedKeyId ? ` · ${entry.maskedKeyId}` : ""}
+                    </span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(entry.createdAt).toLocaleString("en-IN")}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
         </CardContent>
       </Card>
     </div>
