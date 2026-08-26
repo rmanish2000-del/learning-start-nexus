@@ -39,6 +39,7 @@ import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/h
 import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
 import { Route as AuthenticatedLaunchAuditRouteImport } from './routes/_authenticated/launch-audit'
 import { Route as AuthenticatedLearnersRouteImport } from './routes/_authenticated/learners'
+import { Route as AuthenticatedOutcomeProofRouteImport } from './routes/_authenticated/outcome-proof'
 import { Route as AuthenticatedParentRouteImport } from './routes/_authenticated/parent'
 import { Route as AuthenticatedQuestionBankRouteImport } from './routes/_authenticated/question-bank'
 import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_authenticated/question-bank-audit'
@@ -219,6 +220,12 @@ const AuthenticatedLearnersRoute = AuthenticatedLearnersRouteImport.update({
   path: '/learners',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOutcomeProofRoute =
+  AuthenticatedOutcomeProofRouteImport.update({
+    id: '/outcome-proof',
+    path: '/outcome-proof',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedParentRoute = AuthenticatedParentRouteImport.update({
   id: '/parent',
   path: '/parent',
@@ -331,6 +338,7 @@ export interface FileRoutesByFullPath {
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/outcome-proof': typeof AuthenticatedOutcomeProofRoute
   '/parent': typeof AuthenticatedParentRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
@@ -376,6 +384,7 @@ export interface FileRoutesByTo {
   '/interventions': typeof AuthenticatedInterventionsRoute
   '/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/outcome-proof': typeof AuthenticatedOutcomeProofRoute
   '/parent': typeof AuthenticatedParentRoute
   '/question-bank': typeof AuthenticatedQuestionBankRoute
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
@@ -423,6 +432,7 @@ export interface FileRoutesById {
   '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
   '/_authenticated/launch-audit': typeof AuthenticatedLaunchAuditRoute
   '/_authenticated/learners': typeof AuthenticatedLearnersRouteWithChildren
+  '/_authenticated/outcome-proof': typeof AuthenticatedOutcomeProofRoute
   '/_authenticated/parent': typeof AuthenticatedParentRoute
   '/_authenticated/question-bank': typeof AuthenticatedQuestionBankRoute
   '/_authenticated/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
@@ -470,6 +480,7 @@ export interface FileRouteTypes {
     | '/interventions'
     | '/launch-audit'
     | '/learners'
+    | '/outcome-proof'
     | '/parent'
     | '/question-bank'
     | '/question-bank-audit'
@@ -515,6 +526,7 @@ export interface FileRouteTypes {
     | '/interventions'
     | '/launch-audit'
     | '/learners'
+    | '/outcome-proof'
     | '/parent'
     | '/question-bank'
     | '/question-bank-audit'
@@ -561,6 +573,7 @@ export interface FileRouteTypes {
     | '/_authenticated/interventions'
     | '/_authenticated/launch-audit'
     | '/_authenticated/learners'
+    | '/_authenticated/outcome-proof'
     | '/_authenticated/parent'
     | '/_authenticated/question-bank'
     | '/_authenticated/question-bank-audit'
@@ -800,6 +813,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLearnersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/outcome-proof': {
+      id: '/_authenticated/outcome-proof'
+      path: '/outcome-proof'
+      fullPath: '/outcome-proof'
+      preLoaderRoute: typeof AuthenticatedOutcomeProofRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/parent': {
       id: '/_authenticated/parent'
       path: '/parent'
@@ -937,6 +957,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
   AuthenticatedLaunchAuditRoute: typeof AuthenticatedLaunchAuditRoute
   AuthenticatedLearnersRoute: typeof AuthenticatedLearnersRouteWithChildren
+  AuthenticatedOutcomeProofRoute: typeof AuthenticatedOutcomeProofRoute
   AuthenticatedParentRoute: typeof AuthenticatedParentRoute
   AuthenticatedQuestionBankRoute: typeof AuthenticatedQuestionBankRoute
   AuthenticatedQuestionBankAuditRoute: typeof AuthenticatedQuestionBankAuditRoute
@@ -979,6 +1000,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
   AuthenticatedLaunchAuditRoute: AuthenticatedLaunchAuditRoute,
   AuthenticatedLearnersRoute: AuthenticatedLearnersRouteWithChildren,
+  AuthenticatedOutcomeProofRoute: AuthenticatedOutcomeProofRoute,
   AuthenticatedParentRoute: AuthenticatedParentRoute,
   AuthenticatedQuestionBankRoute: AuthenticatedQuestionBankRoute,
   AuthenticatedQuestionBankAuditRoute: AuthenticatedQuestionBankAuditRoute,

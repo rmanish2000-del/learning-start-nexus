@@ -42,6 +42,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/assessment-builder", label: "Assessment Builder", icon: ClipboardCheck, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/diagnostic-engine", label: "Diagnostic Engine", icon: Gauge, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/gap-analysis", label: "Gap Analysis", icon: PieChart, roles: ["admin", "educator", "reviewer"], exact: true },
+  { to: "/outcome-proof", label: "Outcome Proof", icon: TrendingUp, roles: ["admin", "educator", "reviewer", "parent"], exact: true },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
