@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle2, Info, Loader2, Lock } from "lucide-react";
 import { toast } from "sonner";
 
 import { DiagnosticShell } from "@/components/diagnostic-shell";
+import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -51,6 +52,7 @@ const UNLOCKS = [
 ];
 
 function UpgradePage() {
+  const { t } = useI18n();
   const { token } = Route.useParams();
   const viewFn = useServerFn(fetchDiagnosticReport);
   const createFn = useServerFn(startUpgradeOrder);
@@ -84,7 +86,7 @@ function UpgradePage() {
         });
         if (!result) {
           await failFn({ data: { orderRef: order.orderRef, reason: "Checkout dismissed by the parent" } });
-          toast.message("Payment cancelled. Nothing was charged.");
+          toast.message(t("pay.cancelled", "Payment cancelled. Nothing was charged."));
           return;
         }
         const paid = await verifyFn({
@@ -97,7 +99,7 @@ function UpgradePage() {
         });
         if (paid.status !== "paid") throw new Error("Payment was not captured.");
       }
-      toast.success("Board Success Plan activated.");
+      toast.success(t("upgrade.activated", "Board Success Plan activated."));
       await query.refetch();
       await navigate({ to: "/diagnostic/report/$token", params: { token } });
     } catch (error) {
@@ -118,7 +120,7 @@ function UpgradePage() {
   if (query.isError || !view) {
     return (
       <DiagnosticShell>
-        <QueryError title="This upgrade link is not valid" error={query.error} onRetry={() => void query.refetch()} />
+        <QueryError title={t("upgrade.invalid", "This upgrade link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
       </DiagnosticShell>
     );
   }
@@ -129,17 +131,34 @@ function UpgradePage() {
   return (
     <DiagnosticShell footerNote={`${view.subject} · ${view.unitTitle}`}>
       <section className="space-y-3">
-        <Badge variant="secondary">Board Success Plan · one child · one board year</Badge>
+        <Badge variant="secondary">
+          {t("upgrade.badge", "Board Success Plan · one child · one board year")}
+        </Badge>
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           {gapCount > 0
-            ? `Close ${view.childFirstName}'s ${gapCount} open ${gapCount === 1 ? "gap" : "gaps"} this year.`
-            : `Hold ${view.childFirstName}'s level through the board year.`}
+            ? t(
+                "upgrade.title.gaps",
+                `Close ${view.childFirstName}'s ${gapCount} open ${gapCount === 1 ? "gap" : "gaps"} this year.`,
+                { name: view.childFirstName, n: gapCount },
+              )
+            : t("upgrade.title.secure", `Hold ${view.childFirstName}'s level through the board year.`, {
+                name: view.childFirstName,
+              })}
         </h1>
         {view.report && gapCount > 0 ? (
           <p className="text-sm text-muted-foreground">
-            At risk right now: {view.report.gaps.slice(0, 3).map((g) => g.code).join(", ")}
-            {gapCount > 3 ? ` and ${gapCount - 3} more` : ""} — about {view.report.marksAtRiskTotal} of the ~
-            {CHAPTER_GROUP_MARKS} marks this chapter group carries.
+            {t(
+              "upgrade.atRisk",
+              `At risk right now: ${view.report.gaps.slice(0, 3).map((g) => g.code).join(", ")}${
+                gapCount > 3 ? ` and ${gapCount - 3} more` : ""
+              } — about ${view.report.marksAtRiskTotal} of the ~${CHAPTER_GROUP_MARKS} marks this chapter group carries.`,
+              {
+                codes: view.report.gaps.slice(0, 3).map((g) => g.code).join(", "),
+                more: gapCount > 3 ? String(gapCount - 3) : "0",
+                marks: view.report.marksAtRiskTotal,
+                total: CHAPTER_GROUP_MARKS,
+              },
+            )}
           </p>
         ) : null}
       </section>
@@ -147,13 +166,19 @@ function UpgradePage() {
       {view.planPurchased ? (
         <Card className="mt-8">
           <CardHeader>
-            <CardTitle className="text-base">The plan is already active</CardTitle>
+            <CardTitle className="text-base">{t("upgrade.active.title", "The plan is already active")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
-            <p>Order {view.planOrderRef}. Everything in the report is unlocked for {view.childFirstName}.</p>
+            <p>
+              {t(
+                "upgrade.active.body",
+                `Order ${view.planOrderRef}. Everything in the report is unlocked for ${view.childFirstName}.`,
+                { ref: view.planOrderRef ?? "", name: view.childFirstName },
+              )}
+            </p>
             <Button asChild>
               <Link to="/diagnostic/report/$token" params={{ token }}>
-                Back to the report <ArrowRight className="ml-2 h-4 w-4" />
+                {t("upgrade.backToReport", "Back to the report")} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardContent>
@@ -161,7 +186,7 @@ function UpgradePage() {
       ) : (
         <Card className="mt-8 border-primary/40">
           <CardHeader>
-            <CardTitle className="text-base">What you pay</CardTitle>
+            <CardTitle className="text-base">{t("upgrade.pay.title", "What you pay")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="flex flex-wrap items-baseline gap-3">
@@ -172,31 +197,37 @@ function UpgradePage() {
                     {formatInr(offer.firstInvoicePaise)}
                   </span>
                   <span className="text-sm text-muted-foreground">
-                    for year one · {formatInr(offer.creditPaise)} diagnostic credit applied · renews at{" "}
-                    {formatInr(PRICING.planPaise)}/yr
+                    {t(
+                      "upgrade.pay.creditLine",
+                      `for year one · ${formatInr(offer.creditPaise)} diagnostic credit applied · renews at ${formatInr(PRICING.planPaise)}/yr`,
+                      { credit: formatInr(offer.creditPaise), renew: formatInr(PRICING.planPaise) },
+                    )}
                   </span>
                 </>
               ) : (
                 <>
                   <span className="text-3xl font-semibold tracking-tight">{formatInr(offer.listPaise)}</span>
-                  <span className="text-sm text-muted-foreground">per year · renews annually</span>
+                  <span className="text-sm text-muted-foreground">{t("upgrade.pay.perYear", "per year · renews annually")}</span>
                 </>
               )}
             </div>
             {offer.creditApplied ? (
               <p className="text-xs text-muted-foreground">
-                The credit is available for {offer.daysLeft} more {offer.daysLeft === 1 ? "day" : "days"}. After that
-                the plan is {formatInr(PRICING.planPaise)} with no discount shown.
+                {t(
+                  "upgrade.pay.creditWindow",
+                  `The credit is available for ${offer.daysLeft} more ${offer.daysLeft === 1 ? "day" : "days"}. After that the plan is ${formatInr(PRICING.planPaise)} with no discount shown.`,
+                  { days: offer.daysLeft, price: formatInr(PRICING.planPaise) },
+                )}
               </p>
             ) : null}
 
             <Separator />
             <div className="space-y-2">
-              <p className="text-sm font-medium">What changes today</p>
-              {UNLOCKS.map((line) => (
+              <p className="text-sm font-medium">{t("upgrade.unlock.title", "What changes today")}</p>
+              {UNLOCKS.map((line, i) => (
                 <p key={line} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  {line}
+                  {t(`upgrade.unlock.${i}`, line)}
                 </p>
               ))}
             </div>
@@ -204,20 +235,27 @@ function UpgradePage() {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                Payments are processed securely by Razorpay. EduOS never sees or stores your card details.
+                {t(
+                  "pay.secureNote",
+                  "Payments are processed securely by Razorpay. EduOS never sees or stores your card details.",
+                )}
               </AlertDescription>
             </Alert>
 
             <Button size="lg" className="w-full" onClick={purchase} disabled={pending}>
               {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lock className="mr-2 h-4 w-4" />}
-              Start the plan — {formatInr(offer.firstInvoicePaise)}
+              {t("upgrade.cta", `Start the plan — ${formatInr(offer.firstInvoicePaise)}`, {
+                price: formatInr(offer.firstInvoicePaise),
+              })}
             </Button>
 
             <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted-foreground">
-              <span>Cancel anytime, access runs to the period end</span>
-              <span>No card stored by EduOS</span>
-              <span>Data deleted on request</span>
-              <span>Sibling plan {formatInr(249_900)}</span>
+              <span>{t("upgrade.trust.0", "Cancel anytime, access runs to the period end")}</span>
+              <span>{t("upgrade.trust.1", "No card stored by EduOS")}</span>
+              <span>{t("upgrade.trust.2", "Data deleted on request")}</span>
+              <span>
+                {t("upgrade.trust.sibling", `Sibling plan ${formatInr(249_900)}`, { price: formatInr(249_900) })}
+              </span>
             </div>
           </CardContent>
         </Card>
