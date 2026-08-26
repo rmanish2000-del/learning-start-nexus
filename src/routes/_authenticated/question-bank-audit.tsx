@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   CheckCircle2,
+  CircleDashed,
   Database,
   FileQuestion,
   GitBranch,
@@ -395,13 +396,13 @@ function QuestionBankAuditPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <ListChecks className="h-4 w-4 text-primary" />
-            Sprint 6D acceptance checklist — how to verify by hand
+            Sprint 6D manual verification steps — not auto-checked
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {CHECKLIST.map((item) => (
             <div key={item.text} className="flex items-start gap-3 rounded-lg border p-3.5">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+              <CircleDashed className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
               <div>
                 <p className="text-sm font-medium">{item.text}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{item.how}</p>

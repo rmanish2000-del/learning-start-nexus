@@ -4,6 +4,7 @@ import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
 import {
   Building2,
   CheckCircle2,
+  CircleDashed,
   FlaskConical,
   KeyRound,
   Lock,
@@ -422,7 +423,7 @@ function VerificationPage() {
           <ul className="space-y-2 text-sm">
             {SECURITY_CHECKLIST.map((item) => (
               <li key={item} className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                <CircleDashed className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                 <span>{item}</span>
               </li>
             ))}
