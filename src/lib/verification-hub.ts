@@ -71,6 +71,12 @@ export const AUDIT_CENTERS: AuditCenter[] = [
     description: "Outcome-level scoring, banding and intervention mapping.",
   },
   {
+    to: "/payment-audit",
+    label: "Payment Audit",
+    domain: "Assessment",
+    description: "Orders, captures, failures, webhook replays and entitlement grants.",
+  },
+  {
     to: "/curriculum-audit",
     label: "Curriculum Audit",
     domain: "Curriculum",

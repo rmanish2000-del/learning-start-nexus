@@ -40,6 +40,7 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/diagnostic-engine-audit",
   "/gap-analysis",
   "/gap-analysis-audit",
+  "/payment-audit",
   "/quick-start",
   "/help",
   "/outcome-proof",
@@ -84,6 +85,7 @@ export const AUDIT_PATHS = [
   "/assessment-builder-audit",
   "/diagnostic-engine-audit",
   "/gap-analysis-audit",
+  "/payment-audit",
   "/ux-phase1-plan",
 ] as const;
 

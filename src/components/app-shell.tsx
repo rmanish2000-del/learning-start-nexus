@@ -72,6 +72,7 @@ const TITLES: [RegExp, string][] = [
   [/^\/diagnostic-engine-audit/, "Diagnostic engine audit center"],
   [/^\/diagnostic-engine/, "Diagnostic engine"],
   [/^\/gap-analysis-audit/, "Gap analysis audit center"],
+  [/^\/payment-audit/, "Payment audit dashboard"],
   [/^\/gap-analysis/, "Gap analysis"],
   [/^\/learners\/.+/, "Learner profile"],
   [/^\/learners/, "Learners"],
