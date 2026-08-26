@@ -393,7 +393,7 @@ function GapAnalysisAuditPage() {
         <CardContent className="space-y-3">
           {CHECKLIST.map((item) => (
             <div key={item.text} className="flex items-start gap-3 rounded-lg border p-3.5">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+              <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
               <div>
                 <p className="text-sm font-medium">{item.text}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{item.how}</p>
