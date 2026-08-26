@@ -57,6 +57,8 @@ function AuthPage() {
   const search = Route.useSearch();
   const [pending, setPending] = useState(false);
   const [parentMode, setParentMode] = useState<"signin" | "signup">(search.mode ?? "signin");
+  const [tab, setTab] = useState<"staff" | "student" | "parent">(search.tab ?? "parent");
+
 
   // Already signed in? Route to the right home for the role.
   useEffect(() => {
