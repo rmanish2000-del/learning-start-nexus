@@ -58,6 +58,7 @@ import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_au
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
 import { Route as AuthenticatedTutorSessionIdRouteImport } from './routes/_authenticated/tutor.$sessionId'
 import { Route as DiagnosticCheckoutOrderRefRouteImport } from './routes/diagnostic.checkout.$orderRef'
+import { Route as DiagnosticReportTokenRouteImport } from './routes/diagnostic.report.$token'
 import { Route as DiagnosticSessionTokenRouteImport } from './routes/diagnostic.session.$token'
 
 const IndexRoute = IndexRouteImport.update({
@@ -335,6 +336,11 @@ const DiagnosticCheckoutOrderRefRoute =
     path: '/diagnostic/checkout/$orderRef',
     getParentRoute: () => rootRouteImport,
   } as any)
+const DiagnosticReportTokenRoute = DiagnosticReportTokenRouteImport.update({
+  id: '/diagnostic/report/$token',
+  path: '/diagnostic/report/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiagnosticSessionTokenRoute = DiagnosticSessionTokenRouteImport.update({
   id: '/diagnostic/session/$token',
   path: '/diagnostic/session/$token',
@@ -390,6 +396,7 @@ export interface FileRoutesByFullPath {
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRoutesByTo {
@@ -441,6 +448,7 @@ export interface FileRoutesByTo {
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRoutesById {
@@ -494,6 +502,7 @@ export interface FileRoutesById {
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/_authenticated/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRouteTypes {
@@ -547,6 +556,7 @@ export interface FileRouteTypes {
     | '/session/$sessionId'
     | '/tutor/$sessionId'
     | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -598,6 +608,7 @@ export interface FileRouteTypes {
     | '/session/$sessionId'
     | '/tutor/$sessionId'
     | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
   id:
     | '__root__'
@@ -650,6 +661,7 @@ export interface FileRouteTypes {
     | '/_authenticated/session/$sessionId'
     | '/_authenticated/tutor/$sessionId'
     | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
   fileRoutesById: FileRoutesById
 }
@@ -664,6 +676,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   DiagnosticIndexRoute: typeof DiagnosticIndexRoute
   DiagnosticCheckoutOrderRefRoute: typeof DiagnosticCheckoutOrderRefRoute
+  DiagnosticReportTokenRoute: typeof DiagnosticReportTokenRoute
   DiagnosticSessionTokenRoute: typeof DiagnosticSessionTokenRoute
 }
 
@@ -1012,6 +1025,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiagnosticCheckoutOrderRefRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/diagnostic/report/$token': {
+      id: '/diagnostic/report/$token'
+      path: '/diagnostic/report/$token'
+      fullPath: '/diagnostic/report/$token'
+      preLoaderRoute: typeof DiagnosticReportTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/diagnostic/session/$token': {
       id: '/diagnostic/session/$token'
       path: '/diagnostic/session/$token'
@@ -1136,6 +1156,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   DiagnosticIndexRoute: DiagnosticIndexRoute,
   DiagnosticCheckoutOrderRefRoute: DiagnosticCheckoutOrderRefRoute,
+  DiagnosticReportTokenRoute: DiagnosticReportTokenRoute,
   DiagnosticSessionTokenRoute: DiagnosticSessionTokenRoute,
 }
 export const routeTree = rootRouteImport
