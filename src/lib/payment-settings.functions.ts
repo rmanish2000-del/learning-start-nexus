@@ -66,5 +66,5 @@ export const testPaymentSettingsFn = createServerFn({ method: "POST" })
   .handler(async ({ context }) => {
     await requireAnyRole(context.supabase, context.userId, ["admin"]);
     const { testRazorpayCredentials } = await import("./payment-credentials.server");
-    return testRazorpayCredentials();
+    return testRazorpayCredentials(context.userId);
   });
