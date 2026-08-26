@@ -436,11 +436,11 @@ export async function startRazorpayCheckout(ref: string, userId: string | null =
     return {
       orderRef: row.order_ref,
       status: row.status,
-      keyId: razorpayKeyId(),
+      keyId: await razorpayKeyId(),
       razorpayOrderId: null,
       amountPaise: row.amount_paise,
       currency: "INR",
-      mode: razorpayMode(),
+      mode: await razorpayMode(),
       description,
     };
   }
@@ -471,11 +471,11 @@ export async function startRazorpayCheckout(ref: string, userId: string | null =
   return {
     orderRef: row.order_ref,
     status: row.status,
-    keyId: razorpayKeyId(),
+    keyId: await razorpayKeyId(),
     razorpayOrderId: providerOrderId,
     amountPaise: row.amount_paise,
     currency: "INR",
-    mode: razorpayMode(),
+    mode: await razorpayMode(),
     description,
   };
 }
@@ -495,7 +495,7 @@ export async function verifyRazorpayCheckout(input: {
   const matched = await loadOrderByProviderOrderId(input.razorpayOrderId);
   if (!matched || matched.id !== row.id) throw new Error("This payment does not belong to that order.");
 
-  if (!verifyCheckoutSignature(input)) {
+  if (!(await verifyCheckoutSignature(input))) {
     await markOrderFailed(row, "Signature verification failed");
     throw new Error("Payment could not be verified.");
   }
