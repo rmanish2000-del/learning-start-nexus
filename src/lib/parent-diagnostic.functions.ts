@@ -7,12 +7,13 @@
 import { createServerFn } from "@tanstack/react-start";
 import {
   answerSchema,
-  confirmPaymentSchema,
   createDiagnosticOrderSchema,
   createUpgradeOrderSchema,
   orderRefSchema,
+  paymentFailureSchema,
   setupDiagnosticSchema,
   tokenSchema,
+  verifyPaymentSchema,
 } from "./parent-diagnostic-shared";
 
 export const getDiagnosticCatalog = createServerFn({ method: "GET" }).handler(async () => {
@@ -34,11 +35,29 @@ export const fetchOrder = createServerFn({ method: "GET" })
     return getOrder(data.orderRef);
   });
 
-export const payDiagnosticOrder = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => confirmPaymentSchema.parse(data))
+// Creates the Razorpay order the browser checkout will pay. The amount is
+// always read from the stored order server-side.
+export const createPaymentIntent = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => orderRefSchema.parse(data))
   .handler(async ({ data }) => {
-    const { confirmDiagnosticPayment } = await import("./parent-diagnostic.server");
-    return confirmDiagnosticPayment(data);
+    const { startRazorpayCheckout } = await import("./parent-diagnostic.server");
+    return startRazorpayCheckout(data.orderRef);
+  });
+
+// Verifies the checkout handler signature and captures the order. The
+// payment.captured webhook is the redundant path for the same capture.
+export const verifyPayment = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => verifyPaymentSchema.parse(data))
+  .handler(async ({ data }) => {
+    const { verifyRazorpayCheckout } = await import("./parent-diagnostic.server");
+    return verifyRazorpayCheckout(data);
+  });
+
+export const reportPaymentFailure = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => paymentFailureSchema.parse(data))
+  .handler(async ({ data }) => {
+    const { recordRazorpayFailure } = await import("./parent-diagnostic.server");
+    return recordRazorpayFailure(data);
   });
 
 export const completeDiagnosticSetup = createServerFn({ method: "POST" })
