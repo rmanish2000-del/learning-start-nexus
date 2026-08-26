@@ -404,7 +404,7 @@ function Sprint5AuditPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <ListChecks className="h-4 w-4" /> Acceptance checklist
+            <ListChecks className="h-4 w-4" /> Acceptance checklist — manual steps, not auto-verified
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">

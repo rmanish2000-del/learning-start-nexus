@@ -606,7 +606,7 @@ function Sprint3AuditPage() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <ListChecks className="h-4 w-4 text-muted-foreground" /> 7 — Acceptance checklist
+            <ListChecks className="h-4 w-4 text-muted-foreground" /> 7 — Acceptance checklist — manual steps, not auto-verified
           </CardTitle>
           <CardDescription>
             Each item names the observable evidence for it — an independent reviewer can validate
