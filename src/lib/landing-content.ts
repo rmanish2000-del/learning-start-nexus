@@ -159,7 +159,7 @@ export const PARENT_REPORT = {
     { label: "Gaps closed", value: "2" },
     { label: "Average mastery lift", value: "+38 pts" },
     { label: "Tutor minutes", value: "92" },
-    { label: "Consent status", value: "Granted 12 Aug · withdrawable anytime" },
+    { label: "Tutor consent", value: "Granted" },
   ],
   narrative:
     "Learner A closed two of three detected gaps this fortnight. The remaining gap (word problems with mixed numbers) has an approved intervention in progress and a reassessment scheduled. Every figure above comes from a scored retake on fresh items, not from teacher estimate.",
