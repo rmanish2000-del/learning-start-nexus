@@ -223,18 +223,25 @@ function AuthPage() {
               </div>
               <span className="text-lg font-semibold tracking-tight">EduOS</span>
             </div>
-            <h2 className="text-2xl font-semibold tracking-tight">Sign in</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">
+              {tab === "parent" && parentMode === "signup" ? "Create your parent account" : "Sign in"}
+            </h2>
             <p className="text-sm text-muted-foreground">
-              Staff use their work email. Students use their handle and PIN.
+              {tab === "staff"
+                ? "Staff use their work email and password."
+                : tab === "student"
+                  ? "Students use the handle and PIN from their educator."
+                  : "Parents sign in with email. New here? Create an account in under a minute."}
             </p>
           </div>
 
-          <Tabs defaultValue={search.tab ?? "staff"}>
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="staff">Staff</TabsTrigger>
-              <TabsTrigger value="student">Student</TabsTrigger>
+          <Tabs value={tab} onValueChange={(value) => setTab(value as typeof tab)}>
+            <TabsList className={tab === "staff" ? "grid w-full grid-cols-3" : "grid w-full grid-cols-2"}>
               <TabsTrigger value="parent">Parent</TabsTrigger>
+              <TabsTrigger value="student">Student</TabsTrigger>
+              {tab === "staff" ? <TabsTrigger value="staff">Staff</TabsTrigger> : null}
             </TabsList>
+
 
             <TabsContent value="staff" className="pt-6">
               <form onSubmit={onStaffSubmit} className="space-y-4">
