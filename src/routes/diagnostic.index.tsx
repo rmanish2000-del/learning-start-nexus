@@ -15,7 +15,7 @@ import {
 import { toast } from "sonner";
 
 import { DiagnosticShell } from "@/components/diagnostic-shell";
-import { QueryErrorState } from "@/components/query-error";
+import { QueryError } from "@/components/query-error";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -171,7 +171,7 @@ function DiagnosticPurchasePage() {
               <Skeleton className="h-10 w-full" />
             </div>
           ) : query.isError ? (
-            <QueryErrorState
+            <QueryError
               title="Subjects could not be loaded"
               error={query.error}
               onRetry={() => void query.refetch()}
