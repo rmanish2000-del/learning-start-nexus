@@ -194,7 +194,9 @@ async function enrichUnits(
 
   for (const unit of units) {
     for (const chapter of unit.chapters) {
-      const needs = chapter.topics.filter((t) => t.outcomes.length === 0 || t.keyConcepts.length === 0);
+      const needs = chapter.topics.filter(
+        (t) => (t.outcomes?.length ?? 0) === 0 || (t.keyConcepts?.length ?? 0) === 0,
+      );
       if (needs.length === 0) continue;
       const prompt =
         `Book: "${book.title}" (${book.board ?? "school"} board, Grade ${book.grade}, ${book.subject}).\n` +
@@ -229,10 +231,10 @@ async function enrichUnits(
           (t) => t.title.trim().toLowerCase() === topic.title.trim().toLowerCase(),
         );
         if (!match) continue;
-        if (topic.keyConcepts.length === 0) {
+        if ((topic.keyConcepts?.length ?? 0) === 0) {
           topic.keyConcepts = (match.keyConcepts ?? []).map((k) => clean(k, 120)).filter(Boolean).slice(0, 8);
         }
-        if (topic.outcomes.length === 0) {
+        if ((topic.outcomes?.length ?? 0) === 0) {
           topic.outcomes = (match.outcomes ?? [])
             .map((o) => clean(o, 300))
             .filter((o) => o.length >= 3)
@@ -351,7 +353,7 @@ export async function extractCurriculumFromBook(
 
   // Fill in any missing key concepts / learning outcomes before persisting.
   const hasOutcomes = units.some((u) =>
-    u.chapters.some((c) => c.topics.some((t) => t.outcomes.length > 0)),
+    u.chapters.some((c) => c.topics.some((t) => (t.outcomes?.length ?? 0) > 0)),
   );
   if (!hasOutcomes) {
     try {
