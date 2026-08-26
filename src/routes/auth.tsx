@@ -95,19 +95,19 @@ function AuthPage() {
         window.location.replace(search.next);
         return;
       }
-      const role = await fetchRole(data.user.id);
+      const role = await resolveRole(data.user);
       void navigate({ to: roleHome(role), replace: true });
     });
   }, [navigate, search.next]);
 
-  const goHome = async (userId: string) => {
+  const goHome = async (user: { id: string; user_metadata?: Record<string, unknown> }) => {
     setSessionMarker();
     if (search.next) {
       // Return the parent to the purchase they were mid-way through.
       window.location.replace(search.next);
       return;
     }
-    const role = await fetchRole(userId);
+    const role = await resolveRole(user);
     void navigate({ to: roleHome(role), replace: true });
   };
 
