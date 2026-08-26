@@ -235,7 +235,6 @@ async function snapshotSession(
 
 export async function getGapAudit(supabase: Client, userId: string): Promise<GapAuditPayload> {
   const me = await getCallerIdentity(supabase, userId);
-  const pilotOrg = me.orgName === ORG_A.name;
 
   const counts = await Promise.all([
     isoCount(supabase, "assessment_sessions", "Assessment sessions", me.orgId, "Sprint 2 demo sessions + the two Sprint 6G submissions"),
