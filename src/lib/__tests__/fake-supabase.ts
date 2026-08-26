@@ -7,6 +7,8 @@
 export type Row = Record<string, unknown>;
 export type Db = Record<string, Row[]>;
 
+let idCounter = 0;
+
 type Filter = { op: "eq" | "neq" | "is"; column: string; value: unknown };
 
 function matches(row: Row, filters: Filter[]): boolean {
@@ -51,7 +53,7 @@ class Query implements PromiseLike<{ data: Row[] | null; error: null }> {
   private run(): Row[] {
     const rows = this.rows();
     if (this.kind === "insert") {
-      const inserted = { ...(this.payload ?? {}) };
+      const inserted: Row = { id: `row_${++idCounter}`, ...(this.payload ?? {}) };
       rows.push(inserted);
       return [inserted];
     }
