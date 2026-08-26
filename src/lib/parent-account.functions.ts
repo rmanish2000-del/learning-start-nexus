@@ -5,7 +5,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
-import { addStudentSchema, registerParentSchema } from "./parent-account-shared";
+import { addStudentSchema, claimParentSchema, registerParentSchema } from "./parent-account-shared";
 
 function callerEmail(claims: unknown): string {
   const value = (claims as { email?: unknown } | null)?.email;
@@ -18,6 +18,22 @@ export const registerParent = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     const { ensureParentAccount } = await import("./parent-account.server");
     return ensureParentAccount(context.userId, data);
+  });
+
+/**
+ * Assigns the `parent` role to a self-service account that finished email
+ * confirmation before the profile could be written (the signup tab could not
+ * sign in immediately because confirmation was pending).
+ */
+export const claimParentRole = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => claimParentSchema.parse(data))
+  .handler(async ({ data, context }) => {
+    const { ensureParentAccount } = await import("./parent-account.server");
+    return ensureParentAccount(context.userId, {
+      fullName: data.fullName || callerEmail(context.claims).split("@")[0] || "Parent",
+      ...(data.phone ? { phone: data.phone } : {}),
+    });
   });
 
 export const getParentAccount = createServerFn({ method: "GET" })

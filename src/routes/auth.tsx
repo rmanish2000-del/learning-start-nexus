@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
 import { setSessionMarker } from "@/lib/session-marker";
-import { registerParent } from "@/lib/parent-account.functions";
+import { claimParentRole, registerParent } from "@/lib/parent-account.functions";
 import { registerParentSchema } from "@/lib/parent-account-shared";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,14 +51,32 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-async function fetchRole(userId: string): Promise<AppRole> {
+/**
+ * Resolves the workspace role for a signed-in user.
+ *
+ * Self-service signup only exists for parents, so an account that reaches this
+ * page with no role row was created by the parent form and had its profile
+ * write deferred by email confirmation. Claim the `parent` role here instead of
+ * silently defaulting to `student`.
+ */
+async function resolveRole(user: { id: string; user_metadata?: Record<string, unknown> }): Promise<AppRole> {
   const { data } = await supabase
     .from("user_roles")
     .select("role")
-    .eq("user_id", userId)
+    .eq("user_id", user.id)
     .limit(1)
     .maybeSingle();
-  return (data?.role as AppRole | undefined) ?? "student";
+  if (data?.role) return data.role as AppRole;
+
+  const meta = user.user_metadata ?? {};
+  const fullName = typeof meta["full_name"] === "string" ? meta["full_name"] : "";
+  const phone = typeof meta["phone"] === "string" ? meta["phone"] : "";
+  try {
+    await claimParentRole({ data: { fullName, ...(phone ? { phone } : {}) } });
+    return "parent";
+  } catch {
+    return "student";
+  }
 }
 
 function AuthPage() {
@@ -77,19 +95,19 @@ function AuthPage() {
         window.location.replace(search.next);
         return;
       }
-      const role = await fetchRole(data.user.id);
+      const role = await resolveRole(data.user);
       void navigate({ to: roleHome(role), replace: true });
     });
   }, [navigate, search.next]);
 
-  const goHome = async (userId: string) => {
+  const goHome = async (user: { id: string; user_metadata?: Record<string, unknown> }) => {
     setSessionMarker();
     if (search.next) {
       // Return the parent to the purchase they were mid-way through.
       window.location.replace(search.next);
       return;
     }
-    const role = await fetchRole(userId);
+    const role = await resolveRole(user);
     void navigate({ to: roleHome(role), replace: true });
   };
 
@@ -118,7 +136,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { data: { full_name: fullName }, emailRedirectTo: `${window.location.origin}/auth` },
+          options: { data: { full_name: fullName, phone, signup_role: "parent" }, emailRedirectTo: `${window.location.origin}/auth` },
         });
         if (error) {
           toast.error(error.message);
@@ -132,7 +150,7 @@ function AuthPage() {
         }
         await registerParent({ data: parsed.data });
         toast.success("Account ready.");
-        await goHome(signedIn.data.user.id);
+        await goHome(signedIn.data.user);
         return;
       }
 
@@ -141,7 +159,7 @@ function AuthPage() {
         toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
         return;
       }
-      if (data.user) await goHome(data.user.id);
+      if (data.user) await goHome(data.user);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Could not complete sign-in.");
     } finally {
@@ -165,7 +183,7 @@ function AuthPage() {
       toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
       return;
     }
-    if (data.user) await goHome(data.user.id);
+    if (data.user) await goHome(data.user);
   };
 
   const onStudentSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -187,7 +205,7 @@ function AuthPage() {
       toast.error("That handle and PIN don't match. Check with your educator if you forgot them.");
       return;
     }
-    if (data.user) await goHome(data.user.id);
+    if (data.user) await goHome(data.user);
   };
 
   return (
