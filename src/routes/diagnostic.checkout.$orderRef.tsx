@@ -46,7 +46,9 @@ export const Route = createFileRoute("/diagnostic/checkout/$orderRef")({
 function DiagnosticCheckoutPage() {
   const { orderRef } = Route.useParams();
   const orderFn = useServerFn(fetchOrder);
-  const payFn = useServerFn(payDiagnosticOrder);
+  const intentFn = useServerFn(createPaymentIntent);
+  const verifyFn = useServerFn(verifyPayment);
+  const failFn = useServerFn(reportPaymentFailure);
   const setupFn = useServerFn(completeDiagnosticSetup);
   const navigate = useNavigate();
 
@@ -77,9 +79,38 @@ function DiagnosticCheckoutPage() {
     }
     try {
       setStage("paying");
-      // Simulated capture: stands in for the Razorpay payment.captured webhook.
-      const paid = await payFn({ data: { orderRef, outcome: "success" } });
-      if (paid.status !== "paid") throw new Error("Payment was not captured.");
+      const intent = await intentFn({ data: { orderRef } });
+      if (intent.status !== "paid") {
+        if (!intent.razorpayOrderId) throw new Error("The payment gateway is unavailable right now.");
+        const result = await openRazorpayCheckout({
+          keyId: intent.keyId,
+          razorpayOrderId: intent.razorpayOrderId,
+          amountPaise: intent.amountPaise,
+          description: intent.description,
+          prefill: {
+            name: parsed.data.parentName,
+            email: parsed.data.parentEmail,
+            contact: parsed.data.parentPhone,
+          },
+          notes: { order_ref: orderRef },
+        });
+        if (!result) {
+          await failFn({ data: { orderRef, reason: "Checkout dismissed by the parent" } });
+          toast.message("Payment cancelled. Nothing was charged.");
+          setStage("idle");
+          return;
+        }
+        // Signature is verified server-side; the webhook re-confirms the same capture.
+        const paid = await verifyFn({
+          data: {
+            orderRef,
+            razorpayOrderId: result.razorpay_order_id,
+            razorpayPaymentId: result.razorpay_payment_id,
+            signature: result.razorpay_signature,
+          },
+        });
+        if (paid.status !== "paid") throw new Error("Payment was not captured.");
+      }
       setStage("provisioning");
       const { accessToken } = await setupFn({ data: parsed.data });
       await navigate({ to: "/diagnostic/session/$token", params: { token: accessToken } });
@@ -88,6 +119,7 @@ function DiagnosticCheckoutPage() {
       setStage("idle");
     }
   }
+
 
   return (
     <DiagnosticShell footerNote={`Order ${orderRef}`}>
