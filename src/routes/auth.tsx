@@ -33,12 +33,21 @@ export const Route = createFileRoute("/auth")({
 
   head: () => ({
     meta: [
-      { title: "Sign in — EduOS" },
-      { name: "description", content: "Sign in to EduOS with your staff email or student handle and PIN." },
-      { property: "og:title", content: "Sign in — EduOS" },
-      { property: "og:description", content: "Sign in to EduOS with your staff email or student handle and PIN." },
+      { title: "Sign in or create a parent account — EduOS" },
+      {
+        name: "description",
+        content:
+          "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress. Staff and students sign in here too.",
+      },
+      { property: "og:title", content: "Sign in or create a parent account — EduOS" },
+      {
+        property: "og:description",
+        content:
+          "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress.",
+      },
     ],
   }),
+
   component: AuthPage,
 });
 
