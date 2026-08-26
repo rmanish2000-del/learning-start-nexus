@@ -20,6 +20,9 @@ type Client = SupabaseClient<Database>;
 
 export const TUTOR_MODEL = "google/gemini-3.7-flash";
 
+/** Max wall-clock time for one AI gateway call before falling back. */
+export const TUTOR_TIMEOUT_MS = 20_000;
+
 export const TUTOR_ACTIONS = [
   "explain",
   "hint",
@@ -72,6 +75,9 @@ export async function callTutorAi(
       system,
       messages,
       maxOutputTokens: 400,
+      // Hard ceiling: a hung gateway must never leave the student staring at
+      // a spinner — abort and fall back to the static library instead.
+      abortSignal: AbortSignal.timeout(TUTOR_TIMEOUT_MS),
     });
     const trimmed = text.trim();
     if (!trimmed) return null;

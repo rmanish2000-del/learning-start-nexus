@@ -4,7 +4,6 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { UserCog } from "lucide-react";
 import { toast } from "sonner";
-import { AppShell } from "@/components/app-shell";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Card,
@@ -105,7 +104,7 @@ function AssignmentsPage() {
   const unassignedCount = (learners ?? []).filter((l) => !l.educator_id).length;
 
   return (
-    <AppShell>
+    <>
       <div className="space-y-6">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Educator assignments</h2>
@@ -223,6 +222,6 @@ function AssignmentsPage() {
           </CardContent>
         </Card>
       </div>
-    </AppShell>
+    </>
   );
 }

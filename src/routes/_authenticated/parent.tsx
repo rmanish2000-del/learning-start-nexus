@@ -29,7 +29,6 @@ import {
   stepFlagKey,
   type OnboardingStep,
 } from "@/lib/onboarding";
-import { AppShell } from "@/components/app-shell";
 import { ContextHelp } from "@/components/context-help";
 import { EmptyState } from "@/components/empty-state";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
@@ -172,7 +171,7 @@ function ParentPortal() {
   };
 
   return (
-    <AppShell>
+    <>
       <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -388,7 +387,7 @@ function ParentPortal() {
         )}
       </div>
       <GuidedTour tourId="parent-portal" steps={PARENT_TOUR} />
-    </AppShell>
+    </>
   );
 }
 
