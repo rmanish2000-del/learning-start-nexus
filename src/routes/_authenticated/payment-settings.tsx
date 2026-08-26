@@ -14,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   clearPaymentSettingsFn,
   getPaymentSettingsFn,
+  listPaymentAuditFn,
   savePaymentSettingsFn,
   testPaymentSettingsFn,
 } from "@/lib/payment-settings.functions";
@@ -67,7 +68,17 @@ function PaymentSettingsPage() {
     enabled: role === "admin",
   });
 
-  const refresh = () => queryClient.invalidateQueries({ queryKey: ["payment-settings"] });
+  const auditLoad = useServerFn(listPaymentAuditFn);
+  const { data: auditEntries } = useQuery({
+    queryKey: ["payment-settings-audit"],
+    queryFn: () => auditLoad({}),
+    enabled: role === "admin",
+  });
+
+  const refresh = () => {
+    queryClient.invalidateQueries({ queryKey: ["payment-settings"] });
+    queryClient.invalidateQueries({ queryKey: ["payment-settings-audit"] });
+  };
 
   const saveMutation = useMutation({
     mutationFn: () => save({ data: { keyId, keySecret, webhookSecret } }),
