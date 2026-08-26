@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { BookOpen, ClipboardCheck, ClipboardList, Compass, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, PieChart, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
+import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, PieChart, Rocket, Settings, ShieldCheck, Sparkles, TrendingUp, UserCog, Users } from "lucide-react";
 import { HowItWorksDialog } from "@/components/how-it-works";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
@@ -43,6 +43,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/diagnostic-engine", label: "Diagnostic Engine", icon: Gauge, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/gap-analysis", label: "Gap Analysis", icon: PieChart, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/outcome-proof", label: "Outcome Proof", icon: TrendingUp, roles: ["admin", "educator", "reviewer", "parent"], exact: true },
+  { to: "/pilot-evidence", label: "Pilot Evidence", icon: BadgeCheck, roles: ["admin", "educator", "reviewer"], exact: true },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
@@ -115,6 +116,7 @@ const TITLES: [RegExp, string][] = [
   [/^\/launch-audit/, "Launch readiness audit"],
   [/^\/curriculum-audit/, "Curriculum audit center"],
   [/^\/curriculum/, "Curriculum"],
+  [/^\/pilot-evidence/, "Pilot evidence"],
 ];
 
 const authRoute = getRouteApi("/_authenticated");

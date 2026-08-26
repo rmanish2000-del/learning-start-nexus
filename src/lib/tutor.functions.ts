@@ -82,6 +82,9 @@ export const launchTutorSession = createServerFn({ method: "POST" })
         learner_id: learner.id,
         intervention_id: intervention.id,
         student_user_id: userId,
+        // M6: stamp the gap directly on the session so tutor evidence can be
+        // attributed per gap even if the intervention is later re-linked.
+        gap_id: intervention.gap_id,
         subject: learner.subject,
         topic,
         concept,

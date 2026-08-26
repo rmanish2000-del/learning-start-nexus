@@ -39,6 +39,13 @@ function mapQuestion(row: QuestionRow): QuestionDto {
     explanation: row.explanation,
     status: row.status as QuestionStatus,
     source: row.source as "ai" | "manual",
+    stimulus: row.stimulus,
+    verificationState: (row.verification_state ?? "unverified") as
+      | "unverified"
+      | "verified"
+      | "rejected",
+    verifiedAt: row.verified_at,
+    verificationNote: row.verification_note,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };

@@ -57,6 +57,16 @@ import {
   setQuestionStatusFn,
   updateQuestionFn,
 } from "@/lib/question-bank.functions";
+import {
+  ASSERTION_REASON_OPTIONS,
+  CBSE_KIND_LABELS,
+  CBSE_KIND_RULES,
+  CBSE_KINDS,
+  isOptionKind,
+  requiresStimulus,
+  VERIFICATION_LABELS,
+  type CbseKind,
+} from "@/lib/pilot-evidence-shared";
 
 export const Route = createFileRoute("/_authenticated/question-bank")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -101,13 +111,14 @@ type QuestionFormState = {
   kind: QuestionKind;
   difficulty: number;
   prompt: string;
+  stimulus: string;
   options: string[];
   correctAnswer: string;
   explanation: string;
 };
 
 function emptyForm(): QuestionFormState {
-  return { kind: "mcq", difficulty: 2, prompt: "", options: ["", "", "", ""], correctAnswer: "", explanation: "" };
+  return { kind: "mcq", difficulty: 2, prompt: "", stimulus: "", options: ["", "", "", ""], correctAnswer: "", explanation: "" };
 }
 
 function formFromQuestion(q: QuestionDto): QuestionFormState {
@@ -115,6 +126,7 @@ function formFromQuestion(q: QuestionDto): QuestionFormState {
     kind: q.kind,
     difficulty: q.difficulty,
     prompt: q.prompt,
+    stimulus: q.stimulus ?? "",
     options: q.options ?? ["", "", "", ""],
     correctAnswer: q.correctAnswer,
     explanation: q.explanation,
@@ -143,16 +155,19 @@ function QuestionFormDialog({
     if (open) setForm(editing ? formFromQuestion(editing) : emptyForm());
   }, [open, editing]);
 
-  const needsOptions = form.kind === "mcq" || form.kind === "true_false";
+  const needsOptions = isOptionKind(form.kind);
+  const needsStimulus = requiresStimulus(form.kind);
 
   const handleSave = async () => {
     const options = form.kind === "true_false"
       ? ["True", "False"]
-      : form.kind === "mcq"
-        ? form.options.map((o) => o.trim()).filter(Boolean)
-        : null;
-    if (form.kind === "mcq" && options && options.length < 2) {
-      toast.error("Multiple choice needs at least 2 options.");
+      : form.kind === "assertion_reason"
+        ? ASSERTION_REASON_OPTIONS
+        : needsOptions
+          ? form.options.map((o) => o.trim()).filter(Boolean)
+          : null;
+    if (needsOptions && form.kind !== "true_false" && options && options.length < 2) {
+      toast.error("This question type needs at least 2 options.");
       return;
     }
     if (
@@ -163,12 +178,17 @@ function QuestionFormDialog({
       toast.error("The answer key must match one of the options exactly.");
       return;
     }
+    if (needsStimulus && !form.stimulus.trim()) {
+      toast.error("This CBSE question type needs a stimulus (passage, data or assertion/reason).");
+      return;
+    }
     setSaving(true);
     try {
       const payload = {
         kind: form.kind,
         difficulty: form.difficulty,
         prompt: form.prompt,
+        stimulus: needsStimulus ? form.stimulus.trim() : null,
         options,
         correctAnswer: form.correctAnswer,
         explanation: form.explanation,
@@ -233,6 +253,21 @@ function QuestionFormDialog({
             </div>
           </div>
 
+          {needsStimulus && (
+            <div className="space-y-1.5">
+              <Label>Stimulus</Label>
+              <Textarea
+                value={form.stimulus}
+                onChange={(e) => setForm((f) => ({ ...f, stimulus: e.target.value }))}
+                placeholder={CBSE_KIND_RULES[form.kind as CbseKind]}
+                rows={4}
+              />
+              <p className="text-muted-foreground text-xs">
+                {CBSE_KIND_RULES[form.kind as CbseKind]}
+              </p>
+            </div>
+          )}
+
           <div className="space-y-1.5">
             <Label>Prompt</Label>
             <Textarea
@@ -243,7 +278,18 @@ function QuestionFormDialog({
             />
           </div>
 
-          {form.kind === "mcq" && (
+          {form.kind === "assertion_reason" && (
+            <div className="space-y-1.5">
+              <Label>Options (fixed CBSE set)</Label>
+              <ul className="text-muted-foreground space-y-1 text-xs">
+                {ASSERTION_REASON_OPTIONS.map((o) => (
+                  <li key={o} className="rounded-md border px-2 py-1">{o}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {needsOptions && form.kind !== "true_false" && form.kind !== "assertion_reason" && (
             <div className="space-y-1.5">
               <Label>Options</Label>
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -284,7 +330,7 @@ function QuestionFormDialog({
                 value={form.correctAnswer}
                 onChange={(e) => setForm((f) => ({ ...f, correctAnswer: e.target.value }))}
                 placeholder={
-                  form.kind === "mcq"
+                  needsOptions
                     ? "Must match one option exactly"
                     : form.kind === "short_answer"
                       ? "Model answer or 'Any one of: …'"
@@ -360,7 +406,25 @@ function QuestionCard({
         <Badge variant="outline" className="font-normal">
           {question.source === "ai" ? "AI-generated" : "Manual"}
         </Badge>
+        <Badge
+          variant={
+            question.verificationState === "verified"
+              ? "default"
+              : question.verificationState === "rejected"
+                ? "destructive"
+                : "outline"
+          }
+          className="font-normal"
+        >
+          {VERIFICATION_LABELS[question.verificationState]}
+        </Badge>
       </div>
+
+      {question.stimulus && (
+        <p className="bg-muted/50 text-muted-foreground mt-2 rounded-md p-2 text-xs whitespace-pre-line">
+          {question.stimulus}
+        </p>
+      )}
 
       <p className="mt-2 text-sm font-medium">{question.prompt}</p>
 
@@ -464,6 +528,7 @@ function OutcomePanel({
   const generate = useServerFn(generateQuestionsFn);
   const [generating, setGenerating] = useState(false);
   const [genCount, setGenCount] = useState("3");
+  const [genStyle, setGenStyle] = useState<"auto" | CbseKind>("auto");
   const [formOpen, setFormOpen] = useState(false);
   const [editing, setEditing] = useState<QuestionDto | null>(null);
 
@@ -471,7 +536,7 @@ function OutcomePanel({
     setGenerating(true);
     try {
       const result = await generate({
-        data: { outcomeId: outcome.id, count: Number(genCount) },
+        data: { outcomeId: outcome.id, count: Number(genCount), style: genStyle },
       });
       toast.success(
         `Generated ${result.inserted} draft question${result.inserted === 1 ? "" : "s"} in ${(result.latencyMs ?? 0) / 1000}s — review and approve them below.`,
@@ -507,6 +572,15 @@ function OutcomePanel({
               <SelectContent>
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={genStyle} onValueChange={(v) => setGenStyle(v as "auto" | CbseKind)}>
+              <SelectTrigger className="w-52"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="auto">Auto (outcome question types)</SelectItem>
+                {CBSE_KINDS.map((k) => (
+                  <SelectItem key={k} value={k}>{CBSE_KIND_LABELS[k]}</SelectItem>
                 ))}
               </SelectContent>
             </Select>

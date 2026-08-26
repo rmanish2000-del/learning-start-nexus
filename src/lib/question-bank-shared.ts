@@ -10,7 +10,16 @@ import { z } from "zod";
 // DTOs
 // ---------------------------------------------------------------------------
 
-export type QuestionKind = "mcq" | "true_false" | "fill_blank" | "short_answer";
+export type QuestionKind =
+  | "mcq"
+  | "true_false"
+  | "fill_blank"
+  | "short_answer"
+  // M7: CBSE competency-based types
+  | "case_study"
+  | "assertion_reason"
+  | "data_interpretation"
+  | "applied_mcq";
 export type QuestionStatus = "draft" | "approved" | "retired";
 
 export type QuestionDto = {
@@ -24,6 +33,12 @@ export type QuestionDto = {
   explanation: string;
   status: QuestionStatus;
   source: "ai" | "manual";
+  // M7: shared passage / data table / assertion-reason pair
+  stimulus: string | null;
+  // M8: reviewer verification
+  verificationState: "unverified" | "verified" | "rejected";
+  verifiedAt: string | null;
+  verificationNote: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -80,6 +95,10 @@ export const KIND_LABELS: Record<QuestionKind, string> = {
   true_false: "True / False",
   fill_blank: "Fill in the blank",
   short_answer: "Short answer",
+  case_study: "Case Study",
+  assertion_reason: "Assertion\u2013Reason",
+  data_interpretation: "Data Interpretation",
+  applied_mcq: "Applied MCQ",
 };
 
 export const STATUS_LABELS: Record<QuestionStatus, string> = {
@@ -116,12 +135,26 @@ export const outcomeBankSchema = z.object({ outcomeId: z.string().uuid() });
 export const generateQuestionsSchema = z.object({
   outcomeId: z.string().uuid(),
   count: z.number().int().min(1).max(6),
+  // M7: optional CBSE competency style for the whole generated set.
+  style: z
+    .enum(["auto", "case_study", "assertion_reason", "data_interpretation", "applied_mcq"])
+    .optional(),
 });
 
 export const questionIdSchema = z.object({ questionId: z.string().uuid() });
 
 const questionCore = {
-  kind: z.enum(["mcq", "true_false", "fill_blank", "short_answer"]),
+  kind: z.enum([
+    "mcq",
+    "true_false",
+    "fill_blank",
+    "short_answer",
+    "case_study",
+    "assertion_reason",
+    "data_interpretation",
+    "applied_mcq",
+  ]),
+  stimulus: z.string().trim().max(1500).nullable().optional(),
   difficulty: z.number().int().min(1).max(5),
   prompt: z.string().trim().min(5, "Prompt is required").max(500),
   options: z.array(z.string().trim().min(1).max(200)).max(8).nullable(),
