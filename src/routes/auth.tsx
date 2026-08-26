@@ -73,10 +73,14 @@ async function resolveRole(user: { id: string; user_metadata?: Record<string, un
   const phone = typeof meta["phone"] === "string" ? meta["phone"] : "";
   try {
     await claimParentRole({ data: { fullName, ...(phone ? { phone } : {}) } });
-    return "parent";
-  } catch {
-    return "student";
+  } catch (error) {
+    // The role row is also written by the signup database trigger, so a failed
+    // claim is not fatal. Never fall back to "student": self-service signup
+    // only exists for parents, and a wrong guess drops them into the learner
+    // workspace (/home) instead of the parent portal.
+    console.error("[auth] parent role claim failed", error);
   }
+  return "parent";
 }
 
 function AuthPage() {
