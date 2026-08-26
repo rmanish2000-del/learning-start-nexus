@@ -32,7 +32,16 @@ export const Route = createFileRoute("/_authenticated")({
       supabase.from("user_roles").select("role").eq("user_id", data.user.id).limit(1).maybeSingle(),
       supabase.from("profiles").select("full_name, org_id").eq("id", data.user.id).maybeSingle(),
     ]);
-    const role = (roleRow?.role as AppRole | undefined) ?? "student";
+    // Every provisioned account (staff, educator, student, reviewer) has a role
+    // row. A missing row only happens for a self-service parent whose profile
+    // write was deferred by email confirmation — never assume `student`, or the
+    // parent lands in the learner workspace. Send them to /auth, which claims
+    // the parent role and routes to the portal.
+    if (!roleRow?.role) {
+      throw redirect({ to: "/auth", search: { tab: "parent" } });
+    }
+    const role = roleRow.role as AppRole;
+
 
     // Sprint 5A: reviewers are audit-only. Bounce them from any workspace
     // route to the launch audit (their home).
