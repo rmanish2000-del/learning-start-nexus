@@ -26,6 +26,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
+import { QueryError } from "@/components/query-error";
 
 const STUDENT_TOUR: TourStep[] = [
   {
@@ -250,6 +251,18 @@ function StudentHomePage() {
       launchTutorMutation.mutate(firstFocus.id);
     }
   };
+
+  if (learnerIsError) {
+    return (
+      <div className="mx-auto max-w-4xl">
+        <QueryError
+          title="We couldn't load your learning space"
+          error={learnerError}
+          onRetry={() => void refetchLearner()}
+        />
+      </div>
+    );
+  }
 
   if (learnerPending) {
     return (
