@@ -588,14 +588,33 @@ function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer className="border-t">
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-8 text-sm text-muted-foreground">
-        <Link to="/about" className="hover:text-foreground">{t("common.about", "About")}</Link>
-        <Link to="/privacy" className="hover:text-foreground">{t("common.privacy", "Privacy Policy")}</Link>
-        <Link to="/terms" className="hover:text-foreground">{t("common.terms", "Terms of Service")}</Link>
-        <Link to="/contact" className="hover:text-foreground">{t("common.contact", "Contact")}</Link>
-        <Link to="/auth" className="hover:text-foreground">{t("common.signIn", "Sign in")}</Link>
-        <span className="ml-auto text-xs">EduOS — Brightpath Learning</span>
+      <div className="mx-auto max-w-5xl px-4 py-10">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium">
+              {t("landing.footer.cta", "Ready to see your child's real gaps?")}
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {t("landing.footer.ctaNote", "Create a parent account, add your child, start the ₹199 diagnostic.")}
+            </p>
+          </div>
+          <ParentCtas />
+        </div>
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-sm text-muted-foreground">
+          <Link to="/about" className="hover:text-foreground">{t("common.about", "About")}</Link>
+          <Link to="/privacy" className="hover:text-foreground">{t("common.privacy", "Privacy Policy")}</Link>
+          <Link to="/terms" className="hover:text-foreground">{t("common.terms", "Terms of Service")}</Link>
+          <Link to="/contact" className="hover:text-foreground">{t("common.contact", "Contact")}</Link>
+          <Link to="/auth" search={{ tab: "parent", mode: "signin" }} className="hover:text-foreground">
+            {t("common.signIn", "Sign In")}
+          </Link>
+          <Link to="/auth" search={{ tab: "staff", mode: "signin" }} className="text-xs hover:text-foreground">
+            {t("common.staffAccess", "Staff Access")}
+          </Link>
+          <span className="ml-auto text-xs">EduOS — Brightpath Learning</span>
+        </div>
       </div>
     </footer>
   );
+
 }
