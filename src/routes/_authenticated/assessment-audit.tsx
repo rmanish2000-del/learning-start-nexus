@@ -113,7 +113,13 @@ function AssessmentAuditPage() {
         </p>
       ) : null}
 
-      {report.isLoading ? (
+      {report.isError ? (
+        <QueryError
+          title="Audit chain didn't load"
+          error={report.error}
+          onRetry={() => report.refetch()}
+        />
+      ) : report.isLoading ? (
         <p className="text-sm text-muted-foreground">Loading audit chain…</p>
       ) : !chain ? (
         <Card>
