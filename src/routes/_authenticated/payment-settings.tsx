@@ -76,9 +76,18 @@ function PaymentSettingsPage() {
     enabled: role === "admin",
   });
 
+  const webhookLoad = useServerFn(getWebhookStatusFn);
+  const { data: webhook, isLoading: webhookLoading } = useQuery({
+    queryKey: ["payment-webhook-status"],
+    queryFn: () => webhookLoad({}),
+    enabled: role === "admin",
+    refetchInterval: 30_000,
+  });
+
   const refresh = () => {
     queryClient.invalidateQueries({ queryKey: ["payment-settings"] });
     queryClient.invalidateQueries({ queryKey: ["payment-settings-audit"] });
+    queryClient.invalidateQueries({ queryKey: ["payment-webhook-status"] });
   };
 
   const saveMutation = useMutation({
