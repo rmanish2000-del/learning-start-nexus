@@ -127,6 +127,30 @@ function hasSessionMarker() {
   return typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie);
 }
 
+/**
+ * Parent-first conversion pair. Repeated in the hero, the pricing block and
+ * the footer so account creation is reachable without entering the
+ * diagnostic flow first.
+ */
+function ParentCtas({ size = "default" }: { size?: "default" | "lg" }) {
+  const { t } = useI18n();
+  return (
+    <div className="mt-7 flex flex-wrap items-center gap-3">
+      <Button asChild size={size}>
+        <Link to="/diagnostic">
+          {t("landing.cta.startDiagnostic", "Start Diagnostic")} <ArrowRight className="h-4 w-4" />
+        </Link>
+      </Button>
+      <Button asChild size={size} variant="outline">
+        <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
+          {t("landing.cta.createParent", "Create Parent Account")}
+        </Link>
+      </Button>
+    </div>
+  );
+}
+
+
 function LandingPage() {
   const navigate = useNavigate();
 
