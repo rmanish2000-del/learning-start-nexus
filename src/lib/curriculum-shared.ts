@@ -11,6 +11,7 @@ export const BOOK_STATUS_LABELS: Record<string, string> = {
   processed: "In review",
   approved: "Approved",
   failed: "Failed",
+  archived: "Archived (demo)",
 };
 
 // ---------------------------------------------------------------------------
