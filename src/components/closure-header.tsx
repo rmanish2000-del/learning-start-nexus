@@ -26,7 +26,7 @@ function Tile({
   label: string;
   value: string;
   hint: string;
-  accent?: string;
+  accent?: string | undefined;
 }) {
   return (
     <div className="min-w-0 flex-1 px-4 py-3">
