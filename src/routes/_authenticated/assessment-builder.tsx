@@ -79,7 +79,16 @@ export const Route = createFileRoute("/_authenticated/assessment-builder")({
 
 const authRoute = getRouteApi("/_authenticated");
 
-const ALL_KINDS: QuestionKind[] = ["mcq", "true_false", "fill_blank", "short_answer"];
+const ALL_KINDS: QuestionKind[] = [
+  "mcq",
+  "true_false",
+  "fill_blank",
+  "short_answer",
+  "case_study",
+  "assertion_reason",
+  "data_interpretation",
+  "applied_mcq",
+];
 const ALL_DIFFICULTIES = [1, 2, 3, 4, 5];
 
 function ChainChip({ children, last }: { children: React.ReactNode; last?: boolean }) {
