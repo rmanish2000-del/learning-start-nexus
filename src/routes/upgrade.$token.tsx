@@ -18,7 +18,7 @@ import {
   payDiagnosticOrder,
   startUpgradeOrder,
 } from "@/lib/parent-diagnostic.functions";
-import { PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
+import { CHAPTER_GROUP_MARKS, PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 
 const TITLE = "Board Success Plan — ₹2,999 a year | EduOS";
 const DESCRIPTION =
@@ -109,8 +109,8 @@ function UpgradePage() {
         {view.report && gapCount > 0 ? (
           <p className="text-sm text-muted-foreground">
             At risk right now: {view.report.gaps.slice(0, 3).map((g) => g.code).join(", ")}
-            {gapCount > 3 ? ` and ${gapCount - 3} more` : ""} — about {view.report.marksAtRiskTotal} marks of an 80-mark
-            paper.
+            {gapCount > 3 ? ` and ${gapCount - 3} more` : ""} — about {view.report.marksAtRiskTotal} of the ~
+            {CHAPTER_GROUP_MARKS} marks this chapter group carries.
           </p>
         ) : null}
       </section>

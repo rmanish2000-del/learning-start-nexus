@@ -184,7 +184,7 @@ function DiagnosticCheckoutPage() {
               </p>
               <div className="space-y-2 pt-1 text-xs text-muted-foreground">
                 {[
-                  "20 outcome-mapped questions",
+                  "Outcome-mapped questions, allocated by board weight",
                   "Server-side scoring against CBSE outcomes",
                   "Ranked gap report you keep permanently",
                 ].map((line) => (
