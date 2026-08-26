@@ -3,7 +3,7 @@
 - **Date:** 2026-08-27
 - **Scope:** Parent-facing purchase → diagnostic → gap report → ₹2,999 upgrade
 - **Content:** Imported CBSE Class 10 Mathematics and Science only
-- **Payment:** Simulated capture in this MVP; the Razorpay webhook replaces exactly one call site
+- **Payment:** Razorpay live gateway — order created server-side, signature-verified checkout, and a signature-verified `payment.captured` / `payment.failed` webhook
 - **Status:** Implemented and verified end to end in the preview environment
 
 ---
@@ -21,7 +21,7 @@ Nothing new was invented for question selection or scoring: the paid path reuses
 | # | Screen | Route | Auth | Purpose |
 | --- | --- | --- | --- | --- |
 | 1 | Diagnostic start / purchase | `/diagnostic` | Public | Sell; board→subject→chapter-group selector; sample of what the report contains; FAQ; ₹199 CTA repeated three times |
-| 2 | Checkout | `/diagnostic/checkout/$orderRef` | Public, order-scoped | Child's first name + parent contact; simulated capture; provisions the learner and the diagnostic |
+| 2 | Checkout | `/diagnostic/checkout/$orderRef` | Public, order-scoped | Child's first name + parent contact; Razorpay Checkout; provisions the learner and the diagnostic after verified capture |
 | 3 | Diagnostic session | `/diagnostic/session/$token` | Token | One question per screen, phone-first, saved after every answer, resumable |
 | 4 | Gap report / parent results | `/diagnostic/report/$token` | Token | Headline, band strip, ranked gaps, what is already secure, 12-week projection, upgrade block |
 | 5 | Upgrade | `/upgrade/$token` | Token | ₹2,999 plan with the ₹199 credit applied; single CTA, no comparison table |
@@ -40,7 +40,7 @@ Authorisation on the parent path is a 32-character unguessable `access_token` mi
         │  startDiagnosticOrder({ bookId, unitId })
         ▼
 parent_orders  status=created, amount_paise=19900 (server-set)
-        │  payDiagnosticOrder  ← stands in for Razorpay payment.captured
+        │  verifyPayment (checkout signature) + /api/public/razorpay-webhook (payment.captured)
         ▼
 parent_orders  status=paid, paid_at
 parent_entitlements  kind=diagnostic_credit  (granted here, nowhere else)
@@ -146,7 +146,7 @@ All of this lives in `src/lib/parent-diagnostic-shared.ts` — pure, no I/O, uni
 | --- | --- |
 | Catalogue lists only imported Class 10 Maths and Science | Pass |
 | ₹199 order created with server-set amount | Pass |
-| Simulated capture grants exactly one `diagnostic_credit` | Pass |
+| Capture (checkout signature or webhook) grants exactly one `diagnostic_credit` | Pass |
 | Learner + assessment + question map + session provisioned from the order | Pass |
 | Diagnostic answered end to end, answers persisted per question | Pass |
 | Server-side scoring produced outcome-level bands and ranked gaps | Pass |
@@ -160,7 +160,10 @@ All of this lives in `src/lib/parent-diagnostic-shared.ts` — pure, no I/O, uni
 
 ## 9. What this MVP deliberately does not do
 
-- **No real payment.** The capture is simulated. Going live means creating the Razorpay order/subscription in `createDiagnosticOrder`/`createUpgradeOrder` and moving the confirmation call into a signature-verified `/api/public/razorpay-webhook` route. Nothing else in the flow changes.
+- **Razorpay is live in the code path.** `startRazorpayCheckout` creates the gateway order (amount read from the stored order, never the page), the browser pays through Razorpay Checkout, and `verifyRazorpayCheckout` verifies the `order_id|payment_id` HMAC before `markOrderPaid` grants entitlements. `/api/public/razorpay-webhook` verifies `X-Razorpay-Signature` over the raw body and calls the same idempotent capture for `payment.captured`; `payment.failed` marks the order failed with the gateway reason.
+- **Secrets:** `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET` (backend env). The key id reaches the browser only through the per-order payment intent.
+- **Webhook URL to configure in Razorpay:** `https://www.eduos.global/api/public/razorpay-webhook` (events: `payment.captured`, `payment.failed`).
+- Diagnostic, scoring, reporting, and upgrade-offer logic are unchanged; only the capture path was replaced.
 - **No parent login yet.** Access is by link. A password-backed account and portal linking are the natural next step, and the learner row is already provisioned to attach to.
 - **No lifecycle messaging.** The D0–D30 email/WhatsApp sequence and the D5 free tutor unlock from the monetization plan are not built.
 - **No entitlement gating on the authenticated app yet.** `resolveCapabilities()` exists and is correct, but the in-app surfaces still follow the centre entitlement model; centre-provisioned learners must never see a parent paywall when that gating is added.

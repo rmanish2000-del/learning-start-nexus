@@ -14,10 +14,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  createPaymentIntent,
   fetchDiagnosticReport,
-  payDiagnosticOrder,
+  reportPaymentFailure,
   startUpgradeOrder,
+  verifyPayment,
 } from "@/lib/parent-diagnostic.functions";
+import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { CHAPTER_GROUP_MARKS, PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 
 const TITLE = "Board Success Plan — ₹2,999 a year | EduOS";
@@ -51,7 +54,9 @@ function UpgradePage() {
   const { token } = Route.useParams();
   const viewFn = useServerFn(fetchDiagnosticReport);
   const createFn = useServerFn(startUpgradeOrder);
-  const payFn = useServerFn(payDiagnosticOrder);
+  const intentFn = useServerFn(createPaymentIntent);
+  const verifyFn = useServerFn(verifyPayment);
+  const failFn = useServerFn(reportPaymentFailure);
   const navigate = useNavigate();
 
   const query = useQuery({
@@ -67,8 +72,31 @@ function UpgradePage() {
     try {
       // Amount is computed server-side from the offer rules; the page sends none.
       const order = await createFn({ data: { token } });
-      const paid = await payFn({ data: { orderRef: order.orderRef, outcome: "success" } });
-      if (paid.status !== "paid") throw new Error("Payment was not captured.");
+      if (order.status !== "paid") {
+        const intent = await intentFn({ data: { orderRef: order.orderRef } });
+        if (!intent.razorpayOrderId) throw new Error("The payment gateway is unavailable right now.");
+        const result = await openRazorpayCheckout({
+          keyId: intent.keyId,
+          razorpayOrderId: intent.razorpayOrderId,
+          amountPaise: intent.amountPaise,
+          description: intent.description,
+          notes: { order_ref: order.orderRef },
+        });
+        if (!result) {
+          await failFn({ data: { orderRef: order.orderRef, reason: "Checkout dismissed by the parent" } });
+          toast.message("Payment cancelled. Nothing was charged.");
+          return;
+        }
+        const paid = await verifyFn({
+          data: {
+            orderRef: order.orderRef,
+            razorpayOrderId: result.razorpay_order_id,
+            razorpayPaymentId: result.razorpay_payment_id,
+            signature: result.razorpay_signature,
+          },
+        });
+        if (paid.status !== "paid") throw new Error("Payment was not captured.");
+      }
       toast.success("Board Success Plan activated.");
       await query.refetch();
       await navigate({ to: "/diagnostic/report/$token", params: { token } });
@@ -78,6 +106,7 @@ function UpgradePage() {
       setPending(false);
     }
   }
+
 
   if (query.isLoading) {
     return (
@@ -175,7 +204,7 @@ function UpgradePage() {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                This pilot checkout is a simulation — no money moves and no card details are collected.
+                Payments are processed securely by Razorpay. EduOS never sees or stores your card details.
               </AlertDescription>
             </Alert>
 

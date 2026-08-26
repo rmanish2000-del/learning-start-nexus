@@ -5,10 +5,9 @@
 // authorised by a single unguessable per-order access token. Nothing on this
 // path trusts a client-supplied price, question list, or entitlement.
 //
-// Payment is SIMULATED in this MVP: `confirmDiagnosticPayment` stands in for
-// the Razorpay `payment.captured` webhook and is the only writer of
-// entitlements. Swapping in the real webhook means replacing that one call
-// site — the entitlement, provisioning, and scoring code is unchanged.
+// Payment runs on Razorpay. `markOrderPaid` is the only writer of
+// entitlements and is reached by two idempotent paths: the signature-verified
+// checkout handler and the signature-verified `payment.captured` webhook.
 
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { buildDiagnosticPlan, type EngineOutcome } from "./diagnostic-shared";
@@ -279,73 +278,209 @@ export async function getOrder(ref: string): Promise<PublicOrder> {
   return toPublicOrder(await loadOrderByRef(ref));
 }
 
-// Stand-in for the Razorpay `payment.captured` webhook. Idempotent: a replay
-// grants nothing twice.
-export async function confirmDiagnosticPayment(input: {
-  orderRef: string;
-  outcome: "success" | "failure";
-}): Promise<PublicOrder> {
-  const row = await loadOrderByRef(input.orderRef);
+// ---------------------------------------------------------------------------
+// Payment capture — Razorpay
+// ---------------------------------------------------------------------------
 
-  if (input.outcome === "failure") {
-    if (row.status === "created") {
-      await supabaseAdmin.from("parent_orders").update({ status: "failed" }).eq("id", row.id);
-    }
-    return toPublicOrder(await loadOrderByRef(input.orderRef));
+// The single writer of entitlements. Idempotent: a replayed webhook or a
+// double-clicked checkout grants nothing twice.
+async function markOrderPaid(row: OrderRow, providerPaymentRef: string): Promise<void> {
+  if (row.status === "paid") return;
+
+  const paidAt = new Date().toISOString();
+  const { error } = await supabaseAdmin
+    .from("parent_orders")
+    .update({
+      status: "paid",
+      paid_at: paidAt,
+      provider: "razorpay",
+      provider_payment_ref: providerPaymentRef,
+      failure_reason: null,
+    })
+    .eq("id", row.id)
+    .neq("status", "paid");
+  if (error) throw new Error(error.message);
+
+  const kind = row.purpose === "diagnostic" ? "diagnostic_credit" : "board_success_plan";
+  const { data: existing } = await supabaseAdmin
+    .from("parent_entitlements")
+    .select("id")
+    .eq("order_id", row.id)
+    .eq("kind", kind)
+    .maybeSingle();
+  if (!existing) {
+    await supabaseAdmin.from("parent_entitlements").insert({
+      order_id: row.id,
+      learner_id: row.learner_id,
+      kind,
+      granted_at: paidAt,
+      expires_at:
+        kind === "board_success_plan" ? new Date(Date.now() + 365 * 86_400_000).toISOString() : null,
+    });
   }
 
-  if (row.status !== "paid") {
-    const paidAt = new Date().toISOString();
+  if (kind === "board_success_plan" && row.parent_order_id) {
+    // The ₹199 credit was applied to this invoice — burn it.
+    const { data: credit } = await supabaseAdmin
+      .from("parent_entitlements")
+      .select("id, consumed_at")
+      .eq("order_id", row.parent_order_id)
+      .eq("kind", "diagnostic_credit")
+      .maybeSingle();
+    if (credit && !credit.consumed_at) {
+      await supabaseAdmin
+        .from("parent_entitlements")
+        .update({ consumed_at: paidAt })
+        .eq("id", credit.id)
+        .is("consumed_at", null);
+    }
+  }
+}
+
+async function markOrderFailed(row: OrderRow, reason: string): Promise<void> {
+  if (row.status === "paid") return;
+  await supabaseAdmin
+    .from("parent_orders")
+    .update({ status: "failed", provider: "razorpay", failure_reason: reason.slice(0, 300) })
+    .eq("id", row.id)
+    .neq("status", "paid");
+}
+
+async function loadOrderByProviderOrderId(providerOrderId: string): Promise<OrderRow | null> {
+  const { data, error } = await supabaseAdmin
+    .from("parent_orders")
+    .select(
+      "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, org_id, learner_id, assessment_id, session_id, parent_order_id, paid_at",
+    )
+    .eq("provider_order_id", providerOrderId)
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  return (data as OrderRow | null) ?? null;
+}
+
+export type CheckoutIntent = {
+  orderRef: string;
+  status: string;
+  keyId: string;
+  razorpayOrderId: string | null;
+  amountPaise: number;
+  currency: "INR";
+  mode: "test" | "live";
+  description: string;
+};
+
+/** Creates (or reuses) the Razorpay order this checkout session will pay. */
+export async function startRazorpayCheckout(ref: string): Promise<CheckoutIntent> {
+  const { createRazorpayOrder, razorpayKeyId, razorpayMode } = await import("./razorpay.server");
+  const row = await loadOrderByRef(ref);
+
+  const description =
+    row.purpose === "diagnostic"
+      ? `Class ${row.grade ?? 10} ${row.subject ?? ""} diagnostic`.trim()
+      : "Board Success Plan — one child, one board year";
+
+  if (row.status === "paid") {
+    return {
+      orderRef: row.order_ref,
+      status: row.status,
+      keyId: razorpayKeyId(),
+      razorpayOrderId: null,
+      amountPaise: row.amount_paise,
+      currency: "INR",
+      mode: razorpayMode(),
+      description,
+    };
+  }
+
+  const { data: current } = await supabaseAdmin
+    .from("parent_orders")
+    .select("provider_order_id")
+    .eq("id", row.id)
+    .maybeSingle();
+
+  let providerOrderId = current?.provider_order_id ?? null;
+  if (!providerOrderId) {
+    // Amount always comes from the stored order, never from the page.
+    const created = await createRazorpayOrder({
+      amountPaise: row.amount_paise,
+      receipt: row.order_ref,
+      notes: { order_ref: row.order_ref, purpose: row.purpose },
+    });
+    providerOrderId = created.id;
     const { error } = await supabaseAdmin
       .from("parent_orders")
-      .update({
-        status: "paid",
-        paid_at: paidAt,
-        provider: "simulated",
-        provider_payment_ref: `sim_${token().slice(0, 12)}`,
-      })
+      .update({ provider: "razorpay", provider_order_id: providerOrderId, status: "created" })
       .eq("id", row.id)
-      .eq("status", "created");
+      .neq("status", "paid");
     if (error) throw new Error(error.message);
-
-    const kind = row.purpose === "diagnostic" ? "diagnostic_credit" : "board_success_plan";
-    const { data: existing } = await supabaseAdmin
-      .from("parent_entitlements")
-      .select("id")
-      .eq("order_id", row.id)
-      .eq("kind", kind)
-      .maybeSingle();
-    if (!existing) {
-      await supabaseAdmin.from("parent_entitlements").insert({
-        order_id: row.id,
-        learner_id: row.learner_id,
-        kind,
-        granted_at: paidAt,
-        expires_at:
-          kind === "board_success_plan" ? new Date(Date.now() + 365 * 86_400_000).toISOString() : null,
-      });
-    }
-
-    if (kind === "board_success_plan" && row.parent_order_id) {
-      // The ₹199 credit was applied to this invoice — burn it.
-      const { data: credit } = await supabaseAdmin
-        .from("parent_entitlements")
-        .select("id, consumed_at")
-        .eq("order_id", row.parent_order_id)
-        .eq("kind", "diagnostic_credit")
-        .maybeSingle();
-      if (credit && !credit.consumed_at) {
-        await supabaseAdmin
-          .from("parent_entitlements")
-          .update({ consumed_at: paidAt })
-          .eq("id", credit.id)
-          .is("consumed_at", null);
-      }
-    }
   }
 
+  return {
+    orderRef: row.order_ref,
+    status: row.status,
+    keyId: razorpayKeyId(),
+    razorpayOrderId: providerOrderId,
+    amountPaise: row.amount_paise,
+    currency: "INR",
+    mode: razorpayMode(),
+    description,
+  };
+}
+
+/** Verifies the browser-side checkout signature and captures the order. */
+export async function verifyRazorpayCheckout(input: {
+  orderRef: string;
+  razorpayOrderId: string;
+  razorpayPaymentId: string;
+  signature: string;
+}): Promise<PublicOrder> {
+  const { verifyCheckoutSignature } = await import("./razorpay.server");
+  const row = await loadOrderByRef(input.orderRef);
+
+  const matched = await loadOrderByProviderOrderId(input.razorpayOrderId);
+  if (!matched || matched.id !== row.id) throw new Error("This payment does not belong to that order.");
+
+  if (!verifyCheckoutSignature(input)) {
+    await markOrderFailed(row, "Signature verification failed");
+    throw new Error("Payment could not be verified.");
+  }
+
+  await markOrderPaid(row, input.razorpayPaymentId);
   return toPublicOrder(await loadOrderByRef(input.orderRef));
 }
+
+/** Records a checkout the parent abandoned or the gateway declined. */
+export async function recordRazorpayFailure(input: {
+  orderRef: string;
+  reason: string;
+}): Promise<PublicOrder> {
+  const row = await loadOrderByRef(input.orderRef);
+  await markOrderFailed(row, input.reason);
+  return toPublicOrder(await loadOrderByRef(input.orderRef));
+}
+
+// --- Webhook entry points (called only after signature verification) -------
+
+export async function captureFromWebhook(input: {
+  providerOrderId: string;
+  paymentId: string;
+}): Promise<"captured" | "ignored"> {
+  const row = await loadOrderByProviderOrderId(input.providerOrderId);
+  if (!row) return "ignored";
+  await markOrderPaid(row, input.paymentId);
+  return "captured";
+}
+
+export async function failFromWebhook(input: {
+  providerOrderId: string;
+  reason: string;
+}): Promise<"failed" | "ignored"> {
+  const row = await loadOrderByProviderOrderId(input.providerOrderId);
+  if (!row) return "ignored";
+  await markOrderFailed(row, input.reason);
+  return "failed";
+}
+
 
 // ---------------------------------------------------------------------------
 // Provisioning: learner + curriculum-mapped diagnostic + session

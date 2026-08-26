@@ -1722,6 +1722,7 @@ export type Database = {
           contact_phone: string | null
           created_at: string
           currency: string
+          failure_reason: string | null
           grade: number | null
           id: string
           learner_id: string | null
@@ -1730,6 +1731,7 @@ export type Database = {
           paid_at: string | null
           parent_order_id: string | null
           provider: string
+          provider_order_id: string | null
           provider_payment_ref: string | null
           purpose: string
           session_id: string | null
@@ -1751,6 +1753,7 @@ export type Database = {
           contact_phone?: string | null
           created_at?: string
           currency?: string
+          failure_reason?: string | null
           grade?: number | null
           id?: string
           learner_id?: string | null
@@ -1759,6 +1762,7 @@ export type Database = {
           paid_at?: string | null
           parent_order_id?: string | null
           provider?: string
+          provider_order_id?: string | null
           provider_payment_ref?: string | null
           purpose: string
           session_id?: string | null
@@ -1780,6 +1784,7 @@ export type Database = {
           contact_phone?: string | null
           created_at?: string
           currency?: string
+          failure_reason?: string | null
           grade?: number | null
           id?: string
           learner_id?: string | null
@@ -1788,6 +1793,7 @@ export type Database = {
           paid_at?: string | null
           parent_order_id?: string | null
           provider?: string
+          provider_order_id?: string | null
           provider_payment_ref?: string | null
           purpose?: string
           session_id?: string | null
