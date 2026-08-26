@@ -106,6 +106,89 @@ export function isOptionKind(kind: string): boolean {
   );
 }
 
+// ---------------------------------------------------------------------------
+// CBSE Competency Quality Upgrade — the quality bar each competency type must
+// clear. These rules are used by the generator prompt, by the post-generation
+// quality gate, and are printed in the UI so reviewers can check the contract.
+// ---------------------------------------------------------------------------
+
+export const COMPETENCY_QUALITY_RULES: Record<CbseKind, string[]> = {
+  case_study: [
+    "Stimulus is an original real-world scenario (named person/place, a situation, concrete numbers or observations) — never a paraphrase of textbook prose.",
+    "Answering requires at least two reasoning steps: read the scenario, then apply the concept to it.",
+    "The answer must not be quotable verbatim from the passage.",
+  ],
+  assertion_reason: [
+    "Assertion and Reason must both be complete standalone statements about a cause and its effect.",
+    "The Reason must be a candidate causal explanation of the Assertion — never a restatement or an unrelated fact.",
+    "Across a set, vary which of the four CBSE combinations is correct; do not always pick option 1.",
+  ],
+  data_interpretation: [
+    "Stimulus is a table, graph description, or experimental observation log with at least three labelled data points.",
+    "The question requires comparing, computing, trending, or identifying the controlled/changed variable — not reading a single cell.",
+    "Units and variable names must be explicit in the stimulus.",
+  ],
+  applied_mcq: [
+    "The situation must be novel — not an example used in the textbook or in the outcome text.",
+    "Tests transfer: the learner applies the concept to a different context, appliance, organism, or everyday event.",
+    "Distractors must be plausible misconceptions, not obviously wrong options.",
+  ],
+};
+
+const RECALL_OPENERS =
+  /^\s*(what is|what are|define|name the|state the|list the|who discovered|when was)\b/i;
+
+function countNumbers(text: string): number {
+  return (text.match(/\d+(\.\d+)?/g) ?? []).length;
+}
+
+/**
+ * Deterministic quality gate for competency questions. Returns a list of
+ * human-readable issues; an empty list means the question clears the bar.
+ */
+export function competencyQualityIssues(q: {
+  kind: string;
+  prompt: string;
+  stimulus?: string | null | undefined;
+  options?: string[] | null | undefined;
+}): string[] {
+  const issues: string[] = [];
+  const stimulus = (q.stimulus ?? "").trim();
+  const prompt = q.prompt.trim();
+
+  if (q.kind === "case_study") {
+    if (stimulus.length < 180) issues.push("case study scenario is too thin (needs a real 3–5 sentence situation)");
+    if ((stimulus.match(/[.!?]/g) ?? []).length < 3) issues.push("case study scenario needs at least three sentences");
+    if (RECALL_OPENERS.test(prompt)) issues.push("case study question is direct recall, not applied reasoning");
+  }
+
+  if (q.kind === "assertion_reason") {
+    if (!/assertion\s*\(a\)\s*:/i.test(stimulus) || !/reason\s*\(r\)\s*:/i.test(stimulus)) {
+      issues.push("assertion–reason stimulus must contain 'Assertion (A):' and 'Reason (R):' lines");
+    }
+    const a = stimulus.split(/reason\s*\(r\)\s*:/i)[0]?.replace(/assertion\s*\(a\)\s*:/i, "").trim() ?? "";
+    const r = stimulus.split(/reason\s*\(r\)\s*:/i)[1]?.trim() ?? "";
+    if (a.length < 25 || r.length < 25) issues.push("assertion and reason must both be complete statements");
+    if (a && r && a.toLowerCase() === r.toLowerCase()) issues.push("reason merely restates the assertion");
+  }
+
+  if (q.kind === "data_interpretation") {
+    if (countNumbers(stimulus) < 3) issues.push("data stimulus needs at least three data values");
+    if (stimulus.length < 80) issues.push("data stimulus is too small to interpret");
+    if (RECALL_OPENERS.test(prompt)) issues.push("data question is recall, not interpretation");
+  }
+
+  if (q.kind === "applied_mcq") {
+    if (prompt.length < 90) issues.push("applied MCQ needs a described novel situation, not a one-line recall prompt");
+    if (RECALL_OPENERS.test(prompt)) issues.push("applied MCQ opens as a recall question");
+    const opts = q.options ?? [];
+    if (opts.length !== 4) issues.push("applied MCQ needs exactly four options");
+  }
+
+  return issues;
+}
+
+
 export type CbseCoverageRow = {
   kind: string;
   label: string;
