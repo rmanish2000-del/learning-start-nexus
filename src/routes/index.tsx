@@ -1,5 +1,5 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Check,
@@ -39,9 +39,7 @@ export const Route = createFileRoute("/")({
   beforeLoad: () => {
     // Signed-in visitors keep going straight to the workspace. The marker
     // cookie is a hint only; the _authenticated gate is the real boundary.
-    if (typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie)) {
-      throw redirect({ to: "/dashboard" });
-    }
+    if (hasSessionMarker()) throw redirect({ to: "/dashboard" });
   },
   head: () => ({
     meta: [
@@ -122,7 +120,19 @@ function Section({
   );
 }
 
+function hasSessionMarker() {
+  return typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie);
+}
+
 function LandingPage() {
+  const navigate = useNavigate();
+
+  // SSR can't read the marker cookie through beforeLoad, so signed-in visitors
+  // are forwarded to the workspace right after hydration.
+  useEffect(() => {
+    if (hasSessionMarker()) void navigate({ to: "/dashboard", replace: true });
+  }, [navigate]);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
