@@ -7,8 +7,8 @@ export function CohortProgressCard({
   cohort,
   isPending,
 }: {
-  cohort?: CohortProgress;
-  isPending?: boolean;
+  cohort?: CohortProgress | undefined;
+  isPending?: boolean | undefined;
 }) {
   const worstMastery = cohort?.subjects.length
     ? Math.max(...cohort.subjects.map((s) => s.averageMastery), 1)

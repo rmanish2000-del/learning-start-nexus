@@ -28,8 +28,8 @@ export function GapHeatmap({
   matrix,
   isPending,
 }: {
-  matrix?: ClassGapMatrix;
-  isPending?: boolean;
+  matrix?: ClassGapMatrix | undefined;
+  isPending?: boolean | undefined;
 }) {
   return (
     <Card data-testid="gap-heatmap">
