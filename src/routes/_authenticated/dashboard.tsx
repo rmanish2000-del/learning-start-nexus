@@ -16,6 +16,9 @@ import { GuidedTour, type TourStep } from "@/components/guided-tour";
 import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import type { OnboardingStep } from "@/lib/onboarding";
 import { getOrgOutcomeSummary } from "@/lib/outcomes.functions";
+import { ClosureHeader } from "@/components/closure-header";
+import { getCentreOutcomeView, getSchoolOutcomeView } from "@/lib/outcome-dashboard.functions";
+import { summariseClosure } from "@/lib/closure-shared";
 
 const EDUCATOR_TOUR: TourStep[] = [
   {
@@ -190,6 +193,23 @@ function DashboardPage() {
     },
   ];
 
+  // UX Phase 1 · UX-02: shared closure numbers, same four metrics as /home and /parent.
+  const fetchSchoolView = useServerFn(getSchoolOutcomeView);
+  const fetchCentreView = useServerFn(getCentreOutcomeView);
+  const {
+    data: closureView,
+    isPending: closurePending,
+    error: closureError,
+    refetch: refetchClosure,
+  } = useQuery({
+    queryKey: ["closure-header", role],
+    queryFn: async () =>
+      role === "admin"
+        ? { label: "Across your centre", totals: (await fetchSchoolView()).totals }
+        : { label: "Your cohort", totals: (await fetchCentreView({ data: {} })).totals },
+  });
+  const closureSummary = closureView ? summariseClosure(closureView.label, closureView.totals) : null;
+
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -205,6 +225,13 @@ function DashboardPage() {
         </div>
         <ContextHelp page="/dashboard" />
       </div>
+
+      <ClosureHeader
+        summary={closureSummary}
+        isPending={closurePending}
+        error={closureError}
+        onRetry={() => void refetchClosure()}
+      />
 
       {learnersIsError && (
         <QueryError
