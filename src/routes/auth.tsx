@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
 import { setSessionMarker } from "@/lib/session-marker";
-import { registerParent } from "@/lib/parent-account.functions";
+import { claimParentRole, registerParent } from "@/lib/parent-account.functions";
 import { registerParentSchema } from "@/lib/parent-account-shared";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -136,7 +136,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { data: { full_name: fullName }, emailRedirectTo: `${window.location.origin}/auth` },
+          options: { data: { full_name: fullName, phone, signup_role: "parent" }, emailRedirectTo: `${window.location.origin}/auth` },
         });
         if (error) {
           toast.error(error.message);
@@ -150,7 +150,7 @@ function AuthPage() {
         }
         await registerParent({ data: parsed.data });
         toast.success("Account ready.");
-        await goHome(signedIn.data.user.id);
+        await goHome(signedIn.data.user);
         return;
       }
 
@@ -159,7 +159,7 @@ function AuthPage() {
         toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
         return;
       }
-      if (data.user) await goHome(data.user.id);
+      if (data.user) await goHome(data.user);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Could not complete sign-in.");
     } finally {
@@ -183,7 +183,7 @@ function AuthPage() {
       toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
       return;
     }
-    if (data.user) await goHome(data.user.id);
+    if (data.user) await goHome(data.user);
   };
 
   const onStudentSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -205,7 +205,7 @@ function AuthPage() {
       toast.error("That handle and PIN don't match. Check with your educator if you forgot them.");
       return;
     }
-    if (data.user) await goHome(data.user.id);
+    if (data.user) await goHome(data.user);
   };
 
   return (
