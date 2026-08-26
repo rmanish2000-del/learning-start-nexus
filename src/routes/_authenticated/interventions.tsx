@@ -190,6 +190,95 @@ function InterventionsPage() {
         </p>
       </div>
 
+      {/* UX-04 · Prioritised intervention queue */}
+      <Card data-testid="intervention-queue">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Clock className="h-4 w-4 text-primary" /> Priority queue
+            <Badge variant={workQueue && workQueue.needAction > 0 ? "destructive" : "secondary"}>
+              {workQueue?.needAction ?? 0} need action today
+            </Badge>
+          </CardTitle>
+          <CardDescription>{URGENCY_RULE_TEXT}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {queuePending && <Skeleton className="h-32 w-full" />}
+          {!queuePending &&
+            (workQueue?.rows ?? []).map((row, index) => (
+              <div
+                key={row.interventionId}
+                className="flex flex-wrap items-start gap-3 rounded-lg border p-3"
+              >
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold tabular-nums">
+                  {index + 1}
+                </span>
+                <div className="min-w-0 flex-1 space-y-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Link
+                      to="/learners/$learnerId"
+                      params={{ learnerId: row.learnerId }}
+                      className="text-sm font-medium hover:underline"
+                    >
+                      {row.learnerName}
+                    </Link>
+                    {statusBadge(row.status)}
+                    {row.severity ? severityBadge(row.severity) : null}
+                    {row.needsActionToday && <Badge variant="destructive">Stalled</Badge>}
+                  </div>
+                  <p className="text-sm text-muted-foreground">{row.title}</p>
+                  <p className="text-xs text-muted-foreground tabular-nums">
+                    {row.subtopic ?? "—"}
+                    {row.subject ? ` · ${row.subject}` : ""} · {row.daysInPhase}d in phase · mastery{" "}
+                    {row.mastery}% · urgency {row.urgency}
+                  </p>
+                </div>
+                <div className="flex shrink-0 gap-2">
+                  {row.status === "planned" && (
+                    <Button
+                      size="sm"
+                      onClick={() =>
+                        transitionMutation.mutate({
+                          interventionId: row.interventionId,
+                          status: "in_progress",
+                        })
+                      }
+                      disabled={transitionMutation.isPending}
+                    >
+                      <Play className="h-3.5 w-3.5" /> Start
+                    </Button>
+                  )}
+                  {row.status === "in_progress" && (
+                    <Button
+                      size="sm"
+                      onClick={() =>
+                        transitionMutation.mutate({
+                          interventionId: row.interventionId,
+                          status: "completed",
+                        })
+                      }
+                      disabled={transitionMutation.isPending}
+                    >
+                      <CircleCheck className="h-3.5 w-3.5" /> Complete
+                    </Button>
+                  )}
+                  <Button size="sm" variant="outline" asChild>
+                    <Link to="/learners/$learnerId" params={{ learnerId: row.learnerId }}>
+                      Log
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          {!queuePending && (workQueue?.rows.length ?? 0) === 0 && (
+            <p className="py-6 text-center text-sm text-muted-foreground">
+              Queue is clear — no planned or in-progress interventions.
+            </p>
+          )}
+        </CardContent>
+      </Card>
+
+
+
       {/* Recommendation queue */}
       <Card>
         <CardHeader>
