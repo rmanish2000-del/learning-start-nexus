@@ -1646,6 +1646,48 @@ export type Database = {
           },
         ]
       }
+      pilot_leads: {
+        Row: {
+          boards_grades: string | null
+          centre_name: string
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          learner_count: string | null
+          notes: string | null
+          phone: string | null
+          status: string
+          timeline: string | null
+        }
+        Insert: {
+          boards_grades?: string | null
+          centre_name: string
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          learner_count?: string | null
+          notes?: string | null
+          phone?: string | null
+          status?: string
+          timeline?: string | null
+        }
+        Update: {
+          boards_grades?: string | null
+          centre_name?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          learner_count?: string | null
+          notes?: string | null
+          phone?: string | null
+          status?: string
+          timeline?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

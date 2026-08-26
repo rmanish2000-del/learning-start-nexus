@@ -38,6 +38,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
+import { QueryError } from "@/components/query-error";
 import {
   Table,
   TableBody,
@@ -379,9 +380,76 @@ function AdminPage() {
       </Card>
 
       <ParentAccessCard />
+
+      <PilotLeadsCard />
     </div>
   );
 }
+
+// Pilot applications submitted from the public landing page. Reads are
+// admin-only at the database level.
+function PilotLeadsCard() {
+  const { data, isPending, isError, error, refetch } = useQuery({
+    queryKey: ["pilot-leads-admin"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("pilot_leads")
+        .select("id, centre_name, contact_name, email, phone, learner_count, boards_grades, timeline, notes, status, created_at")
+        .order("created_at", { ascending: false })
+        .limit(50);
+      if (error) throw new Error(error.message);
+      return data;
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Pilot applications</CardTitle>
+        <CardDescription>Submissions from the public landing page.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        {isPending ? (
+          <p className="text-sm text-muted-foreground">Loading…</p>
+        ) : isError ? (
+          <QueryError
+            title="Couldn't load pilot applications"
+            error={error as Error}
+            onRetry={() => void refetch()}
+          />
+        ) : !data || data.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No applications yet.</p>
+        ) : (
+          <div className="space-y-3">
+            {data.map((lead) => (
+              <div key={lead.id} className="rounded-lg border p-4 text-sm">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-medium">{lead.centre_name}</span>
+                  <span className="text-muted-foreground">· {lead.contact_name}</span>
+                  <span className="ml-auto text-xs text-muted-foreground">
+                    {new Date(lead.created_at).toLocaleDateString()}
+                  </span>
+                </div>
+                <p className="mt-1 text-muted-foreground">
+                  {lead.email}
+                  {lead.phone ? ` · ${lead.phone}` : ""}
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {[lead.learner_count, lead.boards_grades, lead.timeline]
+                    .filter(Boolean)
+                    .join(" · ") || "No scope details provided"}
+                </p>
+                {lead.notes ? <p className="mt-2">{lead.notes}</p> : null}
+              </div>
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+
 
 function ParentAccessCard() {
   const queryClient = useQueryClient();
