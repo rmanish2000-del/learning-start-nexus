@@ -8,7 +8,11 @@ import type { Database } from "@/integrations/supabase/types";
 import { KIND_LABELS, type QuestionKind } from "./question-bank-shared";
 import {
   CBSE_KINDS,
+  DROPOUT_IDLE_DAYS,
+  bandScores,
+  meanScore,
   summariseTutorEvidence,
+  type CohortMetrics,
   type CbseCoverageRow,
   type TutorEvidenceTotals,
   type TutorGapEvidence,
@@ -210,4 +214,64 @@ export async function recordQuestionVerification(
     note: input.note?.trim() || null,
   });
   if (error) throw new Error(error.message);
+}
+
+// ---------------------------------------------------------------------------
+// Cohort metrics — participation and score distributions for the pilot
+// ---------------------------------------------------------------------------
+
+export async function fetchCohortMetrics(supabase: Client): Promise<CohortMetrics> {
+  const [{ data: learners }, { data: sessions }, { data: outcomes }] = await Promise.all([
+    supabase.from("learners").select("id"),
+    supabase
+      .from("assessment_sessions")
+      .select("id, learner_id, status, score_pct, due, started_at, last_activity_at, submitted_at"),
+    supabase.from("learner_outcomes").select("baseline_score, post_score"),
+  ]);
+
+  const rows = sessions ?? [];
+  const assigned = rows.length;
+  const submitted = rows.filter((r) => r.status === "submitted").length;
+  const inProgress = rows.filter((r) => r.status === "in_progress").length;
+
+  const now = Date.now();
+  const idleMs = DROPOUT_IDLE_DAYS * 24 * 60 * 60 * 1000;
+  const droppedOut = rows.filter((r) => {
+    if (r.status === "submitted") return false;
+    const last = r.last_activity_at ?? r.started_at;
+    if (last) return now - new Date(last).getTime() > idleMs;
+    if (r.due) return now > new Date(r.due).getTime() + idleMs;
+    return false;
+  }).length;
+
+  const learnerIds = new Set((learners ?? []).map((l) => l.id));
+  const assignedLearners = new Set(rows.map((r) => r.learner_id));
+  const completedLearners = new Set(
+    rows.filter((r) => r.status === "submitted").map((r) => r.learner_id),
+  );
+
+  const baselineScores = (outcomes ?? [])
+    .map((o) => o.baseline_score)
+    .filter((s): s is number => typeof s === "number");
+  const postScores = (outcomes ?? [])
+    .map((o) => o.post_score)
+    .filter((s): s is number => typeof s === "number");
+
+  const baselineMean = meanScore(baselineScores);
+  const postMean = meanScore(postScores);
+
+  return {
+    cohortSize: learnerIds.size,
+    learnersAssigned: assignedLearners.size,
+    learnersCompleted: completedLearners.size,
+    assigned,
+    submitted,
+    inProgress,
+    droppedOut,
+    completionRatePct: assigned === 0 ? 0 : Math.round((submitted / assigned) * 100),
+    dropoutRatePct: assigned === 0 ? 0 : Math.round((droppedOut / assigned) * 100),
+    baseline: { scores: baselineScores, bands: bandScores(baselineScores), mean: baselineMean },
+    reassessment: { scores: postScores, bands: bandScores(postScores), mean: postMean },
+    meanLift: baselineMean !== null && postMean !== null ? postMean - baselineMean : null,
+  };
 }
