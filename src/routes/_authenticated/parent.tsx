@@ -30,6 +30,7 @@ import {
   type OnboardingStep,
 } from "@/lib/onboarding";
 import { ContextHelp } from "@/components/context-help";
+import { QueryError } from "@/components/query-error";
 import { EmptyState } from "@/components/empty-state";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
 import { OnboardingChecklist } from "@/components/onboarding-checklist";
@@ -194,7 +195,13 @@ function ParentPortal() {
           />
         </div>
 
-        {linksQuery.isLoading ? (
+        {linksQuery.isError ? (
+          <QueryError
+            title="We couldn't load your children"
+            error={linksQuery.error}
+            onRetry={() => void linksQuery.refetch()}
+          />
+        ) : linksQuery.isLoading ? (
           <Skeleton className="h-40 w-full" />
         ) : learners.length === 0 ? (
           <EmptyState

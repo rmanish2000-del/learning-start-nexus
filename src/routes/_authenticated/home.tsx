@@ -90,7 +90,13 @@ function StudentHomePage() {
     onError: (error) => toast.error(error.message),
   });
 
-  const { data: learner, isPending: learnerPending } = useQuery({
+  const {
+    data: learner,
+    isPending: learnerPending,
+    isError: learnerIsError,
+    error: learnerError,
+    refetch: refetchLearner,
+  } = useQuery({
     queryKey: ["my-learner", user.id],
     queryFn: async () => {
       const { data, error } = await supabase
