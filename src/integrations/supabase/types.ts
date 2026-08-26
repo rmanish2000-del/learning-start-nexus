@@ -324,12 +324,14 @@ export type Database = {
       }
       assessments: {
         Row: {
+          archived_at: string | null
           book_id: string | null
           created_at: string
           created_by: string | null
           description: string | null
           grade: number
           id: string
+          is_demo: boolean
           kind: string
           org_id: string
           status: string
@@ -341,12 +343,14 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          archived_at?: string | null
           book_id?: string | null
           created_at?: string
           created_by?: string | null
           description?: string | null
           grade?: number
           id?: string
+          is_demo?: boolean
           kind?: string
           org_id: string
           status?: string
@@ -358,12 +362,14 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          archived_at?: string | null
           book_id?: string | null
           created_at?: string
           created_by?: string | null
           description?: string | null
           grade?: number
           id?: string
+          is_demo?: boolean
           kind?: string
           org_id?: string
           status?: string
@@ -445,12 +451,14 @@ export type Database = {
       }
       books: {
         Row: {
+          archived_at: string | null
           board: string | null
           created_at: string
           file_names: string[]
           file_size_bytes: number
           grade: number
           id: string
+          is_demo: boolean
           mime_types: string[]
           org_id: string
           processed_at: string | null
@@ -462,12 +470,14 @@ export type Database = {
           uploaded_by: string
         }
         Insert: {
+          archived_at?: string | null
           board?: string | null
           created_at?: string
           file_names?: string[]
           file_size_bytes?: number
           grade: number
           id?: string
+          is_demo?: boolean
           mime_types?: string[]
           org_id: string
           processed_at?: string | null
@@ -479,12 +489,14 @@ export type Database = {
           uploaded_by: string
         }
         Update: {
+          archived_at?: string | null
           board?: string | null
           created_at?: string
           file_names?: string[]
           file_size_bytes?: number
           grade?: number
           id?: string
+          is_demo?: boolean
           mime_types?: string[]
           org_id?: string
           processed_at?: string | null
@@ -1220,6 +1232,7 @@ export type Database = {
           grade: number
           handle: string
           id: string
+          is_demo: boolean
           mastery_lift: number
           mastery_score: number
           org_id: string | null
@@ -1236,6 +1249,7 @@ export type Database = {
           grade: number
           handle: string
           id?: string
+          is_demo?: boolean
           mastery_lift?: number
           mastery_score?: number
           org_id?: string | null
@@ -1252,6 +1266,7 @@ export type Database = {
           grade?: number
           handle?: string
           id?: string
+          is_demo?: boolean
           mastery_lift?: number
           mastery_score?: number
           org_id?: string | null

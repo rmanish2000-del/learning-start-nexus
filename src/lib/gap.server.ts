@@ -30,6 +30,7 @@ export async function fetchGapBooks(supabase: Client): Promise<GapBookDto[]> {
   const { data, error } = await supabase
     .from("books")
     .select("id, title, board, grade, subject, status")
+    .neq("status", "archived")
     .order("title");
   if (error) throw new Error(error.message);
   return (data ?? []).map((b) => ({
