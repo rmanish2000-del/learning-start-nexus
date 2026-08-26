@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { ArrowDown, ClipboardCheck, RefreshCw } from "lucide-react";
 
+import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
