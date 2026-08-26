@@ -129,6 +129,24 @@ function AssignmentsPage() {
           </p>
         </div>
 
+        {learnersIsError && (
+          <QueryError
+            title="Learner roster didn't load"
+            error={learnersError}
+            onRetry={() => void refetchLearners()}
+          />
+        )}
+        {staffIsError && (
+          <QueryError
+            title="Educator list didn't load"
+            error={staffError}
+            onRetry={() => void refetchStaff()}
+            compact
+          />
+        )}
+
+
+
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
