@@ -105,14 +105,23 @@ function DashboardPage() {
     },
   });
 
-  const { data: learners, isPending } = useQuery({
+  const {
+    data: learners,
+    isPending,
+    isError: learnersIsError,
+    error: learnersError,
+    refetch: refetchLearners,
+  } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase.from("learners").select("*").order("full_name");
       if (error) throw error;
       return data;
     },
+    retry: false,
+    throwOnError: false,
   });
+
 
   const { data: evidence } = useQuery({
     queryKey: ["recent-evidence"],
