@@ -68,3 +68,11 @@ export const testPaymentSettingsFn = createServerFn({ method: "POST" })
     const { testRazorpayCredentials } = await import("./payment-credentials.server");
     return testRazorpayCredentials(context.userId);
   });
+
+export const getWebhookStatusFn = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const { getWebhookStatus } = await import("./payment-observability.server");
+    return getWebhookStatus();
+  });
