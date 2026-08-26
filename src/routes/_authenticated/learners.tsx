@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { ContextHelp } from "@/components/context-help";
 import { EmptyState } from "@/components/empty-state";
+import { QueryError } from "@/components/query-error";
 
 import { supabase } from "@/integrations/supabase/client";
 import { createLearner } from "@/lib/learners.functions";
@@ -71,7 +72,7 @@ function LearnersPage() {
   const [status, setStatus] = useState("all");
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const { data: learners, isPending } = useQuery({
+  const { data: learners, isPending, isError: rosterFailed, error: rosterError, refetch: refetchRoster } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase.from("learners").select("*").order("full_name");
@@ -237,7 +238,13 @@ function LearnersPage() {
         </div>
       </div>
 
-      {!isPending && (learners ?? []).length === 0 ? (
+      {rosterFailed ? (
+        <QueryError
+          title="Your roster couldn't be loaded."
+          error={rosterError}
+          onRetry={() => void refetchRoster()}
+        />
+      ) : !isPending && (learners ?? []).length === 0 ? (
         <EmptyState
           icon={Users}
           title="No learners yet"

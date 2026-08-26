@@ -1,8 +1,9 @@
-import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, isNotFound, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, CircleDashed, KeyRound, PlayCircle, Plus, TrendingUp } from "lucide-react";
+import { QueryError } from "@/components/query-error";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -96,8 +97,9 @@ function LearnerProfilePage() {
   const resetPinFn = useServerFn(resetLearnerPin);
   const [evidenceOpen, setEvidenceOpen] = useState(false);
 
-  const { data: learner, isPending, isError } = useQuery({
+  const { data: learner, isPending, isError, error, refetch } = useQuery({
     queryKey: ["learner", learnerId],
+    retry: (failureCount, err) => !isNotFound(err) && failureCount < 2,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("learners")
@@ -294,7 +296,20 @@ function LearnerProfilePage() {
     onError: (error) => toast.error(error.message),
   });
 
-  if (isError) throw notFound();
+  // Only a genuine missing row is "not found" — a transient fetch failure
+  // must never tell the educator the learner doesn't exist.
+  if (isError && isNotFound(error)) throw notFound();
+  if (isError) {
+    return (
+      <div className="mx-auto max-w-5xl">
+        <QueryError
+          title="This learner profile couldn't be loaded."
+          error={error}
+          onRetry={() => void refetch()}
+        />
+      </div>
+    );
+  }
 
   if (isPending || !learner) {
     return (

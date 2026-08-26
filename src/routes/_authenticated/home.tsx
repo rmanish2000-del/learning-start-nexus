@@ -18,6 +18,7 @@ import {
   type OnboardingStep,
 } from "@/lib/onboarding";
 import { ContextHelp } from "@/components/context-help";
+import { QueryError } from "@/components/query-error";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
 import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import { Button } from "@/components/ui/button";
@@ -90,7 +91,12 @@ function StudentHomePage() {
     onError: (error) => toast.error(error.message),
   });
 
-  const { data: learner, isPending: learnerPending } = useQuery({
+  const {
+    data: learner,
+    isPending: learnerPending,
+    isError: learnerFailed,
+    refetch: refetchLearner,
+  } = useQuery({
     queryKey: ["my-learner", user.id],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -104,14 +110,14 @@ function StudentHomePage() {
   });
 
   // Sprint 5A: AI tutor requires guardian consent on file.
-  const { data: consent } = useQuery({
+  const { data: consent, isError: consentFailed, refetch: refetchConsent } = useQuery({
     queryKey: ["my-consent", learner?.id],
     enabled: !!learner?.id,
     queryFn: () => fetchConsent({ data: { learnerId: learner!.id } }),
   });
   const tutorConsentMissing = consent !== undefined && !consent.hasConsent;
 
-  const { data: items } = useQuery({
+  const { data: items, isError: itemsFailed, refetch: refetchItems } = useQuery({
     queryKey: ["my-learning-items", user.id],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -124,7 +130,7 @@ function StudentHomePage() {
     },
   });
 
-  const { data: history } = useQuery({
+  const { data: history, isError: historyFailed, refetch: refetchHistory } = useQuery({
     queryKey: ["mastery-history", learner?.id],
     enabled: !!learner?.id,
     queryFn: async () => {
@@ -138,7 +144,7 @@ function StudentHomePage() {
     },
   });
 
-  const { data: planItems } = useQuery({
+  const { data: planItems, isError: planFailed, refetch: refetchPlan } = useQuery({
     queryKey: ["plan-items", learner?.id],
     enabled: !!learner?.id,
     queryFn: async () => {
@@ -154,13 +160,13 @@ function StudentHomePage() {
 
   const fetchSessions = useServerFn(getMyAssessmentSessions);
   const fetchOutcomes = useServerFn(getMyOutcomes);
-  const { data: assessmentSessions } = useQuery({
+  const { data: assessmentSessions, isError: sessionsFailed, refetch: refetchSessions } = useQuery({
     queryKey: ["my-assessment-sessions"],
     queryFn: () => fetchSessions(),
   });
 
   // Sprint 5: the student's own before/after outcome view.
-  const { data: outcomes } = useQuery({
+  const { data: outcomes, isError: outcomesFailed, refetch: refetchOutcomes } = useQuery({
     queryKey: ["my-outcomes"],
     queryFn: () => fetchOutcomes(),
   });
@@ -168,7 +174,7 @@ function StudentHomePage() {
 
   // Sprint 3: accepted interventions are the student's focus plan. Gaps and
   // recommendations stay staff-only — students never see them.
-  const { data: focusPlan } = useQuery({
+  const { data: focusPlan, isError: focusFailed, refetch: refetchFocus } = useQuery({
     queryKey: ["my-interventions", learner?.id],
     enabled: !!learner?.id,
     queryFn: async () => {
@@ -255,6 +261,28 @@ function StudentHomePage() {
     );
   }
 
+  if (learnerFailed) {
+    return (
+      <div className="mx-auto max-w-4xl space-y-6">
+        <h2 className="text-2xl font-semibold tracking-tight">Hi {firstName}</h2>
+        <QueryError
+          title="We couldn't load your learning space."
+          onRetry={() => void refetchLearner()}
+        />
+      </div>
+    );
+  }
+
+  const failedSections = [
+    { failed: consentFailed, refetch: refetchConsent },
+    { failed: itemsFailed, refetch: refetchItems },
+    { failed: historyFailed, refetch: refetchHistory },
+    { failed: planFailed, refetch: refetchPlan },
+    { failed: sessionsFailed, refetch: refetchSessions },
+    { failed: outcomesFailed, refetch: refetchOutcomes },
+    { failed: focusFailed, refetch: refetchFocus },
+  ].filter((s) => s.failed);
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -266,6 +294,13 @@ function StudentHomePage() {
         </div>
         <ContextHelp page="/home" />
       </div>
+
+      {failedSections.length > 0 && (
+        <QueryError
+          title="Some of your learning info couldn't be loaded."
+          onRetry={() => failedSections.forEach((s) => void s.refetch())}
+        />
+      )}
 
       {learner && (
         <div data-tour="student-checklist">

@@ -31,6 +31,7 @@ import {
 } from "@/lib/onboarding";
 import { ContextHelp } from "@/components/context-help";
 import { EmptyState } from "@/components/empty-state";
+import { QueryError } from "@/components/query-error";
 import { GuidedTour, type TourStep } from "@/components/guided-tour";
 import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import { Badge } from "@/components/ui/badge";
@@ -101,6 +102,8 @@ function ParentPortal() {
     queryKey: ["parent-progress", learner?.id],
     enabled: !!learner,
     queryFn: async () => {
+      // Throw on any failure so the UI shows an error card — a failed fetch
+      // must never render as "0%" / "no assessments yet".
       const [mastery, outcomes, sessions, interventions] = await Promise.all([
         supabase
           .from("mastery_history")
@@ -124,6 +127,8 @@ function ParentPortal() {
           .eq("learner_id", learner!.id)
           .order("created_at", { ascending: false }),
       ]);
+      const failed = [mastery.error, outcomes.error, sessions.error, interventions.error].find(Boolean);
+      if (failed) throw failed;
       return {
         mastery: mastery.data ?? [],
         outcomes: outcomes.data ?? [],
@@ -196,6 +201,12 @@ function ParentPortal() {
 
         {linksQuery.isLoading ? (
           <Skeleton className="h-40 w-full" />
+        ) : linksQuery.isError ? (
+          <QueryError
+            title="We couldn't load your family's information."
+            error={linksQuery.error}
+            onRetry={() => void linksQuery.refetch()}
+          />
         ) : learners.length === 0 ? (
           <EmptyState
             icon={Users}
@@ -237,6 +248,13 @@ function ParentPortal() {
                 </div>
 
                 <div ref={progressRef} data-tour="parent-progress" className="scroll-mt-20 space-y-6">
+                  {progressQuery.isError && (
+                    <QueryError
+                      title="Progress couldn't be loaded right now."
+                      error={progressQuery.error}
+                      onRetry={() => void progressQuery.refetch()}
+                    />
+                  )}
                   <div className="grid gap-4 md:grid-cols-3">
                     <Card>
                       <CardHeader className="pb-2">
