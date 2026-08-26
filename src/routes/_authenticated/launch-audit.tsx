@@ -292,7 +292,8 @@ function LaunchAuditPage() {
     },
     {
       label: "Cookie consent banner with persisted choice (essential-only storage)",
-      ok: true, // banner is mounted app-wide; state shown below
+      // Verified from the live browser: the banner writes a persisted choice.
+      ok: cookieChoicePersisted,
     },
     {
       label: "Reviewer role provisioned (reviewer@eduos.global)",
@@ -305,7 +306,7 @@ function LaunchAuditPage() {
     {
       label: "Guardian consent table live with append-only history",
       ok:
-        data.policySummary.consentPolicies.length === 2 &&
+        data.policySummary.consentPolicies.length >= 2 &&
         withConsent.length > 0,
     },
     {
@@ -326,7 +327,8 @@ function LaunchAuditPage() {
     },
     {
       label: "Install banner mounted app-wide (Android prompt + iPhone instructions, 14-day snooze)",
-      ok: true, // mounted in the root shell; live behavior verified below
+      // Verified from the live DOM rather than asserted.
+      ok: installBannerMounted,
     },
   ];
   const checklistPass = checklist.filter((c) => c.ok).length;
