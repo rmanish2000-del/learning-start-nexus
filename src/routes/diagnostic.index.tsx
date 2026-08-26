@@ -26,6 +26,8 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
 import { createStudentProfile, getParentAccount } from "@/lib/parent-account.functions";
+import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
+
 import { BOARDS, CLASSES, addStudentSchema } from "@/lib/parent-account-shared";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
 import { useSupabaseUser } from "@/lib/use-supabase-user";
@@ -125,6 +127,8 @@ function DiagnosticPurchasePage() {
   const [addingStudent, setAddingStudent] = useState(false);
 
   const activeStudentId = learnerId || (students.length === 1 ? students[0]!.id : "");
+  const detailsComplete = parentDetailsComplete(account.data?.profile);
+
 
   async function addStudent() {
     const parsed = addStudentSchema.safeParse({
@@ -171,10 +175,17 @@ function DiagnosticPurchasePage() {
       toast.error(t("diag.toast.chooseFirst", "Choose a subject and a chapter group first."));
       return;
     }
+    if (!detailsComplete) {
+      toast.error(
+        t("diag.toast.completeDetails", "Add your name and mobile number before paying."),
+      );
+      return;
+    }
     if (!activeStudentId) {
       toast.error(t("diag.toast.chooseStudent", "Add or select a student profile first."));
       return;
     }
+
     setPending(true);
     try {
       // Persist the selection before checkout opens so a dropped payment can
@@ -197,7 +208,7 @@ function DiagnosticPurchasePage() {
       size="lg"
       className="w-full sm:w-auto"
       onClick={beginCheckout}
-      disabled={pending || !unitId || !activeStudentId}
+      disabled={pending || !unitId || !activeStudentId || !detailsComplete}
     >
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
       {t("diag.cta", `Start the diagnostic — ${formatInr(PRICING.diagnosticPaise)}`, {
@@ -305,7 +316,10 @@ function DiagnosticPurchasePage() {
               ) : null}
               <Separator />
 
+              <ParentDetailsCard profile={account.data?.profile} onSaved={() => account.refetch()} />
+
               <div className="space-y-3">
+
                 <div>
                   <p className="text-sm font-medium">{t("diag.student.title", "Who is this for?")}</p>
                   <p className="text-xs text-muted-foreground">
