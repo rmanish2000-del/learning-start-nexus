@@ -27,6 +27,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { QueryError } from "@/components/query-error";
+import { ClosureHeader } from "@/components/closure-header";
+import { getMyGapQueue } from "@/lib/student-home.functions";
+import { LOOP_STAGES, stageIndex, type StudentGapCard } from "@/lib/student-home-shared";
 
 const STUDENT_TOUR: TourStep[] = [
   {
@@ -190,6 +193,18 @@ function StudentHomePage() {
     },
   });
 
+  // UX Phase 1 · UX-01/UX-02: gap-first queue + shared closure numbers.
+  const fetchGapQueue = useServerFn(getMyGapQueue);
+  const {
+    data: gapView,
+    isPending: gapViewPending,
+    error: gapViewError,
+    refetch: refetchGapView,
+  } = useQuery({
+    queryKey: ["my-gap-queue", user.id],
+    queryFn: () => fetchGapQueue(),
+  });
+
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
   const continueItem = (items ?? []).find((i) => i.status === "in_progress") ?? (items ?? []).find((i) => i.status === "not_started");
   const completed = (items ?? []).filter((i) => i.status === "completed").length;
@@ -285,6 +300,22 @@ function StudentHomePage() {
         </div>
         <ContextHelp page="/home" />
       </div>
+
+      <ClosureHeader
+        summary={gapView?.summary ?? null}
+        isPending={gapViewPending}
+        error={gapViewError}
+        onRetry={() => void refetchGapView()}
+      />
+
+      <GapFirstSection
+        gaps={gapView?.gaps ?? []}
+        isPending={gapViewPending}
+        tutorConsentMissing={tutorConsentMissing}
+        pendingSessionId={pendingSession?.id ?? null}
+        onLaunchTutor={(interventionId) => launchTutorMutation.mutate(interventionId)}
+        launching={launchTutorMutation.isPending}
+      />
 
       {learner && (
         <div data-tour="student-checklist">
@@ -569,6 +600,140 @@ function StudentHomePage() {
         </Card>
       </div>
       <GuidedTour tourId="student-home" steps={STUDENT_TOUR} />
+    </div>
+  );
+}
+
+// UX Phase 1 · UX-01 — the highest-priority action plus the ordered gap queue.
+function LoopStageStepper({ stage }: { stage: StudentGapCard["stage"] }) {
+  const current = stageIndex(stage);
+  return (
+    <div className="flex flex-wrap items-center gap-1">
+      {LOOP_STAGES.map((s, i) => (
+        <span
+          key={s}
+          className={
+            "rounded-full px-2 py-0.5 text-[10px] font-medium " +
+            (i < current
+              ? "bg-primary/10 text-primary"
+              : i === current
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground")
+          }
+        >
+          {s}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function GapFirstSection({
+  gaps,
+  isPending,
+  tutorConsentMissing,
+  pendingSessionId,
+  onLaunchTutor,
+  launching,
+}: {
+  gaps: StudentGapCard[];
+  isPending: boolean;
+  tutorConsentMissing: boolean;
+  pendingSessionId: string | null;
+  onLaunchTutor: (interventionId: string) => void;
+  launching: boolean;
+}) {
+  if (isPending) return <Skeleton className="h-40 w-full" />;
+  if (gaps.length === 0) {
+    return (
+      <Card data-testid="gap-queue-empty">
+        <CardContent className="py-8 text-center text-sm text-muted-foreground">
+          No open gaps right now. Your next diagnostic will show anything new to work on.
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const [top, ...rest] = gaps;
+  const renderAction = (gap: StudentGapCard, size: "default" | "sm") => {
+    if (gap.action === "launch-tutor" && gap.interventionId) {
+      if (tutorConsentMissing) {
+        return (
+          <Badge variant="outline" className="border-amber-500/40 text-amber-600 dark:text-amber-400">
+            Consent needed for tutor
+          </Badge>
+        );
+      }
+      return (
+        <Button size={size} disabled={launching} onClick={() => onLaunchTutor(gap.interventionId!)}>
+          <Sparkles className="h-3.5 w-3.5" />
+          {gap.actionLabel}
+        </Button>
+      );
+    }
+    if (gap.action === "resume-assessment" && pendingSessionId) {
+      return (
+        <Button asChild size={size}>
+          <Link to="/session/$sessionId" params={{ sessionId: pendingSessionId }}>
+            <Play className="h-3.5 w-3.5" />
+            {gap.actionLabel}
+          </Link>
+        </Button>
+      );
+    }
+    return (
+      <Badge variant="outline" className="whitespace-nowrap">
+        {gap.actionLabel}
+      </Badge>
+    );
+  };
+
+  return (
+    <div className="space-y-4" data-testid="gap-queue">
+      <Card className="border-primary/40 bg-primary/5" data-testid="priority-action">
+        <CardHeader className="pb-2">
+          <CardDescription className="text-xs font-medium uppercase tracking-wide text-primary">
+            Highest priority — do this now
+          </CardDescription>
+          <CardTitle className="text-lg">{top!.subtopic}</CardTitle>
+          <CardDescription>
+            {top!.subject} · {top!.topic} · mastery {top!.masteryPct}% · day {top!.daysInPhase} in{" "}
+            {top!.stage}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap items-center justify-between gap-3">
+          <LoopStageStepper stage={top!.stage} />
+          {renderAction(top!, "default")}
+        </CardContent>
+      </Card>
+
+      {rest.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Your other gaps</CardTitle>
+            <CardDescription>Ordered by urgency — most severe and longest-waiting first.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {rest.map((gap) => (
+              <div key={gap.gapId} className="rounded-lg border p-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium">{gap.subtopic}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {gap.subject} · {gap.topic} · mastery {gap.masteryPct}% · day {gap.daysInPhase} in{" "}
+                      {gap.stage}
+                    </p>
+                  </div>
+                  {renderAction(gap, "sm")}
+                </div>
+                <div className="mt-2">
+                  <LoopStageStepper stage={gap.stage} />
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

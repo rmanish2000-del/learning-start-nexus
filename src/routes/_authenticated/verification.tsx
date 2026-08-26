@@ -27,6 +27,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { probeRouteProtection } from "@/lib/verification.functions";
 import { ROLE_LABELS } from "@/lib/roles";
+import { AUDIT_CENTERS, AUDIT_DOMAINS } from "@/lib/verification-hub";
 
 export const Route = createFileRoute("/_authenticated/verification")({
   head: () => ({
@@ -163,6 +164,8 @@ function VerificationPage() {
           </p>
         </div>
       </div>
+
+      <AuditHubIndex />
 
       {/* Identity / role / org */}
       <div className="grid gap-4 md:grid-cols-2">
@@ -440,5 +443,44 @@ function VerificationPage() {
         from search indexing.
       </p>
     </div>
+  );
+}
+
+// UX Phase 1 · UX-07 — hub index of every audit centre, grouped by domain.
+export function AuditHubIndex() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">Verification hub</CardTitle>
+        <CardDescription>
+          Every audit and verification centre, indexed by domain. Existing deep links still work.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        {AUDIT_DOMAINS.map((domain) => {
+          const items = AUDIT_CENTERS.filter((c) => c.domain === domain);
+          if (items.length === 0) return null;
+          return (
+            <div key={domain} className="space-y-2">
+              <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+                {domain}
+              </p>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {items.map((c) => (
+                  <Link
+                    key={c.to}
+                    to={c.to}
+                    className="rounded-lg border p-3 transition-colors hover:bg-accent"
+                  >
+                    <p className="text-sm font-medium">{c.label}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{c.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </CardContent>
+    </Card>
   );
 }
