@@ -58,6 +58,7 @@ import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_au
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
 import { Route as AuthenticatedTutorSessionIdRouteImport } from './routes/_authenticated/tutor.$sessionId'
 import { Route as DiagnosticCheckoutOrderRefRouteImport } from './routes/diagnostic.checkout.$orderRef'
+import { Route as DiagnosticSessionTokenRouteImport } from './routes/diagnostic.session.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -334,6 +335,11 @@ const DiagnosticCheckoutOrderRefRoute =
     path: '/diagnostic/checkout/$orderRef',
     getParentRoute: () => rootRouteImport,
   } as any)
+const DiagnosticSessionTokenRoute = DiagnosticSessionTokenRouteImport.update({
+  id: '/diagnostic/session/$token',
+  path: '/diagnostic/session/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -384,6 +390,7 @@ export interface FileRoutesByFullPath {
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -434,6 +441,7 @@ export interface FileRoutesByTo {
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -486,6 +494,7 @@ export interface FileRoutesById {
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/_authenticated/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -538,6 +547,7 @@ export interface FileRouteTypes {
     | '/session/$sessionId'
     | '/tutor/$sessionId'
     | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/session/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -588,6 +598,7 @@ export interface FileRouteTypes {
     | '/session/$sessionId'
     | '/tutor/$sessionId'
     | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/session/$token'
   id:
     | '__root__'
     | '/'
@@ -639,6 +650,7 @@ export interface FileRouteTypes {
     | '/_authenticated/session/$sessionId'
     | '/_authenticated/tutor/$sessionId'
     | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/session/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -652,6 +664,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   DiagnosticIndexRoute: typeof DiagnosticIndexRoute
   DiagnosticCheckoutOrderRefRoute: typeof DiagnosticCheckoutOrderRefRoute
+  DiagnosticSessionTokenRoute: typeof DiagnosticSessionTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -999,6 +1012,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiagnosticCheckoutOrderRefRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/diagnostic/session/$token': {
+      id: '/diagnostic/session/$token'
+      path: '/diagnostic/session/$token'
+      fullPath: '/diagnostic/session/$token'
+      preLoaderRoute: typeof DiagnosticSessionTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1116,6 +1136,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   DiagnosticIndexRoute: DiagnosticIndexRoute,
   DiagnosticCheckoutOrderRefRoute: DiagnosticCheckoutOrderRefRoute,
+  DiagnosticSessionTokenRoute: DiagnosticSessionTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
