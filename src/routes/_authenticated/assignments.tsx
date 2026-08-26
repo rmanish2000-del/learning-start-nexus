@@ -4,7 +4,9 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { UserCog } from "lucide-react";
 import { toast } from "sonner";
+import { QueryError } from "@/components/query-error";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
 import {
   Card,
   CardContent,
