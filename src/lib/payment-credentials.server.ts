@@ -65,9 +65,8 @@ export function encryptSecret(plain: string): string {
 
 /** Decrypts a stored secret. Plaintext (pre-encryption) values pass through. */
 export function decryptSecret(stored: string): string {
-  const parts = stored.split(":");
-  if (parts.length !== 4 || parts[0] !== ENC_PREFIX) return stored;
-  const [, ivB64, tagB64, ctB64] = parts;
+  const [version, ivB64, tagB64, ctB64] = stored.split(":");
+  if (version !== ENC_PREFIX || !ivB64 || !tagB64 || !ctB64) return stored;
   const decipher = createDecipheriv("aes-256-gcm", encryptionKey(), Buffer.from(ivB64, "base64"));
   decipher.setAuthTag(Buffer.from(tagB64, "base64"));
   return Buffer.concat([decipher.update(Buffer.from(ctB64, "base64")), decipher.final()]).toString(

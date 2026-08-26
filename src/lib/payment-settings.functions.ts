@@ -49,8 +49,16 @@ export const clearPaymentSettingsFn = createServerFn({ method: "POST" })
     const { clearRazorpayCredentials, razorpayCredentialStatus } = await import(
       "./payment-credentials.server"
     );
-    await clearRazorpayCredentials();
+    await clearRazorpayCredentials(context.userId);
     return razorpayCredentialStatus();
+  });
+
+export const listPaymentAuditFn = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const { listCredentialAudit } = await import("./payment-credentials.server");
+    return listCredentialAudit();
   });
 
 export const testPaymentSettingsFn = createServerFn({ method: "POST" })
