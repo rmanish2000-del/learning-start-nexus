@@ -11,6 +11,7 @@ export interface ConsentRecord {
   consentDate: string;
   consentVersion: string;
   recordedAt: string;
+  action: "granted" | "withdrawn";
 }
 
 export interface ConsentStatus {
@@ -31,6 +32,7 @@ function mapConsent(row: ConsentRow): ConsentRecord {
     consentDate: row.consent_date,
     consentVersion: row.consent_version,
     recordedAt: row.created_at,
+    action: (row.action === "withdrawn" ? "withdrawn" : "granted"),
   };
 }
 
@@ -49,8 +51,10 @@ export async function getConsentStatus(
   if (error) throw error;
   const rows = data ?? [];
   const first = rows[0];
+  // Append-only history: the newest entry decides the current state, so a
+  // withdrawal row revokes consent without deleting any evidence.
   return {
-    hasConsent: rows.length > 0,
+    hasConsent: first ? first.action !== "withdrawn" : false,
     latest: first ? mapConsent(first) : null,
     totalRecords: rows.length,
   };
