@@ -10,6 +10,8 @@ import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import { createLovableAiGatewayProvider } from "./ai-gateway.server";
 import type {
+  BatchGenerationReport,
+  BatchOutcomeResult,
   OutcomeBankDto,
   QuestionBankUnitDto,
   QuestionBankWorkspace,
@@ -368,6 +370,156 @@ export async function generateQuestions(
   });
 
   return { inserted: cleaned.length, aiUsed: true, latencyMs };
+}
+
+// ---------------------------------------------------------------------------
+// Batch generation: every outcome in a book (or one unit) in a single action
+// ---------------------------------------------------------------------------
+
+export async function batchGenerateQuestions(
+  supabase: Client,
+  ctx: { orgId: string; userId: string },
+  input: {
+    bookId: string;
+    unitId?: string | null | undefined;
+    perOutcome: number;
+    style?: CbseKind | "auto" | undefined;
+    skipIfAtLeast?: number | undefined;
+  },
+): Promise<BatchGenerationReport> {
+  const startedAt = new Date();
+  const skipIfAtLeast = input.skipIfAtLeast ?? 0;
+
+  const { data: book, error: bookError } = await supabase
+    .from("books")
+    .select("id, title")
+    .eq("id", input.bookId)
+    .maybeSingle();
+  if (bookError) throw new Error(bookError.message);
+  if (!book) throw new Error("Book not found in your organization.");
+
+  const { data: units, error: unitsError } = await supabase
+    .from("curriculum_units")
+    .select("id, title, position")
+    .eq("book_id", input.bookId)
+    .order("position");
+  if (unitsError) throw new Error(unitsError.message);
+  const unitTitleById = new Map((units ?? []).map((u) => [u.id, u.title]));
+
+  let outcomeQuery = supabase
+    .from("assessment_outcomes")
+    .select("id, code, title, unit_id")
+    .eq("book_id", input.bookId)
+    .order("code");
+  if (input.unitId) outcomeQuery = outcomeQuery.eq("unit_id", input.unitId);
+  const { data: outcomes, error: outcomesError } = await outcomeQuery;
+  if (outcomesError) throw new Error(outcomesError.message);
+  if (!outcomes || outcomes.length === 0) {
+    throw new Error("No assessment outcomes found — generate the blueprint outcomes first.");
+  }
+
+  // Existing coverage, so the report can prove what the batch changed.
+  const outcomeIds = outcomes.map((o) => o.id);
+  const { data: existing, error: existingError } = await supabase
+    .from("question_bank")
+    .select("id, outcome_id")
+    .in("outcome_id", outcomeIds);
+  if (existingError) throw new Error(existingError.message);
+  const beforeByOutcome = new Map<string, number>();
+  for (const q of existing ?? []) {
+    beforeByOutcome.set(q.outcome_id, (beforeByOutcome.get(q.outcome_id) ?? 0) + 1);
+  }
+  const questionsBefore = existing?.length ?? 0;
+  const withQuestionsBefore = outcomeIds.filter((id) => (beforeByOutcome.get(id) ?? 0) > 0).length;
+
+  const results: BatchOutcomeResult[] = [];
+  for (const outcome of outcomes) {
+    const before = beforeByOutcome.get(outcome.id) ?? 0;
+    const base = {
+      outcomeId: outcome.id,
+      code: outcome.code,
+      title: outcome.title,
+      unitTitle: unitTitleById.get(outcome.unit_id) ?? "—",
+      before,
+      requested: input.perOutcome,
+    };
+    if (skipIfAtLeast > 0 && before >= skipIfAtLeast) {
+      results.push({ ...base, requested: 0, inserted: 0, status: "skipped", error: null, latencyMs: null });
+      continue;
+    }
+    try {
+      // Sequential on purpose: the gateway rate-limits per workspace, and a
+      // partial failure must not take the whole batch down.
+      const r = await generateQuestions(supabase, ctx, {
+        outcomeId: outcome.id,
+        count: input.perOutcome,
+        style: input.style,
+      });
+      results.push({
+        ...base,
+        inserted: r.inserted,
+        status: "generated",
+        error: null,
+        latencyMs: r.latencyMs,
+      });
+    } catch (error) {
+      results.push({
+        ...base,
+        inserted: 0,
+        status: "failed",
+        error: error instanceof Error ? error.message : "Unknown generation error",
+        latencyMs: null,
+      });
+    }
+  }
+
+  const inserted = results.reduce((sum, r) => sum + r.inserted, 0);
+  const questionsAfter = questionsBefore + inserted;
+  const withQuestionsAfter = results.filter((r) => r.before + r.inserted > 0).length;
+  const finishedAt = new Date();
+  const total = outcomes.length;
+  const pct = (n: number) => (total === 0 ? 0 : Math.round((n / total) * 100));
+
+  const report: BatchGenerationReport = {
+    bookTitle: book.title,
+    unitTitle: input.unitId ? (unitTitleById.get(input.unitId) ?? null) : null,
+    startedAt: startedAt.toISOString(),
+    finishedAt: finishedAt.toISOString(),
+    durationMs: finishedAt.getTime() - startedAt.getTime(),
+    totals: {
+      outcomes: total,
+      generated: results.filter((r) => r.status === "generated").length,
+      skipped: results.filter((r) => r.status === "skipped").length,
+      failed: results.filter((r) => r.status === "failed").length,
+      questionsInserted: inserted,
+    },
+    coverage: {
+      outcomesWithQuestionsBefore: withQuestionsBefore,
+      outcomesWithQuestionsAfter: withQuestionsAfter,
+      coveragePctBefore: pct(withQuestionsBefore),
+      coveragePctAfter: pct(withQuestionsAfter),
+      questionsBefore,
+      questionsAfter,
+    },
+    results,
+  };
+
+  await supabase.from("book_events").insert({
+    org_id: ctx.orgId,
+    book_id: book.id,
+    actor_id: ctx.userId,
+    event: "questions_batch_generated",
+    detail: {
+      unitId: input.unitId ?? null,
+      perOutcome: input.perOutcome,
+      style: input.style ?? "auto",
+      totals: report.totals,
+      coverage: report.coverage,
+      failures: results.filter((r) => r.status === "failed").map((r) => ({ code: r.code, error: r.error })),
+    },
+  });
+
+  return report;
 }
 
 // ---------------------------------------------------------------------------

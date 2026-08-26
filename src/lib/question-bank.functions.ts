@@ -8,6 +8,7 @@ import { requireAnyRole } from "./admin.server";
 import { getMyOrgId } from "./assessments.server";
 import {
   bankBookSchema,
+  batchGenerateSchema,
   createQuestionSchema,
   generateQuestionsSchema,
   questionIdSchema,
@@ -15,6 +16,7 @@ import {
   updateQuestionSchema,
 } from "./question-bank-shared";
 import {
+  batchGenerateQuestions,
   createQuestion,
   deleteQuestion,
   fetchQuestionBankWorkspace,
@@ -41,6 +43,15 @@ export const generateQuestionsFn = createServerFn({ method: "POST" })
     await requireAnyRole(context.supabase, context.userId, [...STAFF]);
     const orgId = await getMyOrgId(context.supabase, context.userId);
     return generateQuestions(context.supabase, { orgId, userId: context.userId }, data);
+  });
+
+export const batchGenerateQuestionsFn = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => batchGenerateSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, [...STAFF]);
+    const orgId = await getMyOrgId(context.supabase, context.userId);
+    return batchGenerateQuestions(context.supabase, { orgId, userId: context.userId }, data);
   });
 
 export const createQuestionFn = createServerFn({ method: "POST" })
