@@ -73,14 +73,23 @@ function LearnersPage() {
   const [status, setStatus] = useState("all");
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const { data: learners, isPending } = useQuery({
+  const {
+    data: learners,
+    isPending,
+    isError: learnersIsError,
+    error: learnersError,
+    refetch: refetchLearners,
+  } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
       const { data, error } = await supabase.from("learners").select("*").order("full_name");
       if (error) throw error;
       return data;
     },
+    retry: false,
+    throwOnError: false,
   });
+
 
   const { data: profiles } = useQuery({
     queryKey: ["profiles"],
