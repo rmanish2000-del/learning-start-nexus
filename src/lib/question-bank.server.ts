@@ -169,7 +169,7 @@ const generatedQuestionSchema = z.object({
   difficulty: z.number().int().min(1).max(5),
   prompt: z.string().min(5).max(500),
   options: z.array(z.string().min(1).max(200)).max(8).nullable(),
-  correct_answer: z.string().min(1).max(300),
+  correct_answer: z.string().min(1).max(600),
   explanation: z.string().min(5).max(800),
 });
 
@@ -217,6 +217,22 @@ async function callQuestionAi(
   }
 }
 
+
+// Zod dumps its raw issue JSON into `message`; turn that into one readable
+// sentence so batch reports stay legible.
+function describeGenerationError(error: unknown): string {
+  if (error instanceof z.ZodError) {
+    const issue = error.issues[0];
+    return issue
+      ? `the AI returned an invalid question (${issue.path.join(".") || "response"}: ${issue.message})`
+      : "the AI returned an invalid question";
+  }
+  const message = error instanceof Error ? error.message : "unknown AI error";
+  if (message.trimStart().startsWith("[") || message.trimStart().startsWith("{")) {
+    return "the AI returned a question that failed validation";
+  }
+  return message;
+}
 
 export async function generateQuestions(
   supabase: Client,
@@ -313,9 +329,7 @@ export async function generateQuestions(
   } catch (error) {
     // Surface the gateway failure verbatim — never silently fall back to
     // made-up questions.
-    throw new Error(
-      `Question generation failed: ${error instanceof Error ? error.message : "unknown AI error"}`,
-    );
+    throw new Error(`Question generation failed: ${describeGenerationError(error)}`);
   }
 
   // Validate + normalize before insert. MCQ answer keys must match an option.
