@@ -122,6 +122,7 @@ export const GENERATION_CONTRACT: string[] = [
   "Output per question: kind, difficulty (1–5), prompt, options (MCQ only), answer key, explanation",
   "Every generated question lands as a DRAFT with source = ai — staff review and approve before use",
   "No assessments are assembled automatically in this sprint",
+  "Competency types must clear the quality gate: original scenarios, causal Assertion\u2013Reason pairs, 3+ data points with units, and novel transfer contexts \u2014 weak sets are auto-regenerated once, never stored",
 ];
 
 // ---------------------------------------------------------------------------
