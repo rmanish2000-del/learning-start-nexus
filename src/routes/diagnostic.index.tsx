@@ -28,7 +28,7 @@ import { PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 
 const TITLE = "Class 10 Diagnostic — ₹199 | EduOS";
 const DESCRIPTION =
-  "A 20-question CBSE Class 10 diagnostic mapped to every learning outcome in the chapter group. See exactly where your child is losing marks, with the report in the same session.";
+  "A CBSE Class 10 diagnostic of up to 20 questions, mapped to every learning outcome in the chapter group. See exactly where your child is losing marks, with the report in the same session.";
 
 export const Route = createFileRoute("/diagnostic/")({
   head: () => ({
@@ -72,7 +72,7 @@ const WHAT_YOU_GET = [
 const FAQS = [
   {
     q: "How long does it take?",
-    a: "About 20 minutes. Twenty questions, one per screen, and progress is saved after every answer so it can be paused and resumed on the same link.",
+    a: "About 20 minutes. Up to twenty questions, one per screen, and progress is saved after every answer so it can be paused and resumed on the same link.",
   },
   {
     q: "Who needs to supervise it?",
@@ -155,7 +155,8 @@ function DiagnosticPurchasePage() {
           Find out exactly where your child is losing marks.
         </h1>
         <p className="text-base text-muted-foreground">
-          A 20-question curriculum diagnostic, mapped to every CBSE learning outcome in the chapter group you pick.
+          A curriculum diagnostic of up to 20 questions, mapped to the CBSE learning outcomes in the chapter group you
+          pick.
           You get the outcome-level report in the same session.
         </p>
       </section>

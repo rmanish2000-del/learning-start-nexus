@@ -24,9 +24,11 @@ export function formatInr(paise: number): string {
   return `₹${rupees.toLocaleString("en-IN", { maximumFractionDigits: rupees % 1 === 0 ? 0 : 2 })}`;
 }
 
-// Board-exam marks a Class 10 paper carries, used to express an outcome's
-// blueprint weight as "marks at risk". Stated on the report as an estimate.
-export const BOARD_PAPER_MARKS = 80;
+// Marks a single chapter group typically carries in the board paper. Blueprint
+// weights sum to 100 *within* a chapter group, so this is the right
+// denominator — expressing them against the whole 80-mark paper would
+// overstate every gap. Always presented as an estimate.
+export const CHAPTER_GROUP_MARKS = 20;
 
 export const DIAGNOSTIC_QUESTION_TARGET = 20;
 export const DIAGNOSTIC_QUESTION_MINIMUM = 5;
@@ -163,7 +165,7 @@ export function buildDiagnosticReport(items: GradedItem[]): DiagnosticReport {
       severity: severityFor(o.pct),
       questionsMissed: o.total - o.correct,
       questionsTotal: o.total,
-      marksAtRisk: Math.max(1, Math.round((o.weight / 100) * BOARD_PAPER_MARKS)),
+      marksAtRisk: Math.max(1, Math.round((o.weight / 100) * CHAPTER_GROUP_MARKS)),
       intervention: strategyByOutcome.get(o.outcomeId) ?? "Targeted re-teach followed by a fresh-item re-check.",
       priorityScore: o.weight * (100 - o.pct),
     }))

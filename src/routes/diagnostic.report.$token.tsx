@@ -16,6 +16,7 @@ import { fetchDiagnosticReport } from "@/lib/parent-diagnostic.functions";
 import {
   BAND_LABELS,
   BAND_ORDER,
+  CHAPTER_GROUP_MARKS,
   closureProjection,
   formatInr,
   upgradeTrigger,
@@ -154,8 +155,9 @@ function DiagnosticReportPage() {
         ) : (
           <>
             <p className="text-sm text-muted-foreground">
-              Ranked by board weight × severity. Roughly {report.marksAtRiskTotal} marks of an 80-mark paper sit behind
-              these outcomes — an estimate from blueprint weights, not a prediction.
+              Ranked by board weight × severity. Roughly {report.marksAtRiskTotal} of the ~{CHAPTER_GROUP_MARKS} marks
+              this chapter group typically carries sit behind these outcomes — an estimate from blueprint weights, not a
+              prediction.
             </p>
             <div className="space-y-3">
               {report.gaps.map((gap, i) => (
@@ -179,7 +181,7 @@ function DiagnosticReportPage() {
                     <Progress value={gap.pct} />
                     <div className="rounded-md border bg-muted/40 p-3">
                       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                        Recommended intervention
+                        Where to start
                       </p>
                       <p className="mt-1">{gap.intervention}</p>
                     </div>
