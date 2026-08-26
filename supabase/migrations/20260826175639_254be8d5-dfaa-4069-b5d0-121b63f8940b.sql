@@ -1,0 +1,1 @@
+DROP TRIGGER IF EXISTS touch_payment_credential_audit ON public.payment_credential_audit;
