@@ -1691,10 +1691,17 @@ export type Database = {
           options: Json | null
           org_id: string
           outcome_id: string
+          parent_question_id: string | null
+          part_order: number | null
           prompt: string
           source: string
           status: string
+          stimulus: string | null
           updated_at: string
+          verification_note: string | null
+          verification_state: string
+          verified_at: string | null
+          verified_by: string | null
         }
         Insert: {
           book_id: string
@@ -1708,10 +1715,17 @@ export type Database = {
           options?: Json | null
           org_id: string
           outcome_id: string
+          parent_question_id?: string | null
+          part_order?: number | null
           prompt: string
           source?: string
           status?: string
+          stimulus?: string | null
           updated_at?: string
+          verification_note?: string | null
+          verification_state?: string
+          verified_at?: string | null
+          verified_by?: string | null
         }
         Update: {
           book_id?: string
@@ -1725,10 +1739,17 @@ export type Database = {
           options?: Json | null
           org_id?: string
           outcome_id?: string
+          parent_question_id?: string | null
+          part_order?: number | null
           prompt?: string
           source?: string
           status?: string
+          stimulus?: string | null
           updated_at?: string
+          verification_note?: string | null
+          verification_state?: string
+          verified_at?: string | null
+          verified_by?: string | null
         }
         Relationships: [
           {
@@ -1750,6 +1771,58 @@ export type Database = {
             columns: ["outcome_id"]
             isOneToOne: false
             referencedRelation: "assessment_outcomes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_bank_parent_question_id_fkey"
+            columns: ["parent_question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_verifications: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          note: string | null
+          org_id: string
+          question_id: string
+          reviewer_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          org_id: string
+          question_id: string
+          reviewer_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          org_id?: string
+          question_id?: string
+          reviewer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_verifications_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_verifications_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
             referencedColumns: ["id"]
           },
         ]
@@ -1890,6 +1963,8 @@ export type Database = {
           concept: string
           concepts_accessed: string[]
           created_at: string
+          ended_at: string | null
+          gap_id: string | null
           id: string
           interaction_count: number
           intervention_id: string | null
@@ -1908,6 +1983,8 @@ export type Database = {
           concept: string
           concepts_accessed?: string[]
           created_at?: string
+          ended_at?: string | null
+          gap_id?: string | null
           id?: string
           interaction_count?: number
           intervention_id?: string | null
@@ -1926,6 +2003,8 @@ export type Database = {
           concept?: string
           concepts_accessed?: string[]
           created_at?: string
+          ended_at?: string | null
+          gap_id?: string | null
           id?: string
           interaction_count?: number
           intervention_id?: string | null
@@ -1941,6 +2020,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "tutor_sessions_gap_id_fkey"
+            columns: ["gap_id"]
+            isOneToOne: false
+            referencedRelation: "learning_gaps"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "tutor_sessions_intervention_id_fkey"
             columns: ["intervention_id"]
@@ -1997,7 +2083,19 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      tutor_evidence_by_gap: {
+        Args: never
+        Returns: {
+          first_at: string
+          gap_id: string
+          interactions: number
+          last_at: string
+          learner_id: string
+          sessions: number
+          substantive_interactions: number
+          tutor_minutes: number
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "educator" | "student" | "reviewer" | "parent"
