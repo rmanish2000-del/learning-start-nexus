@@ -84,7 +84,6 @@ async function isoCount(
   supabase: Client,
   table: (typeof GAP_AUDIT_TABLES)[number],
   label: string,
-  pilotOrg: boolean,
   callerOrgId: string | null,
   note: string,
 ): Promise<GapCount> {
@@ -98,17 +97,36 @@ async function isoCount(
   // The expectation is derived live from the service-role view of the caller's
   // own organization — never a hardcoded count, so seeding, generation and
   // cleanup runs cannot make the probe drift out of date.
-  const hasOrgColumn = table !== "assessment_question_map";
-  const { count: orgCount } =
-    callerOrgId && hasOrgColumn
-      ? await (supabaseAdmin.from(table) as unknown as {
+  let orgCount: number | null = null;
+  if (callerOrgId) {
+    if (table === "assessment_question_map") {
+      const { data: orgAssessments } = await supabaseAdmin
+        .from("assessments")
+        .select("id")
+        .eq("org_id", callerOrgId);
+      const ids = (orgAssessments ?? []).map((a) => a.id);
+      if (ids.length) {
+        const { count } = await supabaseAdmin
+          .from("assessment_question_map")
+          .select("assessment_id", { count: "exact", head: true })
+          .in("assessment_id", ids);
+        orgCount = count ?? 0;
+      } else {
+        orgCount = 0;
+      }
+    } else {
+      const { count } = await (
+        supabaseAdmin.from(table) as unknown as {
           select: (c: string, o: { count: "exact"; head: boolean }) => {
             eq: (col: string, val: string) => PromiseLike<{ count: number | null }>;
           };
-        })
-          .select("*", { count: "exact", head: true })
-          .eq("org_id", callerOrgId)
-      : { count: null as number | null };
+        }
+      )
+        .select("*", { count: "exact", head: true })
+        .eq("org_id", callerOrgId);
+      orgCount = count ?? 0;
+    }
+  }
   const visibleToYou = error ? null : (visible ?? 0);
   const globalAllOrgs = globalCount ?? 0;
   return {
@@ -116,9 +134,12 @@ async function isoCount(
     label,
     visibleToYou,
     globalAllOrgs,
-    isolated: pilotOrg
-      ? visibleToYou !== null && visibleToYou === (orgCount ?? visibleToYou) && globalAllOrgs >= visibleToYou
-      : visibleToYou === 0 && globalAllOrgs > 0,
+    // RLS is proven when the caller sees exactly their own organization's rows
+    // and nothing beyond them.
+    isolated:
+      visibleToYou !== null &&
+      globalAllOrgs >= visibleToYou &&
+      (orgCount === null ? visibleToYou === 0 && globalAllOrgs > 0 : visibleToYou === orgCount),
     note,
   };
 }
