@@ -19,15 +19,18 @@ type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "sig
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
+    // Parents are the default audience. Staff must ask for their tab
+    // explicitly with ?tab=staff.
     tab:
       search["tab"] === "parent" || search["tab"] === "student" || search["tab"] === "staff"
         ? search["tab"]
-        : "staff",
+        : "parent",
     mode: search["mode"] === "signup" ? "signup" : "signin",
     ...(typeof search["next"] === "string" && search["next"].startsWith("/")
       ? { next: search["next"] }
       : {}),
   }),
+
   head: () => ({
     meta: [
       { title: "Sign in — EduOS" },
