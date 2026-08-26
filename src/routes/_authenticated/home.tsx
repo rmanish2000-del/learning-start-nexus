@@ -27,6 +27,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { QueryError } from "@/components/query-error";
+import { ClosureHeader } from "@/components/closure-header";
+import { getMyGapQueue } from "@/lib/student-home.functions";
+import { LOOP_STAGES, stageIndex, type StudentGapCard } from "@/lib/student-home-shared";
 
 const STUDENT_TOUR: TourStep[] = [
   {
