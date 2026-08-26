@@ -366,7 +366,7 @@ function PaymentSettingsPage() {
                       ? `${webhook.lastVerified.eventType} · ${new Date(webhook.lastVerified.createdAt).toLocaleString("en-IN")}`
                       : "None yet"
                   }
-                  tone={webhook.lastVerified ? "ok" : undefined}
+                  {...(webhook.lastVerified ? { tone: "ok" as const } : {})}
                 />
                 <Field
                   label="Last rejected delivery"
@@ -375,7 +375,7 @@ function PaymentSettingsPage() {
                       ? `${webhook.lastRejected.eventType} · ${new Date(webhook.lastRejected.createdAt).toLocaleString("en-IN")}`
                       : "None"
                   }
-                  tone={webhook.lastRejected ? "bad" : undefined}
+                  {...(webhook.lastRejected ? { tone: "bad" as const } : {})}
                 />
               </dl>
 
