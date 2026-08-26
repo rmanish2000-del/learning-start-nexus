@@ -105,6 +105,9 @@ function LaunchAuditPage() {
     version: string;
   } | null>(null);
   const [pwaChecks, setPwaChecks] = useState<PwaCheck[] | null>(null);
+  // Live DOM/storage evidence instead of asserted "true" checklist rows.
+  const [installBannerMounted, setInstallBannerMounted] = useState(false);
+  const [cookieChoicePersisted, setCookieChoicePersisted] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -121,6 +124,10 @@ function LaunchAuditPage() {
       if (!cancelled) setPageChecks(results);
     })();
     setCookieState(readCookieConsent());
+    setCookieChoicePersisted(localStorage.getItem(CONSENT_KEY) !== null);
+    setInstallBannerMounted(
+      document.querySelector("[data-eduos-install-banner]") !== null,
+    );
 
     // PWA installability checks — all verifiable from this browser, live.
     void (async () => {
