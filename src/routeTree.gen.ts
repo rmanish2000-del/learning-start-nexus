@@ -52,10 +52,15 @@ import { Route as AuthenticatedSprint4AuditRouteImport } from './routes/_authent
 import { Route as AuthenticatedSprint5AuditRouteImport } from './routes/_authenticated/sprint-5-audit'
 import { Route as AuthenticatedUxPhase1PlanRouteImport } from './routes/_authenticated/ux-phase1-plan'
 import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
+import { Route as DiagnosticIndexRouteImport } from './routes/diagnostic.index'
+import { Route as UpgradeTokenRouteImport } from './routes/upgrade.$token'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
 import { Route as AuthenticatedTutorSessionIdRouteImport } from './routes/_authenticated/tutor.$sessionId'
+import { Route as DiagnosticCheckoutOrderRefRouteImport } from './routes/diagnostic.checkout.$orderRef'
+import { Route as DiagnosticReportTokenRouteImport } from './routes/diagnostic.report.$token'
+import { Route as DiagnosticSessionTokenRouteImport } from './routes/diagnostic.session.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -297,6 +302,16 @@ const AuthenticatedVerificationRoute =
     path: '/verification',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const DiagnosticIndexRoute = DiagnosticIndexRouteImport.update({
+  id: '/diagnostic/',
+  path: '/diagnostic/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpgradeTokenRoute = UpgradeTokenRouteImport.update({
+  id: '/upgrade/$token',
+  path: '/upgrade/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAssessmentAssessmentIdRoute =
   AuthenticatedAssessmentAssessmentIdRouteImport.update({
     id: '/assessment/$assessmentId',
@@ -321,6 +336,22 @@ const AuthenticatedTutorSessionIdRoute =
     path: '/tutor/$sessionId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const DiagnosticCheckoutOrderRefRoute =
+  DiagnosticCheckoutOrderRefRouteImport.update({
+    id: '/diagnostic/checkout/$orderRef',
+    path: '/diagnostic/checkout/$orderRef',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DiagnosticReportTokenRoute = DiagnosticReportTokenRouteImport.update({
+  id: '/diagnostic/report/$token',
+  path: '/diagnostic/report/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiagnosticSessionTokenRoute = DiagnosticSessionTokenRouteImport.update({
+  id: '/diagnostic/session/$token',
+  path: '/diagnostic/session/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -365,10 +396,15 @@ export interface FileRoutesByFullPath {
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
+  '/upgrade/$token': typeof UpgradeTokenRoute
+  '/diagnostic/': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
+  '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
+  '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -413,10 +449,15 @@ export interface FileRoutesByTo {
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
+  '/upgrade/$token': typeof UpgradeTokenRoute
+  '/diagnostic': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
+  '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
+  '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -463,10 +504,15 @@ export interface FileRoutesById {
   '/_authenticated/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/_authenticated/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/_authenticated/verification': typeof AuthenticatedVerificationRoute
+  '/upgrade/$token': typeof UpgradeTokenRoute
+  '/diagnostic/': typeof DiagnosticIndexRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/_authenticated/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
+  '/diagnostic/checkout/$orderRef': typeof DiagnosticCheckoutOrderRefRoute
+  '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
+  '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -513,10 +559,15 @@ export interface FileRouteTypes {
     | '/sprint-5-audit'
     | '/ux-phase1-plan'
     | '/verification'
+    | '/upgrade/$token'
+    | '/diagnostic/'
     | '/assessment/$assessmentId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
     | '/tutor/$sessionId'
+    | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/report/$token'
+    | '/diagnostic/session/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -561,10 +612,15 @@ export interface FileRouteTypes {
     | '/sprint-5-audit'
     | '/ux-phase1-plan'
     | '/verification'
+    | '/upgrade/$token'
+    | '/diagnostic'
     | '/assessment/$assessmentId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
     | '/tutor/$sessionId'
+    | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/report/$token'
+    | '/diagnostic/session/$token'
   id:
     | '__root__'
     | '/'
@@ -610,10 +666,15 @@ export interface FileRouteTypes {
     | '/_authenticated/sprint-5-audit'
     | '/_authenticated/ux-phase1-plan'
     | '/_authenticated/verification'
+    | '/upgrade/$token'
+    | '/diagnostic/'
     | '/_authenticated/assessment/$assessmentId'
     | '/_authenticated/learners/$learnerId'
     | '/_authenticated/session/$sessionId'
     | '/_authenticated/tutor/$sessionId'
+    | '/diagnostic/checkout/$orderRef'
+    | '/diagnostic/report/$token'
+    | '/diagnostic/session/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -625,6 +686,11 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  UpgradeTokenRoute: typeof UpgradeTokenRoute
+  DiagnosticIndexRoute: typeof DiagnosticIndexRoute
+  DiagnosticCheckoutOrderRefRoute: typeof DiagnosticCheckoutOrderRefRoute
+  DiagnosticReportTokenRoute: typeof DiagnosticReportTokenRoute
+  DiagnosticSessionTokenRoute: typeof DiagnosticSessionTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -930,6 +996,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVerificationRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/diagnostic/': {
+      id: '/diagnostic/'
+      path: '/diagnostic'
+      fullPath: '/diagnostic/'
+      preLoaderRoute: typeof DiagnosticIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upgrade/$token': {
+      id: '/upgrade/$token'
+      path: '/upgrade/$token'
+      fullPath: '/upgrade/$token'
+      preLoaderRoute: typeof UpgradeTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/assessment/$assessmentId': {
       id: '/_authenticated/assessment/$assessmentId'
       path: '/assessment/$assessmentId'
@@ -957,6 +1037,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/tutor/$sessionId'
       preLoaderRoute: typeof AuthenticatedTutorSessionIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/diagnostic/checkout/$orderRef': {
+      id: '/diagnostic/checkout/$orderRef'
+      path: '/diagnostic/checkout/$orderRef'
+      fullPath: '/diagnostic/checkout/$orderRef'
+      preLoaderRoute: typeof DiagnosticCheckoutOrderRefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diagnostic/report/$token': {
+      id: '/diagnostic/report/$token'
+      path: '/diagnostic/report/$token'
+      fullPath: '/diagnostic/report/$token'
+      preLoaderRoute: typeof DiagnosticReportTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diagnostic/session/$token': {
+      id: '/diagnostic/session/$token'
+      path: '/diagnostic/session/$token'
+      fullPath: '/diagnostic/session/$token'
+      preLoaderRoute: typeof DiagnosticSessionTokenRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -1073,6 +1174,11 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  UpgradeTokenRoute: UpgradeTokenRoute,
+  DiagnosticIndexRoute: DiagnosticIndexRoute,
+  DiagnosticCheckoutOrderRefRoute: DiagnosticCheckoutOrderRefRoute,
+  DiagnosticReportTokenRoute: DiagnosticReportTokenRoute,
+  DiagnosticSessionTokenRoute: DiagnosticSessionTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,303 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { useMemo, useState } from "react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  ClipboardList,
+  FileText,
+  Loader2,
+  ShieldCheck,
+  Target,
+  Wallet,
+} from "lucide-react";
+import { toast } from "sonner";
+
+import { DiagnosticShell } from "@/components/diagnostic-shell";
+import { QueryError } from "@/components/query-error";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
+import { PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
+
+const TITLE = "Class 10 Diagnostic — ₹199 | EduOS";
+const DESCRIPTION =
+  "A 20-question CBSE Class 10 diagnostic mapped to every learning outcome in the chapter group. See exactly where your child is losing marks, with the report in the same session.";
+
+export const Route = createFileRoute("/diagnostic/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "product" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: DiagnosticPurchasePage,
+});
+
+const SELECTION_KEY = "eduos.diagnostic.selection";
+
+const WHAT_YOU_GET = [
+  {
+    icon: Target,
+    title: "Outcome-level mastery bands",
+    detail: "Weak · Developing · Secure · Strong against every active outcome in the chapter group.",
+  },
+  {
+    icon: ClipboardList,
+    title: "The named gaps, ranked",
+    detail: "Ordered by board weight × severity, with the questions missed on each one.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "The recommended intervention",
+    detail: "For each gap, the exact remediation our engine maps to that outcome.",
+  },
+  {
+    icon: FileText,
+    title: "A report you can keep",
+    detail: "Permanently accessible from your link, whether or not you ever upgrade.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "How long does it take?",
+    a: "About 20 minutes. Twenty questions, one per screen, and progress is saved after every answer so it can be paused and resumed on the same link.",
+  },
+  {
+    q: "Who needs to supervise it?",
+    a: "Nobody. It is not invigilated and there is no ranking. The report is only useful if it reflects what your child can do unaided, so no help is the right amount of help.",
+  },
+  {
+    q: "Can it be done on a phone?",
+    a: "Yes. The whole flow — checkout, diagnostic, and report — is built phone-first.",
+  },
+  {
+    q: "What if my child scores badly?",
+    a: "The report is written as a diagnosis, not a verdict. It names what is already secure alongside the gaps, and every gap comes with the intervention that closes it.",
+  },
+  {
+    q: "Is the ₹199 adjusted against the plan?",
+    a: `Yes. If you upgrade to the Board Success Plan within ${PRICING.creditWindowDays} days, the ₹199 is credited against year one — you pay ${formatInr(PRICING.planPaise - PRICING.creditPaise)} instead of ${formatInr(PRICING.planPaise)}.`,
+  },
+  {
+    q: "What happens to the data?",
+    a: "It is stored against your child's learning record and used only to produce the report and the plan. You can request deletion at any time from the Contact page.",
+  },
+];
+
+function DiagnosticPurchasePage() {
+  const catalogFn = useServerFn(getDiagnosticCatalog);
+  const startFn = useServerFn(startDiagnosticOrder);
+  const navigate = useNavigate();
+
+  const query = useQuery({ queryKey: ["diagnostic-catalog"], queryFn: () => catalogFn() });
+  const catalog = query.data ?? [];
+
+  const [bookId, setBookId] = useState<string>("");
+  const [unitId, setUnitId] = useState<string>("");
+  const [pending, setPending] = useState(false);
+
+  const subject = useMemo(() => catalog.find((c) => c.bookId === bookId), [catalog, bookId]);
+  const units = subject?.units ?? [];
+  const unit = units.find((u) => u.unitId === unitId);
+
+  function selectSubject(next: string) {
+    setBookId(next);
+    setUnitId("");
+  }
+
+  async function beginCheckout() {
+    if (!bookId || !unitId) {
+      toast.error("Choose a subject and a chapter group first.");
+      return;
+    }
+    setPending(true);
+    try {
+      // Persist the selection before checkout opens so a dropped payment can
+      // be resumed with one tap.
+      try {
+        localStorage.setItem(SELECTION_KEY, JSON.stringify({ bookId, unitId }));
+      } catch {
+        /* storage unavailable — non-fatal */
+      }
+      const order = await startFn({ data: { bookId, unitId } });
+      await navigate({ to: "/diagnostic/checkout/$orderRef", params: { orderRef: order.orderRef } });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not start checkout.");
+      setPending(false);
+    }
+  }
+
+  const cta = (
+    <Button size="lg" className="w-full sm:w-auto" onClick={beginCheckout} disabled={pending || !unitId}>
+      {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+      Start the diagnostic — {formatInr(PRICING.diagnosticPaise)}
+      <ArrowRight className="ml-2 h-4 w-4" />
+    </Button>
+  );
+
+  return (
+    <DiagnosticShell footerNote="CBSE Class 10 · Mathematics & Science">
+      <section className="space-y-4">
+        <Badge variant="secondary">CBSE Class 10 · one-time {formatInr(PRICING.diagnosticPaise)}</Badge>
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          Find out exactly where your child is losing marks.
+        </h1>
+        <p className="text-base text-muted-foreground">
+          A 20-question curriculum diagnostic, mapped to every CBSE learning outcome in the chapter group you pick.
+          You get the outcome-level report in the same session.
+        </p>
+      </section>
+
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle className="text-base">Choose what to diagnose</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {query.isLoading ? (
+            <div className="space-y-3">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+          ) : query.isError ? (
+            <QueryError
+              title="Subjects could not be loaded"
+              error={query.error}
+              onRetry={() => void query.refetch()}
+            />
+          ) : catalog.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              No Class 10 subject is on sale right now. Please check back shortly.
+            </p>
+          ) : (
+            <>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <Label htmlFor="diag-subject">Board & subject</Label>
+                  <Select value={bookId} onValueChange={selectSubject}>
+                    <SelectTrigger id="diag-subject">
+                      <SelectValue placeholder="Select subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {catalog.map((c) => (
+                        <SelectItem key={c.bookId} value={c.bookId}>
+                          {c.board} Class {c.grade} · {c.subject}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="diag-unit">Chapter group</Label>
+                  <Select value={unitId} onValueChange={setUnitId} disabled={!bookId}>
+                    <SelectTrigger id="diag-unit">
+                      <SelectValue placeholder={bookId ? "Select chapter group" : "Pick a subject first"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {units.map((u) => (
+                        <SelectItem key={u.unitId} value={u.unitId}>
+                          {u.title} · {u.outcomes} outcomes
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              {unit ? (
+                <p className="text-sm text-muted-foreground">
+                  {unit.questionCount} questions drawn across {unit.outcomes} learning outcomes, allocated by board
+                  weight. Price is {formatInr(PRICING.diagnosticPaise)} whatever you choose.
+                </p>
+              ) : null}
+              {cta}
+            </>
+          )}
+        </CardContent>
+      </Card>
+
+      <section className="mt-12 space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight">What you get for {formatInr(PRICING.diagnosticPaise)}</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {WHAT_YOU_GET.map((item) => (
+            <Card key={item.title}>
+              <CardContent className="flex gap-3 pt-6">
+                <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <div className="space-y-1">
+                  <p className="text-sm font-medium">{item.title}</p>
+                  <p className="text-sm text-muted-foreground">{item.detail}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12 space-y-3">
+        <h2 className="text-xl font-semibold tracking-tight">Why this is not a quiz</h2>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          <li>
+            Every question is mapped to a named CBSE learning outcome in your child's chapter group — not to a loose
+            topic label.
+          </li>
+          <li>
+            Scoring happens on our servers against those outcomes, so the report says which outcome is weak, not just
+            which questions were wrong.
+          </li>
+          <li>
+            Reassessments later use fresh items the diagnostic never showed, so improvement cannot be faked by
+            repetition.
+          </li>
+        </ul>
+      </section>
+
+      <section className="mt-12">
+        <Card>
+          <CardContent className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-1">
+              <p className="text-2xl font-semibold tracking-tight">{formatInr(PRICING.diagnosticPaise)}</p>
+              <p className="text-sm text-muted-foreground">
+                One-time. No auto-renew, no card stored by EduOS. Full refund within 7 days if the diagnostic was never
+                submitted.
+              </p>
+            </div>
+            {cta}
+          </CardContent>
+        </Card>
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck className="h-3.5 w-3.5" /> Secure checkout
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Wallet className="h-3.5 w-3.5" /> UPI · cards · netbanking
+          </span>
+          <span>No marketing calls</span>
+          <span>Data stays in India</span>
+        </div>
+      </section>
+
+      <section className="mt-12 space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight">Questions parents ask</h2>
+        <Accordion type="single" collapsible className="w-full">
+          {FAQS.map((f, i) => (
+            <AccordionItem key={f.q} value={`faq-${i}`}>
+              <AccordionTrigger className="text-left text-sm">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+        <div className="pt-2">{cta}</div>
+      </section>
+    </DiagnosticShell>
+  );
+}
