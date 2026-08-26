@@ -25,6 +25,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
 import { PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
+import { useI18n } from "@/lib/i18n/context";
 
 const TITLE = "Class 10 Diagnostic — ₹199 | EduOS";
 const DESCRIPTION =
@@ -97,6 +98,7 @@ const FAQS = [
 ];
 
 function DiagnosticPurchasePage() {
+  const { t } = useI18n();
   const catalogFn = useServerFn(getDiagnosticCatalog);
   const startFn = useServerFn(startDiagnosticOrder);
   const navigate = useNavigate();
@@ -119,7 +121,7 @@ function DiagnosticPurchasePage() {
 
   async function beginCheckout() {
     if (!bookId || !unitId) {
-      toast.error("Choose a subject and a chapter group first.");
+      toast.error(t("diag.toast.chooseFirst", "Choose a subject and a chapter group first."));
       return;
     }
     setPending(true);
@@ -134,7 +136,7 @@ function DiagnosticPurchasePage() {
       const order = await startFn({ data: { bookId, unitId } });
       await navigate({ to: "/diagnostic/checkout/$orderRef", params: { orderRef: order.orderRef } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not start checkout.");
+      toast.error(error instanceof Error ? error.message : t("diag.toast.startFailed", "Could not start checkout."));
       setPending(false);
     }
   }
@@ -142,7 +144,9 @@ function DiagnosticPurchasePage() {
   const cta = (
     <Button size="lg" className="w-full sm:w-auto" onClick={beginCheckout} disabled={pending || !unitId}>
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-      Start the diagnostic — {formatInr(PRICING.diagnosticPaise)}
+      {t("diag.cta", `Start the diagnostic — ${formatInr(PRICING.diagnosticPaise)}`, {
+        price: formatInr(PRICING.diagnosticPaise),
+      })}
       <ArrowRight className="ml-2 h-4 w-4" />
     </Button>
   );
@@ -150,20 +154,25 @@ function DiagnosticPurchasePage() {
   return (
     <DiagnosticShell footerNote="CBSE Class 10 · Mathematics & Science">
       <section className="space-y-4">
-        <Badge variant="secondary">CBSE Class 10 · one-time {formatInr(PRICING.diagnosticPaise)}</Badge>
+        <Badge variant="secondary">
+          {t("diag.badge", `CBSE Class 10 · one-time ${formatInr(PRICING.diagnosticPaise)}`, {
+            price: formatInr(PRICING.diagnosticPaise),
+          })}
+        </Badge>
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Find out exactly where your child is losing marks.
+          {t("diag.hero.title", "Find out exactly where your child is losing marks.")}
         </h1>
         <p className="text-base text-muted-foreground">
-          A curriculum diagnostic of up to 20 questions, mapped to the CBSE learning outcomes in the chapter group you
-          pick.
-          You get the outcome-level report in the same session.
+          {t(
+            "diag.hero.lede",
+            "A curriculum diagnostic of up to 20 questions, mapped to the CBSE learning outcomes in the chapter group you pick. You get the outcome-level report in the same session.",
+          )}
         </p>
       </section>
 
       <Card className="mt-8">
         <CardHeader>
-          <CardTitle className="text-base">Choose what to diagnose</CardTitle>
+          <CardTitle className="text-base">{t("diag.choose.title", "Choose what to diagnose")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {query.isLoading ? (
@@ -173,42 +182,55 @@ function DiagnosticPurchasePage() {
             </div>
           ) : query.isError ? (
             <QueryError
-              title="Subjects could not be loaded"
+              title={t("diag.loading.error", "Subjects could not be loaded")}
               error={query.error}
               onRetry={() => void query.refetch()}
             />
           ) : catalog.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              No Class 10 subject is on sale right now. Please check back shortly.
+              {t("diag.empty", "No Class 10 subject is on sale right now. Please check back shortly.")}
             </p>
           ) : (
             <>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <Label htmlFor="diag-subject">Board & subject</Label>
+                  <Label htmlFor="diag-subject">{t("diag.field.subject", "Board & subject")}</Label>
                   <Select value={bookId} onValueChange={selectSubject}>
                     <SelectTrigger id="diag-subject">
-                      <SelectValue placeholder="Select subject" />
+                      <SelectValue placeholder={t("diag.field.subject.placeholder", "Select subject")} />
                     </SelectTrigger>
                     <SelectContent>
                       {catalog.map((c) => (
                         <SelectItem key={c.bookId} value={c.bookId}>
-                          {c.board} Class {c.grade} · {c.subject}
+                          {t("diag.subject.option", `${c.board} Class ${c.grade} · ${c.subject}`, {
+                            board: c.board,
+                            grade: c.grade,
+                            subject: c.subject,
+                          })}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="diag-unit">Chapter group</Label>
+                  <Label htmlFor="diag-unit">{t("diag.field.unit", "Chapter group")}</Label>
                   <Select value={unitId} onValueChange={setUnitId} disabled={!bookId}>
                     <SelectTrigger id="diag-unit">
-                      <SelectValue placeholder={bookId ? "Select chapter group" : "Pick a subject first"} />
+                      <SelectValue
+                        placeholder={
+                          bookId
+                            ? t("diag.field.unit.placeholder", "Select chapter group")
+                            : t("diag.field.unit.placeholderLocked", "Pick a subject first")
+                        }
+                      />
                     </SelectTrigger>
                     <SelectContent>
                       {units.map((u) => (
                         <SelectItem key={u.unitId} value={u.unitId}>
-                          {u.title} · {u.outcomes} outcomes
+                          {t("diag.unit.option", `${u.title} · ${u.outcomes} outcomes`, {
+                            title: u.title,
+                            n: u.outcomes,
+                          })}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -217,8 +239,11 @@ function DiagnosticPurchasePage() {
               </div>
               {unit ? (
                 <p className="text-sm text-muted-foreground">
-                  {unit.questionCount} questions drawn across {unit.outcomes} learning outcomes, allocated by board
-                  weight. Price is {formatInr(PRICING.diagnosticPaise)} whatever you choose.
+                  {t(
+                    "diag.unit.summary",
+                    `${unit.questionCount} questions drawn across ${unit.outcomes} learning outcomes, allocated by board weight. Price is ${formatInr(PRICING.diagnosticPaise)} whatever you choose.`,
+                    { n: unit.questionCount, outcomes: unit.outcomes, price: formatInr(PRICING.diagnosticPaise) },
+                  )}
                 </p>
               ) : null}
               {cta}
@@ -228,15 +253,19 @@ function DiagnosticPurchasePage() {
       </Card>
 
       <section className="mt-12 space-y-4">
-        <h2 className="text-xl font-semibold tracking-tight">What you get for {formatInr(PRICING.diagnosticPaise)}</h2>
+        <h2 className="text-xl font-semibold tracking-tight">
+          {t("diag.get.title", `What you get for ${formatInr(PRICING.diagnosticPaise)}`, {
+            price: formatInr(PRICING.diagnosticPaise),
+          })}
+        </h2>
         <div className="grid gap-4 sm:grid-cols-2">
-          {WHAT_YOU_GET.map((item) => (
+          {WHAT_YOU_GET.map((item, i) => (
             <Card key={item.title}>
               <CardContent className="flex gap-3 pt-6">
                 <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">{item.title}</p>
-                  <p className="text-sm text-muted-foreground">{item.detail}</p>
+                  <p className="text-sm font-medium">{t(`diag.get.${i}.title`, item.title)}</p>
+                  <p className="text-sm text-muted-foreground">{t(`diag.get.${i}.detail`, item.detail)}</p>
                 </div>
               </CardContent>
             </Card>
@@ -245,19 +274,27 @@ function DiagnosticPurchasePage() {
       </section>
 
       <section className="mt-12 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">Why this is not a quiz</h2>
+        <h2 className="text-xl font-semibold tracking-tight">
+          {t("diag.why.title", "Why this is not a quiz")}
+        </h2>
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li>
-            Every question is mapped to a named CBSE learning outcome in your child's chapter group — not to a loose
-            topic label.
+            {t(
+              "diag.why.0",
+              "Every question is mapped to a named CBSE learning outcome in your child's chapter group — not to a loose topic label.",
+            )}
           </li>
           <li>
-            Scoring happens on our servers against those outcomes, so the report says which outcome is weak, not just
-            which questions were wrong.
+            {t(
+              "diag.why.1",
+              "Scoring happens on our servers against those outcomes, so the report says which outcome is weak, not just which questions were wrong.",
+            )}
           </li>
           <li>
-            Reassessments later use fresh items the diagnostic never showed, so improvement cannot be faked by
-            repetition.
+            {t(
+              "diag.why.2",
+              "Reassessments later use fresh items the diagnostic never showed, so improvement cannot be faked by repetition.",
+            )}
           </li>
         </ul>
       </section>
@@ -268,8 +305,10 @@ function DiagnosticPurchasePage() {
             <div className="space-y-1">
               <p className="text-2xl font-semibold tracking-tight">{formatInr(PRICING.diagnosticPaise)}</p>
               <p className="text-sm text-muted-foreground">
-                One-time. No auto-renew, no card stored by EduOS. Full refund within 7 days if the diagnostic was never
-                submitted.
+                {t(
+                  "diag.price.note",
+                  "One-time. No auto-renew, no card stored by EduOS. Full refund within 7 days if the diagnostic was never submitted.",
+                )}
               </p>
             </div>
             {cta}
@@ -277,23 +316,31 @@ function DiagnosticPurchasePage() {
         </Card>
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <ShieldCheck className="h-3.5 w-3.5" /> Secure checkout
+            <ShieldCheck className="h-3.5 w-3.5" /> {t("diag.trust.secure", "Secure checkout")}
           </span>
           <span className="flex items-center gap-1.5">
-            <Wallet className="h-3.5 w-3.5" /> UPI · cards · netbanking
+            <Wallet className="h-3.5 w-3.5" /> {t("diag.trust.methods", "UPI · cards · netbanking")}
           </span>
-          <span>No marketing calls</span>
-          <span>Data stays in India</span>
+          <span>{t("diag.trust.noCalls", "No marketing calls")}</span>
+          <span>{t("diag.trust.india", "Data stays in India")}</span>
         </div>
       </section>
 
       <section className="mt-12 space-y-4">
-        <h2 className="text-xl font-semibold tracking-tight">Questions parents ask</h2>
+        <h2 className="text-xl font-semibold tracking-tight">
+          {t("diag.faq.title", "Questions parents ask")}
+        </h2>
         <Accordion type="single" collapsible className="w-full">
           {FAQS.map((f, i) => (
             <AccordionItem key={f.q} value={`faq-${i}`}>
-              <AccordionTrigger className="text-left text-sm">{f.q}</AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
+              <AccordionTrigger className="text-left text-sm">{t(`diag.faq.${i}.q`, f.q)}</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                {t(`diag.faq.${i}.a`, f.a, {
+                  days: PRICING.creditWindowDays,
+                  plan: formatInr(PRICING.planPaise),
+                  discounted: formatInr(PRICING.planPaise - PRICING.creditPaise),
+                })}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
