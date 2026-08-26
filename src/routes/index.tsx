@@ -166,24 +166,31 @@ function SiteHeader() {
           </span>
           <span className="text-base font-semibold tracking-tight">EduOS</span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav className="flex items-center gap-3 text-sm">
           <a href="#how" className="hidden text-muted-foreground hover:text-foreground lg:inline">
             {t("landing.nav.how", "How it works")}
           </a>
           <a href="#evidence" className="hidden text-muted-foreground hover:text-foreground lg:inline">
             {t("landing.nav.evidence", "Evidence")}
           </a>
-          <a href="#faq" className="hidden text-muted-foreground hover:text-foreground lg:inline">
-            {t("landing.nav.faq", "FAQ")}
+          <a href="#pilot" className="hidden text-muted-foreground hover:text-foreground lg:inline">
+            {t("landing.nav.pilot", "Apply for the pilot")}
           </a>
           <LanguageToggle />
-          <Link to="/auth" className="text-muted-foreground hover:text-foreground">
-            {t("common.signIn", "Sign in")}
+          <Link
+            to="/auth"
+            search={{ tab: "parent", mode: "signin" }}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            {t("common.signIn", "Sign In")}
           </Link>
           <Button asChild size="sm">
-            <a href="#pilot">{t("landing.nav.pilot", "Apply for the pilot")}</a>
+            <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
+              {t("common.createAccount", "Create Account")}
+            </Link>
           </Button>
         </nav>
+
       </div>
     </header>
   );
