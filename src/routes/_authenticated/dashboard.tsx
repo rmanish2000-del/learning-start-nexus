@@ -19,6 +19,9 @@ import { getOrgOutcomeSummary } from "@/lib/outcomes.functions";
 import { ClosureHeader } from "@/components/closure-header";
 import { getCentreOutcomeView, getSchoolOutcomeView } from "@/lib/outcome-dashboard.functions";
 import { summariseClosure } from "@/lib/closure-shared";
+import { GapHeatmap } from "@/components/gap-heatmap";
+import { CohortProgressCard } from "@/components/cohort-progress";
+import { getClassBoard } from "@/lib/educator-board.functions";
 
 const EDUCATOR_TOUR: TourStep[] = [
   {
@@ -208,6 +211,13 @@ function DashboardPage() {
         ? { label: "Across your centre", totals: (await fetchSchoolView()).totals }
         : { label: "Your cohort", totals: (await fetchCentreView({ data: {} })).totals },
   });
+  // UX Phase 1 · Wave 2 (UX-03 heatmap, UX-14 cohort) — one server-side aggregate.
+  const fetchClassBoard = useServerFn(getClassBoard);
+  const { data: classBoard, isPending: boardPending } = useQuery({
+    queryKey: ["class-board"],
+    queryFn: () => fetchClassBoard(),
+  });
+
   const closureSummary = closureView ? summariseClosure(closureView.label, closureView.totals) : null;
 
   return (
@@ -278,6 +288,10 @@ function DashboardPage() {
           </Card>
         ))}
       </div>
+
+      <GapHeatmap matrix={classBoard?.matrix} isPending={boardPending} />
+
+      <CohortProgressCard cohort={classBoard?.cohort} isPending={boardPending} />
 
       <Card data-tour="educator-outcomes">
         <div ref={outcomesRef} className="scroll-mt-20" />
