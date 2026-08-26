@@ -683,8 +683,10 @@ function AssessmentBlueprintPage() {
         <div className="flex flex-wrap items-center gap-2">
           <div className="w-64">
             <Select
-              value={bookId ?? undefined}
-              onValueChange={(value) => void navigate({ search: (s) => ({ ...s, book: value }) })}
+              {...(bookId ? { value: bookId } : {})}
+              onValueChange={(value) => {
+                void navigate({ search: (s) => ({ ...s, book: value }) });
+              }}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Book" />
