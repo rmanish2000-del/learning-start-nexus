@@ -17,6 +17,13 @@ import type {
   QuestionKind,
   QuestionStatus,
 } from "./question-bank-shared";
+import {
+  ASSERTION_REASON_OPTIONS,
+  CBSE_KIND_RULES,
+  isOptionKind,
+  requiresStimulus,
+  type CbseKind,
+} from "./pilot-evidence-shared";
 
 type Client = SupabaseClient<Database>;
 
@@ -40,6 +47,13 @@ function mapQuestion(row: QuestionRow): QuestionDto {
     explanation: row.explanation,
     status: row.status as QuestionStatus,
     source: row.source as "ai" | "manual",
+    stimulus: row.stimulus,
+    verificationState: (row.verification_state ?? "unverified") as
+      | "unverified"
+      | "verified"
+      | "rejected",
+    verifiedAt: row.verified_at,
+    verificationNote: row.verification_note,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
@@ -139,7 +153,17 @@ export async function fetchQuestionBankWorkspace(
 // ---------------------------------------------------------------------------
 
 const generatedQuestionSchema = z.object({
-  kind: z.enum(["mcq", "true_false", "fill_blank", "short_answer"]),
+  kind: z.enum([
+    "mcq",
+    "true_false",
+    "fill_blank",
+    "short_answer",
+    "case_study",
+    "assertion_reason",
+    "data_interpretation",
+    "applied_mcq",
+  ]),
+  stimulus: z.string().max(1500).nullable().optional(),
   difficulty: z.number().int().min(1).max(5),
   prompt: z.string().min(5).max(500),
   options: z.array(z.string().min(1).max(200)).max(8).nullable(),
@@ -209,13 +233,23 @@ export async function generateQuestions(
   }
 
   const questionTypes = asStringArray(outcome.question_types);
-  const allowedKinds = questionTypes.filter((t) =>
-    ["mcq", "true_false", "fill_blank", "short_answer"].includes(t),
-  );
-  const kindInstruction =
-    allowedKinds.length > 0
+  const baseKinds = [
+    "mcq",
+    "true_false",
+    "fill_blank",
+    "short_answer",
+    "case_study",
+    "assertion_reason",
+    "data_interpretation",
+    "applied_mcq",
+  ];
+  const allowedKinds = questionTypes.filter((t) => baseKinds.includes(t));
+  const style = input.style && input.style !== "auto" ? input.style : null;
+  const kindInstruction = style
+    ? `Every question must be of kind "${style}". ${CBSE_KIND_RULES[style]}`
+    : allowedKinds.length > 0
       ? `Use only these question kinds: ${allowedKinds.join(", ")}.`
-      : "Use only these question kinds: mcq, true_false, fill_blank, short_answer.";
+      : `Use only these question kinds: ${baseKinds.join(", ")}.`;
 
   const system = [
     `You write assessment questions for a Grade ${book.grade} ${book.subject} book ("${book.title}").`,
@@ -229,6 +263,12 @@ export async function generateQuestions(
     "- short_answer: the answer key is a model answer or an 'Any one of:' list an educator can mark against.",
     "- Every question needs an explanation: 1–2 sentences teaching why the answer key is correct.",
     "- Difficulty 1–5: 1 recall of a single fact, 5 multi-step reasoning. Spread difficulties across the set.",
+    // M7: CBSE competency-based types.
+    `- case_study: put a 2–4 sentence real-life passage in "stimulus"; the prompt asks something answerable only from that passage; 4 options, one correct.`,
+    `- assertion_reason: "stimulus" contains exactly two lines — "Assertion (A): ..." and "Reason (R): ..."; the options MUST be exactly ${JSON.stringify(ASSERTION_REASON_OPTIONS)} and the answer key must match one of them verbatim.`,
+    `- data_interpretation: "stimulus" contains a small plain-text table or list of values; the prompt requires reading or computing from that data; 4 options, one correct.`,
+    "- applied_mcq: an unfamiliar real-life situation inside the prompt; 4 options, one correct; tests application, not recall.",
+    "- stimulus must be null for mcq, true_false, fill_blank and short_answer.",
   ].join("\n");
 
   const prompt = [
@@ -257,18 +297,25 @@ export async function generateQuestions(
   // Validate + normalize before insert. MCQ answer keys must match an option.
   const cleaned = questions.map((q) => {
     const options =
-      q.kind === "mcq" || q.kind === "true_false"
-          ? q.kind === "true_false"
-            ? ["True", "False"]
-            : (q.options ?? [])
-        : null;
-    if (q.kind === "mcq") {
+      q.kind === "true_false"
+        ? ["True", "False"]
+        : q.kind === "assertion_reason"
+          ? ASSERTION_REASON_OPTIONS
+          : isOptionKind(q.kind)
+            ? (q.options ?? [])
+            : null;
+    if (isOptionKind(q.kind) && q.kind !== "true_false" && q.kind !== "assertion_reason") {
       if (!options || options.length < 2) {
-        throw new Error("AI returned an MCQ without options — please retry generation.");
+        throw new Error("AI returned a choice question without options — please retry generation.");
       }
       if (!options.some((o) => o.trim().toLowerCase() === q.correct_answer.trim().toLowerCase())) {
-        throw new Error("AI returned an MCQ whose answer key matches no option — please retry.");
+        throw new Error("AI returned a question whose answer key matches no option — please retry.");
       }
+    }
+    if (requiresStimulus(q.kind) && !q.stimulus?.trim()) {
+      throw new Error(
+        `AI returned a ${q.kind} question without a stimulus passage — please retry generation.`,
+      );
     }
     return {
       org_id: ctx.orgId,
@@ -277,6 +324,7 @@ export async function generateQuestions(
       kind: q.kind,
       difficulty: q.difficulty,
       prompt: q.prompt.trim(),
+      stimulus: requiresStimulus(q.kind) ? (q.stimulus?.trim() ?? null) : null,
       options,
       correct_answer: q.correct_answer.trim(),
       explanation: q.explanation.trim(),
@@ -326,6 +374,7 @@ export async function createQuestion(
     kind: QuestionKind;
     difficulty: number;
     prompt: string;
+    stimulus?: string | null | undefined;
     options: string[] | null;
     correctAnswer: string;
     explanation: string;
@@ -339,7 +388,12 @@ export async function createQuestion(
     kind: input.kind,
     difficulty: input.difficulty,
     prompt: input.prompt,
-    options: input.kind === "mcq" || input.kind === "true_false" ? (input.options ?? []) : null,
+    stimulus: requiresStimulus(input.kind) ? (input.stimulus?.trim() || null) : null,
+    options: isOptionKind(input.kind)
+      ? input.kind === "assertion_reason"
+        ? ASSERTION_REASON_OPTIONS
+        : (input.options ?? [])
+      : null,
     correct_answer: input.correctAnswer,
     explanation: input.explanation,
     status: "draft",
@@ -364,6 +418,7 @@ export async function updateQuestion(
     kind: QuestionKind;
     difficulty: number;
     prompt: string;
+    stimulus?: string | null | undefined;
     options: string[] | null;
     correctAnswer: string;
     explanation: string;
@@ -375,7 +430,12 @@ export async function updateQuestion(
       kind: input.kind,
       difficulty: input.difficulty,
       prompt: input.prompt,
-      options: input.kind === "mcq" || input.kind === "true_false" ? (input.options ?? []) : null,
+      stimulus: requiresStimulus(input.kind) ? (input.stimulus?.trim() || null) : null,
+      options: isOptionKind(input.kind)
+        ? input.kind === "assertion_reason"
+          ? ASSERTION_REASON_OPTIONS
+          : (input.options ?? [])
+        : null,
       correct_answer: input.correctAnswer,
       explanation: input.explanation,
     })
