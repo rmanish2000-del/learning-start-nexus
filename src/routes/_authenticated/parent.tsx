@@ -36,6 +36,7 @@ import {
 } from "@/lib/onboarding";
 import { ContextHelp } from "@/components/context-help";
 import { ClosureHeader } from "@/components/closure-header";
+import { ParentPurchases } from "@/components/parent-purchases";
 import { getParentOutcomeView } from "@/lib/outcome-dashboard.functions";
 import { summariseClosure } from "@/lib/closure-shared";
 import { useI18n } from "@/lib/i18n/context";
@@ -220,6 +221,8 @@ function ParentPortal() {
           </div>
           <ContextHelp page="/parent" />
         </div>
+
+        <ParentPurchases />
 
         <ClosureHeader
           summary={closureSummary}
