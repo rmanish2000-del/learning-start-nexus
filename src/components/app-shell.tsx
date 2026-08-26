@@ -71,6 +71,7 @@ const SYSTEM_ITEMS: NavItem[] = [
   { to: "/assessment-builder-audit", label: "Builder Audit", icon: ClipboardCheck, roles: ["admin", "reviewer"] },
   { to: "/diagnostic-engine-audit", label: "Diagnostic Audit", icon: Gauge, roles: ["admin", "reviewer"] },
   { to: "/gap-analysis-audit", label: "Gap Audit", icon: PieChart, roles: ["admin", "reviewer"] },
+  { to: "/ux-phase1-plan", label: "UX Phase 1 Plan", icon: FileSearch, roles: ["admin", "reviewer"] },
 ];
 
 
@@ -80,6 +81,7 @@ const SUPPORT_ITEMS: NavItem[] = [
 ];
 
 const TITLES: [RegExp, string][] = [
+  [/^\/ux-phase1-plan/, "UX Phase 1 implementation plan"],
   [/^\/quick-start/, "Quick start"],
   [/^\/help/, "Help center"],
   [/^\/diagnostic-engine-audit/, "Diagnostic engine audit center"],

@@ -50,6 +50,7 @@ import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
 import { Route as AuthenticatedSprint4AuditRouteImport } from './routes/_authenticated/sprint-4-audit'
 import { Route as AuthenticatedSprint5AuditRouteImport } from './routes/_authenticated/sprint-5-audit'
+import { Route as AuthenticatedUxPhase1PlanRouteImport } from './routes/_authenticated/ux-phase1-plan'
 import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
@@ -284,6 +285,12 @@ const AuthenticatedSprint5AuditRoute =
     path: '/sprint-5-audit',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedUxPhase1PlanRoute =
+  AuthenticatedUxPhase1PlanRouteImport.update({
+    id: '/ux-phase1-plan',
+    path: '/ux-phase1-plan',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedVerificationRoute =
   AuthenticatedVerificationRouteImport.update({
     id: '/verification',
@@ -356,6 +363,7 @@ export interface FileRoutesByFullPath {
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
+  '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
@@ -403,6 +411,7 @@ export interface FileRoutesByTo {
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
+  '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
@@ -452,6 +461,7 @@ export interface FileRoutesById {
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/_authenticated/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/_authenticated/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
+  '/_authenticated/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/_authenticated/verification': typeof AuthenticatedVerificationRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
@@ -501,6 +511,7 @@ export interface FileRouteTypes {
     | '/sprint-3-audit'
     | '/sprint-4-audit'
     | '/sprint-5-audit'
+    | '/ux-phase1-plan'
     | '/verification'
     | '/assessment/$assessmentId'
     | '/learners/$learnerId'
@@ -548,6 +559,7 @@ export interface FileRouteTypes {
     | '/sprint-3-audit'
     | '/sprint-4-audit'
     | '/sprint-5-audit'
+    | '/ux-phase1-plan'
     | '/verification'
     | '/assessment/$assessmentId'
     | '/learners/$learnerId'
@@ -596,6 +608,7 @@ export interface FileRouteTypes {
     | '/_authenticated/sprint-3-audit'
     | '/_authenticated/sprint-4-audit'
     | '/_authenticated/sprint-5-audit'
+    | '/_authenticated/ux-phase1-plan'
     | '/_authenticated/verification'
     | '/_authenticated/assessment/$assessmentId'
     | '/_authenticated/learners/$learnerId'
@@ -903,6 +916,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSprint5AuditRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ux-phase1-plan': {
+      id: '/_authenticated/ux-phase1-plan'
+      path: '/ux-phase1-plan'
+      fullPath: '/ux-phase1-plan'
+      preLoaderRoute: typeof AuthenticatedUxPhase1PlanRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/verification': {
       id: '/_authenticated/verification'
       path: '/verification'
@@ -988,6 +1008,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
   AuthenticatedSprint4AuditRoute: typeof AuthenticatedSprint4AuditRoute
   AuthenticatedSprint5AuditRoute: typeof AuthenticatedSprint5AuditRoute
+  AuthenticatedUxPhase1PlanRoute: typeof AuthenticatedUxPhase1PlanRoute
   AuthenticatedVerificationRoute: typeof AuthenticatedVerificationRoute
   AuthenticatedAssessmentAssessmentIdRoute: typeof AuthenticatedAssessmentAssessmentIdRoute
   AuthenticatedSessionSessionIdRoute: typeof AuthenticatedSessionSessionIdRoute
@@ -1032,6 +1053,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,
   AuthenticatedSprint4AuditRoute: AuthenticatedSprint4AuditRoute,
   AuthenticatedSprint5AuditRoute: AuthenticatedSprint5AuditRoute,
+  AuthenticatedUxPhase1PlanRoute: AuthenticatedUxPhase1PlanRoute,
   AuthenticatedVerificationRoute: AuthenticatedVerificationRoute,
   AuthenticatedAssessmentAssessmentIdRoute:
     AuthenticatedAssessmentAssessmentIdRoute,

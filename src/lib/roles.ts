@@ -44,6 +44,7 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/help",
   "/outcome-proof",
   "/pilot-evidence",
+  "/ux-phase1-plan",
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {
@@ -83,6 +84,7 @@ export const AUDIT_PATHS = [
   "/assessment-builder-audit",
   "/diagnostic-engine-audit",
   "/gap-analysis-audit",
+  "/ux-phase1-plan",
 ] as const;
 
 export function isAuditPath(pathname: string): boolean {
