@@ -1,9 +1,11 @@
 // ₹199 Diagnostic MVP — server-only implementation.
 //
-// The parent journey is unauthenticated by design (pay first, account after),
-// so every read and write here runs through the service-role client and is
-// authorised by a single unguessable per-order access token. Nothing on this
-// path trusts a client-supplied price, question list, or entitlement.
+// The parent journey is identity-first: a parent signs up, adds a student
+// profile, and only then can an order be created. Every read and write runs
+// through the service-role client but is authorised against the caller's
+// auth user id — the per-order access token is a convenience handle, never
+// the authorisation. Nothing on this path trusts a client-supplied price,
+// question list, or entitlement.
 //
 // Payment runs on Razorpay. `markOrderPaid` is the only writer of
 // entitlements and is reached by two idempotent paths: the signature-verified
@@ -22,6 +24,9 @@ import {
   type GradedItem,
   type UpgradeOffer,
 } from "./parent-diagnostic-shared";
+
+const ORDER_COLUMNS =
+  "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, contact_name, contact_phone, org_id, parent_user_id, learner_id, assessment_id, session_id, parent_order_id, paid_at";
 
 const NO_ROWS = ["00000000-0000-4000-8000-000000000000"];
 
@@ -169,7 +174,10 @@ type OrderRow = {
   unit_id: string | null;
   child_first_name: string | null;
   contact_email: string | null;
+  contact_name: string | null;
+  contact_phone: string | null;
   org_id: string | null;
+  parent_user_id: string | null;
   learner_id: string | null;
   assessment_id: string | null;
   session_id: string | null;
@@ -181,7 +189,7 @@ async function loadOrderByRef(ref: string): Promise<OrderRow> {
   const { data, error } = await supabaseAdmin
     .from("parent_orders")
     .select(
-      "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, org_id, learner_id, assessment_id, session_id, parent_order_id, paid_at",
+      ORDER_COLUMNS,
     )
     .eq("order_ref", ref)
     .maybeSingle();
@@ -194,13 +202,25 @@ async function loadOrderByToken(accessToken: string): Promise<OrderRow> {
   const { data, error } = await supabaseAdmin
     .from("parent_orders")
     .select(
-      "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, org_id, learner_id, assessment_id, session_id, parent_order_id, paid_at",
+      ORDER_COLUMNS,
     )
     .eq("access_token", accessToken)
     .maybeSingle();
   if (error) throw new Error(error.message);
   if (!data) throw new Error("This diagnostic link is not valid.");
   return data as OrderRow;
+}
+
+/**
+ * Purchase ownership. Orders created by the identity-first flow always carry
+ * parent_user_id; the caller must be that user. Legacy pre-migration orders
+ * have no owner and stay reachable by their access token alone.
+ */
+function assertOrderOwner(row: OrderRow, userId: string | null): void {
+  if (row.parent_user_id == null) return;
+  if (row.parent_user_id !== userId) {
+    throw new Error("Sign in with the account that bought this diagnostic.");
+  }
 }
 
 async function unitTitle(unitId: string | null): Promise<string | null> {
@@ -227,10 +247,33 @@ async function toPublicOrder(row: OrderRow): Promise<PublicOrder> {
 }
 
 export async function createDiagnosticOrder(input: {
+  userId: string;
+  learnerId: string;
   bookId: string;
   unitId: string;
   utm?: Record<string, string> | undefined;
 }): Promise<PublicOrder> {
+  // ---- Purchase guard: authenticated + parent + student + selected student
+  const { assertStudentOwned, parentProfileExists } = await import("./parent-account.server");
+  if (!(await parentProfileExists(input.userId))) {
+    throw new Error("Complete your parent details before buying.");
+  }
+  await assertStudentOwned(input.userId, input.learnerId);
+
+  const { data: learner, error: learnerError } = await supabaseAdmin
+    .from("learners")
+    .select("id, full_name")
+    .eq("id", input.learnerId)
+    .maybeSingle();
+  if (learnerError) throw new Error(learnerError.message);
+  if (!learner) throw new Error("That student profile could not be found.");
+
+  const { data: profile } = await supabaseAdmin
+    .from("profiles")
+    .select("full_name, phone")
+    .eq("id", input.userId)
+    .maybeSingle();
+
   const { data: book, error: bookError } = await supabaseAdmin
     .from("books")
     .select("id, org_id, board, grade, subject, archived_at")
@@ -264,18 +307,23 @@ export async function createDiagnosticOrder(input: {
       book_id: book.id,
       unit_id: unit.id,
       org_id: book.org_id,
+      parent_user_id: input.userId,
+      learner_id: learner.id,
+      child_first_name: learner.full_name,
+      contact_name: profile?.full_name ?? null,
+      contact_phone: profile?.phone ?? null,
       utm: input.utm ?? {},
     })
-    .select(
-      "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, org_id, learner_id, assessment_id, session_id, parent_order_id, paid_at",
-    )
+    .select(ORDER_COLUMNS)
     .single();
   if (error) throw new Error(error.message);
   return toPublicOrder(data as OrderRow);
 }
 
-export async function getOrder(ref: string): Promise<PublicOrder> {
-  return toPublicOrder(await loadOrderByRef(ref));
+export async function getOrder(ref: string, userId: string | null = null): Promise<PublicOrder> {
+  const row = await loadOrderByRef(ref);
+  assertOrderOwner(row, userId);
+  return toPublicOrder(row);
 }
 
 // ---------------------------------------------------------------------------
@@ -312,6 +360,7 @@ async function markOrderPaid(row: OrderRow, providerPaymentRef: string): Promise
     await supabaseAdmin.from("parent_entitlements").insert({
       order_id: row.id,
       learner_id: row.learner_id,
+      parent_user_id: row.parent_user_id,
       kind,
       granted_at: paidAt,
       expires_at:
@@ -350,7 +399,7 @@ async function loadOrderByProviderOrderId(providerOrderId: string): Promise<Orde
   const { data, error } = await supabaseAdmin
     .from("parent_orders")
     .select(
-      "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, org_id, learner_id, assessment_id, session_id, parent_order_id, paid_at",
+      ORDER_COLUMNS,
     )
     .eq("provider_order_id", providerOrderId)
     .maybeSingle();
@@ -370,9 +419,13 @@ export type CheckoutIntent = {
 };
 
 /** Creates (or reuses) the Razorpay order this checkout session will pay. */
-export async function startRazorpayCheckout(ref: string): Promise<CheckoutIntent> {
+export async function startRazorpayCheckout(ref: string, userId: string | null = null): Promise<CheckoutIntent> {
   const { createRazorpayOrder, razorpayKeyId, razorpayMode } = await import("./razorpay.server");
   const row = await loadOrderByRef(ref);
+  assertOrderOwner(row, userId);
+  if (row.parent_user_id == null || row.learner_id == null) {
+    throw new Error("This order is not linked to an account and a student.");
+  }
 
   const description =
     row.purpose === "diagnostic"
@@ -433,9 +486,11 @@ export async function verifyRazorpayCheckout(input: {
   razorpayOrderId: string;
   razorpayPaymentId: string;
   signature: string;
+  userId?: string | null;
 }): Promise<PublicOrder> {
   const { verifyCheckoutSignature } = await import("./razorpay.server");
   const row = await loadOrderByRef(input.orderRef);
+  assertOrderOwner(row, input.userId ?? null);
 
   const matched = await loadOrderByProviderOrderId(input.razorpayOrderId);
   if (!matched || matched.id !== row.id) throw new Error("This payment does not belong to that order.");
@@ -453,8 +508,10 @@ export async function verifyRazorpayCheckout(input: {
 export async function recordRazorpayFailure(input: {
   orderRef: string;
   reason: string;
+  userId?: string | null;
 }): Promise<PublicOrder> {
   const row = await loadOrderByRef(input.orderRef);
+  assertOrderOwner(row, input.userId ?? null);
   await markOrderFailed(row, input.reason);
   return toPublicOrder(await loadOrderByRef(input.orderRef));
 }
@@ -582,35 +639,25 @@ async function generateParentDiagnostic(row: OrderRow, learnerName: string): Pro
 
 export async function setupDiagnostic(input: {
   orderRef: string;
-  childFirstName: string;
-  parentName: string;
-  parentEmail: string;
-  parentPhone: string;
+  userId: string;
 }): Promise<{ accessToken: string }> {
   const row = await loadOrderByRef(input.orderRef);
+  assertOrderOwner(row, input.userId);
   if (row.status !== "paid") throw new Error("This order has not been paid yet.");
   if (row.session_id) return { accessToken: row.access_token };
   if (!row.book_id || !row.unit_id || !row.org_id) throw new Error("This order is missing its curriculum selection.");
+  if (!row.learner_id) throw new Error("This order is not linked to a student profile.");
 
-  // The account is created here, from the contact details captured at payment.
+  // The student profile already exists — it was required before checkout.
   const { data: learner, error: lError } = await supabaseAdmin
     .from("learners")
-    .insert({
-      org_id: row.org_id,
-      full_name: input.childFirstName,
-      handle: `pd-${row.access_token.slice(0, 10)}`,
-      grade: row.grade ?? 10,
-      subject: row.subject ?? "Mathematics",
-      status: "active",
-      mastery_score: 0,
-      focus_note: `Parent-purchased diagnostic (${row.order_ref}).`,
-      is_demo: false,
-    })
-    .select("id")
-    .single();
+    .select("id, full_name")
+    .eq("id", row.learner_id)
+    .maybeSingle();
   if (lError) throw new Error(lError.message);
+  if (!learner) throw new Error("That student profile could not be found.");
 
-  const generated = await generateParentDiagnostic(row, input.childFirstName);
+  const generated = await generateParentDiagnostic(row, learner.full_name);
 
   const { data: session, error: sError } = await supabaseAdmin
     .from("assessment_sessions")
@@ -631,11 +678,7 @@ export async function setupDiagnostic(input: {
   const { error: uError } = await supabaseAdmin
     .from("parent_orders")
     .update({
-      child_first_name: input.childFirstName,
-      contact_name: input.parentName,
-      contact_email: input.parentEmail,
-      contact_phone: input.parentPhone,
-      learner_id: learner.id,
+      child_first_name: learner.full_name,
       assessment_id: generated.assessmentId,
       session_id: session.id,
     })
@@ -644,7 +687,7 @@ export async function setupDiagnostic(input: {
 
   await supabaseAdmin
     .from("parent_entitlements")
-    .update({ learner_id: learner.id })
+    .update({ learner_id: learner.id, parent_user_id: row.parent_user_id })
     .eq("order_id", row.id)
     .is("learner_id", null);
 
@@ -737,8 +780,9 @@ export type DiagnosticRun = {
   questions: RunQuestion[];
 };
 
-export async function loadRun(accessToken: string): Promise<DiagnosticRun> {
+export async function loadRun(accessToken: string, userId: string | null = null): Promise<DiagnosticRun> {
   const row = await loadOrderByToken(accessToken);
+  assertOrderOwner(row, userId);
   if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -775,8 +819,10 @@ export async function saveRunAnswer(input: {
   questionId: string;
   answer: string;
   position: number;
+  userId?: string | null;
 }): Promise<{ saved: true }> {
   const row = await loadOrderByToken(input.token);
+  assertOrderOwner(row, input.userId ?? null);
   if (!row.session_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -805,8 +851,9 @@ function isCorrect(given: string | undefined, expected: string): boolean {
   return given.trim().toLowerCase() === expected.trim().toLowerCase();
 }
 
-export async function submitRun(accessToken: string): Promise<{ accessToken: string }> {
+export async function submitRun(accessToken: string, userId: string | null = null): Promise<{ accessToken: string }> {
   const row = await loadOrderByToken(accessToken);
+  assertOrderOwner(row, userId);
   if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -904,8 +951,9 @@ export type ParentReport = {
   planOrderRef: string | null;
 };
 
-export async function loadReport(accessToken: string): Promise<ParentReport> {
+export async function loadReport(accessToken: string, userId: string | null = null): Promise<ParentReport> {
   const row = await loadOrderByToken(accessToken);
+  assertOrderOwner(row, userId);
   if (!row.session_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -954,8 +1002,9 @@ export async function loadReport(accessToken: string): Promise<ParentReport> {
 // Upgrade — ₹2,999 Board Success Plan
 // ---------------------------------------------------------------------------
 
-export async function createUpgradeOrder(accessToken: string): Promise<PublicOrder> {
+export async function createUpgradeOrder(accessToken: string, userId: string | null = null): Promise<PublicOrder> {
   const row = await loadOrderByToken(accessToken);
+  assertOrderOwner(row, userId);
   if (row.purpose !== "diagnostic") throw new Error("Upgrade must start from a diagnostic order.");
 
   const { data: existing } = await supabaseAdmin
@@ -985,19 +1034,23 @@ export async function createUpgradeOrder(accessToken: string): Promise<PublicOrd
       book_id: row.book_id,
       unit_id: row.unit_id,
       org_id: row.org_id,
+      parent_user_id: row.parent_user_id,
       learner_id: row.learner_id,
       child_first_name: row.child_first_name,
       contact_email: row.contact_email,
       parent_order_id: row.id,
     })
     .select(
-      "id, order_ref, access_token, purpose, status, amount_paise, board, grade, subject, book_id, unit_id, child_first_name, contact_email, org_id, learner_id, assessment_id, session_id, parent_order_id, paid_at",
+      ORDER_COLUMNS,
     )
     .single();
   if (error) throw new Error(error.message);
   return toPublicOrder(data as OrderRow);
 }
 
-export async function loadUpgradeView(accessToken: string): Promise<ParentReport> {
-  return loadReport(accessToken);
+export async function loadUpgradeView(
+  accessToken: string,
+  userId: string | null = null,
+): Promise<ParentReport> {
+  return loadReport(accessToken, userId);
 }

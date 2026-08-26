@@ -2,16 +2,15 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { CheckCircle2, Info, Loader2, Lock } from "lucide-react";
+import { CheckCircle2, Info, Loader2, Lock, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 
 import { DiagnosticShell } from "@/components/diagnostic-shell";
+import { ParentAuthGate } from "@/components/parent-auth-gate";
 import { QueryError } from "@/components/query-error";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -21,13 +20,14 @@ import {
   reportPaymentFailure,
   verifyPayment,
 } from "@/lib/parent-diagnostic.functions";
+import { getParentAccount } from "@/lib/parent-account.functions";
 import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
-import { formatInr, setupDiagnosticSchema } from "@/lib/parent-diagnostic-shared";
+import { formatInr } from "@/lib/parent-diagnostic-shared";
 import { useI18n } from "@/lib/i18n/context";
 
 const TITLE = "Checkout — Class 10 Diagnostic | EduOS";
 const DESCRIPTION =
-  "Pay ₹199 for one CBSE Class 10 outcome-mapped diagnostic. No account needed before payment; the learning record is created from your contact details.";
+  "Pay ₹199 for one CBSE Class 10 outcome-mapped diagnostic. The purchase, the report and the plan are owned by your EduOS parent account.";
 
 export const Route = createFileRoute("/diagnostic/checkout/$orderRef")({
   head: () => ({
@@ -45,9 +45,20 @@ export const Route = createFileRoute("/diagnostic/checkout/$orderRef")({
 });
 
 function DiagnosticCheckoutPage() {
-  const { t } = useI18n();
   const { orderRef } = Route.useParams();
+  return (
+    <DiagnosticShell footerNote={`Order ${orderRef}`}>
+      <ParentAuthGate next={`/diagnostic/checkout/${orderRef}`}>
+        <CheckoutBody orderRef={orderRef} />
+      </ParentAuthGate>
+    </DiagnosticShell>
+  );
+}
+
+function CheckoutBody({ orderRef }: { orderRef: string }) {
+  const { t } = useI18n();
   const orderFn = useServerFn(fetchOrder);
+  const accountFn = useServerFn(getParentAccount);
   const intentFn = useServerFn(createPaymentIntent);
   const verifyFn = useServerFn(verifyPayment);
   const failFn = useServerFn(reportPaymentFailure);
@@ -58,41 +69,31 @@ function DiagnosticCheckoutPage() {
     queryKey: ["parent-order", orderRef],
     queryFn: () => orderFn({ data: { orderRef } }),
   });
+  const account = useQuery({ queryKey: ["parent-account"], queryFn: () => accountFn() });
 
-  const [childFirstName, setChild] = useState("");
-  const [parentName, setParentName] = useState("");
-  const [parentEmail, setEmail] = useState("");
-  const [parentPhone, setPhone] = useState("");
   const [stage, setStage] = useState<"idle" | "paying" | "provisioning">("idle");
 
   const order = query.data;
+  const profile = account.data?.profile;
 
   async function payAndStart() {
-    const parsed = setupDiagnosticSchema.safeParse({
-      orderRef,
-      childFirstName,
-      parentName,
-      parentEmail,
-      parentPhone,
-    });
-    if (!parsed.success) {
-      toast.error(t("checkout.error.details", "Check the details — a valid email and phone number are needed for the report link."));
-      return;
-    }
     try {
       setStage("paying");
+      // The guard is server-side: this call fails unless the caller owns the
+      // order and the order carries an account and a student profile.
       const intent = await intentFn({ data: { orderRef } });
       if (intent.status !== "paid") {
-        if (!intent.razorpayOrderId) throw new Error(t("checkout.error.gateway", "The payment gateway is unavailable right now."));
+        if (!intent.razorpayOrderId)
+          throw new Error(t("checkout.error.gateway", "The payment gateway is unavailable right now."));
         const result = await openRazorpayCheckout({
           keyId: intent.keyId,
           razorpayOrderId: intent.razorpayOrderId,
           amountPaise: intent.amountPaise,
           description: intent.description,
           prefill: {
-            name: parsed.data.parentName,
-            email: parsed.data.parentEmail,
-            contact: parsed.data.parentPhone,
+            name: profile?.fullName ?? "",
+            email: profile?.email ?? "",
+            contact: profile?.phone ?? "",
           },
           notes: { order_ref: orderRef },
         });
@@ -114,7 +115,7 @@ function DiagnosticCheckoutPage() {
         if (paid.status !== "paid") throw new Error(t("checkout.error.notCaptured", "Payment was not captured."));
       }
       setStage("provisioning");
-      const { accessToken } = await setupFn({ data: parsed.data });
+      const { accessToken } = await setupFn({ data: { orderRef } });
       await navigate({ to: "/diagnostic/session/$token", params: { token: accessToken } });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : t("checkout.error.failed", "Payment could not be completed."));
@@ -122,14 +123,13 @@ function DiagnosticCheckoutPage() {
     }
   }
 
-
   return (
-    <DiagnosticShell footerNote={`Order ${orderRef}`}>
+    <>
       <h1 className="text-2xl font-semibold tracking-tight">{t("checkout.title", "Confirm and pay")}</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         {t(
-          "checkout.lede",
-          "No account is needed before payment. We create your child's learning record from these details.",
+          "checkout.lede.identity",
+          "This purchase is recorded against your EduOS account and the student profile you selected.",
         )}
       </p>
 
@@ -137,57 +137,28 @@ function DiagnosticCheckoutPage() {
         <Skeleton className="mt-8 h-64 w-full" />
       ) : query.isError ? (
         <div className="mt-8">
-          <QueryError title={t("checkout.error.notFound", "This order could not be found")} error={query.error} onRetry={() => void query.refetch()} />
+          <QueryError
+            title={t("checkout.error.notFound", "This order could not be found")}
+            error={query.error}
+            onRetry={() => void query.refetch()}
+          />
         </div>
       ) : !order ? null : (
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">{t("checkout.details", "Your details")}</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                {t("checkout.owner", "Account and student")}
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-1.5">
-                <Label htmlFor="child">{t("checkout.child", "Child's first name")}</Label>
-                <Input
-                  id="child"
-                  value={childFirstName}
-                  onChange={(e) => setChild(e.target.value)}
-                  placeholder="Aarav"
-                  autoComplete="off"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="parent">{t("checkout.parent", "Your name")}</Label>
-                <Input
-                  id="parent"
-                  value={parentName}
-                  onChange={(e) => setParentName(e.target.value)}
-                  placeholder={t("checkout.parent.placeholder", "Parent or guardian")}
-                  autoComplete="name"
-                />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">{t("checkout.email", "Email")}</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={parentEmail}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    autoComplete="email"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="phone">{t("checkout.phone", "Mobile")}</Label>
-                  <Input
-                    id="phone"
-                    value={parentPhone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="9XXXXXXXXX"
-                    autoComplete="tel"
-                  />
-                </div>
+              <div className="space-y-3 rounded-lg border p-4 text-sm">
+                <Row label={t("checkout.row.parent", "Parent account")} value={profile?.fullName || "—"} />
+                <Row label={t("checkout.row.email", "Email")} value={profile?.email || "—"} />
+                <Row label={t("checkout.row.mobile", "Mobile")} value={profile?.phone || "—"} />
+                <Separator />
+                <Row label={t("checkout.row.student", "Student")} value={order.childFirstName ?? "—"} />
               </div>
 
               <Alert>
@@ -201,7 +172,11 @@ function DiagnosticCheckoutPage() {
               </Alert>
 
               <Button className="w-full" size="lg" onClick={payAndStart} disabled={stage !== "idle"}>
-                {stage !== "idle" ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lock className="mr-2 h-4 w-4" />}
+                {stage !== "idle" ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Lock className="mr-2 h-4 w-4" />
+                )}
                 {stage === "paying"
                   ? t("checkout.paying", "Confirming payment…")
                   : stage === "provisioning"
@@ -218,7 +193,10 @@ function DiagnosticCheckoutPage() {
               <CardTitle className="text-base">{t("checkout.summary", "Order summary")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
-              <Row label={t("checkout.row.board", "Board & class")} value={`${order.board ?? "CBSE"} Class ${order.grade ?? 10}`} />
+              <Row
+                label={t("checkout.row.board", "Board & class")}
+                value={`${order.board ?? "CBSE"} Class ${order.grade ?? 10}`}
+              />
               <Row label={t("checkout.row.subject", "Subject")} value={order.subject ?? "—"} />
               <Row label={t("checkout.row.unit", "Chapter group")} value={order.unitTitle ?? "—"} />
               <Separator />
@@ -245,7 +223,7 @@ function DiagnosticCheckoutPage() {
           </Card>
         </div>
       )}
-    </DiagnosticShell>
+    </>
   );
 }
 

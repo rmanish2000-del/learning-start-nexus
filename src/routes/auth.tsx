@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { GraduationCap, KeyRound, Mail, UserRound } from "lucide-react";
+import { GraduationCap, KeyRound, Mail, Phone, UserRound } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
 import { setSessionMarker } from "@/lib/session-marker";
+import { registerParent } from "@/lib/parent-account.functions";
+import { registerParentSchema } from "@/lib/parent-account-shared";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+// All optional: plain <Link to="/auth"> must stay valid everywhere.
+type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string };
+
 export const Route = createFileRoute("/auth")({
+  validateSearch: (search: Record<string, unknown>): AuthSearch => ({
+    tab:
+      search["tab"] === "parent" || search["tab"] === "student" || search["tab"] === "staff"
+        ? search["tab"]
+        : "staff",
+    mode: search["mode"] === "signup" ? "signup" : "signin",
+    ...(typeof search["next"] === "string" && search["next"].startsWith("/")
+      ? { next: search["next"] }
+      : {}),
+  }),
   head: () => ({
     meta: [
       { title: "Sign in — EduOS" },
@@ -36,21 +51,88 @@ async function fetchRole(userId: string): Promise<AppRole> {
 
 function AuthPage() {
   const navigate = useNavigate();
+  const search = Route.useSearch();
   const [pending, setPending] = useState(false);
+  const [parentMode, setParentMode] = useState<"signin" | "signup">(search.mode ?? "signin");
 
   // Already signed in? Route to the right home for the role.
   useEffect(() => {
     void supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) return;
+      if (search.next) {
+        window.location.replace(search.next);
+        return;
+      }
       const role = await fetchRole(data.user.id);
       void navigate({ to: roleHome(role), replace: true });
     });
-  }, [navigate]);
+  }, [navigate, search.next]);
 
   const goHome = async (userId: string) => {
-    const role = await fetchRole(userId);
     setSessionMarker();
+    if (search.next) {
+      // Return the parent to the purchase they were mid-way through.
+      window.location.replace(search.next);
+      return;
+    }
+    const role = await fetchRole(userId);
     void navigate({ to: roleHome(role), replace: true });
+  };
+
+  // Parent sign-up: auth user first, then the parent profile (name + mobile)
+  // and the `parent` role. Purchase remains blocked until both exist.
+  const onParentSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const email = String(form.get("p-email") ?? "").trim();
+    const password = String(form.get("p-password") ?? "");
+    const fullName = String(form.get("p-name") ?? "").trim();
+    const phone = String(form.get("p-phone") ?? "").trim();
+
+    setPending(true);
+    try {
+      if (parentMode === "signup") {
+        const parsed = registerParentSchema.safeParse({ fullName, email, phone });
+        if (!parsed.success) {
+          toast.error(parsed.error.issues[0]?.message ?? "Check your details.");
+          return;
+        }
+        if (password.length < 8) {
+          toast.error("Use a password of at least 8 characters.");
+          return;
+        }
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { full_name: fullName }, emailRedirectTo: `${window.location.origin}/auth` },
+        });
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+        const signedIn = await supabase.auth.signInWithPassword({ email, password });
+        if (signedIn.error || !signedIn.data.user) {
+          toast.message("Account created. Confirm your email, then sign in to continue.");
+          setParentMode("signin");
+          return;
+        }
+        await registerParent({ data: parsed.data });
+        toast.success("Account ready.");
+        await goHome(signedIn.data.user.id);
+        return;
+      }
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
+        return;
+      }
+      if (data.user) await goHome(data.user.id);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not complete sign-in.");
+    } finally {
+      setPending(false);
+    }
   };
 
   const onStaffSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -142,10 +224,11 @@ function AuthPage() {
             </p>
           </div>
 
-          <Tabs defaultValue="staff">
-            <TabsList className="grid w-full grid-cols-2">
+          <Tabs defaultValue={search.tab ?? "staff"}>
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="staff">Staff</TabsTrigger>
               <TabsTrigger value="student">Student</TabsTrigger>
+              <TabsTrigger value="parent">Parent</TabsTrigger>
             </TabsList>
 
             <TabsContent value="staff" className="pt-6">
@@ -226,6 +309,67 @@ function AuthPage() {
                 <Button type="submit" className="w-full" disabled={pending}>
                   {pending ? "Signing in…" : "Sign in"}
                 </Button>
+              </form>
+            </TabsContent>
+
+            <TabsContent value="parent" className="pt-6">
+              <form onSubmit={onParentSubmit} className="space-y-4">
+                {parentMode === "signup" ? (
+                  <>
+                    <div className="space-y-2">
+                      <Label htmlFor="p-name">Your full name</Label>
+                      <div className="relative">
+                        <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input id="p-name" name="p-name" autoComplete="name" placeholder="Priya Sharma" className="pl-9" required />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="p-phone">Mobile</Label>
+                      <div className="relative">
+                        <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input id="p-phone" name="p-phone" inputMode="tel" autoComplete="tel" placeholder="9XXXXXXXXX" className="pl-9" required />
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+                <div className="space-y-2">
+                  <Label htmlFor="p-email">Email</Label>
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input id="p-email" name="p-email" type="email" autoComplete="email" placeholder="you@example.com" className="pl-9" required />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="p-password">Password</Label>
+                  <div className="relative">
+                    <KeyRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                      id="p-password"
+                      name="p-password"
+                      type="password"
+                      autoComplete={parentMode === "signup" ? "new-password" : "current-password"}
+                      placeholder="••••••••"
+                      className="pl-9"
+                      required
+                    />
+                  </div>
+                </div>
+                <Button type="submit" className="w-full" disabled={pending}>
+                  {pending
+                    ? "Please wait…"
+                    : parentMode === "signup"
+                      ? "Create parent account"
+                      : "Sign in"}
+                </Button>
+                <button
+                  type="button"
+                  className="w-full text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                  onClick={() => setParentMode(parentMode === "signup" ? "signin" : "signup")}
+                >
+                  {parentMode === "signup"
+                    ? "Already have an account? Sign in"
+                    : "New here? Create a parent account"}
+                </button>
               </form>
             </TabsContent>
           </Tabs>

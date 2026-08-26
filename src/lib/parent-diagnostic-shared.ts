@@ -305,6 +305,7 @@ export function resolveCapabilities(rows: EntitlementRow[], now: Date = new Date
 // ---------------------------------------------------------------------------
 
 export const createDiagnosticOrderSchema = z.object({
+  learnerId: z.string().uuid(),
   bookId: z.string().uuid(),
   unitId: z.string().uuid(),
   utm: z.record(z.string(), z.string()).optional(),
@@ -324,12 +325,10 @@ export const paymentFailureSchema = z.object({
   reason: z.string().trim().min(1).max(300).default("Payment not completed"),
 });
 
+// Setup carries no identity fields any more: the parent account and the
+// student profile are established before the order exists.
 export const setupDiagnosticSchema = z.object({
   orderRef: z.string().min(8).max(64),
-  childFirstName: z.string().trim().min(1).max(60),
-  parentName: z.string().trim().min(1).max(80),
-  parentEmail: z.string().trim().email().max(120),
-  parentPhone: z.string().trim().min(6).max(20),
 });
 
 export const tokenSchema = z.object({ token: z.string().min(16).max(64) });
