@@ -248,7 +248,14 @@ function LearnersPage() {
         </div>
       </div>
 
-      {!isPending && (learners ?? []).length === 0 ? (
+      {learnersIsError ? (
+        <QueryError
+          title="Learners didn't load"
+          error={learnersError}
+          onRetry={() => void refetchLearners()}
+        />
+      ) : !isPending && (learners ?? []).length === 0 ? (
+
         <EmptyState
           icon={Users}
           title="No learners yet"
