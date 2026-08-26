@@ -269,3 +269,118 @@ export async function fetchMasteryPreview(
     basis: projection.basis,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Curriculum → blueprint: derive assessment outcomes from an extracted book.
+// Deterministic: one assessment outcome per curriculum topic, diagnostic
+// weights spread across each unit with the largest-remainder method, and every
+// topic learning outcome linked through outcome_map for traceability.
+// ---------------------------------------------------------------------------
+
+const BLOOM_BY_INDEX = ["Remember", "Understand", "Apply", "Analyse"] as const;
+
+function slugCode(subject: string, grade: number, unitIdx: number, topicIdx: number): string {
+  const subj = subject.replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase() || "GEN";
+  return `LO_${subj}${grade}_U${unitIdx + 1}_${String(topicIdx + 1).padStart(2, "0")}`;
+}
+
+function largestRemainderWeights(count: number): number[] {
+  if (count === 0) return [];
+  const base = Math.floor(100 / count);
+  const weights = Array.from({ length: count }, () => base);
+  let remainder = 100 - base * count;
+  for (let i = 0; remainder > 0; i = (i + 1) % count, remainder -= 1) {
+    weights[i] = (weights[i] ?? base) + 1;
+  }
+  return weights;
+}
+
+export async function generateBlueprintOutcomes(
+  supabase: Client,
+  ctx: { orgId: string; userId: string },
+  bookId: string,
+): Promise<{ created: number; mapped: number; skipped: number }> {
+  const [bookRes, unitsRes, chaptersRes, topicsRes, loRes, existingRes] = await Promise.all([
+    supabase.from("books").select("id, grade, subject").eq("id", bookId).maybeSingle(),
+    supabase.from("curriculum_units").select("id, title, position").eq("book_id", bookId).order("position"),
+    supabase.from("curriculum_chapters").select("id, unit_id, position").eq("book_id", bookId).order("position"),
+    supabase.from("curriculum_topics").select("id, chapter_id, title, position, learning_outcomes").eq("book_id", bookId).order("position"),
+    supabase.from("curriculum_outcomes").select("id, topic_id, text").eq("book_id", bookId),
+    supabase.from("assessment_outcomes").select("id, code, unit_id").eq("book_id", bookId),
+  ]);
+  for (const r of [bookRes, unitsRes, chaptersRes, topicsRes, loRes, existingRes]) {
+    if (r.error) throw new Error(r.error.message);
+  }
+  const book = bookRes.data;
+  if (!book) throw new Error("Book not found in your organization.");
+  const units = unitsRes.data ?? [];
+  if (units.length === 0) throw new Error("Extract the curriculum for this book first.");
+
+  const chapters = chaptersRes.data ?? [];
+  const topics = topicsRes.data ?? [];
+  const curriculumOutcomes = loRes.data ?? [];
+  const existingCodes = new Set((existingRes.data ?? []).map((o) => o.code));
+  const unitsWithOutcomes = new Set((existingRes.data ?? []).map((o) => o.unit_id));
+
+  let created = 0;
+  let mapped = 0;
+  let skipped = 0;
+
+  for (const [ui, unit] of units.entries()) {
+    if (unitsWithOutcomes.has(unit.id)) {
+      skipped += 1;
+      continue;
+    }
+    const unitChapterIds = new Set(chapters.filter((c) => c.unit_id === unit.id).map((c) => c.id));
+    const unitTopics = topics.filter((t) => unitChapterIds.has(t.chapter_id));
+    if (unitTopics.length === 0) continue;
+    const weights = largestRemainderWeights(unitTopics.length);
+
+    for (const [ti, topic] of unitTopics.entries()) {
+      const code = slugCode(book.subject, book.grade, ui, ti);
+      if (existingCodes.has(code)) {
+        skipped += 1;
+        continue;
+      }
+      const bloom = BLOOM_BY_INDEX[Math.min(ti, BLOOM_BY_INDEX.length - 1)] ?? "Understand";
+      const difficulty = Math.min(4, 2 + Math.floor(ti / 3));
+      const { data: inserted, error } = await supabase
+        .from("assessment_outcomes")
+        .insert({
+          org_id: ctx.orgId,
+          book_id: bookId,
+          unit_id: unit.id,
+          code,
+          title: topic.title,
+          category: unit.title,
+          bloom_level: bloom,
+          difficulty,
+          diagnostic_weight: weights[ti] ?? 0,
+          question_types: ["mcq", "short_answer", "case_study"],
+          intervention_strategy: `Re-teach "${topic.title}" with worked examples, then a guided practice set.`,
+          status: "active",
+        })
+        .select("id")
+        .single();
+      if (error) throw new Error(error.message);
+      created += 1;
+      existingCodes.add(code);
+
+      const links = curriculumOutcomes.filter((o) => o.topic_id === topic.id);
+      if (links.length > 0) {
+        const { error: mapError } = await supabase.from("outcome_map").insert(
+          links.map((o) => ({
+            org_id: ctx.orgId,
+            book_id: bookId,
+            curriculum_outcome_id: o.id,
+            assessment_outcome_id: inserted.id,
+          })),
+        );
+        if (mapError) throw new Error(mapError.message);
+        mapped += links.length;
+      }
+    }
+  }
+
+  return { created, mapped, skipped };
+}

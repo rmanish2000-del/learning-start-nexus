@@ -5,7 +5,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { requireAnyRole } from "./admin.server";
+import { callerOrgId, requireAnyRole } from "./admin.server";
 import {
   blueprintBookSchema,
   masteryPreviewSchema,
@@ -13,6 +13,7 @@ import {
 } from "./blueprint-shared";
 import {
   fetchBlueprintWorkspace,
+  generateBlueprintOutcomes,
   fetchLearnerOptions,
   fetchMasteryLevels,
   fetchMasteryPreview,
@@ -61,4 +62,13 @@ export const getMasteryPreview = createServerFn({ method: "GET" })
   .handler(async ({ data, context }) => {
     await requireAnyRole(context.supabase, context.userId, [...STAFF]);
     return fetchMasteryPreview(context.supabase, data);
+  });
+
+export const generateBlueprintOutcomesFn = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => blueprintBookSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, [...STAFF]);
+    const orgId = await callerOrgId(context.supabase, context.userId);
+    return generateBlueprintOutcomes(context.supabase, { orgId, userId: context.userId }, data.bookId);
   });
