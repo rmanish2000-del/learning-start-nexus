@@ -5,7 +5,7 @@
 // assembled automatically in this sprint.
 
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { generateObject } from "ai";
+import { generateObject, generateText } from "ai";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import { createLovableAiGatewayProvider } from "./ai-gateway.server";
