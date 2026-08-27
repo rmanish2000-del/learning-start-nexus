@@ -273,6 +273,15 @@ function AssignmentsPage() {
                           </TableCell>
                         </TableRow>
                       ))}
+                  {!learnersLoading && visibleLearners.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={5} className="py-8 text-center text-sm text-muted-foreground">
+                        {filter === "unassigned"
+                          ? "Nothing waiting — every learner has an educator."
+                          : "No learners yet."}
+                      </TableCell>
+                    </TableRow>
+                  ) : null}
                 </TableBody>
               </Table>
             </div>
