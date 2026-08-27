@@ -89,3 +89,16 @@ Import is idempotent via `question_bank.external_ref` unique index. Both packs p
 ### Update protocol
 
 Updated by the Lovable agent at the end of any turn that changes deployed behaviour, imports content, or changes payment/publish state. The founder updates §7 after each manual publish. Every edit must refresh the "Last verified" date and cite the query or command used.
+
+---
+
+## Update 2026-08-27 (Production Truth, Payment Reconciliation & Pilot Gate)
+
+- **Production was stale.** Bundle-content probing of https://www.eduos.global proved the deployed build predated the whole educator-free study-plan release (`ffbac9e`…`6f570d0`). Republished at the end of that assignment. Evidence: `EDUOS_PRODUCTION_TRUTH_REPORT.md`.
+- **Razorpay live verified:** key `rzp_live_…`, live webhook active at `/api/public/razorpay-webhook` with `payment.captured` + `payment.failed`, secrets proven to correspond by a signature-valid live delivery. Evidence: `EDUOS_PAYMENT_RECONCILIATION_REPORT.md`.
+- **₹2,800 upgrade order:** ₹2,999 − ₹199 credit, gateway order created with **0 attempts and no payment** — parent dismissed checkout. No money moved, no entitlement, credit still applied to a retry.
+- **Two `created` orders:** abandoned before the gateway; new `expire_stale_parent_orders()` housekeeping moved both to `expired`.
+- **Pilot content gate:** the 210 imported Class 10 questions are now `verified` (reviewer `reviewer@eduos.global`, structural review), and the paid diagnostic selects only `approved` + `verified` questions. 11 of 12 units are purchasable (Coordinate Geometry has 3 verified items, below the 5 minimum). Evidence: `EDUOS_PILOT_CONTENT_GATE_REPORT.md`.
+- **Duplicate single-chapter Science book archived** (not deleted).
+- **Security:** 0 P0, 1 P1 (org-wide staff phone visibility), 2 P2. 46/46 tests pass. Evidence: `EDUOS_SECURITY_AND_DB_SCAN_REPORT.md`.
+- **Decision:** READY_FOR_FOUNDER_LIVE_PAYMENT once the publish lands.

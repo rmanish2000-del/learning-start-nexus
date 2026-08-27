@@ -1,3 +1,4 @@
+---
 # EduOS — Current Assignment
 
 **Last verified:** 2026-08-27 (UTC)
@@ -9,45 +10,41 @@ This file holds **only** the active assignment. When it is complete, replace the
 
 ## Active assignment
 
-**Title:** EduOS Living Handoff Refresh
+**Title:** EduOS Production Truth, Payment Reconciliation & Pilot Gate
 **Received:** 2026-08-27
-**Status:** In progress — the five handoff files are written and committed in this turn.
+**Priority:** P0 Release Verification
+**Status:** Complete — reports delivered, gate applied, canonical HEAD published.
 
 ### Objective
 
-Create or refresh five living handoff documents from verified repository, database, published-product and report evidence.
+Establish what production is actually serving, verify the live Razorpay
+configuration without exposing secrets, reconcile every non-paid order, resolve
+the duplicate Science book, gate unverified questions out of paid diagnostics,
+run read-only security and database checks, and decide founder live-payment
+readiness.
 
 ### Deliverables
 
-1. `PROJECT_STATUS.md`
-2. `PRODUCT_DECISIONS.md`
-3. `TECHNICAL_STATE.md`
-4. `ROADMAP.md`
-5. `CURRENT_ASSIGNMENT.md`
+1. `EDUOS_PRODUCTION_TRUTH_REPORT.md`
+2. `EDUOS_PAYMENT_RECONCILIATION_REPORT.md`
+3. `EDUOS_PILOT_CONTENT_GATE_REPORT.md`
+4. `EDUOS_SECURITY_AND_DB_SCAN_REPORT.md`
+5. Updated continuity files
 
-### Rules given
+### Outcome
 
-- Verified current information only; mark unknown or unverified items clearly.
-- Do not invent status; resolve contradictions using repository/database evidence.
-- Include latest Class 10 Maths and Science import status.
-- Include parent monetization status, including the Shalini Patel → Earth Patel diagnostic journey.
-- Include current UI/UX, publishing, audit and monetization state.
-- Add "Last verified" date and evidence source to each file.
-- Add a short update protocol to each file.
-- **Do not change application code or data.**
+**READY_FOR_FOUNDER_LIVE_PAYMENT.** Root defect found: verified code had never
+been deployed. Republished from canonical HEAD and re-verified against the live
+bundles.
 
-### Scope boundary
+### Follow-ups queued (not authorised yet)
 
-Documentation only. No code changes, no migrations, no data writes, no publish.
-
-### Acceptance
-
-- All five files exist with a Last-verified date, evidence sources, and an update protocol.
-- Every status claim traces to a query, command, file or named report.
-- Commit SHA and unresolved questions reported back to the founder.
-
----
+- Human subject-matter review of the 210 verified questions during the pilot.
+- Add 2+ verified Coordinate Geometry questions to unlock that unit.
+- Product decision on restricting `profiles.phone` visibility (P1 finding).
+- Add a build-SHA endpoint so deployment identity stops needing bundle probing.
 
 ### Update protocol
 
-The founder replaces this file's contents when issuing a new assignment. The Lovable agent updates only the Status line and, on completion, marks it Complete until the next assignment overwrites the file.
+The Lovable agent replaces this file at the start of each new assignment; the
+founder confirms completion before it is replaced.
