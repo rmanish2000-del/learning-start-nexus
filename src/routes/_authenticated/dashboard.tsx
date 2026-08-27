@@ -224,6 +224,21 @@ function DashboardPage() {
 
   const closureSummary = closureView ? summariseClosure(closureView.label, closureView.totals) : null;
 
+  // Never hard-code a centre name — admins of any organization see their own.
+  const { data: org } = useQuery({
+    queryKey: ["org", profile?.org_id],
+    enabled: !!profile?.org_id,
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("organizations")
+        .select("name")
+        .eq("id", profile!.org_id!)
+        .single();
+      return data;
+    },
+  });
+
+
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -233,7 +248,7 @@ function DashboardPage() {
           </h2>
           <p className="text-sm text-muted-foreground">
             {role === "admin"
-              ? "Organization-wide roster health for Brightpath Learning."
+              ? `Organization-wide roster health for ${org?.name ?? "your centre"}.`
               : "Here's how your roster is doing today."}
           </p>
         </div>
