@@ -1,7 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { requireAnyRole } from "./admin.server";
+import { publishBlockers } from "./assessment-lifecycle";
 import {
+  assessmentIdSchema,
   assignAssessmentSchema,
   createAssessmentSchema,
   saveProgressSchema,
@@ -28,6 +30,19 @@ export const createAssessment = createServerFn({ method: "POST" })
 
     // RLS scopes this read to the caller's org bank; a count mismatch means
     // the caller referenced items outside their org.
+    // Idempotency: a double-click / network retry with the same request id and
+    // title returns the assessment already created instead of a duplicate.
+    if (data.clientRequestId) {
+      const { data: existing } = await context.supabase
+        .from("assessments")
+        .select("id, description")
+        .eq("title", data.title)
+        .eq("created_by", context.userId)
+        .like("description", `%[req:${data.clientRequestId}]%`)
+        .maybeSingle();
+      if (existing) return { id: existing.id, status: "draft" as const, deduped: true };
+    }
+
     const { data: items } = await context.supabase
       .from("assessment_items")
       .select("id")
@@ -42,12 +57,15 @@ export const createAssessment = createServerFn({ method: "POST" })
         org_id: orgId,
         created_by: context.userId,
         title: data.title,
-        description: data.description || null,
+        description: data.clientRequestId
+          ? `${data.description ?? ""} [req:${data.clientRequestId}]`.trim()
+          : data.description || null,
         subject: "Mathematics",
         topic: "Fractions",
         grade: 6,
         kind: "diagnostic",
-        status: data.publishNow ? "published" : "draft",
+        // PRODUCT LAW: creation never publishes.
+        status: "draft",
         time_limit_minutes: data.timeLimitMinutes ?? null,
       })
       .select("id")
@@ -62,7 +80,85 @@ export const createAssessment = createServerFn({ method: "POST" })
     const { error: mapError } = await context.supabase.from("assessment_item_map").insert(rows);
     if (mapError) throw new Error(mapError.message);
 
-    return { id: created.id };
+    return { id: created.id, status: "draft" as const, deduped: false };
+  });
+
+// Staff: explicit publication. Every gate is re-checked server-side; a blocked
+// publish leaves the assessment as a draft with its questions intact.
+export const publishAssessment = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => assessmentIdSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
+
+    const { data: assessment } = await context.supabase
+      .from("assessments")
+      .select("id, title, subject, grade, book_id, status, time_limit_minutes, archived_at")
+      .eq("id", data.assessmentId)
+      .maybeSingle();
+    if (!assessment) throw new Error("Assessment not found in your organization.");
+    if (assessment.status === "published") {
+      return { ok: true, status: "published" as const, alreadyPublished: true, blockers: [] };
+    }
+    if (assessment.archived_at) throw new Error("Archived assessments cannot be published.");
+
+    const [{ data: qMap }, { data: iMap }] = await Promise.all([
+      context.supabase
+        .from("assessment_question_map")
+        .select("question_id, question_bank(verification_state)")
+        .eq("assessment_id", data.assessmentId),
+      context.supabase
+        .from("assessment_item_map")
+        .select("item_id")
+        .eq("assessment_id", data.assessmentId),
+    ]);
+
+    const curriculum = qMap ?? [];
+    const legacyItems = iMap ?? [];
+    const ids = curriculum.length > 0
+      ? curriculum.map((r) => r.question_id)
+      : legacyItems.map((r) => r.item_id);
+    const unverified = curriculum.filter(
+      (r) =>
+        ((r.question_bank as unknown as { verification_state?: string } | null)?.verification_state ??
+          "unverified") !== "verified",
+    ).length;
+    const duplicates = ids.length - new Set(ids).size;
+
+    const blockers = publishBlockers({
+      title: assessment.title,
+      subject: assessment.subject,
+      grade: assessment.grade,
+      board: null,
+      questionCount: ids.length,
+      unverifiedCount: curriculum.length > 0 ? unverified : legacyItems.length,
+      duplicateCount: duplicates,
+      timeLimitMinutes: assessment.time_limit_minutes,
+      legacy: curriculum.length === 0,
+    });
+    if (blockers.length > 0) {
+      return { ok: false, status: "draft" as const, alreadyPublished: false, blockers };
+    }
+
+    const { error } = await context.supabase
+      .from("assessments")
+      .update({ status: "published", updated_at: new Date().toISOString() })
+      .eq("id", data.assessmentId)
+      .eq("status", "draft");
+    if (error) throw new Error(error.message);
+
+    // Audit event for the publication decision.
+    if (assessment.book_id) {
+      await context.supabase.from("book_events").insert({
+        org_id: await getMyOrgId(context.supabase, context.userId),
+        book_id: assessment.book_id,
+        actor_id: context.userId,
+        event: "assessment_published",
+        detail: { assessment_id: data.assessmentId, questions: ids.length },
+      });
+    }
+
+    return { ok: true, status: "published" as const, alreadyPublished: false, blockers: [] };
   });
 
 // Staff: assign a published assessment to learners (creates one session per
