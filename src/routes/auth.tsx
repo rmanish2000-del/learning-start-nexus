@@ -444,7 +444,7 @@ function AuthPage() {
                     />
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Your educator gives you your handle and PIN.
+                    A parent sets your handle and PIN in the Parent portal (a centre educator can too).
                   </p>
                 </div>
                 <Button type="submit" className="w-full" disabled={pending}>

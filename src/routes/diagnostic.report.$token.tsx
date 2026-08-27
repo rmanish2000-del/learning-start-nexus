@@ -350,24 +350,30 @@ function DiagnosticReportPageBody() {
                 )}
               </div>
               <Separator />
+              <p className="text-sm font-medium">
+                {t("upgrade.report.planName", "Class 10 Board Success Plan — annual access")}
+              </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   {t(
                     "upgrade.report.benefit.0",
-                    "Unlimited diagnostics and reassessments on fresh items, all subjects for the grade.",
+                    "Personalized practice on every outcome that is still below mastery.",
                   )}
                 </li>
                 <li>
                   {t(
                     "upgrade.report.benefit.1",
-                    "AI Tutor, unlimited, scoped to the approved interventions for these outcomes.",
+                    "Progress tracking — gaps detected, gaps closed, mastery lift, tutor minutes.",
                   )}
                 </li>
                 <li>
                   {t(
                     "upgrade.report.benefit.2",
-                    "Fortnightly parent report — gaps detected, gaps closed, mastery lift, tutor minutes.",
+                    "AI-guided study path: unlimited AI Tutor scoped to the plan, plus reassessments on fresh items.",
                   )}
+                </li>
+                <li>
+                  {t("upgrade.report.benefit.3", "Mathematics + Science coverage for Class 10.")}
                 </li>
               </ul>
               {view.planPurchased ? (

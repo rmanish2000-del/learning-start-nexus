@@ -35,7 +35,7 @@ export async function fetchStudentHomeView(
 ): Promise<StudentHomeView> {
   const { data: learner, error } = await supabase
     .from("learners")
-    .select("id")
+    .select("id, educator_id")
     .eq("student_user_id", userId)
     .maybeSingle();
   if (error) throw new Error(error.message);
@@ -50,6 +50,9 @@ export async function fetchStudentHomeView(
   }
 
   const learnerId = learner.id;
+  // Class 10 diagnostic-to-conversion: with no educator assigned the plan is
+  // AI-generated, so the fallback copy must never mention an educator.
+  const educatorAssigned = !!(learner as { educator_id?: string | null }).educator_id;
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const admin = supabaseAdmin as unknown as Client;
 
@@ -125,7 +128,9 @@ export async function fetchStudentHomeView(
       }
 
       let action: StudentGapAction = "wait";
-      let actionLabel = "Waiting for your educator";
+      let actionLabel = educatorAssigned
+        ? "Waiting for your educator"
+        : "In your study plan below";
       if (stage === "Evidence") {
         action = "review-evidence";
         actionLabel = "See your proof";

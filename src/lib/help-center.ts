@@ -78,11 +78,11 @@ export const HOW_IT_WORKS: Record<AppRole, HowItWorksContent> = {
     steps: [
       {
         title: "Take your diagnostic",
-        body: "Your educator assigns a short assessment. Answer honestly — it's used to build your personal plan, not to grade you.",
+        body: "Start the short diagnostic from your home page — no educator needed. Answer honestly: it builds your personal plan, it doesn't grade you.",
       },
       {
         title: "Get your focus plan",
-        body: "Anything you found tricky becomes a focus area. Your educator approves a plan to fix each one.",
+        body: "Anything you found tricky becomes a focus area, and your study plan is generated automatically with what to do about each one.",
       },
       {
         title: "Practice with the AI Tutor",
@@ -244,7 +244,7 @@ export const QUICK_START: Record<AppRole, QuickStartContent> = {
       },
       {
         title: "Check your focus plan",
-        body: "After your diagnostic, your focus areas appear with a plan your educator approved for you.",
+        body: "After your diagnostic, your focus areas appear with an automatically generated plan for each one.",
         to: "/home",
         cta: "See My Plan",
       },

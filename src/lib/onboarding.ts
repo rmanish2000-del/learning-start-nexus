@@ -289,7 +289,7 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
     next: [
       "Finish any assigned diagnostic waiting at the top of the page.",
       "Practice one focus area with the AI Tutor.",
-      "Take a reassessment when your educator assigns one.",
+      "Take a reassessment when one appears on your home page.",
     ],
     tourId: "student-home",
   },
