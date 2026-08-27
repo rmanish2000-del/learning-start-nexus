@@ -168,6 +168,7 @@ function LearnersPage() {
 
         <div className="flex items-center gap-2">
           <ContextHelp page="/learners" />
+          <LearnerImportDialog />
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button>
