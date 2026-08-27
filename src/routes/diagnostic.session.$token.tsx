@@ -43,21 +43,21 @@ export const Route = createFileRoute("/diagnostic/session/$token")({
 });
 
 
-// Identity gate: the report, the run and the upgrade are account-owned. The
-// server re-checks ownership on every call; this only keeps the UI honest.
+// Answer ownership: only the learner's own student session may open this page.
+// The server re-checks it on every call — this gate only keeps the UI honest.
 function DiagnosticSessionPage() {
   const { token } = Route.useParams();
   const { data: user, isLoading } = useSupabaseUser();
   if (isLoading) {
     return (
-      <DiagnosticShell>
+      <DiagnosticShell variant="learner">
         <Skeleton className="h-64 w-full" />
       </DiagnosticShell>
     );
   }
   if (!user) {
     return (
-      <DiagnosticShell>
+      <DiagnosticShell variant="learner">
         <ParentAuthGate next={`/diagnostic/session/${token}`}>{null}</ParentAuthGate>
       </DiagnosticShell>
     );
@@ -97,7 +97,7 @@ function DiagnosticSessionPageBody() {
   // A submitted diagnostic goes straight to the report.
   useEffect(() => {
     if (run?.status === "submitted") {
-      void navigate({ to: "/diagnostic/report/$token", params: { token } });
+      void navigate({ to: "/diagnostic/complete/$token", params: { token } });
     }
   }, [run?.status, navigate, token]);
 
@@ -134,7 +134,7 @@ function DiagnosticSessionPageBody() {
     try {
       await persist(answers[question.id] ?? "", index);
       await submitFn({ data: { token } });
-      await navigate({ to: "/diagnostic/report/$token", params: { token } });
+      await navigate({ to: "/diagnostic/complete/$token", params: { token } });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : t("session.error.submit", "The diagnostic could not be submitted."));
       setSubmitting(false);
@@ -143,14 +143,14 @@ function DiagnosticSessionPageBody() {
 
   if (query.isLoading) {
     return (
-      <DiagnosticShell>
+      <DiagnosticShell variant="learner">
         <Skeleton className="h-72 w-full" />
       </DiagnosticShell>
     );
   }
   if (query.isError || !run) {
     return (
-      <DiagnosticShell>
+      <DiagnosticShell variant="learner">
         <QueryError title={t("session.invalid", "This diagnostic link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
       </DiagnosticShell>
     );
@@ -160,7 +160,7 @@ function DiagnosticSessionPageBody() {
   const options = question?.options ?? null;
 
   return (
-    <DiagnosticShell footerNote={`${run.subject} · ${run.unitTitle}`}>
+    <DiagnosticShell variant="learner" learnerName={run.childFirstName} footerNote={`${run.subject} · ${run.unitTitle}`}>
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-xl font-semibold tracking-tight">

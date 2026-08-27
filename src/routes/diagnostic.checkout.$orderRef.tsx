@@ -116,7 +116,7 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
       }
       setStage("provisioning");
       const { accessToken } = await setupFn({ data: { orderRef } });
-      await navigate({ to: "/diagnostic/session/$token", params: { token: accessToken } });
+      await navigate({ to: "/diagnostic/handoff/$token", params: { token: accessToken } });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : t("checkout.error.failed", "Payment could not be completed."));
       setStage("idle");
