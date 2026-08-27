@@ -16,7 +16,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 export function ModalShell({
@@ -141,14 +140,12 @@ export function FormField({
 // Explains why an action is unavailable instead of showing a mute disabled control.
 export function DisabledReason({ reason, children }: { reason: string; children: React.ReactNode }) {
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <span tabIndex={0} aria-label={reason} className="inline-flex">
-          {children}
-        </span>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-64">{reason}</TooltipContent>
-    </Tooltip>
+    <span className="inline-flex flex-col gap-1">
+      <span title={reason} className="inline-flex">
+        {children}
+      </span>
+      <span className="max-w-56 text-[11px] leading-tight text-muted-foreground">{reason}</span>
+    </span>
   );
 }
 
