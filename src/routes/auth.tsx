@@ -470,20 +470,28 @@ function AuthPage() {
             </TabsContent>
           </Tabs>
 
-          <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
-            Trouble signing in? Parents can reset from this page; your tutoring centre admin resets
-            staff passwords and student PINs.
-          </p>
+          {tab === "student" ? (
+            <div className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
+              <p className="font-medium text-foreground">Forgot your handle or PIN?</p>
+              <ul className="mt-1.5 list-disc space-y-1 pl-4">
+                <li>
+                  Ask your parent: their Parent portal shows your handle and lets them set a new
+                  6-digit PIN instantly (Students → Reset PIN).
+                </li>
+                <li>Students at a tutoring centre can also ask their educator or centre admin.</li>
+                <li>
+                  Your handle is not an email address — if you were given an email, use the Parent
+                  or Educator option above.
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
+              Trouble signing in? Parents can reset their own password from this page; parents reset
+              their child's PIN in the Parent portal, and your centre admin resets staff passwords.
+            </p>
+          )}
 
-          {tab !== "staff" ? (
-            <button
-              type="button"
-              onClick={() => setTab("staff")}
-              className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
-            >
-              Staff access
-            </button>
-          ) : null}
 
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
