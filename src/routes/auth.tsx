@@ -41,17 +41,18 @@ type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "sig
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
-    // Parents are the default audience. Staff must ask for their tab
-    // explicitly with ?tab=staff.
-    tab:
-      search["tab"] === "parent" || search["tab"] === "student" || search["tab"] === "staff"
-        ? search["tab"]
-        : "parent",
+    // Role-specific URLs (?tab=student, ?tab=staff) win. With no explicit
+    // role the page falls back to the last role used in this browser, then
+    // to parent — students kept failing on the parent form otherwise.
+    ...(search["tab"] === "parent" || search["tab"] === "student" || search["tab"] === "staff"
+      ? { tab: search["tab"] }
+      : {}),
     mode: search["mode"] === "signup" ? "signup" : "signin",
     ...(typeof search["next"] === "string" && search["next"].startsWith("/")
       ? { next: search["next"] }
       : {}),
   }),
+
 
   head: () => ({
     meta: [
@@ -105,12 +106,46 @@ async function resolveRole(user: { id: string; user_metadata?: Record<string, un
   return "parent";
 }
 
+type AuthTab = "staff" | "student" | "parent";
+
+const LAST_ROLE_KEY = "eduos.auth.lastRole";
+
+function rememberedRole(): AuthTab | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const v = window.localStorage.getItem(LAST_ROLE_KEY);
+    return v === "staff" || v === "student" || v === "parent" ? v : null;
+  } catch {
+    return null;
+  }
+}
+
 function AuthPage() {
   const navigate = useNavigate();
   const search = Route.useSearch();
   const [pending, setPending] = useState(false);
   const [parentMode, setParentMode] = useState<"signin" | "signup">(search.mode ?? "signin");
-  const [tab, setTab] = useState<"staff" | "student" | "parent">(search.tab ?? "parent");
+  const [tab, setTabState] = useState<AuthTab>(search.tab ?? "parent");
+
+  // Remember the last role used on this device so a returning student never
+  // lands on the parent form again. Hydration-safe: the stored role is read
+  // after mount, never during the first render.
+  useEffect(() => {
+    if (search.tab) return;
+    const last = rememberedRole();
+    if (last) setTabState(last);
+  }, [search.tab]);
+
+  const setTab = (next: AuthTab) => {
+    setTabState(next);
+    try {
+      window.localStorage.setItem(LAST_ROLE_KEY, next);
+    } catch {
+      /* storage unavailable — non-fatal */
+    }
+  };
+
+
 
 
   // Already signed in? Route to the right home for the role.

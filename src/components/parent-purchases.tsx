@@ -183,7 +183,7 @@ export function ParentPurchases() {
                   </div>
                   <Badge variant="secondary">{s.masteryScore}%</Badge>
                 </div>
-                <div className="mt-2">
+                <div className="mt-2 space-y-1.5">
                   {s.assignmentStatus === "assigned" ? (
                     <Badge variant="default" className="gap-1">
                       <UserCheck className="h-3 w-3" />
@@ -192,10 +192,17 @@ export function ParentPurchases() {
                   ) : (
                     <Badge variant="outline" className="gap-1 text-amber-600">
                       <Clock3 className="h-3 w-3" />
-                      Awaiting educator assignment
+                      No educator needed for the diagnostic
                     </Badge>
                   )}
+                  {/* Never leave an unexplained state: say who acts next. */}
+                  <p className="text-xs text-muted-foreground">
+                    {s.assignmentStatus === "assigned"
+                      ? "Your educator reviews the gap report and approves the learning plan."
+                      : "The diagnostic and its report run without an educator. Our centre admin assigns one within 1 working day of a Board Success Plan purchase — nothing for you to do."}
+                  </p>
                 </div>
+
                 <StudentLoginPanel
                   student={s}
                   onSaved={() => void queryClient.invalidateQueries({ queryKey: ["parent-account"] })}

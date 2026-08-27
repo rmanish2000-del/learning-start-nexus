@@ -8,8 +8,11 @@ import { Progress } from "@/components/ui/progress";
 import { Celebration } from "@/components/celebration";
 import {
   celebratedKey,
+  celebrationDismissed,
   claimOnboardingModal,
+  dismissCelebrationForever,
   getOnboardingFlag,
+
   releaseOnboardingModal,
   requestTour,
   setOnboardingFlag,
@@ -55,7 +58,7 @@ export function OnboardingChecklist({
   // intro is showing, we retry until it's dismissed (claim released).
   useEffect(() => {
     if (!allDone || wasCompleteOnMount.current !== false) return;
-    if (getOnboardingFlag(celebratedKey(role))) return;
+    if (celebrationDismissed() || getOnboardingFlag(celebratedKey(role))) return;
     setOnboardingFlag(celebratedKey(role));
     let cancelled = false;
     let timer: number | undefined;
@@ -75,13 +78,16 @@ export function OnboardingChecklist({
   }, [allDone, role]);
 
 
-  // Every dismiss path (Keep going, X, backdrop, Escape) lands here: close
-  // the modal and make sure the completion flag is persisted.
+  // Every dismiss path (Keep going, X, backdrop, Escape) lands here. The
+  // celebration is a one-time event: dismissing it records a permanent
+  // `dismissed_at` so it can never reappear on a later login.
   const handleClose = () => {
     setOnboardingFlag(celebratedKey(role));
+    dismissCelebrationForever();
     releaseOnboardingModal("celebration");
     setCelebrating(false);
   };
+
 
   return (
     <Card className="border-primary/25 bg-primary/[0.03]">

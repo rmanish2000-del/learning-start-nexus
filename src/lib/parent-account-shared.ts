@@ -6,8 +6,13 @@
 
 import { z } from "zod";
 
-export const BOARDS = ["CBSE", "ICSE", "State Board"] as const;
-export const CLASSES = [8, 9, 10] as const;
+// Pilot scope (P0): CBSE Class 10, Mathematics & Science only. Parent-facing
+// surfaces must never offer a board or class the content packs do not cover.
+export const PILOT_BOARD = "CBSE" as const;
+export const PILOT_CLASS = 10 as const;
+export const BOARDS = [PILOT_BOARD] as const;
+export const CLASSES = [PILOT_CLASS] as const;
+
 
 export const registerParentSchema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name").max(80),
@@ -31,9 +36,12 @@ export const claimParentSchema = z.object({
 
 export const addStudentSchema = z.object({
   fullName: z.string().trim().min(2, "Enter the student's name").max(80),
-  grade: z.number().int().min(1).max(12),
+  grade: z.literal(PILOT_CLASS, {
+    errorMap: () => ({ message: "The pilot covers CBSE Class 10 only" }),
+  }),
   board: z.enum(BOARDS),
 });
+
 
 /** Parent-assisted student credential recovery: set or reset the 6-digit PIN. */
 export const setStudentPinSchema = z.object({

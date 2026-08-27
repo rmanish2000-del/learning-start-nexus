@@ -86,7 +86,36 @@ const ALL_ROLES = ["admin", "educator", "student", "parent", "reviewer"] as cons
  * a finished user must never see the onboarding modal or an unprompted tour.
  */
 export function hasCompletedOnboarding(): boolean {
-  return ALL_ROLES.some((r) => getOnboardingFlag(celebratedKey(r)));
+  return celebrationDismissed() || ALL_ROLES.some((r) => getOnboardingFlag(celebratedKey(r)));
+}
+
+/**
+ * Permanent, role-independent dismissal of the "Onboarding complete!" modal.
+ *
+ * The per-role `celebrated:<role>` flag is a transition marker; this one is the
+ * user's explicit "never show this again". Once set, no celebration modal may
+ * ever be shown in this browser again, whatever the checklist state.
+ */
+const CELEBRATION_DISMISSED_KEY = "celebration-dismissed-at";
+
+export function celebrationDismissed(): boolean {
+  const s = storage();
+  if (!s) return false;
+  try {
+    return Boolean(s.getItem(`${PREFIX}:${CELEBRATION_DISMISSED_KEY}`));
+  } catch {
+    return false;
+  }
+}
+
+export function dismissCelebrationForever(): void {
+  const s = storage();
+  if (!s) return;
+  try {
+    s.setItem(`${PREFIX}:${CELEBRATION_DISMISSED_KEY}`, new Date().toISOString());
+  } catch {
+    /* storage unavailable */
+  }
 }
 
 /**
@@ -95,8 +124,10 @@ export function hasCompletedOnboarding(): boolean {
  */
 export function markOnboardingComplete(role: string): void {
   setOnboardingFlag(celebratedKey(role));
+  dismissCelebrationForever();
   for (const id of ALL_TOUR_IDS) setOnboardingFlag(tourSeenKey(id));
 }
+
 
 export const tourReplayKey = (tourId: string) => `tour-replay:${tourId}`;
 
