@@ -205,7 +205,7 @@ function AssignmentsPage() {
                           ))}
                         </TableRow>
                       ))
-                    : (learners ?? []).map((learner) => (
+                    : visibleLearners.map((learner) => (
                         <TableRow key={learner.id}>
                           <TableCell>
                             <div className="flex items-center gap-3">
