@@ -203,7 +203,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
                 onClick={() => {
                   for (let i = active - 1; i >= 0; i--) {
                     if (document.querySelector(steps[i]!.selector)) {
-                      setActive(i);
+                      goTo(i);
                       return;
                     }
                   }
@@ -218,7 +218,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
               onClick={() => {
                 const next = findNext(active + 1);
                 if (next === null) finish();
-                else setActive(next);
+                else goTo(next);
               }}
             >
               {findNext(active + 1) === null ? "Done" : "Next"} <ArrowRight className="ml-1 h-3 w-3" />
