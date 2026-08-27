@@ -140,14 +140,15 @@ export function ParentPurchases() {
             <div className="rounded-lg border bg-background p-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">1 · Diagnostic</p>
               <p className="mt-1 text-sm">
-                Your child takes the diagnostic from the link below. The gap report is instant.
+                Your child takes the diagnostic from the link below — no educator required. The gap
+                report is instant.
               </p>
             </div>
             <div className="rounded-lg border bg-background p-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">2 · Educator</p>
               <p className="mt-1 text-sm">
                 {awaiting > 0
-                  ? "Our centre admin assigns an educator within 1 working day. No action needed from you."
+                  ? "An educator is only assigned when you take the Board Success Plan. Our centre admin does it within 1 working day — you never have to pick one."
                   : "An educator is assigned and reviewing the report."}
               </p>
             </div>
@@ -158,6 +159,7 @@ export function ParentPurchases() {
               </p>
             </div>
           </CardContent>
+
         </Card>
       ) : null}
 
