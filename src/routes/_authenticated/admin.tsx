@@ -19,6 +19,7 @@ import {
   unlinkParentFromLearner,
   updateUserRole,
 } from "@/lib/admin.functions";
+import { approveCentreLead } from "@/lib/centre-onboarding.functions";
 import { ROLE_LABELS, type AppRole } from "@/lib/roles";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -620,7 +621,7 @@ function ApproveCentreDialog({
       orgName: string;
       adminFullName: string;
       adminEmail: string;
-      phone?: string;
+      phone?: string | undefined;
     }) => approveFn({ data: input }),
     onSuccess: (result) => {
       setIssued({ adminEmail: result.adminEmail, tempPassword: result.tempPassword });
