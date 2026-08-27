@@ -695,47 +695,64 @@ function AssessmentsPage() {
       </Tabs>
 
       <Dialog open={!!assignFor} onOpenChange={(open) => !open && setAssignFor(null)}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Assign assessment</DialogTitle>
-            <DialogDescription>
-              Learners will see this on their home screen. Progress saves automatically; they can resume anytime.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4">
-            <ScrollArea className="h-56 rounded-lg border">
-              <div className="divide-y">
-                {(learners ?? []).map((learner) => (
-                  <label key={learner.id} className="flex cursor-pointer items-center gap-3 p-3 hover:bg-muted/50">
-                    <Checkbox
-                      checked={pickedLearners.has(learner.id)}
-                      onCheckedChange={() => toggle(pickedLearners, learner.id, setPickedLearners)}
-                    />
-                    <span className="flex-1 text-sm">
-                      {learner.full_name}
-                      <span className="ml-2 text-xs text-muted-foreground">
-                        Grade {learner.grade} · @{learner.handle}
+        <ModalShell aria-describedby={undefined}>
+          <ModalHeader
+            title="Assign assessment"
+            description="Learners will see this on their home screen. Progress saves automatically; they can resume anytime."
+          />
+          <ModalBody>
+            <FormSection title={`Learners (${pickedLearners.size} selected)`}>
+              <div className="divide-y rounded-lg border">
+                {(learners ?? []).length === 0 ? (
+                  <p className="p-4 text-sm text-muted-foreground">No learners available.</p>
+                ) : (
+                  (learners ?? []).map((learner) => (
+                    <label
+                      key={learner.id}
+                      className="flex cursor-pointer items-center gap-3 p-3 hover:bg-muted/50"
+                    >
+                      <Checkbox
+                        checked={pickedLearners.has(learner.id)}
+                        onCheckedChange={() =>
+                          toggle(pickedLearners, learner.id, setPickedLearners)
+                        }
+                      />
+                      <span className="flex-1 text-sm">
+                        {learner.full_name}
+                        <span className="ml-2 text-xs text-muted-foreground">
+                          Class {learner.grade} · @{learner.handle}
+                        </span>
                       </span>
-                    </span>
-                  </label>
-                ))}
+                    </label>
+                  ))
+                )}
               </div>
-            </ScrollArea>
-            <div className="space-y-1.5">
-              <Label htmlFor="a-due">Due date (optional)</Label>
-              <Input id="a-due" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-            </div>
-          </div>
-          <DialogFooter>
+            </FormSection>
+            <FormField id="a-due" label="Due date (optional)">
+              <Input
+                id="a-due"
+                type="date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+              />
+            </FormField>
+          </ModalBody>
+          <ModalFooter>
+            <Button variant="ghost" onClick={() => setAssignFor(null)}>
+              Cancel
+            </Button>
             <Button
               onClick={() => assignMutation.mutate()}
               disabled={assignMutation.isPending || pickedLearners.size === 0}
             >
-              {assignMutation.isPending ? "Assigning…" : `Assign to ${pickedLearners.size || ""} learner${pickedLearners.size === 1 ? "" : "s"}`}
+              {assignMutation.isPending
+                ? "Assigning…"
+                : `Assign to ${pickedLearners.size || ""} learner${pickedLearners.size === 1 ? "" : "s"}`}
             </Button>
-          </DialogFooter>
-        </DialogContent>
+          </ModalFooter>
+        </ModalShell>
       </Dialog>
+
     </div>
   );
 }
