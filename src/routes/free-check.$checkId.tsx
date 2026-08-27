@@ -21,6 +21,7 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
+import { useI18n } from "@/lib/i18n/context";
 
 const TITLE = "Free learning check | EduOS";
 const DESCRIPTION = "A short five-question check. Answers save as you go.";
@@ -160,15 +161,18 @@ function FreeCheckBody() {
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
               <CheckCircle2 className="h-6 w-6" />
             </span>
-            <CardTitle className="mt-2 text-xl">Learning check complete</CardTitle>
+            <CardTitle className="mt-2 text-xl">{t("freeCheck.complete", "Learning check complete")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-center text-sm text-muted-foreground">
             <p>
-              Nice work. Your parent can now see which skills were checked and what to focus on next.
+              {t(
+                "runs.done.body",
+                "Nice work. Your parent can now see which skills were checked and what to focus on next.",
+              )}
             </p>
             <Button asChild onClick={() => void navigate({ to: "/home" })}>
               <Link to="/home">
-                <GraduationCap className="mr-2 h-4 w-4" /> Back to My Learning
+                <GraduationCap className="mr-2 h-4 w-4" /> {t("runs.backToLearning", "Back to My Learning")}
               </Link>
             </Button>
           </CardContent>
@@ -257,7 +261,7 @@ function FreeCheckBody() {
               {isLast ? (
                 <Button onClick={submit} disabled={submitting}>
                   {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  Finish check
+                  {t("freeCheck.finish", "Finish check")}
                 </Button>
               ) : (
                 <Button
