@@ -293,7 +293,7 @@ function AuthPage() {
               {tab === "staff"
                 ? "Staff use their work email and password."
                 : tab === "student"
-                  ? "Students use the handle and PIN from their educator."
+                  ? "Students use their handle and 6-digit PIN — a parent or educator can reset it."
                   : "Parents sign in with email. New here? Create an account in under a minute."}
             </p>
           </div>
