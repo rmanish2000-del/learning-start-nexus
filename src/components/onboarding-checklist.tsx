@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle2, Circle, Compass, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

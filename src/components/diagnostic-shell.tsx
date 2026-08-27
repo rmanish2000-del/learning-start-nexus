@@ -35,8 +35,18 @@ export function DiagnosticShell({
             <span className="hidden items-center gap-1.5 text-xs text-muted-foreground sm:flex">
               <Lock className="h-3.5 w-3.5" /> {t("common.secureCheckout", "Secure checkout")}
             </span>
+            {/* Focus mode is deliberate, but never a trap: one clear way back. */}
+            <Link
+              to="/parent"
+              className="text-xs font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+            >
+              {t("common.parentPortal", "Parent portal")}
+            </Link>
           </div>
         </div>
+        <p className="mx-auto max-w-5xl px-4 pb-2 text-[11px] text-muted-foreground sm:hidden">
+          {t("common.focusMode", "Distraction-free checkout — use Parent portal to go back.")}
+        </p>
       </header>
       <main className={cn("mx-auto w-full flex-1 px-4 py-10", wide ? "max-w-5xl" : "max-w-3xl")}>{children}</main>
       <footer className="border-t">
