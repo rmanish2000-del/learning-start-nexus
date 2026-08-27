@@ -6,6 +6,7 @@ import { UserCog } from "lucide-react";
 import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 import {
   Card,
@@ -69,6 +70,7 @@ function AssignmentsPage() {
   const fetchStaff = useServerFn(listStaffUsers);
   const runAssign = useServerFn(assignEducator);
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [filter, setFilter] = useState<"unassigned" | "all">("unassigned");
 
   const {
     data: learners,
