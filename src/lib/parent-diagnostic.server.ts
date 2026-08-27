@@ -95,7 +95,10 @@ export async function fetchDiagnosticCatalog(): Promise<CatalogSubject[]> {
       .from("question_bank")
       .select("id, outcome_id")
       .in("book_id", bookIds)
-      .eq("status", "approved"),
+      .eq("status", "approved")
+      // Pilot content gate: a paid diagnostic may only ever show questions that
+      // passed review. Unverified questions are invisible to the paid catalog.
+      .eq("verification_state", "verified"),
   ]);
   if (unitsRes.error) throw new Error(unitsRes.error.message);
   if (outcomesRes.error) throw new Error(outcomesRes.error.message);
@@ -564,7 +567,9 @@ async function generateParentDiagnostic(row: OrderRow, learnerName: string): Pro
       .from("question_bank")
       .select("id, outcome_id, kind, difficulty, prompt")
       .eq("book_id", bookId)
-      .eq("status", "approved"),
+      .eq("status", "approved")
+      // Pilot content gate: no unverified question may enter a paid diagnostic.
+      .eq("verification_state", "verified"),
   ]);
   if (outcomesRes.error) throw new Error(outcomesRes.error.message);
   if (questionsRes.error) throw new Error(questionsRes.error.message);
