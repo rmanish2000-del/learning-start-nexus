@@ -271,6 +271,7 @@ export function ParentPurchases() {
           )}
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }
