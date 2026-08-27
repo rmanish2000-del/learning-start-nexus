@@ -57,7 +57,15 @@ export const createAssessmentSchema = z.object({
   description: z.string().trim().max(500).optional(),
   timeLimitMinutes: z.number().int().min(1).max(180).optional(),
   itemIds: z.array(z.string().uuid()).min(1, "Pick at least one question").max(50),
-  publishNow: z.boolean(),
+  // Retained for wire compatibility only — creation NEVER publishes. Every new
+  // assessment starts as a draft; publishing is a separate explicit action.
+  publishNow: z.boolean().optional(),
+  // Idempotency key: a retried/double-clicked create returns the first result.
+  clientRequestId: z.string().uuid().optional(),
+});
+
+export const assessmentIdSchema = z.object({
+  assessmentId: z.string().uuid(),
 });
 
 export const assignAssessmentSchema = z.object({
