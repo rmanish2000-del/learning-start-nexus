@@ -266,10 +266,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <NavGroup label="System" items={SYSTEM_ITEMS} />
         </SidebarContent>
         <SidebarFooter className="p-3">
-          <p className="truncate text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
-            Brightpath Learning
-          </p>
+          <OrgFooterLabel />
         </SidebarFooter>
+
       </Sidebar>
       <SidebarInset>
         <header className="flex h-13 items-center justify-between border-b px-4 print:hidden">
