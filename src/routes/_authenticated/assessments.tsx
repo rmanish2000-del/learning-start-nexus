@@ -209,90 +209,201 @@ function AssessmentsPage() {
     apply(next);
   };
 
+  const draftReady = title.trim().length >= 3 && picked.size > 0;
+  const dirty = title.trim().length > 0 || description.trim().length > 0 || picked.size > 0;
+
+  const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setPicked(new Set());
+    setSavedDraftId(null);
+  };
+
+  const closeCreate = (open: boolean) => {
+    if (open) {
+      setCreateOpen(true);
+      return;
+    }
+    // Unsaved-changes guard: closing never discards silently and never publishes.
+    if (dirty && !savedDraftId) {
+      setConfirmDiscard(true);
+      return;
+    }
+    setCreateOpen(false);
+    resetForm();
+  };
+
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Assessments</h2>
           <p className="text-sm text-muted-foreground">
-            Legacy item-bank diagnostics (Grade 6 · Mathematics · Fractions). New assessments are built from the
-            curriculum via the Assessment Builder or Diagnostic Engine.
+            Create assessment → Save as draft → Review → Publish → Assign to learner. Active scope is
+            CBSE Class 10 Mathematics and Science.
           </p>
         </div>
-        <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+        <Dialog open={createOpen} onOpenChange={closeCreate}>
           <DialogTrigger asChild>
             <Button variant="outline">
-              <Plus className="h-4 w-4" /> New assessment
-              <Badge variant="secondary" className="ml-1 text-[10px] uppercase tracking-wide">Legacy</Badge>
+              <Plus className="h-4 w-4" /> Create assessment
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                New diagnostic assessment
-                <Badge variant="secondary" className="text-[10px] uppercase tracking-wide">Legacy</Badge>
-              </DialogTitle>
-              <DialogDescription>
-                Pick questions from the legacy item bank (Grade 6 · Fractions). Prefer the Assessment Builder for
-                curriculum-linked assessments.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-4">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="space-y-1.5">
-                  <Label htmlFor="a-title">Title</Label>
-                  <Input id="a-title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Fractions Checkpoint" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="a-time">Suggested time (minutes)</Label>
-                  <Input id="a-time" type="number" min={1} max={180} value={timeLimit} onChange={(e) => setTimeLimit(e.target.value)} />
-                </div>
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="a-desc">Description (optional)</Label>
-                <Input id="a-desc" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What this diagnostic measures" />
-              </div>
-              <div className="space-y-2">
-                <Label>Questions ({picked.size} selected)</Label>
-                <ScrollArea className="h-56 rounded-lg border">
-                  <div className="divide-y">
-                    {(items ?? []).map((item) => (
-                      <label key={item.id} className="flex cursor-pointer items-start gap-3 p-3 hover:bg-muted/50">
-                        <Checkbox
-                          checked={picked.has(item.id)}
-                          onCheckedChange={() => toggle(picked, item.id, setPicked)}
-                          className="mt-0.5"
-                        />
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-sm">{item.prompt}</span>
-                          <span className="text-xs text-muted-foreground">
-                            {item.subtopic} · {DIFFICULTY_LABELS[item.difficulty]} · {item.kind === "mcq" ? "Multiple choice" : "Numeric"}
-                          </span>
-                        </span>
-                      </label>
-                    ))}
+          <ModalShell aria-describedby={undefined}>
+            <ModalHeader
+              title="Create assessment"
+              description="Assessments are created as drafts. Nothing is published or assigned by saving."
+            />
+            {savedDraftId ? (
+              <>
+                <ModalBody>
+                  <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/5 p-4">
+                    <p className="flex items-center gap-2 text-sm font-medium text-emerald-700 dark:text-emerald-400">
+                      <CheckCircle2 className="h-4 w-4" /> Assessment saved as draft.
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      It is not visible to any learner. Review it to run the publication checks.
+                    </p>
                   </div>
-                </ScrollArea>
-              </div>
-              <div className="flex items-center justify-between rounded-lg border p-3">
-                <div>
-                  <p className="text-sm font-medium">Publish now</p>
-                  <p className="text-xs text-muted-foreground">Published assessments can be assigned to learners.</p>
-                </div>
-                <Switch checked={publishNow} onCheckedChange={setPublishNow} />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button
-                onClick={() => createMutation.mutate()}
-                disabled={createMutation.isPending || title.trim().length < 3 || picked.size === 0}
-              >
-                {createMutation.isPending ? "Creating…" : "Create assessment"}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
+                  <InfoNote>
+                    Publishing makes the assessment eligible for assignment; assigning connects a
+                    published assessment to a learner or cohort. They remain separate steps.
+                  </InfoNote>
+                </ModalBody>
+                <ModalFooter>
+                  <Button variant="ghost" onClick={() => setSavedDraftId(null)}>
+                    Continue editing
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setCreateOpen(false);
+                      resetForm();
+                    }}
+                  >
+                    Return to assessments
+                  </Button>
+                  <Button asChild>
+                    <Link to="/assessment/$assessmentId" params={{ assessmentId: savedDraftId }}>
+                      Review assessment
+                    </Link>
+                  </Button>
+                </ModalFooter>
+              </>
+            ) : (
+              <>
+                <ModalBody>
+                  <FormSection title="Details">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <FormField id="a-title" label="Title">
+                        <Input
+                          id="a-title"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                          placeholder="Class 10 Mathematics checkpoint"
+                        />
+                      </FormField>
+                      <FormField
+                        id="a-time"
+                        label="Estimated duration (minutes)"
+                        hint="Shown to learners before they start."
+                      >
+                        <Input
+                          id="a-time"
+                          type="number"
+                          min={1}
+                          max={180}
+                          value={timeLimit}
+                          onChange={(e) => setTimeLimit(e.target.value)}
+                        />
+                      </FormField>
+                    </div>
+                    <FormField id="a-desc" label="Description (optional)">
+                      <Input
+                        id="a-desc"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="What this assessment measures"
+                      />
+                    </FormField>
+                  </FormSection>
+
+                  <FormSection
+                    title={`Questions (${picked.size} selected)`}
+                    hint="Selecting questions never publishes or assigns anything."
+                  >
+                    <div className="divide-y rounded-lg border">
+                      {(items ?? []).length === 0 ? (
+                        <p className="p-4 text-sm text-muted-foreground">
+                          No questions are available in the active CBSE Class 10 scope yet. Build one
+                          from the curriculum in the Assessment Builder.
+                        </p>
+                      ) : (
+                        (items ?? []).map((item) => (
+                          <label
+                            key={item.id}
+                            className="flex cursor-pointer items-start gap-3 p-3 hover:bg-muted/50"
+                          >
+                            <Checkbox
+                              checked={picked.has(item.id)}
+                              onCheckedChange={() => toggle(picked, item.id, setPicked)}
+                              className="mt-0.5"
+                            />
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-sm">{item.prompt}</span>
+                              <span className="text-xs text-muted-foreground">
+                                {item.subtopic} · {DIFFICULTY_LABELS[item.difficulty]} ·{" "}
+                                {item.kind === "mcq" ? "Multiple choice" : "Numeric"}
+                              </span>
+                            </span>
+                          </label>
+                        ))
+                      )}
+                    </div>
+                  </FormSection>
+
+                  <InfoNote>
+                    New assessments always begin as <strong>Draft</strong>. Publishing happens on the
+                    review screen after every validation check passes.
+                  </InfoNote>
+                </ModalBody>
+                <ModalFooter>
+                  <Button variant="ghost" onClick={() => closeCreate(false)}>
+                    Cancel
+                  </Button>
+                  {draftReady ? null : (
+                    <span className="text-xs text-muted-foreground sm:mr-auto">
+                      Add a title (3+ characters) and at least one question to save a draft.
+                    </span>
+                  )}
+                  <Button
+                    onClick={() => createMutation.mutate()}
+                    disabled={createMutation.isPending || !draftReady}
+                  >
+                    {createMutation.isPending ? "Saving…" : "Save as draft"}
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalShell>
         </Dialog>
       </div>
+
+      <ConfirmDialog
+        open={confirmDiscard}
+        onOpenChange={setConfirmDiscard}
+        title="Discard unsaved assessment?"
+        description="Your title, description and selected questions have not been saved as a draft yet."
+        confirmLabel="Discard"
+        cancelLabel="Continue editing"
+        destructive
+        onConfirm={() => {
+          setConfirmDiscard(false);
+          setCreateOpen(false);
+          resetForm();
+        }}
+      />
+
 
       <Tabs defaultValue="assessments">
         <TabsList>
