@@ -144,3 +144,9 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
   PASS; production build PASS).
 - Rollback reference: `e73bbb047889fe3e8043be90e56e833f068a04dc` (previous deployed
   documentation HEAD); application rollback `54baba6d79f0f227b44ef3140d2720f026551b0c`.
+
+## Update 2026-08-27 (Documentation HEAD SHA stamp)
+
+- **Documentation HEAD full SHA: `18321a2dbc0b32b3eb55e6c8988740d8a0a07894`** — contains `EDUOS_PROJECT_OPERATING_SYSTEM.md`, `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md`, this file, `CURRENT_ASSIGNMENT.md`, and `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md`; all tracked; working tree clean at stamp time.
+- **Production application SHA (separate): `92ac129d6e62b70bdd382db7a5aa8fdccadfe24c`** — last functional/code-bearing commit; all commits above it are documentation-only.
+- This stamping update is documentation-only; no production redeploy required.

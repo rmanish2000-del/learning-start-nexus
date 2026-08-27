@@ -624,3 +624,11 @@ The new chat must correctly answer all of these before continuing:
 12. What remains unverified?
 
 If the new chat cannot answer these from the supplied files, provide the missing document or require repository evidence before proceeding.
+
+---
+
+## Appendix — Documentation HEAD stamp (2026-08-27)
+
+- **Documentation HEAD full SHA: `18321a2dbc0b32b3eb55e6c8988740d8a0a07894`** — contains this package, `EDUOS_PROJECT_OPERATING_SYSTEM.md`, `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md`, `PROJECT_STATUS.md`, and `CURRENT_ASSIGNMENT.md`.
+- **Production application SHA (separate): `92ac129d6e62b70bdd382db7a5aa8fdccadfe24c`** (last code-bearing commit; everything above is documentation-only).
+- Previously recorded deployed documentation HEAD: `e73bbb047889fe3e8043be90e56e833f068a04dc` (superseded by the stamp above).
