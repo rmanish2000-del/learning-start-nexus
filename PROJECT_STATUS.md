@@ -122,3 +122,25 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - **`EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` added** to the canonical repository as the session-continuity bootstrap document; it carries the deployed SHA and inline `[CORRECTED 2026-08-27]` annotations where its claims were disproved by repository evidence.
 - **Publishing state (§7) superseded:** the verified canonical HEAD was published; production serves `e73bbb0`.
 - **Note:** `EDUOS_PROJECT_OPERATING_SYSTEM.md` does not exist in the repository. Its rules live in the handoff package (§14–§16) and `PRODUCT_DECISIONS.md`.
+
+---
+
+## Update 2026-08-27 (Handoff file location audit)
+
+**Last verified:** 2026-08-27 (UTC) · Canonical branch: `main`
+
+| Handoff file | Repository path | Tracked | State |
+|---|---|---|---|
+| `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md` | repository root | Yes — introduced in `db55f6fdf44d4368bca557a80d000cb639a751d4` | **Current** (no superseding release since) |
+| `EDUOS_PROJECT_OPERATING_SYSTEM.md` | repository root | Yes — created in this documentation commit | **Current** (new; rules extracted from `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` §1, §3–§8, §14–§17) |
+
+- Repository-wide search (`git ls-files`, root and all folders) found no prior
+  `EDUOS_PROJECT_OPERATING_SYSTEM.md` at any path and no second copy of the
+  consolidated verification report. The earlier note stating the operating-system
+  file does not exist is therefore **superseded** by its creation here.
+- Documentation-only change: no application code, schema, migration or translation
+  touched. Test, typecheck and build results carry over unchanged from
+  `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md` §2 (70 passed / 8 files; typecheck
+  PASS; production build PASS).
+- Rollback reference: `e73bbb047889fe3e8043be90e56e833f068a04dc` (previous deployed
+  documentation HEAD); application rollback `54baba6d79f0f227b44ef3140d2720f026551b0c`.
