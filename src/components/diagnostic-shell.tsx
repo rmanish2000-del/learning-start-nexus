@@ -35,13 +35,21 @@ export function DiagnosticShell({
             <span className="hidden items-center gap-1.5 text-xs text-muted-foreground sm:flex">
               <Lock className="h-3.5 w-3.5" /> {t("common.secureCheckout", "Secure checkout")}
             </span>
-            {/* Focus mode is deliberate, but never a trap: one clear way back. */}
+            {/* Focus mode is deliberate, but never a trap: two clear ways
+                back, visible at every breakpoint. */}
+            <Link
+              to="/"
+              className="hidden text-xs font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline sm:inline"
+            >
+              {t("common.home", "Home")}
+            </Link>
             <Link
               to="/parent"
-              className="text-xs font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              className="rounded-md border px-2.5 py-1 text-xs font-medium text-foreground hover:bg-muted"
             >
               {t("common.parentPortal", "Parent portal")}
             </Link>
+
           </div>
         </div>
         <p className="mx-auto max-w-5xl px-4 pb-2 text-[11px] text-muted-foreground sm:hidden">
