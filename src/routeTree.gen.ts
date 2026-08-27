@@ -55,6 +55,7 @@ import { Route as AuthenticatedSprint5AuditRouteImport } from './routes/_authent
 import { Route as AuthenticatedUxPhase1PlanRouteImport } from './routes/_authenticated/ux-phase1-plan'
 import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
 import { Route as DiagnosticIndexRouteImport } from './routes/diagnostic.index'
+import { Route as FreeCheckCheckIdRouteImport } from './routes/free-check.$checkId'
 import { Route as UpgradeTokenRouteImport } from './routes/upgrade.$token'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
@@ -324,6 +325,11 @@ const DiagnosticIndexRoute = DiagnosticIndexRouteImport.update({
   path: '/diagnostic/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FreeCheckCheckIdRoute = FreeCheckCheckIdRouteImport.update({
+  id: '/free-check/$checkId',
+  path: '/free-check/$checkId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UpgradeTokenRoute = UpgradeTokenRouteImport.update({
   id: '/upgrade/$token',
   path: '/upgrade/$token',
@@ -431,6 +437,7 @@ export interface FileRoutesByFullPath {
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
+  '/free-check/$checkId': typeof FreeCheckCheckIdRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -489,6 +496,7 @@ export interface FileRoutesByTo {
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
+  '/free-check/$checkId': typeof FreeCheckCheckIdRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -549,6 +557,7 @@ export interface FileRoutesById {
   '/_authenticated/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
   '/_authenticated/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/_authenticated/verification': typeof AuthenticatedVerificationRoute
+  '/free-check/$checkId': typeof FreeCheckCheckIdRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
@@ -609,6 +618,7 @@ export interface FileRouteTypes {
     | '/sprint-5-audit'
     | '/ux-phase1-plan'
     | '/verification'
+    | '/free-check/$checkId'
     | '/upgrade/$token'
     | '/diagnostic/'
     | '/assessment/$assessmentId'
@@ -667,6 +677,7 @@ export interface FileRouteTypes {
     | '/sprint-5-audit'
     | '/ux-phase1-plan'
     | '/verification'
+    | '/free-check/$checkId'
     | '/upgrade/$token'
     | '/diagnostic'
     | '/assessment/$assessmentId'
@@ -726,6 +737,7 @@ export interface FileRouteTypes {
     | '/_authenticated/sprint-5-audit'
     | '/_authenticated/ux-phase1-plan'
     | '/_authenticated/verification'
+    | '/free-check/$checkId'
     | '/upgrade/$token'
     | '/diagnostic/'
     | '/_authenticated/assessment/$assessmentId'
@@ -749,6 +761,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  FreeCheckCheckIdRoute: typeof FreeCheckCheckIdRoute
   UpgradeTokenRoute: typeof UpgradeTokenRoute
   DiagnosticIndexRoute: typeof DiagnosticIndexRoute
   ApiPublicRazorpayWebhookRoute: typeof ApiPublicRazorpayWebhookRoute
@@ -1083,6 +1096,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiagnosticIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/free-check/$checkId': {
+      id: '/free-check/$checkId'
+      path: '/free-check/$checkId'
+      fullPath: '/free-check/$checkId'
+      preLoaderRoute: typeof FreeCheckCheckIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upgrade/$token': {
       id: '/upgrade/$token'
       path: '/upgrade/$token'
@@ -1279,6 +1299,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  FreeCheckCheckIdRoute: FreeCheckCheckIdRoute,
   UpgradeTokenRoute: UpgradeTokenRoute,
   DiagnosticIndexRoute: DiagnosticIndexRoute,
   ApiPublicRazorpayWebhookRoute: ApiPublicRazorpayWebhookRoute,
