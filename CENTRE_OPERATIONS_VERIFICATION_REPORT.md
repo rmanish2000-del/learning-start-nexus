@@ -194,3 +194,10 @@ chain differs for Pilot Learning Centre.
 - Impact: documentation only. The centre, admin, educator and learner records created above are
   test data in the `Pilot Learning Centre` organization and are isolated from every other centre;
   they can be left in place or archived without affecting other organizations.
+
+### Defect found and fixed during this verification
+
+The admin dashboard subtitle rendered a hard-coded centre name ("Organization-wide roster health for
+Brightpath Learning.") for every organization. It now reads the signed-in admin's own organization —
+re-verified as "Organization-wide roster health for Pilot Learning Centre." (`A12_dashboard_org.png`).
+The sidebar footer, fixed in the same pass, likewise shows the signed-in centre.
