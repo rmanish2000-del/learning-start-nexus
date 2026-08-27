@@ -127,8 +127,25 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
 
   await materialisePlan(admin, { orgId, learnerId });
 
-  const breakdown = (Array.isArray(latest.result) ? latest.result : []) as unknown as BreakdownEntry[];
-  const buckets = aggregateBreakdown(breakdown.filter((b) => b && typeof b.subtopic === "string"));
+  // Diagnostic sessions store an outcome-level result object; older manual
+  // sessions store a flat per-item breakdown array. Support both.
+  const result = latest.result as unknown;
+  const outcomeResults = Array.isArray((result as { outcomes?: unknown } | null)?.outcomes)
+    ? ((result as { outcomes: { code: string; correct: number; total: number; pct: number }[] }).outcomes)
+    : null;
+  const breakdown = (Array.isArray(result) ? result : []) as unknown as BreakdownEntry[];
+  const buckets = outcomeResults
+    ? outcomeResults
+        .filter((o) => o && typeof o.code === "string")
+        .map((o) => ({
+          code: o.code,
+          correct: Number(o.correct ?? 0),
+          total: Number(o.total ?? 0),
+          pct: Number(o.pct ?? 0),
+        }))
+        .sort((a, b) => b.pct - a.pct || a.code.localeCompare(b.code))
+    : aggregateBreakdown(breakdown.filter((b) => b && typeof b.subtopic === "string"));
+
   const codes = buckets.map((b) => b.code);
 
   const assessment = latest.assessments as unknown as {
