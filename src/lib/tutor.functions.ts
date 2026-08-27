@@ -44,7 +44,7 @@ export const launchTutorSession = createServerFn({ method: "POST" })
     const { hasGuardianConsent } = await import("@/lib/consent.server");
     if (!(await hasGuardianConsent(supabase, learner.id))) {
       throw new Error(
-        "Parent/guardian consent is required before using the AI tutor. Ask your educator to record consent.",
+        "Parent/guardian consent is required before using the AI tutor. A parent can record it in the Parent portal.",
       );
     }
 
