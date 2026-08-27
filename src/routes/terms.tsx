@@ -27,7 +27,7 @@ function TermsPage() {
   return (
     <PublicPageLayout title="Terms of Service" updated="August 23, 2026">
       <p className="text-muted-foreground">
-        These terms govern access to the EduOS demo deployment operated by Brightpath Learning.
+        These terms govern access to the EduOS deployment.
         By signing in, you agree to them.
       </p>
 

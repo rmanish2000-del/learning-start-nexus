@@ -9,13 +9,13 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "How EduOS collects, uses, and protects learner, educator, and guardian data in the Brightpath Learning demo deployment.",
+          "How EduOS collects, uses, and protects learner, educator, and guardian data in the EduOS deployment.",
       },
       { property: "og:title", content: "Privacy Policy — EduOS" },
       {
         property: "og:description",
         content:
-          "How EduOS collects, uses, and protects learner, educator, and guardian data in the Brightpath Learning demo deployment.",
+          "How EduOS collects, uses, and protects learner, educator, and guardian data in the EduOS deployment.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -27,7 +27,7 @@ function PrivacyPage() {
   return (
     <PublicPageLayout title="Privacy Policy" updated="August 23, 2026">
       <p className="text-muted-foreground">
-        This policy describes how the EduOS demo deployment operated by Brightpath Learning
+        This policy describes how the EduOS deployment
         ("EduOS", "we") handles information. It is written for the tutoring centers, educators,
         students, and parents/guardians who use this workspace.
       </p>
