@@ -266,12 +266,43 @@ function AuthPage() {
             </p>
           </div>
 
+          {/* Role-first selection. Students kept failing on the Parent form with
+              valid credentials, so the account type is now an explicit, labelled
+              choice rather than a compact tab strip. */}
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              I am signing in as
+            </p>
+            <div className="grid gap-2">
+              {ROLE_OPTIONS.map((option) => {
+                const selected = tab === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => setTab(option.value)}
+                    className={`flex items-start gap-3 rounded-xl border p-3 text-left transition ${
+                      selected
+                        ? "border-primary bg-primary/5 ring-1 ring-primary"
+                        : "border-border hover:border-primary/40 hover:bg-muted/50"
+                    }`}
+                  >
+                    <option.icon
+                      className={`mt-0.5 h-4 w-4 shrink-0 ${selected ? "text-primary" : "text-muted-foreground"}`}
+                    />
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium">{option.label}</span>
+                      <span className="block text-xs text-muted-foreground">{option.hint}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <Tabs value={tab} onValueChange={(value) => setTab(value as typeof tab)}>
-            <TabsList className={tab === "staff" ? "grid w-full grid-cols-3" : "grid w-full grid-cols-2"}>
-              <TabsTrigger value="parent">Parent</TabsTrigger>
-              <TabsTrigger value="student">Student</TabsTrigger>
-              {tab === "staff" ? <TabsTrigger value="staff">Staff</TabsTrigger> : null}
-            </TabsList>
+
 
 
             <TabsContent value="staff" className="pt-6">
