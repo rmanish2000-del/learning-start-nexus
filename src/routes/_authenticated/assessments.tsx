@@ -429,9 +429,10 @@ function AssessmentsPage() {
 
       <Tabs defaultValue="assessments">
         <TabsList>
-          <TabsTrigger value="assessments">Assessments</TabsTrigger>
-          <TabsTrigger value="bank">Item bank ({items?.length ?? 0})</TabsTrigger>
+          <TabsTrigger value="assessments">Assessments ({activeAssessments.length})</TabsTrigger>
+          <TabsTrigger value="bank">Question bank ({items?.length ?? 0})</TabsTrigger>
           <TabsTrigger value="sessions">Sessions ({sessions?.length ?? 0})</TabsTrigger>
+          <TabsTrigger value="legacy">Archived / legacy ({legacyAssessments.length})</TabsTrigger>
         </TabsList>
 
         <TabsContent value="assessments" className="mt-4">
@@ -442,62 +443,127 @@ function AssessmentsPage() {
             </div>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
-              {(assessments ?? []).map((a) => (
-                <Card key={a.id}>
-                  <CardHeader className="pb-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <CardTitle className="text-base">
-                        <Link to="/assessment/$assessmentId" params={{ assessmentId: a.id }} className="hover:underline">
-                          {a.title}
-                        </Link>
-                      </CardTitle>
-                      <span className="flex items-center gap-1.5">
-                        {!a.book_id && (
-                          <Badge variant="outline" className="text-[10px] uppercase tracking-wide">Legacy</Badge>
-                        )}
-                        <Badge variant={a.status === "published" ? "default" : "secondary"} className="capitalize">
-                          {a.status}
+              {activeAssessments.map((a) => {
+                const state = resolveState({
+                  status: a.status,
+                  archivedAt: a.archived_at,
+                  assignedCount: sessionCounts.get(a.id) ?? 0,
+                });
+                const allowed = actionsFor(state);
+                const assignReason = unavailableReason("assign", state);
+                return (
+                  <Card key={a.id}>
+                    <CardHeader className="pb-2">
+                      <div className="flex items-start justify-between gap-2">
+                        <CardTitle className="text-base">
+                          <Link
+                            to="/assessment/$assessmentId"
+                            params={{ assessmentId: a.id }}
+                            className="hover:underline"
+                          >
+                            {a.title}
+                          </Link>
+                        </CardTitle>
+                        <Badge
+                          variant={
+                            state === "published" || state === "assigned" ? "default" : "secondary"
+                          }
+                        >
+                          {STATE_LABELS[state]}
                         </Badge>
-                      </span>
-                    </div>
-                    <CardDescription className="line-clamp-2">{a.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <p className="text-xs text-muted-foreground">
-                      Grade {a.grade} · {a.topic} · {itemCounts.get(a.id) ?? 0} questions
-                      {a.time_limit_minutes ? ` · ${a.time_limit_minutes} min` : ""} · {sessionCounts.get(a.id) ?? 0} assigned
-                    </p>
-                    <div className="flex gap-2">
-                      <Button asChild variant="outline" size="sm">
-                        <Link to="/assessment/$assessmentId" params={{ assessmentId: a.id }}>
-                          <ClipboardList className="h-3.5 w-3.5" /> Details
-                        </Link>
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        disabled={a.status !== "published"}
-                        onClick={() => {
-                          setAssignFor(a.id);
-                          setPickedLearners(new Set());
-                        }}
-                      >
-                        <Send className="h-3.5 w-3.5" /> Assign
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-              {(assessments ?? []).length === 0 && (
+                      </div>
+                      <CardDescription className="line-clamp-2">{a.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-xs text-muted-foreground">
+                        Class {a.grade} · {a.subject} · {a.topic} · {itemCounts.get(a.id) ?? 0}{" "}
+                        questions
+                        {a.time_limit_minutes ? ` · ${a.time_limit_minutes} min` : ""} ·{" "}
+                        {sessionCounts.get(a.id) ?? 0} assigned
+                      </p>
+                      <div className="flex flex-wrap items-start gap-2">
+                        <Button asChild variant="outline" size="sm">
+                          <Link to="/assessment/$assessmentId" params={{ assessmentId: a.id }}>
+                            <ClipboardList className="h-3.5 w-3.5" />{" "}
+                            {allowed.includes("review")
+                              ? ACTION_LABELS.review
+                              : ACTION_LABELS.preview}
+                          </Link>
+                        </Button>
+                        {assignReason ? (
+                          <DisabledReason reason={assignReason}>
+                            <Button size="sm" variant="secondary" disabled>
+                              <Send className="h-3.5 w-3.5" /> {ACTION_LABELS.assign}
+                            </Button>
+                          </DisabledReason>
+                        ) : (
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => {
+                              setAssignFor(a.id);
+                              setPickedLearners(new Set());
+                            }}
+                          >
+                            <Send className="h-3.5 w-3.5" /> {ACTION_LABELS.assign}
+                          </Button>
+                        )}
+                        {state === "assigned" ? (
+                          <Button asChild size="sm" variant="ghost">
+                            <Link to="/assessment/$assessmentId" params={{ assessmentId: a.id }}>
+                              {ACTION_LABELS["view-progress"]}
+                            </Link>
+                          </Button>
+                        ) : null}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+              {activeAssessments.length === 0 && (
                 <Card className="md:col-span-2">
                   <CardContent className="py-10 text-center text-sm text-muted-foreground">
-                    No assessments yet — create one from the item bank.
+                    No assessments in the active CBSE Class 10 scope yet — create one to start a
+                    draft.
                   </CardContent>
                 </Card>
               )}
             </div>
           )}
         </TabsContent>
+
+        <TabsContent value="legacy" className="mt-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Archived / legacy content</CardTitle>
+              <CardDescription>
+                Pilot content outside the active CBSE Class 10 scope (for example Grade 6 ·
+                Fractions). Retained as evidence, excluded from every creation and assignment flow.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {legacyAssessments.length === 0 ? (
+                <p className="text-sm text-muted-foreground">No legacy assessments.</p>
+              ) : (
+                legacyAssessments.map((a) => (
+                  <div
+                    key={a.id}
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-3"
+                  >
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium">{a.title}</p>
+                      <p className="text-xs text-muted-foreground">
+                        Grade {a.grade} · {a.subject} · {a.topic}
+                      </p>
+                    </div>
+                    <Badge variant="outline">Archived / legacy</Badge>
+                  </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
 
         <TabsContent value="bank" className="mt-4 space-y-4">
           <div className="flex flex-wrap gap-2">
