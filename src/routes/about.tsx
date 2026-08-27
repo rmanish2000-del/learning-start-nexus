@@ -94,7 +94,7 @@ function AboutPage() {
       <section className="space-y-2">
         <h2 className="text-lg font-semibold tracking-tight">This deployment</h2>
         <p>
-          You're looking at the EduOS demo operated by Brightpath Learning, seeded with realistic
+          You're looking at the EduOS demo deployment, seeded with realistic
           demonstration data across two organizations to prove tenant isolation. Sign in with a
           demo account from the{" "}
           <a href="/auth" className="font-medium text-primary hover:underline">

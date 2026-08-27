@@ -611,7 +611,7 @@ function SiteFooter() {
           <Link to="/auth" search={{ tab: "staff", mode: "signin" }} className="text-xs hover:text-foreground">
             {t("common.staffAccess", "Staff Access")}
           </Link>
-          <span className="ml-auto text-xs">EduOS — Brightpath Learning</span>
+          <span className="ml-auto text-xs">EduOS — Learning Intelligence</span>
         </div>
       </div>
     </footer>

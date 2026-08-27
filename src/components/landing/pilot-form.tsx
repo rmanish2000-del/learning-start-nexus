@@ -43,7 +43,7 @@ export function PilotForm() {
     setSubmitting(false);
 
     if (error) {
-      toast.error("We couldn't send that. Please try again or email hello@brightpath.education.");
+      toast.error("We couldn't send that. Please try again or email support@eduos.global.");
       return;
     }
     setDone(true);
