@@ -586,12 +586,14 @@ function PilotLeadsCard() {
                   <Badge variant={lead.status === "approved" ? "default" : "secondary"}>
                     {lead.status === "approved" ? "Approved" : "Pending review"}
                   </Badge>
-                  {lead.status === "approved" ? null : (
-                    <ApproveCentreDialog
-                      lead={lead}
-                      onApproved={() => void refetch()}
-                    />
-                  )}
+                  {/* Stays mounted after approval so the one-time centre
+                      admin password remains on screen until dismissed. */}
+                  <ApproveCentreDialog
+                    lead={lead}
+                    approved={lead.status === "approved"}
+                    onApproved={() => void refetch()}
+                  />
+
                 </div>
               </div>
             ))}
@@ -606,14 +608,17 @@ function PilotLeadsCard() {
 // admin account, then hands back one-time sign-in credentials.
 function ApproveCentreDialog({
   lead,
+  approved,
   onApproved,
 }: {
   lead: { id: string; centre_name: string; contact_name: string; email: string; phone: string | null };
+  approved: boolean;
   onApproved: () => void;
 }) {
   const approveFn = useServerFn(approveCentreLead);
   const [open, setOpen] = useState(false);
   const [issued, setIssued] = useState<{ adminEmail: string; tempPassword: string } | null>(null);
+
 
   const mutation = useMutation({
     mutationFn: (input: {
@@ -652,8 +657,11 @@ function ApproveCentreDialog({
       }}
     >
       <DialogTrigger asChild>
-        <Button size="sm">Approve &amp; create centre</Button>
+        <Button size="sm" disabled={approved && !issued}>
+          Approve &amp; create centre
+        </Button>
       </DialogTrigger>
+
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Approve {lead.centre_name}</DialogTitle>
