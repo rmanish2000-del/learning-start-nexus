@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, CircleCheck, CircleX, Eye } from "lucide-react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { ArrowLeft, CircleCheck, CircleX, Eye, Send } from "lucide-react";
+import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { DIFFICULTY_LABELS, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
@@ -16,6 +18,18 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import { DisabledReason } from "@/components/modal-shell";
+import { publishAssessment } from "@/lib/assessments.functions";
+import {
+  ACTION_LABELS,
+  MIN_QUESTIONS,
+  STATE_LABELS,
+  actionsFor,
+  isLegacyContent,
+  publishBlockers,
+  resolveState,
+  unavailableReason,
+} from "@/lib/assessment-lifecycle";
 import {
   Table,
   TableBody,
@@ -57,6 +71,9 @@ type SessionRow = {
 function AssessmentDetailPage() {
   const { assessmentId } = Route.useParams();
   const [reviewSession, setReviewSession] = useState<SessionRow | null>(null);
+  const [serverBlockers, setServerBlockers] = useState<{ code: string; message: string }[]>([]);
+  const queryClient = useQueryClient();
+  const publishFn = useServerFn(publishAssessment);
 
   const { data: assessment, isPending } = useQuery({
     queryKey: ["assessment", assessmentId],
@@ -144,6 +161,28 @@ function AssessmentDetailPage() {
     },
   });
 
+  const publishMutation = useMutation({
+    mutationFn: () => publishFn({ data: { assessmentId } }),
+    onSuccess: (r) => {
+      setServerBlockers(r.blockers ?? []);
+      if (r.ok) {
+        toast.success(
+          r.alreadyPublished
+            ? "This assessment is already published."
+            : "Published. You can now assign it to learners.",
+        );
+        queryClient.invalidateQueries({ queryKey: ["assessment", assessmentId] });
+        queryClient.invalidateQueries({ queryKey: ["assessments"] });
+      } else {
+        toast.error("Not published — resolve the checks below. The draft is unchanged.");
+      }
+    },
+    onError: (e) =>
+      toast.error(
+        e instanceof Error ? e.message : "Could not publish. The assessment is still a draft.",
+      ),
+  });
+
   const itemById = useMemo(() => new Map((items ?? []).map((i) => [i.id, i])), [items]);
   const submitted = (sessions ?? []).filter((s) => s.status === "submitted");
   const avgScore =
@@ -171,6 +210,64 @@ function AssessmentDetailPage() {
     );
   }
 
+  const questionCount = (items ?? []).length;
+  const legacy = isLegacyContent({
+    grade: assessment.grade,
+    subject: assessment.subject,
+    bookId: assessment.book_id,
+  });
+  const state = resolveState({
+    status: assessment.status,
+    archivedAt: assessment.archived_at,
+    assignedCount: (sessions ?? []).length,
+  });
+  const assignReason = unavailableReason("assign", state);
+  const blockers = publishBlockers({
+    title: assessment.title,
+    subject: assessment.subject,
+    grade: assessment.grade,
+    board: null,
+    questionCount,
+    // Verification state is authoritative on the server; the client shows the
+    // structural checks and defers approval status to the publish attempt.
+    unverifiedCount: 0,
+    duplicateCount: 0,
+    timeLimitMinutes: assessment.time_limit_minutes,
+    legacy,
+  });
+  const has = (code: string) => !blockers.some((b) => b.code === code);
+  const checks = [
+    {
+      label: "Title",
+      ok: has("title"),
+      detail: has("title") ? "Present." : "At least 3 characters required.",
+    },
+    {
+      label: "Questions",
+      ok: has("no-questions") && has("min-questions"),
+      detail: `${questionCount} selected — minimum ${MIN_QUESTIONS}.`,
+    },
+    {
+      label: "Estimated duration",
+      ok: has("duration"),
+      detail: assessment.time_limit_minutes
+        ? `${assessment.time_limit_minutes} minutes.`
+        : "Not set.",
+    },
+    {
+      label: "Curriculum scope",
+      ok: has("scope") && has("subject"),
+      detail: has("scope")
+        ? `${assessment.subject} · Class ${assessment.grade}.`
+        : "Outside the active CBSE Class 10 Mathematics and Science scope.",
+    },
+    {
+      label: "Question approval",
+      ok: state === "published" || state === "assigned",
+      detail: "Verified on the server when you publish.",
+    },
+  ];
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-3">
@@ -186,10 +283,78 @@ function AssessmentDetailPage() {
           <h2 className="text-xl font-semibold tracking-tight">{assessment.title}</h2>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{assessment.description}</p>
         </div>
-        <Badge variant={assessment.status === "published" ? "default" : "secondary"} className="capitalize">
-          {assessment.status}
+        <Badge variant={state === "published" || state === "assigned" ? "default" : "secondary"}>
+          {STATE_LABELS[state]}
         </Badge>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Review and publish</CardTitle>
+          <CardDescription>
+            {state === "draft" || state === "ready_for_review"
+              ? "This assessment is a draft and is not visible to learners. Every check must pass before it can be published."
+              : "Publication checks for this assessment."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <ul className="space-y-1.5 text-sm">
+            {checks.map((check) => (
+              <li key={check.label} className="flex items-start gap-2">
+                {check.ok ? (
+                  <CircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                ) : (
+                  <CircleX className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                )}
+                <span className={check.ok ? "" : "text-muted-foreground"}>
+                  <span className="font-medium text-foreground">{check.label}</span> — {check.detail}
+                </span>
+              </li>
+            ))}
+          </ul>
+          {serverBlockers.length > 0 ? (
+            <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-3 text-sm">
+              <p className="font-medium text-destructive">Publication blocked</p>
+              <ul className="mt-1 list-disc space-y-0.5 pl-5 text-muted-foreground">
+                {serverBlockers.map((b) => (
+                  <li key={b.code}>{b.message}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+          <div className="flex flex-wrap items-start gap-2">
+            {state === "draft" || state === "ready_for_review" ? (
+              blockers.length > 0 ? (
+                <DisabledReason reason={blockers[0]!.message}>
+                  <Button disabled>Publish assessment</Button>
+                </DisabledReason>
+              ) : (
+                <Button
+                  onClick={() => publishMutation.mutate()}
+                  disabled={publishMutation.isPending}
+                >
+                  {publishMutation.isPending ? "Publishing…" : "Publish assessment"}
+                </Button>
+              )
+            ) : assignReason ? (
+              <DisabledReason reason={assignReason}>
+                <Button variant="secondary" disabled>
+                  <Send className="h-4 w-4" /> {ACTION_LABELS.assign}
+                </Button>
+              </DisabledReason>
+            ) : (
+              <Button asChild variant="secondary">
+                <Link to="/assessments">
+                  <Send className="h-4 w-4" /> {ACTION_LABELS.assign}
+                </Link>
+              </Button>
+            )}
+            <Button asChild variant="ghost">
+              <Link to="/assessments">Back to assessments</Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
