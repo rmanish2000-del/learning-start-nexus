@@ -52,6 +52,29 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
     [steps],
   );
 
+  /**
+   * Move to a step only after its target is scrolled into view. The highlight
+   * and tooltip are painted from the settled position, so the user is never
+   * asked to hunt for the next spotlight.
+   */
+  const goTo = useCallback(
+    (index: number) => {
+      const el = document.querySelector(steps[index]!.selector);
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const centered = r.top >= 96 && r.bottom <= window.innerHeight - 96;
+      if (!centered) {
+        el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+        // Clear the old spotlight while the page moves, then re-measure.
+        setRect(null);
+        window.setTimeout(() => setActive(index), 420);
+        return;
+      }
+      setActive(index);
+    },
+    [steps],
+  );
+
   const finish = useCallback(() => {
     setOnboardingFlag(tourSeenKey(tourId));
     setActive(null);
@@ -68,10 +91,11 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
         if (attempt < 10) window.setTimeout(() => start(attempt + 1), 600);
         return;
       }
-      setActive(first);
+      goTo(first);
     },
-    [findNext],
+    [findNext, goTo],
   );
+
 
   // Auto-start once per browser, after the page settles. Never auto-start
   // for a user who has completed onboarding (no forced tours) — unless a
