@@ -2137,8 +2137,12 @@ export type Database = {
       }
       pilot_leads: {
         Row: {
+          approved_at: string | null
+          approved_by: string | null
+          approved_org_id: string | null
           boards_grades: string | null
           centre_name: string
+          city: string | null
           contact_name: string
           created_at: string
           email: string
@@ -2150,8 +2154,12 @@ export type Database = {
           timeline: string | null
         }
         Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          approved_org_id?: string | null
           boards_grades?: string | null
           centre_name: string
+          city?: string | null
           contact_name: string
           created_at?: string
           email: string
@@ -2163,8 +2171,12 @@ export type Database = {
           timeline?: string | null
         }
         Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          approved_org_id?: string | null
           boards_grades?: string | null
           centre_name?: string
+          city?: string | null
           contact_name?: string
           created_at?: string
           email?: string
@@ -2175,7 +2187,15 @@ export type Database = {
           status?: string
           timeline?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "pilot_leads_approved_org_id_fkey"
+            columns: ["approved_org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
