@@ -53,27 +53,63 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
   );
 
   /**
-   * Move to a step only after its target is scrolled into view. The highlight
-   * and tooltip are painted from the settled position, so the user is never
-   * asked to hunt for the next spotlight.
+   * Move to a step only after its target has been centred in the viewport and
+   * the scroll has actually settled. Fixed timeouts were unreliable on long
+   * pages (slow smooth-scroll, lazy content), which is how users ended up
+   * hunting for a spotlight that had already moved off-screen.
    */
   const goTo = useCallback(
     (index: number) => {
-      const el = document.querySelector(steps[index]!.selector);
+      const selector = steps[index]!.selector;
+      const el = document.querySelector(selector);
       if (!el) return;
-      const r = el.getBoundingClientRect();
-      const centered = r.top >= 96 && r.bottom <= window.innerHeight - 96;
-      if (!centered) {
-        el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
-        // Clear the old spotlight while the page moves, then re-measure.
-        setRect(null);
-        window.setTimeout(() => setActive(index), 420);
+
+      const centred = (node: Element) => {
+        const r = node.getBoundingClientRect();
+        return r.top >= 72 && r.bottom <= window.innerHeight - 72;
+      };
+
+      if (centred(el)) {
+        setActive(index);
         return;
       }
-      setActive(index);
+
+      // Clear the old spotlight while the page moves, then wait for the
+      // target to stop moving before painting the new one.
+      setRect(null);
+      el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+
+      let last = Number.NaN;
+      let stable = 0;
+      let frames = 0;
+      const settle = () => {
+        const node = document.querySelector(selector);
+        if (!node) return;
+        const top = node.getBoundingClientRect().top;
+        if (Math.abs(top - last) < 0.5) stable += 1;
+        else stable = 0;
+        last = top;
+        frames += 1;
+        // Settled (or we've waited ~1.5s) — reveal from the final position.
+        if (stable >= 3 || frames > 90) {
+          if (!centred(node)) {
+            node.scrollIntoView({ block: "center", inline: "nearest" });
+          }
+          // Move keyboard focus with the spotlight so the step is reachable.
+          if (node instanceof HTMLElement) {
+            node.setAttribute("tabindex", node.getAttribute("tabindex") ?? "-1");
+            node.focus({ preventScroll: true });
+          }
+          setActive(index);
+          return;
+        }
+        window.requestAnimationFrame(settle);
+      };
+      window.requestAnimationFrame(settle);
     },
     [steps],
   );
+
 
   const finish = useCallback(() => {
     setOnboardingFlag(tourSeenKey(tourId));

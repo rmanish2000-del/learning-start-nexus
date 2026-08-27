@@ -62,14 +62,14 @@ export const LOOP_STEPS: LoopStep[] = [
     title: "Diagnostic",
     artefact: "Diagnostic score",
     detail: "Curriculum-mapped items, blueprint-balanced across outcomes.",
-    sample: "Learner A · Grade 6 Mathematics · Fractions diagnostic · 12 items · scored 42%",
+    sample: "Learner A · Class 10 Mathematics · Real Numbers & Polynomials diagnostic · 20 items · scored 42%",
   },
   {
     key: "gap",
     title: "Gap detected",
     artefact: "Weak outcome",
     detail: "Scoring is per outcome, not per paper, so the gap is specific.",
-    sample: "Weak outcome: “Compare and order unlike fractions” · 2 of 6 correct · band: Weak",
+    sample: "Weak outcome: “Apply the factor theorem to find polynomial zeroes” · 2 of 6 correct · band: Weak",
   },
   {
     key: "intervention",
@@ -119,11 +119,11 @@ export const TUTOR_FALLBACK =
 export type EvidenceRow = { label: string; value: string };
 
 export const EVIDENCE_CHAIN: EvidenceRow[] = [
-  { label: "Learner", value: "Learner A (anonymised) · Grade 6" },
-  { label: "Outcome", value: "Compare and order unlike fractions" },
+  { label: "Learner", value: "Learner A (anonymised) · CBSE Class 10" },
+  { label: "Outcome", value: "Apply the factor theorem to find polynomial zeroes" },
   { label: "Baseline", value: "42% · 12-item diagnostic · day 0" },
   { label: "Gap band", value: "Weak (< 50%)" },
-  { label: "Intervention", value: "Equivalence-first practice · educator approved day 2" },
+  { label: "Intervention", value: "Zeroes-and-coefficients practice · educator approved day 2" },
   { label: "Tutor", value: "46 minutes across 3 consent-gated sessions" },
   { label: "Reassessment", value: "85% · 12 fresh items, zero overlap · day 10" },
   { label: "Mastery lift", value: "+43 points" },
@@ -136,12 +136,12 @@ export const PARENT_QUESTIONS: ParentQuestion[] = [
   {
     question: "What is my child stuck on?",
     answer: "A named curriculum outcome, not a vague subject grade.",
-    sample: "Comparing unlike fractions — 2 of 6 items correct",
+    sample: "Factor theorem and polynomial zeroes — 2 of 6 items correct",
   },
   {
     question: "What was done about it?",
     answer: "The approved intervention and every tutor minute spent on that gap.",
-    sample: "Equivalence-first practice · 46 tutor minutes over 3 sessions",
+    sample: "Zeroes-and-coefficients practice · 46 tutor minutes over 3 sessions",
   },
   {
     question: "Did it actually work?",
@@ -153,7 +153,7 @@ export const PARENT_QUESTIONS: ParentQuestion[] = [
 export const PARENT_REPORT = {
   title: "Fortnightly progress report",
   learner: "Learner A (anonymised)",
-  period: "Weeks 1–2 · Grade 6 Mathematics",
+  period: "Weeks 1–2 · CBSE Class 10 Mathematics",
   lines: [
     { label: "Gaps detected", value: "3" },
     { label: "Gaps closed", value: "2" },
