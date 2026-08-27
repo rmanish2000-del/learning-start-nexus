@@ -16,7 +16,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 import { getGapDetail } from "@/lib/gap-detail.functions";
 import { STAGE_LABELS } from "@/lib/learner-mode";
-import { startTutorSession } from "@/lib/tutor.functions";
+import { launchTutorSession } from "@/lib/tutor.functions";
 import { useI18n } from "@/lib/i18n/context";
 
 export const Route = createFileRoute("/_authenticated/gaps/$gapId")({
@@ -38,7 +38,7 @@ function GapDetailPage() {
   const navigate = useNavigate();
   const { t } = useI18n();
   const fetchDetail = useServerFn(getGapDetail);
-  const launchTutor = useServerFn(startTutorSession);
+  const launchTutor = useServerFn(launchTutorSession);
 
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: ["gap-detail", gapId],
