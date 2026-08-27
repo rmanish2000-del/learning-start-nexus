@@ -5,7 +5,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
-import { addStudentSchema, claimParentSchema, registerParentSchema } from "./parent-account-shared";
+import {
+  addStudentSchema,
+  claimParentSchema,
+  registerParentSchema,
+  setStudentPinSchema,
+} from "./parent-account-shared";
 
 function callerEmail(claims: unknown): string {
   const value = (claims as { email?: unknown } | null)?.email;
