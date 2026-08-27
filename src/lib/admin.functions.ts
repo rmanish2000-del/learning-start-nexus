@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import {
+  adminStudentPinSchema,
   createStaffUserSchema,
   parentLinkSchema,
   parentUnlinkSchema,
@@ -239,4 +240,46 @@ export const unlinkParentFromLearner = createServerFn({ method: "POST" })
       .eq("id", data.linkId);
     if (error) throw new Error(error.message);
     return { ok: true as const };
+  });
+
+// ---------------------------------------------------------------------------
+// Student login support (admin override). Parents normally set their own
+// student PIN from the parent portal; admins need the same power for support
+// cases. Scoped to learners visible under the caller's org RLS.
+// ---------------------------------------------------------------------------
+
+export const listStudentLogins = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    const { data, error } = await context.supabase
+      .from("learners")
+      .select("id, full_name, grade, handle, student_user_id")
+      .order("full_name");
+    if (error) throw new Error(error.message);
+    return (data ?? []).map((l) => ({
+      id: l.id,
+      fullName: l.full_name,
+      grade: l.grade,
+      handle: l.handle,
+      hasLogin: Boolean(l.student_user_id),
+    }));
+  });
+
+export const adminSetStudentPin = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => adminStudentPinSchema.parse(input))
+  .handler(async ({ data, context }) => {
+    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+
+    // Org-scoped RLS: the learner is only visible inside the caller's org.
+    const { data: learner } = await context.supabase
+      .from("learners")
+      .select("id")
+      .eq("id", data.learnerId)
+      .maybeSingle();
+    if (!learner) throw new Error("That student is not part of your organization.");
+
+    const { setStudentPinAsAdmin } = await import("./parent-account.server");
+    return setStudentPinAsAdmin(data.learnerId, data.pin);
   });
