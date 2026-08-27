@@ -128,13 +128,25 @@ export async function setStudentPin(
   input: { learnerId: string; pin: string },
 ): Promise<{ handle: string; created: boolean }> {
   await assertStudentOwned(userId, input.learnerId);
+  return setStudentPinAsAdmin(input.learnerId, input.pin);
+}
 
+/**
+ * Same credential recovery without the parent ownership check — callers must
+ * already have verified admin authority and organization scope.
+ */
+export async function setStudentPinAsAdmin(
+  learnerId: string,
+  pin: string,
+): Promise<{ handle: string; created: boolean }> {
+  const input = { learnerId, pin };
   const { data: learner, error } = await supabaseAdmin
     .from("learners")
     .select("id, handle, full_name, student_user_id")
     .eq("id", input.learnerId)
     .single();
   if (error || !learner) throw new Error("Student profile not found.");
+
 
   const { studentEmail, studentPassword } = await import("./auth-utils");
   const password = studentPassword(learner.handle, input.pin);

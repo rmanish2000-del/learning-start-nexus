@@ -149,3 +149,10 @@ export const withdrawConsentSchema = z.object({
   learnerId: z.string().uuid(),
   reason: z.string().trim().max(300).optional(),
 });
+
+// Admin override: student handle + PIN support (support desk cases where the
+// parent cannot reset the PIN themselves).
+export const adminStudentPinSchema = z.object({
+  learnerId: z.string().uuid(),
+  pin: z.string().regex(/^\d{6}$/, "PIN must be exactly 6 digits"),
+});

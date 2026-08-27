@@ -7,8 +7,12 @@ import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import {
+  adminSetStudentPin,
   createStaffUser,
   linkParentToLearner,
+  listStudentLogins,
+
+
   listParentLinks,
   listStaffUsers,
   resetStaffPassword,
@@ -381,10 +385,147 @@ function AdminPage() {
 
       <ParentAccessCard />
 
+      <StudentLoginsCard />
+
       <PilotLeadsCard />
     </div>
   );
 }
+
+// Admin override for student sign-in credentials. Parents can do this from the
+// parent portal; admins need the same control for support cases where the
+// parent is unreachable or has no account yet.
+function StudentLoginsCard() {
+  const listFn = useServerFn(listStudentLogins);
+  const setPinFn = useServerFn(adminSetStudentPin);
+  const queryClient = useQueryClient();
+  const [pins, setPins] = useState<Record<string, string>>({});
+  const [issued, setIssued] = useState<{ name: string; handle: string; pin: string } | null>(null);
+
+  const { data, isPending, isError, error, refetch } = useQuery({
+    queryKey: ["admin-student-logins"],
+    queryFn: () => listFn(),
+    retry: false,
+    throwOnError: false,
+  });
+
+  const mutation = useMutation({
+    mutationFn: (vars: { learnerId: string; pin: string; name: string }) =>
+      setPinFn({ data: { learnerId: vars.learnerId, pin: vars.pin } }).then((res) => ({
+        ...res,
+        name: vars.name,
+        pin: vars.pin,
+      })),
+    onSuccess: (res) => {
+      setIssued({ name: res.name, handle: res.handle, pin: res.pin });
+      setPins({});
+      toast.success(res.created ? "Student login created." : "Student PIN reset.");
+      void queryClient.invalidateQueries({ queryKey: ["admin-student-logins"] });
+    },
+    onError: (err) =>
+      toast.error(err instanceof Error ? err.message : "Could not set that PIN."),
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Student logins</CardTitle>
+        <CardDescription>
+          Set or reset a student's 6-digit PIN. Students sign in with their handle and PIN.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {isPending ? (
+          <Skeleton className="h-24 w-full" />
+        ) : isError ? (
+          <QueryError
+            title="Couldn't load students"
+            error={error as Error}
+            onRetry={() => void refetch()}
+          />
+        ) : !data || data.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No students in this organization yet.</p>
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Student</TableHead>
+                <TableHead>Handle</TableHead>
+                <TableHead>Login</TableHead>
+                <TableHead className="text-right">New 6-digit PIN</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {data.map((student) => (
+                <TableRow key={student.id}>
+                  <TableCell className="font-medium">
+                    {student.fullName}
+                    <span className="ml-2 text-xs text-muted-foreground">
+                      Grade {student.grade}
+                    </span>
+                  </TableCell>
+                  <TableCell className="font-mono text-xs">{student.handle}</TableCell>
+                  <TableCell>
+                    <Badge variant={student.hasLogin ? "secondary" : "outline"}>
+                      {student.hasLogin ? "Active" : "Not created"}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center justify-end gap-2">
+                      <Input
+                        inputMode="numeric"
+                        maxLength={6}
+                        placeholder="000000"
+                        className="w-28 text-right font-mono"
+                        aria-label={`New PIN for ${student.fullName}`}
+                        value={pins[student.id] ?? ""}
+                        onChange={(e) =>
+                          setPins((prev) => ({
+                            ...prev,
+                            [student.id]: e.target.value.replace(/\D/g, "").slice(0, 6),
+                          }))
+                        }
+                      />
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        disabled={(pins[student.id] ?? "").length !== 6 || mutation.isPending}
+                        onClick={() =>
+                          mutation.mutate({
+                            learnerId: student.id,
+                            pin: pins[student.id] ?? "",
+                            name: student.fullName,
+                          })
+                        }
+                      >
+                        {student.hasLogin ? "Reset PIN" : "Create login"}
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
+        {issued && (
+          <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm">
+            <p className="font-medium">Sign-in details for {issued.name}</p>
+            <p className="mt-1 font-mono text-base">
+              {issued.handle} · {issued.pin}
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Shown once. Share it directly with the family.
+            </p>
+            <Button size="sm" variant="outline" className="mt-3" onClick={() => setIssued(null)}>
+              Done
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 
 // Pilot applications submitted from the public landing page. Reads are
 // admin-only at the database level.
