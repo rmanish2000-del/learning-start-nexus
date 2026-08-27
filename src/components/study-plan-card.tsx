@@ -71,11 +71,15 @@ export function StudyPlanCard({
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Sparkles className="h-4 w-4 text-primary" /> Your personalized study plan
+              <Sparkles className="h-4 w-4 text-primary" />{" "}
+              {plan.planStatus === "awaiting_educator"
+                ? "Awaiting educator assignment"
+                : "Your verified study plan is ready."}
             </CardTitle>
             <CardDescription>
-              Generated automatically from your diagnostic results, gap analysis and the CBSE
-              curriculum outcomes.
+              {plan.planStatus === "awaiting_educator"
+                ? "Your centre still has to assign an educator. A centre admin has been notified — your gaps and evidence are already saved."
+                : "Generated automatically from your diagnostic results, gap analysis and verified CBSE curriculum outcomes."}
             </CardDescription>
           </div>
           {plan.scorePct !== null ? (
@@ -130,6 +134,13 @@ export function StudyPlanCard({
                   </div>
                   <Progress value={f.pct} className="mt-2 h-1.5" />
                   <p className="mt-2 text-sm text-muted-foreground">{f.activity}</p>
+                  {f.gapId ? (
+                    <Button size="sm" variant="ghost" className="mt-2 mr-2" asChild>
+                      <Link to="/gaps/$gapId" params={{ gapId: f.gapId }}>
+                        Open gap detail <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
+                  ) : null}
                   {f.interventionId ? (
                     tutorConsentMissing ? (
                       <Badge
@@ -146,7 +157,7 @@ export function StudyPlanCard({
                         disabled={practising}
                         onClick={() => onPractise(f.interventionId!)}
                       >
-                        Practise with the AI Tutor <ArrowRight className="h-3.5 w-3.5" />
+                        Practise this gap with the AI Tutor <ArrowRight className="h-3.5 w-3.5" />
                       </Button>
                     )
                   ) : null}
