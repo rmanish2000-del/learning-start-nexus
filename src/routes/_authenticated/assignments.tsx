@@ -120,6 +120,11 @@ function AssignmentsPage() {
   });
 
   const unassignedCount = (learners ?? []).filter((l) => !l.educator_id).length;
+  // Unassigned learners are the work queue — they sort first and can be
+  // isolated with the filter, so nobody purchased-but-unassigned is missed.
+  const visibleLearners = (learners ?? [])
+    .filter((l) => (filter === "unassigned" ? !l.educator_id : true))
+    .sort((a, b) => Number(!!a.educator_id) - Number(!!b.educator_id));
 
   return (
     <>
@@ -127,7 +132,9 @@ function AssignmentsPage() {
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Educator assignments</h2>
           <p className="text-sm text-muted-foreground">
-            Assign each learner to an educator in your organization.
+            Every learner — including students created by parents after a diagnostic purchase —
+            needs an assigned educator. Assign from this queue; parents see the status change
+            immediately in their portal.
           </p>
         </div>
 
@@ -147,7 +154,18 @@ function AssignmentsPage() {
           />
         )}
 
-
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            size="sm"
+            variant={filter === "unassigned" ? "default" : "outline"}
+            onClick={() => setFilter("unassigned")}
+          >
+            Needs assignment ({unassignedCount})
+          </Button>
+          <Button size="sm" variant={filter === "all" ? "default" : "outline"} onClick={() => setFilter("all")}>
+            All learners ({(learners ?? []).length})
+          </Button>
+        </div>
 
         <Card>
           <CardHeader>
@@ -161,6 +179,7 @@ function AssignmentsPage() {
                 : "Every learner has an assigned educator."}
             </CardDescription>
           </CardHeader>
+
           <CardContent className="p-0">
             <div className="rounded-b-xl border-t">
               <Table>
