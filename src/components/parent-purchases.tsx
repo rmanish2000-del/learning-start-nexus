@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowUpRight,
   FileText,
+  LogIn,
   ShieldCheck,
 } from "lucide-react";
 
@@ -49,8 +50,8 @@ export function ParentPurchases() {
             <div className="rounded-lg border bg-background p-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">1 · Diagnostic</p>
               <p className="mt-1 text-sm">
-                Your child takes the diagnostic from the link below — no educator required. The gap
-                report is instant.
+                Your child signs in with their own handle and PIN and answers the diagnostic — no
+                educator required. Your report is instant when they finish.
               </p>
             </div>
             <div className="rounded-lg border bg-background p-3">
@@ -119,8 +120,8 @@ export function ParentPurchases() {
                       </>
                     ) : (
                       <Button asChild size="sm">
-                        <Link to="/diagnostic/session/$token" params={{ token: p.accessToken }}>
-                          <PlayCircle className="mr-1.5 h-3.5 w-3.5" /> Resume
+                        <Link to="/diagnostic/handoff/$token" params={{ token: p.accessToken }}>
+                          <LogIn className="mr-1.5 h-3.5 w-3.5" /> Sign-in details
                         </Link>
                       </Button>
                     )
