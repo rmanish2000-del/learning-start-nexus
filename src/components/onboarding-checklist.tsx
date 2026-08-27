@@ -38,13 +38,24 @@ export function OnboardingChecklist({
   const pct = Math.round((doneCount / Math.max(steps.length, 1)) * 100);
   const [celebrating, setCelebrating] = useState(false);
 
+  // The celebration is a *transition* event, not a state. If the checklist is
+  // already complete when the page mounts (every return visit and every login),
+  // there is nothing to celebrate — this is what made "Onboarding complete!"
+  // reappear on each sign-in when the stored flag was missing or cleared.
+  const wasCompleteOnMount = useRef<boolean | null>(null);
+  if (wasCompleteOnMount.current === null && steps.length > 0) {
+    wasCompleteOnMount.current = allDone;
+    if (allDone) setOnboardingFlag(celebratedKey(role));
+  }
+
   // Fire the celebration once per role when the final step completes. The
   // completion flag is persisted immediately so a refresh or re-login while
   // the modal is open can never re-trigger it. The modal claim keeps the
   // celebration from stacking on top of the first-login intro — if the
   // intro is showing, we retry until it's dismissed (claim released).
   useEffect(() => {
-    if (!allDone || getOnboardingFlag(celebratedKey(role))) return;
+    if (!allDone || wasCompleteOnMount.current !== false) return;
+    if (getOnboardingFlag(celebratedKey(role))) return;
     setOnboardingFlag(celebratedKey(role));
     let cancelled = false;
     let timer: number | undefined;
@@ -62,6 +73,7 @@ export function OnboardingChecklist({
       window.clearTimeout(timer);
     };
   }, [allDone, role]);
+
 
   // Every dismiss path (Keep going, X, backdrop, Escape) lands here: close
   // the modal and make sure the completion flag is persisted.
