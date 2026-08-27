@@ -64,3 +64,17 @@ full regression → commit → full SHA → clean tree → publish → productio
 
 The Lovable agent replaces this file at the start of each new assignment; the
 founder confirms completion before it is replaced.
+
+---
+
+## Continuity file locations (verified 2026-08-27)
+
+| File | Path |
+|---|---|
+| Operating rules | `EDUOS_PROJECT_OPERATING_SYSTEM.md` (repository root) |
+| Release verification | `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md` (repository root) |
+| Session bootstrap | `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` (repository root) |
+| Status / decisions / architecture / sequence | `PROJECT_STATUS.md`, `PRODUCT_DECISIONS.md`, `TECHNICAL_STATE.md`, `ROADMAP.md` |
+
+Both located files are tracked at the repository root on `main`. The retest scope
+above is unchanged.
