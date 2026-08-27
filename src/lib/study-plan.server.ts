@@ -175,7 +175,13 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
         .eq("unit_id", assessment?.unit_id ?? "00000000-0000-0000-0000-000000000000"),
     ]);
 
-  const titles = new Map((outcomeRows ?? []).map((o) => [o.code, o.title]));
+  const titles = new Map<string, string>([
+    // Result rows carry their own outcome titles; curriculum rows win when present.
+    ...(outcomeResults ?? [])
+      .map((o) => [o.code, (o as { title?: string }).title ?? o.code] as [string, string]),
+    ...(outcomeRows ?? []).map((o) => [o.code, o.title] as [string, string]),
+  ]);
+
   const recByGap = new Map((recs ?? []).map((r) => [r.gap_id, r]));
   const intByGap = new Map((interventions ?? []).map((i) => [i.gap_id, i]));
   const strategyByCode = new Map((outcomeRows ?? []).map((o) => [o.code, o.intervention_strategy]));
