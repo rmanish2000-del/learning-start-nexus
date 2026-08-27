@@ -21,8 +21,14 @@ import {
 
 type Client = SupabaseClient<Database>;
 
+const RULES_VERSION = "gap-closure-v1";
+
 const EMPTY: StudyPlanView = {
   learnerId: null,
+  mode: "centre_managed",
+  planStatus: "none",
+  planGeneratedAt: null,
+  rulesVersion: null,
   learnerName: null,
   grade: null,
   subject: null,
@@ -42,7 +48,7 @@ const EMPTY: StudyPlanView = {
 async function resolveLearner(supabase: Client, userId: string) {
   const { data, error } = await supabase
     .from("learners")
-    .select("id, full_name, grade, subject, educator_id, org_id")
+    .select("id, full_name, grade, subject, educator_id, org_id, learner_mode")
     .eq("student_user_id", userId)
     .maybeSingle();
   if (error) throw new Error(error.message);
@@ -54,8 +60,13 @@ async function resolveLearner(supabase: Client, userId: string) {
 // recommendation, and existing staff-owned interventions are never touched.
 async function materialisePlan(
   admin: Client,
-  input: { orgId: string; learnerId: string },
-): Promise<void> {
+  input: {
+    orgId: string;
+    learnerId: string;
+    mode: "direct_parent" | "centre_managed";
+    sessionId: string | null;
+  },
+): Promise<{ generatedAt: string | null; rulesVersion: string | null }> {
   const [{ data: recs }, { data: existing }] = await Promise.all([
     admin
       .from("recommendations")
@@ -78,9 +89,44 @@ async function materialisePlan(
       activity: r.activity,
       status: "planned",
     }));
-  if (rows.length === 0) return;
-  const { error } = await admin.from("interventions").insert(rows);
-  if (error) throw new Error(error.message);
+  if (rows.length > 0) {
+    const { error } = await admin.from("interventions").insert(rows);
+    if (error) throw new Error(error.message);
+  }
+
+  // Record the generation event: source diagnostic, rules version, the
+  // intervention/gap ids and the plan status. Idempotent per (learner, session).
+  const { data: allInterventions } = await admin
+    .from("interventions")
+    .select("id, gap_id")
+    .eq("learner_id", input.learnerId);
+  const interventionIds = (allInterventions ?? []).map((i) => i.id);
+  const gapIds = (allInterventions ?? []).map((i) => i.gap_id).filter((v): v is string => !!v);
+
+  const { data: plan, error: planError } = await admin
+    .from("learner_study_plans")
+    .upsert(
+      {
+        org_id: input.orgId,
+        learner_id: input.learnerId,
+        source_session_id: input.sessionId,
+        mode: input.mode,
+        rules_version: RULES_VERSION,
+        status: "active",
+        intervention_ids: interventionIds,
+        gap_ids: gapIds,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "learner_id,source_session_id" },
+    )
+    .select("generated_at, rules_version")
+    .maybeSingle();
+  if (planError) throw new Error(planError.message);
+
+  return {
+    generatedAt: plan?.generated_at ?? null,
+    rulesVersion: plan?.rules_version ?? RULES_VERSION,
+  };
 }
 
 export async function fetchStudyPlan(supabase: Client, userId: string): Promise<StudyPlanView> {
@@ -113,6 +159,7 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
     grade: learner.grade,
     subject: learner.subject,
     educatorAssigned: !!learner.educator_id,
+    mode: (learner.learner_mode ?? "centre_managed") as "direct_parent" | "centre_managed",
     activeSessionId: active?.id ?? null,
     generatedAt: new Date().toISOString(),
   };
@@ -121,11 +168,18 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
     return {
       ...base,
       state: active ? "in-progress" : "not-started",
+      planStatus: "none",
       canStartDiagnostic: true,
     };
   }
 
-  await materialisePlan(admin, { orgId, learnerId });
+  const mode = base.mode;
+  // CENTRE_MANAGED learners without an educator are not silently blocked: the
+  // plan stays "awaiting_educator" and the centre admin queue owns the fix.
+  const awaitingEducator = mode === "centre_managed" && !learner.educator_id;
+  const planMeta = awaitingEducator
+    ? { generatedAt: null, rulesVersion: null }
+    : await materialisePlan(admin, { orgId, learnerId, mode, sessionId: latest.id });
 
   // Diagnostic sessions store an outcome-level result object; older manual
   // sessions store a flat per-item breakdown array. Support both.
@@ -234,6 +288,9 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
   return {
     ...base,
     state: "submitted",
+    planStatus: awaitingEducator ? "awaiting_educator" : "ready",
+    planGeneratedAt: planMeta.generatedAt,
+    rulesVersion: planMeta.rulesVersion,
     lastSubmittedSessionId: latest.id,
     assessmentTitle: assessment?.title ?? null,
     scorePct: latest.score_pct ?? null,
