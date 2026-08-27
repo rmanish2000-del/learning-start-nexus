@@ -29,6 +29,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { QueryError } from "@/components/query-error";
 import { ClosureHeader } from "@/components/closure-header";
 import { getMyGapQueue } from "@/lib/student-home.functions";
+import { getMyStudyPlan, startMyDiagnostic } from "@/lib/study-plan.functions";
+import { StudyPlanCard } from "@/components/study-plan-card";
 import { LOOP_STAGES, stageIndex, type StudentGapCard } from "@/lib/student-home-shared";
 
 const STUDENT_TOUR: TourStep[] = [
@@ -39,8 +41,8 @@ const STUDENT_TOUR: TourStep[] = [
   },
   {
     selector: '[data-tour="student-assessments"]',
-    title: "Assessments from your educator",
-    body: "Diagnostics appear here the moment your educator assigns them. Progress saves automatically — resume anytime.",
+    title: "Your assessments",
+    body: "Diagnostics and reassessments live here. Progress saves automatically — resume anytime.",
   },
   {
     selector: '[data-tour="student-plan"]',
@@ -205,6 +207,28 @@ function StudentHomePage() {
     queryFn: () => fetchGapQueue(),
   });
 
+  // Class 10 diagnostic-to-conversion: the AI-generated plan is the default
+  // experience. Educator wording is conditional on plan.educatorAssigned.
+  const fetchStudyPlan = useServerFn(getMyStudyPlan);
+  const startDiagnostic = useServerFn(startMyDiagnostic);
+  const {
+    data: studyPlan,
+    isPending: studyPlanPending,
+    refetch: refetchStudyPlan,
+  } = useQuery({
+    queryKey: ["my-study-plan", user.id],
+    queryFn: () => fetchStudyPlan(),
+  });
+  const educatorAssigned = studyPlan?.educatorAssigned ?? false;
+  const startDiagnosticMutation = useMutation({
+    mutationFn: () => startDiagnostic(),
+    onSuccess: (result) => {
+      void refetchStudyPlan();
+      void navigate({ to: "/session/$sessionId", params: { sessionId: result.sessionId } });
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
   const continueItem = (items ?? []).find((i) => i.status === "in_progress") ?? (items ?? []).find((i) => i.status === "not_started");
   const completed = (items ?? []).filter((i) => i.status === "completed").length;
@@ -222,22 +246,28 @@ function StudentHomePage() {
     {
       key: "diagnostic",
       title: "Take your diagnostic",
-      description: "A short check-up from your educator — progress saves automatically, resume anytime.",
+      description: educatorAssigned
+        ? "A short check-up from your educator — progress saves automatically, resume anytime."
+        : "A short check-up that generates your study plan — progress saves automatically.",
       done: submittedSession,
       ...(pendingSession
         ? { action: "take-diagnostic", ctaLabel: pendingSession.status === "in_progress" ? "Resume" : "Start" }
         : submittedSession
           ? {}
-          : { blockedHint: "Your educator will assign one soon" }),
+          : educatorAssigned
+            ? { blockedHint: "Your educator will assign one soon" }
+            : { action: "start-diagnostic", ctaLabel: "Start Diagnostic" }),
     },
     {
       key: "plan",
       title: "View your plan",
-      description: "Your focus plan shows exactly what to practice next.",
+      description: "Your plan shows your strengths, focus areas and what to practise next.",
       done: getOnboardingFlag(stepFlagKey("student", "plan")),
-      ...(firstFocus
+      ...(firstFocus || submittedSession
         ? { action: "scroll-plan", ctaLabel: "View plan" }
-        : { blockedHint: "Your educator is building it" }),
+        : educatorAssigned
+          ? { blockedHint: "Your educator is building it" }
+          : { blockedHint: "Finish your diagnostic to generate it" }),
     },
     {
       key: "tutor",
@@ -248,11 +278,16 @@ function StudentHomePage() {
         ? { blockedHint: "Needs guardian consent" }
         : firstFocus
           ? { action: "launch-tutor", ctaLabel: "Open AI Tutor" }
-          : { blockedHint: "Waiting for your educator" }),
+          : educatorAssigned
+            ? { blockedHint: "Waiting for your educator" }
+            : { blockedHint: "Unlocks once your plan is generated" }),
     },
   ];
 
   const handleStudentAction = (action: string) => {
+    if (action === "start-diagnostic") {
+      startDiagnosticMutation.mutate();
+    }
     if (action === "take-diagnostic" && pendingSession) {
       void navigate({ to: "/session/$sessionId", params: { sessionId: pendingSession.id } });
     }
@@ -317,6 +352,17 @@ function StudentHomePage() {
         launching={launchTutorMutation.isPending}
       />
 
+      <div ref={planRef} className="scroll-mt-20" />
+      <StudyPlanCard
+        plan={studyPlan}
+        isPending={studyPlanPending}
+        onStart={() => startDiagnosticMutation.mutate()}
+        starting={startDiagnosticMutation.isPending}
+        onPractise={(interventionId) => launchTutorMutation.mutate(interventionId)}
+        practising={launchTutorMutation.isPending}
+        tutorConsentMissing={tutorConsentMissing}
+      />
+
       {learner && (
         <div data-tour="student-checklist">
           <OnboardingChecklist
@@ -333,7 +379,8 @@ function StudentHomePage() {
       {!learner && (
         <Card>
           <CardContent className="py-10 text-center text-sm text-muted-foreground">
-            Your educator hasn't linked your learner profile yet — check back soon.
+            Your learner profile isn't linked yet — ask the parent who set up this account to
+            finish the student profile, then refresh.
           </CardContent>
         </Card>
       )}
@@ -454,7 +501,11 @@ function StudentHomePage() {
         <Card data-tour="student-assessments">
           <CardHeader>
             <CardTitle className="text-base">My assessments</CardTitle>
-            <CardDescription>Diagnostics assigned by your educator — progress saves automatically.</CardDescription>
+            <CardDescription>
+            {educatorAssigned
+              ? "Diagnostics assigned by your educator — progress saves automatically."
+              : "Your diagnostics and reassessments — progress saves automatically."}
+          </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {(assessmentSessions ?? []).map((s) => (
@@ -503,12 +554,13 @@ function StudentHomePage() {
       </Card>
 
       {(focusPlan ?? []).length > 0 && (
-        <Card data-tour="student-plan">
-          <div ref={planRef} className="scroll-mt-20" />
+        <Card>
           <CardHeader>
             <CardTitle className="text-base">Focus plan</CardTitle>
             <CardDescription>
-              Extra practice your educator planned for you — this is what to work on next.
+              {educatorAssigned
+                ? "Extra practice your educator planned for you — this is what to work on next."
+                : "Auto-generated from your diagnostic — this is what to work on next."}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -531,7 +583,7 @@ function StudentHomePage() {
                   <Badge
                     variant="outline"
                     className="border-amber-500/40 text-amber-600 dark:text-amber-400"
-                    title="A parent or guardian consent record is required before the AI tutor unlocks. Your educator can record it."
+                    title="A parent or guardian consent record is required before the AI tutor unlocks. A parent can record it from the parent portal."
                   >
                     Consent needed for tutor
                   </Badge>
