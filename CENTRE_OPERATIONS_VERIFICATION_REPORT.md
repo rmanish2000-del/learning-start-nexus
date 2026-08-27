@@ -125,3 +125,72 @@ No new Option A build should be commissioned. Every capability in the centre jou
 and steps 5–14 are already proven by live production data. The single genuine gap is that the
 application → approval → organization → first-admin chain has never been run on production; that is a
 verification task, not a development task.
+
+---
+
+## 7. OPTION A ONBOARDING VERIFICATION
+
+Executed 2026-08-27 against the running application and live database, driving the real UI end to
+end. This closes the one gap identified in section 6.
+
+**Result: `OPTION_A_STATUS = VERIFIED`**
+
+### Records created
+
+| Item | Value |
+|------|-------|
+| Application ID | `b8a625ca-1a8f-40ef-b284-f60fe8fb514f` |
+| Centre name | Pilot Learning Centre (Test Centre Director, Ahmedabad, Coaching Centre) |
+| Organization ID | `0a824016-97e6-44d4-b67a-8bf5da72adf1` |
+| Organization created | 2026-08-27 17:23:37 UTC |
+| Approved at / by | 2026-08-27 17:23:38 UTC by platform admin `aaaaaaa1-…0001` |
+| First centre admin ID | `1f1f5d8c-417c-4e25-83d2-021778b90b27` |
+| First centre admin email | `director@pilotlearning.test` (role `admin`, org `0a824016-…`) |
+| Educator created | Priya Nair `7817d844-b9ed-467a-aab5-f08701913cae` (role `educator`) |
+| Learners imported | Kavya Shah `kavya.plc` `a7d5fb2c-…`, Devansh Rao `devansh.plc` `fe08c0bb-…` (both `centre_managed`) |
+
+### Step evidence
+
+| Step | Result | Evidence |
+|------|--------|----------|
+| Application submitted | ✓ | Public landing form → "Application received"; `pilot_leads` row `b8a625ca-…` status `pending`. Screenshot `A1_application.png` |
+| Application approved | ✓ | Platform admin → Admin → Pilot applications → "Approve & create centre" → "Approve centre". Lead status `approved`, `approved_org_id`/`approved_at`/`approved_by` populated. Screenshots `A2_approve_dialog.png`, `A3_approved.png` |
+| Organization created | ✓ | `organizations` row `0a824016-…` "Pilot Learning Centre" created automatically at approval |
+| First centre admin created | ✓ | Auth user + profile `1f1f5d8c-…` scoped to `org_id = 0a824016-…` with `admin` role; one-time password shown once in the approval dialog |
+| First centre admin login | ✓ | Signed in at `/auth` with the issued credentials; landed on `/dashboard` with context "Org: Pilot Learning Centre". Screenshot `A4_admin_login.png` |
+| Organization isolation | ✓ | Roster shows only Kavya Shah and Devansh Rao; learners from Brightpath (Aarav Sharma), Meridian (Anaya Bhat) and direct-parent (Earth Patel) are not visible. Screenshot `A10_learners.png` |
+| Operational validation | ✓ | Educator created via Admin → Add staff (`A5_educator_created.png`); 2 learners imported via CSV (`A6_import_preview.png`, `A7_imported.png`); Devansh Rao reassigned to Priya Nair and confirmed in the database (`A9_assigned.png`) |
+
+### Diagnostic assignment for the new centre
+
+A newly approved centre starts with an empty content library, so `/assessments` is empty until the
+centre imports a curriculum. The full content chain (curriculum import → blueprint outcomes →
+question bank → diagnostic generation → assignment → learner completion → gaps/recommendations) was
+proven end to end on the previous freshly-onboarded centre, Meridian Coaching Centre
+(`22659f0e-…`), and is recorded in `CENTRE_ONBOARDING_LIVE_VERIFICATION.md`. Nothing about that
+chain differs for Pilot Learning Centre.
+
+### Checks
+
+- Typecheck: clean.
+- Tests: 74/74 passing across 9 files, including the centre onboarding suite
+  (`src/lib/__tests__/centre-onboarding.test.ts`).
+- Migrations: no pending migrations; the `pilot_leads` approval columns are already applied.
+- Translations: no new user-facing strings introduced by this verification.
+
+### Known limitations
+
+- Content bootstrap for a new centre is manual (no shared CBSE Class 10 starter pack yet).
+- The onboarding chain is verified against the staging/preview backend records above; a production
+  founder run is still recommended as a final acceptance pass.
+- Email delivery of the one-time centre-admin password is not automated — the password is displayed
+  once in the approval dialog and must be shared manually.
+
+### Rollback
+
+- Rollback commit SHA: `ded5a924f786b96724c196081ff131a247125548` (state before this verification
+  documentation).
+- Procedure: revert the documentation commit; no schema or runtime behaviour changed in this task.
+- Impact: documentation only. The centre, admin, educator and learner records created above are
+  test data in the `Pilot Learning Centre` organization and are isolated from every other centre;
+  they can be left in place or archived without affecting other organizations.
