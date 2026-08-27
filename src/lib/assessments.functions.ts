@@ -33,12 +33,16 @@ export const createAssessment = createServerFn({ method: "POST" })
     // Idempotency: a double-click / network retry with the same request id and
     // title returns the assessment already created instead of a duplicate.
     if (data.clientRequestId) {
+      const since = new Date(Date.now() - 2 * 60 * 1000).toISOString();
       const { data: existing } = await context.supabase
         .from("assessments")
-        .select("id, description")
+        .select("id")
         .eq("title", data.title)
         .eq("created_by", context.userId)
-        .like("description", `%[req:${data.clientRequestId}]%`)
+        .eq("status", "draft")
+        .gte("created_at", since)
+        .order("created_at", { ascending: false })
+        .limit(1)
         .maybeSingle();
       if (existing) return { id: existing.id, status: "draft" as const, deduped: true };
     }
@@ -57,9 +61,7 @@ export const createAssessment = createServerFn({ method: "POST" })
         org_id: orgId,
         created_by: context.userId,
         title: data.title,
-        description: data.clientRequestId
-          ? `${data.description ?? ""} [req:${data.clientRequestId}]`.trim()
-          : data.description || null,
+        description: data.description || null,
         subject: "Mathematics",
         topic: "Fractions",
         grade: 6,
