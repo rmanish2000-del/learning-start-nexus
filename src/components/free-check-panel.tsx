@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { CheckCircle2, Loader2, Sparkles, XCircle } from "lucide-react";
 import { toast } from "sonner";
 
+import { useI18n } from "@/lib/i18n/context";
 import { getFreeCheckStatus, startFreeLearningCheck } from "@/lib/free-check.functions";
 import {
   FREE_CHECK_QUESTION_COUNT,
@@ -22,6 +23,7 @@ import { Skeleton } from "@/components/ui/skeleton";
  * never a simulation.
  */
 export function FreeCheckPanel({ student }: { student: ParentStudent }) {
+  const { t } = useI18n();
   const statusFn = useServerFn(getFreeCheckStatus);
   const startFn = useServerFn(startFreeLearningCheck);
   const queryClient = useQueryClient();
@@ -46,11 +48,13 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="flex items-center gap-1.5 text-sm font-medium">
-            <Sparkles className="h-4 w-4 text-primary" /> Free learning check
+            <Sparkles className="h-4 w-4 text-primary" /> {t("freeCheck.title", "Free learning check")}
           </p>
           <p className="text-xs text-muted-foreground">
-            {FREE_CHECK_QUESTION_COUNT} questions, one per subject, no payment. {student.fullName}{" "}
-            answers it from the Student workspace.
+            {t(
+              "freeCheck.body",
+              `${FREE_CHECK_QUESTION_COUNT} questions, one per subject, no payment. ${student.fullName} answers it from the Student workspace.`,
+            )}
           </p>
         </div>
         <Badge variant="outline">Free</Badge>
@@ -68,7 +72,7 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
               ) : (
                 <>
                   <p className="mt-1 text-xs text-muted-foreground">
-                    Not started. One free check per subject.
+                    {t("freeCheck.notStarted", "Not started. One free check per subject.")}
                   </p>
                   <Button
                     size="sm"
@@ -78,7 +82,7 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
                     onClick={() => mutation.mutate(row.subject)}
                   >
                     {mutation.isPending ? <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" /> : null}
-                    Start free check
+                    {t("freeCheck.start", "Start free check")}
                   </Button>
                 </>
               )}
@@ -89,7 +93,7 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
 
       <details className="mt-3 rounded-md border bg-background p-2.5">
         <summary className="cursor-pointer text-xs font-medium">
-          What the ₹199 diagnostic adds
+          {t("freeCheck.compare", "What the ₹199 diagnostic adds")}
         </summary>
         <ul className="mt-2 space-y-1.5 text-xs text-muted-foreground">
           {FREE_VS_PAID.map((row) => (
@@ -105,11 +109,12 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
 }
 
 function FreeCheckSummary({ check, learnerName }: { check: FreeCheckPreview; learnerName: string }) {
+  const { t } = useI18n();
   if (check.status !== "submitted") {
     return (
       <p className="mt-1 text-xs text-muted-foreground">
-        Waiting for {learnerName} to answer — {check.answeredCount} of {check.totalQuestions} done.
-        Ask them to sign in as a student.
+        {t("freeCheck.waiting", `Waiting for ${learnerName} to answer.`)} {check.answeredCount} /{" "}
+        {check.totalQuestions}
       </p>
     );
   }
@@ -120,7 +125,7 @@ function FreeCheckSummary({ check, learnerName }: { check: FreeCheckPreview; lea
         {check.unitTitle} · {check.correctCount} of {check.totalQuestions} correct ({check.scorePct}%)
       </p>
       <div>
-        <p className="text-xs font-medium">Skills checked</p>
+        <p className="text-xs font-medium">{t("freeCheck.skills", "Skills checked")}</p>
         <ul className="mt-1 space-y-1">
           {check.skills.map((s) => (
             <li key={s.code} className="flex items-start gap-1.5 text-xs">
@@ -136,21 +141,23 @@ function FreeCheckSummary({ check, learnerName }: { check: FreeCheckPreview; lea
       </div>
       {check.possibleGaps.length > 0 ? (
         <p className="text-xs text-muted-foreground">
-          <span className="font-medium text-foreground">Possible gaps:</span>{" "}
+          <span className="font-medium text-foreground">{t("freeCheck.gaps", "Possible gaps:")}</span>{" "}
           {check.possibleGaps.map((g) => g.title).join(", ")}
         </p>
       ) : (
-        <p className="text-xs text-muted-foreground">No gaps in this short check.</p>
+        <p className="text-xs text-muted-foreground">{t("freeCheck.noGaps", "No gaps in this short check.")}</p>
       )}
       {check.sampleRecommendation ? (
         <p className="rounded-md border bg-background p-2 text-xs">
-          <span className="font-medium">Sample recommendation: </span>
+          <span className="font-medium">{t("freeCheck.sample", "Sample recommendation: ")}</span>
           {check.sampleRecommendation}
         </p>
       ) : null}
       <p className="text-[11px] text-muted-foreground">
-        Preview only — 5 of 20 questions from one chapter group. The ₹199 diagnostic gives the full
-        outcome-by-outcome report.
+        {t(
+          "freeCheck.previewNote",
+          "Preview only — 5 of 20 questions from one chapter group. The ₹199 diagnostic gives the full outcome-by-outcome report.",
+        )}
       </p>
     </div>
   );

@@ -9,6 +9,7 @@ import { fetchRunCompletion } from "@/lib/parent-diagnostic.functions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useI18n } from "@/lib/i18n/context";
 
 const TITLE = "Diagnostic complete | EduOS";
 const DESCRIPTION = "Your diagnostic has been submitted and scored. Your parent receives the report.";
@@ -34,6 +35,7 @@ export const Route = createFileRoute("/diagnostic/complete/$token")({
  * back to My Learning — nothing more.
  */
 function CompletePage() {
+  const { t } = useI18n();
   const { token } = Route.useParams();
   const completionFn = useServerFn(fetchRunCompletion);
   const query = useQuery({
@@ -80,7 +82,7 @@ function CompletePage() {
           </p>
           <Button asChild>
             <Link to="/home">
-              <GraduationCap className="mr-2 h-4 w-4" /> Back to My Learning
+              <GraduationCap className="mr-2 h-4 w-4" /> {t("runs.backToLearning", "Back to My Learning")}
             </Link>
           </Button>
         </CardContent>

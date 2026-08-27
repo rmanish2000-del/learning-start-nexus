@@ -15,6 +15,7 @@ import { DiagnosticShell } from "@/components/diagnostic-shell";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
 import { LoginInstructionActions } from "@/components/student-credentials";
 import { QueryError } from "@/components/query-error";
+import { useI18n } from "@/lib/i18n/context";
 import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { fetchDiagnosticHandoff } from "@/lib/parent-diagnostic.functions";
 import { Badge } from "@/components/ui/badge";
@@ -68,6 +69,7 @@ function HandoffPage() {
  * over — it never opens an answerable question paper for the parent.
  */
 function HandoffBody() {
+  const { t } = useI18n();
   const { token } = Route.useParams();
   const handoffFn = useServerFn(fetchDiagnosticHandoff);
   const query = useQuery({
@@ -102,9 +104,11 @@ function HandoffBody() {
     <DiagnosticShell footerNote={`${h.subject} · ${h.unitTitle}`}>
       <div className="space-y-2">
         <Badge variant="secondary" className="gap-1">
-          <ShieldCheck className="h-3.5 w-3.5" /> Payment received
+          <ShieldCheck className="h-3.5 w-3.5" /> {t("handoff.paid", "Payment received")}
         </Badge>
-        <h1 className="text-2xl font-semibold tracking-tight">Diagnostic ready for {h.learnerName}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">
+          {t("handoff.ready", `Diagnostic ready for ${h.learnerName}`, { name: h.learnerName })}
+        </h1>
         <p className="text-sm text-muted-foreground">
           {h.subject} · {h.unitTitle} · {h.totalQuestions}-question diagnostic
         </p>
@@ -112,36 +116,43 @@ function HandoffBody() {
 
       <Card className="mt-6">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base">Ask {h.learnerName} to sign in</CardTitle>
+          <CardTitle className="text-base">
+            {t("handoff.ask", `Ask ${h.learnerName} to sign in`, { name: h.learnerName })}
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="rounded-lg border bg-muted/30 p-3 text-sm">
             <p>
-              Handle: <span className="font-mono font-medium">{h.learnerHandle}</span>
+              {t("handoff.handle", "Handle")}: <span className="font-mono font-medium">{h.learnerHandle}</span>
             </p>
             <p className="mt-1 text-muted-foreground">
               PIN:{" "}
               {h.hasLogin
-                ? "the 6-digit PIN you set. You can reset it any time from the Parent portal."
-                : "not set yet — set a 6-digit PIN in the Parent portal before your child signs in."}
+                ? t("handoff.pinSet", "the 6-digit PIN you set. You can reset it any time from the Parent portal.")
+                : t(
+                    "handoff.pinMissing",
+                    "not set yet — set a 6-digit PIN in the Parent portal before your child signs in.",
+                  )}
             </p>
             <LoginInstructionActions learnerName={h.learnerName} handle={h.learnerHandle} />
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Your child answers the diagnostic in their own Student workspace so the result measures
-            them, not you. You'll get the full report here as soon as they finish.
+            {t(
+              "handoff.law",
+              "Your child answers the diagnostic in their own Student workspace so the result measures them, not you. You'll get the full report here as soon as they finish.",
+            )}
           </p>
 
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline">
               <Link to="/auth">
-                <LogIn className="mr-2 h-4 w-4" /> Open learner sign-in
+                <LogIn className="mr-2 h-4 w-4" /> {t("handoff.openSignIn", "Open learner sign-in")}
               </Link>
             </Button>
             <Button asChild variant="ghost">
               <Link to="/parent">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Parent portal
+                <ArrowLeft className="mr-2 h-4 w-4" /> {t("handoff.backToPortal", "Back to Parent portal")}
               </Link>
             </Button>
           </div>
@@ -153,15 +164,15 @@ function HandoffBody() {
           <CardTitle className="flex items-center gap-2 text-base">
             {h.status === "submitted" ? (
               <>
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" /> Completed — report ready
+                <CheckCircle2 className="h-4 w-4 text-emerald-600" /> {t("status.completed", "Completed — report ready")}
               </>
             ) : h.status === "in_progress" ? (
               <>
-                <PlayCircle className="h-4 w-4 text-amber-600" /> In progress
+                <PlayCircle className="h-4 w-4 text-amber-600" /> {t("status.inProgress", "In progress")}
               </>
             ) : (
               <>
-                <CircleDashed className="h-4 w-4 text-muted-foreground" /> Not started
+                <CircleDashed className="h-4 w-4 text-muted-foreground" /> {t("status.notStarted", "Not started")}
               </>
             )}
           </CardTitle>
@@ -175,7 +186,7 @@ function HandoffBody() {
           {h.status === "submitted" ? (
             <Button asChild>
               <Link to="/diagnostic/report/$token" params={{ token: h.accessToken }}>
-                <FileText className="mr-2 h-4 w-4" /> Open the report
+                <FileText className="mr-2 h-4 w-4" /> {t("handoff.openReport", "Open the report")}
               </Link>
             </Button>
           ) : null}

@@ -31,6 +31,7 @@ import { ClosureHeader } from "@/components/closure-header";
 import { getMyGapQueue } from "@/lib/student-home.functions";
 import { getMyStudyPlan, startMyDiagnostic } from "@/lib/study-plan.functions";
 import { StudyPlanCard } from "@/components/study-plan-card";
+import { StudentRunsCard } from "@/components/student-runs-card";
 import { LOOP_STAGES, stageIndex, type StudentGapCard } from "@/lib/student-home-shared";
 
 const STUDENT_TOUR: TourStep[] = [
@@ -351,6 +352,10 @@ function StudentHomePage() {
         onLaunchTutor={(interventionId) => launchTutorMutation.mutate(interventionId)}
         launching={launchTutorMutation.isPending}
       />
+
+      {/* Assessments a parent bought or started for this learner. Answering
+          them is the learner's job — this is the only entry point. */}
+      <StudentRunsCard />
 
       <div ref={planRef} className="scroll-mt-20" />
       <StudyPlanCard

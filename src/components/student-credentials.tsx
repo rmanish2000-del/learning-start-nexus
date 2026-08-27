@@ -8,6 +8,7 @@ import { setStudentLoginPin } from "@/lib/parent-account.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useI18n } from "@/lib/i18n/context";
 
 /**
  * Parent-facing student credentials: the handle is always visible and the
@@ -128,6 +129,7 @@ export function LoginInstructionActions({
   learnerName: string;
   handle: string;
 }) {
+  const { t } = useI18n();
   const origin = typeof window === "undefined" ? "https://www.eduos.global" : window.location.origin;
   const text = loginInstructionsText({ learnerName, handle, origin });
 
@@ -143,7 +145,7 @@ export function LoginInstructionActions({
             .catch(() => toast.error("Copy failed — select the handle and copy it manually."));
         }}
       >
-        <Copy className="mr-1.5 h-3.5 w-3.5" /> Copy login instructions
+        <Copy className="mr-1.5 h-3.5 w-3.5" /> {t("handoff.copy", "Copy login instructions")}
       </Button>
       <Button
         size="sm"
@@ -165,7 +167,7 @@ export function LoginInstructionActions({
           w.print();
         }}
       >
-        <Printer className="mr-1.5 h-3.5 w-3.5" /> Print
+        <Printer className="mr-1.5 h-3.5 w-3.5" /> {t("handoff.print", "Print")}
       </Button>
     </div>
   );
