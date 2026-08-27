@@ -224,6 +224,21 @@ function DashboardPage() {
 
   const closureSummary = closureView ? summariseClosure(closureView.label, closureView.totals) : null;
 
+  // Never hard-code a centre name — admins of any organization see their own.
+  const { data: org } = useQuery({
+    queryKey: ["org", profile?.org_id],
+    enabled: !!profile?.org_id,
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("organizations")
+        .select("name")
+        .eq("id", profile!.org_id!)
+        .single();
+      return data;
+    },
+  });
+
+
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
