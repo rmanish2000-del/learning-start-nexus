@@ -102,8 +102,8 @@ function PrivacyPage() {
       <LegalSection heading="Contact">
         <p>
           Questions about this policy or your data:{" "}
-          <a href="mailto:privacy@brightpath.education" className="font-medium text-primary hover:underline">
-            privacy@brightpath.education
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+            support@eduos.global
           </a>
           .
         </p>

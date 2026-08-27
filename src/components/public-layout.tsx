@@ -56,7 +56,7 @@ export function PublicPageLayout({
           <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
           <Link to="/terms" className="hover:text-foreground">Terms of Service</Link>
           <Link to="/contact" className="hover:text-foreground">Contact</Link>
-          <span className="ml-auto text-xs">EduOS demo — Brightpath Learning</span>
+          <span className="ml-auto text-xs">EduOS — Learning Intelligence</span>
         </div>
       </footer>
     </div>

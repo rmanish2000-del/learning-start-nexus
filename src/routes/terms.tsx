@@ -102,8 +102,8 @@ function TermsPage() {
       <LegalSection heading="7. Contact">
         <p>
           Questions about these terms:{" "}
-          <a href="mailto:hello@brightpath.education" className="font-medium text-primary hover:underline">
-            hello@brightpath.education
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+            support@eduos.global
           </a>
           .
         </p>
