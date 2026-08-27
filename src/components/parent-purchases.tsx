@@ -1,36 +1,20 @@
-import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowUpRight,
-  Clock3,
   FileText,
-  KeyRound,
-  PlayCircle,
   ShieldCheck,
-  ShoppingBag,
-  UserCheck,
-  Users,
 } from "lucide-react";
-import { toast } from "sonner";
 
-import { getParentAccount, setStudentLoginPin } from "@/lib/parent-account.functions";
-import type { ParentStudent } from "@/lib/parent-account-shared";
+import { getParentAccount } from "@/lib/parent-account.functions";
 import { formatInr } from "@/lib/parent-diagnostic-shared";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 
-/**
- * Parent-facing student credentials: the handle is always visible and the
- * parent can set or reset the 6-digit PIN themselves. Students therefore never
- * depend on an educator being assigned before they can sign in.
- */
 /**
  * Returning-parent surface: the students on the account and every purchase
  * made with it, each with the one action that moves it forward — resume the
@@ -38,7 +22,6 @@ import { Skeleton } from "@/components/ui/skeleton";
  */
 export function ParentPurchases() {
   const accountFn = useServerFn(getParentAccount);
-  const queryClient = useQueryClient();
   const query = useQuery({ queryKey: ["parent-account"], queryFn: () => accountFn() });
 
   if (query.isLoading) return <Skeleton className="h-48 w-full" />;
