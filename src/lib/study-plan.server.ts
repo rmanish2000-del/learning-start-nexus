@@ -241,7 +241,8 @@ export async function startSelfServeDiagnostic(
     .neq("status", "submitted")
     .order("created_at", { ascending: false })
     .limit(1);
-  if (open && open.length > 0) return { sessionId: open[0].id };
+  const openSession = (open ?? [])[0];
+  if (openSession) return { sessionId: openSession.id };
 
   const { data: assessments, error } = await admin
     .from("assessments")
