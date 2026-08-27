@@ -129,6 +129,7 @@ export function LoginInstructionActions({
   learnerName: string;
   handle: string;
 }) {
+  const { t } = useI18n();
   const origin = typeof window === "undefined" ? "https://www.eduos.global" : window.location.origin;
   const text = loginInstructionsText({ learnerName, handle, origin });
 

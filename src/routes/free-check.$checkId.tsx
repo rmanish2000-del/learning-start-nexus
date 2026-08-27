@@ -74,6 +74,7 @@ function FreeCheckPage() {
 
 /** Answering is learner-only; the server refuses a parent session outright. */
 function FreeCheckBody() {
+  const { t } = useI18n();
   const { checkId } = Route.useParams();
   const runFn = useServerFn(getFreeCheckRun);
   const saveFn = useServerFn(saveFreeCheckResponse);

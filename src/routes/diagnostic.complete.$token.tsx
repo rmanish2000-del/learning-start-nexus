@@ -35,6 +35,7 @@ export const Route = createFileRoute("/diagnostic/complete/$token")({
  * back to My Learning — nothing more.
  */
 function CompletePage() {
+  const { t } = useI18n();
   const { token } = Route.useParams();
   const completionFn = useServerFn(fetchRunCompletion);
   const query = useQuery({
