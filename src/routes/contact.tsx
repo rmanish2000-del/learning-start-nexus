@@ -11,17 +11,50 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Reach the EduOS team at Brightpath Learning — product questions, privacy requests, and security reports.",
+          "Reach the EduOS team — product questions, privacy requests, and support. Email support@eduos.global or call 9850820909.",
       },
       { property: "og:title", content: "Contact — EduOS" },
       {
         property: "og:description",
         content:
-          "Reach the EduOS team at Brightpath Learning — product questions, privacy requests, and security reports.",
+          "Reach the EduOS team — product questions, privacy requests, and support. Email support@eduos.global or call 9850820909.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.eduos.global/contact" },
+    ],
+    links: [{ rel: "canonical", href: "https://www.eduos.global/contact" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "EduOS",
+          url: "https://www.eduos.global",
+          email: "support@eduos.global",
+          telephone: "+91-9850820909",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Tilak Ward, Deori",
+            addressLocality: "Sagar",
+            addressRegion: "Madhya Pradesh",
+            postalCode: "470226",
+            addressCountry: "IN",
+          },
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              contactType: "customer support",
+              email: "support@eduos.global",
+              telephone: "+91-9850820909",
+              areaServed: "IN",
+            },
+          ],
+        }),
+      },
     ],
   }),
+
   component: ContactPage,
 });
 
