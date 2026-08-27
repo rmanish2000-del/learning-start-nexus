@@ -581,6 +581,17 @@ function PilotLeadsCard() {
                     .join(" · ") || "No scope details provided"}
                 </p>
                 {lead.notes ? <p className="mt-2">{lead.notes}</p> : null}
+                <div className="mt-3 flex items-center gap-2">
+                  <Badge variant={lead.status === "approved" ? "default" : "secondary"}>
+                    {lead.status === "approved" ? "Approved" : "Pending review"}
+                  </Badge>
+                  {lead.status === "approved" ? null : (
+                    <ApproveCentreDialog
+                      lead={lead}
+                      onApproved={() => void refetch()}
+                    />
+                  )}
+                </div>
               </div>
             ))}
           </div>
