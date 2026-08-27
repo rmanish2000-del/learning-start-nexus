@@ -840,6 +840,104 @@ export type Database = {
           },
         ]
       }
+      free_learning_checks: {
+        Row: {
+          answers: Json
+          book_id: string
+          correct_count: number | null
+          created_at: string
+          current_position: number
+          id: string
+          learner_id: string
+          org_id: string
+          parent_user_id: string
+          question_ids: string[]
+          result: Json | null
+          score_pct: number | null
+          started_at: string | null
+          status: string
+          subject: string
+          submitted_at: string | null
+          total_count: number | null
+          unit_id: string
+          unit_title: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          book_id: string
+          correct_count?: number | null
+          created_at?: string
+          current_position?: number
+          id?: string
+          learner_id: string
+          org_id: string
+          parent_user_id: string
+          question_ids: string[]
+          result?: Json | null
+          score_pct?: number | null
+          started_at?: string | null
+          status?: string
+          subject: string
+          submitted_at?: string | null
+          total_count?: number | null
+          unit_id: string
+          unit_title: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          book_id?: string
+          correct_count?: number | null
+          created_at?: string
+          current_position?: number
+          id?: string
+          learner_id?: string
+          org_id?: string
+          parent_user_id?: string
+          question_ids?: string[]
+          result?: Json | null
+          score_pct?: number | null
+          started_at?: string | null
+          status?: string
+          subject?: string
+          submitted_at?: string | null
+          total_count?: number | null
+          unit_id?: string
+          unit_title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "free_learning_checks_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "free_learning_checks_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "free_learning_checks_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "free_learning_checks_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "curriculum_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       guardian_consents: {
         Row: {
           action: string

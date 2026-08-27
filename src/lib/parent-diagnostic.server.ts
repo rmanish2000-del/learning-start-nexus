@@ -226,6 +226,31 @@ function assertOrderOwner(row: OrderRow, userId: string | null): void {
   }
 }
 
+/**
+ * Answer ownership — the other half of the product law. The parent owns the
+ * purchase and the report; the learner owns the attempt. Only the learner's own
+ * authenticated student session may read the question paper or write an answer.
+ * Enforced here so no client route, hidden button or direct RPC call can bypass
+ * it, and a parent session is refused even though it owns the order.
+ */
+async function assertLearnerAnswerer(row: OrderRow, userId: string | null): Promise<{ fullName: string; handle: string }> {
+  if (!row.learner_id) throw new Error("This diagnostic is not linked to a student profile yet.");
+  const { data: learner, error } = await supabaseAdmin
+    .from("learners")
+    .select("id, full_name, handle, student_user_id")
+    .eq("id", row.learner_id)
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  if (!learner) throw new Error("That student profile could not be found.");
+  if (!userId || !learner.student_user_id || learner.student_user_id !== userId) {
+    throw new Error(
+      `Only ${learner.full_name} can answer this diagnostic. Ask them to sign in as a student with their handle and PIN.`,
+    );
+  }
+  return { fullName: learner.full_name, handle: learner.handle };
+}
+
+
 async function unitTitle(unitId: string | null): Promise<string | null> {
   if (!unitId) return null;
   const { data } = await supabaseAdmin.from("curriculum_units").select("title").eq("id", unitId).maybeSingle();
@@ -787,7 +812,8 @@ export type DiagnosticRun = {
 
 export async function loadRun(accessToken: string, userId: string | null = null): Promise<DiagnosticRun> {
   const row = await loadOrderByToken(accessToken);
-  assertOrderOwner(row, userId);
+  const learner = await assertLearnerAnswerer(row, userId);
+
   if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -801,7 +827,8 @@ export async function loadRun(accessToken: string, userId: string | null = null)
 
   return {
     order: await toPublicOrder(row),
-    childFirstName: row.child_first_name ?? "Your child",
+    childFirstName: learner.fullName,
+
     subject: row.subject ?? "",
     unitTitle: (await unitTitle(row.unit_id)) ?? "",
     status: session.status,
@@ -827,7 +854,8 @@ export async function saveRunAnswer(input: {
   userId?: string | null;
 }): Promise<{ saved: true }> {
   const row = await loadOrderByToken(input.token);
-  assertOrderOwner(row, input.userId ?? null);
+  await assertLearnerAnswerer(row, input.userId ?? null);
+
   if (!row.session_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -858,7 +886,8 @@ function isCorrect(given: string | undefined, expected: string): boolean {
 
 export async function submitRun(accessToken: string, userId: string | null = null): Promise<{ accessToken: string }> {
   const row = await loadOrderByToken(accessToken);
-  assertOrderOwner(row, userId);
+  await assertLearnerAnswerer(row, userId);
+
   if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
@@ -1058,4 +1087,161 @@ export async function loadUpgradeView(
   userId: string | null = null,
 ): Promise<ParentReport> {
   return loadReport(accessToken, userId);
+}
+
+// ---------------------------------------------------------------------------
+// Parent handoff + learner completion
+//
+// After payment the parent lands on a handoff screen, never inside an
+// answerable question session. The two views below are the only reads each
+// side needs, and each is scoped to the role that owns it.
+// ---------------------------------------------------------------------------
+
+export type DiagnosticHandoff = {
+  accessToken: string;
+  orderRef: string;
+  subject: string;
+  unitTitle: string;
+  learnerId: string;
+  learnerName: string;
+  learnerHandle: string;
+  hasLogin: boolean;
+  totalQuestions: number;
+  answeredCount: number;
+  status: "not_started" | "in_progress" | "submitted";
+};
+
+/** Parent-only. Shows what to hand over, and how far the learner has got. */
+export async function loadHandoff(accessToken: string, userId: string): Promise<DiagnosticHandoff> {
+  const row = await loadOrderByToken(accessToken);
+  assertOrderOwner(row, userId);
+  if (row.status !== "paid") throw new Error("This diagnostic has not been paid for yet.");
+  if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
+  if (!row.learner_id) throw new Error("This diagnostic is not linked to a student profile.");
+
+  const [{ data: learner }, { data: session }, { count }] = await Promise.all([
+    supabaseAdmin
+      .from("learners")
+      .select("id, full_name, handle, student_user_id")
+      .eq("id", row.learner_id)
+      .maybeSingle(),
+    supabaseAdmin
+      .from("assessment_sessions")
+      .select("status, answers")
+      .eq("id", row.session_id)
+      .maybeSingle(),
+    supabaseAdmin
+      .from("assessment_question_map")
+      .select("question_id", { count: "exact", head: true })
+      .eq("assessment_id", row.assessment_id),
+  ]);
+
+  const answers = (session?.answers as Record<string, string> | null) ?? {};
+  const answeredCount = Object.values(answers).filter((v) => v !== "").length;
+  const status: DiagnosticHandoff["status"] =
+    session?.status === "submitted" ? "submitted" : answeredCount > 0 ? "in_progress" : "not_started";
+
+  return {
+    accessToken: row.access_token,
+    orderRef: row.order_ref,
+    subject: row.subject ?? "",
+    unitTitle: (await unitTitle(row.unit_id)) ?? "",
+    learnerId: row.learner_id,
+    learnerName: learner?.full_name ?? "Your child",
+    learnerHandle: learner?.handle ?? "",
+    hasLogin: !!learner?.student_user_id,
+    totalQuestions: count ?? 0,
+    answeredCount,
+    status,
+  };
+}
+
+export type RunCompletion = {
+  learnerName: string;
+  subject: string;
+  unitTitle: string;
+  answeredCount: number;
+  totalQuestions: number;
+  submitted: boolean;
+};
+
+/**
+ * Learner-only completion confirmation. The learner never sees the parent
+ * report: the score and the recommendations belong on the parent's side.
+ */
+export async function loadRunCompletion(accessToken: string, userId: string): Promise<RunCompletion> {
+  const row = await loadOrderByToken(accessToken);
+  const learner = await assertLearnerAnswerer(row, userId);
+  if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
+
+  const [{ data: session }, { count }] = await Promise.all([
+    supabaseAdmin.from("assessment_sessions").select("status, answers").eq("id", row.session_id).maybeSingle(),
+    supabaseAdmin
+      .from("assessment_question_map")
+      .select("question_id", { count: "exact", head: true })
+      .eq("assessment_id", row.assessment_id),
+  ]);
+  const answers = (session?.answers as Record<string, string> | null) ?? {};
+
+  return {
+    learnerName: learner.fullName,
+    subject: row.subject ?? "",
+    unitTitle: (await unitTitle(row.unit_id)) ?? "",
+    answeredCount: Object.values(answers).filter((v) => v !== "").length,
+    totalQuestions: count ?? 0,
+    submitted: session?.status === "submitted",
+  };
+}
+
+/** Paid diagnostics waiting for the signed-in learner. */
+export async function listLearnerDiagnostics(learnerId: string): Promise<
+  {
+    accessToken: string;
+    subject: string;
+    unitTitle: string;
+    status: "not_started" | "in_progress" | "submitted";
+    answeredCount: number;
+    totalQuestions: number;
+  }[]
+> {
+  const { data, error } = await supabaseAdmin
+    .from("parent_orders")
+    .select(ORDER_COLUMNS)
+    .eq("learner_id", learnerId)
+    .eq("purpose", "diagnostic")
+    .eq("status", "paid")
+    .not("session_id", "is", null)
+    .order("created_at");
+  if (error) throw new Error(error.message);
+
+  const rows = (data ?? []) as OrderRow[];
+  const out: {
+    accessToken: string;
+    subject: string;
+    unitTitle: string;
+    status: "not_started" | "in_progress" | "submitted";
+    answeredCount: number;
+    totalQuestions: number;
+  }[] = [];
+
+  for (const row of rows) {
+    const [{ data: session }, { count }] = await Promise.all([
+      supabaseAdmin.from("assessment_sessions").select("status, answers").eq("id", row.session_id!).maybeSingle(),
+      supabaseAdmin
+        .from("assessment_question_map")
+        .select("question_id", { count: "exact", head: true })
+        .eq("assessment_id", row.assessment_id!),
+    ]);
+    const answers = (session?.answers as Record<string, string> | null) ?? {};
+    const answeredCount = Object.values(answers).filter((v) => v !== "").length;
+    out.push({
+      accessToken: row.access_token,
+      subject: row.subject ?? "",
+      unitTitle: (await unitTitle(row.unit_id)) ?? "",
+      status: session?.status === "submitted" ? "submitted" : answeredCount > 0 ? "in_progress" : "not_started",
+      answeredCount,
+      totalQuestions: count ?? 0,
+    });
+  }
+  return out;
 }

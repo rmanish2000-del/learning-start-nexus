@@ -56,6 +56,9 @@ export function isReviewerAllowedPath(pathname: string): boolean {
 // curriculum-authoring route is off limits regardless of navigation links.
 export const STUDENT_ALLOWED_PATHS = [
   "/home",
+  "/free-check",
+  "/diagnostic/session",
+  "/diagnostic/complete",
   "/session",
   "/assessment",
   "/tutor",

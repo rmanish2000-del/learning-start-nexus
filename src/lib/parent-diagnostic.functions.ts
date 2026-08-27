@@ -119,3 +119,22 @@ export const startUpgradeOrder = createServerFn({ method: "POST" })
     const { createUpgradeOrder } = await import("./parent-diagnostic.server");
     return createUpgradeOrder(data.token, context.userId);
   });
+
+// Parent-only handoff view: what to hand to the learner after payment. The
+// parent never receives the question paper from this call.
+export const fetchDiagnosticHandoff = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => tokenSchema.parse(data))
+  .handler(async ({ data, context }) => {
+    const { loadHandoff } = await import("./parent-diagnostic.server");
+    return loadHandoff(data.token, context.userId);
+  });
+
+// Learner-only completion confirmation shown after submitting.
+export const fetchRunCompletion = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => tokenSchema.parse(data))
+  .handler(async ({ data, context }) => {
+    const { loadRunCompletion } = await import("./parent-diagnostic.server");
+    return loadRunCompletion(data.token, context.userId);
+  });

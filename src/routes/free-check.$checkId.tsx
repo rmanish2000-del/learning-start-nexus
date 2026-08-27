@@ -1,15 +1,18 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Loader2, Save } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, GraduationCap, Loader2, LogIn, Save } from "lucide-react";
 import { toast } from "sonner";
 
-import { ParentAuthGate } from "@/components/parent-auth-gate";
-import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { DiagnosticShell } from "@/components/diagnostic-shell";
-import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
+import { useSupabaseUser } from "@/lib/use-supabase-user";
+import {
+  getFreeCheckRun,
+  saveFreeCheckResponse,
+  submitFreeLearningCheck,
+} from "@/lib/free-check.functions";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,16 +21,11 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  fetchDiagnosticRun,
-  saveDiagnosticAnswer,
-  submitDiagnosticRun,
-} from "@/lib/parent-diagnostic.functions";
 
-const TITLE = "Diagnostic in progress | EduOS";
-const DESCRIPTION = "Answer one question at a time. Progress is saved after every answer and can be resumed later.";
+const TITLE = "Free learning check | EduOS";
+const DESCRIPTION = "A short five-question check. Answers save as you go.";
 
-export const Route = createFileRoute("/diagnostic/session/$token")({
+export const Route = createFileRoute("/free-check/$checkId")({
   head: () => ({
     meta: [
       { title: TITLE },
@@ -39,14 +37,10 @@ export const Route = createFileRoute("/diagnostic/session/$token")({
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: DiagnosticSessionPage,
+  component: FreeCheckPage,
 });
 
-
-// Answer ownership: only the learner's own student session may open this page.
-// The server re-checks it on every call — this gate only keeps the UI honest.
-function DiagnosticSessionPage() {
-  const { token } = Route.useParams();
+function FreeCheckPage() {
   const { data: user, isLoading } = useSupabaseUser();
   if (isLoading) {
     return (
@@ -58,28 +52,40 @@ function DiagnosticSessionPage() {
   if (!user) {
     return (
       <DiagnosticShell variant="learner">
-        <ParentAuthGate next={`/diagnostic/session/${token}`}>{null}</ParentAuthGate>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Sign in as a student</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <p>This learning check belongs to a student. Sign in with your handle and 6-digit PIN.</p>
+            <Button asChild>
+              <Link to="/auth">
+                <LogIn className="mr-2 h-4 w-4" /> Student sign-in
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
       </DiagnosticShell>
     );
   }
-  return <DiagnosticSessionPageBody />;
+  return <FreeCheckBody />;
 }
 
-function DiagnosticSessionPageBody() {
-  const { t } = useI18n();
-  const { token } = Route.useParams();
-  const runFn = useServerFn(fetchDiagnosticRun);
-  const saveFn = useServerFn(saveDiagnosticAnswer);
-  const submitFn = useServerFn(submitDiagnosticRun);
+/** Answering is learner-only; the server refuses a parent session outright. */
+function FreeCheckBody() {
+  const { checkId } = Route.useParams();
+  const runFn = useServerFn(getFreeCheckRun);
+  const saveFn = useServerFn(saveFreeCheckResponse);
+  const submitFn = useServerFn(submitFreeLearningCheck);
   const navigate = useNavigate();
 
   const query = useQuery({
-    queryKey: ["diagnostic-run", token],
-    queryFn: () => runFn({ data: { token } }),
+    queryKey: ["free-check-run", checkId],
+    queryFn: () => runFn({ data: { checkId } }),
   });
 
   const run = query.data;
-  const questions = run?.questions ?? [];
+  const questions = useMemo(() => run?.questions ?? [], [run]);
 
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -94,13 +100,6 @@ function DiagnosticSessionPageBody() {
     setHydrated(true);
   }, [run, hydrated]);
 
-  // A submitted diagnostic goes straight to the report.
-  useEffect(() => {
-    if (run?.status === "submitted") {
-      void navigate({ to: "/diagnostic/complete/$token", params: { token } });
-    }
-  }, [run?.status, navigate, token]);
-
   const question = questions[index];
   const answeredCount = useMemo(
     () => questions.filter((q) => (answers[q.id] ?? "") !== "").length,
@@ -112,20 +111,12 @@ function DiagnosticSessionPageBody() {
     setAnswers((prev) => ({ ...prev, [question.id]: value }));
     setSaving(true);
     try {
-      await saveFn({ data: { token, questionId: question.id, answer: value, position: nextIndex } });
+      await saveFn({ data: { checkId, questionId: question.id, answer: value, position: nextIndex } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("session.error.save", "That answer could not be saved."));
+      toast.error(error instanceof Error ? error.message : "That answer could not be saved.");
     } finally {
       setSaving(false);
     }
-  }
-
-  async function goNext() {
-    if (!question) return;
-    const value = answers[question.id] ?? "";
-    const next = Math.min(index + 1, questions.length - 1);
-    await persist(value, next);
-    setIndex(next);
   }
 
   async function submit() {
@@ -133,10 +124,11 @@ function DiagnosticSessionPageBody() {
     setSubmitting(true);
     try {
       await persist(answers[question.id] ?? "", index);
-      await submitFn({ data: { token } });
-      await navigate({ to: "/diagnostic/complete/$token", params: { token } });
+      await submitFn({ data: { checkId } });
+      await query.refetch();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("session.error.submit", "The diagnostic could not be submitted."));
+      toast.error(error instanceof Error ? error.message : "The check could not be submitted.");
+    } finally {
       setSubmitting(false);
     }
   }
@@ -151,7 +143,36 @@ function DiagnosticSessionPageBody() {
   if (query.isError || !run) {
     return (
       <DiagnosticShell variant="learner">
-        <QueryError title={t("session.invalid", "This diagnostic link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
+        <QueryError
+          title="This learning check is not available"
+          error={query.error}
+          onRetry={() => void query.refetch()}
+        />
+      </DiagnosticShell>
+    );
+  }
+
+  if (run.status === "submitted") {
+    return (
+      <DiagnosticShell variant="learner" learnerName={run.learnerName} footerNote={`${run.subject} · ${run.unitTitle}`}>
+        <Card>
+          <CardHeader className="items-center text-center">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+              <CheckCircle2 className="h-6 w-6" />
+            </span>
+            <CardTitle className="mt-2 text-xl">Learning check complete</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-center text-sm text-muted-foreground">
+            <p>
+              Nice work. Your parent can now see which skills were checked and what to focus on next.
+            </p>
+            <Button asChild onClick={() => void navigate({ to: "/home" })}>
+              <Link to="/home">
+                <GraduationCap className="mr-2 h-4 w-4" /> Back to My Learning
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
       </DiagnosticShell>
     );
   }
@@ -160,28 +181,19 @@ function DiagnosticSessionPageBody() {
   const options = question?.options ?? null;
 
   return (
-    <DiagnosticShell variant="learner" learnerName={run.childFirstName} footerNote={`${run.subject} · ${run.unitTitle}`}>
+    <DiagnosticShell variant="learner" learnerName={run.learnerName} footerNote={`${run.subject} · ${run.unitTitle}`}>
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-xl font-semibold tracking-tight">
-            {t("session.title", `${run.childFirstName}'s diagnostic · ${run.subject}`, {
-              name: run.childFirstName,
-              subject: run.subject,
-            })}
+            Free learning check · {run.subject}
           </h1>
           <Badge variant="secondary">
-            {t("session.answered", `${answeredCount} of ${questions.length} answered`, {
-              n: answeredCount,
-              total: questions.length,
-            })}
+            {answeredCount} of {questions.length} answered
           </Badge>
         </div>
         <Progress value={questions.length === 0 ? 0 : (answeredCount / questions.length) * 100} />
         <p className="text-xs text-muted-foreground">
-          {t(
-            "session.saveNote",
-            "Every answer is saved as you go — you can close this page and return to the same link.",
-          )}
+          {run.unitTitle} · Every answer is saved as you go.
         </p>
       </div>
 
@@ -190,20 +202,18 @@ function DiagnosticSessionPageBody() {
           <CardHeader className="space-y-2">
             <div className="flex items-center justify-between gap-3">
               <span className="text-xs font-medium text-muted-foreground">
-                {t(
-                  "session.question",
-                  `Question ${index + 1} of ${questions.length} · Outcome ${question.outcomeCode}`,
-                  { n: index + 1, total: questions.length, code: question.outcomeCode },
-                )}
+                Question {index + 1} of {questions.length} · Outcome {question.outcomeCode}
               </span>
               {saving ? (
                 <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Save className="h-3.5 w-3.5" /> {t("session.saving", "Saving…")}
+                  <Save className="h-3.5 w-3.5" /> Saving…
                 </span>
               ) : null}
             </div>
             {question.stimulus ? (
-              <p className="rounded-md border bg-muted/40 p-3 text-sm text-muted-foreground">{question.stimulus}</p>
+              <p className="rounded-md border bg-muted/40 p-3 text-sm text-muted-foreground">
+                {question.stimulus}
+              </p>
             ) : null}
             <CardTitle className="text-base leading-relaxed">{question.prompt}</CardTitle>
           </CardHeader>
@@ -228,40 +238,42 @@ function DiagnosticSessionPageBody() {
               </RadioGroup>
             ) : (
               <div className="space-y-1.5">
-                <Label htmlFor="free-answer">{t("session.freeAnswer", "Your answer")}</Label>
+                <Label htmlFor="free-answer">Your answer</Label>
                 <Textarea
                   id="free-answer"
                   rows={4}
                   value={answers[question.id] ?? ""}
                   onChange={(e) => setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))}
                   onBlur={(e) => void persist(e.target.value, index)}
-                  placeholder={t("session.freeAnswer.placeholder", "Type the answer")}
+                  placeholder="Type the answer"
                 />
               </div>
             )}
 
             <div className="flex items-center justify-between gap-3">
               <Button variant="outline" onClick={() => setIndex(Math.max(0, index - 1))} disabled={index === 0}>
-                <ArrowLeft className="mr-2 h-4 w-4" /> {t("common.back", "Back")}
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </Button>
               {isLast ? (
                 <Button onClick={submit} disabled={submitting}>
                   {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  {t("session.submit", "Submit and score")}
+                  Finish check
                 </Button>
               ) : (
-                <Button onClick={goNext}>
-                  {t("common.next", "Next")} <ArrowRight className="ml-2 h-4 w-4" />
+                <Button
+                  onClick={async () => {
+                    const next = Math.min(index + 1, questions.length - 1);
+                    await persist(answers[question.id] ?? "", next);
+                    setIndex(next);
+                  }}
+                >
+                  Next <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               )}
             </div>
           </CardContent>
         </Card>
-      ) : (
-        <p className="mt-6 text-sm text-muted-foreground">
-          {t("session.empty", "This diagnostic has no questions assigned.")}
-        </p>
-      )}
+      ) : null}
     </DiagnosticShell>
   );
 }

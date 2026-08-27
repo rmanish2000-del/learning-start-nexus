@@ -37,6 +37,7 @@ import {
 import { ContextHelp } from "@/components/context-help";
 import { ClosureHeader } from "@/components/closure-header";
 import { ParentPurchases } from "@/components/parent-purchases";
+import { ParentLearners } from "@/components/parent-learners";
 import { getParentOutcomeView } from "@/lib/outcome-dashboard.functions";
 import { summariseClosure } from "@/lib/closure-shared";
 import { useI18n } from "@/lib/i18n/context";
@@ -222,6 +223,8 @@ function ParentPortal() {
           <ContextHelp page="/parent" />
         </div>
 
+        <ParentLearners />
+
         <ParentPurchases />
 
         <ClosureHeader
@@ -256,7 +259,7 @@ function ParentPortal() {
             title={t("portal.children.empty.title", "No linked children yet")}
             description={t(
               "portal.children.empty.body",
-              "Your account isn't linked to a learner. Ask your tutoring center's admin to link your child to this account.",
+              "Add your child in “Your children” above to see progress and consent controls here.",
             )}
             hint={t("portal.children.empty.hint", "Once linked, progress and consent controls appear here automatically.")}
           />
