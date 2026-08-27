@@ -273,15 +273,22 @@ function StudentHomePage() {
     {
       key: "tutor",
       title: "Practice with the AI Tutor",
-      description: "A Socratic companion that explains, hints and practices with you — inside your approved plan.",
+      description:
+        studyPlan?.mode === "direct_parent"
+          ? "A Socratic companion that explains, hints and practises with you — inside your verified study plan."
+          : "A Socratic companion that explains, hints and practises with you — inside your approved plan.",
       done: getOnboardingFlag(stepFlagKey("student", "tutor")),
+      // Deterministic unlock: consent → plan → intervention. Every blocked
+      // state names the exact reason and the next step.
       ...(tutorConsentMissing
-        ? { blockedHint: "Needs guardian consent" }
+        ? { blockedHint: "Ask your parent to give AI Tutor consent in the Parent Portal" }
         : firstFocus
-          ? { action: "launch-tutor", ctaLabel: "Open AI Tutor" }
-          : educatorAssigned
-            ? { blockedHint: "Waiting for your educator" }
-            : { blockedHint: "Unlocks once your plan is generated" }),
+          ? { action: "launch-tutor", ctaLabel: "Practise this gap with the AI Tutor" }
+          : studyPlan?.planStatus === "awaiting_educator"
+            ? { blockedHint: "Awaiting educator assignment — your centre admin has been notified" }
+            : submittedSession
+              ? { blockedHint: "Your study plan is being prepared — refresh in a moment" }
+              : { blockedHint: "Take your diagnostic first — the plan is generated right after scoring" }),
     },
   ];
 
