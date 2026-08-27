@@ -180,6 +180,14 @@ function AuthPage() {
         return;
       }
 
+      // Students routinely land on the parent form with a handle. Catch that
+      // before the credentials are blamed.
+      if (!email.includes("@")) {
+        setTab("student");
+        toast.error("That looks like a student handle — switched you to Student sign-in.");
+        return;
+      }
+
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
         toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
