@@ -19,6 +19,7 @@ import {
   unlinkParentFromLearner,
   updateUserRole,
 } from "@/lib/admin.functions";
+import { approveCentreLead } from "@/lib/centre-onboarding.functions";
 import { ROLE_LABELS, type AppRole } from "@/lib/roles";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -581,6 +582,17 @@ function PilotLeadsCard() {
                     .join(" · ") || "No scope details provided"}
                 </p>
                 {lead.notes ? <p className="mt-2">{lead.notes}</p> : null}
+                <div className="mt-3 flex items-center gap-2">
+                  <Badge variant={lead.status === "approved" ? "default" : "secondary"}>
+                    {lead.status === "approved" ? "Approved" : "Pending review"}
+                  </Badge>
+                  {lead.status === "approved" ? null : (
+                    <ApproveCentreDialog
+                      lead={lead}
+                      onApproved={() => void refetch()}
+                    />
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -590,7 +602,119 @@ function PilotLeadsCard() {
   );
 }
 
+// Approving an application provisions the centre's organization and its first
+// admin account, then hands back one-time sign-in credentials.
+function ApproveCentreDialog({
+  lead,
+  onApproved,
+}: {
+  lead: { id: string; centre_name: string; contact_name: string; email: string; phone: string | null };
+  onApproved: () => void;
+}) {
+  const approveFn = useServerFn(approveCentreLead);
+  const [open, setOpen] = useState(false);
+  const [issued, setIssued] = useState<{ adminEmail: string; tempPassword: string } | null>(null);
 
+  const mutation = useMutation({
+    mutationFn: (input: {
+      leadId: string;
+      orgName: string;
+      adminFullName: string;
+      adminEmail: string;
+      phone?: string | undefined;
+    }) => approveFn({ data: input }),
+    onSuccess: (result) => {
+      setIssued({ adminEmail: result.adminEmail, tempPassword: result.tempPassword });
+      toast.success(`${result.orgName} is live. Share the sign-in below.`);
+      onApproved();
+    },
+    onError: (error: Error) => toast.error(error.message),
+  });
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    mutation.mutate({
+      leadId: lead.id,
+      orgName: String(form.get("orgName") ?? ""),
+      adminFullName: String(form.get("adminFullName") ?? ""),
+      adminEmail: String(form.get("adminEmail") ?? ""),
+      phone: lead.phone ?? undefined,
+    });
+  };
+
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        setOpen(next);
+        if (!next) setIssued(null);
+      }}
+    >
+      <DialogTrigger asChild>
+        <Button size="sm">Approve &amp; create centre</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Approve {lead.centre_name}</DialogTitle>
+          <DialogDescription>
+            Creates the centre organization and its first admin account.
+          </DialogDescription>
+        </DialogHeader>
+        {issued ? (
+          <div className="space-y-3 text-sm">
+            <p>Share these one-time credentials with the centre admin:</p>
+            <div className="rounded-lg border p-3 font-mono text-xs">
+              <p>{issued.adminEmail}</p>
+              <p>{issued.tempPassword}</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                void navigator.clipboard.writeText(`${issued.adminEmail} / ${issued.tempPassword}`);
+                toast.success("Copied");
+              }}
+            >
+              <Copy className="h-4 w-4" /> Copy
+            </Button>
+          </div>
+        ) : (
+          <form onSubmit={onSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor={`orgName-${lead.id}`}>Centre name</Label>
+              <Input id={`orgName-${lead.id}`} name="orgName" defaultValue={lead.centre_name} required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor={`adminFullName-${lead.id}`}>Centre admin name</Label>
+              <Input
+                id={`adminFullName-${lead.id}`}
+                name="adminFullName"
+                defaultValue={lead.contact_name}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor={`adminEmail-${lead.id}`}>Centre admin email</Label>
+              <Input
+                id={`adminEmail-${lead.id}`}
+                name="adminEmail"
+                type="email"
+                defaultValue={lead.email}
+                required
+              />
+            </div>
+            <DialogFooter>
+              <Button type="submit" disabled={mutation.isPending}>
+                {mutation.isPending ? "Creating…" : "Approve centre"}
+              </Button>
+            </DialogFooter>
+          </form>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 function ParentAccessCard() {
   const queryClient = useQueryClient();
