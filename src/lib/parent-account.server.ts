@@ -208,7 +208,7 @@ export async function addStudent(
       focus_note: "Parent-created student profile.",
       is_demo: false,
     })
-    .select("id, full_name, grade, board, subject, mastery_score, created_at")
+    .select("id, full_name, grade, board, subject, mastery_score, created_at, handle")
     .single();
   if (error) throw new Error(error.message);
 
@@ -228,6 +228,11 @@ export async function addStudent(
     subject: learner.subject,
     masteryScore: learner.mastery_score,
     createdAt: learner.created_at,
+    handle: learner.handle,
+    hasLogin: false,
+    // Parent-created profiles always start unassigned; admin picks the educator.
+    assignmentStatus: "awaiting_assignment",
+    educatorName: null,
   };
 }
 
