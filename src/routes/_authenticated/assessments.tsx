@@ -2,11 +2,30 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ClipboardList, Plus, Search, Send } from "lucide-react";
+import { CheckCircle2, ClipboardList, Plus, Search, Send } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { assignAssessment, createAssessment } from "@/lib/assessments.functions";
+import {
+  ACTION_LABELS,
+  STATE_LABELS,
+  actionsFor,
+  isLegacyContent,
+  resolveState,
+  unavailableReason,
+} from "@/lib/assessment-lifecycle";
+import {
+  ConfirmDialog,
+  DisabledReason,
+  FormField,
+  FormSection,
+  InfoNote,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalShell,
+} from "@/components/modal-shell";
 import { DIFFICULTY_LABELS, type AssessmentItem } from "@/lib/assessment-shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -79,7 +98,11 @@ function AssessmentsPage() {
   const [description, setDescription] = useState("");
   const [timeLimit, setTimeLimit] = useState("20");
   const [picked, setPicked] = useState<Set<string>>(new Set());
-  const [publishNow, setPublishNow] = useState(true);
+  const [savedDraftId, setSavedDraftId] = useState<string | null>(null);
+  const [confirmDiscard, setConfirmDiscard] = useState(false);
+  // Stable per-attempt id — protects the create action against double clicks,
+  // refreshes and network retries (server dedupes on it).
+  const [requestId, setRequestId] = useState(() => crypto.randomUUID());
 
   // Assign form state
   const [pickedLearners, setPickedLearners] = useState<Set<string>>(new Set());
@@ -174,19 +197,18 @@ function AssessmentsPage() {
           description: description || undefined,
           timeLimitMinutes: timeLimit ? Number(timeLimit) : undefined,
           itemIds: [...picked],
-          publishNow,
+          clientRequestId: requestId,
         },
       }),
-    onSuccess: () => {
-      toast.success("Assessment created");
-      setCreateOpen(false);
-      setTitle("");
-      setDescription("");
-      setPicked(new Set());
+    onSuccess: (r) => {
+      toast.success("Assessment saved as draft.");
+      setSavedDraftId(r.id);
+      setRequestId(crypto.randomUUID());
       queryClient.invalidateQueries({ queryKey: ["assessments"] });
       queryClient.invalidateQueries({ queryKey: ["assessment-maps"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Could not create assessment."),
+    onError: (e) =>
+      toast.error(e instanceof Error ? e.message : "Could not save the draft. Nothing was published."),
   });
 
   const assignMutation = useMutation({
