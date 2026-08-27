@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import { useI18n } from "@/lib/i18n/context";
 import { getParentAccount, createStudentProfile } from "@/lib/parent-account.functions";
 import { PILOT_BOARD, PILOT_CLASS, type ParentAccount, type ParentStudent } from "@/lib/parent-account-shared";
 import { FreeCheckPanel } from "@/components/free-check-panel";
@@ -34,6 +35,7 @@ import { Skeleton } from "@/components/ui/skeleton";
  * opening checkout.
  */
 export function ParentLearners() {
+  const { t } = useI18n();
   const accountFn = useServerFn(getParentAccount);
   const query = useQuery({ queryKey: ["parent-account"], queryFn: () => accountFn() });
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -59,11 +61,13 @@ export function ParentLearners() {
     <Card data-tour="parent-learners" className="border-primary/25">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
-          <Users className="h-4 w-4 text-primary" /> Your children
+          <Users className="h-4 w-4 text-primary" /> {t("learners.title", "Your children")}
         </CardTitle>
         <CardDescription>
-          Add a child, share their sign-in, run a free learning check, and follow every diagnostic —
-          all from here.
+          {t(
+            "learners.subtitle",
+            "Add a child, share their sign-in, run a free learning check, and follow every diagnostic — all from here.",
+          )}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -93,15 +97,18 @@ export function ParentLearners() {
 }
 
 function EmptyLearners() {
+  const { t } = useI18n();
   return (
     <div className="rounded-xl border border-dashed bg-muted/30 p-6 text-center">
       <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
         <UserPlus className="h-5 w-5" />
       </span>
-      <h3 className="mt-3 text-base font-semibold">Add your child to begin</h3>
+      <h3 className="mt-3 text-base font-semibold">{t("learners.empty.title", "Add your child to begin")}</h3>
       <p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">
-        Creating a profile takes a few seconds and costs nothing. You'll get their sign-in handle
-        straight away and can run a free learning check before you buy anything.
+        {t(
+          "learners.empty.body",
+          "Creating a profile takes a few seconds and costs nothing. You'll get their sign-in handle straight away and can run a free learning check before you buy anything.",
+        )}
       </p>
       <div className="mt-4">
         <AddLearnerForm />
@@ -111,11 +118,12 @@ function EmptyLearners() {
 }
 
 function AddLearnerButton() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   return (
     <div className="w-full">
       <Button size="sm" variant="outline" onClick={() => setOpen((v) => !v)}>
-        <Plus className="mr-1.5 h-3.5 w-3.5" /> Add child
+        <Plus className="mr-1.5 h-3.5 w-3.5" /> {t("learners.add", "Add child")}
       </Button>
       {open ? (
         <div className="mt-3 rounded-lg border bg-muted/30 p-3">
@@ -127,6 +135,7 @@ function AddLearnerButton() {
 }
 
 function AddLearnerForm({ onDone }: { onDone?: () => void }) {
+  const { t } = useI18n();
   const [fullName, setFullName] = useState("");
   const addFn = useServerFn(createStudentProfile);
   const queryClient = useQueryClient();
@@ -158,7 +167,7 @@ function AddLearnerForm({ onDone }: { onDone?: () => void }) {
     >
       <div className="flex-1 space-y-1 text-left">
         <Label htmlFor="new-learner-name" className="text-xs">
-          Child's full name
+          {t("learners.add.name", "Child's full name")}
         </Label>
         <Input
           id="new-learner-name"
@@ -170,16 +179,17 @@ function AddLearnerForm({ onDone }: { onDone?: () => void }) {
       </div>
       <Button type="submit" size="sm" disabled={mutation.isPending}>
         {mutation.isPending ? <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" /> : null}
-        Add child
+        {t("learners.add", "Add child")}
       </Button>
       <p className="w-full text-left text-xs text-muted-foreground">
-        The pilot covers {PILOT_BOARD} Class {PILOT_CLASS} — Mathematics and Science.
+        {t("learners.add.scope", `The pilot covers ${PILOT_BOARD} Class ${PILOT_CLASS} — Mathematics and Science.`)}
       </p>
     </form>
   );
 }
 
 function LearnerDetail({ student, account }: { student: ParentStudent; account: ParentAccount }) {
+  const { t } = useI18n();
   const queryClient = useQueryClient();
   const invalidate = () => void queryClient.invalidateQueries({ queryKey: ["parent-account"] });
 
@@ -213,7 +223,7 @@ function LearnerDetail({ student, account }: { student: ParentStudent; account: 
       <FreeCheckPanel student={student} />
 
       <div className="rounded-lg border p-3">
-        <p className="text-sm font-medium">Diagnostics</p>
+        <p className="text-sm font-medium">{t("learners.diagnostics", "Diagnostics")}</p>
         {purchases.length === 0 ? (
           <p className="mt-1 text-sm text-muted-foreground">
             No paid diagnostic yet for {student.fullName}.
@@ -233,16 +243,16 @@ function LearnerDetail({ student, account }: { student: ParentStudent; account: 
                   <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     {p.sessionStatus === "submitted" ? (
                       <>
-                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> Completed — report
-                        ready
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />{" "}
+                        {t("status.completed", "Completed — report ready")}
                       </>
                     ) : p.sessionStatus === "in_progress" ? (
                       <>
-                        <PlayCircle className="h-3.5 w-3.5 text-amber-600" /> In progress
+                        <PlayCircle className="h-3.5 w-3.5 text-amber-600" /> {t("status.inProgress", "In progress")}
                       </>
                     ) : (
                       <>
-                        <CircleDashed className="h-3.5 w-3.5" /> Not started
+                        <CircleDashed className="h-3.5 w-3.5" /> {t("status.notStarted", "Not started")}
                       </>
                     )}
                   </p>
