@@ -62,7 +62,7 @@ export const LOOP_STEPS: LoopStep[] = [
     title: "Diagnostic",
     artefact: "Diagnostic score",
     detail: "Curriculum-mapped items, blueprint-balanced across outcomes.",
-    sample: "Learner A · Grade 6 Mathematics · Fractions diagnostic · 12 items · scored 42%",
+    sample: "Learner A · Class 10 Mathematics · Real Numbers & Polynomials diagnostic · 20 items · scored 42%",
   },
   {
     key: "gap",
@@ -119,7 +119,7 @@ export const TUTOR_FALLBACK =
 export type EvidenceRow = { label: string; value: string };
 
 export const EVIDENCE_CHAIN: EvidenceRow[] = [
-  { label: "Learner", value: "Learner A (anonymised) · Grade 6" },
+  { label: "Learner", value: "Learner A (anonymised) · CBSE Class 10" },
   { label: "Outcome", value: "Compare and order unlike fractions" },
   { label: "Baseline", value: "42% · 12-item diagnostic · day 0" },
   { label: "Gap band", value: "Weak (< 50%)" },
@@ -153,7 +153,7 @@ export const PARENT_QUESTIONS: ParentQuestion[] = [
 export const PARENT_REPORT = {
   title: "Fortnightly progress report",
   learner: "Learner A (anonymised)",
-  period: "Weeks 1–2 · Grade 6 Mathematics",
+  period: "Weeks 1–2 · CBSE Class 10 Mathematics",
   lines: [
     { label: "Gaps detected", value: "3" },
     { label: "Gaps closed", value: "2" },

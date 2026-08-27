@@ -104,7 +104,7 @@ function AboutPage() {
         </p>
         <div className="flex items-center gap-2 rounded-lg border border-dashed bg-muted/50 p-3 text-xs text-muted-foreground">
           <GraduationCap className="h-4 w-4 shrink-0 text-primary" />
-          Demo scope: Grade 6 · Mathematics · Fractions.
+          Pilot scope: CBSE Class 10 · Mathematics & Science.
         </div>
       </section>
     </PublicPageLayout>
