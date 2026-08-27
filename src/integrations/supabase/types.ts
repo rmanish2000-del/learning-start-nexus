@@ -2462,6 +2462,10 @@ export type Database = {
       }
     }
     Functions: {
+      expire_stale_parent_orders: {
+        Args: { older_than?: string }
+        Returns: number
+      }
       tutor_evidence_by_gap: {
         Args: never
         Returns: {
