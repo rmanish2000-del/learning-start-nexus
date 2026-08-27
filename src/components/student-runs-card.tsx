@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { CheckCircle2, ClipboardList, PlayCircle } from "lucide-react";
 
+import { useI18n } from "@/lib/i18n/context";
 import { getLearnerRuns } from "@/lib/learner-runs.functions";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import { Skeleton } from "@/components/ui/skeleton";
  * parent never answers on the learner's behalf.
  */
 export function StudentRunsCard() {
+  const { t } = useI18n();
   const runsFn = useServerFn(getLearnerRuns);
   const query = useQuery({ queryKey: ["learner-runs"], queryFn: () => runsFn() });
 
@@ -27,9 +29,11 @@ export function StudentRunsCard() {
     <Card>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
-          <ClipboardList className="h-4 w-4 text-primary" /> Assessments for you
+          <ClipboardList className="h-4 w-4 text-primary" /> {t("runs.title", "Assessments for you")}
         </CardTitle>
-        <CardDescription>Your answers save as you go — you can stop and come back.</CardDescription>
+        <CardDescription>
+          {t("runs.subtitle", "Your answers save as you go — you can stop and come back.")}
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
         {data.runs.map((run) => {
@@ -46,10 +50,10 @@ export function StudentRunsCard() {
                 </div>
                 <Badge variant={run.status === "submitted" ? "secondary" : "outline"}>
                   {run.status === "submitted"
-                    ? "Completed"
+                    ? t("status.completed", "Completed")
                     : run.status === "in_progress"
                       ? `${run.answeredCount} of ${run.totalQuestions}`
-                      : "Not started"}
+                      : t("status.notStarted", "Not started")}
                 </Badge>
               </div>
               {run.status !== "submitted" ? <Progress value={pct} className="mt-2" /> : null}
@@ -58,14 +62,16 @@ export function StudentRunsCard() {
                   run.status === "submitted" ? (
                     <Button asChild size="sm" variant="outline">
                       <Link to="/diagnostic/complete/$token" params={{ token: run.accessToken }}>
-                        <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> View confirmation
+                        <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> {t("runs.viewConfirmation", "View confirmation")}
                       </Link>
                     </Button>
                   ) : (
                     <Button asChild size="sm">
                       <Link to="/diagnostic/session/$token" params={{ token: run.accessToken }}>
                         <PlayCircle className="mr-1.5 h-3.5 w-3.5" />
-                        {run.status === "in_progress" ? "Resume diagnostic" : "Start diagnostic"}
+                        {run.status === "in_progress"
+                          ? t("runs.resumeDiagnostic", "Resume diagnostic")
+                          : t("runs.startDiagnostic", "Start diagnostic")}
                       </Link>
                     </Button>
                   )
@@ -74,12 +80,14 @@ export function StudentRunsCard() {
                     <Link to="/free-check/$checkId" params={{ checkId: run.checkId }}>
                       {run.status === "submitted" ? (
                         <>
-                          <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> View confirmation
+                          <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> {t("runs.viewConfirmation", "View confirmation")}
                         </>
                       ) : (
                         <>
                           <PlayCircle className="mr-1.5 h-3.5 w-3.5" />
-                          {run.status === "in_progress" ? "Resume check" : "Start free check"}
+                          {run.status === "in_progress"
+                            ? t("runs.resumeFreeCheck", "Resume check")
+                            : t("runs.startFreeCheck", "Start free check")}
                         </>
                       )}
                     </Link>
