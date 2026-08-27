@@ -55,3 +55,17 @@ export const createStudentProfile = createServerFn({ method: "POST" })
     const { addStudent } = await import("./parent-account.server");
     return addStudent(context.userId, data);
   });
+
+/**
+ * Parent-assisted student credential recovery: sets (or resets) the 6-digit
+ * PIN for one of the caller's own linked students, creating the student login
+ * on first use. This removes the "check with your educator" dead end for
+ * families whose student profile has no educator yet.
+ */
+export const setStudentLoginPin = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => setStudentPinSchema.parse(data))
+  .handler(async ({ data, context }) => {
+    const { setStudentPin } = await import("./parent-account.server");
+    return setStudentPin(context.userId, data);
+  });
