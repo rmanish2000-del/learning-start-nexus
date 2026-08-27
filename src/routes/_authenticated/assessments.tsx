@@ -181,6 +181,18 @@ function AssessmentsPage() {
 
   const subtopics = useMemo(() => [...new Set((items ?? []).map((i) => i.subtopic))].sort(), [items]);
 
+  // Legacy pilot content (outside the active CBSE Class 10 scope) is never offered
+  // in creation or assignment flows — it lives in a read-only archive tab.
+  const activeAssessments = useMemo(
+    () => (assessments ?? []).filter((a) => !isLegacyContent(a)),
+    [assessments],
+  );
+  const legacyAssessments = useMemo(
+    () => (assessments ?? []).filter((a) => isLegacyContent(a)),
+    [assessments],
+  );
+
+
   const filteredItems = useMemo(() => {
     return (items ?? []).filter((item) => {
       if (subtopic !== "all" && item.subtopic !== subtopic) return false;
