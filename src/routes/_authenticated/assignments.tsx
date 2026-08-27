@@ -84,6 +84,7 @@ function AssignmentsPage() {
       const { data, error } = await supabase
         .from("learners")
         .select("id, full_name, grade, subject, status, educator_id")
+        .eq("learner_mode", "centre_managed")
         .order("full_name");
       if (error) throw new Error(error.message);
       return data as LearnerRow[];

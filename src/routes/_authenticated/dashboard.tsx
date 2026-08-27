@@ -122,7 +122,11 @@ function DashboardPage() {
   } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("learners").select("*").order("full_name");
+      const { data, error } = await supabase
+        .from("learners")
+        .select("*")
+        .eq("learner_mode", "centre_managed")
+        .order("full_name");
       if (error) throw error;
       return data;
     },
