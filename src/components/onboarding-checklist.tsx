@@ -154,7 +154,8 @@ export function OnboardingChecklist({
       <Celebration
         show={celebrating}
         title="Onboarding complete!"
-        message="You've finished every getting-started step. EduOS is ready to work for you."
+        message="You've finished every getting-started step. This is the only time you'll see this — close it and carry on."
+
         onClose={handleClose}
       />
     </Card>
