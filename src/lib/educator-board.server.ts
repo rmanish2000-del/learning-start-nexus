@@ -26,14 +26,21 @@ export async function fetchClassBoard(
   supabase: Client,
 ): Promise<{ matrix: ClassGapMatrix; cohort: CohortProgress }> {
   const [{ data: learners, error: lErr }, { data: gaps, error: gErr }] = await Promise.all([
-    supabase.from("learners").select("id, full_name, grade, subject, mastery_score").order("full_name"),
+    // Centre aggregates exclude DIRECT_PARENT learners entirely (server-side,
+    // not a UI filter): they have no centre membership and no educator.
+    supabase
+      .from("learners")
+      .select("id, full_name, grade, subject, mastery_score")
+      .eq("learner_mode", "centre_managed")
+      .order("full_name"),
     supabase.from("learning_gaps").select("learner_id, subject, status, updated_at"),
   ]);
   if (lErr) throw new Error(lErr.message);
   if (gErr) throw new Error(gErr.message);
 
   const roster = learners ?? [];
-  const allGaps = gaps ?? [];
+  const centreLearnerIds = new Set(roster.map((l) => l.id));
+  const allGaps = (gaps ?? []).filter((g) => centreLearnerIds.has(g.learner_id));
   const openGaps = allGaps.filter((g) => g.status === "open");
 
   const subjects = Array.from(
@@ -121,9 +128,11 @@ export async function fetchInterventionQueue(
   const { data, error } = await supabase
     .from("interventions")
     .select(
-      "id, learner_id, gap_id, title, activity, status, created_at, started_at, learners(full_name, mastery_score), learning_gaps(subtopic, subject, severity)",
+      "id, learner_id, gap_id, title, activity, status, created_at, started_at, learners!inner(full_name, mastery_score, learner_mode), learning_gaps(subtopic, subject, severity)",
     )
-    .in("status", ["planned", "in_progress"]);
+    .in("status", ["planned", "in_progress"])
+    // Educator queues never contain direct-parent learners.
+    .eq("learners.learner_mode", "centre_managed");
   if (error) throw new Error(error.message);
 
   const rows: QueueRow[] = (data ?? []).map((i) => {

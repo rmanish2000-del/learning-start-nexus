@@ -521,6 +521,11 @@ function LearnerProfilePage() {
                   <Badge variant={gap.status === "open" ? "outline" : "secondary"}>
                     {GAP_STATUS_LABELS[gap.status] ?? gap.status}
                   </Badge>
+                  <Button size="sm" variant="outline" asChild>
+                    <Link to="/gaps/$gapId" params={{ gapId: gap.id }}>
+                      Open
+                    </Link>
+                  </Button>
                 </div>
               ))}
               {(gaps ?? []).length === 0 && (

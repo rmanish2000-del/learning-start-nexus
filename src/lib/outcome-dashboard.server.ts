@@ -30,7 +30,11 @@ async function loadScope(supabase: Client): Promise<{
   educatorNames: Map<string, string>;
 }> {
   const [learnersRes, gapsRes, outcomesRes] = await Promise.all([
-    supabase.from("learners").select("id, full_name, educator_id, grade, subject, mastery_score"),
+    // Centre/school outcome metrics are centre-managed learners only.
+    supabase
+      .from("learners")
+      .select("id, full_name, educator_id, grade, subject, mastery_score")
+      .eq("learner_mode", "centre_managed"),
     supabase.from("learning_gaps").select("id, learner_id, status, first_detected_at, updated_at"),
     (supabase as SupabaseClient)
       .from("learner_outcomes")
@@ -41,6 +45,7 @@ async function loadScope(supabase: Client): Promise<{
   if (outcomesRes.error) throw new Error(outcomesRes.error.message);
 
   const learners = (learnersRes.data ?? []) as unknown as LearnerRow[];
+  const centreIds = new Set(learners.map((l) => l.id));
   const educatorIds = [...new Set(learners.map((l) => l.educator_id).filter((v): v is string => !!v))];
   const educatorNames = new Map<string, string>();
   if (educatorIds.length > 0) {
@@ -53,8 +58,10 @@ async function loadScope(supabase: Client): Promise<{
 
   return {
     learners,
-    gaps: (gapsRes.data ?? []) as unknown as GapRow[],
-    outcomes: (outcomesRes.data ?? []) as unknown as OutcomeMetricRow[],
+    gaps: ((gapsRes.data ?? []) as unknown as GapRow[]).filter((g) => centreIds.has(g.learner_id)),
+    outcomes: ((outcomesRes.data ?? []) as unknown as OutcomeMetricRow[]).filter((o) =>
+      centreIds.has(o.learner_id),
+    ),
     educatorNames,
   };
 }

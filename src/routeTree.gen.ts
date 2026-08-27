@@ -58,6 +58,7 @@ import { Route as DiagnosticIndexRouteImport } from './routes/diagnostic.index'
 import { Route as FreeCheckCheckIdRouteImport } from './routes/free-check.$checkId'
 import { Route as UpgradeTokenRouteImport } from './routes/upgrade.$token'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
+import { Route as AuthenticatedGapsGapIdRouteImport } from './routes/_authenticated/gaps.$gapId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
 import { Route as AuthenticatedTutorSessionIdRouteImport } from './routes/_authenticated/tutor.$sessionId'
@@ -341,6 +342,11 @@ const AuthenticatedAssessmentAssessmentIdRoute =
     path: '/assessment/$assessmentId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedGapsGapIdRoute = AuthenticatedGapsGapIdRouteImport.update({
+  id: '/gaps/$gapId',
+  path: '/gaps/$gapId',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedLearnersLearnerIdRoute =
   AuthenticatedLearnersLearnerIdRouteImport.update({
     id: '/$learnerId',
@@ -441,6 +447,7 @@ export interface FileRoutesByFullPath {
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
+  '/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
@@ -500,6 +507,7 @@ export interface FileRoutesByTo {
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic': typeof DiagnosticIndexRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
+  '/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
@@ -561,6 +569,7 @@ export interface FileRoutesById {
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
+  '/_authenticated/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
   '/_authenticated/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
@@ -622,6 +631,7 @@ export interface FileRouteTypes {
     | '/upgrade/$token'
     | '/diagnostic/'
     | '/assessment/$assessmentId'
+    | '/gaps/$gapId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
     | '/tutor/$sessionId'
@@ -681,6 +691,7 @@ export interface FileRouteTypes {
     | '/upgrade/$token'
     | '/diagnostic'
     | '/assessment/$assessmentId'
+    | '/gaps/$gapId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
     | '/tutor/$sessionId'
@@ -741,6 +752,7 @@ export interface FileRouteTypes {
     | '/upgrade/$token'
     | '/diagnostic/'
     | '/_authenticated/assessment/$assessmentId'
+    | '/_authenticated/gaps/$gapId'
     | '/_authenticated/learners/$learnerId'
     | '/_authenticated/session/$sessionId'
     | '/_authenticated/tutor/$sessionId'
@@ -1117,6 +1129,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssessmentAssessmentIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/gaps/$gapId': {
+      id: '/_authenticated/gaps/$gapId'
+      path: '/gaps/$gapId'
+      fullPath: '/gaps/$gapId'
+      preLoaderRoute: typeof AuthenticatedGapsGapIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/learners/$learnerId': {
       id: '/_authenticated/learners/$learnerId'
       path: '/$learnerId'
@@ -1235,6 +1254,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedUxPhase1PlanRoute: typeof AuthenticatedUxPhase1PlanRoute
   AuthenticatedVerificationRoute: typeof AuthenticatedVerificationRoute
   AuthenticatedAssessmentAssessmentIdRoute: typeof AuthenticatedAssessmentAssessmentIdRoute
+  AuthenticatedGapsGapIdRoute: typeof AuthenticatedGapsGapIdRoute
   AuthenticatedSessionSessionIdRoute: typeof AuthenticatedSessionSessionIdRoute
   AuthenticatedTutorSessionIdRoute: typeof AuthenticatedTutorSessionIdRoute
 }
@@ -1283,6 +1303,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedVerificationRoute: AuthenticatedVerificationRoute,
   AuthenticatedAssessmentAssessmentIdRoute:
     AuthenticatedAssessmentAssessmentIdRoute,
+  AuthenticatedGapsGapIdRoute: AuthenticatedGapsGapIdRoute,
   AuthenticatedSessionSessionIdRoute: AuthenticatedSessionSessionIdRoute,
   AuthenticatedTutorSessionIdRoute: AuthenticatedTutorSessionIdRoute,
 }

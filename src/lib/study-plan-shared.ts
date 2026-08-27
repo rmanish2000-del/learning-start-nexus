@@ -34,6 +34,11 @@ export type NextTopic = {
 
 export type StudyPlanView = {
   learnerId: string | null;
+  // Authoritative operating mode; DIRECT_PARENT plans need no educator approval.
+  mode: "direct_parent" | "centre_managed";
+  planStatus: "none" | "preparing" | "ready" | "awaiting_educator";
+  planGeneratedAt: string | null;
+  rulesVersion: string | null;
   learnerName: string | null;
   grade: number | null;
   subject: string | null;

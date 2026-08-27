@@ -1321,6 +1321,63 @@ export type Database = {
           },
         ]
       }
+      learner_study_plans: {
+        Row: {
+          gap_ids: string[]
+          generated_at: string
+          id: string
+          intervention_ids: string[]
+          learner_id: string
+          mode: Database["public"]["Enums"]["learner_mode"]
+          org_id: string | null
+          rules_version: string
+          source_session_id: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          gap_ids?: string[]
+          generated_at?: string
+          id?: string
+          intervention_ids?: string[]
+          learner_id: string
+          mode: Database["public"]["Enums"]["learner_mode"]
+          org_id?: string | null
+          rules_version?: string
+          source_session_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          gap_ids?: string[]
+          generated_at?: string
+          id?: string
+          intervention_ids?: string[]
+          learner_id?: string
+          mode?: Database["public"]["Enums"]["learner_mode"]
+          org_id?: string | null
+          rules_version?: string
+          source_session_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learner_study_plans_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_study_plans_source_session_id_fkey"
+            columns: ["source_session_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learners: {
         Row: {
           board: string | null
@@ -1332,6 +1389,7 @@ export type Database = {
           handle: string
           id: string
           is_demo: boolean
+          learner_mode: Database["public"]["Enums"]["learner_mode"]
           mastery_lift: number
           mastery_score: number
           org_id: string | null
@@ -1350,6 +1408,7 @@ export type Database = {
           handle: string
           id?: string
           is_demo?: boolean
+          learner_mode?: Database["public"]["Enums"]["learner_mode"]
           mastery_lift?: number
           mastery_score?: number
           org_id?: string | null
@@ -1368,6 +1427,7 @@ export type Database = {
           handle?: string
           id?: string
           is_demo?: boolean
+          learner_mode?: Database["public"]["Enums"]["learner_mode"]
           mastery_lift?: number
           mastery_score?: number
           org_id?: string | null
@@ -2580,6 +2640,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "educator" | "student" | "reviewer" | "parent"
+      learner_mode: "direct_parent" | "centre_managed"
       learner_status: "active" | "needs_attention" | "paused"
     }
     CompositeTypes: {
@@ -2709,6 +2770,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "educator", "student", "reviewer", "parent"],
+      learner_mode: ["direct_parent", "centre_managed"],
       learner_status: ["active", "needs_attention", "paused"],
     },
   },
