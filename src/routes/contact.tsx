@@ -62,25 +62,28 @@ function ContactPage() {
   return (
     <PublicPageLayout title="Contact us">
       <p className="text-muted-foreground">
-        EduOS is operated by Brightpath Learning. Pick the channel that matches your question —
-        mail goes to a real inbox monitored by the team running this demo.
+        Pick the channel that matches your question — mail goes to a real inbox monitored by the
+        EduOS team.
       </p>
 
       <div className="space-y-4">
         {CHANNELS.map((c) => (
-          <div key={c.title} className="flex items-start gap-4 rounded-xl border p-4">
+          <div
+            key={c.title}
+            className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-start sm:gap-4"
+          >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
               <c.icon className="h-5 w-5 text-primary" />
             </span>
             <div className="min-w-0 flex-1">
               <h2 className="text-sm font-semibold">{c.title}</h2>
-              <a href={c.href} className="text-sm font-medium text-primary hover:underline">
+              <a href={c.href} className="block break-words text-sm font-medium text-primary hover:underline">
                 {c.value}
               </a>
               <p className="mt-0.5 text-xs text-muted-foreground">{c.note}</p>
             </div>
-            <Button asChild variant="outline" size="sm" className="shrink-0">
-              <a href={c.href}>Email</a>
+            <Button asChild variant="outline" size="sm" className="shrink-0 self-start">
+              <a href={c.href}>{c.icon === Phone ? "Call" : "Email"}</a>
             </Button>
           </div>
         ))}
@@ -90,9 +93,13 @@ function ContactPage() {
         <h2 className="flex items-center gap-2 text-lg font-semibold tracking-tight">
           <MapPin className="h-4.5 w-4.5 text-primary" /> Mailing address
         </h2>
-        <p className="text-muted-foreground">
-          Brightpath Learning, 14 Lakeview Road, Kolkata 700029, India
-        </p>
+        <address className="not-italic text-muted-foreground">
+          {ADDRESS_LINES.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </address>
       </section>
 
       <section className="space-y-2">
@@ -100,12 +107,13 @@ function ContactPage() {
         <p className="text-muted-foreground">
           To update or withdraw consent for a student's AI tutor access, contact the center directly
           or email{" "}
-          <a href="mailto:privacy@brightpath.education" className="font-medium text-primary hover:underline">
-            privacy@brightpath.education
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+            support@eduos.global
           </a>{" "}
           — staff will record the change as a new consent entry so the history stays complete.
         </p>
       </section>
+
     </PublicPageLayout>
   );
 }
