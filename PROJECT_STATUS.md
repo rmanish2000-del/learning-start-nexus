@@ -102,3 +102,23 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - **Duplicate single-chapter Science book archived** (not deleted).
 - **Security:** 0 P0, 1 P1 (org-wide staff phone visibility), 2 P2. 46/46 tests pass. Evidence: `EDUOS_SECURITY_AND_DB_SCAN_REPORT.md`.
 - **Decision:** READY_FOR_FOUNDER_LIVE_PAYMENT once the publish lands.
+
+---
+
+## Update 2026-08-27 (Release identity + handoff package)
+
+**Last verified:** 2026-08-27 (UTC)
+
+| Item | Value |
+|---|---|
+| Canonical branch | `main` |
+| Last functional commit | `92ac129d6e62b70bdd382db7a5aa8fdccadfe24c` |
+| **Deployed production HEAD** | **`e73bbb047889fe3e8043be90e56e833f068a04dc`** (documentation-only above `92ac129`; no code delta) |
+| Intermediate documentation commit | `db55f6fdf44d4368bca557a80d000cb639a751d4` |
+| Production URL | https://www.eduos.global (200 OK on `/` and `/diagnostic`, re-checked 2026-08-27) |
+| Rollback | `54baba6d79f0f227b44ef3140d2720f026551b0c`; pre-consolidation `e03ce27` |
+
+- **Authoritative test total corrected:** the "46/46 tests pass" figure recorded in §2 and in the previous update was accurate at the time of that assignment; the current authoritative single run is **70 passed / 8 files** (`bunx vitest run`, `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md` §2). Historical figures retained above as written.
+- **`EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` added** to the canonical repository as the session-continuity bootstrap document; it carries the deployed SHA and inline `[CORRECTED 2026-08-27]` annotations where its claims were disproved by repository evidence.
+- **Publishing state (§7) superseded:** the verified canonical HEAD was published; production serves `e73bbb0`.
+- **Note:** `EDUOS_PROJECT_OPERATING_SYSTEM.md` does not exist in the repository. Its rules live in the handoff package (§14–§16) and `PRODUCT_DECISIONS.md`.
