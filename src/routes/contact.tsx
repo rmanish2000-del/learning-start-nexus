@@ -29,25 +29,34 @@ const CHANNELS = [
   {
     icon: Mail,
     title: "General & product",
-    value: "hello@brightpath.education",
-    href: "mailto:hello@brightpath.education",
+    value: "support@eduos.global",
+    href: "mailto:support@eduos.global",
     note: "Demo access, onboarding, and feature questions.",
   },
   {
     icon: ShieldQuestion,
     title: "Privacy & data requests",
-    value: "privacy@brightpath.education",
-    href: "mailto:privacy@brightpath.education",
+    value: "support@eduos.global",
+    href: "mailto:support@eduos.global",
     note: "Access, correction, or deletion of learner records.",
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "+91 98200 10020",
-    href: "tel:+919820010020",
+    value: "9850820909",
+    href: "tel:+919850820909",
     note: "Weekdays 10:00–18:00 IST.",
   },
 ];
+
+const ADDRESS_LINES = [
+  "Tilak Ward",
+  "Deori",
+  "Sagar",
+  "Madhya Pradesh 470226",
+  "India",
+];
+
 
 function ContactPage() {
   return (
