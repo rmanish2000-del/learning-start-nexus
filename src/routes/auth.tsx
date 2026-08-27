@@ -228,7 +228,9 @@ function AuthPage() {
     });
     setPending(false);
     if (error) {
-      toast.error("That handle and PIN don't match. Check with your educator if you forgot them.");
+      toast.error(
+        "That handle and PIN don't match. A parent can reset the PIN in the Parent portal, or ask your educator.",
+      );
       return;
     }
     if (data.user) await goHome(data.user);
