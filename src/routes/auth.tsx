@@ -12,7 +12,29 @@ import { registerParentSchema } from "@/lib/parent-account-shared";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
+
+/** Explicit account-type picker — the first decision on the sign-in screen. */
+const ROLE_OPTIONS = [
+  {
+    value: "parent" as const,
+    label: "Parent",
+    hint: "Email and password",
+    icon: Mail,
+  },
+  {
+    value: "student" as const,
+    label: "Student",
+    hint: "Handle and 6-digit PIN — not an email",
+    icon: UserRound,
+  },
+  {
+    value: "staff" as const,
+    label: "Educator or admin",
+    hint: "Tutoring centre work email",
+    icon: GraduationCap,
+  },
+];
 
 // All optional: plain <Link to="/auth"> must stay valid everywhere.
 type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string };
