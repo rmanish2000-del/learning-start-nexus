@@ -132,7 +132,7 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
         // Target unmounted mid-tour — advance or finish.
         const next = findNext(active + 1);
         if (next === null) finish();
-        else setActive(next);
+        else goTo(next);
         return;
       }
       const r = el.getBoundingClientRect();
