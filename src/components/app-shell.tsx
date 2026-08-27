@@ -223,6 +223,29 @@ function DemoContextBar() {
   );
 }
 
+// Sidebar footer shows the signed-in user's own centre, never a fixed name.
+function OrgFooterLabel() {
+  const { profile } = authRoute.useRouteContext();
+  const { data: org } = useQuery({
+    queryKey: ["org", profile?.org_id],
+    enabled: !!profile?.org_id,
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("organizations")
+        .select("name")
+        .eq("id", profile!.org_id!)
+        .single();
+      return data;
+    },
+  });
+  return (
+    <p className="truncate text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
+      {org?.name ?? "EduOS"}
+    </p>
+  );
+}
+
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
