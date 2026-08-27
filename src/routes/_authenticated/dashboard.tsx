@@ -248,7 +248,7 @@ function DashboardPage() {
           </h2>
           <p className="text-sm text-muted-foreground">
             {role === "admin"
-              ? "Organization-wide roster health for Brightpath Learning."
+              ? `Organization-wide roster health for ${org?.name ?? "your centre"}.`
               : "Here's how your roster is doing today."}
           </p>
         </div>
