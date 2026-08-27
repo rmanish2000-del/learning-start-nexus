@@ -35,12 +35,21 @@ export const addStudentSchema = z.object({
   board: z.enum(BOARDS),
 });
 
+/** Parent-assisted student credential recovery: set or reset the 6-digit PIN. */
+export const setStudentPinSchema = z.object({
+  learnerId: z.string().uuid(),
+  pin: z.string().regex(/^\d{6}$/, "The PIN must be exactly 6 digits"),
+});
+
 export type ParentProfile = {
   userId: string;
   fullName: string;
   email: string;
   phone: string | null;
 };
+
+/** Operational state of a student profile from the parent's point of view. */
+export type AssignmentStatus = "awaiting_assignment" | "assigned";
 
 export type ParentStudent = {
   id: string;
@@ -50,7 +59,14 @@ export type ParentStudent = {
   subject: string;
   masteryScore: number;
   createdAt: string;
+  /** Student sign-in handle (parents need it for handle/PIN recovery). */
+  handle: string;
+  /** True once a student login exists for this profile. */
+  hasLogin: boolean;
+  assignmentStatus: AssignmentStatus;
+  educatorName: string | null;
 };
+
 
 export type ParentPurchase = {
   orderRef: string;

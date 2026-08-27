@@ -82,10 +82,26 @@ export async function listStudents(userId: string): Promise<ParentStudent[]> {
 
   const { data: learners, error: lError } = await supabaseAdmin
     .from("learners")
-    .select("id, full_name, grade, board, subject, mastery_score, created_at")
+    .select(
+      "id, full_name, grade, board, subject, mastery_score, created_at, handle, student_user_id, educator_id",
+    )
     .in("id", ids)
     .order("created_at");
   if (lError) throw new Error(lError.message);
+
+  // Educator names power the "Awaiting educator assignment / Educator assigned"
+  // status parents see — no parent should have to guess what happens next.
+  const educatorIds = [
+    ...new Set((learners ?? []).map((l) => l.educator_id).filter((v): v is string => !!v)),
+  ];
+  const educatorNames = new Map<string, string>();
+  if (educatorIds.length > 0) {
+    const { data: profiles } = await supabaseAdmin
+      .from("profiles")
+      .select("id, full_name")
+      .in("id", educatorIds);
+    for (const p of profiles ?? []) educatorNames.set(p.id, p.full_name);
+  }
 
   return (learners ?? []).map((l) => ({
     id: l.id,
@@ -95,8 +111,67 @@ export async function listStudents(userId: string): Promise<ParentStudent[]> {
     subject: l.subject,
     masteryScore: l.mastery_score,
     createdAt: l.created_at,
+    handle: l.handle,
+    hasLogin: !!l.student_user_id,
+    assignmentStatus: l.educator_id ? ("assigned" as const) : ("awaiting_assignment" as const),
+    educatorName: l.educator_id ? (educatorNames.get(l.educator_id) ?? null) : null,
   }));
 }
+
+/**
+ * Parent-assisted credential recovery. Creates the student login on first use
+ * (parent-created profiles have no auth user until someone sets a PIN) and
+ * resets the PIN afterwards. Scoped to the parent's own linked students.
+ */
+export async function setStudentPin(
+  userId: string,
+  input: { learnerId: string; pin: string },
+): Promise<{ handle: string; created: boolean }> {
+  await assertStudentOwned(userId, input.learnerId);
+
+  const { data: learner, error } = await supabaseAdmin
+    .from("learners")
+    .select("id, handle, full_name, student_user_id")
+    .eq("id", input.learnerId)
+    .single();
+  if (error || !learner) throw new Error("Student profile not found.");
+
+  const { studentEmail, studentPassword } = await import("./auth-utils");
+  const password = studentPassword(learner.handle, input.pin);
+
+  if (learner.student_user_id) {
+    const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(
+      learner.student_user_id,
+      { password },
+    );
+    if (updateError) throw new Error(updateError.message);
+    return { handle: learner.handle, created: false };
+  }
+
+  const { data: created, error: createError } = await supabaseAdmin.auth.admin.createUser({
+    email: studentEmail(learner.handle),
+    password,
+    email_confirm: true,
+    user_metadata: { full_name: learner.full_name, signup_role: "student" },
+  });
+  if (createError || !created.user) {
+    throw new Error(createError?.message ?? "Could not create the student login.");
+  }
+
+  await supabaseAdmin
+    .from("user_roles")
+    .insert({ user_id: created.user.id, role: "student" })
+    .then(() => undefined, () => undefined);
+
+  const { error: linkError } = await supabaseAdmin
+    .from("learners")
+    .update({ student_user_id: created.user.id })
+    .eq("id", learner.id);
+  if (linkError) throw new Error(linkError.message);
+
+  return { handle: learner.handle, created: true };
+}
+
 
 /** Throws unless the student profile belongs to this parent account. */
 export async function assertStudentOwned(userId: string, learnerId: string): Promise<void> {
@@ -133,7 +208,7 @@ export async function addStudent(
       focus_note: "Parent-created student profile.",
       is_demo: false,
     })
-    .select("id, full_name, grade, board, subject, mastery_score, created_at")
+    .select("id, full_name, grade, board, subject, mastery_score, created_at, handle")
     .single();
   if (error) throw new Error(error.message);
 
@@ -153,6 +228,11 @@ export async function addStudent(
     subject: learner.subject,
     masteryScore: learner.mastery_score,
     createdAt: learner.created_at,
+    handle: learner.handle,
+    hasLogin: false,
+    // Parent-created profiles always start unassigned; admin picks the educator.
+    assignmentStatus: "awaiting_assignment",
+    educatorName: null,
   };
 }
 

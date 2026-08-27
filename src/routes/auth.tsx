@@ -12,7 +12,29 @@ import { registerParentSchema } from "@/lib/parent-account-shared";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
+
+/** Explicit account-type picker — the first decision on the sign-in screen. */
+const ROLE_OPTIONS = [
+  {
+    value: "parent" as const,
+    label: "Parent",
+    hint: "Email and password",
+    icon: Mail,
+  },
+  {
+    value: "student" as const,
+    label: "Student",
+    hint: "Handle and 6-digit PIN — not an email",
+    icon: UserRound,
+  },
+  {
+    value: "staff" as const,
+    label: "Educator or admin",
+    hint: "Tutoring centre work email",
+    icon: GraduationCap,
+  },
+];
 
 // All optional: plain <Link to="/auth"> must stay valid everywhere.
 type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string };
@@ -158,6 +180,14 @@ function AuthPage() {
         return;
       }
 
+      // Students routinely land on the parent form with a handle. Catch that
+      // before the credentials are blamed.
+      if (!email.includes("@")) {
+        setTab("student");
+        toast.error("That looks like a student handle — switched you to Student sign-in.");
+        return;
+      }
+
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
         toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
@@ -206,7 +236,9 @@ function AuthPage() {
     });
     setPending(false);
     if (error) {
-      toast.error("That handle and PIN don't match. Check with your educator if you forgot them.");
+      toast.error(
+        "That handle and PIN don't match. A parent can reset the PIN in the Parent portal, or ask your educator.",
+      );
       return;
     }
     if (data.user) await goHome(data.user);
@@ -261,17 +293,48 @@ function AuthPage() {
               {tab === "staff"
                 ? "Staff use their work email and password."
                 : tab === "student"
-                  ? "Students use the handle and PIN from their educator."
+                  ? "Students use their handle and 6-digit PIN — a parent or educator can reset it."
                   : "Parents sign in with email. New here? Create an account in under a minute."}
             </p>
           </div>
 
+          {/* Role-first selection. Students kept failing on the Parent form with
+              valid credentials, so the account type is now an explicit, labelled
+              choice rather than a compact tab strip. */}
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              I am signing in as
+            </p>
+            <div className="grid gap-2">
+              {ROLE_OPTIONS.map((option) => {
+                const selected = tab === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => setTab(option.value)}
+                    className={`flex items-start gap-3 rounded-xl border p-3 text-left transition ${
+                      selected
+                        ? "border-primary bg-primary/5 ring-1 ring-primary"
+                        : "border-border hover:border-primary/40 hover:bg-muted/50"
+                    }`}
+                  >
+                    <option.icon
+                      className={`mt-0.5 h-4 w-4 shrink-0 ${selected ? "text-primary" : "text-muted-foreground"}`}
+                    />
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium">{option.label}</span>
+                      <span className="block text-xs text-muted-foreground">{option.hint}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <Tabs value={tab} onValueChange={(value) => setTab(value as typeof tab)}>
-            <TabsList className={tab === "staff" ? "grid w-full grid-cols-3" : "grid w-full grid-cols-2"}>
-              <TabsTrigger value="parent">Parent</TabsTrigger>
-              <TabsTrigger value="student">Student</TabsTrigger>
-              {tab === "staff" ? <TabsTrigger value="staff">Staff</TabsTrigger> : null}
-            </TabsList>
+
 
 
             <TabsContent value="staff" className="pt-6">
@@ -417,20 +480,28 @@ function AuthPage() {
             </TabsContent>
           </Tabs>
 
-          <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
-            Trouble signing in? Parents can reset from this page; your tutoring centre admin resets
-            staff passwords and student PINs.
-          </p>
+          {tab === "student" ? (
+            <div className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
+              <p className="font-medium text-foreground">Forgot your handle or PIN?</p>
+              <ul className="mt-1.5 list-disc space-y-1 pl-4">
+                <li>
+                  Ask your parent: their Parent portal shows your handle and lets them set a new
+                  6-digit PIN instantly (Students → Reset PIN).
+                </li>
+                <li>Students at a tutoring centre can also ask their educator or centre admin.</li>
+                <li>
+                  Your handle is not an email address — if you were given an email, use the Parent
+                  or Educator option above.
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <p className="rounded-lg border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
+              Trouble signing in? Parents can reset their own password from this page; parents reset
+              their child's PIN in the Parent portal, and your centre admin resets staff passwords.
+            </p>
+          )}
 
-          {tab !== "staff" ? (
-            <button
-              type="button"
-              onClick={() => setTab("staff")}
-              className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
-            >
-              Staff access
-            </button>
-          ) : null}
 
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
