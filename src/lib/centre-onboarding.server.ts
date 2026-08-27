@@ -122,6 +122,20 @@ export async function importLearnersImpl(
       continue;
     }
 
+    // The signup trigger attaches new profiles to the first organization, so
+    // imported learners must be re-homed to the importing centre. Without this
+    // the org-scoped learner policy hides the learner from their own account.
+    const { error: profileError } = await supabaseAdmin
+      .from("profiles")
+      .upsert(
+        { id: user.user.id, org_id: input.orgId, full_name: row.fullName },
+        { onConflict: "id" },
+      );
+    if (profileError) {
+      failed.push({ handle: row.handle, message: profileError.message });
+      continue;
+    }
+
     const { error: roleError } = await supabaseAdmin
       .from("user_roles")
       .upsert({ user_id: user.user.id, role: "student" }, { onConflict: "user_id,role" });
@@ -129,6 +143,7 @@ export async function importLearnersImpl(
       failed.push({ handle: row.handle, message: roleError.message });
       continue;
     }
+
 
     const { error: learnerError } = await supabaseAdmin.from("learners").insert({
       org_id: input.orgId,
