@@ -1,0 +1,101 @@
+{
+  "subject": "Science",
+  "input_filename": "cbse-class10-science-2026-27-baseline.json",
+  "input_bytes": 49102,
+  "input_sha256": "17ead43466534637ea836a5af9c1fbe9a089814c8dc1f2938d5ed463f623b666",
+  "baseline_filename": "cbse-class10-science-2026-27-baseline.json",
+  "schema_filename": "cbse-class10-science-2026-27-baseline.schema.json",
+  "baseline_bytes": 50671,
+  "schema_bytes": 12207,
+  "baseline_sha256": "dfcb8b9fc2e0ae016b57baa10728cc1f2ba0e8ab3d2d47461c701d2bacc74ef2",
+  "schema_sha256": "b86993c69c7ef50fdb88532460f5d1395d8928eeb09f1b603be75cd4eb8c9fc1",
+  "baseline_json_parse": true,
+  "schema_json_parse": true,
+  "schema_validation": true,
+  "utf8_valid": true,
+  "duplicate_json_keys_checked": true,
+  "duplicate_json_keys": [],
+  "duplicate_key_parser": "scripts/audit/build-baseline-package.mjs::findDuplicateKeys (source-order JSON tokenizer)",
+  "schema_validator": "ajv draft-07",
+  "units": 5,
+  "chapters": 13,
+  "requirements": 46,
+  "exclusions": 6,
+  "ambiguities": 2,
+  "duplicate_requirement_ids": [],
+  "missing_requirement_ids": [],
+  "duplicate_sequences": [],
+  "missing_source_references": [],
+  "invalid_enum_values": [],
+  "html_contamination_count": 0,
+  "markdown_contamination_count": 0,
+  "unverified_source_records": [
+    "SRC_CBSE_SCI_2026_27",
+    "SRC_NCERT_SCI_TEXT_X",
+    "SRC_NCERT_RAT_GUIDE_X",
+    "SRC_NCERT_ADV_TRANS_2026"
+  ],
+  "official_source_checksums_computed": [],
+  "official_source_checksums_not_computed": [
+    "SRC_CBSE_SCI_2026_27",
+    "SRC_NCERT_SCI_TEXT_X",
+    "SRC_NCERT_RAT_GUIDE_X",
+    "SRC_NCERT_ADV_TRANS_2026"
+  ],
+  "academic_overreach_flags": [
+    {
+      "subject": "Science",
+      "record_id": "AMB_SCI_2026_002",
+      "candidate_statement": "None. Board examination scope strictly excludes metallurgy calculations and extraction steps.",
+      "cited_source": "SRC_CBSE_SCI_2026_27",
+      "reason": "Declares strict non-assessability and marks the ambiguity as needing no human review; this package does not resolve academic ambiguities.",
+      "recommended_human_review_action": "Treat as unresolved; both Science ambiguities remain open pending named subject-expert review."
+    },
+    {
+      "subject": "Science",
+      "record_id": "EXCL_SCI_2026_001",
+      "candidate_statement": "Fully removed from NCERT Class 10 textbook and CBSE 2026-27 examination syllabus.",
+      "cited_source": "SRC_NCERT_RAT_GUIDE_X — Class10.pdf Page 3 / CBSE Syllabus 2026-27",
+      "reason": "Claim that an entire chapter is fully removed is stronger than an unretrieved, unchecksummed source line can support.",
+      "recommended_human_review_action": "Named subject expert to confirm chapter-level removal against the retrieved and checksummed CBSE 2026-27 syllabus and NCERT rationalisation notice."
+    },
+    {
+      "subject": "Science",
+      "record_id": "EXCL_SCI_2026_003",
+      "candidate_statement": "Chapter retitled to 'Heredity' in current NCERT textbook reprints.",
+      "cited_source": "SRC_NCERT_RAT_GUIDE_X",
+      "reason": "Edition-specific retitling claim depends on an unconfirmed textbook printing.",
+      "recommended_human_review_action": "Confirm chapter title against the retrieved NCERT edition."
+    },
+    {
+      "subject": "Science",
+      "record_id": "EXCL_SCI_2026_004",
+      "candidate_statement": "Explicitly deleted from rationalised NCERT textbook and CBSE 2026-27 exam syllabus.",
+      "cited_source": "SRC_CBSE_SCI_2026_27 — Science_SecP1_2026-27.pdf Page 7",
+      "reason": "Asserts explicit deletion of named topics (electric motor, electromagnetic induction, generator) without a retrieved source document.",
+      "recommended_human_review_action": "Human review against the retrieved official syllabus before any EduOS question is retired."
+    }
+  ],
+  "mechanical_transformations": [
+    "Downgraded source SRC_CBSE_SCI_2026_27 applicability_status \"CURRENT_OFFICIAL\" to PENDING_CONFIRMATION: no official document was retrieved or checksummed in this environment.",
+    "Downgraded source SRC_CBSE_SCI_2026_27 finality_status \"FINAL\" to PENDING_CONFIRMATION: finality was not independently verified.",
+    "Set source SRC_CBSE_SCI_2026_27 retrieval_timestamp to null: the candidate value asserted a retrieval that this package cannot evidence.",
+    "Downgraded source SRC_NCERT_SCI_TEXT_X finality_status \"FINAL\" to PENDING_CONFIRMATION: finality was not independently verified.",
+    "Set source SRC_NCERT_SCI_TEXT_X retrieval_timestamp to null: the candidate value asserted a retrieval that this package cannot evidence.",
+    "Downgraded source SRC_NCERT_RAT_GUIDE_X applicability_status \"CURRENT_OFFICIAL\" to PENDING_CONFIRMATION: no official document was retrieved or checksummed in this environment.",
+    "Downgraded source SRC_NCERT_RAT_GUIDE_X finality_status \"FINAL\" to PENDING_CONFIRMATION: finality was not independently verified.",
+    "Set source SRC_NCERT_RAT_GUIDE_X retrieval_timestamp to null: the candidate value asserted a retrieval that this package cannot evidence.",
+    "Downgraded source SRC_NCERT_ADV_TRANS_2026 finality_status \"FINAL\" to PENDING_CONFIRMATION: finality was not independently verified.",
+    "Set source SRC_NCERT_ADV_TRANS_2026 retrieval_timestamp to null: the candidate value asserted a retrieval that this package cannot evidence.",
+    "Replaced destructive action wording in EXCL_SCI_2026_001.effect_on_eduos with the safe non-executing audit code NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING; the original candidate statement is preserved verbatim in candidate_effect_statement and the academic classification is unchanged.",
+    "Replaced destructive action wording in EXCL_SCI_2026_002.effect_on_eduos with the safe non-executing audit code NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING; the original candidate statement is preserved verbatim in candidate_effect_statement and the academic classification is unchanged.",
+    "Replaced destructive action wording in EXCL_SCI_2026_003.effect_on_eduos with the safe non-executing audit code NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING; the original candidate statement is preserved verbatim in candidate_effect_statement and the academic classification is unchanged.",
+    "Replaced destructive action wording in EXCL_SCI_2026_004.effect_on_eduos with the safe non-executing audit code NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING; the original candidate statement is preserved verbatim in candidate_effect_statement and the academic classification is unchanged.",
+    "Replaced destructive action wording in EXCL_SCI_2026_005.effect_on_eduos with the safe non-executing audit code NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING; the original candidate statement is preserved verbatim in candidate_effect_statement and the academic classification is unchanged.",
+    "Replaced destructive action wording in EXCL_SCI_2026_006.effect_on_eduos with the safe non-executing audit code NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING; the original candidate statement is preserved verbatim in candidate_effect_statement and the academic classification is unchanged.",
+    "Serialised deterministically with 2-space indentation, source key order preserved and a trailing newline."
+  ],
+  "semantic_transformations": [],
+  "validation_timestamp": "2026-08-28T20:07:00Z",
+  "validation_status": "PASS"
+}
