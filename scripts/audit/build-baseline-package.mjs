@@ -978,4 +978,7 @@ async function importAjv() {
   return await import('ajv');
 }
 
-await main();
+import { fileURLToPath } from 'node:url';
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  await main();
+}
