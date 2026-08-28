@@ -164,8 +164,8 @@ export function buildPacks(subject: AuthoredSubject): { curriculum: CurriculumPa
   return { curriculum, questions: questionPack };
 }
 
-if (import.meta.main) {
-  const outDir = resolve(import.meta.dir, "../../content/class-9");
+if (process.argv[1]?.includes("build-packs")) {
+  const outDir = resolve(process.cwd(), "content/class-9");
   mkdirSync(outDir, { recursive: true });
   for (const subject of SUBJECTS) {
     const { curriculum, questions } = buildPacks(subject);
