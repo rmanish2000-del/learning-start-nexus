@@ -206,7 +206,7 @@ export async function createAssessmentDraft(
   supabase: Client,
   ctx: { orgId: string; userId: string },
   input: CreateDraftInput,
-): Promise<{ id: string; status: "draft" }> {
+): Promise<{ id: string; status: "draft"; deduped: boolean }> {
   if (new Set(input.questionIds).size !== input.questionIds.length) {
     throw new Error("The same question was selected more than once.");
   }
@@ -324,5 +324,5 @@ export async function createAssessmentDraft(
     throw new Error(mapError.message);
   }
 
-  return { id: created.id, status: "draft" };
+  return { id: created.id, status: "draft", deduped: false };
 }
