@@ -1,0 +1,2373 @@
+{
+    "board": "CBSE",
+    "books": [
+        {
+            "id": "ad8318f3-c41d-4846-8173-c84e5cde20ad",
+            "board": "CBSE",
+            "title": "CBSE Class 10 Mathematics — Meridian Pilot",
+            "status": "processed",
+            "subject": "Mathematics"
+        },
+        {
+            "id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "board": "CBSE",
+            "title": "NCERT Class 10 Mathematics (CBSE)",
+            "status": "approved",
+            "subject": "Mathematics"
+        },
+        {
+            "id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+            "board": "CBSE",
+            "title": "NCERT Class 10 Science (CBSE)",
+            "status": "processed",
+            "subject": "Science"
+        },
+        {
+            "id": "26ac60d7-794d-4805-8cdb-5b73bcb40c53",
+            "board": "CBSE",
+            "title": "NCERT Science — Class 10, Chapter 1: Chemical Reactions and Equations",
+            "status": "archived",
+            "subject": "Science"
+        }
+    ],
+    "units": [
+        {
+            "title": "Number Systems",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Real Numbers",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Fundamental Theorem of Arithmetic",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 1
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M1.1.1",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Express composite numbers as products of prime factors and calculate HCF and LCM using prime factorization.",
+                    "status": "active",
+                    "category": "Real Numbers",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                },
+                {
+                    "code": "LO_M1.1.2",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "true_false": 1,
+                        "short_answer": 2
+                    },
+                    "title": "Prove the irrationality of numbers such as square root of 2, square root of 3, and square root of 5.",
+                    "status": "active",
+                    "category": "Real Numbers",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                }
+            ],
+            "position": 1,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Unit 1 — Number Systems",
+            "bookId": "ad8318f3-c41d-4846-8173-c84e5cde20ad",
+            "status": "suggested",
+            "unitId": "c023481c-8577-4eff-bc0d-69976fb4a3ce",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Real Numbers",
+                    "status": "suggested",
+                    "topics": [
+                        {
+                            "title": "Euclid's division lemma",
+                            "status": "suggested",
+                            "position": 1
+                        },
+                        {
+                            "title": "Fundamental Theorem of Arithmetic",
+                            "status": "suggested",
+                            "position": 2
+                        },
+                        {
+                            "title": "Irrational numbers",
+                            "status": "suggested",
+                            "position": 3
+                        }
+                    ],
+                    "position": 1
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_MAT10_U1_01",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "mcq": 2,
+                        "short_answer": 1
+                    },
+                    "title": "Euclid's division lemma",
+                    "status": "active",
+                    "category": "Unit 1 — Number Systems",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 3
+                    }
+                },
+                {
+                    "code": "LO_MAT10_U1_02",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Fundamental Theorem of Arithmetic",
+                    "status": "active",
+                    "category": "Unit 1 — Number Systems",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                },
+                {
+                    "code": "LO_MAT10_U1_03",
+                    "atoms": 1,
+                    "bloom": "Apply",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Irrational numbers",
+                    "status": "active",
+                    "category": "Unit 1 — Number Systems",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                }
+            ],
+            "position": 1,
+            "bookStatus": "processed"
+        },
+        {
+            "title": "Unit 2 — Algebra",
+            "bookId": "ad8318f3-c41d-4846-8173-c84e5cde20ad",
+            "status": "suggested",
+            "unitId": "ebe99e72-8eb8-478a-8837-6159672331e1",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Polynomials",
+                    "status": "suggested",
+                    "topics": [
+                        {
+                            "title": "Zeroes of a polynomial",
+                            "status": "suggested",
+                            "position": 1
+                        },
+                        {
+                            "title": "Relationship between zeroes and coefficients",
+                            "status": "suggested",
+                            "position": 2
+                        }
+                    ],
+                    "position": 1
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_MAT10_U2_01",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "mcq": 2,
+                        "short_answer": 1
+                    },
+                    "title": "Zeroes of a polynomial",
+                    "status": "active",
+                    "category": "Unit 2 — Algebra",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 3
+                    }
+                },
+                {
+                    "code": "LO_MAT10_U2_02",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Relationship between zeroes and coefficients",
+                    "status": "active",
+                    "category": "Unit 2 — Algebra",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                }
+            ],
+            "position": 2,
+            "bookStatus": "processed"
+        },
+        {
+            "title": "Algebra",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Polynomials",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Zeroes of a Polynomial and Relationship with Coefficients",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 2
+                },
+                {
+                    "title": "Pair of Linear Equations in Two Variables",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Algebraic and Graphical Solutions",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 3
+                },
+                {
+                    "title": "Quadratic Equations",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Solution of Quadratic Equations and Discriminant",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 4
+                },
+                {
+                    "title": "Arithmetic Progressions",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "nth Term and Sum of n Terms of an AP",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 5
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M2.1.1",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Determine zeroes geometrically and apply relationships between zeroes and coefficients of quadratic polynomials.",
+                    "status": "active",
+                    "category": "Polynomials",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                },
+                {
+                    "code": "LO_M3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Analyze consistency conditions and solve system of linear equations using Substitution and Elimination methods.",
+                    "status": "active",
+                    "category": "Pair of Linear Equations in Two Variables",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_M4.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Solve quadratic equations using factorization and quadratic formula, and determine nature of roots using discriminant.",
+                    "status": "active",
+                    "category": "Quadratic Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_M5.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Derive and apply formulas for the nth term (an) and sum of first n terms (Sn) of an Arithmetic Progression.",
+                    "status": "active",
+                    "category": "Arithmetic Progressions",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 2,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Geometry",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Triangles",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Similarity of Triangles and Basic Proportionality Theorem",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 6
+                },
+                {
+                    "title": "Circles",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Tangents to a Circle",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 10
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M10.1.1",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Prove and apply theorems regarding tangents to a circle from an external point.",
+                    "status": "active",
+                    "category": "Circles",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                },
+                {
+                    "code": "LO_M6.1.1",
+                    "atoms": 1,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "State and apply Basic Proportionality Theorem (Thales Theorem) and criteria for similarity (AAA, SAS, SSS).",
+                    "status": "active",
+                    "category": "Triangles",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 2,
+                        "3": 1
+                    }
+                }
+            ],
+            "position": 3,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Coordinate Geometry",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "2dec1571-2599-4b23-9163-730872353215",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Coordinate Geometry",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Distance and Section Formulas",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 7
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M7.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Derive and apply Distance Formula and Section Formula in Cartesian coordinate space.",
+                    "status": "active",
+                    "category": "Coordinate Geometry",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 4,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Trigonometry",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Introduction to Trigonometry",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Trigonometric Ratios and Identities",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 8
+                },
+                {
+                    "title": "Some Applications of Trigonometry",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Heights and Distances",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 9
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M8.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Define trigonometric ratios for acute angles and evaluate expression using standard values and fundamental trigonometric identity sin^2 A + cos^2 A = 1.",
+                    "status": "active",
+                    "category": "Introduction to Trigonometry",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_M9.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Solve real-world problems involving angles of elevation and depression using trigonometric ratios.",
+                    "status": "active",
+                    "category": "Some Applications of Trigonometry",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 5,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Mensuration",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "7bdc9cf5-d3c7-4da8-85e8-50cef220452e",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Areas Related to Circles",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Areas of Sector and Segment of a Circle",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 11
+                },
+                {
+                    "title": "Surface Areas and Volumes",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Surface Area and Volume of Combinations of Solids",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 12
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M11.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Calculate arc lengths, areas of sectors, and areas of segments of circles.",
+                    "status": "active",
+                    "category": "Areas Related to Circles",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_M12.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Determine surface areas and volumes of combinations of basic 3D solids (cubes, cuboids, spheres, hemispheres, cylinders, cones).",
+                    "status": "active",
+                    "category": "Surface Areas and Volumes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 6,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Statistics & Probability",
+            "bookId": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+            "status": "approved",
+            "unitId": "b19490a1-5180-43f5-aef3-cdc73ba98d3c",
+            "subject": "Mathematics",
+            "chapters": [
+                {
+                    "title": "Statistics",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Mean, Median, and Mode of Grouped Data",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 13
+                },
+                {
+                    "title": "Probability",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Classical Approach to Probability",
+                            "status": "approved",
+                            "position": 1
+                        }
+                    ],
+                    "position": 14
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_M13.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Calculate Mean, Median, and Mode of grouped data and apply empirical relationship.",
+                    "status": "active",
+                    "category": "Statistics",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_M14.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Calculate theoretical probability of single and compound events.",
+                    "status": "active",
+                    "category": "Probability",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 7,
+            "bookStatus": "approved"
+        },
+        {
+            "title": "Chemical Substances - Nature and Behaviour",
+            "bookId": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+            "status": "approved",
+            "unitId": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+            "subject": "Science",
+            "chapters": [
+                {
+                    "title": "Chemical Reactions and Equations",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Chemical Equations",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Types of Chemical Reactions",
+                            "status": "approved",
+                            "position": 2
+                        },
+                        {
+                            "title": "Have You Observed the Effects of Oxidation Reactions in Everyday Life?",
+                            "status": "approved",
+                            "position": 3
+                        }
+                    ],
+                    "position": 1
+                },
+                {
+                    "title": "Acids, Bases and Salts",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Understanding the Chemical Properties of Acids and Bases",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "What Do All Acids and All Bases Have in Common?",
+                            "status": "approved",
+                            "position": 2
+                        },
+                        {
+                            "title": "How Strong Are Acid or Base Solutions?",
+                            "status": "approved",
+                            "position": 3
+                        },
+                        {
+                            "title": "More About Salts",
+                            "status": "approved",
+                            "position": 4
+                        }
+                    ],
+                    "position": 2
+                },
+                {
+                    "title": "Metals and Non-metals",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Physical Properties",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Chemical Properties of Metals",
+                            "status": "approved",
+                            "position": 2
+                        },
+                        {
+                            "title": "How do Metals and Non-metals React?",
+                            "status": "approved",
+                            "position": 3
+                        },
+                        {
+                            "title": "Occurrence of Metals",
+                            "status": "approved",
+                            "position": 4
+                        },
+                        {
+                            "title": "Corrosion",
+                            "status": "approved",
+                            "position": 5
+                        }
+                    ],
+                    "position": 3
+                },
+                {
+                    "title": "Carbon and its Compounds",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Bonding in Carbon - The Covalent Bond",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Versatile Nature of Carbon",
+                            "status": "approved",
+                            "position": 2
+                        },
+                        {
+                            "title": "Chemical Properties of Carbon Compounds",
+                            "status": "approved",
+                            "position": 3
+                        },
+                        {
+                            "title": "Some Important Carbon Compounds - Ethanol and Ethanoic Acid",
+                            "status": "approved",
+                            "position": 4
+                        },
+                        {
+                            "title": "Soaps and Detergents",
+                            "status": "approved",
+                            "position": 5
+                        }
+                    ],
+                    "position": 4
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_1.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Identify reactants, products, and state symbols in a chemical equation.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 2,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.1.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Apply the Law of Conservation of Mass to balance skeletal chemical equations using the hit-and-trial method.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Recognize and explain combination and exothermic reactions through examples such as slaked lime formation.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.2.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Differentiate thermal, electrolytic, and photolytic decomposition reactions.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.2.3.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Predict displacement outcomes using relative reactivity of metals.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.2.4.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain double displacement and precipitation reactions involving ion exchange.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.2.5.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Identify oxidizing agents, reducing agents, oxidation, and reduction in redox reactions.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Describe corrosion processes and conditions causing tarnish/rusting in metals.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_1.3.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain rancidity of oils/fats and preventative measures like flushing with nitrogen.",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Distinguish between acids and bases using synthetic, natural, and olfactory indicators.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.1.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Formulate equations for metal-acid and metal-base reactions and detail the hydrogen pop test.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.1.3.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain the reaction of carbonate/hydrogencarbonate salts with acids and the lime water test.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.1.4.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Define neutralization and model salt and water formation.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.1.5.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Classify metallic oxides as basic oxides through acid reaction products.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.1.6.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Classify non-metallic oxides as acidic oxides based on base reaction behavior.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain electrical conductivity in aqueous acids/bases via H+(aq)/hydronium and OH-(aq) ion production.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Interpret pH scale values and evaluate the role of pH in digestion, tooth decay, soil health, and self-defense.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.4.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Deduce the acidic, basic, or neutral nature of salts based on parent acid and base strength.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.4.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Detail industrial processes and equations for NaOH, Bleaching Powder, Baking Soda, and Washing Soda.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_2.4.3.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain water of crystallization and write hydration/dehydration equations for CuSO4.5H2O and Plaster of Paris.",
+                    "status": "active",
+                    "category": "Acids, Bases and Salts",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Compare physical properties of metals and non-metals while analyzing exceptions.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Describe metal oxide formation, alkali generation, and amphoteric behavior.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.2.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Sequence metals by reactivity based on reactions with cold water, hot water, steam, and acids.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.2.3.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Predict displacement outcomes using the activity series of metals.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Diagram electron transfer in ionic bonds and explain lattice-related physical properties.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.4.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Outline metallurgical pathways (Roasting, Calcination, Reduction, Electrolytic Refining) based on metal activity level.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_3.5.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain corrosion conditions and prevention methods including galvanization and alloying.",
+                    "status": "active",
+                    "category": "Metals and Non-metals",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_4.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain covalent bonding, draw electron-dot structures, and differentiate carbon allotropes.",
+                    "status": "active",
+                    "category": "Carbon and its Compounds",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_4.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Apply IUPAC nomenclature to alkanes, alkenes, alkynes, and functional groups, and draw structural isomers.",
+                    "status": "active",
+                    "category": "Carbon and its Compounds",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_4.3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Classify and formulate organic reactions: combustion, oxidation, hydrogenation, and substitution.",
+                    "status": "active",
+                    "category": "Carbon and its Compounds",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_4.4.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Compare properties of ethanol and ethanoic acid, including esterification and saponification.",
+                    "status": "active",
+                    "category": "Carbon and its Compounds",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_4.5.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain soap micelle structure, hydrophobic/hydrophilic ends, and scum formation in hard water.",
+                    "status": "active",
+                    "category": "Carbon and its Compounds",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 1,
+            "bookStatus": "processed"
+        },
+        {
+            "title": "Chemical Reactions and Equations",
+            "bookId": "26ac60d7-794d-4805-8cdb-5b73bcb40c53",
+            "status": "suggested",
+            "unitId": "234cc8b4-a653-4f38-9c67-6ffc5cd1c101",
+            "subject": "Science",
+            "chapters": [
+                {
+                    "title": "Chemical Reactions and Equations",
+                    "status": "suggested",
+                    "topics": [
+                        {
+                            "title": "Chemical Reactions and Word Equations",
+                            "status": "suggested",
+                            "position": 1
+                        },
+                        {
+                            "title": "Writing and Balancing Chemical Equations",
+                            "status": "suggested",
+                            "position": 2
+                        },
+                        {
+                            "title": "Combination Reactions and Exothermic Processes",
+                            "status": "suggested",
+                            "position": 3
+                        },
+                        {
+                            "title": "Decomposition Reactions and Endothermic Processes",
+                            "status": "suggested",
+                            "position": 4
+                        },
+                        {
+                            "title": "Displacement Reactions",
+                            "status": "suggested",
+                            "position": 5
+                        },
+                        {
+                            "title": "Double Displacement and Precipitation Reactions",
+                            "status": "suggested",
+                            "position": 6
+                        },
+                        {
+                            "title": "Oxidation and Reduction (Redox Reactions)",
+                            "status": "suggested",
+                            "position": 7
+                        },
+                        {
+                            "title": "Corrosion and Rancidity",
+                            "status": "suggested",
+                            "position": 8
+                        }
+                    ],
+                    "position": 1
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_SCI10_U1_01",
+                    "atoms": 0,
+                    "bloom": "Remember",
+                    "kinds": {
+                        "case_study": 9,
+                        "applied_mcq": 3,
+                        "assertion_reason": 1,
+                        "data_interpretation": 3
+                    },
+                    "title": "Chemical Reactions and Word Equations",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 16,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 16
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_02",
+                    "atoms": 0,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Writing and Balancing Chemical Equations",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 3
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_03",
+                    "atoms": 0,
+                    "bloom": "Apply",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Combination Reactions and Exothermic Processes",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 2,
+                    "difficulties": {
+                        "2": 3
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_04",
+                    "atoms": 0,
+                    "bloom": "Analyse",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Decomposition Reactions and Endothermic Processes",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "3": 2,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_05",
+                    "atoms": 0,
+                    "bloom": "Analyse",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Displacement Reactions",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "3": 3
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_06",
+                    "atoms": 0,
+                    "bloom": "Analyse",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Double Displacement and Precipitation Reactions",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "3": 3
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_07",
+                    "atoms": 0,
+                    "bloom": "Analyse",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 1,
+                        "short_answer": 1
+                    },
+                    "title": "Oxidation and Reduction (Redox Reactions)",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 3,
+                    "difficulty": 4,
+                    "difficulties": {
+                        "4": 3
+                    }
+                },
+                {
+                    "code": "LO_SCI10_U1_08",
+                    "atoms": 0,
+                    "bloom": "Analyse",
+                    "kinds": {
+                        "mcq": 1,
+                        "case_study": 3,
+                        "applied_mcq": 2,
+                        "short_answer": 1,
+                        "assertion_reason": 1,
+                        "data_interpretation": 2
+                    },
+                    "title": "Corrosion and Rancidity",
+                    "status": "active",
+                    "category": "Chemical Reactions and Equations",
+                    "verified": 0,
+                    "questions": 10,
+                    "difficulty": 4,
+                    "difficulties": {
+                        "4": 10
+                    }
+                }
+            ],
+            "position": 1,
+            "bookStatus": "archived"
+        },
+        {
+            "title": "World of Living",
+            "bookId": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+            "status": "approved",
+            "unitId": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+            "subject": "Science",
+            "chapters": [
+                {
+                    "title": "Life Processes",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "What are Life Processes?",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Nutrition",
+                            "status": "approved",
+                            "position": 2
+                        },
+                        {
+                            "title": "Respiration",
+                            "status": "approved",
+                            "position": 3
+                        },
+                        {
+                            "title": "Transportation",
+                            "status": "approved",
+                            "position": 4
+                        },
+                        {
+                            "title": "Excretion",
+                            "status": "approved",
+                            "position": 5
+                        }
+                    ],
+                    "position": 5
+                },
+                {
+                    "title": "Control and Coordination",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Animals - Nervous System",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Coordination in Plants",
+                            "status": "approved",
+                            "position": 2
+                        },
+                        {
+                            "title": "Hormones in Animals",
+                            "status": "approved",
+                            "position": 3
+                        }
+                    ],
+                    "position": 6
+                },
+                {
+                    "title": "How do Organisms Reproduce?",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Do Organisms Create Exact Copies of Themselves?",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Modes of Reproduction Used by Single Organisms",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 7
+                },
+                {
+                    "title": "Heredity",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Accumulation of Variation During Reproduction",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Heredity",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 8
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_5.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Define life processes and explain why simple diffusion is inadequate for multicellular organisms.",
+                    "status": "active",
+                    "category": "Life Processes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_5.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Detail photosynthesis steps, stomatal regulation, and experimental starch validation.",
+                    "status": "active",
+                    "category": "Life Processes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_5.2.2.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Trace food digestion, enzymatic breakdown, and intestinal absorption in humans.",
+                    "status": "active",
+                    "category": "Life Processes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_5.3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Compare glucose breakdown pathways and detail human alveolar gas exchange.",
+                    "status": "active",
+                    "category": "Life Processes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_5.4.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain double circulation in human hearts and contrast xylem/phloem transport mechanisms in plants.",
+                    "status": "active",
+                    "category": "Life Processes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_5.5.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Detail nephron filtration/reabsorption mechanisms and plant excretion strategies.",
+                    "status": "active",
+                    "category": "Life Processes",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_6.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Detail neuron transmission, trace reflex arcs, and map functions of fore-brain, mid-brain, and hind-brain.",
+                    "status": "active",
+                    "category": "Control and Coordination",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_6.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Distinguish nastic vs tropic plant movements and summarize phytohormone roles (auxin, gibberellin, cytokinin, abscisic acid).",
+                    "status": "active",
+                    "category": "Control and Coordination",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_6.3.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Identify endocrine glands, state their hormones, and explain insulin feedback loops.",
+                    "status": "active",
+                    "category": "Control and Coordination",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_7.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain the significance of DNA copying and variation in population survival and evolution.",
+                    "status": "active",
+                    "category": "How do Organisms Reproduce?",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_7.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Compare asexual reproduction modes: binary/multiple fission, fragmentation, regeneration, budding, vegetative propagation, and spore formation.",
+                    "status": "active",
+                    "category": "How do Organisms Reproduce?",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_8.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain how cross-generational variation accumulates in asexual vs sexual reproduction.",
+                    "status": "active",
+                    "category": "Heredity",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_8.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Analyze monohybrid/dihybrid crosses and detail human sex determination mechanics.",
+                    "status": "active",
+                    "category": "Heredity",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 2,
+            "bookStatus": "processed"
+        },
+        {
+            "title": "Natural Phenomena",
+            "bookId": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+            "status": "approved",
+            "unitId": "07350c07-c273-4430-8354-73a2bec1d5c4",
+            "subject": "Science",
+            "chapters": [
+                {
+                    "title": "Light – Reflection and Refraction",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Reflection of Light",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Refraction of Light",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 9
+                },
+                {
+                    "title": "The Human Eye and the Colorful World",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "The Human Eye",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Prismatic Dispersion and Atmospheric Optics",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 10
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_10.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain eye accommodation and correct Myopia, Hypermetropia, and Presbyopia using spherical lenses.",
+                    "status": "active",
+                    "category": "The Human Eye and the Colorful World",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_10.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Analyze light dispersion, atmospheric refraction (twinkling), and Rayleigh scattering (blue sky/red sunset).",
+                    "status": "active",
+                    "category": "The Human Eye and the Colorful World",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_9.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Construct ray diagrams for concave/convex mirrors and apply the mirror formula.",
+                    "status": "active",
+                    "category": "Light – Reflection and Refraction",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_9.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Apply Snell's law, solve thin-lens equations, and calculate optical power in dioptres.",
+                    "status": "active",
+                    "category": "Light – Reflection and Refraction",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 3,
+            "bookStatus": "processed"
+        },
+        {
+            "title": "Effects of Current",
+            "bookId": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+            "status": "approved",
+            "unitId": "0da7b020-1389-41d8-913b-fe1582b7647e",
+            "subject": "Science",
+            "chapters": [
+                {
+                    "title": "Electricity",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Electric Potential and Ohm's Law",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Heating Effect of Electric Current",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 11
+                },
+                {
+                    "title": "Magnetic Effects of Electric Current",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Magnetic Field and Field Lines",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "Force on a Current-Carrying Conductor and Domestic Circuits",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 12
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_11.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "State Ohm's Law, calculate equivalent resistances, and analyze factors affecting electrical resistivity.",
+                    "status": "active",
+                    "category": "Electricity",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_11.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Apply Joule's Law of Heating and compute commercial electrical energy consumption in kWh.",
+                    "status": "active",
+                    "category": "Electricity",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_12.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Determine magnetic field patterns using Right-Hand Thumb Rule for straight conductors, circular loops, and solenoids.",
+                    "status": "active",
+                    "category": "Magnetic Effects of Electric Current",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_12.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Apply Fleming's Left-Hand Rule to force vectors and detail safety features in domestic electric circuits.",
+                    "status": "active",
+                    "category": "Magnetic Effects of Electric Current",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 4,
+            "bookStatus": "processed"
+        },
+        {
+            "title": "Natural Resources",
+            "bookId": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+            "status": "approved",
+            "unitId": "a318d753-4458-4393-836b-75d9e01ff2d3",
+            "subject": "Science",
+            "chapters": [
+                {
+                    "title": "Our Environment",
+                    "status": "approved",
+                    "topics": [
+                        {
+                            "title": "Ecosystem – What are its Components?",
+                            "status": "approved",
+                            "position": 1
+                        },
+                        {
+                            "title": "How do Our Activities Affect the Environment?",
+                            "status": "approved",
+                            "position": 2
+                        }
+                    ],
+                    "position": 13
+                }
+            ],
+            "outcomes": [
+                {
+                    "code": "LO_13.1.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Apply Lindeman's 10% Energy Law to food chains and evaluate biological magnification.",
+                    "status": "active",
+                    "category": "Our Environment",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                },
+                {
+                    "code": "LO_13.2.1.1",
+                    "atoms": 1,
+                    "bloom": "Understand",
+                    "kinds": {
+                        "short_answer": 3
+                    },
+                    "title": "Explain ozone formation/CFC destruction and compare biodegradable vs non-biodegradable waste impacts.",
+                    "status": "active",
+                    "category": "Our Environment",
+                    "verified": 3,
+                    "questions": 3,
+                    "difficulty": 3,
+                    "difficulties": {
+                        "2": 1,
+                        "3": 1,
+                        "4": 1
+                    }
+                }
+            ],
+            "position": 5,
+            "bookStatus": "processed"
+        }
+    ],
+    "catalogue": [
+        {
+            "code": "CBSE-2026-27-C10-MAT",
+            "version": 1,
+            "isActive": true,
+            "subjectKey": "Mathematics",
+            "reviewState": "approved",
+            "commercialStatus": "purchasable",
+            "diagnosticTarget": 20,
+            "diagnosticMinimum": 5,
+            "reassessmentReady": false,
+            "diagnosticEligible": true,
+            "minQuestionsPerOutcome": 1
+        },
+        {
+            "code": "CBSE-2026-27-C10-SCI",
+            "version": 1,
+            "isActive": true,
+            "subjectKey": "Science",
+            "reviewState": "approved",
+            "commercialStatus": "purchasable",
+            "diagnosticTarget": 20,
+            "diagnosticMinimum": 5,
+            "reassessmentReady": false,
+            "diagnosticEligible": true,
+            "minQuestionsPerOutcome": 1
+        }
+    ],
+    "classLevel": 10,
+    "generatedBy": "scripts/compliance/export-snapshot.ts",
+    "academicYear": "2026-27",
+    "snapshotVersion": "1"
+}
