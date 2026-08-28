@@ -217,7 +217,7 @@ describe("entitlement resolution", () => {
   it("expires and renews", () => {
     const expired = entitlement({ expiresAt: "2026-08-01T00:00:00.000Z" });
     expect(resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-maths", entitlements: [expired], at: NOW })).toBeNull();
-    expect(expireDueEntitlements([expired], NOW)[0].status).toBe("expired");
+    expect(expireDueEntitlements([expired], NOW)[0]?.status).toBe("expired");
 
     const renewed = renewEntitlement(expired, 365, NOW);
     expect(resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-maths", entitlements: [renewed], at: NOW })).not.toBeNull();
