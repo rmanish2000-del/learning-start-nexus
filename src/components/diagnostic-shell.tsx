@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { CircleHelp, GraduationCap, LogOut, Lock } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { LanguageToggle } from "@/components/language-toggle";
 import { useI18n } from "@/lib/i18n/context";
 import { BAND_LABELS, type MasteryBand } from "@/lib/parent-diagnostic-shared";
 import { cn } from "@/lib/utils";
@@ -42,7 +41,6 @@ export function DiagnosticShell({
           </Link>
           {isLearner ? (
             <div className="flex items-center gap-2">
-              <LanguageToggle />
               {learnerName ? (
                 <span className="hidden text-xs text-muted-foreground sm:inline">{learnerName}</span>
               ) : null}
@@ -62,7 +60,6 @@ export function DiagnosticShell({
             </div>
           ) : (
           <div className="flex items-center gap-3">
-            <LanguageToggle />
             <span className="hidden items-center gap-1.5 text-xs text-muted-foreground sm:flex">
               <Lock className="h-3.5 w-3.5" /> {t("common.secureCheckout", "Secure checkout")}
             </span>
