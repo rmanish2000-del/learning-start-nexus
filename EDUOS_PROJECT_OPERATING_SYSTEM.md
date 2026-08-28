@@ -149,3 +149,17 @@ production deployed SHA, what changed, test evidence, unresolved questions, next
 gate, rollback reference.
 
 All continuity files live in the canonical repository, never only in chat.
+
+
+---
+
+## 2026-08-28 06:0x UTC — Assessment lifecycle regression closed (Issues 1 and 2)
+
+- Canonical branch: `main`.
+- Issue 1: new assessments no longer inherit hardcoded Grade 6 metadata; scope is derived from the selected CBSE Class 10 book and unit, so drafts stay active and can publish.
+- Issue 2: title + two-minute-window deduplication removed. Assessment creation is now idempotent per `clientRequestId`, enforced by a partial unique index on `public.assessments (org_id, client_request_id)`. Two intentional creates with the same title are two separate drafts; a retry of one request returns the draft it already created. No staff content can be silently discarded.
+- Migration: `20260828055655_*.sql` (additive nullable column + partial unique index).
+- Tests: 97/97 Vitest passing; typecheck clean; production build clean.
+- Public-experience release work preserved and unchanged.
+- Reports: `EDUOS_ASSESSMENT_LIFECYCLE_REGRESSION_REPORT.md`, `EDUOS_FINAL_PUBLIC_EXPERIENCE_RELEASE_REPORT.md` (section 13).
+- Rollback reference: `9e0e2b166d20b3c605dfcd32f733cb9aaa3d7829`.

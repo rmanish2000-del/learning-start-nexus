@@ -102,3 +102,19 @@ Updated by the Lovable agent after any schema migration, dependency change, secr
 - **Duplicate single-chapter Science book archived** (not deleted).
 - **Security:** 0 P0, 1 P1 (org-wide staff phone visibility), 2 P2. 46/46 tests pass. Evidence: `EDUOS_SECURITY_AND_DB_SCAN_REPORT.md`.
 - **Decision:** READY_FOR_FOUNDER_LIVE_PAYMENT once the publish lands.
+
+
+---
+
+## 2026-08-28 06:0x UTC — Assessment lifecycle regression closed (Issues 1 and 2)
+
+- Canonical branch: `main`.
+- Issue 1: new assessments no longer inherit hardcoded Grade 6 metadata; scope is derived from the selected CBSE Class 10 book and unit, so drafts stay active and can publish.
+- Issue 2: title + two-minute-window deduplication removed. Assessment creation is now idempotent per `clientRequestId`, enforced by a partial unique index on `public.assessments (org_id, client_request_id)`. Two intentional creates with the same title are two separate drafts; a retry of one request returns the draft it already created. No staff content can be silently discarded.
+- Migration: `20260828055655_*.sql` (additive nullable column + partial unique index).
+- Tests: 97/97 Vitest passing; typecheck clean; production build clean.
+- Public-experience release work preserved and unchanged.
+- Reports: `EDUOS_ASSESSMENT_LIFECYCLE_REGRESSION_REPORT.md`, `EDUOS_FINAL_PUBLIC_EXPERIENCE_RELEASE_REPORT.md` (section 13).
+- Rollback reference: `9e0e2b166d20b3c605dfcd32f733cb9aaa3d7829`.
+
+Key files: `src/lib/assessments.server.ts` (`createAssessmentDraft`), `src/lib/assessments.functions.ts`, `src/routes/_authenticated/assessments.tsx`, `src/lib/__tests__/assessment-request-idempotency.test.ts`, `src/lib/__tests__/fake-supabase.ts` (unique-index emulation).
