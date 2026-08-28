@@ -193,6 +193,13 @@ export type CreateDraftInput = {
   bookId: string;
   unitId: string;
   questionIds: string[];
+  /**
+   * Request-scoped idempotency key. One intentional Create action = one id.
+   * A retry of that same request returns the draft already created for it;
+   * a separate action carries a different id and always creates a new draft,
+   * even when the title is identical. Titles are never identifiers.
+   */
+  clientRequestId?: string | null | undefined;
 };
 
 export async function createAssessmentDraft(
