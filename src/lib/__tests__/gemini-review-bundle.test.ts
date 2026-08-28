@@ -138,11 +138,65 @@ describe("gemini review bundle — integrity", () => {
       expect(f.content_category).toBeTruthy();
       expect(f.source_provenance).toBeTruthy();
       expect(f.privacy_classification).toBeTruthy();
-      expect(Number.isNaN(Date.parse(f.extraction_timestamp))).toBe(false);
+      expect(Number.isNaN(Date.parse(f.bundle_generation_timestamp))).toBe(false);
     }
-    expect(manifest.provenance.repository_full_sha).toMatch(/^[0-9a-f]{40}$/);
     expect(manifest.provenance.query_or_script).toBe("scripts/compliance/gemini-bundle.ts");
     expect(manifest.provenance.limitations.length).toBeGreaterThan(0);
+  });
+
+  it("records unambiguous provenance fields and no ambiguous repository_sha", () => {
+    const p = manifest.provenance;
+    expect(p.source_evidence_commit).toMatch(/^[0-9a-f]{40}$/);
+    expect(p.bundle_generation_base_commit).toMatch(/^[0-9a-f]{40}$/);
+    expect(Number.isNaN(Date.parse(p.bundle_generation_timestamp))).toBe(false);
+    expect(p.bundle_format_version).toMatch(/^\d+\.\d+\.\d+$/);
+    expect(manifest.bundle_format_version).toBe(p.bundle_format_version);
+    expect(p.package_commit).toBe("REPORTED_AFTER_COMMIT");
+    expect(p.repository_sha).toBeUndefined();
+    expect(p.repository_full_sha).toBeUndefined();
+    expect(manifest.self_reference_policy).toContain("not self-authenticating");
+    expect(manifest.self_referential_exclusions.length).toBe(2);
+  });
+
+  it("bundle_tree_hash is deterministic over payload files only", () => {
+    const expected = createHash("sha256")
+      .update(manifest.files.map((f: { path: string; sha256: string }) => `${f.path}\u0000${f.sha256}`).join("\n"))
+      .digest("hex");
+    expect(manifest.bundle_tree_hash).toBe(expected);
+    const paths = manifest.files.map((f: { path: string }) => f.path);
+    expect(paths).not.toContain("GEMINI_REVIEW_BUNDLE_MANIFEST.json");
+    expect(paths).not.toContain("GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256");
+  });
+
+  it("has no stale, unmanifested or missing files on disk", () => {
+    const onDisk = walk(BUNDLE)
+      .filter((p) => p !== "GEMINI_REVIEW_BUNDLE_MANIFEST.json" && p !== "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256")
+      .sort();
+    const manifestPaths = manifest.files.map((f: { path: string }) => f.path).sort();
+    expect(onDisk.filter((p) => !manifestPaths.includes(p))).toEqual([]);
+    expect(manifestPaths.filter((p: string) => !onDisk.includes(p))).toEqual([]);
+    expect(manifest.files_included).toBe(manifestPaths.length);
+  });
+
+  it("manifest byte sizes and hashes match the saved bytes", () => {
+    for (const f of manifest.files) {
+      const bytes = readFileSync(resolve(BUNDLE, f.path));
+      expect(statSync(resolve(BUNDLE, f.path)).size, f.path).toBe(f.bytes);
+      expect(createHash("sha256").update(bytes).digest("hex"), f.path).toBe(f.sha256);
+    }
+  });
+
+  it("preserves requirement, crosswalk, exclusion and ambiguity counts", () => {
+    expect(manifest.reconciliation).toMatchObject({
+      mathematics_requirements: 38,
+      science_requirements: 46,
+      mathematics_crosswalk_rows: 38,
+      science_crosswalk_rows: 46,
+      unmapped_mathematics_requirements: 2,
+      unmapped_science_requirements: 13,
+      science_exclusions: 6,
+      science_ambiguities: 2,
+    });
   });
 });
 
