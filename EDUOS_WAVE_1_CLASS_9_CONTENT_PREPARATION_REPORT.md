@@ -1,6 +1,11 @@
 # EduOS Wave 1 — CBSE Class 9 Mathematics and Science Content Preparation
 
-**Result: WAVE_1_CONTENT_PREPARATION: PARTIAL**
+**Wave 1 initial assignment result: WAVE_1_CONTENT_PREPARATION: PARTIAL (historical, preserved below)**
+
+**Wave 1 continuation result (2026-08-29 IST): WAVE_1_QUESTION_BANK_COMPLETION: PASS ·
+WAVE_1_COMMERCIAL_READINESS: BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW** — see the
+continuation addendum at the end of this report. The PARTIAL evidence from the initial
+assignment is retained verbatim and has not been rewritten.
 
 Consolidated report. Per the repository convention (one authoritative report per
 assignment with clearly separated sections), the ten report deliverables named in
@@ -477,3 +482,128 @@ CLASS_10_PRODUCTION_BEHAVIOUR: UNCHANGED
 DATABASE_WRITES: NONE
 TESTS: 153/153 PASS
 ```
+
+
+---
+
+# Addendum A — Wave 1 Continuation: Question-Bank Completion (2026-08-29 IST)
+
+| Field | Value |
+| --- | --- |
+| Result | WAVE_1_QUESTION_BANK_COMPLETION: PASS |
+| Commercial readiness | BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW |
+| Starting HEAD (full) | `2bd554367cdb841790ca0990245e548b27a4efc3` |
+| Previous Wave 1 implementation commit | `5fb452805a4af7ce63b752b56c8a2c69dd5ce0c5` (packs) → `2bd554367cdb841790ca0990245e548b27a4efc3` (documentation + packs, worktree clean at start) |
+| Database writes | NONE |
+| Migration | NONE |
+| Production deployment | NOT REQUIRED — deployed head remains `e6e34008bd264b1533707180428d860dda76a6f9` |
+
+## A1. Volume delivered
+
+| Subject | Required | Prepared | Units | Chapters | Topics | Outcomes | Atoms |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Mathematics | 240 | **240** | 6 | 12 | 38 | 38 | 76 |
+| Science | 160 | **160** | 4 | 12 | 30 | 30 | 60 |
+| **Total** | **400** | **400** | 10 | 24 | 68 | 68 | 136 |
+
+Every unit holds exactly 40 prepared questions with 100% outcome coverage and 100% atom
+coverage; no unit reaches its target by re-testing one outcome (4-8 questions per outcome).
+Thin units were widened with additional topics and outcomes rather than padded:
+Mathematics U1 2→6, U2 4→6, U3 1→6, U5 3→6, U6 2→6 outcomes; Science U2 4→6, U4 2→6.
+
+## A2. How the content was extended
+
+The Wave 1 authoring module was not rewritten. A purely additive extension layer was added:
+
+- `scripts/class9/extension-types.ts` — the `UnitExtension` contract (new topics + extra questions).
+- `scripts/class9/extra/<subject>-u<n>.ts` — one authored extension per unit (10 files).
+- `scripts/class9/extensions.ts` — deterministic merge into the authored subject before build.
+- `scripts/class9/build-packs.ts` — one line: applies extensions, then builds exactly as before.
+- `scripts/class9/reports.ts` — deterministic generator for the volume matrix and both review packages.
+
+No parallel pipeline was created; the contracts, validator and emitted pack shape are unchanged.
+
+## A3. Validation, duplicates and integrity
+
+`VALIDATION: PASS` — 0 errors, 0 warnings over 400 questions. Full evidence:
+`EDUOS_CLASS_9_VALIDATION_REPORT.md` and `EDUOS_CLASS_9_DUPLICATE_AND_INTEGRITY_REPORT.md`.
+Four near-duplicate assertion-reason stems in `C9-SCI-U2` were found and rewritten; nothing
+was resolved by weakening a threshold.
+
+## A4. Coverage matrix
+
+`EDUOS_CLASS_9_CONTENT_VOLUME_MATRIX.md` (generated) carries the unit-level and
+outcome/atom-level matrices, including difficulty and question-type distributions,
+review-ready / human-reviewed / verified / approved counts, allocation and reassessment
+readiness, shortfall and blocking reason per unit.
+
+## A5. Subject-expert review packages
+
+- `EDUOS_CLASS_9_MATHEMATICS_SUBJECT_EXPERT_REVIEW_PACKAGE.md` (240 items)
+- `EDUOS_CLASS_9_SCIENCE_SUBJECT_EXPERT_REVIEW_PACKAGE.md` (160 items)
+
+Each item exposes id, external reference, atom, type, difficulty, prompt, options, correct
+answer, explanation, provenance, status and verification state, with empty reviewer columns for
+accept / reject / correction required / corrected answer / corrected explanation / alignment
+note / difficulty note / date-time, plus a reviewer identity and final decision block.
+
+**HUMAN_REVIEW_STATUS: READY_FOR_REVIEW — 0 HUMAN-REVIEWED.** The existence of a package is not
+review. Nothing was set to verified, approved or publishable.
+
+## A6. Catalogue-subject gap decision
+
+Live catalogue state (read-only query):
+
+| Class | Active | catalogue_subjects rows |
+| --- | --- | --- |
+| 9 | false | 0 |
+| 10 | true | 2 (Mathematics, Science — both purchasable) |
+| 11 | false | 0 |
+| 12 | false | 0 |
+
+Decision: **DEFERRED — no Class 9 `catalogue_subjects` rows created, no migration.**
+Justification: preparation, validation, the coverage matrix and the review packages are all
+file-derived; the gates used for the requirement law are read from the live Class 10 rows.
+Catalogue rows are only required at import time, which is gated behind human review. Creating
+them now would add commercial surface with zero preparation benefit.
+
+## A7. Import status
+
+Dry run only — see `EDUOS_CLASS_9_IMPORT_DRY_RUN_REPORT.md`. Zero database writes; rebuilds are
+byte-identical, so a later `external_ref`-keyed upsert is idempotent.
+
+## A8. Production invariants verified
+
+English only; Class 10 the only active class with both subjects purchasable; Class 9 inactive,
+non-purchasable, hidden and absent from paid diagnostics; Classes 11-12 and streams inactive;
+₹199, ₹2,999, ₹199 credit and ₹2,800 upgrade unchanged; parent, learner and centre journeys,
+assessment lifecycle, DIRECT_PARENT isolation, payments and entitlements untouched. No runtime
+application code, schema, policy or RLS change was made, so no new security surface exists.
+
+## A9. Tests
+
+164 passed / 164 across 14 files (Wave 1 baseline 153/14). Typecheck PASS. Production build PASS.
+New gates cover the 400-question total, per-unit 40, outcome/atom coverage, per-outcome floor and
+ceiling, difficulty and type spread, identifier/reference uniqueness, provenance, answer integrity,
+determinism and paid-diagnostic exclusion.
+
+## A10. Known limitations
+
+1. No named subject-expert review has occurred (0 reviewed / 0 verified / 0 approved).
+2. Difficulty skews to levels 2-3; Science has no level-5 items yet.
+3. Class 9 `catalogue_subjects` rows remain absent (deliberate).
+4. No isolated staging database exists, so only a dry run was possible.
+5. Academic-year rollover policy for 2027-28 is still undecided.
+6. Legacy `parent_entitlements` write path remains in place.
+7. `catalogue_subject_id` remains nullable (deferred tightening).
+8. INR-only pricing architecture.
+9. Syllabus weightings and the rationalised chapter list still need reviewer confirmation
+   against the 2026-27 CBSE circular.
+
+## A11. Rollback
+
+Content is inert files plus non-runtime scripts. Revert the continuation commit
+(`git revert <final SHA>`), delete `scripts/class9/extra/`, `scripts/class9/extension-types.ts`,
+`scripts/class9/extensions.ts` and `scripts/class9/reports.ts`, restore the one-line change in
+`build-packs.ts`, and re-run `bun run scripts/class9/build-packs.ts` to regenerate the 88-question
+baseline packs. No database cleanup is needed (no rows were written). Production impact: none.
