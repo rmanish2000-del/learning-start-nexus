@@ -56,6 +56,83 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "In which state of matter are the constituent particles most loosely packed and free to move throughout the container?",
+      "options": [
+        "Solid",
+        "Liquid",
+        "Gas",
+        "Plasma at room temperature"
+      ],
+      "correctAnswer": "Gas",
+      "explanation": "Gas particles have negligible intermolecular force and large spacing, so they occupy the entire container.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "During the melting of ice at 0 degree C, the temperature of the ice-water mixture keeps rising until melting is complete.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Temperature stays constant at the melting point because supplied heat is used as latent heat to overcome intermolecular force, not to raise temperature.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A solid is heated and its temperature rises steadily, then remains constant for several minutes before rising again. Explain what is happening during the constant-temperature interval.",
+      "options": null,
+      "correctAnswer": "The solid is melting; absorbed heat is latent heat of fusion used to overcome intermolecular attraction, so temperature stays constant until melting is complete.",
+      "explanation": "This tests interpretation of a heating curve plateau as a change of state, not a temperature change.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH1-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH1-T2-O1",
@@ -107,6 +184,85 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Wet clothes dry faster on a windy afternoon than on a calm humid morning. Which pair of factors best explains this observation?",
+      "options": [
+        "Higher wind speed and lower humidity increase evaporation rate",
+        "Lower wind speed and higher humidity increase evaporation rate",
+        "Wind speed has no effect; only surface area matters",
+        "Humidity has no effect; only temperature matters"
+      ],
+      "correctAnswer": "Higher wind speed and lower humidity increase evaporation rate",
+      "explanation": "Wind removes vapour molecules from near the surface and low humidity keeps the air far from saturation, both speeding evaporation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Sweating helps cool the human body mainly because",
+      "options": [
+        "evaporation of sweat absorbs heat from the skin",
+        "sweat is naturally cold when secreted",
+        "sweat increases the boiling point of skin surface",
+        "sweat reflects sunlight away from the body"
+      ],
+      "correctAnswer": "evaporation of sweat absorbs heat from the skin",
+      "explanation": "Evaporation requires latent heat, which is drawn from the body surface, lowering skin temperature.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Explain why spreading a liquid over a larger surface area, such as pouring tea into a saucer, causes it to cool faster than leaving it in a cup.",
+      "options": null,
+      "correctAnswer": "A larger exposed surface area allows more molecules to escape as vapour per second, increasing the rate of evaporation and hence the rate of cooling.",
+      "explanation": "Directly applies the surface-area factor governing evaporation rate.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH2-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH2-T1-O1",
@@ -146,6 +302,85 @@
       ],
       "correctAnswer": "Carbon dioxide",
       "explanation": "Carbon dioxide has elements combined chemically in a fixed ratio with new properties. Air and soil are heterogeneous or homogeneous mixtures, and brass is an alloy, which is also a mixture.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which of the following is a heterogeneous mixture?",
+      "options": [
+        "Sugar solution",
+        "Air",
+        "Oil floating on water",
+        "Brass alloy"
+      ],
+      "correctAnswer": "Oil floating on water",
+      "explanation": "Oil and water form visibly distinct layers with a boundary, so the composition is not uniform throughout.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A solution is prepared by dissolving 15 g of common salt in 135 g of water. What is the mass by mass percentage of the solution?",
+      "options": [
+        "10 percent",
+        "15 percent",
+        "11.1 percent",
+        "9 percent"
+      ],
+      "correctAnswer": "10 percent",
+      "explanation": "Mass percent equals mass of solute divided by total mass of solution, which is 15 divided by 150, multiplied by 100, giving 10 percent.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State one difference each between a compound and a mixture in terms of composition and separation of components.",
+      "options": null,
+      "correctAnswer": "A compound has a fixed composition and its constituent elements can be separated only by chemical means, whereas a mixture has variable composition and its components can be separated by physical means.",
+      "explanation": "Tests the conceptual distinction between compounds and mixtures required by the outcome.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -214,6 +449,85 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A mixture contains a dye that is a blend of several coloured components with different solubilities in the same solvent. Which technique is most suitable to separate the individual components?",
+      "options": [
+        "Chromatography",
+        "Simple distillation",
+        "Sublimation",
+        "Filtration"
+      ],
+      "correctAnswer": "Chromatography",
+      "explanation": "Chromatography separates components that have different rates of movement on a stationary phase due to differing solubility and adsorption.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which technique is used to separate cream from milk based on a difference in density under high-speed rotation?",
+      "options": [
+        "Centrifugation",
+        "Evaporation",
+        "Sedimentation",
+        "Fractional distillation"
+      ],
+      "correctAnswer": "Centrifugation",
+      "explanation": "Centrifugation spins the mixture rapidly so denser and lighter components separate quickly by density difference.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A mixture of two miscible liquids has boiling points of 78 degree C and 100 degree C. Name the separation technique you would use and justify your choice using the relevant property.",
+      "options": null,
+      "correctAnswer": "Fractional distillation should be used because the liquids are miscible and have a boiling point difference, allowing the more volatile liquid to vaporise and be collected first through a fractionating column.",
+      "explanation": "Applies the property-to-technique matching rule for miscible liquids with different boiling points.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH3-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH3-T1-O1",
@@ -253,6 +567,83 @@
       ],
       "correctAnswer": "8.2 g",
       "explanation": "Mass is conserved in a closed system, so the product mass equals the total reactant mass: 5.0 + 3.2 = 8.2 g.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "According to the law of conservation of mass, the total mass of reactants must always equal the total mass of products in a closed chemical reaction.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "In a closed system, mass is neither created nor destroyed during a chemical reaction, so total mass is conserved.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "How many moles of carbon dioxide are present in 88 g of the gas? (Molar mass of carbon dioxide is 44 g per mole)",
+      "options": [
+        "1 mole",
+        "2 moles",
+        "0.5 mole",
+        "4 moles"
+      ],
+      "correctAnswer": "2 moles",
+      "explanation": "Number of moles equals given mass divided by molar mass, which is 88 divided by 44, giving 2 moles.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Calculate the number of molecules present in 0.5 mole of oxygen gas, given Avogadro's number is 6.022 times 10 to the power 23 per mole.",
+      "options": null,
+      "correctAnswer": "Number of molecules equals moles multiplied by Avogadro's number, which is 0.5 multiplied by 6.022 times 10 to the power 23, giving 3.011 times 10 to the power 23 molecules.",
+      "explanation": "Applies the relation between moles and number of particles using Avogadro's number.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -316,6 +707,85 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Magnesium has a valency of 2 and nitrogen has a valency of 3. What is the correct chemical formula of magnesium nitride formed by the criss-cross method?",
+      "options": [
+        "Mg3N2",
+        "Mg2N3",
+        "MgN2",
+        "Mg2N"
+      ],
+      "correctAnswer": "Mg3N2",
+      "explanation": "Criss-crossing the valencies gives 3 magnesium atoms and 2 nitrogen atoms as the smallest whole number ratio.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "What is the molecular mass of water, H2O, given atomic masses of hydrogen equal 1 u and oxygen equal 16 u?",
+      "options": [
+        "17 u",
+        "18 u",
+        "16 u",
+        "19 u"
+      ],
+      "correctAnswer": "18 u",
+      "explanation": "Molecular mass equals 2 times 1 plus 16, which is 2 plus 16 equal to 18 u.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Calculate the formula unit mass of calcium chloride, CaCl2, given atomic masses calcium equals 40 u and chlorine equals 35.5 u.",
+      "options": null,
+      "correctAnswer": "Formula unit mass equals 40 plus 2 times 35.5, which is 40 plus 71, giving 111 u.",
+      "explanation": "Directly applies addition of atomic masses to find formula unit mass of an ionic compound.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH4-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH4-T1-O1",
@@ -355,6 +825,85 @@
       "options": null,
       "correctAnswer": "Mass number 23; the atom is neutral (charge 0)",
       "explanation": "Mass number = protons + neutrons = 11 + 12 = 23. Equal numbers of protons and electrons make the net charge zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Assertion: Most alpha particles passed straight through the gold foil in Rutherford's experiment. Reason: Most of the space inside an atom is empty.",
+      "options": [
+        "Both assertion and reason are true and reason correctly explains the assertion",
+        "Both assertion and reason are true but reason does not correctly explain the assertion",
+        "Assertion is true but reason is false",
+        "Assertion is false but reason is true"
+      ],
+      "correctAnswer": "Both assertion and reason are true and reason correctly explains the assertion",
+      "explanation": "The undeflected passage of most alpha particles was direct evidence that atoms are mostly empty space.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which subatomic particle carries no electric charge and is located inside the nucleus?",
+      "options": [
+        "Electron",
+        "Proton",
+        "Neutron",
+        "Positron"
+      ],
+      "correctAnswer": "Neutron",
+      "explanation": "The neutron is electrically neutral and resides in the nucleus along with the proton.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State one limitation of Rutherford's atomic model that was later addressed by Bohr's model.",
+      "options": null,
+      "correctAnswer": "Rutherford's model could not explain the stability of the atom, since an electron revolving around the nucleus should lose energy and spiral into it; Bohr's model resolved this by proposing fixed energy orbits.",
+      "explanation": "Tests comparison of atomic models as required by the outcome.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -423,6 +972,83 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "An atom has atomic number 17. Using the 2n squared rule, what is its electronic configuration?",
+      "options": [
+        "2, 8, 7",
+        "2, 7, 8",
+        "2, 8, 8",
+        "8, 8, 1"
+      ],
+      "correctAnswer": "2, 8, 7",
+      "explanation": "Filling shells as 2, 8, then the remaining 7 electrons in the third shell gives 2, 8, 7 for 17 electrons.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Isotopes of an element have the same atomic number but different mass numbers due to a different number of neutrons.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Isotopes share the same proton number but differ in neutron number, giving different mass numbers.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Two atoms X and Y have the same mass number but different atomic numbers. What are such atoms called, and what does this imply about their neutron counts?",
+      "options": null,
+      "correctAnswer": "Such atoms are called isobars; since mass number is the same but atomic number differs, the number of neutrons must differ between them to keep the sum of protons and neutrons equal.",
+      "explanation": "Tests the isobar concept and the relationship between atomic number, mass number and neutron count.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U2-CH1-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q1",
       "outcomeId": "C9-SCI-U2-CH1-T1-O1",
@@ -462,6 +1088,167 @@
       "options": null,
       "correctAnswer": "Cell wall and plastids (chloroplasts); a large central vacuole is also typical",
       "explanation": "The rigid cellulose cell wall gives shape and support, and plastids such as chloroplasts carry out photosynthesis. Animal cells have neither.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which organelle is described as the powerhouse of the cell because it releases energy by respiration?",
+      "options": [
+        "Mitochondrion",
+        "Ribosome",
+        "Golgi apparatus",
+        "Vacuole"
+      ],
+      "correctAnswer": "Mitochondrion",
+      "explanation": "Mitochondria break down food molecules to release energy and store it as ATP, which is why they are called the powerhouses of the cell.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Ribosomes are the sites where proteins are synthesised inside a cell.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Ribosomes translate genetic information into polypeptide chains, making them the cell's protein-synthesising machinery.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "What role does the Golgi apparatus play after proteins are made in the endoplasmic reticulum?",
+      "options": null,
+      "correctAnswer": "It modifies, packages and dispatches these proteins to their destinations inside or outside the cell.",
+      "explanation": "The Golgi apparatus receives materials from the endoplasmic reticulum, packs them into vesicles after chemical modification, and sends them to the correct location.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": "Assertion: Muscle cells of an athlete contain an unusually large number of mitochondria. Reason: Mitochondria are the main site of ATP generation, and muscle activity demands a continuous energy supply.",
+      "prompt": "Study the given assertion and reason about cell organelles, and pick the judgement that fits both statements.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Cells with high energy demand, such as active muscle cells, contain more mitochondria to meet their greater requirement for ATP generated during respiration.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The smooth endoplasmic reticulum in liver cells is chiefly associated with which function?",
+      "options": [
+        "Synthesis of lipids and detoxification of substances",
+        "Synthesis of proteins on attached ribosomes",
+        "Digestion of worn-out cell organelles",
+        "Storage of the cell's genetic material"
+      ],
+      "correctAnswer": "Synthesis of lipids and detoxification of substances",
+      "explanation": "Smooth endoplasmic reticulum lacks ribosomes and is mainly involved in lipid synthesis and in detoxifying drugs and poisons, notably in liver cells.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Which cell organelle appears as a large fluid-filled sac that occupies most of a mature plant cell and stores sap?",
+      "options": [
+        "Vacuole",
+        "Nucleus",
+        "Mitochondrion",
+        "Golgi apparatus"
+      ],
+      "correctAnswer": "Vacuole",
+      "explanation": "Mature plant cells typically have one large central vacuole bound by the tonoplast that stores water, sap and wastes, and maintains turgidity.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -525,6 +1312,272 @@
       }
     },
     {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "The net movement of a substance from a region of its higher concentration to a region of its lower concentration, without using energy, is called:",
+      "options": [
+        "Diffusion",
+        "Active transport",
+        "Plasmolysis",
+        "Turgor"
+      ],
+      "correctAnswer": "Diffusion",
+      "explanation": "Diffusion is the passive movement of particles down their concentration gradient and does not require the cell to expend energy.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Osmosis is the diffusion of water molecules from a region of lower water concentration to a region of higher water concentration across a semi-permeable membrane.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Osmosis moves water from a region of higher water concentration (dilute solution) to a region of lower water concentration (concentrated solution) across a semi-permeable membrane.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State what happens to red blood cells when they are placed in distilled water.",
+      "options": null,
+      "correctAnswer": "They gain water by osmosis, swell and may burst because distilled water is hypotonic to the cell contents.",
+      "explanation": "Distilled water has a very high water concentration compared with the cell interior, so water enters the cells by osmosis, causing swelling and possible bursting since red blood cells lack a rigid wall.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Raisins soaked in plain water swell up after some time. This happens mainly because:",
+      "options": [
+        "water enters the raisin cells by osmosis as the surrounding water is hypotonic",
+        "water leaves the raisin cells by osmosis into the surrounding solution",
+        "sugar diffuses out of the raisin faster than water enters",
+        "the raisin cells undergo active transport of water"
+      ],
+      "correctAnswer": "water enters the raisin cells by osmosis as the surrounding water is hypotonic",
+      "explanation": "The dried raisin has a low internal water concentration, so when placed in plain water, water moves into the cells by osmosis, making the raisin swell.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": "Assertion: Farmers avoid applying excess chemical fertiliser too close to plant roots. Reason: A highly concentrated fertiliser solution around the roots can draw water out of root cells by osmosis and damage them.",
+      "prompt": "Considering the assertion and reason on movement of substances across membranes, which single evaluation holds?",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Excess fertiliser makes the soil solution hypertonic to root cells, so water moves out of the roots by osmosis, causing wilting, which is why farmers avoid over-concentration near roots.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "State the term for the firm, swollen condition reached when a walled cell absorbs the maximum water it can hold.",
+      "options": [
+        "Turgidity",
+        "Plasmolysis",
+        "Flaccidity",
+        "Dehydration"
+      ],
+      "correctAnswer": "Turgidity",
+      "explanation": "The rigid cell wall resists excess water entry and pushes back on the swollen protoplast, so the cell becomes firm and turgid instead of bursting.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "The cell theory states that all living organisms are composed of cells and that:",
+      "options": [
+        "cells arise only from pre-existing cells",
+        "every cell contains chlorophyll",
+        "cells always occur singly, never in groups",
+        "only plants are made of cells"
+      ],
+      "correctAnswer": "cells arise only from pre-existing cells",
+      "explanation": "The cell theory holds that the cell is the basic unit of life, all organisms are made of one or more cells, and new cells form by division of existing cells.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "A bacterial cell has a well-defined nuclear membrane enclosing its genetic material.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Bacteria are prokaryotes: their genetic material lies free in the cytoplasm as a nucleoid, without a surrounding nuclear membrane.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Give one structural feature that distinguishes a eukaryotic cell from a prokaryotic cell.",
+      "options": null,
+      "correctAnswer": "A eukaryotic cell has a nucleus enclosed by a nuclear membrane, unlike a prokaryotic cell.",
+      "explanation": "Eukaryotic cells possess a true, membrane-bound nucleus and membrane-bound organelles, while prokaryotic cells lack both.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 3,
+      "stimulus": "Assertion: An onion cell and a cheek cell are both classified as eukaryotic cells. Reason: Both cells possess a nucleus enclosed within a nuclear membrane.",
+      "prompt": "Read the assertion and the reason on cell theory above, then select the statement that judges both correctly.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Both onion and cheek cells have a nuclear membrane enclosing their genetic material, which is precisely why they are grouped as eukaryotic cells.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U2-CH2-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q1",
       "outcomeId": "C9-SCI-U2-CH2-T1-O1",
@@ -564,6 +1617,162 @@
       "options": null,
       "correctAnswer": "Because apical meristem, which divides actively, is located at the tip.",
       "explanation": "Meristematic tissue has thin-walled cells with dense cytoplasm that divide continuously. Apical meristem at the shoot and root tips increases length.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which meristem is located at the tips of roots and shoots and is responsible for increase in length?",
+      "options": [
+        "Apical meristem",
+        "Lateral meristem",
+        "Intercalary meristem",
+        "Ground meristem"
+      ],
+      "correctAnswer": "Apical meristem",
+      "explanation": "Apical meristems occur at root and shoot tips and their continuous cell division brings about growth in the length of the plant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Lateral meristem is responsible for increase in the girth (thickness) of stems and roots.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Lateral meristem, such as the vascular cambium, lies parallel to the long axis of the organ and its division increases the diameter of stems and roots.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Why does grass regain its height quickly after being cut close to the ground?",
+      "options": null,
+      "correctAnswer": "Because intercalary meristem present at the base of the leaves and internodes keeps dividing and adds new tissue.",
+      "explanation": "Intercalary meristem occurs at the base of leaves or internodes, away from the tip, and its activity allows rapid regrowth after cutting or grazing.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A ring of new wood is added around the stem of a tree every year, increasing its girth. Which tissue is responsible for this?",
+      "options": [
+        "Vascular cambium (a lateral meristem)",
+        "Apical meristem",
+        "Epidermis",
+        "Sclerenchyma"
+      ],
+      "correctAnswer": "Vascular cambium (a lateral meristem)",
+      "explanation": "The vascular cambium is a lateral meristem between xylem and phloem; its cell division each growing season produces the annual growth rings seen in tree trunks.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Phloem mainly functions to transport:",
+      "options": [
+        "Food materials such as sugars from leaves to other plant parts",
+        "Water and minerals from roots to leaves",
+        "Oxygen from stomata to internal tissues",
+        "Waste products out of the plant body"
+      ],
+      "correctAnswer": "Food materials such as sugars from leaves to other plant parts",
+      "explanation": "Phloem, made of sieve tubes and companion cells, conducts the products of photosynthesis from leaves to the rest of the plant, in contrast to xylem, which conducts water.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "How do the cells of meristematic tissue generally differ in shape from the cells of permanent tissue?",
+      "options": null,
+      "correctAnswer": "Meristematic cells are small, thin-walled and roughly spherical or polygonal with dense cytoplasm, while permanent tissue cells are larger and often specialised in shape.",
+      "explanation": "Because meristematic cells divide repeatedly, they stay compact with little vacuolation and dense cytoplasm; once they differentiate into permanent tissue, they enlarge and take on shapes suited to a specific function.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -627,6 +1836,272 @@
       }
     },
     {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which tissue forms the outer covering of the body and lines internal cavities such as the gut?",
+      "options": [
+        "Epithelial tissue",
+        "Connective tissue",
+        "Muscular tissue",
+        "Nervous tissue"
+      ],
+      "correctAnswer": "Epithelial tissue",
+      "explanation": "Epithelial tissue consists of closely packed cells forming continuous sheets that cover body surfaces and line internal organs and cavities.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Neurons, the structural units of nervous tissue, are specialised to conduct electrical impulses over long distances.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "A neuron has a cell body with long extensions called axons and dendrites that allow it to receive and transmit nerve impulses rapidly across distances.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Name the connective tissue that binds bones to each other at joints, and state one feature suited to this role.",
+      "options": null,
+      "correctAnswer": "Ligament; it is fibrous and elastic, allowing some flexibility while firmly holding bones together at a joint.",
+      "explanation": "Ligaments are strong yet slightly elastic bands of connective tissue that connect bone to bone, stabilising joints while permitting a controlled range of movement.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Which epithelial type consists of a single layer of elongated, pillar-shaped cells lining the intestine for efficient nutrient uptake?",
+      "options": [
+        "Columnar epithelium",
+        "Squamous epithelium",
+        "Cardiac muscle",
+        "Adipose tissue"
+      ],
+      "correctAnswer": "Columnar epithelium",
+      "explanation": "Columnar epithelial cells are tall and pillar-like, often bearing microvilli, and line the intestine where their shape and arrangement favour absorption and secretion.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which type of muscle tissue is spindle-shaped, unstriated and found in the walls of the stomach and blood vessels?",
+      "options": [
+        "Smooth muscle",
+        "Skeletal muscle",
+        "Cardiac muscle",
+        "Areolar tissue"
+      ],
+      "correctAnswer": "Smooth muscle",
+      "explanation": "Smooth (unstriated) muscle cells are spindle-shaped and involuntary, forming the walls of internal organs such as the stomach, intestine and blood vessels.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": "Assertion: Adipose tissue is classified as a connective tissue. Reason: Its cells are packed with fat and are embedded in a matrix, similar to other connective tissues.",
+      "prompt": "Evaluate the assertion together with its reason on animal tissues and identify the correct verdict.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Adipose tissue stores fat within cells set in a sparse matrix, and this matrix-embedded cellular arrangement is the defining feature that places it among connective tissues.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which simple tissue consists of loosely packed, thin-walled living cells and mainly stores food?",
+      "options": [
+        "Parenchyma",
+        "Sclerenchyma",
+        "Xylem",
+        "Cambium"
+      ],
+      "correctAnswer": "Parenchyma",
+      "explanation": "Parenchyma cells are living, thin-walled and loosely packed with intercellular spaces, and commonly store food and water in soft plant parts.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Sclerenchyma cells are living at maturity and provide flexibility to plant organs.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Sclerenchyma cells are dead at maturity, with thick lignified walls, and they provide rigidity and mechanical strength rather than flexibility.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which simple tissue gives flexibility to the stems of young plants and allows them to bend without breaking?",
+      "options": null,
+      "correctAnswer": "Collenchyma",
+      "explanation": "Collenchyma cells have unevenly thickened corners and remain living, giving mechanical support while still permitting some flexibility and growth.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Biting into a pear or guava, one often feels hard gritty specks in the pulp. These specks are groups of:",
+      "options": [
+        "Parenchyma cells",
+        "Sclerenchyma cells (sclereids)",
+        "Collenchyma cells",
+        "Meristematic cells"
+      ],
+      "correctAnswer": "Sclerenchyma cells (sclereids)",
+      "explanation": "Sclereids are a type of sclerenchyma with extremely thick, lignified walls, forming the hard, gritty groups of cells found in fruits such as guava and pear.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH1-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH1-T1-O1",
@@ -666,6 +2141,57 @@
       ],
       "correctAnswer": "400 m and 0 m",
       "explanation": "Distance is the total path length, 400 m. Displacement is the straight-line change in position; since the athlete finishes where they started, it is zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH1-T1-O1",
+      "atomId": "C9-SCI-U3-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A car starts from rest and accelerates uniformly at 2 m/s² for 5 s. What is its final velocity?",
+      "options": [
+        "5 m/s",
+        "10 m/s",
+        "15 m/s",
+        "20 m/s"
+      ],
+      "correctAnswer": "10 m/s",
+      "explanation": "Using v = u + at: v = 0 + 2 x 5 = 10 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH1-T1-O1",
+      "atomId": "C9-SCI-U3-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A cyclist covers 300 m north then 400 m east in 100 s. Find the magnitude of displacement.",
+      "options": null,
+      "correctAnswer": "500 m",
+      "explanation": "Displacement magnitude = sqrt(300^2 + 400^2) = sqrt(90000+160000) = sqrt(250000) = 500 m.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -734,6 +2260,62 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH1-T2-O1",
+      "atomId": "C9-SCI-U3-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "On a velocity-time graph, a straight horizontal line parallel to the time axis represents",
+      "options": [
+        "uniform acceleration",
+        "uniform velocity",
+        "uniform retardation",
+        "an object at rest"
+      ],
+      "correctAnswer": "uniform velocity",
+      "explanation": "A horizontal v-t line has zero slope, so acceleration is zero and velocity stays constant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH1-T2-O1",
+      "atomId": "C9-SCI-U3-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A body moves in a circle of radius 7 m at constant speed, completing one round in 22 s. Its speed is (use pi = 22/7)",
+      "options": [
+        "1 m/s",
+        "2 m/s",
+        "3 m/s",
+        "4 m/s"
+      ],
+      "correctAnswer": "2 m/s",
+      "explanation": "Speed = circumference / time = (2 x 22/7 x 7) / 22 = 44/22 = 2 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH2-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH2-T1-O1",
@@ -773,6 +2355,60 @@
       ],
       "correctAnswer": "inertia of rest",
       "explanation": "The lower body moves with the bus while the upper body tends to remain at rest because of inertia of rest, so the passenger falls backward.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH2-T1-O1",
+      "atomId": "C9-SCI-U3-CH2-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "A passenger standing in a bus tends to fall backward when the bus suddenly starts moving forward, due to inertia of rest.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "By Newton's first law, the passenger's body resists the sudden change from rest, causing a backward lurch.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH2-T1-O1",
+      "atomId": "C9-SCI-U3-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A net force of 15 N acts on a block of mass 3 kg initially at rest. What acceleration does it produce?",
+      "options": [
+        "3 m/s²",
+        "5 m/s²",
+        "8 m/s²",
+        "45 m/s²"
+      ],
+      "correctAnswer": "5 m/s²",
+      "explanation": "Using F = ma: a = F/m = 15/3 = 5 m/s².",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -836,6 +2472,57 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH2-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH2-T2-O1",
+      "atomId": "C9-SCI-U3-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Calculate the momentum of a 4 kg object moving at 6 m/s.",
+      "options": null,
+      "correctAnswer": "24 kg m/s",
+      "explanation": "Momentum p = mv = 4 x 6 = 24 kg m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH2-T2-O1",
+      "atomId": "C9-SCI-U3-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A 2 kg trolley moving at 3 m/s collides with a stationary 1 kg trolley and they stick together. Find their common velocity.",
+      "options": [
+        "1 m/s",
+        "2 m/s",
+        "3 m/s",
+        "4 m/s"
+      ],
+      "correctAnswer": "2 m/s",
+      "explanation": "By conservation of momentum: 2x3 + 1x0 = (2+1)v, so 6 = 3v, v = 2 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH3-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH3-T1-O1",
@@ -875,6 +2562,62 @@
       ],
       "correctAnswer": "one-fourth",
       "explanation": "Gravitational force is inversely proportional to the square of the distance, so doubling r divides the force by 2² = 4.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH3-T1-O1",
+      "atomId": "C9-SCI-U3-CH3-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "The weight of an object of mass 5 kg on Earth's surface (g = 10 m/s²) is",
+      "options": [
+        "5 N",
+        "10 N",
+        "50 N",
+        "500 N"
+      ],
+      "correctAnswer": "50 N",
+      "explanation": "Weight W = mg = 5 x 10 = 50 N.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH3-T1-O1",
+      "atomId": "C9-SCI-U3-CH3-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion: The mass of an object is the same on the Earth and on the Moon. Reason: The gravitational force of attraction on an object depends on the mass of the planet.",
+      "options": [
+        "Both assertion and reason are true, and reason correctly explains assertion",
+        "Both assertion and reason are true, but reason does not correctly explain assertion",
+        "Assertion is true but reason is false",
+        "Assertion is false but reason is true"
+      ],
+      "correctAnswer": "Both assertion and reason are true, but reason does not correctly explain assertion",
+      "explanation": "Mass stays constant everywhere as it depends only on the object, while weight changes because g differs on the Moon; the reason is a true fact but does not explain why mass is constant.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -938,6 +2681,60 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH3-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH3-T2-O1",
+      "atomId": "C9-SCI-U3-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A force of 40 N acts perpendicularly on an area of 2 m². The pressure exerted is",
+      "options": [
+        "10 Pa",
+        "20 Pa",
+        "40 Pa",
+        "80 Pa"
+      ],
+      "correctAnswer": "20 Pa",
+      "explanation": "Pressure P = F/A = 40/2 = 20 Pa.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH3-T2-O1",
+      "atomId": "C9-SCI-U3-CH3-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "According to Archimedes' principle, an object floats only if its density is less than or equal to the density of the fluid it is placed in.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "An object floats when the upthrust from displaced fluid equals its weight, which occurs when its average density does not exceed the fluid's density.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH4-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH4-T1-O1",
@@ -977,6 +2774,57 @@
       ],
       "correctAnswer": "zero",
       "explanation": "The gravitational force acts vertically while the displacement is horizontal. With the force perpendicular to displacement, the work done against gravity is zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH4-T1-O1",
+      "atomId": "C9-SCI-U3-CH4-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A boy pushes a box with a force of 20 N and moves it 5 m in the direction of the force. The work done is",
+      "options": [
+        "4 J",
+        "15 J",
+        "25 J",
+        "100 J"
+      ],
+      "correctAnswer": "100 J",
+      "explanation": "Work W = F x d = 20 x 5 = 100 J.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH4-T1-O1",
+      "atomId": "C9-SCI-U3-CH4-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Find the kinetic energy of a 2 kg ball moving with a speed of 5 m/s.",
+      "options": null,
+      "correctAnswer": "25 J",
+      "explanation": "KE = 1/2 m v^2 = 0.5 x 2 x 25 = 25 J.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -1040,6 +2888,62 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH4-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH4-T2-O1",
+      "atomId": "C9-SCI-U3-CH4-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A motor does 600 J of work in 20 s. What is its power output?",
+      "options": [
+        "10 W",
+        "30 W",
+        "600 W",
+        "12000 W"
+      ],
+      "correctAnswer": "30 W",
+      "explanation": "Power P = W/t = 600/20 = 30 W.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH4-T2-O1",
+      "atomId": "C9-SCI-U3-CH4-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "When a ball is dropped from a height and falls freely under gravity, ignoring air resistance, its",
+      "options": [
+        "kinetic energy decreases and potential energy increases",
+        "total mechanical energy remains constant",
+        "total mechanical energy keeps decreasing",
+        "potential energy alone remains constant"
+      ],
+      "correctAnswer": "total mechanical energy remains constant",
+      "explanation": "By the law of conservation of energy, potential energy converts to kinetic energy so their sum stays constant in free fall without friction.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH5-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH5-T1-O1",
@@ -1079,6 +2983,62 @@
       ],
       "correctAnswer": "it needs a material medium whose particles can vibrate",
       "explanation": "Sound propagates as compressions and rarefactions of particles. A vacuum has no particles, so there is nothing to carry the disturbance.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH5-T1-O1",
+      "atomId": "C9-SCI-U3-CH5-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Sound waves travelling through air are best described as",
+      "options": [
+        "transverse waves",
+        "longitudinal waves",
+        "electromagnetic waves",
+        "standing waves only"
+      ],
+      "correctAnswer": "longitudinal waves",
+      "explanation": "In sound waves, particles of the medium vibrate parallel to the direction of wave propagation, which defines a longitudinal wave.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH5-T1-O1",
+      "atomId": "C9-SCI-U3-CH5-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A sound wave has a frequency of 250 Hz and wavelength of 1.4 m. What is its speed?",
+      "options": [
+        "178.6 m/s",
+        "251.4 m/s",
+        "350 m/s",
+        "500 m/s"
+      ],
+      "correctAnswer": "350 m/s",
+      "explanation": "Speed v = frequency x wavelength = 250 x 1.4 = 350 m/s.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -1142,6 +3102,57 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH5-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH5-T2-O1",
+      "atomId": "C9-SCI-U3-CH5-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A ship sends a SONAR signal that returns after 4 s. If the speed of sound in water is 1500 m/s, how deep is the sea below the ship?",
+      "options": [
+        "750 m",
+        "1500 m",
+        "3000 m",
+        "6000 m"
+      ],
+      "correctAnswer": "3000 m",
+      "explanation": "Distance travelled by sound = speed x time = 1500 x 4 = 6000 m, and depth is half of that (down and back): 6000/2 = 3000 m.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH5-T2-O1",
+      "atomId": "C9-SCI-U3-CH5-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "State the minimum distance between a listener and a reflecting surface needed to hear a distinct echo, taking the speed of sound as 340 m/s (persistence of hearing is 0.1 s).",
+      "options": null,
+      "correctAnswer": "17 m",
+      "explanation": "Minimum distance = (speed x time)/2 = (340 x 0.1)/2 = 34/2 = 17 m.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U4-CH1-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q1",
       "outcomeId": "C9-SCI-U4-CH1-T1-O1",
@@ -1193,6 +3204,116 @@
       }
     },
     {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Kharif crops are sown at the start of the monsoon and harvested in autumn.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Kharif crops such as paddy and maize are sown around June-July with the onset of rains and harvested around September-October.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A farmer wants a wheat variety that resists lodging in strong wind. Which trait should the seed catalogue highlight for this need?",
+      "options": [
+        "High protein content",
+        "Short and sturdy stem",
+        "Early maturity",
+        "Attractive grain colour"
+      ],
+      "correctAnswer": "Short and sturdy stem",
+      "explanation": "Lodging is the bending or falling of tall, weak stems under wind or rain; a short, sturdy stem resists this and keeps the crop standing.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): Excessive use of chemical fertiliser over many years can reduce soil fertility. Reason (R): Fertilisers add only mineral nutrients and do not replenish soil organic matter.",
+      "options": [
+        "Both A and R are true and R is the correct explanation of A",
+        "Both A and R are true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true"
+      ],
+      "correctAnswer": "Both A and R are true and R is the correct explanation of A",
+      "explanation": "Repeated fertiliser use without organic matter can degrade soil structure and microbial activity, since fertilisers supply nutrients but not humus.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of these is an example of a desirable agronomic trait bred into an improved crop variety?",
+      "options": [
+        "Susceptibility to pests",
+        "Resistance to lodging",
+        "Longer maturity period",
+        "Low yield stability"
+      ],
+      "correctAnswer": "Resistance to lodging",
+      "explanation": "Crop variety improvement programmes select for traits like lodging resistance, disease resistance, higher yield and better quality that benefit the farmer.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U4-CH1-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q1",
       "outcomeId": "C9-SCI-U4-CH1-T2-O1",
@@ -1232,6 +3353,853 @@
       "options": null,
       "correctAnswer": "By stocking species that feed at different levels of the pond, so all available food is used without competition.",
       "explanation": "Surface feeders, mid-zone feeders, bottom feeders and weed feeders are combined so that each ecological niche of the pond is exploited, raising total production.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Broiler poultry birds are reared mainly for which purpose?",
+      "options": [
+        "Egg production",
+        "Meat production",
+        "Wool production",
+        "Draught labour"
+      ],
+      "correctAnswer": "Meat production",
+      "explanation": "Broilers are chicken varieties selected and reared specifically for meat, growing quickly to market weight, unlike layers which are kept for eggs.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Cross-breeding is used in cattle rearing to combine high milk yield with disease resistance.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Cross-breeding mates a high-yielding exotic breed with a disease-resistant local breed so offspring inherit both desirable traits.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A dairy farmer notices her cows fall ill often despite giving good milk yield. Which breeding approach would most directly address disease resistance while retaining yield?",
+      "options": [
+        "Inbreeding within the same herd",
+        "Cross-breeding with a disease-resistant indigenous breed",
+        "Feeding only concentrated feed",
+        "Increasing the milking frequency"
+      ],
+      "correctAnswer": "Cross-breeding with a disease-resistant indigenous breed",
+      "explanation": "Cross-breeding introduces genes for disease resistance from indigenous breeds while the exotic parentage maintains higher milk yield.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Name two categories of feed given to dairy cattle to maintain both maintenance and milk production.",
+      "options": null,
+      "correctAnswer": "Roughage and concentrate",
+      "explanation": "Roughage (fibrous fodder) meets maintenance needs while concentrate (nutrient-dense feed) supports the additional demand of milk production.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which of the following is NOT a commonly desired trait in an improved crop variety?",
+      "options": [
+        "Higher yield",
+        "Disease resistance",
+        "Poor storage quality",
+        "Better grain quality"
+      ],
+      "correctAnswer": "Poor storage quality",
+      "explanation": "Breeders aim for traits that benefit farmers and consumers, such as high yield, disease resistance and good storage quality, not poor storage quality.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Hybridisation involves crossing genetically different plants to combine desirable traits in the offspring.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Hybridisation crosses two plants with different desirable characters so that the resulting hybrid combines the best traits of both parents.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State one reason plant breeders develop crop varieties with early maturity.",
+      "options": null,
+      "correctAnswer": "Early-maturing varieties allow farmers to grow more crops in a year, increasing overall cropping intensity.",
+      "explanation": "A shorter growing period frees the field sooner for the next crop, which raises the number of crop cycles possible per year on the same land.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A region frequently faces a fungal leaf blight that reduces rice yield. Which improvement strategy would most directly protect future harvests?",
+      "options": [
+        "Breeding rice varieties resistant to the blight",
+        "Increasing irrigation frequency only",
+        "Switching to a taller variety",
+        "Delaying the sowing date by one month"
+      ],
+      "correctAnswer": "Breeding rice varieties resistant to the blight",
+      "explanation": "Introducing genetic resistance to the specific pathogen directly reduces crop losses, whereas irrigation or sowing changes do not address the disease itself.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Improved crop varieties are often selected for wider climatic adaptability so that they can:",
+      "options": [
+        "Grow only in one narrow climate zone",
+        "Be grown successfully in varied climatic conditions",
+        "Require no water at all",
+        "Avoid producing seeds"
+      ],
+      "correctAnswer": "Be grown successfully in varied climatic conditions",
+      "explanation": "Wide adaptability allows the same variety to perform well across different regions and seasons, which is valuable for large-scale cultivation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Why do plant breeders test a new variety across multiple locations before releasing it to farmers?",
+      "options": null,
+      "correctAnswer": "Multi-location trials confirm the variety performs consistently under different soil and climate conditions before wide release.",
+      "explanation": "A variety may perform well in one location but poorly in another due to soil or climate differences, so trials across sites confirm reliable, wide adaptability before release.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): Improved crop varieties can increase quality of produce along with yield. Reason (R): Quality traits such as protein content or oil content in seeds can be selected for during breeding.",
+      "options": [
+        "Both A and R are true and R is the correct explanation of A",
+        "Both A and R are true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true"
+      ],
+      "correctAnswer": "Both A and R are true and R is the correct explanation of A",
+      "explanation": "Breeding programmes select for nutritional and quality traits alongside yield, so improved varieties can be both higher-yielding and better in quality.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of the following is a macro-nutrient required by plants in relatively large amounts?",
+      "options": [
+        "Nitrogen",
+        "Boron",
+        "Zinc",
+        "Molybdenum"
+      ],
+      "correctAnswer": "Nitrogen",
+      "explanation": "Nitrogen, phosphorus and potassium are macro-nutrients needed in large quantities, while boron, zinc and molybdenum are micro-nutrients needed in traces.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Biofertilisers use living microorganisms to enrich soil with nutrients such as nitrogen.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Biofertilisers contain organisms like nitrogen-fixing bacteria that convert atmospheric nitrogen into forms plants can absorb, enriching the soil biologically.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Explain why compost is considered environmentally beneficial compared to synthetic fertiliser overuse.",
+      "options": null,
+      "correctAnswer": "Compost recycles organic waste into humus that improves soil structure without the runoff and pollution risks of excess synthetic fertiliser.",
+      "explanation": "Compost is made from decomposed organic matter, improving soil texture and water retention, whereas excess synthetic fertiliser can leach into water bodies and cause pollution such as eutrophication.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A field has been fertilised heavily every season for years, and nearby ponds show excessive algal growth. Which practice most likely caused the pond problem?",
+      "options": [
+        "Crop rotation with legumes",
+        "Nutrient runoff from excess chemical fertiliser",
+        "Use of organic compost only",
+        "Intercropping with pulses"
+      ],
+      "correctAnswer": "Nutrient runoff from excess chemical fertiliser",
+      "explanation": "Excess nitrogen and phosphorus from over-fertilised fields can wash into water bodies, causing eutrophication and excessive algal growth.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Growing a leguminous crop between two cereal crops mainly helps to replenish which nutrient in the soil?",
+      "options": [
+        "Nitrogen",
+        "Potassium",
+        "Iron",
+        "Sulphur"
+      ],
+      "correctAnswer": "Nitrogen",
+      "explanation": "Leguminous plants host nitrogen-fixing bacteria in root nodules that convert atmospheric nitrogen into usable compounds, enriching soil nitrogen.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Chemical fertilisers act more slowly than organic manure in supplying nutrients to plants.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Chemical fertilisers are readily soluble and act quickly, whereas organic manure releases nutrients gradually as it decomposes.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Give one reason crop rotation with different nutrient demands helps maintain soil fertility.",
+      "options": null,
+      "correctAnswer": "It prevents the depletion of any one nutrient because different crops draw on different nutrients from the soil.",
+      "explanation": "Continuous cultivation of the same crop depletes specific nutrients; rotating crops with different nutrient requirements balances nutrient use and helps restore fertility.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Drip irrigation is preferred in water-scarce regions mainly because it:",
+      "options": [
+        "Floods the entire field uniformly",
+        "Delivers water drop by drop directly near the plant roots, reducing wastage",
+        "Requires no water source at all",
+        "Increases water evaporation from the soil surface"
+      ],
+      "correctAnswer": "Delivers water drop by drop directly near the plant roots, reducing wastage",
+      "explanation": "Drip irrigation supplies water precisely at the root zone in small measured amounts, minimising evaporation and runoff losses compared to flood irrigation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Intercropping means growing two or more crops in a definite row pattern in the same field at the same time.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Intercropping arranges different crops in alternating rows in the same season, allowing efficient use of resources and reducing pest spread.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A farmer in a drought-prone area wants to conserve water while still irrigating a vegetable field regularly. Which method best suits this need?",
+      "options": [
+        "Flood irrigation",
+        "Sprinkler or drip irrigation",
+        "Leaving the field unirrigated",
+        "Digging an open uncovered canal"
+      ],
+      "correctAnswer": "Sprinkler or drip irrigation",
+      "explanation": "Sprinkler and drip systems apply water efficiently in controlled amounts, conserving water compared to flood irrigation, which is important in drought-prone regions.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Differentiate mixed cropping from intercropping in one sentence.",
+      "options": null,
+      "correctAnswer": "In mixed cropping, seeds of two or more crops are sown together without a fixed row pattern, while intercropping grows crops in a defined alternating row pattern.",
+      "explanation": "Mixed cropping mixes seeds randomly to reduce risk of total crop failure, whereas intercropping deliberately arranges rows of different crops for efficient resource use.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of these is a traditional source of irrigation water still used in many Indian villages?",
+      "options": [
+        "Drip irrigation",
+        "Wells and tanks",
+        "Fertigation",
+        "Sprinkler system"
+      ],
+      "correctAnswer": "Wells and tanks",
+      "explanation": "Wells, tanks, canals and rivers are traditional irrigation sources, while drip and sprinkler systems are modern water-efficient methods.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Sprinkler irrigation is especially suitable for which type of land?",
+      "options": [
+        "Uneven, undulating land",
+        "Only perfectly flat paddy fields",
+        "Waterlogged marshland",
+        "Land with no crops at all"
+      ],
+      "correctAnswer": "Uneven, undulating land",
+      "explanation": "Sprinkler irrigation sprays water like rainfall over the field, so it works well on uneven or sandy land where channel-based flooding is impractical.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): Crop rotation with a legume crop can reduce the need for nitrogen fertiliser in the following season. Reason (R): Legume roots host bacteria that fix atmospheric nitrogen into the soil.",
+      "options": [
+        "Both A and R are true and R is the correct explanation of A",
+        "Both A and R are true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true"
+      ],
+      "correctAnswer": "Both A and R are true and R is the correct explanation of A",
+      "explanation": "Legumes enrich soil nitrogen through their root-nodule bacteria, so a following cereal crop needs less added nitrogen fertiliser.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Weeds compete with the main crop mainly for:",
+      "options": [
+        "Shade only",
+        "Water, nutrients, space and light",
+        "Carbon dioxide only",
+        "Pollinators only"
+      ],
+      "correctAnswer": "Water, nutrients, space and light",
+      "explanation": "Weeds are unwanted plants that grow alongside crops and compete for the same resources — water, nutrients, space and sunlight — reducing crop yield.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Storing grain with high moisture content increases the risk of fungal attack and spoilage.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Moist grain provides a favourable environment for fungi and insects to grow, leading to spoilage, so grain must be dried before storage.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Name two factors, besides insects, that cause deterioration of grain during storage.",
+      "options": null,
+      "correctAnswer": "Moisture and inappropriate temperature",
+      "explanation": "Excess moisture encourages fungal growth and germination, while unsuitable temperature also promotes spoilage; both must be controlled in storage.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A farmer stores wheat in sacks in a damp, poorly ventilated room and later finds fungal growth on the grain. What was the most likely primary cause?",
+      "options": [
+        "Excess grain moisture combined with poor ventilation",
+        "Too much sunlight exposure",
+        "Using pest-resistant seed variety",
+        "Storing grain in metal bins"
+      ],
+      "correctAnswer": "Excess grain moisture combined with poor ventilation",
+      "explanation": "Damp, poorly ventilated storage keeps grain moisture high, creating ideal conditions for fungal growth and spoilage.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which practice helps control insect pests on a standing crop without harming it excessively?",
+      "options": [
+        "Timely application of appropriate pesticide at recommended dose",
+        "Flooding the field permanently",
+        "Removing all irrigation water",
+        "Sowing seeds without any prior treatment"
+      ],
+      "correctAnswer": "Timely application of appropriate pesticide at recommended dose",
+      "explanation": "Applying the correct pesticide at the right time and dose controls pests effectively while minimising damage to the crop and environment.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Grain is dried to reduce moisture before being placed in storage bins. What is the main scientific reason for this step?",
+      "options": [
+        "Dry grain weighs more than moist grain",
+        "Low moisture content discourages fungal growth and insect activity",
+        "Drying changes the grain colour permanently",
+        "Dry grain germinates faster in storage"
+      ],
+      "correctAnswer": "Low moisture content discourages fungal growth and insect activity",
+      "explanation": "Reducing moisture content below a safe threshold before storage inhibits fungal growth and insect activity, preventing spoilage over long storage periods.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Weeding is unnecessary once a crop variety resistant to weeds has been sown.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "No crop variety eliminates weed competition entirely, so weeding or weed control measures remain necessary even with resistant varieties.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
