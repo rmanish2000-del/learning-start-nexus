@@ -56,7 +56,15 @@ export const createAssessmentSchema = z.object({
   title: z.string().trim().min(3, "Title is required").max(120),
   description: z.string().trim().max(500).optional(),
   timeLimitMinutes: z.number().int().min(1).max(180).optional(),
-  itemIds: z.array(z.string().uuid()).min(1, "Pick at least one question").max(50),
+  // Curriculum linkage is mandatory: an assessment inherits its board, grade and
+  // subject from the book it is built from. Without it the record cannot be
+  // classified inside the active scope and could never be published.
+  bookId: z.string().uuid("Select a curriculum book"),
+  unitId: z.string().uuid("Select a unit"),
+  questionIds: z.array(z.string().uuid()).min(1, "Pick at least one question").max(50),
+  // Legacy Grade 6 item bank — archived and read-only. Accepted on the wire so
+  // an old client fails with a clear message instead of a schema error.
+  itemIds: z.array(z.string().uuid()).max(50).optional(),
   // Retained for wire compatibility only — creation NEVER publishes. Every new
   // assessment starts as a draft; publishing is a separate explicit action.
   publishNow: z.boolean().optional(),

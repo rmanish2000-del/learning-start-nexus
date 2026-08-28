@@ -1,14 +1,24 @@
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
+  AlertCircle,
   ArrowRight,
-  Check,
+  Building2,
   GraduationCap,
   ShieldCheck,
-  X,
+  Users,
 } from "lucide-react";
 
 import { PilotForm } from "@/components/landing/pilot-form";
+import { AudienceSection } from "@/components/landing/audience-section";
+import { LoopSection } from "@/components/landing/loop-section";
+import { TrustSection } from "@/components/landing/trust-section";
+import {
+  CENTRE_DEMO_SEARCH,
+  FREE_CHECK_SEARCH,
+  PublicSiteFooter,
+  PublicSiteHeader,
+} from "@/components/public-layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,25 +27,41 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  CENTRE_BENEFITS,
-  EVIDENCE_CHAIN,
-  FAQS,
-  LOOP_STEPS,
-  PARENT_QUESTIONS,
-  PARENT_REPORT,
-  PROOF_STRIP,
-  ROLE_LANES,
-  SAMPLE_LABEL,
-  TUTOR_FALLBACK,
-  TUTOR_SAFETY,
-} from "@/lib/landing-content";
-import { LanguageToggle } from "@/components/language-toggle";
-import { useI18n } from "@/lib/i18n/context";
 
-const TITLE = "EduOS — Prove the learning gap closed, don't claim it";
+const TITLE = "EduOS — Find the learning gaps. Prove the progress.";
 const DESCRIPTION =
-  "EduOS closes the loop for tutoring centres: diagnose, detect the gap, intervene, tutor, reassess on fresh items, and publish verified mastery lift.";
+  "EduOS is a Learning Intelligence and Intervention System. It identifies specific learning gaps, creates targeted next steps, tracks interventions and uses fresh reassessment to evidence progress. CBSE Class 10 Mathematics and Science.";
+
+const FAQS = [
+  {
+    q: "What exactly is EduOS?",
+    a: "A Learning Intelligence and Intervention System. It runs a diagnostic, names the specific learning gaps behind the marks, records the intervention taken against each gap, and reassesses on fresh questions to determine whether the gap has closed.",
+  },
+  {
+    q: "What does the free learning check include?",
+    a: "Five verified questions, one per subject area, with no payment and no card required. The learner answers it in their own workspace and the parent sees a limited preview of the report.",
+  },
+  {
+    q: "What does the ₹199 diagnostic add?",
+    a: "A full curriculum-mapped diagnostic of up to twenty questions with an outcome-by-outcome report, the named gaps ranked, and the recommended next step for each one.",
+  },
+  {
+    q: "How does the ₹2,999 plan work?",
+    a: "The annual Board Success Plan is ₹2,999. If you have already paid for the ₹199 diagnostic and upgrade within the credit window, that ₹199 is applied, so ₹2,800 is payable.",
+  },
+  {
+    q: "Can the AI tutor change results?",
+    a: "No. The tutor works inside an approved intervention and can explain or question. It cannot edit a score, and it cannot mark a gap closed — only a fresh reassessment does that.",
+  },
+  {
+    q: "Which board, class and subjects are supported today?",
+    a: "CBSE Class 10 Mathematics and Science, in India, priced in INR. Learner-facing surfaces support English and Hindi where currently translated.",
+  },
+  {
+    q: "Can a school use EduOS?",
+    a: "School engagement is consultation-led. EduOS can support earlier gap visibility, interventions, reassessment and evidence, but school-specific structures such as classes, sections, timetables, attendance and academic calendars are not implemented today.",
+  },
+];
 
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
@@ -50,8 +76,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.eduos.global/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://www.eduos.global/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -62,7 +90,17 @@ export const Route = createFileRoute("/")({
               "@type": "Organization",
               name: "EduOS",
               url: "https://www.eduos.global",
+              email: "support@eduos.global",
+              telephone: "+91-9850820909",
               description: DESCRIPTION,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Tilak Ward, Deori",
+                addressLocality: "Sagar",
+                addressRegion: "Madhya Pradesh",
+                postalCode: "470226",
+                addressCountry: "IN",
+              },
             },
             {
               "@type": "SoftwareApplication",
@@ -87,69 +125,9 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-function SampleTag() {
-  const { t } = useI18n();
-  return (
-    <Badge variant="outline" className="font-normal text-muted-foreground">
-      {t("landing.sample.label", SAMPLE_LABEL)}
-    </Badge>
-  );
-}
-
-function Section({
-  id,
-  eyebrow,
-  title,
-  lede,
-  children,
-  muted,
-}: {
-  id: string;
-  eyebrow: string;
-  title: string;
-  lede?: string;
-  children: React.ReactNode;
-  muted?: boolean;
-}) {
-  return (
-    <section id={id} className={muted ? "border-t bg-muted/40" : "border-t"}>
-      <div className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
-        <p className="text-xs font-medium tracking-widest text-primary uppercase">{eyebrow}</p>
-        <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
-        {lede ? <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">{lede}</p> : null}
-        <div className="mt-8">{children}</div>
-      </div>
-    </section>
-  );
-}
-
 function hasSessionMarker() {
   return typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie);
 }
-
-/**
- * Parent-first conversion pair. Repeated in the hero, the pricing block and
- * the footer so account creation is reachable without entering the
- * diagnostic flow first.
- */
-function ParentCtas({ size = "default" }: { size?: "default" | "lg" }) {
-  const { t } = useI18n();
-  return (
-    <div className="mt-7 flex flex-wrap items-center gap-3">
-      <Button asChild size={size}>
-        <Link to="/diagnostic">
-          {t("landing.cta.startDiagnostic", "Start Diagnostic")} <ArrowRight className="h-4 w-4" />
-        </Link>
-      </Button>
-      <Button asChild size={size} variant="outline">
-        <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
-          {t("landing.cta.createParent", "Create Parent Account")}
-        </Link>
-      </Button>
-    </div>
-  );
-}
-
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -161,460 +139,342 @@ function LandingPage() {
   }, [navigate]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <SiteHeader />
-      <main className="flex-1">
+    <div className="flex min-h-dvh flex-col bg-background">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
+      <PublicSiteHeader />
+      <main id="main-content" className="flex-1">
         <Hero />
-        <HowItWorks />
-        <ClosureLoop />
-        <TutorSafety />
-        <SampleEvidence />
-        <ParentTrust />
-        <CentreBenefits />
+        <ProblemSection />
+        <LoopSection />
+        <ParentsSection />
+        <CentresSection />
+        <SchoolsSection />
+        <TrustSection />
+        <PricingSection />
         <FaqSection />
-        <PilotCta />
+        <CentreCtaSection />
       </main>
-      <SiteFooter />
+      <PublicSiteFooter />
     </div>
   );
 }
 
-function SiteHeader() {
-  const { t } = useI18n();
-  return (
-    <header className="sticky top-0 z-30 border-b bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <Link to="/" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <GraduationCap className="h-4.5 w-4.5" />
-          </span>
-          <span className="text-base font-semibold tracking-tight">EduOS</span>
-        </Link>
-        <nav className="flex items-center gap-3 text-sm">
-          <a href="#how" className="hidden text-muted-foreground hover:text-foreground lg:inline">
-            {t("landing.nav.how", "How it works")}
-          </a>
-          <a href="#evidence" className="hidden text-muted-foreground hover:text-foreground lg:inline">
-            {t("landing.nav.evidence", "Evidence")}
-          </a>
-          <a href="#pilot" className="hidden text-muted-foreground hover:text-foreground lg:inline">
-            {t("landing.nav.pilot", "Apply for the pilot")}
-          </a>
-          <LanguageToggle />
-          <Link
-            to="/auth"
-            search={{ tab: "parent", mode: "signin" }}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            {t("common.signIn", "Sign In")}
-          </Link>
-          <Button asChild size="sm">
-            <Link to="/auth" search={{ tab: "parent", mode: "signup" }}>
-              {t("common.createAccount", "Create Account")}
-            </Link>
-          </Button>
-        </nav>
-
-      </div>
-    </header>
-  );
-}
-
 function Hero() {
-  const { t } = useI18n();
   return (
-    <section className="mx-auto max-w-5xl px-4 pt-16 pb-12 sm:pt-24 sm:pb-16">
-      <Badge variant="secondary" className="font-normal">
-        {t("landing.hero.badge", "Learning intelligence for tutoring centres")}
-      </Badge>
-      <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-        {t("landing.hero.title", "Prove the learning gap closed. Don't claim it.")}
-      </h1>
-      <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-        {t(
-          "landing.hero.lede",
-          "EduOS runs the whole loop — diagnostic, gap detection, approved intervention, Socratic AI tutor, fresh-item reassessment — and ends with evidence a reviewer has signed.",
-        )}
-      </p>
-      <ParentCtas size="lg" />
-      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-        <a href="#pilot" className="font-medium text-primary hover:underline">
-          {t("landing.hero.ctaPrimary", "Apply for the pilot")} →
-        </a>
-        <a href="#evidence" className="text-muted-foreground hover:text-foreground">
-          {t("landing.hero.ctaSecondary", "See a sample outcome report")}
-        </a>
-      </div>
+    <section className="mx-auto max-w-6xl px-4 pt-14 pb-12 sm:pt-20 sm:pb-16">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <Badge variant="secondary" className="font-normal">
+            Learning Intelligence &amp; Intervention
+          </Badge>
+          <h1 className="mt-5 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+            Find the learning gaps. Close them with purpose. Prove the progress.
+          </h1>
+          <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
+            EduOS identifies specific learning gaps, creates targeted next steps, tracks
+            interventions, and uses fresh reassessment to provide evidence of demonstrated
+            progress.
+          </p>
 
-
-      <div className="mt-12 grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3">
-        {PROOF_STRIP.map((s, i) => (
-          <div key={s.label} className="bg-card p-5">
-            <p className="text-3xl font-semibold tabular-nums tracking-tight">{s.value}</p>
-            <p className="mt-1 text-sm font-medium">{t(`landing.proof.${i}.label`, s.label)}</p>
-            <p className="mt-1 text-xs text-muted-foreground">{t(`landing.proof.${i}.note`, s.note)}</p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button asChild size="lg">
+              <Link to="/auth" search={FREE_CHECK_SEARCH}>
+                Start a Free Learning Check <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
+                Book a Centre Demo
+              </Link>
+            </Button>
           </div>
-        ))}
+
+          <p className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
+            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+            CBSE Class 10 Mathematics and Science. No credit card required for the free check.
+          </p>
+        </div>
+
+        {/* Illustrative product visual. This is a static UI example of the
+            evidence chain layout — not a real learner record, and it contains
+            no personal data and no performance claim. */}
+        <ProofCard />
       </div>
-      <p className="mt-3 text-xs text-muted-foreground">{t("landing.sample.label", SAMPLE_LABEL)}.</p>
     </section>
   );
 }
 
-function HowItWorks() {
-  const { t } = useI18n();
+function ProofCard() {
+  const rows = [
+    { label: "Diagnostic", value: "Outcome-level result recorded" },
+    { label: "Gap detected", value: "Named against a specific outcome" },
+    { label: "Intervention", value: "Targeted next step, tracked" },
+    { label: "Reassessment", value: "Fresh questions, never reused" },
+    { label: "Evidence", value: "Steps linked as one record" },
+  ];
   return (
-    <Section
-      id="how"
-      eyebrow={t("landing.how.eyebrow", "How EduOS works")}
-      title={t("landing.how.title", "One loop, three jobs")}
-      lede={t("landing.how.lede", "Everyone in the centre works the same loop from their own side.")}
-      muted
-    >
-      <div className="grid gap-4 md:grid-cols-3">
-        {ROLE_LANES.map((lane) => (
-          <div key={lane.role} className="rounded-xl border bg-card p-5">
-            <h3 className="text-sm font-semibold">{t(`landing.role.${lane.role}`, lane.role)}</h3>
-            <ol className="mt-3 space-y-2.5">
-              {lane.jobs.map((job, i) => (
-                <li key={job} className="flex gap-3 text-sm text-muted-foreground">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-accent-foreground tabular-nums">
-                    {i + 1}
-                  </span>
-                  <span>{t(`landing.role.${lane.role}.${i}`, job)}</span>
-                </li>
-              ))}
-            </ol>
+    <div className="rounded-2xl border bg-card p-5 shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
+        <h2 className="text-sm font-semibold">Evidence chain</h2>
+        <Badge variant="outline" className="font-normal text-muted-foreground">
+          Illustrative product visual
+        </Badge>
+      </div>
+      <dl className="divide-y">
+        {rows.map((row) => (
+          <div key={row.label} className="grid gap-0.5 py-3 sm:grid-cols-[140px_1fr] sm:gap-4">
+            <dt className="text-sm text-muted-foreground">{row.label}</dt>
+            <dd className="text-sm font-medium">{row.value}</dd>
           </div>
         ))}
-      </div>
-    </Section>
-  );
-}
-
-function ClosureLoop() {
-  const { t } = useI18n();
-  const [open, setOpen] = useState<string>(LOOP_STEPS[0]!.key);
-  return (
-    <Section
-      id="loop"
-      eyebrow={t("landing.loop.eyebrow", "The closure loop")}
-      title={t(
-        "landing.loop.title",
-        "Diagnostic → Gap → Intervention → Tutor → Reassessment → Evidence",
-      )}
-      lede={t(
-        "landing.loop.lede",
-        "Follow one anonymised learner through every stage. Each step produces a real artefact — select a step to see it.",
-      )}
-    >
-      <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
-        {LOOP_STEPS.map((step, i) => {
-          const active = open === step.key;
-          return (
-            <button
-              key={step.key}
-              type="button"
-              onClick={() => setOpen(step.key)}
-              aria-pressed={active}
-              className={`rounded-xl border p-3 text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
-                active ? "border-primary bg-accent" : "bg-card hover:bg-muted"
-              }`}
-            >
-              <span className="text-[11px] font-semibold text-muted-foreground tabular-nums">
-                {t("landing.loop.step", `Step ${i + 1}`, { n: i + 1 })}
-              </span>
-              <span className="mt-1 block text-sm font-medium">
-                {t(`landing.loop.${step.key}.title`, step.title)}
-              </span>
-              <span className="mt-0.5 block text-xs text-muted-foreground">
-                {t(`landing.loop.${step.key}.artefact`, step.artefact)}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {LOOP_STEPS.filter((s) => s.key === open).map((s) => (
-        <div key={s.key} className="mt-5 rounded-xl border bg-card p-5">
-          <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-sm font-semibold">{t(`landing.loop.${s.key}.title`, s.title)}</h3>
-            <SampleTag />
-          </div>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t(`landing.loop.${s.key}.detail`, s.detail)}
-          </p>
-          <p className="mt-3 rounded-lg bg-muted p-3 font-mono text-xs">{s.sample}</p>
-        </div>
-      ))}
-    </Section>
-  );
-}
-
-function TutorSafety() {
-  const { t } = useI18n();
-  const can = TUTOR_SAFETY.filter((r) => r.can);
-  const cannot = TUTOR_SAFETY.filter((r) => !r.can);
-  return (
-    <Section
-      id="safety"
-      eyebrow={t("landing.safety.eyebrow", "AI tutor safety")}
-      title={t("landing.safety.title", "The tutor teaches. It never touches the record.")}
-      lede={t(
-        "landing.safety.lede",
-        "These are boundaries the code enforces, not promises in a policy document.",
-      )}
-      muted
-    >
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">{t("landing.safety.can", "What it can do")}</h3>
-          <ul className="mt-3 space-y-2">
-            {can.map((r, i) => (
-              <li key={r.text} className="flex gap-2.5 text-sm text-muted-foreground">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                <span>{t(`landing.safety.can.${i}`, r.text)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">
-            {t("landing.safety.cannot", "What it structurally cannot do")}
-          </h3>
-          <ul className="mt-3 space-y-2">
-            {cannot.map((r, i) => (
-              <li key={r.text} className="flex gap-2.5 text-sm text-muted-foreground">
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-destructive" aria-hidden />
-                <span>{t(`landing.safety.cannot.${i}`, r.text)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <p className="mt-4 flex items-start gap-2.5 text-sm text-muted-foreground">
-        <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-        {t("landing.safety.fallback", TUTOR_FALLBACK)}
+      </dl>
+      <p className="mt-1 text-xs text-muted-foreground">
+        Example layout only. It does not represent a real learner or an outcome guarantee.
       </p>
-    </Section>
+    </div>
   );
 }
 
-function SampleEvidence() {
-  const { t } = useI18n();
+const PROBLEMS = [
+  {
+    icon: Users,
+    title: "Parents",
+    body: "A learner can work hard without the family knowing which underlying skills are causing difficulty.",
+  },
+  {
+    icon: Building2,
+    title: "Learning Centres",
+    body: "Tutors can work hard while evidence of progress remains scattered and difficult to communicate to families.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Schools",
+    body: "End-of-term marks can identify a problem after important instructional time has already passed.",
+  },
+];
+
+function ProblemSection() {
   return (
-    <Section
-      id="evidence"
-      eyebrow={t("landing.evidence.eyebrow", "Sample outcome evidence")}
-      title={t("landing.evidence.title", "One complete evidence chain, start to signature")}
-      lede={t(
-        "landing.evidence.lede",
-        "This is the artefact a reviewer inspects. Baseline, action, retake, lift, verifier — in one row.",
-      )}
-    >
-      <div className="rounded-xl border bg-card">
-        <div className="flex flex-wrap items-center gap-3 border-b p-5">
-          <h3 className="text-sm font-semibold">{t("landing.evidence.card", "Evidence chain")}</h3>
-          <SampleTag />
-        </div>
-        <dl className="divide-y">
-          {EVIDENCE_CHAIN.map((row) => (
-            <div key={row.label} className="grid gap-1 p-4 sm:grid-cols-[200px_1fr] sm:gap-4">
-              <dt className="text-sm text-muted-foreground">
-                {t(`landing.evidence.row.${row.label}`, row.label)}
-              </dt>
-              <dd className="text-sm font-medium tabular-nums">{row.value}</dd>
+    <section id="problem" className="scroll-mt-16 border-t">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+        <p className="text-xs font-medium tracking-widest text-primary uppercase">The problem</p>
+        <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+          Marks describe the result. They rarely explain the cause.
+        </h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {PROBLEMS.map((item) => (
+            <div key={item.title} className="rounded-xl border bg-card p-5">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+                <item.icon className="h-4.5 w-4.5 text-primary" aria-hidden />
+              </span>
+              <h3 className="mt-3 text-sm font-semibold">{item.title}</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">{item.body}</p>
             </div>
           ))}
-        </dl>
+        </div>
+        <p className="mt-6 flex items-start gap-2 text-sm text-muted-foreground">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+          EduOS is built for the step in between: naming the gap, acting on it, and checking
+          whether the action worked.
+        </p>
       </div>
-      <p className="mt-3 text-xs text-muted-foreground">
-        {t(
-          "landing.evidence.note",
-          "Reassessments use questions the learner has never seen, so the lift cannot be inflated by re-testing the same items.",
-        )}
-      </p>
-    </Section>
+    </section>
   );
 }
 
-function ParentTrust() {
-  const { t } = useI18n();
+function ParentsSection() {
   return (
-    <Section
+    <AudienceSection
       id="parents"
-      eyebrow={t("landing.parents.eyebrow", "For parents")}
-      title={t("landing.parents.title", "Three questions, answered with evidence")}
-      lede={t(
-        "landing.parents.lede",
-        "Tutor access requires guardian consent. Consent is visible, reviewable and can be withdrawn at any time.",
-      )}
+      eyebrow="For parents"
+      title="See where your child is actually struggling"
+      lede="Start with a free learning check. Your child answers it themselves, and you get a readable view of the skills behind the marks."
+      points={[
+        "A diagnostic that reports skill by skill, not just a total score",
+        "A targeted study plan built from the gaps that were detected",
+        "Progress visibility as steps are completed and reassessed",
+        "The learner answers independently — you receive the report and evidence",
+        "A gap is only treated as closed after a fresh reassessment",
+      ]}
+      cta={{ label: "Start a Free Learning Check", to: "/auth", search: { ...FREE_CHECK_SEARCH } }}
+      secondary={
+        <Button asChild size="lg" variant="outline">
+          <Link to="/diagnostic">See the ₹199 diagnostic</Link>
+        </Button>
+      }
+      qualifier="EduOS reports what the assessments show. It does not promise that every gap will close or that a particular grade will be achieved."
       muted
-    >
-      <div className="grid gap-4 md:grid-cols-3">
-        {PARENT_QUESTIONS.map((p, i) => (
-          <div key={p.question} className="rounded-xl border bg-card p-5">
-            <h3 className="text-sm font-semibold">{t(`landing.parents.q${i}`, p.question)}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {t(`landing.parents.a${i}`, p.answer)}
-            </p>
-            <p className="mt-3 rounded-lg bg-muted p-3 text-xs">{p.sample}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-6 rounded-xl border bg-card">
-        <div className="flex flex-wrap items-center gap-3 border-b p-5">
-          <h3 className="text-sm font-semibold">
-            {t("landing.parents.report.title", PARENT_REPORT.title)}
-          </h3>
-          <SampleTag />
+      aside={
+        <div className="rounded-2xl border bg-card p-5">
+          <h3 className="text-sm font-semibold">What a parent receives</h3>
+          <ul className="mt-3 space-y-2.5 text-sm text-muted-foreground">
+            <li>A free 5-question learning check per subject, with a preview report.</li>
+            <li>The ₹199 full diagnostic report, outcome by outcome.</li>
+            <li>The named gaps and the recommended next step for each.</li>
+            <li>Reassessment results showing whether a gap has closed.</li>
+          </ul>
         </div>
-        <div className="p-5">
-          <p className="text-sm text-muted-foreground">
-            {PARENT_REPORT.learner} · {PARENT_REPORT.period}
-          </p>
-          <div className="mt-4 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-5">
-            {PARENT_REPORT.lines.map((l, i) => (
-              <div key={l.label} className="bg-card p-3">
-                <p className="text-lg font-semibold tabular-nums">{l.value}</p>
-                <p className="text-xs text-muted-foreground">
-                  {t(`landing.parents.report.${i}`, l.label)}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-4 text-sm text-muted-foreground">{PARENT_REPORT.narrative}</p>
-        </div>
-      </div>
-
-      <div id="pricing" className="mt-6 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">
-            {t("landing.pricing.diagnostic.title", "Diagnostic")}
-          </h3>
-          <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹199</p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t(
-              "landing.pricing.diagnostic.body",
-              "One curriculum-mapped diagnostic, an outcome-level gap report and a recommended practice plan.",
-            )}
-          </p>
-        </div>
-        <div className="rounded-xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">
-            {t("landing.pricing.plan.title", "Full Success Plan")}
-          </h3>
-          <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹2,999</p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t(
-              "landing.pricing.plan.body",
-              "Guided practice, AI tutor access with guardian consent, reassessment on fresh items and verified mastery lift.",
-            )}
-          </p>
-        </div>
-      </div>
-      <ParentCtas />
-    </Section>
-
+      }
+    />
   );
 }
 
-function CentreBenefits() {
-  const { t } = useI18n();
+function CentresSection() {
   return (
-    <Section
+    <AudienceSection
       id="centres"
-      eyebrow={t("landing.centres.eyebrow", "For tutoring centres")}
-      title={t("landing.centres.title", "Educator hours back, and proof at renewal time")}
-    >
-      <div className="grid gap-4 md:grid-cols-3">
-        {CENTRE_BENEFITS.map((b, i) => (
-          <div key={b.title} className="rounded-xl border bg-card p-5">
-            <h3 className="text-sm font-semibold">{t(`landing.centres.${i}.title`, b.title)}</h3>
+      eyebrow="For learning centres"
+      title="Run the gap-closure loop across your roster"
+      lede="Onboard your centre, import your learners, assign diagnostics, and work a prioritised intervention queue with evidence at the end of it."
+      points={[
+        "Centre onboarding with organization and first-admin provisioning",
+        "Educator workflows for assignment, review and approval",
+        "CSV learner import for your existing roster",
+        "Educator-to-learner assignment and diagnostic assignment",
+        "Learner gap visibility, intervention queues and cohort heatmaps",
+        "Reassessment and evidence records per learner",
+        "Tenant isolation, so each centre sees only its own data",
+      ]}
+      cta={{ label: "Book a Centre Demo", to: "/contact", search: { ...CENTRE_DEMO_SEARCH } }}
+      qualifier="EduOS is not a fee, payroll, attendance, timetable or scheduling product. It is the learning-outcome layer alongside whatever you already use for operations."
+      aside={
+        <div className="rounded-2xl border bg-card p-5">
+          <h3 className="text-sm font-semibold">A centre's working week</h3>
+          <ol className="mt-3 space-y-2.5 text-sm text-muted-foreground">
+            <li>1. Assign a diagnostic to a group of learners.</li>
+            <li>2. Read the cohort heatmap and see which outcomes are weak.</li>
+            <li>3. Work the intervention queue, worst gap first.</li>
+            <li>4. Reassess on fresh items and share the evidence with families.</li>
+          </ol>
+        </div>
+      }
+    />
+  );
+}
+
+function SchoolsSection() {
+  return (
+    <AudienceSection
+      id="schools"
+      eyebrow="For schools"
+      title="Earlier gap visibility, explored with us first"
+      lede="EduOS can help schools explore earlier learning-gap visibility, structured interventions, reassessment and evidence. School deployment is consultation-led."
+      points={[
+        "Diagnostics that report against learning outcomes, not only totals",
+        "Structured interventions recorded against each detected gap",
+        "Reassessment on fresh items to determine closure",
+        "Evidence records that can be reviewed by staff",
+      ]}
+      cta={{ label: "Talk to EduOS", to: "/contact", search: { topic: "school" } }}
+      qualifier="Current operational content is CBSE Class 10 Mathematics and Science. School-specific structures — classes and sections, timetables, attendance, academic calendars, district reporting and SIS/LMS integration — are not implemented today and would require configuration or future development. We will tell you plainly what fits before anything is agreed."
+      muted
+    />
+  );
+}
+
+function PricingSection() {
+  return (
+    <section id="pricing" className="scroll-mt-16 border-t">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+        <p className="text-xs font-medium tracking-widest text-primary uppercase">Pricing</p>
+        <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+          Direct-parent pricing, in INR
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
+          Centres and schools are priced after a demo, based on roster size and scope.
+        </p>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl border bg-card p-5">
+            <h3 className="text-sm font-semibold">Free Learning Check</h3>
+            <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">Free</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              {t(`landing.centres.${i}.body`, b.body)}
+              Five verified questions per subject, answered by the learner, with a preview of the
+              skills checked and possible gaps. No card required.
+            </p>
+            <Button asChild className="mt-4 w-full">
+              <Link to="/auth" search={FREE_CHECK_SEARCH}>Start free</Link>
+            </Button>
+          </div>
+
+          <div className="rounded-xl border-2 border-primary bg-card p-5">
+            <h3 className="text-sm font-semibold">Full Diagnostic</h3>
+            <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹199</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              One curriculum-mapped diagnostic of up to twenty questions, an outcome-by-outcome gap
+              report and the recommended next step for each gap.
+            </p>
+            <Button asChild className="mt-4 w-full">
+              <Link to="/diagnostic">Start the ₹199 diagnostic</Link>
+            </Button>
+          </div>
+
+          <div className="rounded-xl border bg-card p-5">
+            <h3 className="text-sm font-semibold">Annual Board Success Plan</h3>
+            <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹2,999</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Guided practice, AI tutor access with guardian consent, reassessment on fresh items
+              and evidence records for the year.
+            </p>
+            <p className="mt-3 rounded-lg bg-muted p-3 text-xs text-muted-foreground">
+              Already paid for the ₹199 diagnostic? That ₹199 is credited against an eligible
+              upgrade, so <span className="font-medium text-foreground">₹2,800</span> is payable.
             </p>
           </div>
-        ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
 function FaqSection() {
-  const { t } = useI18n();
   return (
-    <Section
-      id="faq"
-      eyebrow={t("landing.faq.eyebrow", "FAQ")}
-      title={t("landing.faq.title", "The questions buyers actually ask")}
-      muted
-    >
-      <Accordion type="single" collapsible className="rounded-xl border bg-card px-5">
-        {FAQS.map((f, i) => (
-          <AccordionItem key={f.q} value={`faq-${i}`}>
-            <AccordionTrigger className="text-left text-sm font-medium">
-              {t(`landing.faq.${i}.q`, f.q)}
-            </AccordionTrigger>
-            <AccordionContent className="text-sm text-muted-foreground">
-              {t(`landing.faq.${i}.a`, f.a)}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </Section>
+    <section id="faq" className="scroll-mt-16 border-t bg-muted/40">
+      <div className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+        <p className="text-xs font-medium tracking-widest text-primary uppercase">FAQ</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+          The questions we are actually asked
+        </h2>
+        <Accordion type="single" collapsible className="mt-8 rounded-xl border bg-card px-5">
+          {FAQS.map((f, i) => (
+            <AccordionItem key={f.q} value={`faq-${i}`}>
+              <AccordionTrigger className="text-left text-sm font-medium">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
   );
 }
 
-function PilotCta() {
-  const { t } = useI18n();
+function CentreCtaSection() {
   return (
-    <Section
-      id="pilot"
-      eyebrow={t("landing.pilot.eyebrow", "Pilot programme")}
-      title={t("landing.pilot.title", "Run one grade, one subject, and see the evidence")}
-      lede={t(
-        "landing.pilot.lede",
-        "Tell us about your centre and we'll come back with pilot scope, timeline and what we need from you.",
-      )}
-    >
-      <PilotForm />
-    </Section>
-  );
-}
-
-function SiteFooter() {
-  const { t } = useI18n();
-  return (
-    <footer className="border-t">
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="text-sm font-medium">
-              {t("landing.footer.cta", "Ready to see your child's real gaps?")}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {t("landing.footer.ctaNote", "Create a parent account, add your child, start the ₹199 diagnostic.")}
-            </p>
-          </div>
-          <ParentCtas />
-        </div>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-sm text-muted-foreground">
-          <Link to="/about" className="hover:text-foreground">{t("common.about", "About")}</Link>
-          <Link to="/privacy" className="hover:text-foreground">{t("common.privacy", "Privacy Policy")}</Link>
-          <Link to="/terms" className="hover:text-foreground">{t("common.terms", "Terms of Service")}</Link>
-          <Link to="/contact" className="hover:text-foreground">{t("common.contact", "Contact")}</Link>
-          <Link to="/auth" search={{ tab: "parent", mode: "signin" }} className="hover:text-foreground">
-            {t("common.signIn", "Sign In")}
-          </Link>
-          <Link to="/auth" search={{ tab: "staff", mode: "signin" }} className="text-xs hover:text-foreground">
-            {t("common.staffAccess", "Staff Access")}
-          </Link>
-          <span className="ml-auto text-xs">EduOS — Learning Intelligence</span>
+    <section id="demo" className="scroll-mt-16 border-t">
+      <div className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+        <p className="text-xs font-medium tracking-widest text-primary uppercase">
+          Centre and school enquiries
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+          Book a Centre Demo
+        </h2>
+        <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+          Tell us about your centre or school and we will come back with scope, timeline and what
+          we need from you. You can also email{" "}
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+            support@eduos.global
+          </a>
+          .
+        </p>
+        <div className="mt-8">
+          <PilotForm />
         </div>
       </div>
-    </footer>
+    </section>
   );
-
 }

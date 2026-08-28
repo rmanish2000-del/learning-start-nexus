@@ -104,7 +104,7 @@ export function PilotForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <Field id="boards_grades" label="Boards and grades" placeholder="e.g. CBSE, grades 6–10" />
+        <Field id="boards_grades" label="Boards and grades" placeholder="e.g. CBSE Class 10" />
       </div>
 
       <div className="space-y-1.5 sm:col-span-2">

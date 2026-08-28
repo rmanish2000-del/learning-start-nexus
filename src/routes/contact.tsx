@@ -1,23 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, ShieldQuestion } from "lucide-react";
+import { useState } from "react";
 
 import { PublicPageLayout } from "@/components/public-layout";
 import { Button } from "@/components/ui/button";
 
+/** Enquiry types are presentation only — every route still lands in the same inbox. */
+const ENQUIRY_TYPES = [
+  { id: "parent", label: "Parent", subject: "Parent enquiry" },
+  { id: "centre", label: "Learning Centre", subject: "Centre demo request" },
+  { id: "school", label: "School", subject: "School enquiry" },
+  { id: "partnership", label: "Partnership", subject: "Partnership enquiry" },
+  { id: "support", label: "Support", subject: "Support request" },
+  { id: "other", label: "Other", subject: "General enquiry" },
+] as const;
+
+type EnquiryId = (typeof ENQUIRY_TYPES)[number]["id"];
+
+type ContactSearch = { topic?: EnquiryId };
+
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): ContactSearch => {
+    const topic = ENQUIRY_TYPES.find((t) => t.id === search["topic"])?.id;
+    return topic ? { topic } : {};
+  },
   head: () => ({
     meta: [
       { title: "Contact — EduOS" },
       {
         name: "description",
         content:
-          "Reach the EduOS team — product questions, privacy requests, and support. Email support@eduos.global or call 9850820909.",
+          "Reach the EduOS team — parent, learning centre, school, partnership and support enquiries. Email support@eduos.global or call 9850820909.",
       },
       { property: "og:title", content: "Contact — EduOS" },
       {
         property: "og:description",
         content:
-          "Reach the EduOS team — product questions, privacy requests, and support. Email support@eduos.global or call 9850820909.",
+          "Reach the EduOS team — parent, learning centre, school, partnership and support enquiries. Email support@eduos.global or call 9850820909.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.eduos.global/contact" },
@@ -82,22 +101,51 @@ const CHANNELS = [
   },
 ];
 
-const ADDRESS_LINES = [
-  "Tilak Ward",
-  "Deori",
-  "Sagar",
-  "Madhya Pradesh 470226",
-  "India",
-];
-
+const ADDRESS_LINES = ["Tilak Ward", "Deori", "Sagar", "Madhya Pradesh 470226", "India"];
 
 function ContactPage() {
+  const { topic } = Route.useSearch();
+  const [selected, setSelected] = useState<EnquiryId>(topic ?? "parent");
+  const active = ENQUIRY_TYPES.find((t) => t.id === selected)!;
+  const mailto = `mailto:support@eduos.global?subject=${encodeURIComponent(`EduOS — ${active.subject}`)}`;
+
   return (
     <PublicPageLayout title="Contact us">
       <p className="text-muted-foreground">
         Pick the channel that matches your question — mail goes to a real inbox monitored by the
         EduOS team.
       </p>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold tracking-tight">What is this about?</h2>
+        <div role="group" aria-label="Enquiry type" className="flex flex-wrap gap-2">
+          {ENQUIRY_TYPES.map((type) => {
+            const isActive = type.id === selected;
+            return (
+              <button
+                key={type.id}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setSelected(type.id)}
+                className={`min-h-11 rounded-full border px-4 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none ${
+                  isActive
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "bg-background hover:bg-muted"
+                }`}
+              >
+                {type.label}
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Selected: <span className="font-medium text-foreground">{active.label}</span> — we will
+          pre-fill the subject line for you.
+        </p>
+        <Button asChild>
+          <a href={mailto}>Email us about {active.label.toLowerCase()}</a>
+        </Button>
+      </section>
 
       <div className="space-y-4">
         {CHANNELS.map((c) => (
@@ -106,7 +154,7 @@ function ContactPage() {
             className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-start sm:gap-4"
           >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-              <c.icon className="h-5 w-5 text-primary" />
+              <c.icon className="h-5 w-5 text-primary" aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
               <h2 className="text-sm font-semibold">{c.title}</h2>
@@ -124,7 +172,7 @@ function ContactPage() {
 
       <section className="space-y-2">
         <h2 className="flex items-center gap-2 text-lg font-semibold tracking-tight">
-          <MapPin className="h-4.5 w-4.5 text-primary" /> Mailing address
+          <MapPin className="h-4.5 w-4.5 text-primary" aria-hidden /> Mailing address
         </h2>
         <address className="not-italic text-muted-foreground">
           {ADDRESS_LINES.map((line) => (
@@ -138,7 +186,7 @@ function ContactPage() {
       <section className="space-y-2">
         <h2 className="text-lg font-semibold tracking-tight">Parents & guardians</h2>
         <p className="text-muted-foreground">
-          To update or withdraw consent for a student's AI tutor access, contact the center directly
+          To update or withdraw consent for a student's AI tutor access, contact the centre directly
           or email{" "}
           <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
             support@eduos.global
@@ -146,7 +194,6 @@ function ContactPage() {
           — staff will record the change as a new consent entry so the history stays complete.
         </p>
       </section>
-
     </PublicPageLayout>
   );
 }

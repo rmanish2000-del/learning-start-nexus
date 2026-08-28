@@ -10,6 +10,7 @@ import {
   sessionIdSchema,
 } from "./schemas";
 import {
+  createAssessmentDraft,
   fetchAssessmentItems,
   getMyOrgId,
   getOwnedSession,
@@ -28,8 +29,14 @@ export const createAssessment = createServerFn({ method: "POST" })
     await requireAnyRole(context.supabase, context.userId, ["admin", "educator"]);
     const orgId = await getMyOrgId(context.supabase, context.userId);
 
-    // RLS scopes this read to the caller's org bank; a count mismatch means
-    // the caller referenced items outside their org.
+    // The Grade 6 pilot item bank is archived and read-only; building from it
+    // would produce an assessment that can never clear the active-scope gate.
+    if (!data.questionIds?.length && data.itemIds?.length) {
+      throw new Error(
+        "The legacy Grade 6 item bank is archived and read-only. Build assessments from the CBSE Class 10 curriculum question bank.",
+      );
+    }
+
     // Idempotency: a double-click / network retry with the same request id and
     // title returns the assessment already created instead of a duplicate.
     if (data.clientRequestId) {
@@ -47,40 +54,18 @@ export const createAssessment = createServerFn({ method: "POST" })
       if (existing) return { id: existing.id, status: "draft" as const, deduped: true };
     }
 
-    const { data: items } = await context.supabase
-      .from("assessment_items")
-      .select("id")
-      .in("id", data.itemIds);
-    if ((items ?? []).length !== data.itemIds.length) {
-      throw new Error("Some items were not found in your item bank.");
-    }
-
-    const { data: created, error } = await context.supabase
-      .from("assessments")
-      .insert({
-        org_id: orgId,
-        created_by: context.userId,
+    const created = await createAssessmentDraft(
+      context.supabase,
+      { orgId, userId: context.userId },
+      {
         title: data.title,
-        description: data.description || null,
-        subject: "Mathematics",
-        topic: "Fractions",
-        grade: 6,
-        kind: "diagnostic",
-        // PRODUCT LAW: creation never publishes.
-        status: "draft",
-        time_limit_minutes: data.timeLimitMinutes ?? null,
-      })
-      .select("id")
-      .single();
-    if (error) throw new Error(error.message);
-
-    const rows = data.itemIds.map((itemId, i) => ({
-      assessment_id: created.id,
-      item_id: itemId,
-      sort_order: i + 1,
-    }));
-    const { error: mapError } = await context.supabase.from("assessment_item_map").insert(rows);
-    if (mapError) throw new Error(mapError.message);
+        description: data.description,
+        timeLimitMinutes: data.timeLimitMinutes,
+        bookId: data.bookId,
+        unitId: data.unitId,
+        questionIds: data.questionIds,
+      },
+    );
 
     return { id: created.id, status: "draft" as const, deduped: false };
   });

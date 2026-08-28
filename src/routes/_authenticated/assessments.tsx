@@ -11,6 +11,7 @@ import {
   ACTION_LABELS,
   STATE_LABELS,
   actionsFor,
+  SUPPORTED_SCOPE,
   isLegacyContent,
   resolveState,
   unavailableReason,
@@ -92,10 +93,13 @@ function AssessmentsPage() {
   const [createOpen, setCreateOpen] = useState(false);
   const [assignFor, setAssignFor] = useState<string | null>(null);
 
-  // New-assessment form state
+  // New-assessment form state. Curriculum linkage is part of the form because
+  // board, class and subject are inherited from the book — never hardcoded.
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [timeLimit, setTimeLimit] = useState("20");
+  const [bookId, setBookId] = useState<string>("");
+  const [unitId, setUnitId] = useState<string>("");
   const [picked, setPicked] = useState<Set<string>>(new Set());
   const [savedDraftId, setSavedDraftId] = useState<string | null>(null);
   const [confirmDiscard, setConfirmDiscard] = useState(false);
@@ -117,6 +121,56 @@ function AssessmentsPage() {
         .order("difficulty");
       if (error) throw error;
       return data as unknown as AssessmentItem[];
+    },
+  });
+
+  // Active-scope curriculum sources for creation. Archived/demo books are
+  // excluded so a new assessment can never be born as legacy content.
+  const { data: books } = useQuery({
+    queryKey: ["builder-books"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("books")
+        .select("id, title, board, grade, subject")
+        .is("archived_at", null)
+        .eq("is_demo", false)
+        .eq("grade", SUPPORTED_SCOPE.grade)
+        .in("subject", SUPPORTED_SCOPE.subjects)
+        .order("subject");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const { data: units } = useQuery({
+    queryKey: ["builder-units", bookId],
+    enabled: Boolean(bookId),
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("curriculum_units")
+        .select("id, title, position")
+        .eq("book_id", bookId)
+        .order("position");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  // Only approved AND verified questions of the chosen unit are selectable —
+  // the same gate publishBlockers enforces server-side.
+  const { data: unitQuestions, isPending: unitQuestionsPending } = useQuery({
+    queryKey: ["builder-questions", unitId],
+    enabled: Boolean(unitId),
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("question_bank")
+        .select("id, prompt, kind, difficulty, assessment_outcomes!inner(code, title, unit_id)")
+        .eq("assessment_outcomes.unit_id", unitId)
+        .eq("status", "approved")
+        .eq("verification_state", "verified")
+        .order("difficulty");
+      if (error) throw error;
+      return data;
     },
   });
 
@@ -207,7 +261,9 @@ function AssessmentsPage() {
           title,
           description: description || undefined,
           timeLimitMinutes: timeLimit ? Number(timeLimit) : undefined,
-          itemIds: [...picked],
+          bookId,
+          unitId,
+          questionIds: [...picked],
           clientRequestId: requestId,
         },
       }),
@@ -242,12 +298,15 @@ function AssessmentsPage() {
     apply(next);
   };
 
-  const draftReady = title.trim().length >= 3 && picked.size > 0;
+  const draftReady =
+    title.trim().length >= 3 && Boolean(bookId) && Boolean(unitId) && picked.size > 0;
   const dirty = title.trim().length > 0 || description.trim().length > 0 || picked.size > 0;
 
   const resetForm = () => {
     setTitle("");
     setDescription("");
+    setBookId("");
+    setUnitId("");
     setPicked(new Set());
     setSavedDraftId(null);
   };
@@ -362,35 +421,97 @@ function AssessmentsPage() {
                   </FormSection>
 
                   <FormSection
+                    title="Curriculum"
+                    hint="Board, class and subject are inherited from the selected book."
+                  >
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <FormField id="a-book" label="Curriculum book">
+                        <Select
+                          value={bookId}
+                          onValueChange={(v) => {
+                            setBookId(v);
+                            setUnitId("");
+                            setPicked(new Set());
+                          }}
+                        >
+                          <SelectTrigger id="a-book">
+                            <SelectValue placeholder="Select a book" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(books ?? []).map((b) => (
+                              <SelectItem key={b.id} value={b.id}>
+                                {b.board ?? SUPPORTED_SCOPE.board} Class {b.grade} · {b.subject}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormField>
+                      <FormField id="a-unit" label="Unit">
+                        <Select
+                          value={unitId}
+                          onValueChange={(v) => {
+                            setUnitId(v);
+                            setPicked(new Set());
+                          }}
+                          disabled={!bookId}
+                        >
+                          <SelectTrigger id="a-unit">
+                            <SelectValue placeholder={bookId ? "Select a unit" : "Select a book first"} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(units ?? []).map((u) => (
+                              <SelectItem key={u.id} value={u.id}>
+                                {u.title}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormField>
+                    </div>
+                  </FormSection>
+
+                  <FormSection
                     title={`Questions (${picked.size} selected)`}
-                    hint="Selecting questions never publishes or assigns anything."
+                    hint="Only approved and verified questions from the selected unit are offered. Selecting questions never publishes or assigns anything."
                   >
                     <div className="divide-y rounded-lg border">
-                      {(items ?? []).length === 0 ? (
+                      {!unitId ? (
                         <p className="p-4 text-sm text-muted-foreground">
-                          No questions are available in the active CBSE Class 10 scope yet. Build one
-                          from the curriculum in the Assessment Builder.
+                          Select a curriculum book and unit to load its verified questions.
+                        </p>
+                      ) : unitQuestionsPending ? (
+                        <p className="p-4 text-sm text-muted-foreground">Loading questions…</p>
+                      ) : (unitQuestions ?? []).length === 0 ? (
+                        <p className="p-4 text-sm text-muted-foreground">
+                          This unit has no approved and verified questions yet. Verify questions in
+                          the question bank, or generate them in the Assessment Builder.
                         </p>
                       ) : (
-                        (items ?? []).map((item) => (
-                          <label
-                            key={item.id}
-                            className="flex cursor-pointer items-start gap-3 p-3 hover:bg-muted/50"
-                          >
-                            <Checkbox
-                              checked={picked.has(item.id)}
-                              onCheckedChange={() => toggle(picked, item.id, setPicked)}
-                              className="mt-0.5"
-                            />
-                            <span className="min-w-0 flex-1">
-                              <span className="block text-sm">{item.prompt}</span>
-                              <span className="text-xs text-muted-foreground">
-                                {item.subtopic} · {DIFFICULTY_LABELS[item.difficulty]} ·{" "}
-                                {item.kind === "mcq" ? "Multiple choice" : "Numeric"}
+                        (unitQuestions ?? []).map((q) => {
+                          const outcome = q.assessment_outcomes as unknown as {
+                            code: string;
+                            title: string;
+                          } | null;
+                          return (
+                            <label
+                              key={q.id}
+                              className="flex cursor-pointer items-start gap-3 p-3 hover:bg-muted/50"
+                            >
+                              <Checkbox
+                                checked={picked.has(q.id)}
+                                onCheckedChange={() => toggle(picked, q.id, setPicked)}
+                                className="mt-0.5"
+                              />
+                              <span className="min-w-0 flex-1">
+                                <span className="block text-sm">{q.prompt}</span>
+                                <span className="text-xs text-muted-foreground">
+                                  {outcome ? `${outcome.code} · ${outcome.title} · ` : ""}
+                                  {DIFFICULTY_LABELS[q.difficulty]}
+                                </span>
                               </span>
-                            </span>
-                          </label>
-                        ))
+                            </label>
+                          );
+                        })
                       )}
                     </div>
                   </FormSection>
