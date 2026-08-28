@@ -507,14 +507,28 @@ export function buildBundle(): {
       content_category: m.category,
       source_provenance: m.provenance,
       privacy_classification: m.privacy,
-      extraction_timestamp: EXTRACTED_AT,
+      bundle_generation_timestamp: EXTRACTED_AT,
     };
   });
 
+  // Deterministic hash over every payload file (path + sha256), excluding the
+  // manifest and the integrity file themselves — see SELF_REFERENCE_POLICY.
+  const bundleTreeHash = createHash("sha256")
+    .update(entries.map((e) => `${e.path}\u0000${e.sha256}`).join("\n"))
+    .digest("hex");
+
   const manifest = {
     bundle: "class10-2026-27-gemini",
+    bundle_format_version: BUNDLE_FORMAT_VERSION,
     purpose: "Independent Gemini row-by-row academic crosswalk review of CBSE Class 10 (2026-27) Mathematics and Science",
     provenance: PROVENANCE,
+    bundle_tree_hash: bundleTreeHash,
+    bundle_tree_hash_algorithm: "sha256 over sorted `<path>\\0<file sha256>` lines of all payload files",
+    self_reference_policy: SELF_REFERENCE_POLICY,
+    self_referential_exclusions: [
+      "GEMINI_REVIEW_BUNDLE_MANIFEST.json — contains the hashes of all other files; cannot contain its own hash.",
+      "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 — checklist of the payload files; excludes its own hash by construction.",
+    ],
     class_10_compliance_status: overall,
     reconciliation: counts,
     files_included: entries.length,
@@ -527,8 +541,9 @@ export function buildBundle(): {
     `${entries.map((e) => `${e.sha256}  ${e.path}`).join("\n")}\n`,
   );
 
-  return { files: entries.map((e) => e.path), crosswalkRows, counts };
+  return { files: entries.map((e) => e.path), crosswalkRows, counts, bundleTreeHash };
 }
+
 
 if (import.meta.main) {
   const { files, counts } = buildBundle();
