@@ -410,7 +410,12 @@ export function buildBundle(): {
     science_crosswalk_rows: crosswalkRows.filter((r) => r.subject === "Science").length,
     unmapped_mathematics_requirements: perSubjectUnmapped.Mathematics!.length,
     unmapped_science_requirements: perSubjectUnmapped.Science!.length,
+    mathematics_exclusions: baselines.Mathematics!.exclusions.length,
+    mathematics_ambiguities: baselines.Mathematics!.ambiguities.length,
+    science_exclusions: baselines.Science!.exclusions.length,
+    science_ambiguities: baselines.Science!.ambiguities.length,
   };
+
 
   put(
     "exports/limitations-and-reconciliation.json",
