@@ -55,7 +55,7 @@ const FAQS = [
   },
   {
     q: "Which board, class and subjects are supported today?",
-    a: "CBSE Class 10 Mathematics and Science, in India, priced in INR. Learner-facing surfaces support English and Hindi where currently translated.",
+    a: "CBSE Class 10 Mathematics and Science, in India, priced in INR. The interface is English only.",
   },
   {
     q: "Can a school use EduOS?",

@@ -104,8 +104,7 @@ function AboutPage() {
         <h2 className="text-lg font-semibold tracking-tight">Current scope</h2>
         <p className="text-muted-foreground">
           EduOS operates in India, prices in INR, and its operational content library covers CBSE
-          Class 10 Mathematics and Science. Learner-facing surfaces support English and Hindi where
-          currently translated.
+          Class 10 Mathematics and Science. The interface is English only.
         </p>
         <div className="flex items-center gap-2 rounded-lg border border-dashed bg-muted/50 p-3 text-xs text-muted-foreground">
           <GraduationCap className="h-4 w-4 shrink-0 text-primary" aria-hidden />
