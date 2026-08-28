@@ -326,6 +326,7 @@ export type Database = {
         Row: {
           archived_at: string | null
           book_id: string | null
+          client_request_id: string | null
           created_at: string
           created_by: string | null
           description: string | null
@@ -345,6 +346,7 @@ export type Database = {
         Insert: {
           archived_at?: string | null
           book_id?: string | null
+          client_request_id?: string | null
           created_at?: string
           created_by?: string | null
           description?: string | null
@@ -364,6 +366,7 @@ export type Database = {
         Update: {
           archived_at?: string | null
           book_id?: string | null
+          client_request_id?: string | null
           created_at?: string
           created_by?: string | null
           description?: string | null
