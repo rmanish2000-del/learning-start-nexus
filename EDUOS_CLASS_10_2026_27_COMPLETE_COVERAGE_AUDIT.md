@@ -160,15 +160,10 @@ Volume gates in force: diagnostic target 20, diagnostic minimum 5, minimum quest
 | Unit | Official-mapped | Outcomes | Atoms | Questions | Verified | Difficulty bands | Question types |
 |---|---|---|---|---|---|---|---|
 | Chemical Substances - Nature and Behaviour | yes | 32 | 32 | 96 | 96 | 3 | 1 |
-| Chemical Reactions and Equations | NO | 8 | 0 | 44 | 0 | 3 | 6 |
 | World of Living | yes | 13 | 13 | 39 | 39 | 3 | 1 |
 | Natural Phenomena | yes | 4 | 4 | 12 | 12 | 3 | 1 |
 | Effects of Current | yes | 4 | 4 | 12 | 12 | 3 | 1 |
 | Natural Resources | yes | 2 | 2 | 6 | 6 | 3 | 1 |
-
-Active platform units with no official mapping (must be retired or mapped):
-
-- Chemical Reactions and Equations [234cc8b4-a653-4f38-9c67-6ffc5cd1c101] (book archived)
 
 ### 2.4 Gate results
 
@@ -185,15 +180,15 @@ Active platform units with no official mapping (must be retired or mapped):
 - PASS `no_active_out_of_syllabus` — none
 - FAIL `source_books_approved` — NCERT Class 10 Science (CBSE) (processed)
 
-**OUTCOME_GATE — FAIL**
+**OUTCOME_GATE — PASS**
 
-- FAIL `no_orphan_outcomes` — 8 orphan outcome(s)
-- FAIL `outcomes_have_atoms` — Chemical Reactions and Equations
+- PASS `no_orphan_outcomes` — 0 orphan outcome(s)
+- PASS `outcomes_have_atoms` — every outcome carries at least one atom
 - PASS `every_unit_has_outcomes` — none empty
 
 **QUESTION_GATE — FAIL**
 
-- FAIL `verified_depth` — Chemical Reactions and Equations:0/40, World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40
+- FAIL `verified_depth` — World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40
 - PASS `atom_coverage` — 0 atom(s) without a question
 - PASS `difficulty_coverage` — ≥2 difficulty bands per unit
 - FAIL `type_coverage` — Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources

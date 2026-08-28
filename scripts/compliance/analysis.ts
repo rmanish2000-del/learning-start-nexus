@@ -114,7 +114,7 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
       diagnosticMinimum: cat?.diagnosticMinimum ?? 5,
       minQuestionsPerOutcome: cat?.minQuestionsPerOutcome ?? 1,
     };
-    const dbUnits = snapshot.units.filter((u) => u.subject === off.subject);
+    const dbUnits = snapshot.units.filter((u) => u.subject === off.subject && u.bookStatus !== "archived");
     const usedUnitIds = new Set<string>();
     const unmappedOfficialTopics: string[] = [];
     const unapprovedSourceBooks = new Set<string>();
