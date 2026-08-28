@@ -1,141 +1,235 @@
-# EduOS — Figma-to-Production Visual Parity Audit
+# EduOS Figma-to-Production Visual Parity Audit
 
-Status: **BLOCKED (Phase 1 + production-side evidence complete; Figma side unavailable)**
-Date: 2026-08-28 · Audit-first, read-only. No application code changed. No deployment.
-
----
-
-## Blocking condition (read first)
-
-The audit cannot be completed as specified because **the Figma file is not reachable from this environment**.
-
-- Lovable has no cloud Figma connector.
-- Live Figma access requires the Lovable Desktop app + Figma Desktop in Dev Mode with the local MCP server enabled (Settings → Connectors → Local MCP servers). Download: https://lovable.dev/download
-- No Figma exports, frame IDs, node IDs, or handoff artefacts exist in this repository (searched: no `.fig`, no Figma links in docs, no design-token export).
-
-Consequence: Phases 2 (Figma capture), 3 (difference matrix, Figma column), 4 (Figma token values), 5 (Figma copy) and 6 (Option B preview) **cannot be evidenced**. Producing them from memory or estimation would violate the assignment's explicit instruction not to rely on visual estimation and not to claim parity without side-by-side evidence.
-
-Unblock options:
-1. Connect Figma via Lovable Desktop (full fidelity: exact tokens, node IDs, frame versions).
-2. Upload PNG/PDF exports of every FINAL frame at 390 / 768 / 1280 / 1440, plus a Dev-Mode token export (colours, type scale, spacing, radii).
-3. Instruct that the audit proceed as a production-only design review with Option A only.
+Date: 2026-08-28 (UTC)
+Type: Audit + non-production preview only. No application code changed, nothing deployed.
 
 ---
 
-## Phase 1 — Baselines (COMPLETE)
+## 1. Connection evidence
+
+| Item | Result |
+|---|---|
+| Figma Desktop MCP reachable | YES |
+| `get_metadata` (0:1) | SUCCESS — returned full canvas tree |
+| `get_screenshot` (0:4, 0:3) | SUCCESS — landing render captured |
+| `get_design_context` (0:4, 0:7) | FAIL — "Resource not found for the given URI" |
+| `get_variable_defs` (0:4) | SUCCESS but empty `{}` — no local variables published |
+| File name / file ID | NOT EXPOSED by local MCP (limitation, not a blocker) |
+
+**Consequence:** the active Figma document is a **Figma Make code instance** (`code-instance` node), not a native layer tree. The MCP server cannot return design context, exact tokens, text nodes, spacing or type metrics for it. All Figma-side values in this audit are therefore **read visually from the rendered screenshot**, and are marked `VISUAL_ESTIMATE` where exact values were unavailable. This is recorded as a handoff gap, not an audit failure.
+
+## 2. Figma node inventory
+
+| Node ID | Name | Type | Dimensions | Parent | Production mapping | Classification |
+|---|---|---|---|---|---|---|
+| 0:1 | Page 1 | canvas | — | — | — | container |
+| 0:3 | `/` | responsive-set | 1408 × 1244 | 0:1 | `src/routes/index.tsx` | FINAL |
+| 0:4 | Desktop | frame | 1280 × 1080 | 0:3 | `/` desktop | FINAL |
+| 0:7 | Code | code-instance | 1280 × 1080 | 0:4 | whole landing render | FINAL (opaque) |
+
+**FIGMA_NODE_COUNT: 4** (1 canvas, 1 responsive set, 1 frame, 1 code instance).
+
+Discovery result for everything else requested:
+
+- Tablet frame (768) — FIGMA_SOURCE_NOT_FOUND
+- Mobile frame (390) — FIGMA_SOURCE_NOT_FOUND
+- 1440 frame — FIGMA_SOURCE_NOT_FOUND (responsive set is 1408 wide; only child is the 1280 Desktop frame)
+- Navigation states / mobile menu / interaction states — FIGMA_SOURCE_NOT_FOUND
+- About frames, Contact frames — FIGMA_SOURCE_NOT_FOUND
+- Components library, local styles, variables — FIGMA_SOURCE_NOT_FOUND (`get_variable_defs` = `{}`)
+
+The Desktop frame is 1080px tall and the render is **clipped** below the start of the "THE PROBLEM" section. Sections 5–15 of the requested comparison list have **no visible Figma source**.
+
+## 3. Production baseline
 
 | Item | Value |
-| --- | --- |
-| Canonical application HEAD | `54f78cd166867701a9cd1b07c867e3f10318a3b6` |
-| Production HEAD | `54f78cd166867701a9cd1b07c867e3f10318a3b6` |
-| HEAD match | YES |
-| Working tree | CLEAN (before this documentation file) |
-| Production reachability | https://www.eduos.global → HTTP 200 |
-| Test baseline | 97/97 passing across 11 files (re-run this session) |
-| Typecheck / build | Clean at this HEAD (unchanged since last release verification) |
-| Figma file / frame version | **UNAVAILABLE** — no access, no export in repo |
-| Frames classified FINAL | **UNKNOWN** — cannot enumerate |
+|---|---|
+| Application HEAD | `a84cb548f5a0d3bf115514d2ff7f2f153bc1cca0` (docs-only advance over the previously verified `54f78cd1…`) |
+| Production URL | https://www.eduos.global — HTTP 200 |
+| Published HEAD SHA | NOT EXPOSED by the deployment (no build-SHA endpoint) |
+| Test baseline | Re-run this session: **97/97 passed, 11 files** |
+| Worktree | clean before audit; this audit adds documentation + evidence assets only |
+| Landing sections rendered | hero, `#problem`, `#how`, `#parents`, `#centres`, `#schools`, `#evidence`, `#pricing`, `#faq`, `#demo`, footer |
+| Tokens | primary `oklch(0.52 0.105 168)`, radius `0.625rem`, `max-w-6xl`, Geist / Geist Mono, section rhythm `py-14 sm:py-20` |
 
-### Public route surface at HEAD
+## 4. Matched screenshots
 
-| Route | File | Key components |
-| --- | --- | --- |
-| `/` | `src/routes/index.tsx` | hero, ParentCtas, `landing/loop-section.tsx`, `landing/trust-section.tsx`, `landing/audience-section.tsx` (Parents / Centres / Schools), pricing, `landing/pilot-form.tsx` |
-| `/about` | `src/routes/about.tsx` | positioning + scope statements |
-| `/contact` | `src/routes/contact.tsx` | official contact details, enquiry form |
-| shared | `src/components/public-layout.tsx` | header/nav, footer |
-| shared | `src/components/free-check-panel.tsx` | Free Learning Check entry |
-| legal | `src/routes/privacy.tsx`, `src/routes/terms.tsx` | — |
+Evidence assets (`/mnt/documents/figma-parity/`):
 
----
+- `prod_390.png`, `prod_768.png`, `prod_1280.png`, `prod_1440.png` — production landing
+- Figma: single 1280 × 1080 render captured via MCP (0:4) and the 1408 × 1244 responsive set (0:3)
 
-## Phase 2 — Production capture (COMPLETE, one side only)
+| Viewport | Production | Figma | Status |
+|---|---|---|---|
+| 390 | captured | none | HANDOFF GAP |
+| 768 | captured | none | HANDOFF GAP |
+| 1280 | captured | captured | MATCHED |
+| 1440 | captured | none (nearest: 1280 frame in a 1408 set) | HANDOFF GAP |
 
-Captured from live production at four viewports (390 / 768 / 1280 / 1440 px), stored in `/mnt/documents/eduos-parity/`:
+**VIEWPORTS_CAPTURED: production 4 / matched pairs 1.**
 
-`prod-home-{mobile,tablet,desktop,wide}.png`,
-`prod-about-{mobile,tablet,desktop,wide}.png`,
-`prod-contact-{mobile,tablet,desktop,wide}.png`
+## 5. Section-by-section parity matrix
 
-Figma counterparts: **not captured — no access.**
+| # | Section | Figma | Production | Verdict |
+|---|---|---|---|---|
+| 1 | Navigation | Dark bar, orange square mark, "EduOS / OUTCOME SYSTEM" lockup, 4 links, Sign In, Book Demo, orange "Free Learning Check →" | Light bar, evergreen mark, same 4 links, EN/हिंदी switch, Sign In, Book Demo, evergreen CTA | Structurally matched; brand + language switch differ |
+| 2 | Hero | Serif display, "Your child is working hard. *Is it working?*", blue italic accent, mono eyebrow pill, 2 CTAs, reassurance line, 3-up stat row | Sans display, "Find the learning gaps. Close them with purpose. Prove the progress.", pill eyebrow, 2 CTAs, reassurance line, **no stat row** | Composition matched; copy intentionally rewritten; stat row missing |
+| 3 | Hero visual | Dark "student overview" card, progress bar, 3 subject rows with status chips, floating "Gap Closed — Verified" badge | Light bordered "Evidence chain" table + disclaimer | INTENTIONAL reuse + fidelity miss (no dark card, no progress bar, no floating badge) |
+| 4 | Problem | Centred mono eyebrow, centred serif headline "The gap between effort and results", centred body | Left-aligned eyebrow + headline, 3 audience cards, footnote | Different treatment (centred vs left); production is richer |
+| 5 | How EduOS Works | FIGMA_SOURCE_NOT_FOUND | 6-step card grid | Not comparable |
+| 6 | Parent section | FIGMA_SOURCE_NOT_FOUND | `#parents` present | Not comparable |
+| 7 | Learning Centre | FIGMA_SOURCE_NOT_FOUND | `#centres` present | Not comparable |
+| 8 | School | FIGMA_SOURCE_NOT_FOUND | `#schools` present | Not comparable |
+| 9 | Trust and evidence | FIGMA_SOURCE_NOT_FOUND | `#evidence` present | Not comparable |
+| 10 | Pricing | FIGMA_SOURCE_NOT_FOUND | `#pricing` ₹199 / ₹2,999 | Not comparable |
+| 11 | Free Learning Check | FIGMA_SOURCE_NOT_FOUND | CTA + route live | Not comparable |
+| 12 | Institutional CTA | FIGMA_SOURCE_NOT_FOUND | `#demo` present | Not comparable |
+| 13 | Footer | FIGMA_SOURCE_NOT_FOUND | present | Not comparable |
+| 14 | About | FIGMA_SOURCE_NOT_FOUND | `/about` live | Not comparable |
+| 15 | Contact | FIGMA_SOURCE_NOT_FOUND | `/contact` live | Not comparable |
 
----
+**SECTIONS_COMPARED: 4 of 15** (11 have no Figma source).
 
-## Phase 4 — Production token inventory (Figma column pending)
+## 6. Token comparison
 
-Source of truth: `src/styles.css`.
+| Token | Figma (VISUAL_ESTIMATE unless noted) | Production (exact) | Variance |
+|---|---|---|---|
+| Primary accent | orange ≈ `#F26322` | `oklch(0.52 0.105 168)` evergreen | INTENTIONAL_BRAND_SYSTEM_CHANGE |
+| Secondary accent | desaturated blue ≈ `#7FB3E8` (hero italic) | none | UNRESOLVED_FOUNDER_DECISION |
+| Page background | dark navy ≈ `#0E1621` | `oklch(0.99 0.003 250)` light | INTENTIONAL_BRAND_SYSTEM_CHANGE |
+| Section background | alternating `#0E1621` / `#111C29` | `bg-background` / `bg-muted/40` | equivalent rhythm, inverted mode |
+| Text | near-white on dark | `oklch(0.22 0.02 260)` on light | mode inversion |
+| Muted text | ≈ `#93A4B3` | `oklch(0.53 0.02 260)` | equivalent role |
+| Border | ≈ rgba(255,255,255,.08) | `oklch(0.9 0.008 260)` | equivalent role |
+| Shadow | soft large drop under product card | subtle card border, minimal shadow | IMPLEMENTATION_FIDELITY_MISS |
+| Gradient | none detected | none | match |
+| Display font | high-contrast serif with true italic | Geist (sans) | INTENTIONAL_BRAND_SYSTEM_CHANGE |
+| Label font | monospace, uppercase, wide tracking | Geist Mono, uppercase, wide tracking | match |
+| H1 size | ≈ 52–56px / 1.05 | ~48–56px `tracking-tight` | approximate match |
+| Body | ≈ 17px / 1.6 | ~16–17px / 1.65 | match |
+| Eyebrow | ≈ 11–12px, ~0.14em tracking, pill | ~11px, wide tracking, pill | match |
+| Spacing scale | 4/8 based | Tailwind 4px base | match |
+| Max content width | ≈ 1152px inside 1280 frame | `max-w-6xl` (1152px) | match |
+| Radius | pill CTAs ≈ 8px, cards ≈ 12–16px | `0.625rem` (10px) family | close |
+| Button height | ≈ 44px | ~40–44px | match |
+| Section padding | ≈ 80–96px vertical | `py-14 sm:py-20` (56/80px) | minor fidelity gap on desktop |
+| Field dimensions | FIGMA_SOURCE_NOT_FOUND | shadcn defaults | not comparable |
 
-| Token | Production value (light) | Production value (dark) | Figma |
-| --- | --- | --- | --- |
-| Primary | `oklch(0.52 0.105 168)` evergreen | `oklch(0.7 0.12 168)` | pending |
-| Primary foreground | `oklch(0.98 0.01 160)` | `oklch(0.16 0.03 170)` | pending |
-| Background | `oklch(0.99 0.003 250)` | `oklch(0.165 0.012 260)` | pending |
-| Card / popover | `oklch(1 0 0)` | `oklch(0.2 0.012 260)` | pending |
-| Section alt background | `bg-muted/40` → `oklch(0.962 0.005 250)` | `oklch(0.24 0.012 260)` | pending |
-| Foreground text | `oklch(0.22 0.02 260)` | `oklch(0.94 0.005 250)` | pending |
-| Muted text | `oklch(0.53 0.02 260)` | `oklch(0.68 0.015 255)` | pending |
-| Accent | `oklch(0.945 0.02 168)` | `oklch(0.28 0.03 168)` | pending |
-| Border / input | `oklch(0.918 0.006 250)` | `oklch(1 0 0 / 10–12%)` | pending |
-| Destructive / success / warning | `0.577 0.215 27` / `0.58 0.12 155` / `0.66 0.13 65` | dark variants defined | pending |
-| Charts 1–5 | evergreen, teal, indigo, amber, orange | dark variants | pending |
-| Shadows | shadcn defaults; no custom shadow tokens | — | pending |
-| Gradients | none defined | — | pending |
-| Font family (sans) | Geist Variable | — | pending |
-| Font family (mono) | Geist Mono Variable | — | pending |
-| Type scale | Tailwind v4 default scale; headings `text-2xl` → `sm:text-3xl` on sections | — | pending |
-| Letter spacing | body `-0.01em`; headings `tracking-tight`; eyebrows `tracking-widest uppercase text-xs` | — | pending |
-| Spacing rhythm | sections `py-14 sm:py-20`, grid gaps `gap-3`/`gap-10`, card padding `p-5` | — | pending |
-| Max content width | `max-w-6xl` (72rem) with `px-4` gutters | — | pending |
-| Radius | `--radius: 0.625rem`, derived sm/md/lg/xl/2xl/3xl/4xl | — | pending |
-| Buttons | shadcn `Button` sizes (`default` h-9, `lg` h-10) | — | pending |
-| Form controls | shadcn `Input`/`Select`/`Textarea` defaults | — | pending |
+Exact Figma values could not be pulled because the node is a code instance; see limitations.
 
-Known intentional brand-system positions (classification `INTENTIONAL_BRAND_SYSTEM_CHANGE`, subject to founder confirmation): evergreen accent replacing the Figma orange direction; Geist / Geist Mono replacing Playfair / Outfit / Inter; shadcn/ui components replacing prototype components (`INTENTIONAL_PRODUCTION_COMPONENT_REUSE`).
+## 7. Copy comparison
 
----
+| Slot | Figma | Production | Classification |
+|---|---|---|---|
+| Nav lockup | "EduOS / OUTCOME SYSTEM" | "EduOS" | IMPLEMENTATION_FIDELITY_MISS (minor, optional) |
+| Nav links | For Parents / For Centres / For Schools / About | identical | match |
+| Nav CTAs | Sign In · Book Demo · Free Learning Check → | Sign In · Book Demo · Free Learning Check (+ EN/हिंदी) | production superset |
+| Eyebrow | LEARNING OUTCOME SYSTEM | Learning Intelligence & Intervention | approved rewrite |
+| H1 | "Your child is working hard. *Is it working?*" | "Find the learning gaps. Close them with purpose. Prove the progress." | approved Program Director rewrite |
+| Sub | "…gives you verified proof of real improvement." | "…uses fresh reassessment to provide evidence of demonstrated progress." | INTENTIONAL_PRODUCT_TRUTH_CHANGE (removes proof/guarantee framing) |
+| CTAs | Start a Free Learning Check → · Book a Centre Demo | identical | match |
+| Reassurance | "No credit card. No commitment. Results in 20 minutes." | "CBSE Class 10 Mathematics and Science. No credit card required for the free check." | INTENTIONAL_PRODUCT_TRUTH_CHANGE (20-minute claim removed, scope added) |
+| Stat row | "< 20 min / 6-step / 100% verified before gap closes" | absent | mixed: "100%" and "<20 min" are unsupported claims (correctly dropped); the *row itself* is an IMPLEMENTATION_FIDELITY_MISS |
+| Product card | "Amara Osei · Grade 7", Setswana, English, Mathematics, "57% closure", "Gap Closed — Verified" | "Evidence chain" abstract table + "Example layout only" disclaimer | INTENTIONAL_PRODUCT_TRUTH_CHANGE (Grade 7, Setswana, English, fabricated learner and stats are all out of scope) |
+| Problem headline | "The gap between effort and results" | "Marks describe the result. They rarely explain the cause." | approved rewrite |
+| Problem body | "Hard work is not the same as measurable improvement…" | 3 audience cards + footnote | production expansion |
+| Pricing | not shown in Figma | ₹199 diagnostic / ₹2,999 annual | production-only, correct |
+| Language switch | not in Figma | EN / हिंदी | production-only, keep |
 
-## Phase 5 — Copy: product-truth guardrails already enforced
+Content in Figma that must stay excluded: Setswana, Grade 7, English as a subject, named fictional learner with invented percentages, "verified proof of real improvement", "100%", "results in 20 minutes".
 
-Independently verifiable in the repository and in production, regardless of Figma:
+## 8. Intentional differences
 
-- Pricing is INR only: ₹199 diagnostic, ₹2,999 Board Success Plan, ₹2,800 centre pricing. No rand anywhere.
-- Scope is CBSE Class 10 Mathematics and Science only; no all-grade or all-subject claims.
-- No guaranteed mastery/improvement language; no testimonials; no third-party logos; landing sample figures are explicitly labelled "Anonymised pilot sample — not live tenant data" (`src/lib/landing-content.ts`).
-- School section presents an engagement path, not unbuilt functionality.
+**INTENTIONAL_PRODUCT_TRUTH_CHANGES: 5**
+1. Setswana / English subjects → CBSE Mathematics and Science only.
+2. Grade 7 learner → CBSE Class 10 scope.
+3. Named learner "Amara Osei" with invented stats → abstract, disclaimered evidence chain.
+4. "verified proof of real improvement" / "100%" → evidence-of-progress language.
+5. "Results in 20 minutes" → scope + no-credit-card reassurance.
 
-These must **not** be reverted under any Figma adoption. Any Figma copy conflicting with the above is classified `DO_NOT_IMPLEMENT`.
+Recommendation for all five: **KEEP_PRODUCTION**.
 
----
+**INTENTIONAL_BRAND_CHANGES: 3**
+1. Orange accent → evergreen `oklch(0.52 0.105 168)`.
+2. Serif display + blue italic → Geist.
+3. Dark marketing canvas → light canvas with theme toggle.
 
-## Phases 3, 6, 7 — Not produced
+Recommendation: KEEP_PRODUCTION for 1 and 3 unless the founder decides otherwise; 2 is a REQUIRES_FOUNDER_DECISION item (display typeface).
 
-The difference matrix, the two brand previews and the final recommendation are deliberately withheld: each requires the Figma side as evidence. Delivering them now would be estimation presented as audit.
+**PRODUCTION_COMPONENT_REUSE: 4** — shadcn button, card, badge and separator primitives replace the Figma prototype's bespoke chips, pills and card shells. Recommendation: **KEEP_PRODUCTION** (accessibility, theming, maintenance).
 
----
+## 9. Implementation fidelity misses
 
-## Verdict
+| # | Miss | Impact | Recommendation |
+|---|---|---|---|
+| 1 | Hero stat row absent (three compact proof metrics under a rule) | Medium — hero loses a credibility beat | ADAPT_FIGMA_TO_PRODUCTION_SYSTEM (use ₹199 / 6-step / ₹2,999, no invented claims) |
+| 2 | Hero product visual is a flat table, not a dark elevated dashboard card | High — the strongest visual in the design is missing | ADAPT_FIGMA_TO_PRODUCTION_SYSTEM |
+| 3 | No progress bar / status chips in the hero visual | Medium | ADAPT_FIGMA_TO_PRODUCTION_SYSTEM |
+| 4 | No floating "verified" callout badge overlapping the card | Low–medium | ADAPT (must read "illustrative", not "verified outcome") |
+| 5 | No elevation/shadow language anywhere on the marketing page | Medium — page reads flat | ADAPT |
+| 6 | Desktop section padding shorter than Figma (80px vs ~96px) | Low | ADAPT |
+| 7 | Problem section centred in Figma, left-aligned in production | Low | KEEP_PRODUCTION (consistent with rest of page) |
+| 8 | Nav lockup missing the "OUTCOME SYSTEM" descender line | Low | REQUIRES_FOUNDER_DECISION |
+| 9 | No display/italic typographic accent in any headline | Medium — hero lacks focal contrast | REQUIRES_FOUNDER_DECISION |
+| 10 | No mobile/tablet Figma reference to validate against | — | Handoff gap, not a code miss |
 
-```
-FIGMA_PRODUCTION_PARITY_AUDIT: FAIL (blocked — Figma inputs unavailable)
-APPLICATION_HEAD: 54f78cd166867701a9cd1b07c867e3f10318a3b6
-PRODUCTION_HEAD: 54f78cd166867701a9cd1b07c867e3f10318a3b6
-HEAD_MATCH: YES
-WORKTREE: CLEAN (audit documentation only)
-FIGMA_FINAL_FRAMES_REVIEWED: 0 (no access)
-SECTIONS_COMPARED: 0 of 15 (production side captured for all public routes; Figma side unavailable)
-VIEWPORTS_CAPTURED: 390 / 768 / 1280 / 1440 — production only
-INTENTIONAL_DIFFERENCES: cannot be confirmed without Figma
-IMPLEMENTATION_MISSES: cannot be confirmed without Figma
-FOUNDER_DECISIONS_REQUIRED: (1) provide Figma access or exports; (2) evergreen vs Figma orange; (3) Geist vs editorial display fonts
-OPTION_A_PREVIEW: not built (pending Figma composition reference)
-OPTION_B_PREVIEW: not built (pending Figma identity reference)
-RECOMMENDATION: deferred
-CODE_CHANGED: NO
-DEPLOYED: NO
-KNOWN_LIMITATIONS: no Figma connectivity in this environment; no design exports in repository; production-only evidence
-AUDIT_COMMIT: this document only
-```
+**IMPLEMENTATION_FIDELITY_MISSES: 9** (10 is a handoff gap).
 
-## Continuity
+## 10. Founder decisions required
 
-Founder visual acceptance remains **OPEN**. The public visual experience is not finally accepted. The gate stays this parity audit, which resumes as soon as Figma frames or exports are supplied.
+1. **Public accent colour** — keep evergreen, or adopt the Figma orange for marketing pages only?
+2. **Display typography** — keep Geist everywhere, or introduce a serif display face for marketing headlines?
+3. **Marketing canvas mode** — keep light-first with toggle, or make marketing dark-first as in Figma?
+4. **Does editorial styling apply to marketing only** (portals stay evergreen/Geist), or platform-wide?
+5. **Nav lockup** — add the "OUTCOME SYSTEM" descender line?
+
+**FOUNDER_DECISIONS_REQUIRED: 5**
+
+## 11. Option A previews — production brand refinement
+
+Assets: `preview_A_desktop.png`, `preview_A_mobile.png`.
+
+Keeps evergreen, Geist/Geist Mono, shadcn, light canvas, current routes and copy guardrails. Adopts from Figma: split hero composition, mono eyebrow pill, dark elevated product card with progress bar and status chips, hero stat row (₹199 / 6-step / ₹2,999), rule-separated hero footer, softer card elevation.
+
+## 12. Option B previews — Figma visual identity
+
+Assets: `preview_B_desktop.png`, `preview_B_mobile.png`.
+
+Adopts the Figma dark canvas, orange accent, serif display with blue italic accent, mono labels and card treatments — while holding India/INR, CBSE Class 10 Mathematics and Science, disclaimered illustrative data, and current routes. Authenticated surfaces are untouched.
+
+Both previews are **static, non-production renders**. No route, component or token in the application was modified.
+
+## 13. Recommended final direction
+
+**Recommendation: B — refine the production design toward Figma while retaining evergreen and Geist** (i.e. ship Option A).
+
+- **Visual impact:** high; misses 1–6 are where the page currently reads flat, and all are compositional rather than chromatic.
+- **Brand coherence:** evergreen is already carried across portals, emails and the published domain; switching the public accent to orange fragments the identity for a design source that covers only the hero.
+- **Implementation effort:** ~1 focused sprint on `src/routes/index.tsx` and marketing components; no schema, no server, no i18n keys beyond the new stat labels.
+- **Accessibility:** contrast stays on the audited light theme; the dark hero card is a single controlled surface.
+- **Performance:** no webfont added (Option C would add a serif family and dark-mode image work).
+- **Portal isolation:** zero — changes stay in the public marketing route.
+- **Maintenance:** shadcn primitives retained.
+- **Regression risk:** low; presentation-only, 97/97 tests unaffected.
+
+Adopting the full Figma identity (C) is not advisable on this evidence base: the Figma source covers roughly one and a half sections of a fifteen-section site, has no mobile frames, no variables, and its content is built on out-of-scope product claims.
+
+## 14. Implementation effort and risk
+
+| Item | Effort | Risk |
+|---|---|---|
+| Hero dark product card + chips + progress bar | M | Low |
+| Hero stat row | S | Low |
+| Elevation/shadow tokens | S | Low |
+| Section padding tuning | S | Low |
+| Optional serif display face | M | Medium (perf + brand decision) |
+| Full dark marketing canvas | L | Medium (contrast re-audit, image assets) |
+
+## 15. Known limitations
+
+1. Figma file name and file ID are not exposed by the desktop MCP server.
+2. The active node is a **Figma Make code instance**; `get_design_context` returns "Resource not found", so no exact spacing, colour, or type metrics could be extracted. All Figma token values here are visual estimates.
+3. `get_variable_defs` returned `{}` — no published variables or styles.
+4. Only one frame exists (1280 × 1080) and its render is clipped; 11 of 15 requested sections have no Figma source.
+5. No mobile (390), tablet (768) or 1440 Figma frames exist — matched-viewport comparison was possible at 1280 only.
+6. The published deployment does not expose a commit SHA, so production HEAD could not be compared byte-for-byte with application HEAD.
