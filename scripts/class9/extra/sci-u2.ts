@@ -118,7 +118,7 @@ export const EXT: UnitExtension = {
               {
                 kind: "applied_mcq",
                 difficulty: 3,
-                prompt: "The hard, gritty texture felt while eating a guava fruit is due to clusters of:",
+                prompt: "Biting into a pear or guava, one often feels hard gritty specks in the pulp. These specks are groups of:",
                 options: ["Parenchyma cells", "Sclerenchyma cells (sclereids)", "Collenchyma cells", "Meristematic cells"],
                 answer: "Sclerenchyma cells (sclereids)",
                 explanation:
@@ -191,7 +191,7 @@ export const EXT: UnitExtension = {
       {
         kind: "applied_mcq",
         difficulty: 4,
-        prompt: "A plant cell is observed to have a large central sac occupying most of its volume, pushing the cytoplasm to the edge. This structure is most likely the:",
+        prompt: "Which cell organelle appears as a large fluid-filled sac that occupies most of a mature plant cell and stores sap?",
         options: ["Vacuole", "Nucleus", "Mitochondrion", "Golgi apparatus"],
         answer: "Vacuole",
         explanation:
@@ -258,7 +258,7 @@ export const EXT: UnitExtension = {
       {
         kind: "mcq",
         difficulty: 3,
-        prompt: "When a plant cell placed in pure water becomes fully swollen and firm without bursting, this state is called:",
+        prompt: "State the term for the firm, swollen condition reached when a walled cell absorbs the maximum water it can hold.",
         options: ["Turgidity", "Plasmolysis", "Flaccidity", "Dehydration"],
         answer: "Turgidity",
         explanation:
@@ -354,7 +354,7 @@ export const EXT: UnitExtension = {
       {
         kind: "applied_mcq",
         difficulty: 3,
-        prompt: "The lining of the small intestine is made of a single layer of tall, closely fitted cells adapted for absorption. This is an example of:",
+        prompt: "Which epithelial type consists of a single layer of elongated, pillar-shaped cells lining the intestine for efficient nutrient uptake?",
         options: [
           "Columnar epithelium",
           "Squamous epithelium",
