@@ -1,0 +1,82 @@
+{
+  "referenceVersion": "1",
+  "board": "CBSE",
+  "academicSession": "2026-27",
+  "provenance": {
+    "state": "PENDING_OFFICIAL_RETRIEVAL",
+    "note": "Unit, chapter and weightage entries below are the reference spine used by the compliance validator. They have NOT been machine-retrieved from a checksummed CBSE/NCERT document in this environment; every entry carries verifiedAgainstOfficial=false until the source registry records a final document with a sha256 checksum. No compliance verdict may be reported as COMPLIANT while this state is PENDING_OFFICIAL_RETRIEVAL.",
+    "requiredSourceTypes": [
+      "cbse_curriculum",
+      "subject_syllabus",
+      "ncert_textbook",
+      "rationalised_content_notice",
+      "sample_paper",
+      "marking_scheme"
+    ]
+  },
+  "subjects": [
+    {
+      "subject": "Mathematics",
+      "code": "041",
+      "theoryMarks": 80,
+      "internalAssessmentMarks": 20,
+      "units": [
+        { "ref": "MAT-U1", "title": "Number Systems", "marks": 6, "chapters": [{ "ref": "MAT-U1-C1", "title": "Real Numbers", "assessable": true }], "verifiedAgainstOfficial": false },
+        { "ref": "MAT-U2", "title": "Algebra", "marks": 20, "chapters": [
+          { "ref": "MAT-U2-C1", "title": "Polynomials", "assessable": true },
+          { "ref": "MAT-U2-C2", "title": "Pair of Linear Equations in Two Variables", "assessable": true },
+          { "ref": "MAT-U2-C3", "title": "Quadratic Equations", "assessable": true },
+          { "ref": "MAT-U2-C4", "title": "Arithmetic Progressions", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "MAT-U3", "title": "Coordinate Geometry", "marks": 6, "chapters": [{ "ref": "MAT-U3-C1", "title": "Coordinate Geometry", "assessable": true }], "verifiedAgainstOfficial": false },
+        { "ref": "MAT-U4", "title": "Geometry", "marks": 15, "chapters": [
+          { "ref": "MAT-U4-C1", "title": "Triangles", "assessable": true },
+          { "ref": "MAT-U4-C2", "title": "Circles", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "MAT-U5", "title": "Trigonometry", "marks": 12, "chapters": [
+          { "ref": "MAT-U5-C1", "title": "Introduction to Trigonometry", "assessable": true },
+          { "ref": "MAT-U5-C2", "title": "Some Applications of Trigonometry", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "MAT-U6", "title": "Mensuration", "marks": 10, "chapters": [
+          { "ref": "MAT-U6-C1", "title": "Areas Related to Circles", "assessable": true },
+          { "ref": "MAT-U6-C2", "title": "Surface Areas and Volumes", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "MAT-U7", "title": "Statistics & Probability", "marks": 11, "chapters": [
+          { "ref": "MAT-U7-C1", "title": "Statistics", "assessable": true },
+          { "ref": "MAT-U7-C2", "title": "Probability", "assessable": true }
+        ], "verifiedAgainstOfficial": false }
+      ]
+    },
+    {
+      "subject": "Science",
+      "code": "086",
+      "theoryMarks": 80,
+      "internalAssessmentMarks": 20,
+      "units": [
+        { "ref": "SCI-U1", "title": "Chemical Substances - Nature and Behaviour", "marks": 25, "chapters": [
+          { "ref": "SCI-U1-C1", "title": "Chemical Reactions and Equations", "assessable": true },
+          { "ref": "SCI-U1-C2", "title": "Acids, Bases and Salts", "assessable": true },
+          { "ref": "SCI-U1-C3", "title": "Metals and Non-metals", "assessable": true },
+          { "ref": "SCI-U1-C4", "title": "Carbon and its Compounds", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "SCI-U2", "title": "World of Living", "marks": 25, "chapters": [
+          { "ref": "SCI-U2-C1", "title": "Life Processes", "assessable": true },
+          { "ref": "SCI-U2-C2", "title": "Control and Coordination", "assessable": true },
+          { "ref": "SCI-U2-C3", "title": "How do Organisms Reproduce?", "assessable": true },
+          { "ref": "SCI-U2-C4", "title": "Heredity", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "SCI-U3", "title": "Natural Phenomena", "marks": 12, "chapters": [
+          { "ref": "SCI-U3-C1", "title": "Light – Reflection and Refraction", "assessable": true },
+          { "ref": "SCI-U3-C2", "title": "The Human Eye and the Colourful World", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "SCI-U4", "title": "Effects of Current", "marks": 13, "chapters": [
+          { "ref": "SCI-U4-C1", "title": "Electricity", "assessable": true },
+          { "ref": "SCI-U4-C2", "title": "Magnetic Effects of Electric Current", "assessable": true }
+        ], "verifiedAgainstOfficial": false },
+        { "ref": "SCI-U5", "title": "Natural Resources", "marks": 5, "chapters": [
+          { "ref": "SCI-U5-C1", "title": "Our Environment", "assessable": true }
+        ], "verifiedAgainstOfficial": false }
+      ]
+    }
+  ]
+}
