@@ -309,6 +309,9 @@ function AssessmentsPage() {
     setUnitId("");
     setPicked(new Set());
     setSavedDraftId(null);
+    // A fresh form is a new intentional Create action, so it needs a new
+    // request id. Identical titles must never collapse into one draft.
+    setRequestId(crypto.randomUUID());
   };
 
   const closeCreate = (open: boolean) => {
