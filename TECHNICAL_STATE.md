@@ -162,3 +162,14 @@ Key files: `src/lib/assessments.server.ts` (`createAssessmentDraft`), `src/lib/a
 - Production verification: ₹199, ₹2,999, ₹2,800, CBSE Class 10 Mathematics and Science all present; Classes 9/11/12, Commerce, Humanities and all streams absent from public surfaces; English-only copy intact.
 - Rollback: code `48548b420c601f8bcaf11a47c6853a55ebfb5526`; both migrations are additive/policy-only and require no data rollback.
 - Next gate: Wave 1 — Class 9 Mathematics and Science content preparation (not started).
+
+---
+
+## 2026-08-28 — Annual CBSE/NCERT Subject-Compliance Framework (P0) — CURRENT
+
+- New reusable compliance core: `src/lib/compliance-shared.ts` (source registry contracts + validation, curriculum version lifecycle, snapshot model, deterministic annual change diff, impact analysis, question-rollover classification, seven-gate subject compliance gate, compliance-status derivation). Pure and client-safe; no runtime app behaviour changed.
+- New data: `content/compliance/cbse-2026-27.sources.json` (official source registry), `content/compliance/cbse-2026-27.official-curriculum.json` (reference spine, `PENDING_OFFICIAL_RETRIEVAL`), `content/compliance/class-10-2026-27.snapshot.json` (read-only live export).
+- New tooling: `scripts/compliance/export-snapshot.{ts,sql}`, `validate.ts`, `report.ts`, `analysis.ts`.
+- New documents: `EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md`, `EDUOS_OFFICIAL_SOURCE_REGISTRY_SPEC.md`, `EDUOS_CURRICULUM_CHANGE_CLASSIFICATION_AND_IMPACT.md`, `EDUOS_SUBJECT_COMPLIANCE_GATE.md`, `EDUOS_ANNUAL_ROLLOVER_RUNBOOK.md`, generated `EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md`.
+- **Class 10 2026-27 verdict: SOURCE_PENDING for both Mathematics and Science.** Blocking facts: no checksummed CBSE/NCERT document could be retrieved in this environment; the NCERT Class 10 Science book is still `processed` (not `approved`); two Meridian-pilot Maths units are active without an official mapping; verified depth falls short of the 2× law in 9 of 10 Maths-side units and 4 of 5 Science units (only Chemical Substances, 96 verified, clears it); "The Human Eye and the Colorful World" spelling diverges from the official "Colourful"; no named subject-expert reviewer recorded; entitlements not yet session-scoped.
+- Tests: **184 passing, 15 files**; `bunx tsgo --noEmit` clean. No schema migration, no database writes, no Class 9 or Class 12 work.
