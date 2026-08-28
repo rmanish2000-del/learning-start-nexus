@@ -290,14 +290,19 @@ Question volume, not code, is the binding constraint — roughly 40 verified ite
 
 Every migration is additive; new columns are nullable; the legacy `parent_entitlements` table and `PRICING` constant remain in place through Wave 0. Rollback of Wave 0 is a code revert plus leaving unused tables in place — no data loss. Content waves roll back by flipping `commercial_status` to `content_review`, which removes the entry from every selector within one request cycle without touching purchases already made.
 
-## 14. Founder decisions required
+## 14. Founder decisions — recorded 2026-08-28
 
-D1 Approve the catalogue-driven scope model (removes hardcoded Class 10 guards behind a data flag).
-D2 Approve academic-year and versioning policy, including rollover.
-D3 Confirm subject list per class and whether Class 11–12 English Core is in scope.
-D4 Approve or amend the candidate pricing ladder and its validation ranges.
-D5 Decide the diagnostic-credit rule for bundles (per subject, or once per learner per year).
-D6 Approve tax handling (inclusive vs exclusive) before any new price ships.
-D7 Approve the subject-expert review resourcing model — this is the actual constraint on wave velocity.
-D8 Confirm centre contract pricing is proposal-based, not self-serve.
-D9 Approve the one-line fix to the stale "English and Hindi" FAQ sentence on the homepage.
+| # | Decision | Founder ruling | Implementation consequence |
+|---|---|---|---|
+| D1 | Catalogue-driven scope model | **APPROVED** — database-driven curriculum catalogue | Wave 0 builds the catalogue tables; hardcoded Class 10 guards become data flags, not deletions |
+| D2 | Academic-year and versioning policy | **APPROVED** — versioning begins with CBSE 2026–27 | First `academic_years` row is `2026-27`; rollover policy still to be defined per year |
+| D3 | Subject list per class | **APPROVED** — Classes 9–10 core subjects and Classes 11–12 Science subjects, **including English Core** | Wave list in §9 stands; English Core is in scope for 11–12 |
+| D4 | Pricing ladder | **APPROVED FOR ARCHITECTURE ONLY** — configurable pricing; final prices remain unapproved | `price_plans` / `price_bundles` / `discount_rules` are built; no price value ships without a separate approval |
+| D5 | Diagnostic-credit rule | **APPROVED** — one eligible ₹199 credit, same learner, qualifying subject or bundle, applied once | Server enforces single consumption via `credit_consumed_at`; no per-year multiplier |
+| D6 | Tax handling | **APPROVED FOR CONFIGURATION** — rules remain inactive until accounting approval | `tax_mode` column exists and defaults to inactive; no tax is computed or displayed |
+| D7 | Subject-expert review resourcing | **APPROVED** — named subject-expert sign-off required before commercial activation | `commercial_status='purchasable'` requires reviewer evidence naming the expert |
+| D8 | Centre contract pricing | **APPROVED FOR ARCHITECTURE** — priced by active learner/year with contract-specific curriculum access | `centre_contracts` carries the learner cap and the entitled catalogue subjects; not self-serve |
+| D9 | Stale "English and Hindi" homepage FAQ | **FIX NOW** | Implemented: the FAQ answer now states the interface is English only |
+
+No decision above authorises curriculum tables, data migration, content import, class or subject
+activation, price changes, or new selectors. Those belong to Wave 0 and the content waves.
