@@ -99,3 +99,16 @@ The founder owns the "Candidate next" section and sets priorities. The Lovable a
 - Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
 - Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
 - Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
+
+---
+
+## 2026-08-28 — Classes 9–12 Expansion Architecture (under review) — CURRENT
+
+- Pilot **deferred** by founder decision; curriculum expansion is under architecture review.
+- Current production scope is unchanged: English-only, CBSE Class 10 Mathematics and Science, pricing unchanged.
+- Target expansion scope (not yet supported): Classes 9–10 Mathematics, Science, Social Science, English, Computer Applications/IT; Classes 11–12 Science stream — Physics, Chemistry, Mathematics, Biology, Computer Science, English Core where applicable.
+- Architecture: database-driven catalogue (board → academic year → class → stream → subject → source → unit → chapter → outcome → question), per-subject commercial status and diagnostic eligibility, additive entitlement table with bundles and grandfathered legacy rows, configuration-driven pricing with immutable order snapshots.
+- Delivery waves: Wave 0 architecture; W1 Class 9 Maths/Science; W2 Class 9–10 Social Science; W3 Class 9–10 English + CA/IT; W4 Class 11 Physics/Chemistry/Maths; W5 Class 11 Biology/CS; W6 Class 12 all five. Each wave is a separate implementation and content-verification assignment.
+- Minimum content bar derived from live allocation logic: ≥20 approved+verified items per unit for the diagnostic, plus a disjoint ≥20 for reassessment, ≥1 per weighted outcome.
+- **No class-subject may be marked supported until it passes its own release gate.**
+- Reference: `EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md`.
