@@ -11,6 +11,7 @@ import {
   ACTION_LABELS,
   STATE_LABELS,
   actionsFor,
+  SUPPORTED_SCOPE,
   isLegacyContent,
   resolveState,
   unavailableReason,
