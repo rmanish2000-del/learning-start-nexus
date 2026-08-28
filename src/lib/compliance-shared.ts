@@ -576,6 +576,7 @@ export type GateInput = {
   units: UnitCoverage[];
   unmappedOfficialTopics: string[];
   duplicateOfficialMappings: string[];
+  unapprovedSourceBooks: string[];
   learningLoop: Record<string, boolean>;
   review: { reviewerName: string | null; reviewedAt: string | null; decision: string | null; unresolvedAmbiguities: number };
   commercial: { activeAcademicSession: string; purchasable: boolean; approvedVersion: boolean; selectorsCorrect: boolean; entitlementsScoped: boolean; pricingApproved: boolean };
