@@ -134,8 +134,10 @@ No orphaned or inconsistent payment state observed.
 2. `profiles.phone` remains readable by members of the same organisation (P1 from the
    prior scan). Single-tenant during the pilot, so no cross-centre exposure.
 3. Apex domain `eduos.global` still awaiting DNS; `www.eduos.global` is live.
-4. This release is verified on the dev server and by build; publishing to production is
-   a separate, explicit founder action.
+4. Authenticated surfaces (learner, centre, admin, reviewer) were verified for language
+   by scanning all 37 production client bundles for Devanagari and language-switch
+   symbols (zero hits) rather than by signing in as each role; journey health for those
+   roles is evidenced by the 105-test suite and live database integrity checks.
 
 ---
 
@@ -155,5 +157,25 @@ SECURITY_CRITICAL_FINDINGS:  0
 DEPENDENCY_VULNERABILITIES:  0
 DATABASE_RLS_GAPS:           0 (1 intentional policy-less table)
 PILOT_VERDICT:               READY_FOR_FIVE_FAMILY_PILOT
-DEPLOYED:                    NO (awaiting explicit publish instruction)
+DEPLOYED:                    YES — https://www.eduos.global, HEAD d874fb4b0b5973cdef42301ad6021a3d0e20f349
 ```
+
+---
+
+## 8. Production verification (post-publish, 2026-08-28)
+
+**Application HEAD:** `d874fb4b0b5973cdef42301ad6021a3d0e20f349` — working tree clean.
+
+| Check | Result |
+|---|---|
+| `https://www.eduos.global/` | 200 |
+| `<html lang>` | `en` on every public and parent route |
+| Language control in DOM | none |
+| Devanagari in served HTML | none |
+| Devanagari / `LanguageToggle` / `LANGUAGE_LABELS` across **all 37 production JS chunks** | **zero hits** — proves no role surface can render Hindi |
+| Stale `eduos.lang = "hi"` in a returning browser | cleared to `null`, UI stays English |
+| Direction B fingerprints ("Evidence chain", Step 1–4) at 390 / 768 / 1280 / 1440 | present, no horizontal overflow |
+| Browser console errors | none |
+| Payment integrity | 8 orders, 5 paid, 5 entitlements, 0 orphans |
+| Assessment integrity | 17 assessments, 12 published, 0 duplicate `(org_id, client_request_id)` pairs, 0 duplicate-title collisions |
+| Learners / organisations | 23 / 6, all reachable under RLS |

@@ -33,11 +33,11 @@ English. The generic `t()` seam is retained as an English identity function.
 | Security scan critical findings | 0 (1 accepted warning) |
 | Database RLS gaps | 0 (1 intentional policy-less table) |
 | **Pilot verdict** | **READY_FOR_FIVE_FAMILY_PILOT** |
-| Deployed | No — awaiting an explicit publish instruction |
+| Deployed | **YES** — https://www.eduos.global, HEAD `d874fb4b0b5973cdef42301ad6021a3d0e20f349` |
 
 Evidence: `EDUOS_POST_VISUAL_ACCEPTANCE_PILOT_GATE.md`.
 
-### Next founder action
+### Next gate
 
-Run the five-family controlled pilot, or instruct a publish if the English-only
-release should go live on https://www.eduos.global first.
+Founder-controlled five-family pilot preparation and sales-enablement foundation.
+No pilot invitations and no sales material have been issued.

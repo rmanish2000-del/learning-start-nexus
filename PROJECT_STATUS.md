@@ -23,7 +23,7 @@ dictionary are removed; a regression test blocks their return. See
 | Routes | 16 public/route files + 41 authenticated route files | `src/routes` listing |
 | Roles in use | admin 1, reviewer 1, educator 5, parent 3, student 15 (25 auth users) | `user_roles`, `auth.users` |
 | Automated tests | **105 passing / 12 files** | `bunx vitest run`, 2026-08-28 |
-| Production URL | https://www.eduos.global (also learning-start-nexus.lovable.app) | project settings |
+| Production URL (English-only release live, HEAD `d874fb4`) | https://www.eduos.global (also learning-start-nexus.lovable.app) | project settings |
 | Custom domain | `www.eduos.global` live; apex `eduos.global` **awaiting DNS** | project domain status |
 
 ## 3. Content — Class 10 import status (VERIFIED)
@@ -121,7 +121,7 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 | Last functional commit | `92ac129d6e62b70bdd382db7a5aa8fdccadfe24c` |
 | **Deployed production HEAD** | **`e73bbb047889fe3e8043be90e56e833f068a04dc`** (documentation-only above `92ac129`; no code delta) |
 | Intermediate documentation commit | `db55f6fdf44d4368bca557a80d000cb639a751d4` |
-| Production URL | https://www.eduos.global (200 OK on `/` and `/diagnostic`, re-checked 2026-08-27) |
+| Production URL (English-only release live, HEAD `d874fb4`) | https://www.eduos.global (200 OK on `/` and `/diagnostic`, re-checked 2026-08-27) |
 | Rollback | `54baba6d79f0f227b44ef3140d2720f026551b0c`; pre-consolidation `e03ce27` |
 
 - **Authoritative test total corrected:** the "46/46 tests pass" figure recorded in §2 and in the previous update was accurate at the time of that assignment; the current authoritative single run is **70 passed / 8 files** (`bunx vitest run`, `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md` §2). Historical figures retained above as written.
