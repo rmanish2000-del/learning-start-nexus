@@ -94,3 +94,13 @@ above is unchanged.
 - Rollback reference: `9e0e2b166d20b3c605dfcd32f733cb9aaa3d7829`.
 
 **Status:** Complete. Next gate: pilot monitoring; no open assessment-lifecycle defects.
+
+---
+
+## Continuity update — 2026-08-28: Figma-to-Production Visual Parity Audit
+
+- Founder visual acceptance: **OPEN**
+- Parity audit: **COMPLETED** (documentation + preview evidence only) — see `EDUOS_FIGMA_PRODUCTION_PARITY_AUDIT.md`
+- Implementation direction: **NONE APPROVED**
+- Next gate: founder selects Option A, B, C or D
+- CODE_CHANGED: NO · DEPLOYED: NO · Test baseline re-run: 97/97 passing
