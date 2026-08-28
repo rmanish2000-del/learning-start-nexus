@@ -101,6 +101,7 @@
               "OFFICIAL_SYLLABUS",
               "NCERT_TEXTBOOK",
               "RATIONALISATION_NOTICE",
+              "TRANSITION_ADVISORY",
               "OFFICIAL_ANNOUNCEMENT"
             ]
           },
@@ -316,7 +317,8 @@
             "type": "string",
             "enum": [
               "RATIONALISED_CHAPTER_OMISSION",
-              "TOPIC_RATIONALISATION"
+              "TOPIC_RATIONALISATION",
+              "INTERNAL_ASSESSMENT_ONLY"
             ]
           },
           "official_source_id": {

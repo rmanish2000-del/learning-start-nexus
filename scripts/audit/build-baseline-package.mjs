@@ -313,6 +313,7 @@ const SOURCE_RECORD_SCHEMA = (subjectCodeShape) => ({
         'OFFICIAL_SYLLABUS',
         'NCERT_TEXTBOOK',
         'RATIONALISATION_NOTICE',
+        'TRANSITION_ADVISORY',
         'OFFICIAL_ANNOUNCEMENT',
       ],
     },
@@ -631,7 +632,11 @@ function scienceSchema() {
             excluded_topic: { type: 'string', minLength: 1 },
             exclusion_type: {
               type: 'string',
-              enum: ['RATIONALISED_CHAPTER_OMISSION', 'TOPIC_RATIONALISATION'],
+              enum: [
+                'RATIONALISED_CHAPTER_OMISSION',
+                'TOPIC_RATIONALISATION',
+                'INTERNAL_ASSESSMENT_ONLY',
+              ],
             },
             official_source_id: { type: 'string', minLength: 1 },
             source_reference: { type: 'string', minLength: 1 },
