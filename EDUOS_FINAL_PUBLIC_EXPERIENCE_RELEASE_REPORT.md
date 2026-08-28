@@ -217,3 +217,33 @@ Each records: timestamp with timezone, canonical branch, application SHA, produc
 - Expected impact: the public site returns to the previous landing page, header, About and Contact presentation. Authenticated product behaviour is unaffected either way.
 - Database considerations: **none**. This release contains no migration and no data change, so rollback is code-only and non-destructive.
 - Rollback was **not** required during release verification.
+
+---
+
+## 13. Addendum — Assessment lifecycle regression (Issues 1 and 2)
+
+- **Did the assessment regression delay publication?** Yes. Publication of the
+  public-experience release was held until both P0 assessment defects were
+  closed, because Issue 2 allowed silent loss of staff-authored content.
+- **Issue 1** — new assessments persisted with hardcoded Grade 6 metadata, were
+  classified as legacy and could never publish. Fixed via `createAssessmentDraft`
+  deriving scope from the selected curriculum book and unit.
+- **Issue 2** — same-title creates within a two-minute window returned the
+  earlier draft and discarded the new description and question selection. Fixed
+  by replacing title/time-window deduplication with request-scoped idempotency
+  keyed on `(org_id, client_request_id)`, enforced by a partial unique index.
+- Full detail: `EDUOS_ASSESSMENT_LIFECYCLE_REGRESSION_REPORT.md`.
+- **Database change in this combined release:** migration
+  `20260828055655_*.sql` (additive nullable `client_request_id` column and
+  partial unique index on `public.assessments`). Rollback is code revert plus,
+  optionally, dropping the index and column — no data is destroyed, and the
+  reverted code simply ignores the column.
+- **Combined authoritative test result:** 97/97 Vitest passing (11 files),
+  typecheck clean, production build clean.
+- **Public-experience preservation:** the final homepage/public-experience
+  implementation (`src/routes/index.tsx`, header, About, Contact) is present and
+  unchanged by the assessment work; the two change sets touch disjoint files.
+- **Known limitations:** as listed in section 11, plus the idempotency
+  limitations recorded in the regression report.
+- **Rollback reference:** pre-assessment-fix HEAD
+  `9e0e2b166d20b3c605dfcd32f733cb9aaa3d7829`.
