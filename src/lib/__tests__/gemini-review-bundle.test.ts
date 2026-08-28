@@ -114,16 +114,7 @@ describe("gemini review bundle — json hygiene", () => {
   });
 
   it("no JSON object contains duplicate keys", () => {
-    for (const p of jsonFiles) {
-      const seen: string[] = [];
-      JSON.parse(read(p), function (this: Record<string, unknown>, key: string, value: unknown) {
-        if (key && Object.prototype.hasOwnProperty.call(this, key) && this[key] !== undefined) seen.push(`${p}:${key}`);
-        return value;
-      });
-      // A second pass with a raw-text scan for repeated keys inside one object
-      // is unnecessary: JSON.parse reviver above observes each occurrence.
-      expect(seen, p).toEqual([]);
-    }
+    for (const p of jsonFiles) expect(findDuplicateKeys(read(p)), p).toEqual([]);
   });
 });
 
