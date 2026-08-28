@@ -123,6 +123,56 @@ function AssessmentsPage() {
     },
   });
 
+  // Active-scope curriculum sources for creation. Archived/demo books are
+  // excluded so a new assessment can never be born as legacy content.
+  const { data: books } = useQuery({
+    queryKey: ["builder-books"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("books")
+        .select("id, title, board, grade, subject")
+        .is("archived_at", null)
+        .eq("is_demo", false)
+        .eq("grade", SUPPORTED_SCOPE.grade)
+        .in("subject", SUPPORTED_SCOPE.subjects)
+        .order("subject");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const { data: units } = useQuery({
+    queryKey: ["builder-units", bookId],
+    enabled: Boolean(bookId),
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("curriculum_units")
+        .select("id, title, position")
+        .eq("book_id", bookId)
+        .order("position");
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  // Only approved AND verified questions of the chosen unit are selectable —
+  // the same gate publishBlockers enforces server-side.
+  const { data: unitQuestions, isPending: unitQuestionsPending } = useQuery({
+    queryKey: ["builder-questions", unitId],
+    enabled: Boolean(unitId),
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("question_bank")
+        .select("id, prompt, kind, difficulty, assessment_outcomes!inner(code, title, unit_id)")
+        .eq("assessment_outcomes.unit_id", unitId)
+        .eq("status", "approved")
+        .eq("verification_state", "verified")
+        .order("difficulty");
+      if (error) throw error;
+      return data;
+    },
+  });
+
   const { data: assessments, isPending: assessmentsPending } = useQuery({
     queryKey: ["assessments"],
     queryFn: async () => {
