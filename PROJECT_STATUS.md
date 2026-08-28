@@ -1,6 +1,6 @@
 # EduOS — Project Status
 
-**Last verified:** 2026-08-27 (UTC)
+**Last verified:** 2026-08-28 (UTC)
 **Evidence sources:** repository at commit `6f570d0`, live database queries (books, curriculum, question_bank, parent_orders, parent_entitlements, user_roles, assessment_sessions), `bunx vitest run` output, runtime secret inspection, prior reports listed in §7.
 
 ---
@@ -9,6 +9,12 @@
 
 The Class 10 pilot product is built, imported and deployed; the parent ₹199 diagnostic journey works end-to-end in the database, and the payment gateway now holds **live-mode** credentials. No live acceptance purchase has been verified yet.
 
+## 1b. Product language
+
+EduOS is **English only** (founder decision, 2026-08-28). The Hindi toggle and Hindi
+dictionary are removed; a regression test blocks their return. See
+`EDUOS_POST_VISUAL_ACCEPTANCE_PILOT_GATE.md`.
+
 ## 2. Platform
 
 | Area | State | Evidence |
@@ -16,7 +22,7 @@ The Class 10 pilot product is built, imported and deployed; the parent ₹199 di
 | Stack | TanStack Start v1 + React 19 + Vite 7 + Tailwind v4; backend on Lovable Cloud | repo |
 | Routes | 16 public/route files + 41 authenticated route files | `src/routes` listing |
 | Roles in use | admin 1, reviewer 1, educator 5, parent 3, student 15 (25 auth users) | `user_roles`, `auth.users` |
-| Automated tests | **46 passing / 5 files** | `bunx vitest run`, 2026-08-27 |
+| Automated tests | **105 passing / 12 files** | `bunx vitest run`, 2026-08-28 |
 | Production URL | https://www.eduos.global (also learning-start-nexus.lovable.app) | project settings |
 | Custom domain | `www.eduos.global` live; apex `eduos.global` **awaiting DNS** | project domain status |
 
@@ -107,7 +113,7 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 
 ## Update 2026-08-27 (Release identity + handoff package)
 
-**Last verified:** 2026-08-27 (UTC)
+**Last verified:** 2026-08-28 (UTC)
 
 | Item | Value |
 |---|---|
@@ -127,7 +133,7 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 
 ## Update 2026-08-27 (Handoff file location audit)
 
-**Last verified:** 2026-08-27 (UTC) · Canonical branch: `main`
+**Last verified:** 2026-08-28 (UTC) · Canonical branch: `main`
 
 | Handoff file | Repository path | Tracked | State |
 |---|---|---|---|
