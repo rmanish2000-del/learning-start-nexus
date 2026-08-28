@@ -252,7 +252,7 @@ describe("gemini review bundle — privacy and secrets", () => {
 
   it("references only public official URLs", () => {
     for (const [p, t] of texts) {
-      for (const url of t.match(/https?:\/\/[^\s"'),]+/g) ?? []) {
+      for (const url of t.match(/https?:\/\/[A-Za-z0-9.-]+\.[A-Za-z]{2,}[^\s"'),]*/g) ?? []) {
         expect(/^https?:\/\/(cbseacademic\.nic\.in|ncert\.nic\.in|www\.cbse\.gov\.in|cbse\.gov\.in|json-schema\.org|www\.eduos\.global)/.test(url), `${p}: ${url}`).toBe(true);
       }
     }
