@@ -56,7 +56,7 @@ export const EXT: UnitExtension = {
                 difficulty: 3,
                 stimulus:
                   "Assertion: An onion cell and a cheek cell are both classified as eukaryotic cells. Reason: Both cells possess a nucleus enclosed within a nuclear membrane.",
-                prompt: "Choose the correct option about the assertion and the reason.",
+                prompt: "Read the assertion and the reason on cell theory above, then select the statement that judges both correctly.",
                 options: [
                   "Both are true and the reason correctly explains the assertion",
                   "Both are true but the reason does not explain the assertion",
@@ -163,7 +163,7 @@ export const EXT: UnitExtension = {
         difficulty: 4,
         stimulus:
           "Assertion: Muscle cells of an athlete contain an unusually large number of mitochondria. Reason: Mitochondria are the main site of ATP generation, and muscle activity demands a continuous energy supply.",
-        prompt: "Choose the correct option about the assertion and the reason.",
+        prompt: "Study the given assertion and reason about cell organelles, and pick the judgement that fits both statements.",
         options: [
           "Both are true and the reason correctly explains the assertion",
           "Both are true but the reason does not explain the assertion",
@@ -244,7 +244,7 @@ export const EXT: UnitExtension = {
         difficulty: 4,
         stimulus:
           "Assertion: Farmers avoid applying excess chemical fertiliser too close to plant roots. Reason: A highly concentrated fertiliser solution around the roots can draw water out of root cells by osmosis and damage them.",
-        prompt: "Choose the correct option about the assertion and the reason.",
+        prompt: "Considering the assertion and reason on movement of substances across membranes, which single evaluation holds?",
         options: [
           "Both are true and the reason correctly explains the assertion",
           "Both are true but the reason does not explain the assertion",
@@ -379,7 +379,7 @@ export const EXT: UnitExtension = {
         difficulty: 4,
         stimulus:
           "Assertion: Adipose tissue is classified as a connective tissue. Reason: Its cells are packed with fat and are embedded in a matrix, similar to other connective tissues.",
-        prompt: "Choose the correct option about the assertion and the reason.",
+        prompt: "Evaluate the assertion together with its reason on animal tissues and identify the correct verdict.",
         options: [
           "Both are true and the reason correctly explains the assertion",
           "Both are true but the reason does not explain the assertion",
