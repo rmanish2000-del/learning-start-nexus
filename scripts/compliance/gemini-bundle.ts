@@ -18,32 +18,65 @@ export const BUNDLE_DIR = "review-bundles/class10-2026-27-gemini";
 const abs = (p: string) => resolve(ROOT, p);
 const readJson = (p: string) => JSON.parse(readFileSync(abs(p), "utf8"));
 
+const BUNDLE_FORMAT_VERSION = "2.0.0";
 const EXTRACTED_AT = new Date().toISOString();
-const HEAD_SHA = (() => {
+const git = (args: string[]) => {
   try {
-    return execFileSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim();
+    return execFileSync("git", args, { cwd: ROOT, encoding: "utf8" }).trim();
   } catch {
     return "UNKNOWN";
   }
-})();
+};
+
+// The commit checked out when the exporter began.
+const BASE_COMMIT = git(["rev-parse", "HEAD"]);
+
+// Evidence inputs consumed by this exporter. source_evidence_commit is the most
+// recent commit that touched any of them.
+const EVIDENCE_PATHS = [
+  "content/compliance",
+  "audit-data/class10/2026-27",
+  "EDUOS_CLASS_10_BASELINE_FILE_PACKAGE_REPORT.md",
+  "EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md",
+  "EDUOS_CLASS_10_MATHEMATICS_CROSSWALK.md",
+  "EDUOS_CLASS_10_SCIENCE_CROSSWALK.md",
+  "EDUOS_CLASS_10_OUTCOME_ATOM_MATRIX.md",
+  "EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md",
+  "EDUOS_CLASS_10_GAP_REGISTER.md",
+  "EDUOS_SUBJECT_COMPLIANCE_GATE.md",
+  "EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md",
+  "EDUOS_OFFICIAL_SOURCE_REGISTRY_SPEC.md",
+];
+const SOURCE_EVIDENCE_COMMIT = git(["log", "-1", "--format=%H", "--", ...EVIDENCE_PATHS]) || BASE_COMMIT;
+
+const SELF_REFERENCE_POLICY =
+  "The final Git package commit SHA is NOT embedded in any bundle file: a file inside a commit cannot contain that commit's own SHA. package_commit is reported only in the Lovable final response and repository history (REPORTED_AFTER_COMMIT). GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 intentionally excludes its own hash, and bundle_tree_hash is computed over all payload files excluding GEMINI_REVIEW_BUNDLE_MANIFEST.json and GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256. This bundle is therefore not self-authenticating.";
 
 const PROVENANCE = {
-  extraction_timestamp: EXTRACTED_AT,
-  repository_full_sha: HEAD_SHA,
+  bundle_format_version: BUNDLE_FORMAT_VERSION,
+  bundle_generation_timestamp: EXTRACTED_AT,
+  source_evidence_commit: SOURCE_EVIDENCE_COMMIT,
+  bundle_generation_base_commit: BASE_COMMIT,
+  package_commit: "REPORTED_AFTER_COMMIT",
+  self_reference_policy: SELF_REFERENCE_POLICY,
   data_source: "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
   query_or_script: "scripts/compliance/gemini-bundle.ts",
   evidence_basis: "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
   validator: VALIDATOR_VERSION,
   limitations: [
     "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+    "No official source document has been checksummed; every source record remains PENDING_CONFIRMATION.",
     "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
     "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
-    "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+    "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported. Missing evidence is reported as null, never as zero.",
     "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
     "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
     "No human subject-expert review is recorded for session 2026-27.",
+    "Five academic-overreach flags remain open in the gap register.",
+    "Two Science ambiguities remain unresolved in the candidate baseline.",
   ],
 } as const;
+
 
 // ------------------------------------------------------------------ helpers
 const stripUnitPrefix = (s: string) => s.replace(/^unit\s+[ivxlc0-9]+\s*[:\-–—]\s*/i, "").trim();
@@ -102,6 +135,7 @@ export function buildBundle(): {
   files: string[];
   crosswalkRows: CrosswalkRow[];
   counts: Record<string, number>;
+  bundleTreeHash: string;
 } {
   const { snapshot, sourceIssues, subjects, overall } = analyse();
   const snap = snapshot as Snapshot;
@@ -131,7 +165,7 @@ export function buildBundle(): {
     mkdirSync(dirname(target), { recursive: true });
     copyFileSync(abs(from), target);
     written.push(rel);
-    meta.set(rel, { category, provenance: `verbatim copy of committed ${from} @ ${HEAD_SHA}`, privacy: "PUBLIC_ACADEMIC_STRUCTURAL" });
+    meta.set(rel, { category, provenance: `verbatim copy of committed ${from} @ source_evidence_commit ${SOURCE_EVIDENCE_COMMIT}`, privacy: "PUBLIC_ACADEMIC_STRUCTURAL" });
   };
 
   // 1 ------------------------------------------------ committed input files
@@ -377,7 +411,12 @@ export function buildBundle(): {
     science_crosswalk_rows: crosswalkRows.filter((r) => r.subject === "Science").length,
     unmapped_mathematics_requirements: perSubjectUnmapped.Mathematics!.length,
     unmapped_science_requirements: perSubjectUnmapped.Science!.length,
+    mathematics_exclusions: baselines.Mathematics!.exclusions.length,
+    mathematics_ambiguities: baselines.Mathematics!.ambiguities.length,
+    science_exclusions: baselines.Science!.exclusions.length,
+    science_ambiguities: baselines.Science!.ambiguities.length,
   };
+
 
   put(
     "exports/limitations-and-reconciliation.json",
@@ -401,8 +440,11 @@ export function buildBundle(): {
   const readme = [
     "# EduOS — Class 10 (2026-27) Gemini Crosswalk Review Bundle",
     "",
-    `**Extraction timestamp:** ${EXTRACTED_AT}  `,
-    `**Repository full SHA:** ${HEAD_SHA}  `,
+    `**Bundle format version:** ${BUNDLE_FORMAT_VERSION}  `,
+    `**Bundle generation timestamp:** ${EXTRACTED_AT}  `,
+    `**source_evidence_commit:** ${SOURCE_EVIDENCE_COMMIT}  `,
+    `**bundle_generation_base_commit:** ${BASE_COMMIT}  `,
+    `**package_commit:** REPORTED_AFTER_COMMIT (see final response / repository history)  `,
     `**Validator:** ${VALIDATOR_VERSION}  `,
     `**CLASS_10_COMPLIANCE_STATUS:** ${overall}`,
     "",
@@ -435,6 +477,8 @@ export function buildBundle(): {
     `| Official requirements in baseline | ${counts.mathematics_requirements} | ${counts.science_requirements} |`,
     `| Crosswalk rows emitted | ${counts.mathematics_crosswalk_rows} | ${counts.science_crosswalk_rows} |`,
     `| Requirements without a complete unit+chapter mapping | ${counts.unmapped_mathematics_requirements} | ${counts.unmapped_science_requirements} |`,
+    `| Declared exclusions in baseline | ${counts.mathematics_exclusions} | ${counts.science_exclusions} |`,
+    `| Declared ambiguities in baseline | ${counts.mathematics_ambiguities} | ${counts.science_ambiguities} |`,
     "",
     "Every official requirement produces exactly one crosswalk row. Missing mappings are emitted with `null` values and an explicit verdict; they are never omitted.",
     "",
@@ -454,9 +498,13 @@ export function buildBundle(): {
     "",
     ...PROVENANCE.limitations.map((l) => `- ${l}`),
     "",
+    "## Provenance and self-reference",
+    "",
+    "`source_evidence_commit` is the commit containing the evidence read by the exporter. `bundle_generation_base_commit` is the commit checked out when the exporter ran. `package_commit` is deliberately **not** stored inside the bundle — a file inside a commit cannot contain that commit's own SHA — and is reported after commit (REPORTED_AFTER_COMMIT) in the final response and repository history. This bundle is therefore not self-authenticating.",
+    "",
     "## Integrity",
     "",
-    "`GEMINI_REVIEW_BUNDLE_MANIFEST.json` lists every file with byte size, SHA-256, content category, source provenance, privacy classification and extraction timestamp. `GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256` is a `sha256sum -c` compatible checklist covering the same files.",
+    "`GEMINI_REVIEW_BUNDLE_MANIFEST.json` lists every file with byte size, SHA-256, content category, source provenance, privacy classification and bundle generation timestamp. `bundle_tree_hash` is a deterministic hash over all payload files. `GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256` is a `sha256sum -c` compatible checklist covering the same files.",
     "",
   ].join("\n");
   put("GEMINI_REVIEW_BUNDLE_README.md", readme, "BUNDLE_README", "generated by scripts/compliance/gemini-bundle.ts");
@@ -471,14 +519,28 @@ export function buildBundle(): {
       content_category: m.category,
       source_provenance: m.provenance,
       privacy_classification: m.privacy,
-      extraction_timestamp: EXTRACTED_AT,
+      bundle_generation_timestamp: EXTRACTED_AT,
     };
   });
 
+  // Deterministic hash over every payload file (path + sha256), excluding the
+  // manifest and the integrity file themselves — see SELF_REFERENCE_POLICY.
+  const bundleTreeHash = createHash("sha256")
+    .update(entries.map((e) => `${e.path}\u0000${e.sha256}`).join("\n"))
+    .digest("hex");
+
   const manifest = {
     bundle: "class10-2026-27-gemini",
+    bundle_format_version: BUNDLE_FORMAT_VERSION,
     purpose: "Independent Gemini row-by-row academic crosswalk review of CBSE Class 10 (2026-27) Mathematics and Science",
     provenance: PROVENANCE,
+    bundle_tree_hash: bundleTreeHash,
+    bundle_tree_hash_algorithm: "sha256 over sorted `<path>\\0<file sha256>` lines of all payload files",
+    self_reference_policy: SELF_REFERENCE_POLICY,
+    self_referential_exclusions: [
+      "GEMINI_REVIEW_BUNDLE_MANIFEST.json — contains the hashes of all other files; cannot contain its own hash.",
+      "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 — checklist of the payload files; excludes its own hash by construction.",
+    ],
     class_10_compliance_status: overall,
     reconciliation: counts,
     files_included: entries.length,
@@ -491,11 +553,15 @@ export function buildBundle(): {
     `${entries.map((e) => `${e.sha256}  ${e.path}`).join("\n")}\n`,
   );
 
-  return { files: entries.map((e) => e.path), crosswalkRows, counts };
+  return { files: entries.map((e) => e.path), crosswalkRows, counts, bundleTreeHash };
 }
 
+
 if (import.meta.main) {
-  const { files, counts } = buildBundle();
+  const { files, counts, bundleTreeHash } = buildBundle();
   console.log(`bundle written to ${BUNDLE_DIR} — ${files.length} file(s)`);
+  console.log(`bundle_tree_hash: ${bundleTreeHash}`);
+  console.log(`source_evidence_commit: ${SOURCE_EVIDENCE_COMMIT}`);
+  console.log(`bundle_generation_base_commit: ${BASE_COMMIT}`);
   console.log(JSON.stringify(counts, null, 2));
 }
