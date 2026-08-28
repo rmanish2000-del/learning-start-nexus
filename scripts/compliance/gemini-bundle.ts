@@ -164,7 +164,7 @@ export function buildBundle(): {
     mkdirSync(dirname(target), { recursive: true });
     copyFileSync(abs(from), target);
     written.push(rel);
-    meta.set(rel, { category, provenance: `verbatim copy of committed ${from} @ ${HEAD_SHA}`, privacy: "PUBLIC_ACADEMIC_STRUCTURAL" });
+    meta.set(rel, { category, provenance: `verbatim copy of committed ${from} @ source_evidence_commit ${SOURCE_EVIDENCE_COMMIT}`, privacy: "PUBLIC_ACADEMIC_STRUCTURAL" });
   };
 
   // 1 ------------------------------------------------ committed input files
@@ -434,8 +434,11 @@ export function buildBundle(): {
   const readme = [
     "# EduOS — Class 10 (2026-27) Gemini Crosswalk Review Bundle",
     "",
-    `**Extraction timestamp:** ${EXTRACTED_AT}  `,
-    `**Repository full SHA:** ${HEAD_SHA}  `,
+    `**Bundle format version:** ${BUNDLE_FORMAT_VERSION}  `,
+    `**Bundle generation timestamp:** ${EXTRACTED_AT}  `,
+    `**source_evidence_commit:** ${SOURCE_EVIDENCE_COMMIT}  `,
+    `**bundle_generation_base_commit:** ${BASE_COMMIT}  `,
+    `**package_commit:** REPORTED_AFTER_COMMIT (see final response / repository history)  `,
     `**Validator:** ${VALIDATOR_VERSION}  `,
     `**CLASS_10_COMPLIANCE_STATUS:** ${overall}`,
     "",
