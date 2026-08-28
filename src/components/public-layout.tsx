@@ -3,7 +3,6 @@ import { GraduationCap, Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
-import { LanguageToggle } from "@/components/language-toggle";
 
 /**
  * Public marketing navigation. Audience sections live on the home page, so
@@ -96,7 +95,6 @@ export function PublicSiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <LanguageToggle />
           <Link
             to="/auth"
             search={{ tab: "parent", mode: "signin" }}
@@ -118,7 +116,6 @@ export function PublicSiteHeader() {
 
 
         <div className="flex items-center gap-1.5 lg:hidden">
-          <LanguageToggle />
           <button
             ref={triggerRef}
             type="button"
