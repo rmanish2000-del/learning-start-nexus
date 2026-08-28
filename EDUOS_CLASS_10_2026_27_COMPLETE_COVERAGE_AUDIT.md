@@ -83,6 +83,7 @@ Active platform units with no official mapping (must be retired or mapped):
 - PASS `all_assessable_topics_mapped` — 0 unmapped official topic(s)
 - PASS `no_duplicate_mapping` — 0 duplicate mapping(s)
 - FAIL `no_active_out_of_syllabus` — Unit 1 — Number Systems, Unit 2 — Algebra
+- PASS `source_books_approved` — all mapped source books approved
 
 **OUTCOME_GATE — PASS**
 
@@ -130,49 +131,44 @@ Volume gates in force: diagnostic target 20, diagnostic minimum 5, minimum quest
 
 | Official ref | Official unit | Marks | Platform unit | Outcomes | Verified | Required | Verdict |
 |---|---|---|---|---|---|---|---|
-| SCI-U1 | Chemical Substances - Nature and Behaviour | 25 | — | 0 | 0 | 40 | MISSING |
-| SCI-U2 | World of Living | 25 | — | 0 | 0 | 40 | MISSING |
-| SCI-U3 | Natural Phenomena | 12 | — | 0 | 0 | 40 | MISSING |
-| SCI-U4 | Effects of Current | 13 | — | 0 | 0 | 40 | MISSING |
-| SCI-U5 | Natural Resources | 5 | — | 0 | 0 | 40 | MISSING |
+| SCI-U1 | Chemical Substances - Nature and Behaviour | 25 | Chemical Substances - Nature and Behaviour | 32 | 96 | 64 | OK |
+| SCI-U2 | World of Living | 25 | World of Living | 13 | 39 | 40 | SHORTFALL |
+| SCI-U3 | Natural Phenomena | 12 | Natural Phenomena | 4 | 12 | 40 | SHORTFALL |
+| SCI-U4 | Effects of Current | 13 | Effects of Current | 4 | 12 | 40 | SHORTFALL |
+| SCI-U5 | Natural Resources | 5 | Natural Resources | 2 | 6 | 40 | SHORTFALL |
 
 ### 2.2 Official chapter coverage
 
 | Official ref | Chapter | Mapped in platform |
 |---|---|---|
-| SCI-U1-C1 | Chemical Reactions and Equations | NO |
-| SCI-U1-C2 | Acids, Bases and Salts | NO |
-| SCI-U1-C3 | Metals and Non-metals | NO |
-| SCI-U1-C4 | Carbon and its Compounds | NO |
-| SCI-U2-C1 | Life Processes | NO |
-| SCI-U2-C2 | Control and Coordination | NO |
-| SCI-U2-C3 | How do Organisms Reproduce? | NO |
-| SCI-U2-C4 | Heredity | NO |
-| SCI-U3-C1 | Light – Reflection and Refraction | NO |
+| SCI-U1-C1 | Chemical Reactions and Equations | yes |
+| SCI-U1-C2 | Acids, Bases and Salts | yes |
+| SCI-U1-C3 | Metals and Non-metals | yes |
+| SCI-U1-C4 | Carbon and its Compounds | yes |
+| SCI-U2-C1 | Life Processes | yes |
+| SCI-U2-C2 | Control and Coordination | yes |
+| SCI-U2-C3 | How do Organisms Reproduce? | yes |
+| SCI-U2-C4 | Heredity | yes |
+| SCI-U3-C1 | Light – Reflection and Refraction | yes |
 | SCI-U3-C2 | The Human Eye and the Colourful World | NO |
-| SCI-U4-C1 | Electricity | NO |
-| SCI-U4-C2 | Magnetic Effects of Electric Current | NO |
-| SCI-U5-C1 | Our Environment | NO |
+| SCI-U4-C1 | Electricity | yes |
+| SCI-U4-C2 | Magnetic Effects of Electric Current | yes |
+| SCI-U5-C1 | Our Environment | yes |
 
 ### 2.3 Platform units present
 
 | Unit | Official-mapped | Outcomes | Atoms | Questions | Verified | Difficulty bands | Question types |
 |---|---|---|---|---|---|---|---|
-| Chemical Substances - Nature and Behaviour | NO | 32 | 32 | 96 | 96 | 3 | 1 |
+| Chemical Substances - Nature and Behaviour | yes | 32 | 32 | 96 | 96 | 3 | 1 |
 | Chemical Reactions and Equations | NO | 8 | 0 | 44 | 0 | 3 | 6 |
-| World of Living | NO | 13 | 13 | 39 | 39 | 3 | 1 |
-| Natural Phenomena | NO | 4 | 4 | 12 | 12 | 3 | 1 |
-| Effects of Current | NO | 4 | 4 | 12 | 12 | 3 | 1 |
-| Natural Resources | NO | 2 | 2 | 6 | 6 | 3 | 1 |
+| World of Living | yes | 13 | 13 | 39 | 39 | 3 | 1 |
+| Natural Phenomena | yes | 4 | 4 | 12 | 12 | 3 | 1 |
+| Effects of Current | yes | 4 | 4 | 12 | 12 | 3 | 1 |
+| Natural Resources | yes | 2 | 2 | 6 | 6 | 3 | 1 |
 
 Active platform units with no official mapping (must be retired or mapped):
 
-- Chemical Substances - Nature and Behaviour [6514852c-f6b6-4a31-9e08-ac2058c7d370] (book processed)
 - Chemical Reactions and Equations [234cc8b4-a653-4f38-9c67-6ffc5cd1c101] (book archived)
-- World of Living [c4e3d1fb-2e53-4a26-9a35-9310f7f080f1] (book processed)
-- Natural Phenomena [07350c07-c273-4430-8354-73a2bec1d5c4] (book processed)
-- Effects of Current [0da7b020-1389-41d8-913b-fe1582b7647e] (book processed)
-- Natural Resources [a318d753-4458-4393-836b-75d9e01ff2d3] (book processed)
 
 ### 2.4 Gate results
 
@@ -184,9 +180,10 @@ Active platform units with no official mapping (must be retired or mapped):
 
 **CURRICULUM_GATE — FAIL**
 
-- FAIL `all_assessable_topics_mapped` — 18 unmapped official topic(s)
+- FAIL `all_assessable_topics_mapped` — 1 unmapped official topic(s)
 - PASS `no_duplicate_mapping` — 0 duplicate mapping(s)
-- FAIL `no_active_out_of_syllabus` — Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources
+- PASS `no_active_out_of_syllabus` — none
+- FAIL `source_books_approved` — NCERT Class 10 Science (CBSE) (processed)
 
 **OUTCOME_GATE — FAIL**
 
@@ -216,7 +213,7 @@ Active platform units with no official mapping (must be retired or mapped):
 - FAIL `named_reviewer` — none recorded
 - FAIL `review_timestamp` — none recorded
 - FAIL `review_decision` — none recorded
-- FAIL `no_unresolved_ambiguity` — 18 unresolved
+- FAIL `no_unresolved_ambiguity` — 1 unresolved
 
 **COMMERCIAL_GATE — FAIL**
 

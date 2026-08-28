@@ -117,10 +117,18 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
     const dbUnits = snapshot.units.filter((u) => u.subject === off.subject);
     const usedUnitIds = new Set<string>();
     const unmappedOfficialTopics: string[] = [];
+    const unapprovedSourceBooks = new Set<string>();
 
     const crosswalk = off.units.map((ou) => {
-      const match = dbUnits.find((u) => norm(u.title) === norm(ou.title) && u.bookStatus === "approved");
-      if (match) usedUnitIds.add(match.unitId);
+      const candidates = dbUnits.filter((u) => norm(u.title) === norm(ou.title) && u.bookStatus !== "archived");
+      const match = candidates.find((u) => u.bookStatus === "approved") ?? candidates[0];
+      if (match) {
+        usedUnitIds.add(match.unitId);
+        if (match.bookStatus !== "approved") {
+          const book = snapshot.books.find((b) => b.id === match.bookId);
+          unapprovedSourceBooks.add(`${book?.title ?? match.bookId} (${match.bookStatus})`);
+        }
+      }
       const outcomes = match?.outcomes ?? [];
       const verified = outcomes.reduce((s, o) => s + o.verified, 0);
       const chapterTitles = new Set((match?.chapters ?? []).map((c) => norm(c.title)));
@@ -186,6 +194,7 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
       units,
       unmappedOfficialTopics,
       duplicateOfficialMappings: [],
+      unapprovedSourceBooks: [...unapprovedSourceBooks].sort(),
       learningLoop: {
         diagnostic_selects_verified_only: true,
         gap_detection_active: true,
