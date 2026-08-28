@@ -10,6 +10,7 @@ import {
   type ResultEntry,
   type RunnerQuestion,
 } from "./assessment-shared";
+import { isLegacyContent, SUPPORTED_SCOPE } from "./assessment-lifecycle";
 
 type Client = SupabaseClient<Database>;
 
@@ -171,4 +172,134 @@ export function scoreSession(
   if (strong.length > 0) parts.push(`Strong: ${strong.join(", ")}.`);
   if (needs.length > 0) parts.push(`Needs work: ${needs.join(", ")}.`);
   return { scorePct, correctCount, totalCount, breakdown, evidenceNote: parts.join(" ") };
+}
+
+// ---------------------------------------------------------------------------
+// Draft creation (P0 regression fix)
+//
+// Assessments used to be created with hardcoded legacy metadata
+// (grade 6 / Mathematics / Fractions) taken from the archived pilot item bank.
+// Every new assessment was therefore classified as legacy content, vanished
+// from the active list and could never clear the active-scope publish gate.
+//
+// Creation now derives board, grade, subject and topic from the curriculum
+// chain the questions actually belong to. Nothing here publishes or assigns.
+// ---------------------------------------------------------------------------
+
+export type CreateDraftInput = {
+  title: string;
+  description?: string | null;
+  timeLimitMinutes?: number | null;
+  bookId: string;
+  unitId: string;
+  questionIds: string[];
+};
+
+export async function createAssessmentDraft(
+  supabase: Client,
+  ctx: { orgId: string; userId: string },
+  input: CreateDraftInput,
+): Promise<{ id: string; status: "draft" }> {
+  if (new Set(input.questionIds).size !== input.questionIds.length) {
+    throw new Error("The same question was selected more than once.");
+  }
+
+  // RLS scopes every read below to the caller's organization.
+  const [bookRes, unitRes, questionRes] = await Promise.all([
+    supabase
+      .from("books")
+      .select("id, board, grade, subject, is_demo, archived_at")
+      .eq("id", input.bookId)
+      .maybeSingle(),
+    supabase
+      .from("curriculum_units")
+      .select("id, title, book_id")
+      .eq("id", input.unitId)
+      .eq("book_id", input.bookId)
+      .maybeSingle(),
+    supabase
+      .from("question_bank")
+      .select("id, book_id, outcome_id, status, verification_state")
+      .in("id", input.questionIds),
+  ]);
+
+  const book = bookRes.data;
+  if (!book) throw new Error("Curriculum book not found in your organization.");
+  if (book.archived_at || book.is_demo) {
+    throw new Error("Archived and demo content is read-only and cannot be built into assessments.");
+  }
+  if (isLegacyContent({ grade: book.grade, subject: book.subject, isDemo: book.is_demo })) {
+    throw new Error(
+      `Curriculum scope is unsupported. Active scope is CBSE Class ${SUPPORTED_SCOPE.grade} ${SUPPORTED_SCOPE.subjects.join(" and ")}.`,
+    );
+  }
+  if (book.board && book.board !== SUPPORTED_SCOPE.board) {
+    throw new Error(`Only ${SUPPORTED_SCOPE.board} content is in the active scope.`);
+  }
+  if (!unitRes.data) throw new Error("Unit not found in the selected book.");
+
+  const questions = questionRes.data ?? [];
+  if (questions.length !== input.questionIds.length) {
+    throw new Error("Some selected questions were not found in your organization.");
+  }
+  if (questions.some((q) => q.book_id !== input.bookId)) {
+    throw new Error("Every question must come from the selected book's bank.");
+  }
+  const unapproved = questions.filter(
+    (q) => q.status !== "approved" || q.verification_state !== "verified",
+  );
+  if (unapproved.length > 0) {
+    throw new Error(
+      `${unapproved.length} selected question(s) are not approved and verified. Verify them in the question bank first.`,
+    );
+  }
+
+  // Outcome alignment: every question must sit under the chosen unit.
+  const outcomeIds = [...new Set(questions.map((q) => q.outcome_id))];
+  const { data: outcomes } = await supabase
+    .from("assessment_outcomes")
+    .select("id, unit_id")
+    .in("id", outcomeIds);
+  const aligned = (outcomes ?? []).filter((o) => o.unit_id === input.unitId);
+  if (aligned.length !== outcomeIds.length) {
+    throw new Error("Every question's outcome must belong to the selected unit.");
+  }
+
+  const { data: created, error } = await supabase
+    .from("assessments")
+    .insert({
+      org_id: ctx.orgId,
+      created_by: ctx.userId,
+      title: input.title,
+      description: input.description || null,
+      subject: book.subject,
+      topic: unitRes.data.title,
+      grade: book.grade,
+      kind: "diagnostic",
+      // PRODUCT LAW: creation never publishes and never assigns.
+      status: "draft",
+      time_limit_minutes: input.timeLimitMinutes ?? null,
+      book_id: input.bookId,
+      unit_id: input.unitId,
+    })
+    .select("id")
+    .single();
+  if (error) throw new Error(error.message);
+  if (!created) throw new Error("The draft could not be created.");
+
+  const { error: mapError } = await supabase.from("assessment_question_map").insert(
+    input.questionIds.map((questionId, i) => ({
+      assessment_id: created.id,
+      question_id: questionId,
+      sort_order: i + 1,
+      points: 1,
+    })),
+  );
+  if (mapError) {
+    // A half-built assessment must never survive.
+    await supabase.from("assessments").delete().eq("id", created.id);
+    throw new Error(mapError.message);
+  }
+
+  return { id: created.id, status: "draft" };
 }
