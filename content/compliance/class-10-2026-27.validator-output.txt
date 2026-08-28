@@ -1,0 +1,46 @@
+compliance-validator/1.0.0 — CBSE Class 10 2026-27
+source registry: 0 error(s), 5 warning(s)
+
+== Mathematics — SOURCE_PENDING (11 failing check(s))
+  FAIL SOURCE_GATE
+       - sources_recorded: 0 applicable source(s)
+       - required_types_present: missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme
+  FAIL CURRICULUM_GATE
+       - no_active_out_of_syllabus: Unit 1 — Number Systems, Unit 2 — Algebra
+  PASS OUTCOME_GATE
+  FAIL QUESTION_GATE
+       - verified_depth: Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40
+       - type_coverage: Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability
+  FAIL LEARNING_LOOP_GATE
+       - reassessment_reserve_available: not verified
+       - outcome_report_year_labelled: not verified
+  FAIL REVIEW_GATE
+       - named_reviewer: none recorded
+       - review_timestamp: none recorded
+       - review_decision: none recorded
+  FAIL COMMERCIAL_GATE
+       - entitlements_scoped: false
+
+== Science — SOURCE_PENDING (13 failing check(s))
+  FAIL SOURCE_GATE
+       - sources_recorded: 0 applicable source(s)
+       - required_types_present: missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme
+  FAIL CURRICULUM_GATE
+       - all_assessable_topics_mapped: 1 unmapped official topic(s)
+       - source_books_approved: NCERT Class 10 Science (CBSE) (processed)
+  PASS OUTCOME_GATE
+  FAIL QUESTION_GATE
+       - verified_depth: World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40
+       - type_coverage: Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources
+  FAIL LEARNING_LOOP_GATE
+       - reassessment_reserve_available: not verified
+       - outcome_report_year_labelled: not verified
+  FAIL REVIEW_GATE
+       - named_reviewer: none recorded
+       - review_timestamp: none recorded
+       - review_decision: none recorded
+       - no_unresolved_ambiguity: 1 unresolved
+  FAIL COMMERCIAL_GATE
+       - entitlements_scoped: false
+
+OVERALL: SOURCE_PENDING

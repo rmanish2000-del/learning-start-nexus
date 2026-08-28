@@ -64,6 +64,13 @@ EduOS may state that its content is "prepared against the CBSE/NCERT syllabus fo
 | Subject compliance gate definition | `EDUOS_SUBJECT_COMPLIANCE_GATE.md` |
 | Class 10 2026-27 coverage audit (generated) | `EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md` |
 | Annual rollover runbook | `EDUOS_ANNUAL_ROLLOVER_RUNBOOK.md` |
+| Retention and archival policy | `EDUOS_CURRICULUM_ARCHIVE_AND_RETENTION_POLICY.md` |
+| Subject crosswalks (generated) | `EDUOS_CLASS_10_MATHEMATICS_CROSSWALK.md`, `EDUOS_CLASS_10_SCIENCE_CROSSWALK.md` |
+| Outcome/atom and question-depth matrices (generated) | `EDUOS_CLASS_10_OUTCOME_ATOM_MATRIX.md`, `EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md` |
+| Gap register (generated) | `EDUOS_CLASS_10_GAP_REGISTER.md` |
+| Machine-readable crosswalk (generated) | `content/compliance/class-10-2026-27.crosswalk.json` |
+| Independent review bundle manifest | `EDUOS_CLASS_10_GEMINI_REVIEW_BUNDLE_MANIFEST.md` |
+| Closeout record | `EDUOS_CLASS_10_COMPLIANCE_CLOSEOUT.md` |
 
 ## 7. Current application state (2026-08-28)
 
