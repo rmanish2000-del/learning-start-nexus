@@ -1,0 +1,1044 @@
+{
+  "packVersion": 1,
+  "board": "CBSE",
+  "academicYear": "2026-27",
+  "classLevel": 9,
+  "subjectCode": "SCI",
+  "subjectKey": "Science",
+  "catalogueCode": "CBSE-2026-27-C9-SCI",
+  "activation": {
+    "isActive": false,
+    "commercialStatus": "hidden",
+    "reviewState": "draft",
+    "diagnosticEligible": false,
+    "reassessmentReady": false
+  },
+  "sources": [
+    {
+      "id": "NCERT-C9-SCI-2026-27",
+      "title": "NCERT Science Textbook for Class IX (rationalised) with the CBSE Secondary Curriculum syllabus for Science (Code 086)",
+      "issuingAuthority": "National Council of Educational Research and Training / Central Board of Secondary Education",
+      "edition": "Rationalised edition in force for session 2026-27",
+      "officialReference": "https://ncert.nic.in/textbook.php (Class IX Science) and https://cbseacademic.nic.in/curriculum.html (Secondary Curriculum, Science 086)",
+      "retrievedOn": "2026-08-28",
+      "licensing": "Structure, chapter titles and syllabus weightings are cited as factual curriculum metadata. No textbook text, figures or exercise items are copied or stored in this repository. All questions in the pack are original EduOS material.",
+      "supersedes": null,
+      "provenanceStatus": "official-derived"
+    }
+  ],
+  "ambiguities": [
+    "Unit mark weights follow the CBSE Class 9 Science syllabus split (Matter 25, Organization in the Living World 22, Motion/Force/Work 27, Food Production 6 = 80). Reviewer must confirm the 2026-27 circular.",
+    "Chapter list assumes the rationalised 12-chapter NCERT structure (Diversity in Living Organisms, Why Do We Fall Ill, and Natural Resources removed). Reviewer must confirm no reinstatement for 2026-27.",
+    "Practical/internal assessment components are out of scope for this preparation pack."
+  ],
+  "units": [
+    {
+      "id": "C9-SCI-U1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1",
+      "title": "Matter — Its Nature and Behaviour",
+      "position": 1,
+      "syllabusMarks": 25,
+      "chapters": [
+        {
+          "id": "C9-SCI-U1-CH1",
+          "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1",
+          "ncertChapter": 1,
+          "title": "Matter in Our Surroundings",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 1: Matter in Our Surroundings"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U1-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1",
+              "title": "States of matter and change of state",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1",
+                  "code": "C9-SCI-01.01.11",
+                  "title": "Explain the particle nature of matter and interpret changes of state",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH1-T1-O1-A1",
+                      "text": "Compare intermolecular force and spacing across solid, liquid and gas"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH1-T1-O1-A2",
+                      "text": "Use melting point and boiling point to describe a change of state"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U1-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2",
+              "title": "Evaporation and cooling",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1",
+                  "code": "C9-SCI-01.01.21",
+                  "title": "Relate evaporation rate to surface area, temperature, humidity and wind speed",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH1-T2-O1-A1",
+                      "text": "List the factors that affect the rate of evaporation"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH1-T2-O1-A2",
+                      "text": "Explain cooling produced by evaporation"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U1-CH2",
+          "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2",
+          "ncertChapter": 2,
+          "title": "Is Matter Around Us Pure",
+          "position": 2,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 2: Is Matter Around Us Pure"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U1-CH2-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1",
+              "title": "Mixtures, solutions and concentration",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH2-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1",
+                  "code": "C9-SCI-01.02.11",
+                  "title": "Classify matter as element, compound or mixture and compute solution concentration",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH2-T1-O1-A1",
+                      "text": "Distinguish homogeneous and heterogeneous mixtures"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH2-T1-O1-A2",
+                      "text": "Compute mass-by-mass percentage concentration of a solution"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U1-CH2-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2",
+              "title": "Separation of mixtures",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH2-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1",
+                  "code": "C9-SCI-01.02.21",
+                  "title": "Choose an appropriate separation technique for a given mixture and justify it",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH2-T2-O1-A1",
+                      "text": "Match technique to property difference (density, solubility, boiling point)"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH2-T2-O1-A2",
+                      "text": "Describe centrifugation, chromatography and fractional distillation"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U1-CH3",
+          "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3",
+          "ncertChapter": 3,
+          "title": "Atoms and Molecules",
+          "position": 3,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 3: Atoms and Molecules"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U1-CH3-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1",
+              "title": "Laws of chemical combination and the mole concept",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH3-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1",
+                  "code": "C9-SCI-01.03.11",
+                  "title": "Apply the law of conservation of mass and convert between mass, moles and particles",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH3-T1-O1-A1",
+                      "text": "State and use the law of conservation of mass"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH3-T1-O1-A2",
+                      "text": "Use n = m/M and Avogadro's number 6.022 × 10²³"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U1-CH3-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2",
+              "title": "Chemical formulae and molecular masses",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH3-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1",
+                  "code": "C9-SCI-01.03.21",
+                  "title": "Write chemical formulae from valencies and compute formula unit masses",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH3-T2-O1-A1",
+                      "text": "Use the criss-cross method with valencies to write formulae"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH3-T2-O1-A2",
+                      "text": "Add atomic masses to obtain molecular or formula unit mass"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U1-CH4",
+          "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4",
+          "ncertChapter": 4,
+          "title": "Structure of the Atom",
+          "position": 4,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 4: Structure of the Atom"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U1-CH4-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1",
+              "title": "Atomic models and subatomic particles",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH4-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1",
+                  "code": "C9-SCI-01.04.11",
+                  "title": "Compare atomic models and describe the distribution of subatomic particles",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "assertion_reason"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH4-T1-O1-A1",
+                      "text": "State the conclusions of Rutherford's α-particle scattering experiment"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH4-T1-O1-A2",
+                      "text": "Give the charge, mass and location of electron, proton and neutron"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U1-CH4-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2",
+              "title": "Electronic configuration, valency and isotopes",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U1-CH4-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1",
+                  "code": "C9-SCI-01.04.21",
+                  "title": "Write electronic configurations and use them to deduce valency; distinguish isotopes and isobars",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U1-CH4-T2-O1-A1",
+                      "text": "Fill shells using the 2n² rule"
+                    },
+                    {
+                      "id": "C9-SCI-U1-CH4-T2-O1-A2",
+                      "text": "Distinguish isotopes (same Z) from isobars (same A)"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-SCI-U2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2",
+      "title": "Organization in the Living World",
+      "position": 2,
+      "syllabusMarks": 22,
+      "chapters": [
+        {
+          "id": "C9-SCI-U2-CH1",
+          "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1",
+          "ncertChapter": 5,
+          "title": "The Fundamental Unit of Life",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 5: The Fundamental Unit of Life"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U2-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1",
+              "title": "Cell structure and organelles",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U2-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1",
+                  "code": "C9-SCI-02.01.11",
+                  "title": "Relate the structure of cell organelles to their functions and compare plant and animal cells",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 6,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U2-CH1-T1-O1-A1",
+                      "text": "Match organelle to function (mitochondria, ribosome, lysosome, plastid)"
+                    },
+                    {
+                      "id": "C9-SCI-U2-CH1-T1-O1-A2",
+                      "text": "List structures present in plant cells but absent in animal cells"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U2-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2",
+              "title": "Diffusion, osmosis and the plasma membrane",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U2-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1",
+                  "code": "C9-SCI-02.01.21",
+                  "title": "Predict the behaviour of cells in hypotonic, isotonic and hypertonic solutions",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U2-CH1-T2-O1-A1",
+                      "text": "Define osmosis as movement of water across a semi-permeable membrane"
+                    },
+                    {
+                      "id": "C9-SCI-U2-CH1-T2-O1-A2",
+                      "text": "Explain plasmolysis in a plant cell"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U2-CH2",
+          "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2",
+          "ncertChapter": 6,
+          "title": "Tissues",
+          "position": 2,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 6: Tissues"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U2-CH2-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1",
+              "title": "Plant tissues",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U2-CH2-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1",
+                  "code": "C9-SCI-02.02.11",
+                  "title": "Distinguish meristematic and permanent plant tissues and their functions",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U2-CH2-T1-O1-A1",
+                      "text": "Compare apical, lateral and intercalary meristems"
+                    },
+                    {
+                      "id": "C9-SCI-U2-CH2-T1-O1-A2",
+                      "text": "Relate xylem and phloem structure to transport function"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U2-CH2-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2",
+              "title": "Animal tissues",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U2-CH2-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1",
+                  "code": "C9-SCI-02.02.21",
+                  "title": "Classify animal tissues and relate each type to its location and role",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 3,
+                  "diagnosticWeight": 6,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U2-CH2-T2-O1-A1",
+                      "text": "Identify epithelial, connective, muscular and nervous tissue"
+                    },
+                    {
+                      "id": "C9-SCI-U2-CH2-T2-O1-A2",
+                      "text": "Distinguish striated, unstriated and cardiac muscle"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-SCI-U3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3",
+      "title": "Motion, Force and Work",
+      "position": 3,
+      "syllabusMarks": 27,
+      "chapters": [
+        {
+          "id": "C9-SCI-U3-CH1",
+          "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1",
+          "ncertChapter": 7,
+          "title": "Motion",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 7: Motion"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U3-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1",
+              "title": "Describing motion and equations of motion",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1",
+                  "code": "C9-SCI-03.01.11",
+                  "title": "Distinguish distance from displacement and apply the equations of uniformly accelerated motion",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH1-T1-O1-A1",
+                      "text": "Differentiate scalar distance from vector displacement"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH1-T1-O1-A2",
+                      "text": "Apply v = u + at, s = ut + ½at² and v² = u² + 2as"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U3-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2",
+              "title": "Graphical representation and uniform circular motion",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1",
+                  "code": "C9-SCI-03.01.21",
+                  "title": "Interpret distance–time and velocity–time graphs and describe uniform circular motion",
+                  "category": "analysis",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "data_interpretation"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH1-T2-O1-A1",
+                      "text": "Read speed as the slope of a distance–time graph"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH1-T2-O1-A2",
+                      "text": "Obtain displacement as the area under a velocity–time graph"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U3-CH2",
+          "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2",
+          "ncertChapter": 8,
+          "title": "Force and Laws of Motion",
+          "position": 2,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 8: Force and Laws of Motion"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U3-CH2-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1",
+              "title": "Newton's laws of motion",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH2-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1",
+                  "code": "C9-SCI-03.02.11",
+                  "title": "State and apply Newton's three laws to everyday situations",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH2-T1-O1-A1",
+                      "text": "Explain inertia and relate it to mass"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH2-T1-O1-A2",
+                      "text": "Apply F = ma to compute force, mass or acceleration"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U3-CH2-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2",
+              "title": "Momentum and its conservation",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH2-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1",
+                  "code": "C9-SCI-03.02.21",
+                  "title": "Compute momentum and apply conservation of momentum to collisions",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 4,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH2-T2-O1-A1",
+                      "text": "Compute p = mv with correct SI units"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH2-T2-O1-A2",
+                      "text": "Apply conservation of momentum to a two-body interaction"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U3-CH3",
+          "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3",
+          "ncertChapter": 9,
+          "title": "Gravitation",
+          "position": 3,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 9: Gravitation"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U3-CH3-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1",
+              "title": "Universal gravitation, free fall and weight",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH3-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1",
+                  "code": "C9-SCI-03.03.11",
+                  "title": "Apply the universal law of gravitation and distinguish mass from weight",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH3-T1-O1-A1",
+                      "text": "Use F = G·m₁m₂/r² qualitatively"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH3-T1-O1-A2",
+                      "text": "Compute weight as W = mg and contrast it with mass"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U3-CH3-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2",
+              "title": "Thrust, pressure and buoyancy",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH3-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1",
+                  "code": "C9-SCI-03.03.21",
+                  "title": "Compute pressure and apply Archimedes' principle to floating and sinking",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH3-T2-O1-A1",
+                      "text": "Compute pressure as thrust per unit area"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH3-T2-O1-A2",
+                      "text": "Use relative density to predict floating or sinking"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U3-CH4",
+          "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4",
+          "ncertChapter": 10,
+          "title": "Work and Energy",
+          "position": 4,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 10: Work and Energy"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U3-CH4-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1",
+              "title": "Work and forms of energy",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH4-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1",
+                  "code": "C9-SCI-03.04.11",
+                  "title": "Compute work done and kinetic or potential energy in simple situations",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH4-T1-O1-A1",
+                      "text": "Apply W = F·s·cosθ for a force along the displacement"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH4-T1-O1-A2",
+                      "text": "Apply KE = ½mv² and PE = mgh"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U3-CH4-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2",
+              "title": "Power and conservation of energy",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH4-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1",
+                  "code": "C9-SCI-03.04.21",
+                  "title": "Compute power and apply the law of conservation of energy",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH4-T2-O1-A1",
+                      "text": "Compute P = W/t and convert between watt and kilowatt-hour"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH4-T2-O1-A2",
+                      "text": "Trace potential-to-kinetic energy conversion in a falling body"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-SCI-U3-CH5",
+          "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5",
+          "ncertChapter": 11,
+          "title": "Sound",
+          "position": 5,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 11: Sound"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U3-CH5-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1",
+              "title": "Production, propagation and characteristics of sound",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH5-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1",
+                  "code": "C9-SCI-03.05.11",
+                  "title": "Explain sound as a longitudinal wave and relate frequency, wavelength and speed",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH5-T1-O1-A1",
+                      "text": "Describe compressions and rarefactions in a medium"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH5-T1-O1-A2",
+                      "text": "Apply v = fλ"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U3-CH5-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2",
+              "title": "Reflection of sound and its applications",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U3-CH5-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1",
+                  "code": "C9-SCI-03.05.21",
+                  "title": "Apply reflection of sound to echoes, reverberation and SONAR calculations",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 4,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U3-CH5-T2-O1-A1",
+                      "text": "State the minimum distance for an echo to be heard distinctly"
+                    },
+                    {
+                      "id": "C9-SCI-U3-CH5-T2-O1-A2",
+                      "text": "Use distance = ½ × speed × total time for SONAR/echo problems"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-SCI-U4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4",
+      "title": "Food; Food Production",
+      "position": 4,
+      "syllabusMarks": 6,
+      "chapters": [
+        {
+          "id": "C9-SCI-U4-CH1",
+          "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1",
+          "ncertChapter": 12,
+          "title": "Improvement in Food Resources",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-SCI-2026-27",
+            "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Science, Chapter 12: Improvement in Food Resources"
+          },
+          "topics": [
+            {
+              "id": "C9-SCI-U4-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1",
+              "title": "Crop production and management",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U4-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1",
+                  "code": "C9-SCI-04.01.11",
+                  "title": "Describe crop variety improvement, nutrient management and cropping patterns",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U4-CH1-T1-O1-A1",
+                      "text": "Distinguish kharif and rabi crops"
+                    },
+                    {
+                      "id": "C9-SCI-U4-CH1-T1-O1-A2",
+                      "text": "Compare manure and fertiliser in nutrient management"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U4-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2",
+              "title": "Animal husbandry",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U4-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1",
+                  "code": "C9-SCI-04.01.21",
+                  "title": "Describe practices in cattle, poultry and fish farming and beekeeping",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U4-CH1-T2-O1-A1",
+                      "text": "Distinguish milch and draught animals"
+                    },
+                    {
+                      "id": "C9-SCI-U4-CH1-T2-O1-A2",
+                      "text": "Compare capture fishery with aquaculture"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

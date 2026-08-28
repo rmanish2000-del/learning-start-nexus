@@ -1,0 +1,1247 @@
+{
+  "packVersion": 1,
+  "subjectCode": "SCI",
+  "academicYear": "2026-27",
+  "generatedBy": "scripts/class9/build-packs.ts",
+  "questions": [
+    {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "During the melting of ice at 0 °C, the temperature of the mixture stays constant because the supplied heat:",
+      "options": [
+        "is lost to the surroundings",
+        "is used to overcome the forces between particles",
+        "increases the kinetic energy of the particles",
+        "is converted into pressure"
+      ],
+      "correctAnswer": "is used to overcome the forces between particles",
+      "explanation": "The energy supplied during melting is the latent heat of fusion; it breaks the attractions holding the particles in a fixed lattice rather than raising their average kinetic energy, so the temperature does not change.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Why does a gas exert pressure on the walls of its container?",
+      "options": null,
+      "correctAnswer": "Because its particles move randomly at high speed and collide with the walls, and the force of these collisions per unit area is the pressure.",
+      "explanation": "Gas particles have large spacing and negligible attraction, so they move freely in all directions. Each collision with the wall exerts a small force; the total force per unit area is the observed pressure.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A1",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Wet clothes dry fastest on a day that is:",
+      "options": [
+        "hot and humid",
+        "hot, dry and windy",
+        "cold and windy",
+        "cold and humid"
+      ],
+      "correctAnswer": "hot, dry and windy",
+      "explanation": "High temperature gives particles more energy to escape, low humidity leaves room for more vapour in the air, and wind carries vapour away — all three raise the rate of evaporation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Why does water kept in an earthen pot stay cool in summer?",
+      "options": null,
+      "correctAnswer": "Water seeps through the pores and evaporates, taking latent heat from the remaining water and cooling it.",
+      "explanation": "Evaporation is a cooling process: the escaping particles carry away energy drawn from the surface they leave, so the water inside the porous pot loses heat and its temperature falls.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A solution contains 20 g of salt dissolved in 180 g of water. Calculate the mass percentage of the solute.",
+      "options": null,
+      "correctAnswer": "10%",
+      "explanation": "Mass of solution = 20 + 180 = 200 g. Mass percentage = (20/200) × 100 = 10%.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of the following is a compound?",
+      "options": [
+        "Air",
+        "Brass",
+        "Carbon dioxide",
+        "Soil"
+      ],
+      "correctAnswer": "Carbon dioxide",
+      "explanation": "Carbon dioxide has elements combined chemically in a fixed ratio with new properties. Air and soil are heterogeneous or homogeneous mixtures, and brass is an alloy, which is also a mixture.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A1",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Which technique best separates two miscible liquids whose boiling points differ by 15 K?",
+      "options": [
+        "Simple distillation",
+        "Fractional distillation",
+        "Filtration",
+        "Separating funnel"
+      ],
+      "correctAnswer": "Fractional distillation",
+      "explanation": "Simple distillation works when boiling points differ by more than about 25 K. For a smaller difference the vapour must be repeatedly condensed and vaporised in a fractionating column, which is fractional distillation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Cream is separated from milk mainly by:",
+      "options": [
+        "Filtration",
+        "Centrifugation",
+        "Sublimation",
+        "Chromatography"
+      ],
+      "correctAnswer": "Centrifugation",
+      "explanation": "Rapid spinning throws the denser liquid outward while the lighter cream collects near the centre, separating components that are too finely suspended for filtration.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "How many moles are present in 36 g of water (molar mass 18 g/mol)?",
+      "options": null,
+      "correctAnswer": "2 moles",
+      "explanation": "Number of moles = mass ÷ molar mass = 36 ÷ 18 = 2 mol, which corresponds to 2 × 6.022 × 10²³ water molecules.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In a sealed flask, 5.0 g of a metal reacts completely with 3.2 g of oxygen. What mass of product forms?",
+      "options": [
+        "1.8 g",
+        "5.0 g",
+        "8.2 g",
+        "3.2 g"
+      ],
+      "correctAnswer": "8.2 g",
+      "explanation": "Mass is conserved in a closed system, so the product mass equals the total reactant mass: 5.0 + 3.2 = 8.2 g.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "What is the chemical formula of aluminium oxide?",
+      "options": [
+        "AlO",
+        "Al₂O₃",
+        "Al₃O₂",
+        "AlO₂"
+      ],
+      "correctAnswer": "Al₂O₃",
+      "explanation": "Aluminium has valency 3 and oxygen valency 2. Exchanging the valencies gives Al₂O₃, in which the total positive and negative charges balance.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Calculate the molecular mass of CO₂ (atomic masses: C = 12 u, O = 16 u).",
+      "options": null,
+      "correctAnswer": "44 u",
+      "explanation": "One carbon atom contributes 12 u and two oxygen atoms contribute 2 × 16 = 32 u, giving 12 + 32 = 44 u.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In the α-particle scattering experiment, the fact that a very small fraction of particles bounced back showed that:",
+      "options": [
+        "the atom is mostly empty space",
+        "the positive charge is concentrated in a tiny nucleus",
+        "electrons revolve in fixed shells",
+        "neutrons are present in the nucleus"
+      ],
+      "correctAnswer": "the positive charge is concentrated in a tiny nucleus",
+      "explanation": "Only a dense, highly charged and very small region could repel a fast α-particle straight back. Straight-through passage of most particles is what indicated the empty space.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "An atom has 11 protons, 12 neutrons and 11 electrons. State its mass number and charge.",
+      "options": null,
+      "correctAnswer": "Mass number 23; the atom is neutral (charge 0)",
+      "explanation": "Mass number = protons + neutrons = 11 + 12 = 23. Equal numbers of protons and electrons make the net charge zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The valency of an element with atomic number 17 is:",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "7"
+      ],
+      "correctAnswer": "1",
+      "explanation": "The configuration is 2, 8, 7. The atom needs one more electron to complete its outermost shell, so its valency is 1.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Two atoms with the same atomic number but different mass numbers are called:",
+      "options": [
+        "Isobars",
+        "Isotopes",
+        "Ions",
+        "Isomers"
+      ],
+      "correctAnswer": "Isotopes",
+      "explanation": "Isotopes share the proton count (atomic number) but differ in neutron count, so their mass numbers differ. Isobars are the reverse case.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Lysosomes are called the 'suicide bags' of the cell because they:",
+      "options": [
+        "store the cell's genetic material",
+        "contain digestive enzymes that can break down the cell's own material",
+        "make proteins for export",
+        "release energy as ATP"
+      ],
+      "correctAnswer": "contain digestive enzymes that can break down the cell's own material",
+      "explanation": "Lysosomes hold powerful hydrolytic enzymes. If the cell is damaged, these enzymes are released and digest the cell's own contents.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Name two structures present in a plant cell but absent in an animal cell.",
+      "options": null,
+      "correctAnswer": "Cell wall and plastids (chloroplasts); a large central vacuole is also typical",
+      "explanation": "The rigid cellulose cell wall gives shape and support, and plastids such as chloroplasts carry out photosynthesis. Animal cells have neither.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A1",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A plant cell placed in a concentrated sugar solution will:",
+      "options": [
+        "swell and burst",
+        "lose water and undergo plasmolysis",
+        "stay exactly the same",
+        "gain water and become turgid"
+      ],
+      "correctAnswer": "lose water and undergo plasmolysis",
+      "explanation": "The surrounding solution is hypertonic, so water leaves the cell by osmosis. The protoplasm shrinks away from the cell wall — plasmolysis. The wall prevents bursting in the opposite case.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Why is the plasma membrane called selectively permeable?",
+      "options": null,
+      "correctAnswer": "Because it allows only certain substances to pass through it while restricting others.",
+      "explanation": "The lipid–protein membrane lets small or specific molecules such as water, oxygen and carbon dioxide move across, but controls or blocks the passage of many other solutes.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which tissue transports water and dissolved minerals from the root to the leaves?",
+      "options": [
+        "Phloem",
+        "Xylem",
+        "Collenchyma",
+        "Parenchyma"
+      ],
+      "correctAnswer": "Xylem",
+      "explanation": "Xylem consists of tracheids and vessels with thick lignified walls that form continuous tubes conducting water upward. Phloem transports food.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Why does the growth in the length of a stem occur mainly at its tip?",
+      "options": null,
+      "correctAnswer": "Because apical meristem, which divides actively, is located at the tip.",
+      "explanation": "Meristematic tissue has thin-walled cells with dense cytoplasm that divide continuously. Apical meristem at the shoot and root tips increases length.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Which muscle tissue is involuntary and shows striations?",
+      "options": [
+        "Skeletal muscle",
+        "Smooth muscle",
+        "Cardiac muscle",
+        "Tendon"
+      ],
+      "correctAnswer": "Cardiac muscle",
+      "explanation": "Cardiac muscle in the heart is striated like skeletal muscle but works without conscious control, so it is involuntary. Smooth muscle is involuntary but not striated.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Name the connective tissue that transports gases and nutrients around the body.",
+      "options": null,
+      "correctAnswer": "Blood",
+      "explanation": "Blood is a fluid connective tissue whose plasma matrix carries cells, dissolved gases, nutrients and wastes throughout the body.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH1-T1-O1",
+      "atomId": "C9-SCI-U3-CH1-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A car starting from rest accelerates uniformly at 2 m/s² for 6 s. Find its final speed and the distance covered.",
+      "options": null,
+      "correctAnswer": "12 m/s and 36 m",
+      "explanation": "v = u + at = 0 + 2 × 6 = 12 m/s. s = ut + ½at² = 0 + ½ × 2 × 36 = 36 m.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH1-T1-O1",
+      "atomId": "C9-SCI-U3-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "An athlete runs once around a circular track of circumference 400 m and returns to the start. Distance and displacement are:",
+      "options": [
+        "400 m and 400 m",
+        "400 m and 0 m",
+        "0 m and 400 m",
+        "200 m and 400 m"
+      ],
+      "correctAnswer": "400 m and 0 m",
+      "explanation": "Distance is the total path length, 400 m. Displacement is the straight-line change in position; since the athlete finishes where they started, it is zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH1-T2-O1",
+      "atomId": "C9-SCI-U3-CH1-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A horizontal straight line on a velocity–time graph represents motion with:",
+      "options": [
+        "zero velocity",
+        "constant velocity and zero acceleration",
+        "uniform acceleration",
+        "increasing acceleration"
+      ],
+      "correctAnswer": "constant velocity and zero acceleration",
+      "explanation": "The height of the line gives the velocity, which is unchanging, and the slope — which is the acceleration — is zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH1-T2-O1",
+      "atomId": "C9-SCI-U3-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Uniform circular motion is described as accelerated motion because:",
+      "options": [
+        "the speed keeps increasing",
+        "the direction of velocity changes continuously",
+        "the distance covered increases",
+        "the radius changes"
+      ],
+      "correctAnswer": "the direction of velocity changes continuously",
+      "explanation": "Velocity is a vector. Even at constant speed, a continuously changing direction means the velocity changes, so the motion is accelerated.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH2-T1-O1",
+      "atomId": "C9-SCI-U3-CH2-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A force of 20 N acts on a body of mass 4 kg. Calculate its acceleration.",
+      "options": null,
+      "correctAnswer": "5 m/s²",
+      "explanation": "From Newton's second law, a = F/m = 20 ÷ 4 = 5 m/s².",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH2-T1-O1",
+      "atomId": "C9-SCI-U3-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A passenger standing in a bus falls backward when the bus starts suddenly. This is explained by:",
+      "options": [
+        "inertia of rest",
+        "inertia of motion",
+        "conservation of momentum",
+        "the third law of motion"
+      ],
+      "correctAnswer": "inertia of rest",
+      "explanation": "The lower body moves with the bus while the upper body tends to remain at rest because of inertia of rest, so the passenger falls backward.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH2-T2-O1",
+      "atomId": "C9-SCI-U3-CH2-T2-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Calculate the momentum of a 1500 kg car moving at 20 m/s.",
+      "options": null,
+      "correctAnswer": "30 000 kg·m/s",
+      "explanation": "Momentum p = mv = 1500 × 20 = 30 000 kg·m/s in the direction of motion.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH2-T2-O1",
+      "atomId": "C9-SCI-U3-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A 2 kg trolley moving at 3 m/s collides with a stationary 4 kg trolley and they move off together. Their common speed is:",
+      "options": [
+        "0.5 m/s",
+        "1 m/s",
+        "1.5 m/s",
+        "3 m/s"
+      ],
+      "correctAnswer": "1 m/s",
+      "explanation": "Total momentum before = 2 × 3 = 6 kg·m/s. After the collision the combined mass is 6 kg, so v = 6 ÷ 6 = 1 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH3-T1-O1",
+      "atomId": "C9-SCI-U3-CH3-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A body has a mass of 12 kg. Find its weight on Earth (g = 9.8 m/s²).",
+      "options": null,
+      "correctAnswer": "117.6 N",
+      "explanation": "W = mg = 12 × 9.8 = 117.6 N. Mass stays 12 kg everywhere, while weight depends on the local value of g.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH3-T1-O1",
+      "atomId": "C9-SCI-U3-CH3-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "If the distance between two bodies is doubled, the gravitational force between them becomes:",
+      "options": [
+        "half",
+        "one-fourth",
+        "double",
+        "four times"
+      ],
+      "correctAnswer": "one-fourth",
+      "explanation": "Gravitational force is inversely proportional to the square of the distance, so doubling r divides the force by 2² = 4.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH3-T2-O1",
+      "atomId": "C9-SCI-U3-CH3-T2-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A force of 200 N acts on an area of 0.5 m². Calculate the pressure exerted.",
+      "options": null,
+      "correctAnswer": "400 Pa",
+      "explanation": "Pressure = thrust ÷ area = 200 ÷ 0.5 = 400 N/m², that is 400 pascal.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH3-T2-O1",
+      "atomId": "C9-SCI-U3-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "An object floats in water. This means its density is:",
+      "options": [
+        "greater than that of water",
+        "less than that of water",
+        "exactly zero",
+        "equal to its weight"
+      ],
+      "correctAnswer": "less than that of water",
+      "explanation": "A floating object displaces a weight of liquid equal to its own weight, which is possible only when its average density is lower than that of the liquid.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH4-T1-O1",
+      "atomId": "C9-SCI-U3-CH4-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A boy lifts a 10 kg box to a shelf 1.5 m high. Calculate the work done against gravity (g = 10 m/s²).",
+      "options": null,
+      "correctAnswer": "150 J",
+      "explanation": "Work against gravity = mgh = 10 × 10 × 1.5 = 150 J, which is stored as gravitational potential energy.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH4-T1-O1",
+      "atomId": "C9-SCI-U3-CH4-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A coolie carries a load horizontally at constant speed. The work done by him against gravity is:",
+      "options": [
+        "maximum",
+        "zero",
+        "equal to mgh",
+        "negative"
+      ],
+      "correctAnswer": "zero",
+      "explanation": "The gravitational force acts vertically while the displacement is horizontal. With the force perpendicular to displacement, the work done against gravity is zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH4-T2-O1",
+      "atomId": "C9-SCI-U3-CH4-T2-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A machine does 900 J of work in 30 s. Calculate its power.",
+      "options": null,
+      "correctAnswer": "30 W",
+      "explanation": "Power = work ÷ time = 900 ÷ 30 = 30 J/s, that is 30 watt.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH4-T2-O1",
+      "atomId": "C9-SCI-U3-CH4-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A ball is dropped from a height. Just before hitting the ground (ignoring air resistance), its energy is:",
+      "options": [
+        "entirely potential",
+        "entirely kinetic",
+        "half potential and half kinetic",
+        "zero"
+      ],
+      "correctAnswer": "entirely kinetic",
+      "explanation": "As the height falls to zero the potential energy mgh becomes zero, and by conservation of energy all of it has converted into kinetic energy.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH5-T1-O1",
+      "atomId": "C9-SCI-U3-CH5-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A sound wave has frequency 500 Hz and wavelength 0.66 m. Calculate its speed.",
+      "options": null,
+      "correctAnswer": "330 m/s",
+      "explanation": "v = fλ = 500 × 0.66 = 330 m/s, which is close to the speed of sound in air at room temperature.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH5-T1-O1",
+      "atomId": "C9-SCI-U3-CH5-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Sound cannot travel through vacuum because:",
+      "options": [
+        "it is a transverse wave",
+        "it needs a material medium whose particles can vibrate",
+        "its frequency becomes zero",
+        "light travels faster"
+      ],
+      "correctAnswer": "it needs a material medium whose particles can vibrate",
+      "explanation": "Sound propagates as compressions and rarefactions of particles. A vacuum has no particles, so there is nothing to carry the disturbance.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U3-CH5-T2-O1",
+      "atomId": "C9-SCI-U3-CH5-T2-O1-A1",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A SONAR pulse returns from the seabed after 4 s. If the speed of sound in water is 1500 m/s, the depth is:",
+      "options": [
+        "1500 m",
+        "3000 m",
+        "6000 m",
+        "750 m"
+      ],
+      "correctAnswer": "3000 m",
+      "explanation": "The pulse travels down and back, so the one-way time is 2 s. Depth = 1500 × 2 = 3000 m.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U3-CH5-T2-O1",
+      "atomId": "C9-SCI-U3-CH5-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Why must a reflecting surface be at least about 17 m away for a distinct echo in air?",
+      "options": null,
+      "correctAnswer": "Because the ear retains a sound for about 0.1 s, and in that time sound at 344 m/s travels about 34 m to and fro, that is roughly 17 m each way.",
+      "explanation": "The persistence of hearing is about 0.1 s. For the echo to be heard separately the total path must take at least this long: 344 × 0.1 ≈ 34 m, so the obstacle must be about 17 m away.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of the following is a rabi crop?",
+      "options": [
+        "Paddy",
+        "Maize",
+        "Wheat",
+        "Groundnut"
+      ],
+      "correctAnswer": "Wheat",
+      "explanation": "Rabi crops are sown in winter, from about November to April; wheat is the classic example. Paddy, maize and groundnut are kharif crops grown in the rainy season.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "State one advantage of using manure over chemical fertilisers.",
+      "options": null,
+      "correctAnswer": "Manure adds organic matter that improves soil structure and water-holding capacity, unlike chemical fertilisers.",
+      "explanation": "Manure supplies nutrients slowly and enriches the soil with humus, improving texture, aeration and microbial life. Fertilisers give quick nutrients but can degrade soil fertility with prolonged use.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Milch animals are those reared mainly for:",
+      "options": [
+        "Farm labour",
+        "Milk production",
+        "Egg production",
+        "Honey production"
+      ],
+      "correctAnswer": "Milk production",
+      "explanation": "'Milch' refers to milk-yielding animals such as dairy cows and buffaloes. Draught animals are kept for farm work.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "How does composite fish culture increase yield from a single pond?",
+      "options": null,
+      "correctAnswer": "By stocking species that feed at different levels of the pond, so all available food is used without competition.",
+      "explanation": "Surface feeders, mid-zone feeders, bottom feeders and weed feeders are combined so that each ecological niche of the pond is exploited, raising total production.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    }
+  ]
+}

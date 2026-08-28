@@ -1,0 +1,1069 @@
+{
+  "packVersion": 1,
+  "subjectCode": "MAT",
+  "academicYear": "2026-27",
+  "generatedBy": "scripts/class9/build-packs.ts",
+  "questions": [
+    {
+      "id": "C9-MAT-U1-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U1-CH1-T1-O1",
+      "atomId": "C9-MAT-U1-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of the following numbers is irrational?",
+      "options": [
+        "0.75",
+        "√49",
+        "√11",
+        "22/7"
+      ],
+      "correctAnswer": "√11",
+      "explanation": "11 is not a perfect square, so √11 has a non-terminating, non-recurring decimal expansion and cannot be written as p/q. 0.75 and 22/7 are ratios of integers, and √49 = 7.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U1-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U1-CH1-T1-O1",
+      "atomId": "C9-MAT-U1-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A student writes 0.323232... as a fraction. Which fraction is correct?",
+      "options": [
+        "32/99",
+        "32/100",
+        "323/999",
+        "16/33"
+      ],
+      "correctAnswer": "32/99",
+      "explanation": "Let x = 0.323232.... Then 100x = 32.323232..., so 99x = 32 and x = 32/99. Note 32/99 is already in lowest terms because 32 and 99 share no common factor.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U1-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U1-CH1-T2-O1",
+      "atomId": "C9-MAT-U1-CH1-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Simplify: 2^(1/3) × 2^(1/6).",
+      "options": [
+        "2^(1/2)",
+        "2^(1/9)",
+        "2^(1/18)",
+        "4^(1/2)"
+      ],
+      "correctAnswer": "2^(1/2)",
+      "explanation": "With the same base, exponents add: 1/3 + 1/6 = 1/2, so the product is 2^(1/2) = √2.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U1-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U1-CH1-T2-O1",
+      "atomId": "C9-MAT-U1-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Rationalise the denominator of 1/(3 + √2) and give the result in simplest form.",
+      "options": null,
+      "correctAnswer": "(3 − √2)/7",
+      "explanation": "Multiply numerator and denominator by the conjugate (3 − √2): the denominator becomes 3² − (√2)² = 9 − 2 = 7, giving (3 − √2)/7.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U2-CH1-T1-O1",
+      "atomId": "C9-MAT-U2-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "What is the degree of the polynomial 5x³ − 4x² + 7x − 9?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correctAnswer": "3",
+      "explanation": "The degree is the highest power of the variable that appears with a non-zero coefficient, which is 3 in 5x³.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U2-CH1-T1-O1",
+      "atomId": "C9-MAT-U2-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "If p(x) = x² − 5x + 6, find p(2) and state whether 2 is a zero of p(x).",
+      "options": null,
+      "correctAnswer": "p(2) = 0, so 2 is a zero",
+      "explanation": "p(2) = 4 − 10 + 6 = 0. Because the value of the polynomial at x = 2 is zero, x = 2 is a zero of p(x).",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U2-CH1-T2-O1",
+      "atomId": "C9-MAT-U2-CH1-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Factorise x² − 16.",
+      "options": [
+        "(x − 4)(x + 4)",
+        "(x − 8)(x + 2)",
+        "(x − 16)(x + 1)",
+        "(x − 4)²"
+      ],
+      "correctAnswer": "(x − 4)(x + 4)",
+      "explanation": "This is a difference of squares: a² − b² = (a − b)(a + b) with a = x and b = 4.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U2-CH1-T2-O1",
+      "atomId": "C9-MAT-U2-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Given that (x − 1) is a factor of x³ − 6x² + 11x − 6, which is the complete factorisation?",
+      "options": [
+        "(x − 1)(x − 2)(x − 3)",
+        "(x − 1)(x + 2)(x + 3)",
+        "(x − 1)(x − 6)(x + 1)",
+        "(x − 1)(x² + 5x + 6)"
+      ],
+      "correctAnswer": "(x − 1)(x − 2)(x − 3)",
+      "explanation": "Dividing by (x − 1) gives x² − 5x + 6, which factorises as (x − 2)(x − 3). Checking: 1 + 2 + 3 = 6 matches the coefficient of x², and 1 × 2 × 3 = 6 matches the constant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH2-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U2-CH2-T1-O1",
+      "atomId": "C9-MAT-U2-CH2-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which ordered pair is a solution of 2x + 3y = 12?",
+      "options": [
+        "(3, 2)",
+        "(2, 3)",
+        "(1, 4)",
+        "(4, 2)"
+      ],
+      "correctAnswer": "(3, 2)",
+      "explanation": "Substituting x = 3 and y = 2 gives 2(3) + 3(2) = 6 + 6 = 12, which satisfies the equation. The other pairs give 13, 14 and 14 respectively.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH2-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U2-CH2-T1-O1",
+      "atomId": "C9-MAT-U2-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The cost of 1 notebook is ₹x and 1 pen is ₹y. Two notebooks and three pens together cost ₹110. Write this as a linear equation in two variables.",
+      "options": null,
+      "correctAnswer": "2x + 3y = 110",
+      "explanation": "Two notebooks cost 2x and three pens cost 3y. Their total is ₹110, giving the linear equation 2x + 3y = 110.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH2-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U2-CH2-T2-O1",
+      "atomId": "C9-MAT-U2-CH2-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The graph of the equation y = 4 is a line that is:",
+      "options": [
+        "parallel to the x-axis, 4 units above it",
+        "parallel to the y-axis, 4 units to the right",
+        "passing through the origin",
+        "inclined at 45° to the x-axis"
+      ],
+      "correctAnswer": "parallel to the x-axis, 4 units above it",
+      "explanation": "Every point with y-coordinate 4 satisfies y = 4 regardless of x, so the solution set is a horizontal line 4 units above the x-axis.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U2-CH2-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U2-CH2-T2-O1",
+      "atomId": "C9-MAT-U2-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Find the point where the line x + y = 7 cuts the x-axis.",
+      "options": null,
+      "correctAnswer": "(7, 0)",
+      "explanation": "On the x-axis, y = 0. Substituting gives x = 7, so the line meets the x-axis at (7, 0).",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U3-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U3-CH1-T1-O1",
+      "atomId": "C9-MAT-U3-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "In which quadrant does the point (−5, 3) lie?",
+      "options": [
+        "First",
+        "Second",
+        "Third",
+        "Fourth"
+      ],
+      "correctAnswer": "Second",
+      "explanation": "A negative x-coordinate with a positive y-coordinate places the point to the left of the y-axis and above the x-axis, which is the second quadrant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U3-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U3-CH1-T1-O1",
+      "atomId": "C9-MAT-U3-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Where does every point of the form (0, k), with k ≠ 0, lie?",
+      "options": null,
+      "correctAnswer": "On the y-axis",
+      "explanation": "An x-coordinate of 0 means the point is neither left nor right of the origin, so it lies on the y-axis at a distance |k| from the origin.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH1-T1-O1",
+      "atomId": "C9-MAT-U4-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which statement is one of Euclid's postulates?",
+      "options": [
+        "A straight line may be drawn from any one point to any other point",
+        "The whole is greater than the part",
+        "Things which are equal to the same thing are equal to one another",
+        "If equals are added to equals, the wholes are equal"
+      ],
+      "correctAnswer": "A straight line may be drawn from any one point to any other point",
+      "explanation": "Postulates are assumptions specific to geometry; the other three statements are Euclid's common notions (axioms), which apply to magnitudes in general.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH1-T1-O1",
+      "atomId": "C9-MAT-U4-CH1-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 3,
+      "stimulus": "Assertion: If A, B and C are three points on a line and AB = BC, then B is the midpoint of AC. Reason: Things which are halves of the same thing are equal to one another.",
+      "prompt": "Choose the correct option about the assertion and the reason.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true but the reason does not explain the assertion",
+      "explanation": "B is the midpoint because AB = BC and B lies between A and C, which follows from the definition of a midpoint rather than from the halves axiom. Both statements are true, but the reason does not justify the assertion.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH2-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH2-T1-O1",
+      "atomId": "C9-MAT-U4-CH2-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Two angles form a linear pair. If one angle measures 65°, what is the other angle?",
+      "options": [
+        "25°",
+        "115°",
+        "125°",
+        "295°"
+      ],
+      "correctAnswer": "115°",
+      "explanation": "Angles in a linear pair are supplementary, so the second angle is 180° − 65° = 115°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH2-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH2-T1-O1",
+      "atomId": "C9-MAT-U4-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A transversal cuts two parallel lines. One interior angle on the same side of the transversal is 70°. What is the other co-interior angle?",
+      "options": [
+        "70°",
+        "110°",
+        "20°",
+        "140°"
+      ],
+      "correctAnswer": "110°",
+      "explanation": "Co-interior (allied) angles between parallel lines are supplementary, so the other angle is 180° − 70° = 110°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH3-T1-O1",
+      "atomId": "C9-MAT-U4-CH3-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In triangles ABC and PQR, AB = PQ, ∠A = ∠P and AC = PR. Which criterion proves the triangles congruent?",
+      "options": [
+        "SSS",
+        "SAS",
+        "ASA",
+        "RHS"
+      ],
+      "correctAnswer": "SAS",
+      "explanation": "Two pairs of sides are equal and the angles between those sides are equal, which is exactly the Side-Angle-Side criterion.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH3-T1-O1",
+      "atomId": "C9-MAT-U4-CH3-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "State whether the following is true or false: two triangles with two equal sides and one equal non-included angle are always congruent.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "SSA is not a congruence criterion; two different triangles can be built from the same two sides and a non-included angle, so congruence is not guaranteed.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH3-T2-O1",
+      "atomId": "C9-MAT-U4-CH3-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Two angles of a triangle measure 48° and 62°. What is the third angle?",
+      "options": [
+        "60°",
+        "70°",
+        "80°",
+        "110°"
+      ],
+      "correctAnswer": "70°",
+      "explanation": "The angles of a triangle sum to 180°, so the third angle is 180° − (48° + 62°) = 70°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH3-T2-O1",
+      "atomId": "C9-MAT-U4-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Which set of lengths (in cm) can form a triangle?",
+      "options": [
+        "3, 4, 8",
+        "2, 2, 5",
+        "6, 7, 12",
+        "1, 2, 3"
+      ],
+      "correctAnswer": "6, 7, 12",
+      "explanation": "The sum of any two sides must exceed the third. For 6, 7, 12: 6 + 7 = 13 > 12, and the other checks pass. Each other set fails the inequality (for 1, 2, 3 the sum equals the third side, giving a straight line, not a triangle).",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH4-T1-O1",
+      "atomId": "C9-MAT-U4-CH4-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In a parallelogram, one angle measures 105°. What is the adjacent angle?",
+      "options": [
+        "75°",
+        "105°",
+        "85°",
+        "95°"
+      ],
+      "correctAnswer": "75°",
+      "explanation": "Adjacent angles of a parallelogram are supplementary because the opposite sides are parallel, so the angle is 180° − 105° = 75°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH4-T1-O1",
+      "atomId": "C9-MAT-U4-CH4-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Which property holds for a rhombus but not for every parallelogram?",
+      "options": [
+        "Opposite angles are equal",
+        "Diagonals bisect each other",
+        "Diagonals intersect at right angles",
+        "Opposite sides are parallel"
+      ],
+      "correctAnswer": "Diagonals intersect at right angles",
+      "explanation": "All parallelograms share the other three properties. Perpendicular diagonals occur only when all four sides are equal, that is, in a rhombus (and hence a square).",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH4-T2-O1",
+      "atomId": "C9-MAT-U4-CH4-T2-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In triangle ABC, D and E are the midpoints of AB and AC. If BC = 14 cm, find DE.",
+      "options": null,
+      "correctAnswer": "7 cm",
+      "explanation": "By the midpoint theorem, DE is parallel to BC and DE = ½ × BC = ½ × 14 = 7 cm.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH4-T2-O1",
+      "atomId": "C9-MAT-U4-CH4-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Joining the midpoints of the sides of any quadrilateral, in order, always produces which figure?",
+      "options": [
+        "A rectangle",
+        "A rhombus",
+        "A parallelogram",
+        "A square"
+      ],
+      "correctAnswer": "A parallelogram",
+      "explanation": "Each side of the new figure is parallel to a diagonal of the original quadrilateral and half its length, so both pairs of opposite sides are parallel and equal — a parallelogram (Varignon's result).",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH5-T1-O1",
+      "atomId": "C9-MAT-U4-CH5-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "An arc of a circle subtends an angle of 80° at the centre. What angle does it subtend at a point on the major arc?",
+      "options": [
+        "40°",
+        "80°",
+        "100°",
+        "160°"
+      ],
+      "correctAnswer": "40°",
+      "explanation": "The angle at the centre is twice the angle subtended at any point on the remaining part of the circle, so the required angle is 80° ÷ 2 = 40°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH5-T1-O1",
+      "atomId": "C9-MAT-U4-CH5-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A chord of length 16 cm lies in a circle of radius 10 cm. How far is the chord from the centre?",
+      "options": null,
+      "correctAnswer": "6 cm",
+      "explanation": "The perpendicular from the centre bisects the chord, forming a right triangle with legs 8 cm and d, and hypotenuse 10 cm. So d = √(10² − 8²) = √36 = 6 cm.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U4-CH5-T2-O1",
+      "atomId": "C9-MAT-U4-CH5-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In a cyclic quadrilateral ABCD, ∠A = 95°. What is ∠C?",
+      "options": [
+        "85°",
+        "95°",
+        "105°",
+        "185°"
+      ],
+      "correctAnswer": "85°",
+      "explanation": "Opposite angles of a cyclic quadrilateral are supplementary, so ∠C = 180° − 95° = 85°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U4-CH5-T2-O1",
+      "atomId": "C9-MAT-U4-CH5-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "State whether the following is true or false: every parallelogram that can be inscribed in a circle must be a rectangle.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Opposite angles of a parallelogram are equal, and in a cyclic figure they are supplementary. Equal and supplementary angles are each 90°, so the parallelogram is a rectangle.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U5-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5/CH1/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U5-CH1-T1-O1",
+      "atomId": "C9-MAT-U5-CH1-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Find the area of a triangle whose sides are 3 cm, 4 cm and 5 cm using Heron's formula.",
+      "options": null,
+      "correctAnswer": "6 cm²",
+      "explanation": "s = (3 + 4 + 5)/2 = 6. Area = √(6 × 3 × 2 × 1) = √36 = 6 cm². (The triangle is right-angled, and ½ × 3 × 4 = 6 confirms the result.)",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U5-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5/CH1/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U5-CH1-T1-O1",
+      "atomId": "C9-MAT-U5-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A triangular park has sides 40 m, 24 m and 32 m. What is its area?",
+      "options": [
+        "384 m²",
+        "480 m²",
+        "320 m²",
+        "768 m²"
+      ],
+      "correctAnswer": "384 m²",
+      "explanation": "s = (40 + 24 + 32)/2 = 48. Area = √(48 × 8 × 24 × 16) = √147456 = 384 m².",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U5-CH2-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U5-CH2-T1-O1",
+      "atomId": "C9-MAT-U5-CH2-T1-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Find the curved surface area of a cylinder of radius 7 cm and height 10 cm. Take π = 22/7.",
+      "options": null,
+      "correctAnswer": "440 cm²",
+      "explanation": "CSA = 2πrh = 2 × (22/7) × 7 × 10 = 440 cm².",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U5-CH2-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U5-CH2-T1-O1",
+      "atomId": "C9-MAT-U5-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "If the radius of a sphere is doubled, its surface area becomes:",
+      "options": [
+        "twice as large",
+        "three times as large",
+        "four times as large",
+        "unchanged"
+      ],
+      "correctAnswer": "four times as large",
+      "explanation": "Surface area = 4πr² varies with the square of the radius, so doubling r multiplies the area by 2² = 4.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U5-CH2-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U5-CH2-T2-O1",
+      "atomId": "C9-MAT-U5-CH2-T2-O1-A1",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A cone and a cylinder have the same radius and the same height. The volume of the cone is what fraction of the cylinder's volume?",
+      "options": [
+        "1/2",
+        "1/3",
+        "2/3",
+        "3/4"
+      ],
+      "correctAnswer": "1/3",
+      "explanation": "Volume of a cone = ⅓πr²h while the cylinder is πr²h, so the cone holds one third as much.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U5-CH2-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U5-CH2-T2-O1",
+      "atomId": "C9-MAT-U5-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A cylindrical water tank has radius 70 cm and height 100 cm. How many litres can it hold? Take π = 22/7.",
+      "options": null,
+      "correctAnswer": "1540 litres",
+      "explanation": "Volume = πr²h = (22/7) × 70 × 70 × 100 = 1 540 000 cm³. Since 1000 cm³ = 1 litre, the capacity is 1540 litres.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U6-CH1-T1-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T1/O1/Q1",
+      "outcomeId": "C9-MAT-U6-CH1-T1-O1",
+      "atomId": "C9-MAT-U6-CH1-T1-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Marks range from 12 to 96 and are grouped into classes of width 10 starting at 10. How many classes are needed?",
+      "options": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "correctAnswer": "9",
+      "explanation": "The classes run 10–20, 20–30, …, 90–100. Counting them gives 9 classes, which covers the lowest value 12 and the highest value 96.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U6-CH1-T1-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T1/O1/Q2",
+      "outcomeId": "C9-MAT-U6-CH1-T1-O1",
+      "atomId": "C9-MAT-U6-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In a grouped frequency distribution, the class mark of the class 30–40 is:",
+      "options": [
+        "30",
+        "35",
+        "40",
+        "10"
+      ],
+      "correctAnswer": "35",
+      "explanation": "The class mark is the average of the lower and upper limits: (30 + 40)/2 = 35.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U6-CH1-T2-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T2/O1/Q1",
+      "outcomeId": "C9-MAT-U6-CH1-T2-O1",
+      "atomId": "C9-MAT-U6-CH1-T2-O1-A1",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Find the median of the observations 7, 3, 9, 5, 11.",
+      "options": null,
+      "correctAnswer": "7",
+      "explanation": "Arranged in order the data is 3, 5, 7, 9, 11. With five observations the median is the third value, which is 7.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U6-CH1-T2-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T2/O1/Q2",
+      "outcomeId": "C9-MAT-U6-CH1-T2-O1",
+      "atomId": "C9-MAT-U6-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "The mean of five numbers is 18. If one number is removed, the mean of the remaining four becomes 16. Which number was removed?",
+      "options": [
+        "18",
+        "22",
+        "26",
+        "30"
+      ],
+      "correctAnswer": "26",
+      "explanation": "The original total is 5 × 18 = 90 and the new total is 4 × 16 = 64. The removed number is 90 − 64 = 26.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    }
+  ]
+}

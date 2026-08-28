@@ -1,0 +1,929 @@
+{
+  "packVersion": 1,
+  "board": "CBSE",
+  "academicYear": "2026-27",
+  "classLevel": 9,
+  "subjectCode": "MAT",
+  "subjectKey": "Mathematics",
+  "catalogueCode": "CBSE-2026-27-C9-MAT",
+  "activation": {
+    "isActive": false,
+    "commercialStatus": "hidden",
+    "reviewState": "draft",
+    "diagnosticEligible": false,
+    "reassessmentReady": false
+  },
+  "sources": [
+    {
+      "id": "NCERT-C9-MAT-2026-27",
+      "title": "NCERT Mathematics Textbook for Class IX (rationalised) with the CBSE Secondary Curriculum syllabus for Mathematics (Code 041)",
+      "issuingAuthority": "National Council of Educational Research and Training / Central Board of Secondary Education",
+      "edition": "Rationalised edition in force for session 2026-27",
+      "officialReference": "https://ncert.nic.in/textbook.php (Class IX Mathematics) and https://cbseacademic.nic.in/curriculum.html (Secondary Curriculum, Mathematics 041)",
+      "retrievedOn": "2026-08-28",
+      "licensing": "Structure, chapter titles and syllabus weightings are cited as factual curriculum metadata. No textbook text, figures or exercise items are copied or stored in this repository. All questions in the pack are original EduOS material.",
+      "supersedes": null,
+      "provenanceStatus": "official-derived"
+    }
+  ],
+  "ambiguities": [
+    "Unit mark weights follow the CBSE Class 9 Mathematics syllabus split (Number Systems 10, Algebra 20, Coordinate Geometry 4, Geometry 27, Mensuration 13, Statistics 6 = 80). A subject expert must confirm the 2026-27 circular before any activation.",
+    "Chapter list assumes the rationalised 12-chapter NCERT structure (Constructions, Areas of Parallelograms and Triangles, and Probability removed). Reviewer must confirm no reinstatement for 2026-27."
+  ],
+  "units": [
+    {
+      "id": "C9-MAT-U1",
+      "externalRef": "CBSE/2026-27/C9/MAT/U1",
+      "title": "Number Systems",
+      "position": 1,
+      "syllabusMarks": 10,
+      "chapters": [
+        {
+          "id": "C9-MAT-U1-CH1",
+          "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1",
+          "ncertChapter": 1,
+          "title": "Number Systems",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-1",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 1: Number Systems"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U1-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T1",
+              "title": "Rational and irrational numbers",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U1-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T1/O1",
+                  "code": "C9-MAT-01.01.11",
+                  "title": "Classify real numbers as rational or irrational and place them on the number line",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U1-CH1-T1-O1-A1",
+                      "text": "Recognise a rational number as p/q with q ≠ 0 and integers p, q"
+                    },
+                    {
+                      "id": "C9-MAT-U1-CH1-T1-O1-A2",
+                      "text": "Identify non-terminating non-recurring decimals as irrational"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U1-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T2",
+              "title": "Exponents, surds and rationalisation",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U1-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T2/O1",
+                  "code": "C9-MAT-01.01.21",
+                  "title": "Apply the laws of exponents for real bases and rationalise simple denominators",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U1-CH1-T2-O1-A1",
+                      "text": "Simplify expressions using a^m × a^n = a^(m+n) and (a^m)^n = a^(mn)"
+                    },
+                    {
+                      "id": "C9-MAT-U1-CH1-T2-O1-A2",
+                      "text": "Rationalise a denominator of the form 1/(a + √b)"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-MAT-U2",
+      "externalRef": "CBSE/2026-27/C9/MAT/U2",
+      "title": "Algebra",
+      "position": 2,
+      "syllabusMarks": 20,
+      "chapters": [
+        {
+          "id": "C9-MAT-U2-CH1",
+          "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1",
+          "ncertChapter": 2,
+          "title": "Polynomials",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-2",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 2: Polynomials"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U2-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T1",
+              "title": "Polynomials, degree and zeroes",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U2-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T1/O1",
+                  "code": "C9-MAT-02.01.11",
+                  "title": "Determine the degree of a polynomial and verify whether a value is a zero",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U2-CH1-T1-O1-A1",
+                      "text": "State the degree of a polynomial in one variable"
+                    },
+                    {
+                      "id": "C9-MAT-U2-CH1-T1-O1-A2",
+                      "text": "Evaluate p(a) to test whether a is a zero of p(x)"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U2-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T2",
+              "title": "Algebraic identities and factorisation",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U2-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T2/O1",
+                  "code": "C9-MAT-02.01.21",
+                  "title": "Factorise quadratic and cubic expressions using standard identities and the factor theorem",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U2-CH1-T2-O1-A1",
+                      "text": "Use (a + b)² , (a − b)² and a² − b² to factorise"
+                    },
+                    {
+                      "id": "C9-MAT-U2-CH1-T2-O1-A2",
+                      "text": "Apply the factor theorem to factorise a cubic polynomial"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-MAT-U2-CH2",
+          "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2",
+          "ncertChapter": 4,
+          "title": "Linear Equations in Two Variables",
+          "position": 2,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-4",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 4: Linear Equations in Two Variables"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U2-CH2-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T1",
+              "title": "Solutions of a linear equation in two variables",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U2-CH2-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T1/O1",
+                  "code": "C9-MAT-02.02.11",
+                  "title": "Express a linear equation in the form ax + by + c = 0 and find its solutions",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U2-CH2-T1-O1-A1",
+                      "text": "Write a statement as a linear equation in two variables"
+                    },
+                    {
+                      "id": "C9-MAT-U2-CH2-T1-O1-A2",
+                      "text": "Verify that an ordered pair satisfies a linear equation"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U2-CH2-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T2",
+              "title": "Graph of a linear equation",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U2-CH2-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T2/O1",
+                  "code": "C9-MAT-02.02.21",
+                  "title": "Draw and interpret the graph of a linear equation in two variables",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U2-CH2-T2-O1-A1",
+                      "text": "Plot at least two solutions and join them to graph the equation"
+                    },
+                    {
+                      "id": "C9-MAT-U2-CH2-T2-O1-A2",
+                      "text": "Interpret intercepts of the line with the axes"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-MAT-U3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U3",
+      "title": "Coordinate Geometry",
+      "position": 3,
+      "syllabusMarks": 4,
+      "chapters": [
+        {
+          "id": "C9-MAT-U3-CH1",
+          "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1",
+          "ncertChapter": 3,
+          "title": "Coordinate Geometry",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-3",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 3: Coordinate Geometry"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U3-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T1",
+              "title": "The Cartesian plane and plotting points",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U3-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T1/O1",
+                  "code": "C9-MAT-03.01.11",
+                  "title": "Plot points in the Cartesian plane and identify quadrants and axes",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U3-CH1-T1-O1-A1",
+                      "text": "Name the quadrant of a point from the signs of its coordinates"
+                    },
+                    {
+                      "id": "C9-MAT-U3-CH1-T1-O1-A2",
+                      "text": "Identify points lying on the x-axis or y-axis"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-MAT-U4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4",
+      "title": "Geometry",
+      "position": 4,
+      "syllabusMarks": 27,
+      "chapters": [
+        {
+          "id": "C9-MAT-U4-CH1",
+          "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1",
+          "ncertChapter": 5,
+          "title": "Introduction to Euclid's Geometry",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-5",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 5: Introduction to Euclid's Geometry"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U4-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1",
+              "title": "Euclid's axioms and postulates",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1/O1",
+                  "code": "C9-MAT-04.01.11",
+                  "title": "Distinguish Euclid's axioms from his postulates and use them in simple reasoning",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "assertion_reason"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH1-T1-O1-A1",
+                      "text": "State Euclid's five postulates"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH1-T1-O1-A2",
+                      "text": "Use the axiom 'things equal to the same thing are equal to one another'"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-MAT-U4-CH2",
+          "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2",
+          "ncertChapter": 6,
+          "title": "Lines and Angles",
+          "position": 2,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-6",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 6: Lines and Angles"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U4-CH2-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1",
+              "title": "Angle pairs and parallel lines",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH2-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1",
+                  "code": "C9-MAT-04.02.11",
+                  "title": "Use linear pair, vertically opposite and transversal angle relations to find unknown angles",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 6,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH2-T1-O1-A1",
+                      "text": "Apply the linear pair axiom (angles on a straight line sum to 180°)"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH2-T1-O1-A2",
+                      "text": "Use corresponding, alternate and co-interior angles for parallel lines"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-MAT-U4-CH3",
+          "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3",
+          "ncertChapter": 7,
+          "title": "Triangles",
+          "position": 3,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 7: Triangles"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U4-CH3-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1",
+              "title": "Congruence criteria for triangles",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH3-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1",
+                  "code": "C9-MAT-04.03.11",
+                  "title": "Select and justify the correct congruence criterion (SSS, SAS, ASA, AAS, RHS)",
+                  "category": "analysis",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 6,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH3-T1-O1-A1",
+                      "text": "Match given data to the appropriate congruence rule"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH3-T1-O1-A2",
+                      "text": "Recognise that SSA is not a valid congruence criterion"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U4-CH3-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2",
+              "title": "Properties and inequalities in triangles",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH3-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2/O1",
+                  "code": "C9-MAT-04.03.21",
+                  "title": "Apply angle-sum, isosceles-triangle and triangle-inequality properties",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH3-T2-O1-A1",
+                      "text": "Use the angle sum property of a triangle (180°)"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH3-T2-O1-A2",
+                      "text": "Compare sides and opposite angles using the triangle inequality"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-MAT-U4-CH4",
+          "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4",
+          "ncertChapter": 8,
+          "title": "Quadrilaterals",
+          "position": 4,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 8: Quadrilaterals"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U4-CH4-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1",
+              "title": "Properties of parallelograms",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH4-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1",
+                  "code": "C9-MAT-04.04.11",
+                  "title": "Use and justify the defining properties of a parallelogram and its special cases",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH4-T1-O1-A1",
+                      "text": "Opposite sides and opposite angles of a parallelogram are equal"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH4-T1-O1-A2",
+                      "text": "Diagonals of a parallelogram bisect each other"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U4-CH4-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2",
+              "title": "The midpoint theorem",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH4-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2/O1",
+                  "code": "C9-MAT-04.04.21",
+                  "title": "Apply the midpoint theorem and its converse in a triangle or quadrilateral",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH4-T2-O1-A1",
+                      "text": "The segment joining midpoints of two sides is parallel to and half the third side"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH4-T2-O1-A2",
+                      "text": "Use the converse to locate a midpoint"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-MAT-U4-CH5",
+          "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5",
+          "ncertChapter": 9,
+          "title": "Circles",
+          "position": 5,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 9: Circles"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U4-CH5-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1",
+              "title": "Chords, arcs and angles subtended",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH5-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1",
+                  "code": "C9-MAT-04.05.11",
+                  "title": "Relate chords, their distances from the centre, and the angles they subtend",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH5-T1-O1-A1",
+                      "text": "Equal chords are equidistant from the centre"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH5-T1-O1-A2",
+                      "text": "The angle at the centre is twice the angle at any point on the remaining arc"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U4-CH5-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2",
+              "title": "Cyclic quadrilaterals",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U4-CH5-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2/O1",
+                  "code": "C9-MAT-04.05.21",
+                  "title": "Use the cyclic-quadrilateral angle property and its converse",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U4-CH5-T2-O1-A1",
+                      "text": "Opposite angles of a cyclic quadrilateral are supplementary"
+                    },
+                    {
+                      "id": "C9-MAT-U4-CH5-T2-O1-A2",
+                      "text": "Angles in the same segment are equal"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-MAT-U5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U5",
+      "title": "Mensuration",
+      "position": 5,
+      "syllabusMarks": 13,
+      "chapters": [
+        {
+          "id": "C9-MAT-U5-CH1",
+          "externalRef": "CBSE/2026-27/C9/MAT/U5/CH1",
+          "ncertChapter": 10,
+          "title": "Heron's Formula",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-10",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 10: Heron's Formula"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U5-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U5/CH1/T1",
+              "title": "Area of triangles using Heron's formula",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U5-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U5/CH1/T1/O1",
+                  "code": "C9-MAT-05.01.11",
+                  "title": "Compute areas of triangles and composite figures using Heron's formula",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U5-CH1-T1-O1-A1",
+                      "text": "Compute the semi-perimeter s = (a + b + c)/2"
+                    },
+                    {
+                      "id": "C9-MAT-U5-CH1-T1-O1-A2",
+                      "text": "Apply Area = √(s(s−a)(s−b)(s−c))"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C9-MAT-U5-CH2",
+          "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2",
+          "ncertChapter": 11,
+          "title": "Surface Areas and Volumes",
+          "position": 2,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-11",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 11: Surface Areas and Volumes"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U5-CH2-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T1",
+              "title": "Surface areas of solids",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U5-CH2-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T1/O1",
+                  "code": "C9-MAT-05.02.11",
+                  "title": "Calculate curved and total surface areas of cones, cylinders and spheres",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U5-CH2-T1-O1-A1",
+                      "text": "Apply CSA of a cylinder = 2πrh and of a cone = πrl"
+                    },
+                    {
+                      "id": "C9-MAT-U5-CH2-T1-O1-A2",
+                      "text": "Apply surface area of a sphere = 4πr²"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U5-CH2-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T2",
+              "title": "Volumes of solids",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U5-CH2-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T2/O1",
+                  "code": "C9-MAT-05.02.21",
+                  "title": "Calculate volumes of cylinders, cones and spheres and solve capacity problems",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U5-CH2-T2-O1-A1",
+                      "text": "Apply volume of a cylinder = πr²h and of a cone = ⅓πr²h"
+                    },
+                    {
+                      "id": "C9-MAT-U5-CH2-T2-O1-A2",
+                      "text": "Convert between cm³ and litres in capacity problems"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C9-MAT-U6",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6",
+      "title": "Statistics",
+      "position": 6,
+      "syllabusMarks": 6,
+      "chapters": [
+        {
+          "id": "C9-MAT-U6-CH1",
+          "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1",
+          "ncertChapter": 12,
+          "title": "Statistics",
+          "position": 1,
+          "provenance": {
+            "sourceId": "NCERT-C9-MAT-2026-27",
+            "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+            "retrievedOn": "2026-08-28",
+            "note": "NCERT Class IX Mathematics, Chapter 12: Statistics"
+          },
+          "topics": [
+            {
+              "id": "C9-MAT-U6-CH1-T1",
+              "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T1",
+              "title": "Organising and representing data",
+              "position": 1,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U6-CH1-T1-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T1/O1",
+                  "code": "C9-MAT-06.01.11",
+                  "title": "Organise raw data into frequency tables and read bar graphs and histograms",
+                  "category": "procedural",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "data_interpretation"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U6-CH1-T1-O1-A1",
+                      "text": "Build a grouped frequency distribution with equal class intervals"
+                    },
+                    {
+                      "id": "C9-MAT-U6-CH1-T1-O1-A2",
+                      "text": "Read values from a histogram or bar graph"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U6-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T2",
+              "title": "Measures of central tendency",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U6-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T2/O1",
+                  "code": "C9-MAT-06.01.21",
+                  "title": "Compute and interpret mean, median and mode of ungrouped data",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U6-CH1-T2-O1-A1",
+                      "text": "Compute the mean as the sum of observations divided by their number"
+                    },
+                    {
+                      "id": "C9-MAT-U6-CH1-T2-O1-A2",
+                      "text": "Find the median of an even and an odd number of observations"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
