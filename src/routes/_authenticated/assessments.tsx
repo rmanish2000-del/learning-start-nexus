@@ -298,12 +298,15 @@ function AssessmentsPage() {
     apply(next);
   };
 
-  const draftReady = title.trim().length >= 3 && picked.size > 0;
+  const draftReady =
+    title.trim().length >= 3 && Boolean(bookId) && Boolean(unitId) && picked.size > 0;
   const dirty = title.trim().length > 0 || description.trim().length > 0 || picked.size > 0;
 
   const resetForm = () => {
     setTitle("");
     setDescription("");
+    setBookId("");
+    setUnitId("");
     setPicked(new Set());
     setSavedDraftId(null);
   };
