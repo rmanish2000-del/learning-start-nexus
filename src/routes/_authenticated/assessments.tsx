@@ -92,10 +92,13 @@ function AssessmentsPage() {
   const [createOpen, setCreateOpen] = useState(false);
   const [assignFor, setAssignFor] = useState<string | null>(null);
 
-  // New-assessment form state
+  // New-assessment form state. Curriculum linkage is part of the form because
+  // board, class and subject are inherited from the book — never hardcoded.
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [timeLimit, setTimeLimit] = useState("20");
+  const [bookId, setBookId] = useState<string>("");
+  const [unitId, setUnitId] = useState<string>("");
   const [picked, setPicked] = useState<Set<string>>(new Set());
   const [savedDraftId, setSavedDraftId] = useState<string | null>(null);
   const [confirmDiscard, setConfirmDiscard] = useState(false);
