@@ -9,6 +9,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { SUBJECTS, type AuthoredSubject } from "./authoring";
+import { applyExtensions } from "./extensions";
 import { externalRef } from "../../src/lib/class9-content-schema";
 import {
   curriculumPackSchema,
@@ -46,7 +47,8 @@ const SOURCE_REGISTER = {
   },
 } as const;
 
-export function buildPacks(subject: AuthoredSubject): { curriculum: CurriculumPack; questions: QuestionPack } {
+export function buildPacks(input: AuthoredSubject): { curriculum: CurriculumPack; questions: QuestionPack } {
+  const subject = applyExtensions(input);
   const s = subject.subjectCode;
   const source = SOURCE_REGISTER[subject.sourceId as keyof typeof SOURCE_REGISTER];
   const questions: QuestionPack["questions"] = [];
