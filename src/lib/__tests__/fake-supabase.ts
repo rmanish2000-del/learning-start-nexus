@@ -21,7 +21,26 @@ function matches(row: Row, filters: Filter[]): boolean {
   });
 }
 
-class Query implements PromiseLike<{ data: Row[] | null; error: null }> {
+export type DbError = { code: string; message: string } | null;
+
+// Unique indexes the real database enforces and the tests rely on.
+const UNIQUE_INDEXES: Record<string, string[][]> = {
+  assessments: [["org_id", "client_request_id"]],
+};
+
+function uniqueViolation(rows: Row[], table: string, candidate: Row): DbError {
+  for (const cols of UNIQUE_INDEXES[table] ?? []) {
+    // Partial index semantics: NULLs are never conflicting.
+    if (cols.some((c) => (candidate[c] ?? null) === null)) continue;
+    if (rows.some((r) => cols.every((c) => r[c] === candidate[c]))) {
+      return { code: "23505", message: `duplicate key value violates unique constraint on ${table}` };
+    }
+  }
+  return null;
+}
+
+class Query implements PromiseLike<{ data: Row[] | null; error: DbError }> {
+  private error: DbError = null;
   private filters: Filter[] = [];
 
   constructor(
@@ -65,8 +84,17 @@ class Query implements PromiseLike<{ data: Row[] | null; error: null }> {
     const rows = this.rows();
     if (this.kind === "insert") {
       const payloads = Array.isArray(this.payload) ? this.payload : [this.payload ?? {}];
-      const inserted = payloads.map((p) => ({ id: `row_${++idCounter}`, ...p }));
-      rows.push(...inserted);
+      const inserted: Row[] = [];
+      for (const p of payloads) {
+        const candidate = { id: `row_${++idCounter}`, ...p };
+        const violation = uniqueViolation(rows, this.table, candidate);
+        if (violation) {
+          this.error = violation;
+          return [];
+        }
+        rows.push(candidate);
+        inserted.push(candidate);
+      }
       return inserted;
     }
     const hit = rows.filter((r) => matches(r, this.filters));
@@ -75,21 +103,24 @@ class Query implements PromiseLike<{ data: Row[] | null; error: null }> {
     return hit;
   }
 
-  async maybeSingle(): Promise<{ data: Row | null; error: null }> {
-    return { data: this.run()[0] ?? null, error: null };
+  async maybeSingle(): Promise<{ data: Row | null; error: DbError }> {
+    const rows = this.run();
+    return { data: rows[0] ?? null, error: this.error };
   }
 
-  async single(): Promise<{ data: Row | null; error: null }> {
-    return { data: this.run()[0] ?? null, error: null };
+  async single(): Promise<{ data: Row | null; error: DbError }> {
+    const rows = this.run();
+    return { data: rows[0] ?? null, error: this.error };
   }
 
-  then<TResult1 = { data: Row[] | null; error: null }, TResult2 = never>(
+  then<TResult1 = { data: Row[] | null; error: DbError }, TResult2 = never>(
     onfulfilled?:
-      | ((value: { data: Row[] | null; error: null }) => TResult1 | PromiseLike<TResult1>)
+      | ((value: { data: Row[] | null; error: DbError }) => TResult1 | PromiseLike<TResult1>)
       | null,
     onrejected?: ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null,
   ): PromiseLike<TResult1 | TResult2> {
-    return Promise.resolve({ data: this.run(), error: null as null }).then(onfulfilled, onrejected);
+    const rows = this.run();
+    return Promise.resolve({ data: rows, error: this.error }).then(onfulfilled, onrejected);
   }
 }
 

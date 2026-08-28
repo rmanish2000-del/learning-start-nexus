@@ -150,3 +150,17 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - **Documentation HEAD full SHA: `18321a2dbc0b32b3eb55e6c8988740d8a0a07894`** — contains `EDUOS_PROJECT_OPERATING_SYSTEM.md`, `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.md`, this file, `CURRENT_ASSIGNMENT.md`, and `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md`; all tracked; working tree clean at stamp time.
 - **Production application SHA (separate): `92ac129d6e62b70bdd382db7a5aa8fdccadfe24c`** — last functional/code-bearing commit; all commits above it are documentation-only.
 - This stamping update is documentation-only; no production redeploy required.
+
+
+---
+
+## 2026-08-28 06:0x UTC — Assessment lifecycle regression closed (Issues 1 and 2)
+
+- Canonical branch: `main`.
+- Issue 1: new assessments no longer inherit hardcoded Grade 6 metadata; scope is derived from the selected CBSE Class 10 book and unit, so drafts stay active and can publish.
+- Issue 2: title + two-minute-window deduplication removed. Assessment creation is now idempotent per `clientRequestId`, enforced by a partial unique index on `public.assessments (org_id, client_request_id)`. Two intentional creates with the same title are two separate drafts; a retry of one request returns the draft it already created. No staff content can be silently discarded.
+- Migration: `20260828055655_*.sql` (additive nullable column + partial unique index).
+- Tests: 97/97 Vitest passing; typecheck clean; production build clean.
+- Public-experience release work preserved and unchanged.
+- Reports: `EDUOS_ASSESSMENT_LIFECYCLE_REGRESSION_REPORT.md`, `EDUOS_FINAL_PUBLIC_EXPERIENCE_RELEASE_REPORT.md` (section 13).
+- Rollback reference: `9e0e2b166d20b3c605dfcd32f733cb9aaa3d7829`.
