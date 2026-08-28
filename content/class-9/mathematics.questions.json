@@ -428,6 +428,83 @@
       }
     },
     {
+      "id": "C9-MAT-U4-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH1-T1-O1",
+      "atomId": "C9-MAT-U4-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which of the following is one of Euclid's postulates?",
+      "options": [
+        "A straight line may be drawn from any one point to any other point",
+        "The whole is greater than the part",
+        "Things which are equal to the same thing are equal to one another",
+        "Things which coincide with one another are equal to one another"
+      ],
+      "correctAnswer": "A straight line may be drawn from any one point to any other point",
+      "explanation": "Euclid's first postulate states that a straight line can be drawn joining any two points; the other options are common notions (axioms), not postulates.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH1-T1-O1",
+      "atomId": "C9-MAT-U4-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "According to Euclid, 'a circle can be drawn with any centre and any radius' is classified as an axiom rather than a postulate.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "This statement is Euclid's third postulate, a geometry-specific assumption, not a general axiom (common notion) applicable to all quantities.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH1/T1/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH1-T1-O1",
+      "atomId": "C9-MAT-U4-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Two line segments AB and CD are each equal to a third segment PQ. Using Euclid's axiom, state what can be concluded about AB and CD, and name the axiom used.",
+      "options": null,
+      "correctAnswer": "AB = CD, by Euclid's axiom that things equal to the same thing are equal to one another",
+      "explanation": "Since AB = PQ and CD = PQ, Euclid's first common notion gives AB = CD directly.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-MAT-U4-CH2-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1/Q1",
       "outcomeId": "C9-MAT-U4-CH2-T1-O1",
@@ -484,6 +561,85 @@
       }
     },
     {
+      "id": "C9-MAT-U4-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH2-T1-O1",
+      "atomId": "C9-MAT-U4-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Two lines AB and CD intersect at point O. If ∠AOC = 65°, what is the measure of ∠BOD?",
+      "options": [
+        "65°",
+        "115°",
+        "180°",
+        "25°"
+      ],
+      "correctAnswer": "65°",
+      "explanation": "∠AOC and ∠BOD are vertically opposite angles formed by two intersecting lines, so they are equal.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH2-T1-O1",
+      "atomId": "C9-MAT-U4-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A transversal cuts two parallel lines l and m. One pair of co-interior (allied) angles are (3x + 20)° and (2x + 10)°. Find x.",
+      "options": [
+        "30",
+        "25",
+        "34",
+        "40"
+      ],
+      "correctAnswer": "30",
+      "explanation": "Co-interior angles between parallel lines sum to 180°, so (3x+20)+(2x+10)=180, giving 5x=150, x=30.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH2-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH2/T1/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH2-T1-O1",
+      "atomId": "C9-MAT-U4-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Ray OP stands on line AB such that ∠AOP and ∠POB form a linear pair, with ∠AOP = 3∠POB. Find ∠POB.",
+      "options": null,
+      "correctAnswer": "45°",
+      "explanation": "By the linear pair axiom, ∠AOP + ∠POB = 180°; substituting 3∠POB + ∠POB = 180° gives ∠POB = 45°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-MAT-U4-CH3-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1/Q1",
       "outcomeId": "C9-MAT-U4-CH3-T1-O1",
@@ -526,6 +682,85 @@
       ],
       "correctAnswer": "False",
       "explanation": "SSA is not a congruence criterion; two different triangles can be built from the same two sides and a non-included angle, so congruence is not guaranteed.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH3-T1-O1",
+      "atomId": "C9-MAT-U4-CH3-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In △PQR and △XYZ, PQ = XY, QR = YZ, and ∠Q = ∠Y. Which congruence criterion proves △PQR ≅ △XYZ?",
+      "options": [
+        "SAS",
+        "SSS",
+        "ASA",
+        "AAS"
+      ],
+      "correctAnswer": "SAS",
+      "explanation": "Two sides and the included angle between them are equal, which matches the Side-Angle-Side congruence criterion.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH3-T1-O1",
+      "atomId": "C9-MAT-U4-CH3-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): If two sides and a non-included angle of one triangle equal two sides and the corresponding non-included angle of another triangle, the triangles must be congruent. Reason (R): SSA is not a valid general congruence criterion for triangles.",
+      "options": [
+        "Both A and R are true, and R correctly explains why A is false",
+        "Both A and R are true, and R does not explain A",
+        "A is true, R is false",
+        "A is false, R is false"
+      ],
+      "correctAnswer": "Both A and R are true, and R correctly explains why A is false",
+      "explanation": "A is a false claim being tested; R is a true statement (SSA is not a valid congruence rule) and it directly explains why the assertion fails.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T1/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH3-T1-O1",
+      "atomId": "C9-MAT-U4-CH3-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In right triangles △ABC and △DEF, ∠B = ∠E = 90°, hypotenuse AC = hypotenuse DF, and side BC = side EF. State the congruence criterion applicable and the resulting congruence statement.",
+      "options": null,
+      "correctAnswer": "RHS criterion, giving △ABC ≅ △DEF",
+      "explanation": "With a right angle, equal hypotenuse and one equal side, the RHS (Right angle-Hypotenuse-Side) criterion applies.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -594,6 +829,88 @@
       }
     },
     {
+      "id": "C9-MAT-U4-CH3-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH3-T2-O1",
+      "atomId": "C9-MAT-U4-CH3-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In △ABC, ∠A = 50° and ∠B = 70°. What is the measure of ∠C?",
+      "options": [
+        "60°",
+        "50°",
+        "70°",
+        "80°"
+      ],
+      "correctAnswer": "60°",
+      "explanation": "By the angle sum property of a triangle, the three angles add to 180°, so ∠C = 180° - 50° - 70° = 60°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH3-T2-O1",
+      "atomId": "C9-MAT-U4-CH3-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In a triangle with sides of length 4 cm, 5 cm and 10 cm, a valid triangle can be constructed.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "By the triangle inequality, the sum of any two sides must exceed the third; here 4 + 5 = 9 is less than 10, so no such triangle exists.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH3-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH3/T2/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH3-T2-O1",
+      "atomId": "C9-MAT-U4-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "In △XYZ, side XY is the longest side and side YZ is the shortest side. Which angle of the triangle is the largest?",
+      "options": [
+        "∠Z",
+        "∠X",
+        "∠Y",
+        "Cannot be determined"
+      ],
+      "correctAnswer": "∠Z",
+      "explanation": "The angle opposite the longest side is the largest angle; XY is opposite ∠Z, so ∠Z is the largest.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-MAT-U4-CH4-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1/Q1",
       "outcomeId": "C9-MAT-U4-CH4-T1-O1",
@@ -638,6 +955,83 @@
       ],
       "correctAnswer": "Diagonals intersect at right angles",
       "explanation": "All parallelograms share the other three properties. Perpendicular diagonals occur only when all four sides are equal, that is, in a rhombus (and hence a square).",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH4-T1-O1",
+      "atomId": "C9-MAT-U4-CH4-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In parallelogram PQRS, ∠P = 110°. What is the measure of ∠Q?",
+      "options": [
+        "70°",
+        "110°",
+        "90°",
+        "55°"
+      ],
+      "correctAnswer": "70°",
+      "explanation": "Consecutive angles of a parallelogram are supplementary, so ∠Q = 180° - 110° = 70°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH4-T1-O1",
+      "atomId": "C9-MAT-U4-CH4-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In a quadrilateral, if both pairs of opposite sides are equal, the quadrilateral must be a parallelogram.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "This is a standard sufficient condition: a quadrilateral with both pairs of opposite sides equal is a parallelogram.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T1/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH4-T1-O1",
+      "atomId": "C9-MAT-U4-CH4-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The diagonals of quadrilateral ABCD bisect each other at point O. State what type of quadrilateral ABCD must be, and the property used.",
+      "options": null,
+      "correctAnswer": "A parallelogram, since diagonals bisecting each other is a sufficient condition for a parallelogram",
+      "explanation": "A quadrilateral whose diagonals bisect each other is always a parallelogram, by the converse of the diagonal-bisection property.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -701,6 +1095,88 @@
       }
     },
     {
+      "id": "C9-MAT-U4-CH4-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH4-T2-O1",
+      "atomId": "C9-MAT-U4-CH4-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "In △ABC, D and E are the midpoints of sides AB and AC respectively, and BC = 12 cm. What is the length of DE?",
+      "options": [
+        "6 cm",
+        "12 cm",
+        "24 cm",
+        "3 cm"
+      ],
+      "correctAnswer": "6 cm",
+      "explanation": "By the midpoint theorem, the segment joining the midpoints of two sides is half the third side, so DE = 12/2 = 6 cm.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH4-T2-O1",
+      "atomId": "C9-MAT-U4-CH4-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "If a line is drawn through the midpoint of one side of a triangle parallel to another side, it bisects the third side.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "This is the converse of the midpoint theorem: such a line always bisects the third side.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH4-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH4/T2/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH4-T2-O1",
+      "atomId": "C9-MAT-U4-CH4-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "P, Q, R and S are the midpoints of the sides of quadrilateral ABCD, taken in order. What type of figure is PQRS always?",
+      "options": [
+        "A parallelogram",
+        "A rectangle",
+        "A rhombus",
+        "A square"
+      ],
+      "correctAnswer": "A parallelogram",
+      "explanation": "By the midpoint theorem applied to the diagonals of ABCD, each pair of opposite sides of PQRS is parallel and equal, making PQRS a parallelogram.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-MAT-U4-CH5-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1/Q1",
       "outcomeId": "C9-MAT-U4-CH5-T1-O1",
@@ -740,6 +1216,83 @@
       "options": null,
       "correctAnswer": "6 cm",
       "explanation": "The perpendicular from the centre bisects the chord, forming a right triangle with legs 8 cm and d, and hypotenuse 10 cm. So d = √(10² − 8²) = √36 = 6 cm.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH5-T1-O1",
+      "atomId": "C9-MAT-U4-CH5-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A chord of a circle is 16 cm long and lies at a distance of 6 cm from the centre. What is the radius of the circle?",
+      "options": [
+        "10 cm",
+        "8 cm",
+        "12 cm",
+        "17 cm"
+      ],
+      "correctAnswer": "10 cm",
+      "explanation": "The perpendicular from the centre bisects the chord into two 8 cm halves; radius squared = 8² + 6² = 100, so radius = 10 cm.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH5-T1-O1",
+      "atomId": "C9-MAT-U4-CH5-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Equal chords of a circle are equidistant from the centre.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "This is a standard theorem on chords of a circle: chords equal in length are always equidistant from the centre.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T1/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH5-T1-O1",
+      "atomId": "C9-MAT-U4-CH5-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "An arc AB of a circle subtends an angle of 70° at the centre O. What angle does arc AB subtend at a point on the major arc?",
+      "options": null,
+      "correctAnswer": "35°",
+      "explanation": "The angle subtended by an arc at the centre is twice the angle subtended at any point on the remaining (major) arc, so the angle at the point is 70°/2 = 35°.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -794,6 +1347,85 @@
       ],
       "correctAnswer": "True",
       "explanation": "Opposite angles of a parallelogram are equal, and in a cyclic figure they are supplementary. Equal and supplementary angles are each 90°, so the parallelogram is a rectangle.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2/O1/Q3",
+      "outcomeId": "C9-MAT-U4-CH5-T2-O1",
+      "atomId": "C9-MAT-U4-CH5-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "ABCD is a cyclic quadrilateral with ∠A = 100°. What is the measure of ∠C?",
+      "options": [
+        "80°",
+        "100°",
+        "50°",
+        "260°"
+      ],
+      "correctAnswer": "80°",
+      "explanation": "Opposite angles of a cyclic quadrilateral are supplementary, so ∠C = 180° - 100° = 80°.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2/O1/Q4",
+      "outcomeId": "C9-MAT-U4-CH5-T2-O1",
+      "atomId": "C9-MAT-U4-CH5-T2-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): A parallelogram inscribed in a circle must be a rectangle. Reason (R): Opposite angles of a cyclic quadrilateral are supplementary, and opposite angles of a parallelogram are equal.",
+      "options": [
+        "Both A and R are true, and R correctly explains A",
+        "Both A and R are true, and R does not explain A",
+        "A is true, R is false",
+        "A is false, R is true"
+      ],
+      "correctAnswer": "Both A and R are true, and R correctly explains A",
+      "explanation": "Since opposite angles must be both equal and supplementary, each pair must equal 90°, so the parallelogram is forced to be a rectangle; R justifies this fully.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U4-CH5-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/MAT/U4/CH5/T2/O1/Q5",
+      "outcomeId": "C9-MAT-U4-CH5-T2-O1",
+      "atomId": "C9-MAT-U4-CH5-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "In cyclic quadrilateral PQRS, side PQ is extended to a point T so that ∠RQT = 75°. Find the measure of the interior opposite angle ∠PSR.",
+      "options": null,
+      "correctAnswer": "75°",
+      "explanation": "In a cyclic quadrilateral, the exterior angle at a vertex equals the interior opposite angle, so ∠PSR = ∠RQT = 75°.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
