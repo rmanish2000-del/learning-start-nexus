@@ -94,3 +94,76 @@ describe("Wave 1 Class 9 preparation packs", () => {
     expect(requiredQuestionsPerUnit(LIVE_GATES, 30)).toBe(60);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Wave 1 continuation: content-volume, coverage and exclusion gates.
+// ---------------------------------------------------------------------------
+
+describe("Wave 1 continuation — 400-question preparation target", () => {
+  const byKey = Object.fromEntries(packs.map((p) => [p.subject.subjectKey, p]));
+
+  it("prepares 240 Mathematics and 160 Science questions (400 total)", () => {
+    expect(byKey.Mathematics!.questions.questions.length).toBe(240);
+    expect(byKey.Science!.questions.questions.length).toBe(160);
+    expect(packs.reduce((s, p) => s + p.questions.questions.length, 0)).toBe(400);
+  });
+
+  for (const p of packs) {
+    describe(`${p.subject.subjectKey} volume gates`, () => {
+      const matrix = buildReadinessMatrix(p.curriculum, p.questions.questions, LIVE_GATES);
+
+      it("holds at least the required 40 prepared questions in every unit", () => {
+        for (const m of matrix) {
+          expect(m.required).toBe(40);
+          expect(m.prepared).toBeGreaterThanOrEqual(40);
+        }
+      });
+
+      it("covers every outcome and every atom, with no single-outcome padding", () => {
+        for (const u of p.curriculum.units) {
+          const outcomes = u.chapters.flatMap((c) => c.topics.flatMap((t) => t.outcomes));
+          const outcomeIds = new Set(outcomes.map((o) => o.id));
+          const atomIds = new Set(outcomes.flatMap((o) => o.atoms.map((a) => a.id)));
+          const qs = p.questions.questions.filter((q) => outcomeIds.has(q.outcomeId));
+          expect(new Set(qs.map((q) => q.outcomeId)).size).toBe(outcomeIds.size);
+          expect(new Set(qs.map((q) => q.atomId)).size).toBe(atomIds.size);
+          expect(outcomes.length).toBeGreaterThanOrEqual(6);
+          for (const id of outcomeIds) {
+            const n = qs.filter((q) => q.outcomeId === id).length;
+            expect(n).toBeGreaterThanOrEqual(4);
+            expect(n).toBeLessThanOrEqual(12);
+          }
+        }
+      });
+
+      it("spreads difficulty and question types", () => {
+        const diff = new Set(p.questions.questions.map((q) => q.difficulty));
+        const kinds = new Set(p.questions.questions.map((q) => q.kind));
+        expect(diff.size).toBeGreaterThanOrEqual(3);
+        expect(kinds.size).toBeGreaterThanOrEqual(4);
+      });
+
+      it("keeps identifiers, external references and provenance intact", () => {
+        const qs = p.questions.questions;
+        expect(new Set(qs.map((q) => q.id)).size).toBe(qs.length);
+        expect(new Set(qs.map((q) => q.externalRef)).size).toBe(qs.length);
+        for (const q of qs) {
+          expect(q.provenance.sourceId.length).toBeGreaterThan(3);
+          expect(q.provenance.retrievedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+          expect(q.explanation.length).toBeGreaterThanOrEqual(20);
+          if (q.options) expect(q.options).toContain(q.correctAnswer);
+        }
+      });
+
+      it("stays excluded from paid diagnostics and commercial activation", () => {
+        expect(p.curriculum.activation.diagnosticEligible).toBe(false);
+        expect(p.curriculum.activation.reassessmentReady).toBe(false);
+        expect(p.curriculum.activation.commercialStatus).toBe("hidden");
+        for (const m of matrix) {
+          expect(m.allocationReady).toBe(false);
+          expect(m.reassessmentReady).toBe(false);
+        }
+      });
+    });
+  }
+});
