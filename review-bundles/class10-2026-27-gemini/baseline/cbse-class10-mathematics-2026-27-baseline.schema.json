@@ -1,0 +1,352 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cbse-class10-mathematics-2026-27-baseline.schema.json",
+  "title": "CBSE Class 10 Mathematics 2026-27 candidate baseline",
+  "description": "Draft-07 contract for the non-runtime Mathematics audit baseline. Contains no baseline content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "baseline_version",
+    "board",
+    "class",
+    "academic_year",
+    "subject",
+    "subject_codes",
+    "status",
+    "source_records",
+    "total_units",
+    "total_chapters",
+    "total_requirements",
+    "requirements",
+    "exclusions",
+    "ambiguities"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "cbse-class10-mathematics-2026-27-baseline.schema.json"
+    },
+    "baseline_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "board": {
+      "type": "string",
+      "const": "CBSE"
+    },
+    "class": {
+      "type": "string",
+      "const": "10"
+    },
+    "academic_year": {
+      "type": "string",
+      "const": "2026-27"
+    },
+    "subject": {
+      "type": "string",
+      "const": "Mathematics"
+    },
+    "subject_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "041",
+          "241"
+        ]
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true
+    },
+    "subject_code_note": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "INDEPENDENT_BASELINE_UNVERIFIED_BY_HUMAN_EXPERT",
+        "HUMAN_EXPERT_REVIEWED"
+      ]
+    },
+    "source_records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "authority",
+          "title",
+          "source_type",
+          "subject",
+          "academic_year",
+          "official_url",
+          "publication_date",
+          "retrieval_timestamp",
+          "document_version",
+          "applicability_status",
+          "finality_status",
+          "checksum_status",
+          "sha256",
+          "notes"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "OFFICIAL_SYLLABUS",
+              "NCERT_TEXTBOOK",
+              "RATIONALISATION_NOTICE",
+              "TRANSITION_ADVISORY",
+              "OFFICIAL_ANNOUNCEMENT"
+            ]
+          },
+          "subject": {
+            "type": "string",
+            "enum": [
+              "Mathematics",
+              "Science"
+            ]
+          },
+          "subject_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "041",
+                "241"
+              ]
+            },
+            "minItems": 1
+          },
+          "academic_year": {
+            "type": "string",
+            "const": "2026-27"
+          },
+          "official_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^https://[^\\s<>\"]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publication_date": {
+            "type": "null"
+          },
+          "retrieval_timestamp": {
+            "type": "null"
+          },
+          "document_version": {
+            "type": "null"
+          },
+          "applicability_status": {
+            "type": "string",
+            "const": "PENDING_CONFIRMATION"
+          },
+          "finality_status": {
+            "type": "string",
+            "const": "PENDING_CONFIRMATION"
+          },
+          "checksum_status": {
+            "type": "string",
+            "const": "CHECKSUM_NOT_COMPUTED"
+          },
+          "sha256": {
+            "type": "null"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "total_units": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "total_chapters": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "total_requirements": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirement_id",
+          "sequence",
+          "official_unit",
+          "official_chapter",
+          "official_topic",
+          "official_requirement",
+          "requirement_type",
+          "assessability",
+          "official_source_id",
+          "source_reference",
+          "auditor_derived",
+          "ambiguity_status",
+          "review_note",
+          "status"
+        ],
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ_MATH_2026_\\d{3}$"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "official_unit": {
+            "type": "string",
+            "enum": [
+              "Unit I: Number Systems",
+              "Unit II: Algebra",
+              "Unit III: Coordinate Geometry",
+              "Unit IV: Geometry",
+              "Unit V: Trigonometry",
+              "Unit VI: Mensuration",
+              "Unit VII: Statistics and Probability"
+            ]
+          },
+          "official_chapter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "official_topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "official_requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirement_type": {
+            "type": "string",
+            "enum": [
+              "CONCEPTUAL_UNDERSTANDING",
+              "CALCULATION",
+              "PROOF_OR_JUSTIFICATION",
+              "APPLICATION",
+              "VISUALISATION",
+              "PROBLEM_SOLVING",
+              "DATA_ANALYSIS"
+            ]
+          },
+          "assessability": {
+            "type": "string",
+            "enum": [
+              "ASSESSABLE_CORE",
+              "SUPPORTING_CONTEXT",
+              "NOT_ASSESSABLE"
+            ]
+          },
+          "official_source_id": {
+            "type": "string",
+            "const": "SRC_CBSE_MATH_2627"
+          },
+          "source_reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "auditor_derived": {
+            "type": "boolean"
+          },
+          "ambiguity_status": {
+            "type": "string",
+            "enum": [
+              "CLEAR",
+              "AMBIGUOUS_REVIEW_REQUIRED"
+            ]
+          },
+          "review_note": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "const": "ACTIVE_BASELINE_REQUIREMENT"
+          }
+        }
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "maxItems": 0
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ambiguity_id",
+          "topic",
+          "cbse_evidence",
+          "ncert_evidence",
+          "rationalised_content_evidence",
+          "recommended_classification",
+          "human_review_required",
+          "unresolved_issue"
+        ],
+        "properties": {
+          "ambiguity_id": {
+            "type": "string",
+            "pattern": "^AMB_SCI_2026_\\d{3}$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cbse_evidence": {
+            "type": "string"
+          },
+          "ncert_evidence": {
+            "type": "string"
+          },
+          "rationalised_content_evidence": {
+            "type": "string"
+          },
+          "recommended_classification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "human_review_required": {
+            "type": "boolean"
+          },
+          "unresolved_issue": {
+            "type": "string"
+          }
+        }
+      },
+      "maxItems": 0
+    }
+  }
+}
