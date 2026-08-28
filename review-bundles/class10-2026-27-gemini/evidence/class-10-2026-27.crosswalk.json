@@ -1,0 +1,1145 @@
+{
+  "generatedAt": "2026-08-28",
+  "validator": "compliance-validator/1.0.0",
+  "board": "CBSE",
+  "classLevel": 10,
+  "academicSession": "2026-27",
+  "overallStatus": "SOURCE_PENDING",
+  "sourceIssues": [
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "CBSE-2026-27-C10-CURRICULUM"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "CBSE-2026-27-C10-MAT-SYLLABUS"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "CBSE-2026-27-C10-SCI-SYLLABUS"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "NCERT-2026-27-C10-MAT-TEXTBOOK"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "NCERT-2026-27-C10-SCI-TEXTBOOK"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "Mathematics",
+      "status": "SOURCE_PENDING",
+      "gaps": 11,
+      "volumeGates": {
+        "diagnosticTarget": 20,
+        "diagnosticMinimum": 5,
+        "minQuestionsPerOutcome": 1
+      },
+      "crosswalk": [
+        {
+          "officialRef": "MAT-U1",
+          "officialTitle": "Number Systems",
+          "marks": 6,
+          "mappedUnitId": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+          "mappedTitle": "Number Systems",
+          "outcomes": 2,
+          "verified": 6,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U1-C1",
+              "title": "Real Numbers",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "MAT-U2",
+          "officialTitle": "Algebra",
+          "marks": 20,
+          "mappedUnitId": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+          "mappedTitle": "Algebra",
+          "outcomes": 4,
+          "verified": 12,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U2-C1",
+              "title": "Polynomials",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U2-C2",
+              "title": "Pair of Linear Equations in Two Variables",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U2-C3",
+              "title": "Quadratic Equations",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U2-C4",
+              "title": "Arithmetic Progressions",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "MAT-U3",
+          "officialTitle": "Coordinate Geometry",
+          "marks": 6,
+          "mappedUnitId": "2dec1571-2599-4b23-9163-730872353215",
+          "mappedTitle": "Coordinate Geometry",
+          "outcomes": 1,
+          "verified": 3,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U3-C1",
+              "title": "Coordinate Geometry",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "MAT-U4",
+          "officialTitle": "Geometry",
+          "marks": 15,
+          "mappedUnitId": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+          "mappedTitle": "Geometry",
+          "outcomes": 2,
+          "verified": 6,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U4-C1",
+              "title": "Triangles",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U4-C2",
+              "title": "Circles",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "MAT-U5",
+          "officialTitle": "Trigonometry",
+          "marks": 12,
+          "mappedUnitId": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+          "mappedTitle": "Trigonometry",
+          "outcomes": 2,
+          "verified": 6,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U5-C1",
+              "title": "Introduction to Trigonometry",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U5-C2",
+              "title": "Some Applications of Trigonometry",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "MAT-U6",
+          "officialTitle": "Mensuration",
+          "marks": 10,
+          "mappedUnitId": "7bdc9cf5-d3c7-4da8-85e8-50cef220452e",
+          "mappedTitle": "Mensuration",
+          "outcomes": 2,
+          "verified": 6,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U6-C1",
+              "title": "Areas Related to Circles",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U6-C2",
+              "title": "Surface Areas and Volumes",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "MAT-U7",
+          "officialTitle": "Statistics & Probability",
+          "marks": 11,
+          "mappedUnitId": "b19490a1-5180-43f5-aef3-cdc73ba98d3c",
+          "mappedTitle": "Statistics & Probability",
+          "outcomes": 2,
+          "verified": 6,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "MAT-U7-C1",
+              "title": "Statistics",
+              "mapped": true
+            },
+            {
+              "ref": "MAT-U7-C2",
+              "title": "Probability",
+              "mapped": true
+            }
+          ]
+        }
+      ],
+      "platformUnits": [
+        {
+          "unitId": "Number Systems",
+          "title": "Number Systems",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 6,
+          "difficulties": 2,
+          "kinds": 2,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Unit 1 — Number Systems",
+          "title": "Unit 1 — Number Systems",
+          "officialMapped": false,
+          "outOfSyllabusActive": true,
+          "outcomes": 3,
+          "orphanOutcomes": 0,
+          "atoms": 3,
+          "atomsWithoutQuestions": 0,
+          "questions": 9,
+          "verified": 0,
+          "difficulties": 2,
+          "kinds": 3,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Unit 2 — Algebra",
+          "title": "Unit 2 — Algebra",
+          "officialMapped": false,
+          "outOfSyllabusActive": true,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 0,
+          "difficulties": 2,
+          "kinds": 3,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Algebra",
+          "title": "Algebra",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 4,
+          "orphanOutcomes": 0,
+          "atoms": 4,
+          "atomsWithoutQuestions": 0,
+          "questions": 12,
+          "verified": 12,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Geometry",
+          "title": "Geometry",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 6,
+          "difficulties": 2,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Coordinate Geometry",
+          "title": "Coordinate Geometry",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 1,
+          "orphanOutcomes": 0,
+          "atoms": 1,
+          "atomsWithoutQuestions": 0,
+          "questions": 3,
+          "verified": 3,
+          "difficulties": 2,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Trigonometry",
+          "title": "Trigonometry",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 6,
+          "difficulties": 2,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Mensuration",
+          "title": "Mensuration",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 6,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Statistics & Probability",
+          "title": "Statistics & Probability",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 6,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        }
+      ],
+      "unmappedOfficialTopics": [],
+      "outOfSyllabusUnits": [
+        "Unit 1 — Number Systems [c023481c-8577-4eff-bc0d-69976fb4a3ce] (book processed)",
+        "Unit 2 — Algebra [ebe99e72-8eb8-478a-8837-6159672331e1] (book processed)"
+      ],
+      "gateResults": [
+        {
+          "gate": "SOURCE_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "sources_recorded",
+              "pass": false,
+              "detail": "0 applicable source(s)"
+            },
+            {
+              "id": "required_types_present",
+              "pass": false,
+              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+            },
+            {
+              "id": "registry_valid",
+              "pass": true,
+              "detail": "0 registry error(s)"
+            }
+          ]
+        },
+        {
+          "gate": "CURRICULUM_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "all_assessable_topics_mapped",
+              "pass": true,
+              "detail": "0 unmapped official topic(s)"
+            },
+            {
+              "id": "no_duplicate_mapping",
+              "pass": true,
+              "detail": "0 duplicate mapping(s)"
+            },
+            {
+              "id": "no_active_out_of_syllabus",
+              "pass": false,
+              "detail": "Unit 1 — Number Systems, Unit 2 — Algebra"
+            },
+            {
+              "id": "source_books_approved",
+              "pass": true,
+              "detail": "all mapped source books approved"
+            }
+          ]
+        },
+        {
+          "gate": "OUTCOME_GATE",
+          "pass": true,
+          "checks": [
+            {
+              "id": "no_orphan_outcomes",
+              "pass": true,
+              "detail": "0 orphan outcome(s)"
+            },
+            {
+              "id": "outcomes_have_atoms",
+              "pass": true,
+              "detail": "every outcome carries at least one atom"
+            },
+            {
+              "id": "every_unit_has_outcomes",
+              "pass": true,
+              "detail": "none empty"
+            }
+          ]
+        },
+        {
+          "gate": "QUESTION_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "verified_depth",
+              "pass": false,
+              "detail": "Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40"
+            },
+            {
+              "id": "atom_coverage",
+              "pass": true,
+              "detail": "0 atom(s) without a question"
+            },
+            {
+              "id": "difficulty_coverage",
+              "pass": true,
+              "detail": "≥2 difficulty bands per unit"
+            },
+            {
+              "id": "type_coverage",
+              "pass": false,
+              "detail": "Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability"
+            },
+            {
+              "id": "duplicate_free",
+              "pass": true,
+              "detail": "0 duplicate question(s)"
+            }
+          ]
+        },
+        {
+          "gate": "LEARNING_LOOP_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "diagnostic_selects_verified_only",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "gap_detection_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "intervention_generation_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "tutor_scope_bound_to_intervention",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "reassessment_reserve_available",
+              "pass": false,
+              "detail": "not verified"
+            },
+            {
+              "id": "outcome_report_year_labelled",
+              "pass": false,
+              "detail": "not verified"
+            }
+          ]
+        },
+        {
+          "gate": "REVIEW_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "named_reviewer",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_timestamp",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_decision",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "no_unresolved_ambiguity",
+              "pass": true,
+              "detail": "0 unresolved"
+            }
+          ]
+        },
+        {
+          "gate": "COMMERCIAL_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "academic_year_active",
+              "pass": true,
+              "detail": "2026-27"
+            },
+            {
+              "id": "approved_version_only",
+              "pass": true,
+              "detail": "purchasable"
+            },
+            {
+              "id": "selectors_correct",
+              "pass": true,
+              "detail": "true"
+            },
+            {
+              "id": "entitlements_scoped",
+              "pass": false,
+              "detail": "false"
+            },
+            {
+              "id": "pricing_approved",
+              "pass": true,
+              "detail": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Science",
+      "status": "SOURCE_PENDING",
+      "gaps": 13,
+      "volumeGates": {
+        "diagnosticTarget": 20,
+        "diagnosticMinimum": 5,
+        "minQuestionsPerOutcome": 1
+      },
+      "crosswalk": [
+        {
+          "officialRef": "SCI-U1",
+          "officialTitle": "Chemical Substances - Nature and Behaviour",
+          "marks": 25,
+          "mappedUnitId": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+          "mappedTitle": "Chemical Substances - Nature and Behaviour",
+          "outcomes": 32,
+          "verified": 96,
+          "required": 64,
+          "chapters": [
+            {
+              "ref": "SCI-U1-C1",
+              "title": "Chemical Reactions and Equations",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U1-C2",
+              "title": "Acids, Bases and Salts",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U1-C3",
+              "title": "Metals and Non-metals",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U1-C4",
+              "title": "Carbon and its Compounds",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "SCI-U2",
+          "officialTitle": "World of Living",
+          "marks": 25,
+          "mappedUnitId": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+          "mappedTitle": "World of Living",
+          "outcomes": 13,
+          "verified": 39,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "SCI-U2-C1",
+              "title": "Life Processes",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U2-C2",
+              "title": "Control and Coordination",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U2-C3",
+              "title": "How do Organisms Reproduce?",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U2-C4",
+              "title": "Heredity",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "SCI-U3",
+          "officialTitle": "Natural Phenomena",
+          "marks": 12,
+          "mappedUnitId": "07350c07-c273-4430-8354-73a2bec1d5c4",
+          "mappedTitle": "Natural Phenomena",
+          "outcomes": 4,
+          "verified": 12,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "SCI-U3-C1",
+              "title": "Light – Reflection and Refraction",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U3-C2",
+              "title": "The Human Eye and the Colourful World",
+              "mapped": false
+            }
+          ]
+        },
+        {
+          "officialRef": "SCI-U4",
+          "officialTitle": "Effects of Current",
+          "marks": 13,
+          "mappedUnitId": "0da7b020-1389-41d8-913b-fe1582b7647e",
+          "mappedTitle": "Effects of Current",
+          "outcomes": 4,
+          "verified": 12,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "SCI-U4-C1",
+              "title": "Electricity",
+              "mapped": true
+            },
+            {
+              "ref": "SCI-U4-C2",
+              "title": "Magnetic Effects of Electric Current",
+              "mapped": true
+            }
+          ]
+        },
+        {
+          "officialRef": "SCI-U5",
+          "officialTitle": "Natural Resources",
+          "marks": 5,
+          "mappedUnitId": "a318d753-4458-4393-836b-75d9e01ff2d3",
+          "mappedTitle": "Natural Resources",
+          "outcomes": 2,
+          "verified": 6,
+          "required": 40,
+          "chapters": [
+            {
+              "ref": "SCI-U5-C1",
+              "title": "Our Environment",
+              "mapped": true
+            }
+          ]
+        }
+      ],
+      "platformUnits": [
+        {
+          "unitId": "Chemical Substances - Nature and Behaviour",
+          "title": "Chemical Substances - Nature and Behaviour",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 32,
+          "orphanOutcomes": 0,
+          "atoms": 32,
+          "atomsWithoutQuestions": 0,
+          "questions": 96,
+          "verified": 96,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "World of Living",
+          "title": "World of Living",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 13,
+          "orphanOutcomes": 0,
+          "atoms": 13,
+          "atomsWithoutQuestions": 0,
+          "questions": 39,
+          "verified": 39,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Natural Phenomena",
+          "title": "Natural Phenomena",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 4,
+          "orphanOutcomes": 0,
+          "atoms": 4,
+          "atomsWithoutQuestions": 0,
+          "questions": 12,
+          "verified": 12,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Effects of Current",
+          "title": "Effects of Current",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 4,
+          "orphanOutcomes": 0,
+          "atoms": 4,
+          "atomsWithoutQuestions": 0,
+          "questions": 12,
+          "verified": 12,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        },
+        {
+          "unitId": "Natural Resources",
+          "title": "Natural Resources",
+          "officialMapped": true,
+          "outOfSyllabusActive": false,
+          "outcomes": 2,
+          "orphanOutcomes": 0,
+          "atoms": 2,
+          "atomsWithoutQuestions": 0,
+          "questions": 6,
+          "verified": 6,
+          "difficulties": 3,
+          "kinds": 1,
+          "duplicateQuestions": 0
+        }
+      ],
+      "unmappedOfficialTopics": [
+        "SCI-U3-C2 The Human Eye and the Colourful World"
+      ],
+      "outOfSyllabusUnits": [],
+      "gateResults": [
+        {
+          "gate": "SOURCE_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "sources_recorded",
+              "pass": false,
+              "detail": "0 applicable source(s)"
+            },
+            {
+              "id": "required_types_present",
+              "pass": false,
+              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+            },
+            {
+              "id": "registry_valid",
+              "pass": true,
+              "detail": "0 registry error(s)"
+            }
+          ]
+        },
+        {
+          "gate": "CURRICULUM_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "all_assessable_topics_mapped",
+              "pass": false,
+              "detail": "1 unmapped official topic(s)"
+            },
+            {
+              "id": "no_duplicate_mapping",
+              "pass": true,
+              "detail": "0 duplicate mapping(s)"
+            },
+            {
+              "id": "no_active_out_of_syllabus",
+              "pass": true,
+              "detail": "none"
+            },
+            {
+              "id": "source_books_approved",
+              "pass": false,
+              "detail": "NCERT Class 10 Science (CBSE) (processed)"
+            }
+          ]
+        },
+        {
+          "gate": "OUTCOME_GATE",
+          "pass": true,
+          "checks": [
+            {
+              "id": "no_orphan_outcomes",
+              "pass": true,
+              "detail": "0 orphan outcome(s)"
+            },
+            {
+              "id": "outcomes_have_atoms",
+              "pass": true,
+              "detail": "every outcome carries at least one atom"
+            },
+            {
+              "id": "every_unit_has_outcomes",
+              "pass": true,
+              "detail": "none empty"
+            }
+          ]
+        },
+        {
+          "gate": "QUESTION_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "verified_depth",
+              "pass": false,
+              "detail": "World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40"
+            },
+            {
+              "id": "atom_coverage",
+              "pass": true,
+              "detail": "0 atom(s) without a question"
+            },
+            {
+              "id": "difficulty_coverage",
+              "pass": true,
+              "detail": "≥2 difficulty bands per unit"
+            },
+            {
+              "id": "type_coverage",
+              "pass": false,
+              "detail": "Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources"
+            },
+            {
+              "id": "duplicate_free",
+              "pass": true,
+              "detail": "0 duplicate question(s)"
+            }
+          ]
+        },
+        {
+          "gate": "LEARNING_LOOP_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "diagnostic_selects_verified_only",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "gap_detection_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "intervention_generation_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "tutor_scope_bound_to_intervention",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "reassessment_reserve_available",
+              "pass": false,
+              "detail": "not verified"
+            },
+            {
+              "id": "outcome_report_year_labelled",
+              "pass": false,
+              "detail": "not verified"
+            }
+          ]
+        },
+        {
+          "gate": "REVIEW_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "named_reviewer",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_timestamp",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_decision",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "no_unresolved_ambiguity",
+              "pass": false,
+              "detail": "1 unresolved"
+            }
+          ]
+        },
+        {
+          "gate": "COMMERCIAL_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "academic_year_active",
+              "pass": true,
+              "detail": "2026-27"
+            },
+            {
+              "id": "approved_version_only",
+              "pass": true,
+              "detail": "purchasable"
+            },
+            {
+              "id": "selectors_correct",
+              "pass": true,
+              "detail": "true"
+            },
+            {
+              "id": "entitlements_scoped",
+              "pass": false,
+              "detail": "false"
+            },
+            {
+              "id": "pricing_approved",
+              "pass": true,
+              "detail": "true"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "gapRegister": [
+    {
+      "id": "GAP-MAT-001",
+      "subject": "Mathematics",
+      "gate": "SOURCE_GATE",
+      "check": "sources_recorded",
+      "detail": "0 applicable source(s)",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-MAT-002",
+      "subject": "Mathematics",
+      "gate": "SOURCE_GATE",
+      "check": "required_types_present",
+      "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-MAT-003",
+      "subject": "Mathematics",
+      "gate": "CURRICULUM_GATE",
+      "check": "no_active_out_of_syllabus",
+      "detail": "Unit 1 — Number Systems, Unit 2 — Algebra",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-MAT-004",
+      "subject": "Mathematics",
+      "gate": "QUESTION_GATE",
+      "check": "verified_depth",
+      "detail": "Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-MAT-005",
+      "subject": "Mathematics",
+      "gate": "QUESTION_GATE",
+      "check": "type_coverage",
+      "detail": "Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-MAT-006",
+      "subject": "Mathematics",
+      "gate": "LEARNING_LOOP_GATE",
+      "check": "reassessment_reserve_available",
+      "detail": "not verified",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-MAT-007",
+      "subject": "Mathematics",
+      "gate": "LEARNING_LOOP_GATE",
+      "check": "outcome_report_year_labelled",
+      "detail": "not verified",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-MAT-008",
+      "subject": "Mathematics",
+      "gate": "REVIEW_GATE",
+      "check": "named_reviewer",
+      "detail": "none recorded",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-MAT-009",
+      "subject": "Mathematics",
+      "gate": "REVIEW_GATE",
+      "check": "review_timestamp",
+      "detail": "none recorded",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-MAT-010",
+      "subject": "Mathematics",
+      "gate": "REVIEW_GATE",
+      "check": "review_decision",
+      "detail": "none recorded",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-MAT-011",
+      "subject": "Mathematics",
+      "gate": "COMMERCIAL_GATE",
+      "check": "entitlements_scoped",
+      "detail": "false",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-SCI-012",
+      "subject": "Science",
+      "gate": "SOURCE_GATE",
+      "check": "sources_recorded",
+      "detail": "0 applicable source(s)",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-013",
+      "subject": "Science",
+      "gate": "SOURCE_GATE",
+      "check": "required_types_present",
+      "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-014",
+      "subject": "Science",
+      "gate": "CURRICULUM_GATE",
+      "check": "all_assessable_topics_mapped",
+      "detail": "1 unmapped official topic(s)",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-015",
+      "subject": "Science",
+      "gate": "CURRICULUM_GATE",
+      "check": "source_books_approved",
+      "detail": "NCERT Class 10 Science (CBSE) (processed)",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-016",
+      "subject": "Science",
+      "gate": "QUESTION_GATE",
+      "check": "verified_depth",
+      "detail": "World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-SCI-017",
+      "subject": "Science",
+      "gate": "QUESTION_GATE",
+      "check": "type_coverage",
+      "detail": "Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-SCI-018",
+      "subject": "Science",
+      "gate": "LEARNING_LOOP_GATE",
+      "check": "reassessment_reserve_available",
+      "detail": "not verified",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-SCI-019",
+      "subject": "Science",
+      "gate": "LEARNING_LOOP_GATE",
+      "check": "outcome_report_year_labelled",
+      "detail": "not verified",
+      "severity": "MAJOR"
+    },
+    {
+      "id": "GAP-SCI-020",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "named_reviewer",
+      "detail": "none recorded",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-021",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "review_timestamp",
+      "detail": "none recorded",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-022",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "review_decision",
+      "detail": "none recorded",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-023",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "no_unresolved_ambiguity",
+      "detail": "1 unresolved",
+      "severity": "BLOCKING"
+    },
+    {
+      "id": "GAP-SCI-024",
+      "subject": "Science",
+      "gate": "COMMERCIAL_GATE",
+      "check": "entitlements_scoped",
+      "detail": "false",
+      "severity": "MAJOR"
+    }
+  ]
+}

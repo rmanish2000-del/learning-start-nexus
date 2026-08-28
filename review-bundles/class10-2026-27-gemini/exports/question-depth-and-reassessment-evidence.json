@@ -1,0 +1,3626 @@
+{
+  "provenance": {
+    "extraction_timestamp": "2026-08-28T20:27:52.927Z",
+    "repository_full_sha": "b94a22c6a96f08e800e24faa4228f69a4e845c22",
+    "data_source": "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
+    "query_or_script": "scripts/compliance/gemini-bundle.ts",
+    "evidence_basis": "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
+    "validator": "compliance-validator/1.0.0",
+    "limitations": [
+      "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+      "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
+      "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
+      "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+      "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
+      "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
+      "No human subject-expert review is recorded for session 2026-27."
+    ]
+  },
+  "depth_law": "verified items per unit >= max(2 x diagnostic target, 2 x outcomes x per-outcome minimum, 2 x diagnostic minimum)",
+  "subject_level": [
+    {
+      "subject": "Mathematics",
+      "diagnostic_target": 20,
+      "diagnostic_minimum": 5,
+      "min_questions_per_outcome": 1,
+      "units": 9,
+      "outcomes": 20,
+      "atoms": 20,
+      "questions": 60,
+      "verified": 45,
+      "status": "SOURCE_PENDING"
+    },
+    {
+      "subject": "Science",
+      "diagnostic_target": 20,
+      "diagnostic_minimum": 5,
+      "min_questions_per_outcome": 1,
+      "units": 5,
+      "outcomes": 55,
+      "atoms": 55,
+      "questions": 165,
+      "verified": 165,
+      "status": "SOURCE_PENDING"
+    }
+  ],
+  "unit_level": [
+    {
+      "subject": "Mathematics",
+      "unit_title": "Number Systems",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "required_verified": 40,
+      "diagnostic_set": 6,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 2,
+      "question_types": 2,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 1 — Number Systems",
+      "official_mapped": false,
+      "meridian_pilot_unit": true,
+      "outcomes": 3,
+      "atoms": 3,
+      "questions": 9,
+      "verified": 0,
+      "required_verified": 40,
+      "diagnostic_set": 0,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 2,
+      "question_types": 3,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 2 — Algebra",
+      "official_mapped": false,
+      "meridian_pilot_unit": true,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 0,
+      "required_verified": 40,
+      "diagnostic_set": 0,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 2,
+      "question_types": 3,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Algebra",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 4,
+      "atoms": 4,
+      "questions": 12,
+      "verified": 12,
+      "required_verified": 40,
+      "diagnostic_set": 12,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Geometry",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "required_verified": 40,
+      "diagnostic_set": 6,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 2,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Coordinate Geometry",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "required_verified": 40,
+      "diagnostic_set": 3,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 2,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Trigonometry",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "required_verified": 40,
+      "diagnostic_set": 6,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 2,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Mensuration",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "required_verified": 40,
+      "diagnostic_set": 6,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Statistics & Probability",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "required_verified": 40,
+      "diagnostic_set": 6,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 32,
+      "atoms": 32,
+      "questions": 96,
+      "verified": 96,
+      "required_verified": 64,
+      "diagnostic_set": 20,
+      "reassessment_reserve": 76,
+      "fresh_reassessment_ready": true,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "OK"
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "required_verified": 40,
+      "diagnostic_set": 20,
+      "reassessment_reserve": 19,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Phenomena",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 4,
+      "atoms": 4,
+      "questions": 12,
+      "verified": 12,
+      "required_verified": 40,
+      "diagnostic_set": 12,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Effects of Current",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 4,
+      "atoms": 4,
+      "questions": 12,
+      "verified": 12,
+      "required_verified": 40,
+      "diagnostic_set": 12,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Resources",
+      "official_mapped": true,
+      "meridian_pilot_unit": false,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "required_verified": 40,
+      "diagnostic_set": 6,
+      "reassessment_reserve": 0,
+      "fresh_reassessment_ready": false,
+      "difficulty_bands": 3,
+      "question_types": 1,
+      "verdict": "SHORTFALL"
+    }
+  ],
+  "official_requirement_level": [
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_001",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_title": "Real Numbers",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "MAPPED_DEPTH_SHORTFALL"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_002",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_title": "Real Numbers",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_003",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_title": "Real Numbers",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_004",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_title": "Real Numbers",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_005",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Polynomials",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_006",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Polynomials",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_007",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Polynomials",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_008",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_009",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_010",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_011",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_012",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_013",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Quadratic Equations",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_014",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Quadratic Equations",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_015",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Quadratic Equations",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_016",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Quadratic Equations",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_017",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Quadratic Equations",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_018",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_019",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_020",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_021",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_022",
+      "eduos_unit_title": "Coordinate Geometry",
+      "eduos_chapter_title": "Coordinate Geometry",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_023",
+      "eduos_unit_title": "Coordinate Geometry",
+      "eduos_chapter_title": "Coordinate Geometry",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_024",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_title": "Triangles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_025",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_title": "Triangles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_026",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_title": "Triangles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_027",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_title": "Circles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_028",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_title": "Circles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_029",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_title": "Introduction to Trigonometry",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_030",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_title": "Introduction to Trigonometry",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_031",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_title": "Introduction to Trigonometry",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_032",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_title": null,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_033",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_title": null,
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_034",
+      "eduos_unit_title": "Mensuration",
+      "eduos_chapter_title": "Areas Related to Circles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_035",
+      "eduos_unit_title": "Mensuration",
+      "eduos_chapter_title": "Areas Related to Circles",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_036",
+      "eduos_unit_title": "Mensuration",
+      "eduos_chapter_title": "Surface Areas and Volumes",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_037",
+      "eduos_unit_title": "Statistics & Probability",
+      "eduos_chapter_title": "Statistics",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Mathematics",
+      "official_requirement_id": "REQ_MATH_2026_038",
+      "eduos_unit_title": "Statistics & Probability",
+      "eduos_chapter_title": "Probability",
+      "outcomes": 1,
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_001",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "outcomes": 9,
+      "atoms": 9,
+      "questions": 27,
+      "verified": 27,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 7,
+      "verdict": "MAPPED_DEPTH_SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_002",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "outcomes": 9,
+      "atoms": 9,
+      "questions": 27,
+      "verified": 27,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 7,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_003",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "outcomes": 9,
+      "atoms": 9,
+      "questions": 27,
+      "verified": 27,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 7,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_004",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "outcomes": 9,
+      "atoms": 9,
+      "questions": 27,
+      "verified": 27,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 7,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_005",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "outcomes": 9,
+      "atoms": 9,
+      "questions": 27,
+      "verified": 27,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 7,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_006",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "outcomes": 9,
+      "atoms": 9,
+      "questions": 27,
+      "verified": 27,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 7,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_007",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "outcomes": 11,
+      "atoms": 11,
+      "questions": 33,
+      "verified": 33,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 13,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_008",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "outcomes": 11,
+      "atoms": 11,
+      "questions": 33,
+      "verified": 33,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 13,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_009",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "outcomes": 11,
+      "atoms": 11,
+      "questions": 33,
+      "verified": 33,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 13,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_010",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "outcomes": 11,
+      "atoms": 11,
+      "questions": 33,
+      "verified": 33,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 13,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_011",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "outcomes": 11,
+      "atoms": 11,
+      "questions": 33,
+      "verified": 33,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 13,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_012",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Metals and Non-metals",
+      "outcomes": 7,
+      "atoms": 7,
+      "questions": 21,
+      "verified": 21,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 1,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_013",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Metals and Non-metals",
+      "outcomes": 7,
+      "atoms": 7,
+      "questions": 21,
+      "verified": 21,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 1,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_014",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Metals and Non-metals",
+      "outcomes": 7,
+      "atoms": 7,
+      "questions": 21,
+      "verified": 21,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 1,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_015",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_016",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_017",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_018",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_019",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "MAPPED_DEPTH_SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_020",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_021",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "outcomes": 5,
+      "atoms": 5,
+      "questions": 15,
+      "verified": 15,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "MAPPED_DEPTH_SHORTFALL"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_022",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "Life Processes",
+      "outcomes": 6,
+      "atoms": 6,
+      "questions": 18,
+      "verified": 18,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_023",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "Life Processes",
+      "outcomes": 6,
+      "atoms": 6,
+      "questions": 18,
+      "verified": 18,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_024",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "Life Processes",
+      "outcomes": 6,
+      "atoms": 6,
+      "questions": 18,
+      "verified": 18,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_025",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "Life Processes",
+      "outcomes": 6,
+      "atoms": 6,
+      "questions": 18,
+      "verified": 18,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_026",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "Life Processes",
+      "outcomes": 6,
+      "atoms": 6,
+      "questions": 18,
+      "verified": 18,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_027",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_028",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_029",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_030",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_031",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "How do Organisms Reproduce?",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_032",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "How do Organisms Reproduce?",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_033",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": "How do Organisms Reproduce?",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_034",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_035",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_036",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_title": null,
+      "outcomes": 13,
+      "atoms": 13,
+      "questions": 39,
+      "verified": 39,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 19,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_037",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_title": "Light – Reflection and Refraction",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_038",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_title": "Light – Reflection and Refraction",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_039",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_title": null,
+      "outcomes": 4,
+      "atoms": 4,
+      "questions": 12,
+      "verified": 12,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_040",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_title": null,
+      "outcomes": 4,
+      "atoms": 4,
+      "questions": 12,
+      "verified": 12,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "UNMAPPED_CHAPTER"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_041",
+      "eduos_unit_title": null,
+      "eduos_chapter_title": null,
+      "outcomes": 0,
+      "atoms": null,
+      "questions": null,
+      "verified": null,
+      "diagnostic_target": 20,
+      "reassessment_reserve": null,
+      "verdict": "UNMAPPED_UNIT"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_042",
+      "eduos_unit_title": null,
+      "eduos_chapter_title": null,
+      "outcomes": 0,
+      "atoms": null,
+      "questions": null,
+      "verified": null,
+      "diagnostic_target": 20,
+      "reassessment_reserve": null,
+      "verdict": "UNMAPPED_UNIT"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_043",
+      "eduos_unit_title": null,
+      "eduos_chapter_title": null,
+      "outcomes": 0,
+      "atoms": null,
+      "questions": null,
+      "verified": null,
+      "diagnostic_target": 20,
+      "reassessment_reserve": null,
+      "verdict": "UNMAPPED_UNIT"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_044",
+      "eduos_unit_title": null,
+      "eduos_chapter_title": null,
+      "outcomes": 0,
+      "atoms": null,
+      "questions": null,
+      "verified": null,
+      "diagnostic_target": 20,
+      "reassessment_reserve": null,
+      "verdict": "UNMAPPED_UNIT"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_045",
+      "eduos_unit_title": "Natural Resources",
+      "eduos_chapter_title": "Our Environment",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    },
+    {
+      "subject": "Science",
+      "official_requirement_id": "REQ_SCI_2026_046",
+      "eduos_unit_title": "Natural Resources",
+      "eduos_chapter_title": "Our Environment",
+      "outcomes": 2,
+      "atoms": 2,
+      "questions": 6,
+      "verified": 6,
+      "diagnostic_target": 20,
+      "reassessment_reserve": 0,
+      "verdict": "TOPIC_UNMAPPED"
+    }
+  ],
+  "outcome_level": [
+    {
+      "subject": "Mathematics",
+      "unit_title": "Number Systems",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M1.1.1",
+      "outcome_title": "Express composite numbers as products of prime factors and calculate HCF and LCM using prime factorization.",
+      "chapter_category": "Real Numbers",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Number Systems",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M1.1.2",
+      "outcome_title": "Prove the irrationality of numbers such as square root of 2, square root of 3, and square root of 5.",
+      "chapter_category": "Real Numbers",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "true_false": 1,
+        "short_answer": 2
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 1 — Number Systems",
+      "meridian_pilot_unit": true,
+      "outcome_id": "LO_MAT10_U1_01",
+      "outcome_title": "Euclid's division lemma",
+      "chapter_category": "Unit 1 — Number Systems",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 0,
+      "difficulty_distribution": {
+        "2": 3
+      },
+      "kind_distribution": {
+        "mcq": 2,
+        "short_answer": 1
+      },
+      "meets_per_outcome_minimum": false
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 1 — Number Systems",
+      "meridian_pilot_unit": true,
+      "outcome_id": "LO_MAT10_U1_02",
+      "outcome_title": "Fundamental Theorem of Arithmetic",
+      "chapter_category": "Unit 1 — Number Systems",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 0,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "mcq": 1,
+        "case_study": 1,
+        "short_answer": 1
+      },
+      "meets_per_outcome_minimum": false
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 1 — Number Systems",
+      "meridian_pilot_unit": true,
+      "outcome_id": "LO_MAT10_U1_03",
+      "outcome_title": "Irrational numbers",
+      "chapter_category": "Unit 1 — Number Systems",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 0,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "mcq": 1,
+        "case_study": 1,
+        "short_answer": 1
+      },
+      "meets_per_outcome_minimum": false
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 2 — Algebra",
+      "meridian_pilot_unit": true,
+      "outcome_id": "LO_MAT10_U2_01",
+      "outcome_title": "Zeroes of a polynomial",
+      "chapter_category": "Unit 2 — Algebra",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 0,
+      "difficulty_distribution": {
+        "2": 3
+      },
+      "kind_distribution": {
+        "mcq": 2,
+        "short_answer": 1
+      },
+      "meets_per_outcome_minimum": false
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Unit 2 — Algebra",
+      "meridian_pilot_unit": true,
+      "outcome_id": "LO_MAT10_U2_02",
+      "outcome_title": "Relationship between zeroes and coefficients",
+      "chapter_category": "Unit 2 — Algebra",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 0,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "mcq": 1,
+        "case_study": 1,
+        "short_answer": 1
+      },
+      "meets_per_outcome_minimum": false
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Algebra",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M2.1.1",
+      "outcome_title": "Determine zeroes geometrically and apply relationships between zeroes and coefficients of quadratic polynomials.",
+      "chapter_category": "Polynomials",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Algebra",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M3.1.1",
+      "outcome_title": "Analyze consistency conditions and solve system of linear equations using Substitution and Elimination methods.",
+      "chapter_category": "Pair of Linear Equations in Two Variables",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Algebra",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M4.1.1",
+      "outcome_title": "Solve quadratic equations using factorization and quadratic formula, and determine nature of roots using discriminant.",
+      "chapter_category": "Quadratic Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Algebra",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M5.1.1",
+      "outcome_title": "Derive and apply formulas for the nth term (an) and sum of first n terms (Sn) of an Arithmetic Progression.",
+      "chapter_category": "Arithmetic Progressions",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Geometry",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M10.1.1",
+      "outcome_title": "Prove and apply theorems regarding tangents to a circle from an external point.",
+      "chapter_category": "Circles",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Geometry",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M6.1.1",
+      "outcome_title": "State and apply Basic Proportionality Theorem (Thales Theorem) and criteria for similarity (AAA, SAS, SSS).",
+      "chapter_category": "Triangles",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "3": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Coordinate Geometry",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M7.1.1",
+      "outcome_title": "Derive and apply Distance Formula and Section Formula in Cartesian coordinate space.",
+      "chapter_category": "Coordinate Geometry",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Trigonometry",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M8.1.1",
+      "outcome_title": "Define trigonometric ratios for acute angles and evaluate expression using standard values and fundamental trigonometric identity sin^2 A + cos^2 A = 1.",
+      "chapter_category": "Introduction to Trigonometry",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Trigonometry",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M9.1.1",
+      "outcome_title": "Solve real-world problems involving angles of elevation and depression using trigonometric ratios.",
+      "chapter_category": "Some Applications of Trigonometry",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Mensuration",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M11.1.1",
+      "outcome_title": "Calculate arc lengths, areas of sectors, and areas of segments of circles.",
+      "chapter_category": "Areas Related to Circles",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Mensuration",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M12.1.1",
+      "outcome_title": "Determine surface areas and volumes of combinations of basic 3D solids (cubes, cuboids, spheres, hemispheres, cylinders, cones).",
+      "chapter_category": "Surface Areas and Volumes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Statistics & Probability",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M13.1.1",
+      "outcome_title": "Calculate Mean, Median, and Mode of grouped data and apply empirical relationship.",
+      "chapter_category": "Statistics",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Mathematics",
+      "unit_title": "Statistics & Probability",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_M14.1.1",
+      "outcome_title": "Calculate theoretical probability of single and compound events.",
+      "chapter_category": "Probability",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.1.1.1",
+      "outcome_title": "Identify reactants, products, and state symbols in a chemical equation.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 2,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.1.2.1",
+      "outcome_title": "Apply the Law of Conservation of Mass to balance skeletal chemical equations using the hit-and-trial method.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.2.1.1",
+      "outcome_title": "Recognize and explain combination and exothermic reactions through examples such as slaked lime formation.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.2.2.1",
+      "outcome_title": "Differentiate thermal, electrolytic, and photolytic decomposition reactions.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.2.3.1",
+      "outcome_title": "Predict displacement outcomes using relative reactivity of metals.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.2.4.1",
+      "outcome_title": "Explain double displacement and precipitation reactions involving ion exchange.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.2.5.1",
+      "outcome_title": "Identify oxidizing agents, reducing agents, oxidation, and reduction in redox reactions.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.3.1.1",
+      "outcome_title": "Describe corrosion processes and conditions causing tarnish/rusting in metals.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_1.3.2.1",
+      "outcome_title": "Explain rancidity of oils/fats and preventative measures like flushing with nitrogen.",
+      "chapter_category": "Chemical Reactions and Equations",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.1.1.1",
+      "outcome_title": "Distinguish between acids and bases using synthetic, natural, and olfactory indicators.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.1.2.1",
+      "outcome_title": "Formulate equations for metal-acid and metal-base reactions and detail the hydrogen pop test.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.1.3.1",
+      "outcome_title": "Explain the reaction of carbonate/hydrogencarbonate salts with acids and the lime water test.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.1.4.1",
+      "outcome_title": "Define neutralization and model salt and water formation.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.1.5.1",
+      "outcome_title": "Classify metallic oxides as basic oxides through acid reaction products.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.1.6.1",
+      "outcome_title": "Classify non-metallic oxides as acidic oxides based on base reaction behavior.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.2.1.1",
+      "outcome_title": "Explain electrical conductivity in aqueous acids/bases via H+(aq)/hydronium and OH-(aq) ion production.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.3.1.1",
+      "outcome_title": "Interpret pH scale values and evaluate the role of pH in digestion, tooth decay, soil health, and self-defense.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.4.1.1",
+      "outcome_title": "Deduce the acidic, basic, or neutral nature of salts based on parent acid and base strength.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.4.2.1",
+      "outcome_title": "Detail industrial processes and equations for NaOH, Bleaching Powder, Baking Soda, and Washing Soda.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_2.4.3.1",
+      "outcome_title": "Explain water of crystallization and write hydration/dehydration equations for CuSO4.5H2O and Plaster of Paris.",
+      "chapter_category": "Acids, Bases and Salts",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.1.1.1",
+      "outcome_title": "Compare physical properties of metals and non-metals while analyzing exceptions.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.2.1.1",
+      "outcome_title": "Describe metal oxide formation, alkali generation, and amphoteric behavior.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.2.2.1",
+      "outcome_title": "Sequence metals by reactivity based on reactions with cold water, hot water, steam, and acids.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.2.3.1",
+      "outcome_title": "Predict displacement outcomes using the activity series of metals.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.3.1.1",
+      "outcome_title": "Diagram electron transfer in ionic bonds and explain lattice-related physical properties.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.4.1.1",
+      "outcome_title": "Outline metallurgical pathways (Roasting, Calcination, Reduction, Electrolytic Refining) based on metal activity level.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_3.5.1.1",
+      "outcome_title": "Explain corrosion conditions and prevention methods including galvanization and alloying.",
+      "chapter_category": "Metals and Non-metals",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_4.1.1.1",
+      "outcome_title": "Explain covalent bonding, draw electron-dot structures, and differentiate carbon allotropes.",
+      "chapter_category": "Carbon and its Compounds",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_4.2.1.1",
+      "outcome_title": "Apply IUPAC nomenclature to alkanes, alkenes, alkynes, and functional groups, and draw structural isomers.",
+      "chapter_category": "Carbon and its Compounds",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_4.3.1.1",
+      "outcome_title": "Classify and formulate organic reactions: combustion, oxidation, hydrogenation, and substitution.",
+      "chapter_category": "Carbon and its Compounds",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_4.4.1.1",
+      "outcome_title": "Compare properties of ethanol and ethanoic acid, including esterification and saponification.",
+      "chapter_category": "Carbon and its Compounds",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Chemical Substances - Nature and Behaviour",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_4.5.1.1",
+      "outcome_title": "Explain soap micelle structure, hydrophobic/hydrophilic ends, and scum formation in hard water.",
+      "chapter_category": "Carbon and its Compounds",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_5.1.1.1",
+      "outcome_title": "Define life processes and explain why simple diffusion is inadequate for multicellular organisms.",
+      "chapter_category": "Life Processes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_5.2.1.1",
+      "outcome_title": "Detail photosynthesis steps, stomatal regulation, and experimental starch validation.",
+      "chapter_category": "Life Processes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_5.2.2.1",
+      "outcome_title": "Trace food digestion, enzymatic breakdown, and intestinal absorption in humans.",
+      "chapter_category": "Life Processes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_5.3.1.1",
+      "outcome_title": "Compare glucose breakdown pathways and detail human alveolar gas exchange.",
+      "chapter_category": "Life Processes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_5.4.1.1",
+      "outcome_title": "Explain double circulation in human hearts and contrast xylem/phloem transport mechanisms in plants.",
+      "chapter_category": "Life Processes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_5.5.1.1",
+      "outcome_title": "Detail nephron filtration/reabsorption mechanisms and plant excretion strategies.",
+      "chapter_category": "Life Processes",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_6.1.1.1",
+      "outcome_title": "Detail neuron transmission, trace reflex arcs, and map functions of fore-brain, mid-brain, and hind-brain.",
+      "chapter_category": "Control and Coordination",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_6.2.1.1",
+      "outcome_title": "Distinguish nastic vs tropic plant movements and summarize phytohormone roles (auxin, gibberellin, cytokinin, abscisic acid).",
+      "chapter_category": "Control and Coordination",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_6.3.1.1",
+      "outcome_title": "Identify endocrine glands, state their hormones, and explain insulin feedback loops.",
+      "chapter_category": "Control and Coordination",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_7.1.1.1",
+      "outcome_title": "Explain the significance of DNA copying and variation in population survival and evolution.",
+      "chapter_category": "How do Organisms Reproduce?",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_7.2.1.1",
+      "outcome_title": "Compare asexual reproduction modes: binary/multiple fission, fragmentation, regeneration, budding, vegetative propagation, and spore formation.",
+      "chapter_category": "How do Organisms Reproduce?",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_8.1.1.1",
+      "outcome_title": "Explain how cross-generational variation accumulates in asexual vs sexual reproduction.",
+      "chapter_category": "Heredity",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "World of Living",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_8.2.1.1",
+      "outcome_title": "Analyze monohybrid/dihybrid crosses and detail human sex determination mechanics.",
+      "chapter_category": "Heredity",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Phenomena",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_10.1.1.1",
+      "outcome_title": "Explain eye accommodation and correct Myopia, Hypermetropia, and Presbyopia using spherical lenses.",
+      "chapter_category": "The Human Eye and the Colorful World",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Phenomena",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_10.2.1.1",
+      "outcome_title": "Analyze light dispersion, atmospheric refraction (twinkling), and Rayleigh scattering (blue sky/red sunset).",
+      "chapter_category": "The Human Eye and the Colorful World",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Phenomena",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_9.1.1.1",
+      "outcome_title": "Construct ray diagrams for concave/convex mirrors and apply the mirror formula.",
+      "chapter_category": "Light – Reflection and Refraction",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Phenomena",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_9.2.1.1",
+      "outcome_title": "Apply Snell's law, solve thin-lens equations, and calculate optical power in dioptres.",
+      "chapter_category": "Light – Reflection and Refraction",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Effects of Current",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_11.1.1.1",
+      "outcome_title": "State Ohm's Law, calculate equivalent resistances, and analyze factors affecting electrical resistivity.",
+      "chapter_category": "Electricity",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Effects of Current",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_11.2.1.1",
+      "outcome_title": "Apply Joule's Law of Heating and compute commercial electrical energy consumption in kWh.",
+      "chapter_category": "Electricity",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Effects of Current",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_12.1.1.1",
+      "outcome_title": "Determine magnetic field patterns using Right-Hand Thumb Rule for straight conductors, circular loops, and solenoids.",
+      "chapter_category": "Magnetic Effects of Electric Current",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Effects of Current",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_12.2.1.1",
+      "outcome_title": "Apply Fleming's Left-Hand Rule to force vectors and detail safety features in domestic electric circuits.",
+      "chapter_category": "Magnetic Effects of Electric Current",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Resources",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_13.1.1.1",
+      "outcome_title": "Apply Lindeman's 10% Energy Law to food chains and evaluate biological magnification.",
+      "chapter_category": "Our Environment",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    },
+    {
+      "subject": "Science",
+      "unit_title": "Natural Resources",
+      "meridian_pilot_unit": false,
+      "outcome_id": "LO_13.2.1.1",
+      "outcome_title": "Explain ozone formation/CFC destruction and compare biodegradable vs non-biodegradable waste impacts.",
+      "chapter_category": "Our Environment",
+      "atoms": 1,
+      "questions": 3,
+      "verified": 3,
+      "difficulty_distribution": {
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "kind_distribution": {
+        "short_answer": 3
+      },
+      "meets_per_outcome_minimum": true
+    }
+  ],
+  "atom_level": {
+    "note": "The frozen snapshot records atom counts per outcome but not atom identifiers; per-atom depth cannot be exported without a fresh database export. atom_ids is null everywhere by contract.",
+    "rows": [
+      {
+        "subject": "Mathematics",
+        "unit_title": "Number Systems",
+        "outcome_id": "LO_M1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Number Systems",
+        "outcome_id": "LO_M1.1.2",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Unit 1 — Number Systems",
+        "outcome_id": "LO_MAT10_U1_01",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 0,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Unit 1 — Number Systems",
+        "outcome_id": "LO_MAT10_U1_02",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 0,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Unit 1 — Number Systems",
+        "outcome_id": "LO_MAT10_U1_03",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 0,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Unit 2 — Algebra",
+        "outcome_id": "LO_MAT10_U2_01",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 0,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Unit 2 — Algebra",
+        "outcome_id": "LO_MAT10_U2_02",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 0,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Algebra",
+        "outcome_id": "LO_M2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Algebra",
+        "outcome_id": "LO_M3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Algebra",
+        "outcome_id": "LO_M4.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Algebra",
+        "outcome_id": "LO_M5.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Geometry",
+        "outcome_id": "LO_M10.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Geometry",
+        "outcome_id": "LO_M6.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Coordinate Geometry",
+        "outcome_id": "LO_M7.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Trigonometry",
+        "outcome_id": "LO_M8.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Trigonometry",
+        "outcome_id": "LO_M9.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Mensuration",
+        "outcome_id": "LO_M11.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Mensuration",
+        "outcome_id": "LO_M12.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Statistics & Probability",
+        "outcome_id": "LO_M13.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Mathematics",
+        "unit_title": "Statistics & Probability",
+        "outcome_id": "LO_M14.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.1.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.2.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.2.3.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.2.4.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.2.5.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_1.3.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.1.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.1.3.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.1.4.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.1.5.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.1.6.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.4.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.4.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_2.4.3.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.2.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.2.3.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.4.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_3.5.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_4.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_4.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_4.3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_4.4.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Chemical Substances - Nature and Behaviour",
+        "outcome_id": "LO_4.5.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_5.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_5.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_5.2.2.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_5.3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_5.4.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_5.5.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_6.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_6.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_6.3.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_7.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_7.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_8.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "World of Living",
+        "outcome_id": "LO_8.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Natural Phenomena",
+        "outcome_id": "LO_10.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Natural Phenomena",
+        "outcome_id": "LO_10.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Natural Phenomena",
+        "outcome_id": "LO_9.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Natural Phenomena",
+        "outcome_id": "LO_9.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Effects of Current",
+        "outcome_id": "LO_11.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Effects of Current",
+        "outcome_id": "LO_11.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Effects of Current",
+        "outcome_id": "LO_12.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Effects of Current",
+        "outcome_id": "LO_12.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Natural Resources",
+        "outcome_id": "LO_13.1.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      },
+      {
+        "subject": "Science",
+        "unit_title": "Natural Resources",
+        "outcome_id": "LO_13.2.1.1",
+        "atom_ids": null,
+        "atom_count": 1,
+        "questions_attached_to_outcome": 3,
+        "verified_attached_to_outcome": 3,
+        "atoms_without_questions": 0
+      }
+    ]
+  }
+}

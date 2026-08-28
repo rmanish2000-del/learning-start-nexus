@@ -1,0 +1,59 @@
+{
+  "provenance": {
+    "extraction_timestamp": "2026-08-28T20:27:52.927Z",
+    "repository_full_sha": "b94a22c6a96f08e800e24faa4228f69a4e845c22",
+    "data_source": "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
+    "query_or_script": "scripts/compliance/gemini-bundle.ts",
+    "evidence_basis": "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
+    "validator": "compliance-validator/1.0.0",
+    "limitations": [
+      "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+      "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
+      "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
+      "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+      "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
+      "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
+      "No human subject-expert review is recorded for session 2026-27."
+    ]
+  },
+  "class_10_compliance_status": "SOURCE_PENDING",
+  "reconciliation": {
+    "mathematics_requirements": 38,
+    "science_requirements": 46,
+    "mathematics_crosswalk_rows": 38,
+    "science_crosswalk_rows": 46,
+    "unmapped_mathematics_requirements": 2,
+    "unmapped_science_requirements": 13
+  },
+  "unmapped_requirement_ids": {
+    "Mathematics": [
+      "REQ_MATH_2026_032",
+      "REQ_MATH_2026_033"
+    ],
+    "Science": [
+      "REQ_SCI_2026_027",
+      "REQ_SCI_2026_028",
+      "REQ_SCI_2026_029",
+      "REQ_SCI_2026_030",
+      "REQ_SCI_2026_034",
+      "REQ_SCI_2026_035",
+      "REQ_SCI_2026_036",
+      "REQ_SCI_2026_039",
+      "REQ_SCI_2026_040",
+      "REQ_SCI_2026_041",
+      "REQ_SCI_2026_042",
+      "REQ_SCI_2026_043",
+      "REQ_SCI_2026_044"
+    ]
+  },
+  "missing_required_inputs": [],
+  "limitations": [
+    "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+    "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
+    "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
+    "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+    "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
+    "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
+    "No human subject-expert review is recorded for session 2026-27."
+  ]
+}

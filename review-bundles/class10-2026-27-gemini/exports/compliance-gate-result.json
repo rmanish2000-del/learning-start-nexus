@@ -1,0 +1,447 @@
+{
+  "provenance": {
+    "extraction_timestamp": "2026-08-28T20:27:52.927Z",
+    "repository_full_sha": "b94a22c6a96f08e800e24faa4228f69a4e845c22",
+    "data_source": "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
+    "query_or_script": "scripts/compliance/gemini-bundle.ts",
+    "evidence_basis": "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
+    "validator": "compliance-validator/1.0.0",
+    "limitations": [
+      "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+      "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
+      "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
+      "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+      "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
+      "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
+      "No human subject-expert review is recorded for session 2026-27."
+    ]
+  },
+  "class_10_compliance_status": "SOURCE_PENDING",
+  "source_registry_issues": [
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "CBSE-2026-27-C10-CURRICULUM"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "CBSE-2026-27-C10-MAT-SYLLABUS"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "CBSE-2026-27-C10-SCI-SYLLABUS"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "NCERT-2026-27-C10-MAT-TEXTBOOK"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_PENDING_CONFIRMATION",
+      "detail": "NCERT-2026-27-C10-SCI-TEXTBOOK"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "Mathematics",
+      "status": "SOURCE_PENDING",
+      "failing_checks": 11,
+      "gates": [
+        {
+          "gate": "SOURCE_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "sources_recorded",
+              "pass": false,
+              "detail": "0 applicable source(s)"
+            },
+            {
+              "id": "required_types_present",
+              "pass": false,
+              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+            },
+            {
+              "id": "registry_valid",
+              "pass": true,
+              "detail": "0 registry error(s)"
+            }
+          ]
+        },
+        {
+          "gate": "CURRICULUM_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "all_assessable_topics_mapped",
+              "pass": true,
+              "detail": "0 unmapped official topic(s)"
+            },
+            {
+              "id": "no_duplicate_mapping",
+              "pass": true,
+              "detail": "0 duplicate mapping(s)"
+            },
+            {
+              "id": "no_active_out_of_syllabus",
+              "pass": false,
+              "detail": "Unit 1 — Number Systems, Unit 2 — Algebra"
+            },
+            {
+              "id": "source_books_approved",
+              "pass": true,
+              "detail": "all mapped source books approved"
+            }
+          ]
+        },
+        {
+          "gate": "OUTCOME_GATE",
+          "pass": true,
+          "checks": [
+            {
+              "id": "no_orphan_outcomes",
+              "pass": true,
+              "detail": "0 orphan outcome(s)"
+            },
+            {
+              "id": "outcomes_have_atoms",
+              "pass": true,
+              "detail": "every outcome carries at least one atom"
+            },
+            {
+              "id": "every_unit_has_outcomes",
+              "pass": true,
+              "detail": "none empty"
+            }
+          ]
+        },
+        {
+          "gate": "QUESTION_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "verified_depth",
+              "pass": false,
+              "detail": "Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40"
+            },
+            {
+              "id": "atom_coverage",
+              "pass": true,
+              "detail": "0 atom(s) without a question"
+            },
+            {
+              "id": "difficulty_coverage",
+              "pass": true,
+              "detail": "≥2 difficulty bands per unit"
+            },
+            {
+              "id": "type_coverage",
+              "pass": false,
+              "detail": "Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability"
+            },
+            {
+              "id": "duplicate_free",
+              "pass": true,
+              "detail": "0 duplicate question(s)"
+            }
+          ]
+        },
+        {
+          "gate": "LEARNING_LOOP_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "diagnostic_selects_verified_only",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "gap_detection_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "intervention_generation_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "tutor_scope_bound_to_intervention",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "reassessment_reserve_available",
+              "pass": false,
+              "detail": "not verified"
+            },
+            {
+              "id": "outcome_report_year_labelled",
+              "pass": false,
+              "detail": "not verified"
+            }
+          ]
+        },
+        {
+          "gate": "REVIEW_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "named_reviewer",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_timestamp",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_decision",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "no_unresolved_ambiguity",
+              "pass": true,
+              "detail": "0 unresolved"
+            }
+          ]
+        },
+        {
+          "gate": "COMMERCIAL_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "academic_year_active",
+              "pass": true,
+              "detail": "2026-27"
+            },
+            {
+              "id": "approved_version_only",
+              "pass": true,
+              "detail": "purchasable"
+            },
+            {
+              "id": "selectors_correct",
+              "pass": true,
+              "detail": "true"
+            },
+            {
+              "id": "entitlements_scoped",
+              "pass": false,
+              "detail": "false"
+            },
+            {
+              "id": "pricing_approved",
+              "pass": true,
+              "detail": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Science",
+      "status": "SOURCE_PENDING",
+      "failing_checks": 13,
+      "gates": [
+        {
+          "gate": "SOURCE_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "sources_recorded",
+              "pass": false,
+              "detail": "0 applicable source(s)"
+            },
+            {
+              "id": "required_types_present",
+              "pass": false,
+              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+            },
+            {
+              "id": "registry_valid",
+              "pass": true,
+              "detail": "0 registry error(s)"
+            }
+          ]
+        },
+        {
+          "gate": "CURRICULUM_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "all_assessable_topics_mapped",
+              "pass": false,
+              "detail": "1 unmapped official topic(s)"
+            },
+            {
+              "id": "no_duplicate_mapping",
+              "pass": true,
+              "detail": "0 duplicate mapping(s)"
+            },
+            {
+              "id": "no_active_out_of_syllabus",
+              "pass": true,
+              "detail": "none"
+            },
+            {
+              "id": "source_books_approved",
+              "pass": false,
+              "detail": "NCERT Class 10 Science (CBSE) (processed)"
+            }
+          ]
+        },
+        {
+          "gate": "OUTCOME_GATE",
+          "pass": true,
+          "checks": [
+            {
+              "id": "no_orphan_outcomes",
+              "pass": true,
+              "detail": "0 orphan outcome(s)"
+            },
+            {
+              "id": "outcomes_have_atoms",
+              "pass": true,
+              "detail": "every outcome carries at least one atom"
+            },
+            {
+              "id": "every_unit_has_outcomes",
+              "pass": true,
+              "detail": "none empty"
+            }
+          ]
+        },
+        {
+          "gate": "QUESTION_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "verified_depth",
+              "pass": false,
+              "detail": "World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40"
+            },
+            {
+              "id": "atom_coverage",
+              "pass": true,
+              "detail": "0 atom(s) without a question"
+            },
+            {
+              "id": "difficulty_coverage",
+              "pass": true,
+              "detail": "≥2 difficulty bands per unit"
+            },
+            {
+              "id": "type_coverage",
+              "pass": false,
+              "detail": "Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources"
+            },
+            {
+              "id": "duplicate_free",
+              "pass": true,
+              "detail": "0 duplicate question(s)"
+            }
+          ]
+        },
+        {
+          "gate": "LEARNING_LOOP_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "diagnostic_selects_verified_only",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "gap_detection_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "intervention_generation_active",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "tutor_scope_bound_to_intervention",
+              "pass": true,
+              "detail": "verified"
+            },
+            {
+              "id": "reassessment_reserve_available",
+              "pass": false,
+              "detail": "not verified"
+            },
+            {
+              "id": "outcome_report_year_labelled",
+              "pass": false,
+              "detail": "not verified"
+            }
+          ]
+        },
+        {
+          "gate": "REVIEW_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "named_reviewer",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_timestamp",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "review_decision",
+              "pass": false,
+              "detail": "none recorded"
+            },
+            {
+              "id": "no_unresolved_ambiguity",
+              "pass": false,
+              "detail": "1 unresolved"
+            }
+          ]
+        },
+        {
+          "gate": "COMMERCIAL_GATE",
+          "pass": false,
+          "checks": [
+            {
+              "id": "academic_year_active",
+              "pass": true,
+              "detail": "2026-27"
+            },
+            {
+              "id": "approved_version_only",
+              "pass": true,
+              "detail": "purchasable"
+            },
+            {
+              "id": "selectors_correct",
+              "pass": true,
+              "detail": "true"
+            },
+            {
+              "id": "entitlements_scoped",
+              "pass": false,
+              "detail": "false"
+            },
+            {
+              "id": "pricing_approved",
+              "pass": true,
+              "detail": "true"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
