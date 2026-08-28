@@ -729,3 +729,26 @@ self-update must preserve `org_id`, admins remain scoped to their own organisati
 
 Wave 1 — Class 9 Mathematics and Science content preparation. **NOT STARTED and not authorised.**
 Do not begin Wave 1 without an explicit founder assignment.
+
+---
+
+## Wave 1 status update (2026-08-28)
+
+Wave 1 (Class 9 Mathematics and Science content preparation) has **STARTED** under explicit founder
+authorisation and returned **WAVE_1_CONTENT_PREPARATION: PARTIAL**.
+
+- Authoritative record: `EDUOS_WAVE_1_CLASS_9_CONTENT_PREPARATION_REPORT.md`.
+- Deliverables: deterministic inactive content packs under `content/class-9/`, pipeline contracts in
+  `src/lib/class9-content-schema.ts`, generator/validator in `scripts/class9/`, and 18 new tests.
+- Structure and provenance are complete; automated validation passes with 0 errors.
+- Volume and human-review gates are incomplete by design: 400 verified questions required, 88 drafted,
+  0 human-reviewed, 0 verified, 0 approved.
+- Class 9 remains inactive, hidden, non-purchasable and excluded from paid diagnostics.
+- No database writes, no migration, no runtime code change, no production deployment.
+  Deployed production commit remains `e6e34008bd264b1533707180428d860dda76a6f9`.
+- Test total is now **153 passing across 14 files** (Wave 0 baseline was 135/13).
+
+### Current gate
+
+Complete Class 9 authoring to the derived per-unit requirement, then a named subject-expert review cycle.
+**Class 9 activation, pricing and commercial release remain unauthorised.**
