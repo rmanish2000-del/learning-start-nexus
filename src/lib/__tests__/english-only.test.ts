@@ -30,7 +30,11 @@ describe("English-only product language", () => {
   });
 
   it("renders no language toggle anywhere in the app", () => {
-    const offenders = FILES.filter((f) => !f.endsWith("english-only.test.ts") && /LanguageToggle|LANGUAGE_LABELS|setLang\b/.test(readFileSync(f, "utf8")));
+    const offenders = FILES.filter(
+      (f) =>
+        !f.endsWith("english-only.test.ts") &&
+        /LanguageToggle|LANGUAGE_LABELS|setLang\b/.test(readFileSync(f, "utf8")),
+    );
     expect(offenders).toEqual([]);
   });
 
