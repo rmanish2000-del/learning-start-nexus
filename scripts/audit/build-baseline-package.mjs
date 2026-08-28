@@ -816,7 +816,7 @@ function dedupeFlags(flags) {
   return [...seen.values()].sort((a, b) => a.record_id.localeCompare(b.record_id));
 }
 
-function main() {
+async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   const results = {};
 

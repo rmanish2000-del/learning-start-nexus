@@ -1,0 +1,62 @@
+{
+  "subject": "Mathematics",
+  "input_filename": "cbse-class10-mathematics-2026-27-baseline.json",
+  "input_bytes": 24463,
+  "input_sha256": "809ebb34bd3b250832eb170d9e26800623783c1e1bd1f49db5fbdae658a3f170",
+  "baseline_filename": "cbse-class10-mathematics-2026-27-baseline.json",
+  "schema_filename": "cbse-class10-mathematics-2026-27-baseline.schema.json",
+  "baseline_bytes": 28632,
+  "schema_bytes": 8538,
+  "baseline_sha256": "9806af26ae48631729b23ade6921e4bc03df2e6bd5b03c611705ca9bc826fdce",
+  "schema_sha256": "d1c49c1ab5eb6d070c091363e8b964b8d156e7ae5df298bb818b0199079ae066",
+  "baseline_json_parse": true,
+  "schema_json_parse": true,
+  "schema_validation": true,
+  "utf8_valid": true,
+  "duplicate_json_keys_checked": true,
+  "duplicate_json_keys": [],
+  "duplicate_key_parser": "scripts/audit/build-baseline-package.mjs::findDuplicateKeys (source-order JSON tokenizer)",
+  "schema_validator": "ajv draft-07",
+  "units": 7,
+  "chapters": 14,
+  "requirements": 38,
+  "exclusions": 0,
+  "ambiguities": 0,
+  "duplicate_requirement_ids": [],
+  "missing_requirement_ids": [],
+  "duplicate_sequences": [],
+  "missing_source_references": [],
+  "invalid_enum_values": [],
+  "html_contamination_count": 0,
+  "markdown_contamination_count": 0,
+  "unverified_source_records": [
+    "SRC_CBSE_MATH_2627"
+  ],
+  "official_source_checksums_computed": [],
+  "official_source_checksums_not_computed": [
+    "SRC_CBSE_MATH_2627"
+  ],
+  "academic_overreach_flags": [
+    {
+      "subject": "Mathematics",
+      "record_id": "REQ_MATH_2026_004",
+      "candidate_statement": "Application of prime factorization in real-world contextual problems.",
+      "cited_source": "SRC_CBSE_MATH_2627 — Maths_SecP1X_2026-27.pdf Page 2",
+      "reason": "Auditor-derived requirement: expands the cited syllabus line into an application scope not quoted verbatim.",
+      "recommended_human_review_action": "Subject expert to confirm each auditor_derived requirement against the retrieved syllabus line before mapping."
+    }
+  ],
+  "mechanical_transformations": [
+    "Corrected root $schema from \"cbse-class10-mathematics-2026-27-baseline.json\" to the local schema filename \"cbse-class10-mathematics-2026-27-baseline.schema.json\".",
+    "Replaced the composite string subject_code \"041/241\" with the deterministic array subject_codes [\"041\",\"241\"]; no assessment-treatment equivalence between Mathematics Standard (041) and Mathematics Basic (241) is asserted.",
+    "Added derived structural counts total_units (7) and total_chapters (14) computed from the candidate requirement records; no requirement was added, removed or altered.",
+    "Added a deterministic 1-based sequence field to each requirement, derived from the candidate array order; requirement order was not changed.",
+    "Added status \"ACTIVE_BASELINE_REQUIREMENT\" to each requirement for parity with the Science baseline contract; no assessability value was changed.",
+    "Materialised the source_records array for the single referenced source id SRC_CBSE_MATH_2627, which the candidate file referenced but did not define. All unverified metadata is null / PENDING_CONFIRMATION / CHECKSUM_NOT_COMPUTED. The official_url is the founder-supplied official reference URL and denotes official-domain URL identity only, not retrieval or checksum confirmation.",
+    "Added empty exclusions and ambiguities arrays for structural parity; no exclusion or ambiguity was invented.",
+    "Serialised deterministically with 2-space indentation, source key order preserved and a trailing newline."
+  ],
+  "semantic_transformations": [],
+  "validation_timestamp": "2026-08-28T20:07:00Z",
+  "validation_status": "PASS"
+}

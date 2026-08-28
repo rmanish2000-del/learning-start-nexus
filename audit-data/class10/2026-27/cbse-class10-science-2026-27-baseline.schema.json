@@ -1,0 +1,489 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cbse-class10-science-2026-27-baseline.schema.json",
+  "title": "CBSE Class 10 Science 2026-27 candidate baseline",
+  "description": "Draft-07 contract for the non-runtime Science audit baseline. Contains no baseline content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "baseline_version",
+    "board",
+    "class",
+    "academic_year",
+    "subject",
+    "subject_code",
+    "status",
+    "source_records",
+    "total_units",
+    "total_chapters",
+    "total_requirements",
+    "requirements",
+    "exclusions",
+    "ambiguities",
+    "validation"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "cbse-class10-science-2026-27-baseline.schema.json"
+    },
+    "baseline_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "board": {
+      "type": "string",
+      "const": "CBSE"
+    },
+    "class": {
+      "type": "string",
+      "const": "10"
+    },
+    "academic_year": {
+      "type": "string",
+      "const": "2026-27"
+    },
+    "subject": {
+      "type": "string",
+      "const": "Science"
+    },
+    "subject_code": {
+      "type": "string",
+      "const": "086"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "INDEPENDENT_BASELINE_UNVERIFIED_BY_HUMAN_EXPERT",
+        "HUMAN_EXPERT_REVIEWED"
+      ]
+    },
+    "source_records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "authority",
+          "title",
+          "source_type",
+          "subject",
+          "academic_year",
+          "official_url",
+          "publication_date",
+          "retrieval_timestamp",
+          "document_version",
+          "applicability_status",
+          "finality_status",
+          "checksum_status",
+          "sha256",
+          "notes"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "OFFICIAL_SYLLABUS",
+              "NCERT_TEXTBOOK",
+              "RATIONALISATION_NOTICE",
+              "OFFICIAL_ANNOUNCEMENT"
+            ]
+          },
+          "subject": {
+            "type": "string",
+            "enum": [
+              "Mathematics",
+              "Science"
+            ]
+          },
+          "subject_code": {
+            "type": "string",
+            "const": "086"
+          },
+          "academic_year": {
+            "type": "string",
+            "const": "2026-27"
+          },
+          "official_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^https://[^\\s<>\"]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publication_date": {
+            "type": "null"
+          },
+          "retrieval_timestamp": {
+            "type": "null"
+          },
+          "document_version": {
+            "type": "null"
+          },
+          "applicability_status": {
+            "type": "string",
+            "const": "PENDING_CONFIRMATION"
+          },
+          "finality_status": {
+            "type": "string",
+            "const": "PENDING_CONFIRMATION"
+          },
+          "checksum_status": {
+            "type": "string",
+            "const": "CHECKSUM_NOT_COMPUTED"
+          },
+          "sha256": {
+            "type": "null"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "total_units": {
+      "type": "integer",
+      "const": 5
+    },
+    "total_chapters": {
+      "type": "integer",
+      "const": 13
+    },
+    "total_requirements": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requirement_id",
+          "official_unit",
+          "official_chapter",
+          "official_topic",
+          "official_requirement",
+          "requirement_type",
+          "discipline",
+          "assessability",
+          "official_source_id",
+          "source_reference",
+          "auditor_derived",
+          "ambiguity_status",
+          "review_note",
+          "sequence",
+          "status"
+        ],
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ_SCI_2026_\\d{3}$"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "official_unit": {
+            "type": "string",
+            "enum": [
+              "Unit I: Chemical Substances - Nature and Behaviour",
+              "Unit II: World of Living",
+              "Unit III: Natural Phenomena",
+              "Unit IV: How Things Work",
+              "Unit V: Natural Resources"
+            ]
+          },
+          "official_chapter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "official_topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "official_requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirement_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "discipline": {
+            "type": "string",
+            "enum": [
+              "PHYSICS",
+              "CHEMISTRY",
+              "BIOLOGY",
+              "ENVIRONMENTAL_SCIENCE"
+            ]
+          },
+          "assessability": {
+            "type": "string",
+            "enum": [
+              "ASSESSABLE_CORE",
+              "SUPPORTING_CONTEXT",
+              "NOT_ASSESSABLE"
+            ]
+          },
+          "official_source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "auditor_derived": {
+            "type": "boolean"
+          },
+          "ambiguity_status": {
+            "type": "string",
+            "enum": [
+              "CLEAR",
+              "AMBIGUOUS_REVIEW_REQUIRED"
+            ]
+          },
+          "review_note": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "const": "ACTIVE_BASELINE_REQUIREMENT"
+          }
+        }
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "exclusion_id",
+          "official_unit",
+          "official_chapter",
+          "excluded_topic",
+          "exclusion_type",
+          "official_source_id",
+          "source_reference",
+          "academic_year",
+          "effect_on_eduos",
+          "recommended_actions",
+          "candidate_effect_statement",
+          "ambiguity_status",
+          "review_note"
+        ],
+        "properties": {
+          "exclusion_id": {
+            "type": "string",
+            "pattern": "^EXCL_SCI_2026_\\d{3}$"
+          },
+          "official_unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "official_chapter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "excluded_topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exclusion_type": {
+            "type": "string",
+            "enum": [
+              "RATIONALISED_CHAPTER_OMISSION",
+              "TOPIC_RATIONALISATION"
+            ]
+          },
+          "official_source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "academic_year": {
+            "type": "string",
+            "const": "2026-27"
+          },
+          "effect_on_eduos": {
+            "type": "string",
+            "const": "NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING"
+          },
+          "recommended_actions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": [
+                "RETIRE_ONLY_AFTER_CONFIRMED_MAPPING",
+                "PRESERVE_HISTORICAL_REFERENCE",
+                "HUMAN_REVIEW_REQUIRED"
+              ]
+            }
+          },
+          "candidate_effect_statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ambiguity_status": {
+            "type": "string",
+            "enum": [
+              "CLEAR",
+              "AMBIGUOUS_REVIEW_REQUIRED"
+            ]
+          },
+          "review_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ambiguity_id",
+          "topic",
+          "cbse_evidence",
+          "ncert_evidence",
+          "rationalised_content_evidence",
+          "recommended_classification",
+          "human_review_required",
+          "unresolved_issue"
+        ],
+        "properties": {
+          "ambiguity_id": {
+            "type": "string",
+            "pattern": "^AMB_SCI_2026_\\d{3}$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cbse_evidence": {
+            "type": "string"
+          },
+          "ncert_evidence": {
+            "type": "string"
+          },
+          "rationalised_content_evidence": {
+            "type": "string"
+          },
+          "recommended_classification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "human_review_required": {
+            "type": "boolean"
+          },
+          "unresolved_issue": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Candidate-declared validation metadata, retained verbatim as provenance.",
+      "additionalProperties": true,
+      "required": [
+        "strict_json_valid",
+        "utf8_valid",
+        "validation_status"
+      ],
+      "properties": {
+        "strict_json_valid": {
+          "type": "boolean"
+        },
+        "utf8_valid": {
+          "type": "boolean"
+        },
+        "delivered_requirements": {
+          "type": "integer"
+        },
+        "expected_requirements": {
+          "type": "integer"
+        },
+        "count_reconciled": {
+          "type": "boolean"
+        },
+        "duplicate_requirement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_requirement_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicate_sequences": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "missing_source_references": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invalid_enum_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "html_contamination": {
+          "type": "boolean"
+        },
+        "markdown_contamination": {
+          "type": "boolean"
+        },
+        "copyright_check": {
+          "type": "string"
+        },
+        "deterministic_ordering": {
+          "type": "boolean"
+        },
+        "validation_timestamp": {
+          "type": "string"
+        },
+        "validation_status": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
