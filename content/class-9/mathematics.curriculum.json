@@ -1404,6 +1404,141 @@
                   "prerequisites": []
                 }
               ]
+            },
+            {
+              "id": "C9-MAT-U6-CH1-T3",
+              "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T3",
+              "title": "Collecting and tabulating data",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U6-CH1-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T3/O1",
+                  "code": "C9-MAT-06.01.31",
+                  "title": "Distinguish primary and secondary data and tabulate raw data using tally marks",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U6-CH1-T3-O1-A1",
+                      "text": "Distinguish primary data collected first-hand from secondary data taken from an existing source"
+                    },
+                    {
+                      "id": "C9-MAT-U6-CH1-T3-O1-A2",
+                      "text": "Use tally marks to convert raw data into a frequency table"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U6-CH1-T4",
+              "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T4",
+              "title": "Class intervals and grouped frequency distributions",
+              "position": 4,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U6-CH1-T4-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T4/O1",
+                  "code": "C9-MAT-06.01.41",
+                  "title": "Form class intervals of a chosen width and build a grouped frequency distribution",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "applied_mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U6-CH1-T4-O1-A1",
+                      "text": "Choose a suitable class width and starting point to cover a given range of data"
+                    },
+                    {
+                      "id": "C9-MAT-U6-CH1-T4-O1-A2",
+                      "text": "Assign each observation to its correct class interval and tally the frequency"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U6-CH1-T5",
+              "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T5",
+              "title": "Bar graphs and histograms",
+              "position": 5,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U6-CH1-T5-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T5/O1",
+                  "code": "C9-MAT-06.01.51",
+                  "title": "Construct and interpret bar graphs and histograms for grouped and ungrouped data",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "applied_mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U6-CH1-T5-O1-A1",
+                      "text": "Draw a bar graph for categorical or discrete data with bars of uniform width and equal spacing"
+                    },
+                    {
+                      "id": "C9-MAT-U6-CH1-T5-O1-A2",
+                      "text": "Draw a histogram for grouped continuous data with bars touching each other"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U6-CH1-T6",
+              "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T6",
+              "title": "Frequency polygons and interpreting graphical displays",
+              "position": 6,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U6-CH1-T6-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T6/O1",
+                  "code": "C9-MAT-06.01.61",
+                  "title": "Construct a frequency polygon from a histogram or frequency table and draw conclusions from graphical displays",
+                  "category": "analysis",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "applied_mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U6-CH1-T6-O1-A1",
+                      "text": "Plot class marks against frequencies and join them to form a frequency polygon"
+                    },
+                    {
+                      "id": "C9-MAT-U6-CH1-T6-O1-A2",
+                      "text": "Compare distributions and draw conclusions using bar graphs, histograms or frequency polygons"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
             }
           ]
         }
