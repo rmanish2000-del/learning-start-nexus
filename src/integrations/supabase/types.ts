@@ -456,6 +456,7 @@ export type Database = {
         Row: {
           archived_at: string | null
           board: string | null
+          catalogue_subject_id: string | null
           created_at: string
           file_names: string[]
           file_size_bytes: number
@@ -475,6 +476,7 @@ export type Database = {
         Insert: {
           archived_at?: string | null
           board?: string | null
+          catalogue_subject_id?: string | null
           created_at?: string
           file_names?: string[]
           file_size_bytes?: number
@@ -494,6 +496,7 @@ export type Database = {
         Update: {
           archived_at?: string | null
           board?: string | null
+          catalogue_subject_id?: string | null
           created_at?: string
           file_names?: string[]
           file_size_bytes?: number
@@ -512,7 +515,374 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "books_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "books_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalogue_academic_years: {
+        Row: {
+          board_id: string
+          code: string
+          created_at: string
+          ends_on: string | null
+          id: string
+          is_active: boolean
+          starts_on: string | null
+          updated_at: string
+        }
+        Insert: {
+          board_id: string
+          code: string
+          created_at?: string
+          ends_on?: string | null
+          id?: string
+          is_active?: boolean
+          starts_on?: string | null
+          updated_at?: string
+        }
+        Update: {
+          board_id?: string
+          code?: string
+          created_at?: string
+          ends_on?: string | null
+          id?: string
+          is_active?: boolean
+          starts_on?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogue_academic_years_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_boards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalogue_boards: {
+        Row: {
+          code: string
+          created_at: string
+          display_name: string
+          id: string
+          is_active: boolean
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          display_name: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      catalogue_classes: {
+        Row: {
+          academic_year_id: string
+          class_level: number
+          created_at: string
+          display_name: string
+          id: string
+          is_active: boolean
+          updated_at: string
+        }
+        Insert: {
+          academic_year_id: string
+          class_level: number
+          created_at?: string
+          display_name: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Update: {
+          academic_year_id?: string
+          class_level?: number
+          created_at?: string
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogue_classes_academic_year_id_fkey"
+            columns: ["academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_academic_years"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalogue_streams: {
+        Row: {
+          code: string
+          created_at: string
+          display_name: string
+          id: string
+          is_active: boolean
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          display_name: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      catalogue_subject_sources: {
+        Row: {
+          book_id: string | null
+          catalogue_subject_id: string
+          copyright_cleared: boolean
+          created_at: string
+          id: string
+          internal_reference: string
+          notes: string | null
+          source_type: string
+          updated_at: string
+        }
+        Insert: {
+          book_id?: string | null
+          catalogue_subject_id: string
+          copyright_cleared?: boolean
+          created_at?: string
+          id?: string
+          internal_reference: string
+          notes?: string | null
+          source_type: string
+          updated_at?: string
+        }
+        Update: {
+          book_id?: string | null
+          catalogue_subject_id?: string
+          copyright_cleared?: boolean
+          created_at?: string
+          id?: string
+          internal_reference?: string
+          notes?: string | null
+          source_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogue_subject_sources_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalogue_subject_sources_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalogue_subjects: {
+        Row: {
+          academic_year_id: string
+          archived_at: string | null
+          board_id: string
+          chapter_group_marks: number
+          class_id: string
+          code: string
+          commercial_status: string
+          created_at: string
+          curriculum_approved: boolean
+          diagnostic_eligible: boolean
+          diagnostic_minimum: number
+          diagnostic_target: number
+          display_name: string
+          id: string
+          is_active: boolean
+          min_questions_per_outcome: number
+          outcomes_reviewed: boolean
+          reassessment_ready: boolean
+          review_state: string
+          reviewed_at: string | null
+          reviewer_id: string | null
+          reviewer_name: string | null
+          stream_id: string | null
+          subject_key: string
+          supersedes_id: string | null
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          academic_year_id: string
+          archived_at?: string | null
+          board_id: string
+          chapter_group_marks?: number
+          class_id: string
+          code: string
+          commercial_status?: string
+          created_at?: string
+          curriculum_approved?: boolean
+          diagnostic_eligible?: boolean
+          diagnostic_minimum?: number
+          diagnostic_target?: number
+          display_name: string
+          id?: string
+          is_active?: boolean
+          min_questions_per_outcome?: number
+          outcomes_reviewed?: boolean
+          reassessment_ready?: boolean
+          review_state?: string
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          reviewer_name?: string | null
+          stream_id?: string | null
+          subject_key: string
+          supersedes_id?: string | null
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          academic_year_id?: string
+          archived_at?: string | null
+          board_id?: string
+          chapter_group_marks?: number
+          class_id?: string
+          code?: string
+          commercial_status?: string
+          created_at?: string
+          curriculum_approved?: boolean
+          diagnostic_eligible?: boolean
+          diagnostic_minimum?: number
+          diagnostic_target?: number
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          min_questions_per_outcome?: number
+          outcomes_reviewed?: boolean
+          reassessment_ready?: boolean
+          review_state?: string
+          reviewed_at?: string | null
+          reviewer_id?: string | null
+          reviewer_name?: string | null
+          stream_id?: string | null
+          subject_key?: string
+          supersedes_id?: string | null
+          updated_at?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogue_subjects_academic_year_id_fkey"
+            columns: ["academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_academic_years"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalogue_subjects_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_boards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalogue_subjects_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalogue_subjects_stream_id_fkey"
+            columns: ["stream_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_streams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "catalogue_subjects_supersedes_id_fkey"
+            columns: ["supersedes_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      centre_contracts: {
+        Row: {
+          active_learner_cap: number | null
+          catalogue_subject_ids: string[]
+          created_at: string
+          effective_from: string
+          effective_to: string | null
+          id: string
+          is_active: boolean
+          negotiated_amount_paise: number
+          org_id: string
+          plan_code: string
+          updated_at: string
+        }
+        Insert: {
+          active_learner_cap?: number | null
+          catalogue_subject_ids?: string[]
+          created_at?: string
+          effective_from?: string
+          effective_to?: string | null
+          id?: string
+          is_active?: boolean
+          negotiated_amount_paise: number
+          org_id: string
+          plan_code: string
+          updated_at?: string
+        }
+        Update: {
+          active_learner_cap?: number | null
+          catalogue_subject_ids?: string[]
+          created_at?: string
+          effective_from?: string
+          effective_to?: string | null
+          id?: string
+          is_active?: boolean
+          negotiated_amount_paise?: number
+          org_id?: string
+          plan_code?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "centre_contracts_org_id_fkey"
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
@@ -839,6 +1209,183 @@ export type Database = {
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      discount_rules: {
+        Row: {
+          code: string
+          conditions: Json
+          created_at: string
+          id: string
+          is_active: boolean
+          kind: string
+          max_uses: number | null
+          updated_at: string
+          valid_from: string
+          valid_to: string | null
+          value_paise: number | null
+          value_percent: number | null
+        }
+        Insert: {
+          code: string
+          conditions?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          kind: string
+          max_uses?: number | null
+          updated_at?: string
+          valid_from?: string
+          valid_to?: string | null
+          value_paise?: number | null
+          value_percent?: number | null
+        }
+        Update: {
+          code?: string
+          conditions?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          kind?: string
+          max_uses?: number | null
+          updated_at?: string
+          valid_from?: string
+          valid_to?: string | null
+          value_paise?: number | null
+          value_percent?: number | null
+        }
+        Relationships: []
+      }
+      entitlements: {
+        Row: {
+          academic_year_id: string | null
+          board_id: string | null
+          bundle_id: string | null
+          catalogue_subject_id: string | null
+          class_level: number | null
+          created_at: string
+          credit_amount_paise: number | null
+          credit_consumed_at: string | null
+          entitlement_type: string
+          expires_at: string | null
+          id: string
+          learner_id: string
+          legacy_entitlement_id: string | null
+          org_id: string | null
+          parent_user_id: string | null
+          price_snapshot: Json
+          source_order_id: string | null
+          sponsor_type: string
+          starts_at: string
+          status: string
+          stream_label: string | null
+          updated_at: string
+        }
+        Insert: {
+          academic_year_id?: string | null
+          board_id?: string | null
+          bundle_id?: string | null
+          catalogue_subject_id?: string | null
+          class_level?: number | null
+          created_at?: string
+          credit_amount_paise?: number | null
+          credit_consumed_at?: string | null
+          entitlement_type: string
+          expires_at?: string | null
+          id?: string
+          learner_id: string
+          legacy_entitlement_id?: string | null
+          org_id?: string | null
+          parent_user_id?: string | null
+          price_snapshot?: Json
+          source_order_id?: string | null
+          sponsor_type?: string
+          starts_at?: string
+          status?: string
+          stream_label?: string | null
+          updated_at?: string
+        }
+        Update: {
+          academic_year_id?: string | null
+          board_id?: string | null
+          bundle_id?: string | null
+          catalogue_subject_id?: string | null
+          class_level?: number | null
+          created_at?: string
+          credit_amount_paise?: number | null
+          credit_consumed_at?: string | null
+          entitlement_type?: string
+          expires_at?: string | null
+          id?: string
+          learner_id?: string
+          legacy_entitlement_id?: string | null
+          org_id?: string | null
+          parent_user_id?: string | null
+          price_snapshot?: Json
+          source_order_id?: string | null
+          sponsor_type?: string
+          starts_at?: string
+          status?: string
+          stream_label?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "entitlements_academic_year_id_fkey"
+            columns: ["academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_academic_years"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_boards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_bundle_id_fkey"
+            columns: ["bundle_id"]
+            isOneToOne: false
+            referencedRelation: "price_bundles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_legacy_entitlement_id_fkey"
+            columns: ["legacy_entitlement_id"]
+            isOneToOne: false
+            referencedRelation: "parent_entitlements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entitlements_source_order_id_fkey"
+            columns: ["source_order_id"]
+            isOneToOne: false
+            referencedRelation: "parent_orders"
             referencedColumns: ["id"]
           },
         ]
@@ -1381,6 +1928,61 @@ export type Database = {
           },
         ]
       }
+      learner_subject_selections: {
+        Row: {
+          catalogue_subject_id: string
+          created_at: string
+          id: string
+          learner_id: string
+          org_id: string | null
+          selected_at: string
+          source: string
+          updated_at: string
+        }
+        Insert: {
+          catalogue_subject_id: string
+          created_at?: string
+          id?: string
+          learner_id: string
+          org_id?: string | null
+          selected_at?: string
+          source?: string
+          updated_at?: string
+        }
+        Update: {
+          catalogue_subject_id?: string
+          created_at?: string
+          id?: string
+          learner_id?: string
+          org_id?: string | null
+          selected_at?: string
+          source?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learner_subject_selections_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_subject_selections_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learner_subject_selections_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       learners: {
         Row: {
           board: string | null
@@ -1397,6 +1999,7 @@ export type Database = {
           mastery_score: number
           org_id: string | null
           status: Database["public"]["Enums"]["learner_status"]
+          stream_label: string | null
           student_user_id: string | null
           subject: string
           updated_at: string
@@ -1416,6 +2019,7 @@ export type Database = {
           mastery_score?: number
           org_id?: string | null
           status?: Database["public"]["Enums"]["learner_status"]
+          stream_label?: string | null
           student_user_id?: string | null
           subject?: string
           updated_at?: string
@@ -1435,6 +2039,7 @@ export type Database = {
           mastery_score?: number
           org_id?: string | null
           status?: Database["public"]["Enums"]["learner_status"]
+          stream_label?: string | null
           student_user_id?: string | null
           subject?: string
           updated_at?: string
@@ -1788,6 +2393,7 @@ export type Database = {
       }
       parent_entitlements: {
         Row: {
+          catalogue_subject_id: string | null
           consumed_at: string | null
           created_at: string
           expires_at: string | null
@@ -1799,6 +2405,7 @@ export type Database = {
           parent_user_id: string | null
         }
         Insert: {
+          catalogue_subject_id?: string | null
           consumed_at?: string | null
           created_at?: string
           expires_at?: string | null
@@ -1810,6 +2417,7 @@ export type Database = {
           parent_user_id?: string | null
         }
         Update: {
+          catalogue_subject_id?: string | null
           consumed_at?: string | null
           created_at?: string
           expires_at?: string | null
@@ -1821,6 +2429,13 @@ export type Database = {
           parent_user_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "parent_entitlements_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "parent_entitlements_learner_id_fkey"
             columns: ["learner_id"]
@@ -1883,6 +2498,7 @@ export type Database = {
           assessment_id: string | null
           board: string | null
           book_id: string | null
+          catalogue_subject_id: string | null
           child_first_name: string | null
           contact_email: string | null
           contact_name: string | null
@@ -1898,6 +2514,7 @@ export type Database = {
           paid_at: string | null
           parent_order_id: string | null
           parent_user_id: string | null
+          price_snapshot: Json
           provider: string
           provider_order_id: string | null
           provider_payment_ref: string | null
@@ -1915,6 +2532,7 @@ export type Database = {
           assessment_id?: string | null
           board?: string | null
           book_id?: string | null
+          catalogue_subject_id?: string | null
           child_first_name?: string | null
           contact_email?: string | null
           contact_name?: string | null
@@ -1930,6 +2548,7 @@ export type Database = {
           paid_at?: string | null
           parent_order_id?: string | null
           parent_user_id?: string | null
+          price_snapshot?: Json
           provider?: string
           provider_order_id?: string | null
           provider_payment_ref?: string | null
@@ -1947,6 +2566,7 @@ export type Database = {
           assessment_id?: string | null
           board?: string | null
           book_id?: string | null
+          catalogue_subject_id?: string | null
           child_first_name?: string | null
           contact_email?: string | null
           contact_name?: string | null
@@ -1962,6 +2582,7 @@ export type Database = {
           paid_at?: string | null
           parent_order_id?: string | null
           parent_user_id?: string | null
+          price_snapshot?: Json
           provider?: string
           provider_order_id?: string | null
           provider_payment_ref?: string | null
@@ -1986,6 +2607,13 @@ export type Database = {
             columns: ["book_id"]
             isOneToOne: false
             referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parent_orders_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
             referencedColumns: ["id"]
           },
           {
@@ -2196,6 +2824,162 @@ export type Database = {
             columns: ["approved_org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      price_bundles: {
+        Row: {
+          bundle_type: string
+          class_id: string | null
+          code: string
+          created_at: string
+          display_name: string
+          id: string
+          is_active: boolean
+          member_subject_ids: string[]
+          updated_at: string
+        }
+        Insert: {
+          bundle_type?: string
+          class_id?: string | null
+          code: string
+          created_at?: string
+          display_name: string
+          id?: string
+          is_active?: boolean
+          member_subject_ids?: string[]
+          updated_at?: string
+        }
+        Update: {
+          bundle_type?: string
+          class_id?: string | null
+          code?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          member_subject_ids?: string[]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "price_bundles_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_classes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      price_plans: {
+        Row: {
+          academic_year_id: string | null
+          amount_paise: number
+          board_id: string | null
+          bundle_id: string | null
+          catalogue_subject_id: string | null
+          class_id: string | null
+          code: string
+          created_at: string
+          currency: string
+          display_name: string
+          effective_from: string
+          effective_to: string | null
+          id: string
+          is_active: boolean
+          plan_type: string
+          stream_id: string | null
+          tax_mode: string
+          tax_percent: number
+          updated_at: string
+          validity_days: number
+        }
+        Insert: {
+          academic_year_id?: string | null
+          amount_paise: number
+          board_id?: string | null
+          bundle_id?: string | null
+          catalogue_subject_id?: string | null
+          class_id?: string | null
+          code: string
+          created_at?: string
+          currency?: string
+          display_name: string
+          effective_from?: string
+          effective_to?: string | null
+          id?: string
+          is_active?: boolean
+          plan_type: string
+          stream_id?: string | null
+          tax_mode?: string
+          tax_percent?: number
+          updated_at?: string
+          validity_days?: number
+        }
+        Update: {
+          academic_year_id?: string | null
+          amount_paise?: number
+          board_id?: string | null
+          bundle_id?: string | null
+          catalogue_subject_id?: string | null
+          class_id?: string | null
+          code?: string
+          created_at?: string
+          currency?: string
+          display_name?: string
+          effective_from?: string
+          effective_to?: string | null
+          id?: string
+          is_active?: boolean
+          plan_type?: string
+          stream_id?: string | null
+          tax_mode?: string
+          tax_percent?: number
+          updated_at?: string
+          validity_days?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "price_plans_academic_year_id_fkey"
+            columns: ["academic_year_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_academic_years"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "price_plans_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_boards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "price_plans_bundle_id_fkey"
+            columns: ["bundle_id"]
+            isOneToOne: false
+            referencedRelation: "price_bundles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "price_plans_catalogue_subject_id_fkey"
+            columns: ["catalogue_subject_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_subjects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "price_plans_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_classes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "price_plans_stream_id_fkey"
+            columns: ["stream_id"]
+            isOneToOne: false
+            referencedRelation: "catalogue_streams"
             referencedColumns: ["id"]
           },
         ]
