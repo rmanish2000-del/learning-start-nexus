@@ -18,32 +18,65 @@ export const BUNDLE_DIR = "review-bundles/class10-2026-27-gemini";
 const abs = (p: string) => resolve(ROOT, p);
 const readJson = (p: string) => JSON.parse(readFileSync(abs(p), "utf8"));
 
+const BUNDLE_FORMAT_VERSION = "2.0.0";
 const EXTRACTED_AT = new Date().toISOString();
-const HEAD_SHA = (() => {
+const git = (args: string[]) => {
   try {
-    return execFileSync("git", ["rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim();
+    return execFileSync("git", args, { cwd: ROOT, encoding: "utf8" }).trim();
   } catch {
     return "UNKNOWN";
   }
-})();
+};
+
+// The commit checked out when the exporter began.
+const BASE_COMMIT = git(["rev-parse", "HEAD"]);
+
+// Evidence inputs consumed by this exporter. source_evidence_commit is the most
+// recent commit that touched any of them.
+const EVIDENCE_PATHS = [
+  "content/compliance",
+  "audit-data/class10/2026-27",
+  "EDUOS_CLASS_10_BASELINE_FILE_PACKAGE_REPORT.md",
+  "EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md",
+  "EDUOS_CLASS_10_MATHEMATICS_CROSSWALK.md",
+  "EDUOS_CLASS_10_SCIENCE_CROSSWALK.md",
+  "EDUOS_CLASS_10_OUTCOME_ATOM_MATRIX.md",
+  "EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md",
+  "EDUOS_CLASS_10_GAP_REGISTER.md",
+  "EDUOS_SUBJECT_COMPLIANCE_GATE.md",
+  "EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md",
+  "EDUOS_OFFICIAL_SOURCE_REGISTRY_SPEC.md",
+];
+const SOURCE_EVIDENCE_COMMIT = git(["log", "-1", "--format=%H", "--", ...EVIDENCE_PATHS]) || BASE_COMMIT;
+
+const SELF_REFERENCE_POLICY =
+  "The final Git package commit SHA is NOT embedded in any bundle file: a file inside a commit cannot contain that commit's own SHA. package_commit is reported only in the Lovable final response and repository history (REPORTED_AFTER_COMMIT). GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 intentionally excludes its own hash, and bundle_tree_hash is computed over all payload files excluding GEMINI_REVIEW_BUNDLE_MANIFEST.json and GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256. This bundle is therefore not self-authenticating.";
 
 const PROVENANCE = {
-  extraction_timestamp: EXTRACTED_AT,
-  repository_full_sha: HEAD_SHA,
+  bundle_format_version: BUNDLE_FORMAT_VERSION,
+  bundle_generation_timestamp: EXTRACTED_AT,
+  source_evidence_commit: SOURCE_EVIDENCE_COMMIT,
+  bundle_generation_base_commit: BASE_COMMIT,
+  package_commit: "REPORTED_AFTER_COMMIT",
+  self_reference_policy: SELF_REFERENCE_POLICY,
   data_source: "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
   query_or_script: "scripts/compliance/gemini-bundle.ts",
   evidence_basis: "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
   validator: VALIDATOR_VERSION,
   limitations: [
     "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+    "No official source document has been checksummed; every source record remains PENDING_CONFIRMATION.",
     "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
     "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
-    "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+    "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported. Missing evidence is reported as null, never as zero.",
     "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
     "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
     "No human subject-expert review is recorded for session 2026-27.",
+    "Five academic-overreach flags remain open in the gap register.",
+    "Two Science ambiguities remain unresolved in the candidate baseline.",
   ],
 } as const;
+
 
 // ------------------------------------------------------------------ helpers
 const stripUnitPrefix = (s: string) => s.replace(/^unit\s+[ivxlc0-9]+\s*[:\-–—]\s*/i, "").trim();
