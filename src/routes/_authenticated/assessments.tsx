@@ -421,35 +421,97 @@ function AssessmentsPage() {
                   </FormSection>
 
                   <FormSection
+                    title="Curriculum"
+                    hint="Board, class and subject are inherited from the selected book."
+                  >
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <FormField id="a-book" label="Curriculum book">
+                        <Select
+                          value={bookId}
+                          onValueChange={(v) => {
+                            setBookId(v);
+                            setUnitId("");
+                            setPicked(new Set());
+                          }}
+                        >
+                          <SelectTrigger id="a-book">
+                            <SelectValue placeholder="Select a book" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(books ?? []).map((b) => (
+                              <SelectItem key={b.id} value={b.id}>
+                                {b.board ?? SUPPORTED_SCOPE.board} Class {b.grade} · {b.subject}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormField>
+                      <FormField id="a-unit" label="Unit">
+                        <Select
+                          value={unitId}
+                          onValueChange={(v) => {
+                            setUnitId(v);
+                            setPicked(new Set());
+                          }}
+                          disabled={!bookId}
+                        >
+                          <SelectTrigger id="a-unit">
+                            <SelectValue placeholder={bookId ? "Select a unit" : "Select a book first"} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(units ?? []).map((u) => (
+                              <SelectItem key={u.id} value={u.id}>
+                                {u.title}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormField>
+                    </div>
+                  </FormSection>
+
+                  <FormSection
                     title={`Questions (${picked.size} selected)`}
-                    hint="Selecting questions never publishes or assigns anything."
+                    hint="Only approved and verified questions from the selected unit are offered. Selecting questions never publishes or assigns anything."
                   >
                     <div className="divide-y rounded-lg border">
-                      {(items ?? []).length === 0 ? (
+                      {!unitId ? (
                         <p className="p-4 text-sm text-muted-foreground">
-                          No questions are available in the active CBSE Class 10 scope yet. Build one
-                          from the curriculum in the Assessment Builder.
+                          Select a curriculum book and unit to load its verified questions.
+                        </p>
+                      ) : unitQuestionsPending ? (
+                        <p className="p-4 text-sm text-muted-foreground">Loading questions…</p>
+                      ) : (unitQuestions ?? []).length === 0 ? (
+                        <p className="p-4 text-sm text-muted-foreground">
+                          This unit has no approved and verified questions yet. Verify questions in
+                          the question bank, or generate them in the Assessment Builder.
                         </p>
                       ) : (
-                        (items ?? []).map((item) => (
-                          <label
-                            key={item.id}
-                            className="flex cursor-pointer items-start gap-3 p-3 hover:bg-muted/50"
-                          >
-                            <Checkbox
-                              checked={picked.has(item.id)}
-                              onCheckedChange={() => toggle(picked, item.id, setPicked)}
-                              className="mt-0.5"
-                            />
-                            <span className="min-w-0 flex-1">
-                              <span className="block text-sm">{item.prompt}</span>
-                              <span className="text-xs text-muted-foreground">
-                                {item.subtopic} · {DIFFICULTY_LABELS[item.difficulty]} ·{" "}
-                                {item.kind === "mcq" ? "Multiple choice" : "Numeric"}
+                        (unitQuestions ?? []).map((q) => {
+                          const outcome = q.assessment_outcomes as unknown as {
+                            code: string;
+                            title: string;
+                          } | null;
+                          return (
+                            <label
+                              key={q.id}
+                              className="flex cursor-pointer items-start gap-3 p-3 hover:bg-muted/50"
+                            >
+                              <Checkbox
+                                checked={picked.has(q.id)}
+                                onCheckedChange={() => toggle(picked, q.id, setPicked)}
+                                className="mt-0.5"
+                              />
+                              <span className="min-w-0 flex-1">
+                                <span className="block text-sm">{q.prompt}</span>
+                                <span className="text-xs text-muted-foreground">
+                                  {outcome ? `${outcome.code} · ${outcome.title} · ` : ""}
+                                  {DIFFICULTY_LABELS[q.difficulty]}
+                                </span>
                               </span>
-                            </span>
-                          </label>
-                        ))
+                            </label>
+                          );
+                        })
                       )}
                     </div>
                   </FormSection>
