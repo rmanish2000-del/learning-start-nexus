@@ -1209,6 +1209,111 @@
                   "prerequisites": []
                 }
               ]
+            },
+            {
+              "id": "C9-MAT-U5-CH2-T3",
+              "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T3",
+              "title": "Surface area and volume of cuboids and cubes",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U5-CH2-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T3/O1",
+                  "code": "C9-MAT-05.02.31",
+                  "title": "Calculate surface area and volume of cuboids and cubes and solve related problems",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U5-CH2-T3-O1-A1",
+                      "text": "Apply total surface area of a cuboid = 2(lb + bh + hl) and of a cube = 6a²"
+                    },
+                    {
+                      "id": "C9-MAT-U5-CH2-T3-O1-A2",
+                      "text": "Apply volume of a cuboid = l × b × h and of a cube = a³"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U5-CH2-T4",
+              "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T4",
+              "title": "Surface area and volume of hemispheres",
+              "position": 4,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U5-CH2-T4-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T4/O1",
+                  "code": "C9-MAT-05.02.41",
+                  "title": "Calculate curved and total surface area and volume of a hemisphere",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "assertion_reason",
+                    "true_false"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U5-CH2-T4-O1-A1",
+                      "text": "Apply CSA of a hemisphere = 2πr² and TSA = 3πr²"
+                    },
+                    {
+                      "id": "C9-MAT-U5-CH2-T4-O1-A2",
+                      "text": "Apply volume of a hemisphere = (2/3)πr³"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U5-CH2-T5",
+              "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T5",
+              "title": "Applied capacity and cost problems on solids",
+              "position": 5,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U5-CH2-T5-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U5/CH2/T5/O1",
+                  "code": "C9-MAT-05.02.51",
+                  "title": "Solve real-life problems involving capacity, material cost and painting of solids",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 4,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "applied_mcq",
+                    "short_answer",
+                    "mcq",
+                    "true_false"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U5-CH2-T5-O1-A1",
+                      "text": "Convert volume to capacity in litres and compute cost using a given rate"
+                    },
+                    {
+                      "id": "C9-MAT-U5-CH2-T5-O1-A2",
+                      "text": "Combine surface area formulae to compute the cost of painting or covering composite solids"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
             }
           ]
         }
