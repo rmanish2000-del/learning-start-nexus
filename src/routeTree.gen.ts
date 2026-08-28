@@ -14,9 +14,12 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as McpRouteImport } from './routes/mcp'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAssessmentAuditRouteImport } from './routes/_authenticated/assessment-audit'
 import { Route as AuthenticatedAssessmentBlueprintRouteImport } from './routes/_authenticated/assessment-blueprint'
@@ -57,6 +60,8 @@ import { Route as AuthenticatedVerificationRouteImport } from './routes/_authent
 import { Route as DiagnosticIndexRouteImport } from './routes/diagnostic.index'
 import { Route as FreeCheckCheckIdRouteImport } from './routes/free-check.$checkId'
 import { Route as UpgradeTokenRouteImport } from './routes/upgrade.$token'
+import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
+import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './routes/_authenticated/assessment.$assessmentId'
 import { Route as AuthenticatedGapsGapIdRouteImport } from './routes/_authenticated/gaps.$gapId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
@@ -93,6 +98,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -108,6 +118,18 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotmcpChar93ListToolsRoute =
+  Char91DotmcpChar93ListToolsRouteImport.update({
+    id: '/.mcp/list-tools',
+    path: '/.mcp/list-tools',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -336,6 +358,17 @@ const UpgradeTokenRoute = UpgradeTokenRouteImport.update({
   path: '/upgrade/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
+  id: '/.lovable/oauth/consent',
+  path: '/.lovable/oauth/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Char91DotmcpChar93InvokeToolToolRoute =
+  Char91DotmcpChar93InvokeToolToolRouteImport.update({
+    id: '/.mcp/invoke-tool/$tool',
+    path: '/.mcp/invoke-tool/$tool',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedAssessmentAssessmentIdRoute =
   AuthenticatedAssessmentAssessmentIdRouteImport.update({
     id: '/assessment/$assessmentId',
@@ -403,9 +436,12 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/mcp': typeof McpRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/assessment-audit': typeof AuthenticatedAssessmentAuditRoute
   '/assessment-blueprint': typeof AuthenticatedAssessmentBlueprintRoute
@@ -446,6 +482,8 @@ export interface FileRoutesByFullPath {
   '/free-check/$checkId': typeof FreeCheckCheckIdRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
@@ -463,9 +501,12 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/mcp': typeof McpRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/assessment-audit': typeof AuthenticatedAssessmentAuditRoute
   '/assessment-blueprint': typeof AuthenticatedAssessmentBlueprintRoute
@@ -506,6 +547,8 @@ export interface FileRoutesByTo {
   '/free-check/$checkId': typeof FreeCheckCheckIdRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic': typeof DiagnosticIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
@@ -525,9 +568,12 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/mcp': typeof McpRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/assessment-audit': typeof AuthenticatedAssessmentAuditRoute
   '/_authenticated/assessment-blueprint': typeof AuthenticatedAssessmentBlueprintRoute
@@ -568,6 +614,8 @@ export interface FileRoutesById {
   '/free-check/$checkId': typeof FreeCheckCheckIdRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/_authenticated/assessment/$assessmentId': typeof AuthenticatedAssessmentAssessmentIdRoute
   '/_authenticated/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
@@ -587,9 +635,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/contact'
+    | '/mcp'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
     | '/admin'
     | '/assessment-audit'
     | '/assessment-blueprint'
@@ -630,6 +681,8 @@ export interface FileRouteTypes {
     | '/free-check/$checkId'
     | '/upgrade/$token'
     | '/diagnostic/'
+    | '/.lovable/oauth/consent'
+    | '/.mcp/invoke-tool/$tool'
     | '/assessment/$assessmentId'
     | '/gaps/$gapId'
     | '/learners/$learnerId'
@@ -647,9 +700,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/contact'
+    | '/mcp'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
     | '/admin'
     | '/assessment-audit'
     | '/assessment-blueprint'
@@ -690,6 +746,8 @@ export interface FileRouteTypes {
     | '/free-check/$checkId'
     | '/upgrade/$token'
     | '/diagnostic'
+    | '/.lovable/oauth/consent'
+    | '/.mcp/invoke-tool/$tool'
     | '/assessment/$assessmentId'
     | '/gaps/$gapId'
     | '/learners/$learnerId'
@@ -708,9 +766,12 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/contact'
+    | '/mcp'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
     | '/_authenticated/admin'
     | '/_authenticated/assessment-audit'
     | '/_authenticated/assessment-blueprint'
@@ -751,6 +812,8 @@ export interface FileRouteTypes {
     | '/free-check/$checkId'
     | '/upgrade/$token'
     | '/diagnostic/'
+    | '/.lovable/oauth/consent'
+    | '/.mcp/invoke-tool/$tool'
     | '/_authenticated/assessment/$assessmentId'
     | '/_authenticated/gaps/$gapId'
     | '/_authenticated/learners/$learnerId'
@@ -770,12 +833,17 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
+  McpRoute: typeof McpRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
+  Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   FreeCheckCheckIdRoute: typeof FreeCheckCheckIdRoute
   UpgradeTokenRoute: typeof UpgradeTokenRoute
   DiagnosticIndexRoute: typeof DiagnosticIndexRoute
+  DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
+  Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicRazorpayWebhookRoute: typeof ApiPublicRazorpayWebhookRoute
   DiagnosticCheckoutOrderRefRoute: typeof DiagnosticCheckoutOrderRefRoute
   DiagnosticCompleteTokenRoute: typeof DiagnosticCompleteTokenRoute
@@ -821,6 +889,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -840,6 +915,20 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.mcp/list-tools': {
+      id: '/.mcp/list-tools'
+      path: '/.mcp/list-tools'
+      fullPath: '/.mcp/list-tools'
+      preLoaderRoute: typeof Char91DotmcpChar93ListToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -1122,6 +1211,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UpgradeTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/.lovable/oauth/consent': {
+      id: '/.lovable/oauth/consent'
+      path: '/.lovable/oauth/consent'
+      fullPath: '/.lovable/oauth/consent'
+      preLoaderRoute: typeof DotlovableOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.mcp/invoke-tool/$tool': {
+      id: '/.mcp/invoke-tool/$tool'
+      path: '/.mcp/invoke-tool/$tool'
+      fullPath: '/.mcp/invoke-tool/$tool'
+      preLoaderRoute: typeof Char91DotmcpChar93InvokeToolToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/assessment/$assessmentId': {
       id: '/_authenticated/assessment/$assessmentId'
       path: '/assessment/$assessmentId'
@@ -1317,12 +1420,18 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
+  McpRoute: McpRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
+  Char91DotwellKnownChar93OauthProtectedResourceRoute:
+    Char91DotwellKnownChar93OauthProtectedResourceRoute,
   FreeCheckCheckIdRoute: FreeCheckCheckIdRoute,
   UpgradeTokenRoute: UpgradeTokenRoute,
   DiagnosticIndexRoute: DiagnosticIndexRoute,
+  DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
+  Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicRazorpayWebhookRoute: ApiPublicRazorpayWebhookRoute,
   DiagnosticCheckoutOrderRefRoute: DiagnosticCheckoutOrderRefRoute,
   DiagnosticCompleteTokenRoute: DiagnosticCompleteTokenRoute,

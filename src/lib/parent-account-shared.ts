@@ -37,7 +37,7 @@ export const claimParentSchema = z.object({
 export const addStudentSchema = z.object({
   fullName: z.string().trim().min(2, "Enter the student's name").max(80),
   grade: z.literal(PILOT_CLASS, {
-    errorMap: () => ({ message: "The pilot covers CBSE Class 10 only" }),
+    message: "The pilot covers CBSE Class 10 only",
   }),
   board: z.enum(BOARDS),
 });

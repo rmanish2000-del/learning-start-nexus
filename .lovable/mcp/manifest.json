@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "sdk_version": "0.28.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://egcsctawfpzhpodklsms.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "eduos-foundation",
+      "version": "0.1.0",
+      "title": "EduOS Foundation"
+    },
+    "tools": [
+      {
+        "name": "list_learners",
+        "title": "List learners",
+        "description": "List learners visible to the signed-in EduOS user, with grade, subject, handle and mastery score.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "search": {
+              "description": "Optional name or handle filter.",
+              "type": "string",
+              "minLength": 1
+            },
+            "limit": {
+              "default": 25,
+              "description": "Maximum learners to return.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_learner_gaps",
+        "title": "Get learner gaps",
+        "description": "Return detected learning gaps for one learner, including topic, subtopic, severity, status and gap score.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "learner_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+              "description": "Learner id from list_learners."
+            },
+            "status": {
+              "description": "Optional status filter.",
+              "type": "string",
+              "enum": [
+                "open",
+                "in_progress",
+                "resolved"
+              ]
+            },
+            "limit": {
+              "default": 50,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "learner_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_assessments",
+        "title": "List assessments",
+        "description": "List assessments in the signed-in user's organisation, with status, subject, topic and grade.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "published",
+                "assigned",
+                "archived"
+              ]
+            },
+            "subject": {
+              "description": "e.g. Mathematics or Science.",
+              "type": "string",
+              "minLength": 1
+            },
+            "limit": {
+              "default": 25,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
