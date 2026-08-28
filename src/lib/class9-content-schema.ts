@@ -291,7 +291,9 @@ export function buildReadinessMatrix(
     const covered = new Set(qs.map((q) => q.outcomeId));
     const difficultyMix: Record<number, number> = {};
     for (const q of qs) difficultyMix[q.difficulty] = (difficultyMix[q.difficulty] ?? 0) + 1;
-    const verified = qs.filter((q) => q.verificationState === "verified").length;
+    // Prepared packs are unverified by contract; verified counts come from the
+    // reviewer workflow, never from the pack file.
+    const verified = qs.filter((q) => (q.verificationState as string) === "verified").length;
     const shortfall = Math.max(required - verified, 0);
     return {
       unitId: u.id,
