@@ -291,3 +291,33 @@ Class 9 activation, pricing and commercial release remain unauthorised.
 ### Current gate
 
 Wave 1 content authoring and named subject-expert review. **Class 9 activation NOT AUTHORISED.**
+
+---
+
+## Wave 1 continuation — Class 9 question banks complete (2026-08-29 IST)
+
+**Status: WAVE_1_QUESTION_BANK_COMPLETION: PASS · WAVE_1_COMMERCIAL_READINESS:
+BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW.** This supersedes the volume figures in the
+2026-08-28 Wave 1 section above; every other constraint there still holds.
+
+- Prepared volume: **400/400** original questions — Mathematics 240 (6 units / 12 chapters /
+  38 topics / 38 outcomes / 76 atoms), Science 160 (4 units / 12 chapters / 30 topics /
+  30 outcomes / 60 atoms). Every unit holds 40 with 100% outcome and atom coverage.
+- Verified: **0.** Human-reviewed: **0.** Approved: **0.** Review packages exist but review has not happened.
+- `VALIDATION: PASS` — 0 errors, 0 warnings, 0 duplicates, deterministic rebuilds.
+- New deliverables: `EDUOS_CLASS_9_CONTENT_VOLUME_MATRIX.md`,
+  `EDUOS_CLASS_9_VALIDATION_REPORT.md`, `EDUOS_CLASS_9_DUPLICATE_AND_INTEGRITY_REPORT.md`,
+  `EDUOS_CLASS_9_IMPORT_DRY_RUN_REPORT.md`,
+  `EDUOS_CLASS_9_{MATHEMATICS,SCIENCE}_SUBJECT_EXPERT_REVIEW_PACKAGE.md`,
+  plus Addendum A in `EDUOS_WAVE_1_CLASS_9_CONTENT_PREPARATION_REPORT.md`.
+- Catalogue decision: Class 9 `catalogue_subjects` rows **deferred** (live check: Class 9 inactive,
+  0 subject rows; Class 10 the only active class). No migration.
+- **Zero database writes.** No runtime code, schema, policy or price change. Deployed production
+  commit remains `e6e34008bd264b1533707180428d860dda76a6f9`; no deployment performed.
+- Tests: **164 passing across 14 files** (was 153/14). Typecheck and production build pass.
+- `eduos-ai` not used; the `eduos` fleet repository not modified.
+
+### Current gate
+
+Named subject-expert review of the 400 prepared items, then verification, catalogue rows and a
+separate founder activation gate. **Class 9 activation, pricing and commercial release remain unauthorised.**

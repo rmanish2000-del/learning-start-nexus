@@ -752,3 +752,27 @@ authorisation and returned **WAVE_1_CONTENT_PREPARATION: PARTIAL**.
 
 Complete Class 9 authoring to the derived per-unit requirement, then a named subject-expert review cycle.
 **Class 9 activation, pricing and commercial release remain unauthorised.**
+
+---
+
+## Wave 1 continuation status update (2026-08-29 IST)
+
+**WAVE_1_QUESTION_BANK_COMPLETION: PASS · WAVE_1_COMMERCIAL_READINESS:
+BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW.** Supersedes the volume figures in the
+2026-08-28 Wave 1 status update above.
+
+- 400/400 original Class 9 questions prepared (Mathematics 240, Science 160); every unit holds
+  the derived requirement of 40 with 100% outcome and atom coverage and no single-outcome padding.
+- 0 human-reviewed, 0 verified, 0 approved — subject-expert review packages are ready but unused.
+- `VALIDATION: PASS` (0 errors / 0 warnings / 0 duplicates); rebuilds are byte-identical.
+- Class 9 stays inactive, hidden, non-purchasable and excluded from paid diagnostics;
+  Class 10 pricing (₹199 / ₹2,999 / ₹199 credit / ₹2,800 upgrade) and journeys untouched.
+- No database writes, no migration, no runtime change, no deployment. Deployed production commit
+  remains `e6e34008bd264b1533707180428d860dda76a6f9`.
+- Tests: 164 passing across 14 files. Typecheck and production build pass.
+- Read next: `EDUOS_WAVE_1_CLASS_9_CONTENT_PREPARATION_REPORT.md` (Addendum A) and the five
+  `EDUOS_CLASS_9_*` reports.
+
+### Current gate
+
+Named subject-expert review cycle. **Class 9 activation, pricing and commercial release remain unauthorised.**
