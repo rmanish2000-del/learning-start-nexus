@@ -79,16 +79,16 @@ export function PublicSiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">
+    <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
         <BrandMark />
 
-        <nav aria-label="Primary" className="hidden items-center gap-5 text-sm lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 text-sm lg:flex">
           {AUDIENCE_LINKS.map((item) => (
             <a
               key={item.label}
               href={item.hash}
-              className="rounded-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              className="rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               {item.label}
             </a>
@@ -100,7 +100,7 @@ export function PublicSiteHeader() {
           <Link
             to="/auth"
             search={{ tab: "parent", mode: "signin" }}
-            className="rounded-sm px-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             Sign In
           </Link>
@@ -109,12 +109,13 @@ export function PublicSiteHeader() {
               Book Demo
             </Link>
           </Button>
-          <Button asChild size="sm">
+          <Button asChild size="sm" className="shadow-sm">
             <Link to="/auth" search={FREE_CHECK_SEARCH}>
               Free Learning Check
             </Link>
           </Button>
         </div>
+
 
         <div className="flex items-center gap-1.5 lg:hidden">
           <LanguageToggle />
@@ -135,7 +136,7 @@ export function PublicSiteHeader() {
       {open ? (
         <div className="lg:hidden">
           <div
-            className="fixed inset-x-0 top-14 bottom-0 z-40 bg-background/70"
+            className="fixed inset-x-0 top-16 bottom-0 z-40 bg-background/70"
             onClick={() => setOpen(false)}
             aria-hidden
           />
@@ -145,7 +146,7 @@ export function PublicSiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
-            className="fixed inset-x-0 top-14 z-50 max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-b bg-background p-4 shadow-lg"
+            className="fixed inset-x-0 top-16 z-50 max-h-[calc(100dvh-4rem)] overflow-y-auto border-b bg-background p-4 shadow-lg"
           >
             <nav aria-label="Mobile" className="flex flex-col">
               {AUDIENCE_LINKS.map((item) => (
