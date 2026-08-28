@@ -30,14 +30,14 @@ describe("English-only product language", () => {
   });
 
   it("renders no language toggle anywhere in the app", () => {
-    const offenders = FILES.filter((f) => /LanguageToggle|LANGUAGE_LABELS|setLang\b/.test(readFileSync(f, "utf8")));
+    const offenders = FILES.filter((f) => !f.endsWith("english-only.test.ts") && /LanguageToggle|LANGUAGE_LABELS|setLang\b/.test(readFileSync(f, "utf8")));
     expect(offenders).toEqual([]);
   });
 
   it("contains no Devanagari user-facing copy outside comments in the i18n module", () => {
     const offenders = FILES.filter((f) => {
       if (f.endsWith(join("lib", "i18n", "context.tsx"))) return false;
-      if (f.endsWith("english-only.test.tsx")) return false;
+      if (f.endsWith("english-only.test.ts")) return false;
       return DEVANAGARI.test(readFileSync(f, "utf8"));
     });
     expect(offenders).toEqual([]);
