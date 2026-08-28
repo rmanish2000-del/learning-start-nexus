@@ -3607,6 +3607,29 @@
       "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q6",
       "outcomeId": "C9-SCI-U4-CH1-T3-O1",
       "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Why do plant breeders test a new variety across multiple locations before releasing it to farmers?",
+      "options": null,
+      "correctAnswer": "Multi-location trials confirm the variety performs consistently under different soil and climate conditions before wide release.",
+      "explanation": "A variety may perform well in one location but poorly in another due to soil or climate differences, so trials across sites confirm reliable, wide adaptability before release.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
       "kind": "assertion_reason",
       "difficulty": 4,
       "stimulus": null,
@@ -3950,6 +3973,34 @@
       "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q6",
       "outcomeId": "C9-SCI-U4-CH1-T5-O1",
       "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Sprinkler irrigation is especially suitable for which type of land?",
+      "options": [
+        "Uneven, undulating land",
+        "Only perfectly flat paddy fields",
+        "Waterlogged marshland",
+        "Land with no crops at all"
+      ],
+      "correctAnswer": "Uneven, undulating land",
+      "explanation": "Sprinkler irrigation sprays water like rainfall over the field, so it works well on uneven or sandy land where channel-based flooding is impractical.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
       "kind": "assertion_reason",
       "difficulty": 4,
       "stimulus": null,
@@ -4109,6 +4160,34 @@
     {
       "id": "C9-SCI-U4-CH1-T6-O1-Q6",
       "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Grain is dried to reduce moisture before being placed in storage bins. What is the main scientific reason for this step?",
+      "options": [
+        "Dry grain weighs more than moist grain",
+        "Low moisture content discourages fungal growth and insect activity",
+        "Drying changes the grain colour permanently",
+        "Dry grain germinates faster in storage"
+      ],
+      "correctAnswer": "Low moisture content discourages fungal growth and insect activity",
+      "explanation": "Reducing moisture content below a safe threshold before storage inhibits fungal growth and insect activity, preventing spoilage over long storage periods.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q7",
       "outcomeId": "C9-SCI-U4-CH1-T6-O1",
       "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
       "kind": "true_false",

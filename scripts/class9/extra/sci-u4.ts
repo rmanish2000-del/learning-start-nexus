@@ -166,6 +166,14 @@ const topicVarietyImprovement: AuthoredTopic = {
             "Wide adaptability allows the same variety to perform well across different regions and seasons, which is valuable for large-scale cultivation.",
         },
         {
+          kind: "short_answer",
+          difficulty: 4,
+          prompt: "Why do plant breeders test a new variety across multiple locations before releasing it to farmers?",
+          answer: "Multi-location trials confirm the variety performs consistently under different soil and climate conditions before wide release.",
+          explanation:
+            "A variety may perform well in one location but poorly in another due to soil or climate differences, so trials across sites confirm reliable, wide adaptability before release.",
+        },
+        {
           kind: "assertion_reason",
           difficulty: 4,
           prompt:
@@ -344,6 +352,15 @@ const topicIrrigationCropping: AuthoredTopic = {
             "Wells, tanks, canals and rivers are traditional irrigation sources, while drip and sprinkler systems are modern water-efficient methods.",
         },
         {
+          kind: "mcq",
+          difficulty: 3,
+          prompt: "Sprinkler irrigation is especially suitable for which type of land?",
+          options: ["Uneven, undulating land", "Only perfectly flat paddy fields", "Waterlogged marshland", "Land with no crops at all"],
+          answer: "Uneven, undulating land",
+          explanation:
+            "Sprinkler irrigation sprays water like rainfall over the field, so it works well on uneven or sandy land where channel-based flooding is impractical.",
+        },
+        {
           kind: "assertion_reason",
           difficulty: 4,
           prompt:
@@ -434,6 +451,21 @@ const topicProtectionStorage: AuthoredTopic = {
           answer: "Timely application of appropriate pesticide at recommended dose",
           explanation:
             "Applying the correct pesticide at the right time and dose controls pests effectively while minimising damage to the crop and environment.",
+        },
+        {
+          kind: "applied_mcq",
+          difficulty: 3,
+          prompt:
+            "Grain is dried to reduce moisture before being placed in storage bins. What is the main scientific reason for this step?",
+          options: [
+            "Dry grain weighs more than moist grain",
+            "Low moisture content discourages fungal growth and insect activity",
+            "Drying changes the grain colour permanently",
+            "Dry grain germinates faster in storage",
+          ],
+          answer: "Low moisture content discourages fungal growth and insect activity",
+          explanation:
+            "Reducing moisture content below a safe threshold before storage inhibits fungal growth and insect activity, preventing spoilage over long storage periods.",
         },
         {
           kind: "true_false",
