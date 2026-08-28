@@ -146,6 +146,13 @@ const topicSquaresCubes: AuthoredTopic = {
           explanation:
             "√0.99 × √99 = √(0.99 × 99) = √98.01, which is very close to √100 = 10.",
         },
+        {
+          kind: "short_answer",
+          difficulty: 2,
+          prompt: "Estimate the square root of 145 to the nearest whole number.",
+          answer: "12",
+          explanation: "12² = 144 and 13² = 169; since 145 is very close to 144, the nearest whole-number estimate is 12.",
+        },
       ],
     },
   ],
