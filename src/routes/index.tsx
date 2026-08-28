@@ -166,77 +166,153 @@ function LandingPage() {
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-14 pb-12 sm:pt-20 sm:pb-16">
-      <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <Badge variant="secondary" className="font-normal">
-            Learning Intelligence &amp; Intervention
-          </Badge>
-          <h1 className="mt-5 max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
-            Find the learning gaps. Close them with purpose. Prove the progress.
-          </h1>
-          <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-            EduOS identifies specific learning gaps, creates targeted next steps, tracks
-            interventions, and uses fresh reassessment to provide evidence of demonstrated
-            progress.
-          </p>
+    <section className="relative overflow-hidden border-b bg-gradient-to-b from-muted/50 via-background to-background">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[52rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-14 sm:pt-20 sm:pb-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+          <div>
+            <Badge
+              variant="secondary"
+              className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[0.7rem] font-medium tracking-widest text-primary uppercase"
+            >
+              Learning Intelligence &amp; Intervention
+            </Badge>
+            <h1 className="mt-6 max-w-2xl text-[2rem] leading-[1.08] font-semibold tracking-tight sm:text-[2.6rem] lg:text-[2.75rem]">
+              Find the learning gaps.
+              <br className="hidden sm:block" /> Close them with purpose.
+              <br className="hidden sm:block" />{" "}
+              <span className="text-primary">Prove the progress.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              EduOS identifies specific learning gaps, creates targeted next steps, tracks
+              interventions, and uses fresh reassessment to provide evidence of demonstrated
+              progress.
+            </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <Button asChild size="lg">
-              <Link to="/auth" search={FREE_CHECK_SEARCH}>
-                Start a Free Learning Check <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
-                Book a Centre Demo
-              </Link>
-            </Button>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Button asChild size="lg" className="min-h-11 shadow-sm">
+                <Link to="/auth" search={FREE_CHECK_SEARCH}>
+                  Start a Free Learning Check <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="min-h-11 bg-background">
+                <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
+                  Book a Centre Demo
+                </Link>
+              </Button>
+            </div>
+
+            <p className="mt-5 flex items-start gap-2 text-sm text-muted-foreground">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+              CBSE Class 10 Mathematics and Science. No credit card required for the free check.
+            </p>
+
+            <StatRow />
           </div>
 
-          <p className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
-            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-            CBSE Class 10 Mathematics and Science. No credit card required for the free check.
-          </p>
+          {/* Illustrative product visual. This is a static UI example of the
+              evidence chain layout — not a real learner record, and it contains
+              no personal data and no performance claim. */}
+          <ProofCard />
         </div>
-
-        {/* Illustrative product visual. This is a static UI example of the
-            evidence chain layout — not a real learner record, and it contains
-            no personal data and no performance claim. */}
-        <ProofCard />
       </div>
     </section>
   );
 }
 
+/**
+ * Process facts, not marketing statistics. Each entry names a real step of the
+ * EduOS loop; no percentages, counts or outcome claims are used here.
+ */
+const LOOP_STEPS = [
+  { step: "Step 1", label: "Diagnostic" },
+  { step: "Step 2", label: "Targeted Intervention" },
+  { step: "Step 3", label: "Fresh Reassessment" },
+  { step: "Step 4", label: "Evidence of Progress" },
+];
+
+function StatRow() {
+  return (
+    <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-t pt-6 sm:grid-cols-4">
+      {LOOP_STEPS.map((item) => (
+        <div key={item.label}>
+          <dt className="text-[0.7rem] font-medium tracking-widest text-muted-foreground uppercase">
+            {item.step}
+          </dt>
+          <dd className="mt-1 text-sm font-semibold tracking-tight text-foreground">
+            {item.label}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+/**
+ * ILLUSTRATIVE PRODUCT PREVIEW — not a real learner record.
+ *
+ * Every value below is static sample content describing the EduOS workflow
+ * (diagnostic → gap → intervention → reassessment → evidence). It contains no
+ * personal data, no outcome statistics and no guarantee of a result. The dark
+ * "ink" surface is a marketing-only token set that renders identically in the
+ * light and dark themes.
+ */
 function ProofCard() {
   const rows = [
-    { label: "Diagnostic", value: "Outcome-level result recorded" },
-    { label: "Gap detected", value: "Named against a specific outcome" },
-    { label: "Intervention", value: "Targeted next step, tracked" },
-    { label: "Reassessment", value: "Fresh questions, never reused" },
-    { label: "Evidence", value: "Steps linked as one record" },
+    { label: "Diagnostic", value: "Outcome-level result recorded", state: "Recorded" },
+    { label: "Gap detected", value: "Named against a specific outcome", state: "Named" },
+    { label: "Intervention", value: "Targeted next step, tracked", state: "In progress" },
+    { label: "Reassessment", value: "Fresh questions, never reused", state: "Scheduled" },
+    { label: "Evidence", value: "Steps linked as one record", state: "Available" },
   ];
   return (
-    <div className="rounded-2xl border bg-card p-5 shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
-        <h2 className="text-sm font-semibold">Evidence chain</h2>
-        <Badge variant="outline" className="font-normal text-muted-foreground">
-          Illustrative product visual
-        </Badge>
-      </div>
-      <dl className="divide-y">
-        {rows.map((row) => (
-          <div key={row.label} className="grid gap-0.5 py-3 sm:grid-cols-[140px_1fr] sm:gap-4">
-            <dt className="text-sm text-muted-foreground">{row.label}</dt>
-            <dd className="text-sm font-medium">{row.value}</dd>
+    <figure className="relative m-0">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-6 -bottom-3 h-10 rounded-b-3xl bg-foreground/10 blur-xl"
+      />
+      <div
+        role="group"
+        aria-label="Illustrative product preview of the EduOS evidence chain. Sample content only."
+        className="relative overflow-hidden rounded-2xl border border-ink-border bg-ink text-ink-foreground shadow-xl"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink-border bg-ink-raised px-5 py-4">
+          <div>
+            <p className="text-[0.65rem] font-medium tracking-widest text-ink-muted uppercase">
+              EduOS · Learner workspace
+            </p>
+            <h2 className="mt-1 text-sm font-semibold text-ink-foreground">Evidence chain</h2>
           </div>
-        ))}
-      </dl>
-      <p className="mt-1 text-xs text-muted-foreground">
-        Example layout only. It does not represent a real learner or an outcome guarantee.
-      </p>
-    </div>
+          <span className="rounded-full border border-ink-border px-2.5 py-1 text-[0.65rem] font-medium tracking-wide text-ink-muted">
+            Illustrative sample
+          </span>
+        </div>
+
+        <dl className="divide-y divide-ink-border px-5">
+          {rows.map((row) => (
+            <div key={row.label} className="flex items-start justify-between gap-4 py-3.5">
+              <div className="min-w-0">
+                <dt className="text-[0.7rem] font-medium tracking-widest text-ink-muted uppercase">
+                  {row.label}
+                </dt>
+                <dd className="mt-1 text-sm font-medium text-ink-foreground">{row.value}</dd>
+              </div>
+              <span className="shrink-0 rounded-md bg-white/5 px-2 py-1 text-[0.7rem] font-medium text-ink-accent">
+                {row.state}
+              </span>
+            </div>
+          ))}
+        </dl>
+
+        <figcaption className="border-t border-ink-border bg-ink-raised px-5 py-3 text-xs text-ink-muted">
+          Sample layout only. It does not represent a real learner, a real result, or a guarantee
+          that a gap will close.
+        </figcaption>
+      </div>
+    </figure>
   );
 }
 
@@ -260,24 +336,29 @@ const PROBLEMS = [
 
 function ProblemSection() {
   return (
-    <section id="problem" className="scroll-mt-16 border-t">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
-        <p className="text-xs font-medium tracking-widest text-primary uppercase">The problem</p>
-        <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-          Marks describe the result. They rarely explain the cause.
-        </h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+    <section id="problem" className="scroll-mt-16 bg-muted/30">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+        <div className="max-w-2xl">
+          <p className="text-xs font-medium tracking-widest text-primary uppercase">The problem</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-balance sm:text-4xl">
+            Marks describe the result. They rarely explain the cause.
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {PROBLEMS.map((item) => (
-            <div key={item.title} className="rounded-xl border bg-card p-5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-                <item.icon className="h-4.5 w-4.5 text-primary" aria-hidden />
+            <div
+              key={item.title}
+              className="rounded-2xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                <item.icon className="h-5 w-5 text-primary" aria-hidden />
               </span>
-              <h3 className="mt-3 text-sm font-semibold">{item.title}</h3>
-              <p className="mt-1.5 text-sm text-muted-foreground">{item.body}</p>
+              <h3 className="mt-4 text-base font-semibold tracking-tight">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 flex items-start gap-2 text-sm text-muted-foreground">
+        <p className="mt-8 flex items-start gap-2 text-sm text-muted-foreground">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
           EduOS is built for the step in between: naming the gap, acting on it, and checking
           whether the action worked.
@@ -286,6 +367,7 @@ function ProblemSection() {
     </section>
   );
 }
+
 
 function ParentsSection() {
   return (

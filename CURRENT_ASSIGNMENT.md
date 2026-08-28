@@ -104,3 +104,17 @@ above is unchanged.
 - Implementation direction: **NONE APPROVED**
 - Next gate: founder selects Option A, B, C or D
 - CODE_CHANGED: NO · DEPLOYED: NO · Test baseline re-run: 97/97 passing
+
+---
+
+## 2026-08-28 — Figma-Informed Public Visual Refinement (Direction B) — CURRENT
+
+- Approved direction: Recommendation B (refine production toward verified Figma composition; evergreen + Geist retained; Option B dark identity NOT adopted).
+- Refined: public navigation chrome (64px bar, padded nav, CTA elevation), hero composition and hierarchy, new dark illustrative product-preview card (marketing-only ink tokens), four-step process stat row (process facts only, no statistics), problem-section transition/elevation.
+- Deliberately unchanged (no Figma evidence): How EduOS Works, Parents, Centres, Schools, Trust, Pricing, FAQ, Free Learning Check form, footer architecture, About and Contact bodies.
+- Product truth unchanged: India/INR, CBSE Class 10 Mathematics and Science, Rs199 diagnostic, Rs2,999 annual plan, Rs199 credit / Rs2,800 upgrade, all routes and backend behaviour.
+- Verification: 97/97 Vitest, typecheck clean, production build success, no console errors, no horizontal overflow at 390/768/1280/1440, single H1, dark theme verified.
+- Report: EDUOS_FIGMA_REFINEMENT_RELEASE_REPORT.md
+- Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
+- Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
+- Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
