@@ -177,3 +177,12 @@ All continuity files live in the canonical repository, never only in chat.
 - Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
 - Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
 - Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
+
+---
+
+## Wave 0 operating note (2026-08-28)
+
+Curriculum scope, entitlement and pricing are now data-driven. Any future class or subject becomes visible only
+by passing `evaluateCommercialReadiness()` and being set to `commercial_status = 'purchasable'` by an admin with
+named subject-expert evidence. Never hardcode a price or a class in a route component: resolve it through
+`src/lib/catalogue.server.ts`.

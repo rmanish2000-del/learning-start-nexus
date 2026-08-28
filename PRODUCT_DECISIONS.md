@@ -104,3 +104,14 @@ Updated by the Lovable agent whenever a decision is implemented, reversed, or co
 - Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
 - Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
 - Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
+
+---
+
+## 2026-08-28 — Wave 0 implementation of decisions D1–D9
+
+- D1 catalogue-driven scope, D2 academic-year versioning from CBSE 2026-27, D3 Classes 9–12 subject structure,
+  D4 configurable pricing (no new price approved or active), D5 one ₹199 credit per learner applied once,
+  D6 tax configured but inactive, D7 named subject-expert sign-off required before commercial activation,
+  D8 centre contract pricing per active learner/year, D9 English-only copy — all implemented structurally.
+- Commercial scope decision unchanged: CBSE Class 10 Mathematics and Science, ₹199 diagnostic, ₹2,999 annual
+  plan, ₹199 credit, ₹2,800 upgrade. No future class, subject, bundle or price may be purchased.

@@ -77,3 +77,19 @@ before commercial activation) · D8 approved for architecture (centre pricing pe
 - Production remains English-only, CBSE Class 10 Mathematics and Science, pricing unchanged.
 
 **Next gate:** Wave 0 catalogue, versioning, entitlement and pricing-foundation implementation.
+
+---
+
+## 2026-08-28 — Wave 0 Curriculum Catalogue, Entitlement and Pricing Foundation — CURRENT
+
+**Priority:** P0 Expansion Foundation · **Status:** Complete — implemented, tested and deployed.
+
+- Additive migration only; no destructive statement, no data loss, no price change.
+- Catalogue, academic-year versioning, learner subject selections, entitlements and configurable pricing are live
+  as structure; commercial scope remains CBSE Class 10 Mathematics and Science.
+- Classes 9, 11, 12, all streams, bundles and candidate prices are inactive and invisible.
+- Tests 135 passing; typecheck and production build clean; no new security or RLS finding.
+- Evidence: `EDUOS_WAVE_0_FOUNDATION_IMPLEMENTATION_REPORT.md`.
+- Rollback: `48548b420c601f8bcaf11a47c6853a55ebfb5526`.
+
+**Next gate:** Wave 1 — Class 9 Mathematics and Science content preparation.

@@ -132,3 +132,17 @@ Key files: `src/lib/assessments.server.ts` (`createAssessmentDraft`), `src/lib/a
 - Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
 - Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
 - Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
+
+---
+
+## 2026-08-28 — Wave 0 foundation
+
+- New tables: `catalogue_boards`, `catalogue_academic_years`, `catalogue_classes`, `catalogue_streams`,
+  `catalogue_subjects`, `catalogue_subject_sources`, `learner_subject_selections`, `entitlements`,
+  `price_bundles`, `price_plans`, `discount_rules`, `centre_contracts`. All with GRANTs + RLS.
+- New columns: `learners.stream_label`, `books.catalogue_subject_id`, `parent_orders.catalogue_subject_id`,
+  `parent_orders.price_snapshot`, `parent_entitlements.catalogue_subject_id` (all nullable/defaulted).
+- New modules: `src/lib/catalogue-shared.ts` (pure rules) and `src/lib/catalogue.server.ts` (readers).
+  `parent-diagnostic.server.ts` now also refuses non-purchasable catalogue subjects at order creation.
+- Tests: **135 passing, 14 files**. `bunx vitest run`, `bunx tsgo --noEmit`, `bun run build` all clean.
+- Legacy `parent_entitlements` and the `PRICING` constant remain the authoritative live write paths.

@@ -11,6 +11,7 @@
 // entitlements and is reached by two idempotent paths: the signature-verified
 // checkout handler and the signature-verified `payment.captured` webhook.
 
+import { isSubjectPurchasable } from "./catalogue.server";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { buildDiagnosticPlan, type EngineOutcome } from "./diagnostic-shared";
 import {
@@ -304,12 +305,21 @@ export async function createDiagnosticOrder(input: {
 
   const { data: book, error: bookError } = await supabaseAdmin
     .from("books")
-    .select("id, org_id, board, grade, subject, archived_at")
+    .select("id, org_id, board, grade, subject, archived_at, catalogue_subject_id")
     .eq("id", input.bookId)
     .maybeSingle();
   if (bookError) throw new Error(bookError.message);
   if (!book || book.archived_at) throw new Error("That subject is not available.");
   if (book.grade !== 10) throw new Error("Only Class 10 diagnostics are on sale.");
+  // Wave 0: the catalogue is now the authority on what may be sold. The
+  // explicit Class 10 guard above is kept deliberately — this check can only
+  // ever refuse more, never less.
+  if (
+    book.catalogue_subject_id &&
+    !(await isSubjectPurchasable(book.catalogue_subject_id))
+  ) {
+    throw new Error("That subject is not available.");
+  }
 
   const { data: unit, error: unitError } = await supabaseAdmin
     .from("curriculum_units")

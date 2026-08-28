@@ -646,3 +646,13 @@ If the new chat cannot answer these from the supplied files, provide the missing
 - Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
 - Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
 - Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
+
+---
+
+## Handoff update — 2026-08-28 (Wave 0 complete)
+
+- Wave 0 foundation shipped: catalogue, versioning, learner subject selections, entitlements, pricing config.
+- Commercial scope: CBSE Class 10 Mathematics and Science only; ₹199 / ₹2,999 unchanged.
+- Tests 135 passing; typecheck and build clean; no new security finding.
+- Read first: `EDUOS_WAVE_0_FOUNDATION_IMPLEMENTATION_REPORT.md`, then `EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md`.
+- Next gate: Wave 1 — Class 9 Mathematics and Science content preparation.

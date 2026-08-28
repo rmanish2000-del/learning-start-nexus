@@ -184,3 +184,18 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - Rollback reference (pre-release): 1fcae5f27ae75e73657e4f8affbd889ef94d9d1a (code-only; no schema changes).
 - Known limitation: Figma source covers ~1.5 sections and is a Figma Make code instance, so exact token extraction and full-site parity are not possible.
 - Next founder acceptance gate: visual acceptance of the refined public hero, product preview and problem section on https://www.eduos.global.
+
+---
+
+## 2026-08-28 — Wave 0 Curriculum Catalogue, Entitlement and Pricing Foundation
+
+- Additive migration added the curriculum catalogue (boards, academic years, classes, streams, subjects,
+  subject sources), learner subject selections, the new `entitlements` model, and configurable pricing
+  (`price_plans`, `price_bundles`, `discount_rules`, `centre_contracts`) plus `parent_orders.price_snapshot`.
+- Backfilled CBSE 2026-27, Classes 9–12 (only Class 10 active) and the two live Class 10 subjects; books,
+  orders and legacy purchases mapped; live prices recorded as configuration (₹199 / ₹2,999, unchanged).
+- Commercial scope is unchanged: CBSE Class 10 Mathematics and Science only. Classes 9, 11, 12, all streams,
+  bundles and future prices exist structurally but are inactive and invisible.
+- Tests: 135 passing (13 files). Typecheck and production build clean. No new security or RLS finding.
+- Evidence: `EDUOS_WAVE_0_FOUNDATION_IMPLEMENTATION_REPORT.md`. Rollback: `48548b420c601f8bcaf11a47c6853a55ebfb5526`.
+- Next gate: Wave 1 — Class 9 Mathematics and Science content preparation.
