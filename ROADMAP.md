@@ -128,3 +128,12 @@ The founder owns the "Candidate next" section and sets priorities. The Lovable a
   tables, no migration, no content import, no class or subject activation, no pricing change,
   no new selectors.
 - **Next gate:** Wave 0 catalogue, versioning, entitlement and pricing-foundation implementation.
+
+---
+
+## Wave 0 — COMPLETE (2026-08-28)
+
+Catalogue, academic-year versioning, learner subject selections, entitlement model, pricing configuration and
+Class 10 backfill shipped. No user-visible change; no new class, subject or price activated.
+
+**Next gate: Wave 1 — Class 9 Mathematics and Science content preparation.**
