@@ -1,19 +1,26 @@
 {
   "provenance": {
-    "extraction_timestamp": "2026-08-28T20:27:52.927Z",
-    "repository_full_sha": "b94a22c6a96f08e800e24faa4228f69a4e845c22",
+    "bundle_format_version": "2.0.0",
+    "bundle_generation_timestamp": "2026-08-28T20:37:38.187Z",
+    "source_evidence_commit": "4ad886df33a0795a1f4f4ad29a53d3856d2b485b",
+    "bundle_generation_base_commit": "6cdc73129059b548675aba8dd2392bedae5e45c8",
+    "package_commit": "REPORTED_AFTER_COMMIT",
+    "self_reference_policy": "The final Git package commit SHA is NOT embedded in any bundle file: a file inside a commit cannot contain that commit's own SHA. package_commit is reported only in the Lovable final response and repository history (REPORTED_AFTER_COMMIT). GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 intentionally excludes its own hash, and bundle_tree_hash is computed over all payload files excluding GEMINI_REVIEW_BUNDLE_MANIFEST.json and GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256. This bundle is therefore not self-authenticating.",
     "data_source": "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
     "query_or_script": "scripts/compliance/gemini-bundle.ts",
     "evidence_basis": "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
     "validator": "compliance-validator/1.0.0",
     "limitations": [
       "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
+      "No official source document has been checksummed; every source record remains PENDING_CONFIRMATION.",
       "Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.",
       "EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.",
-      "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.",
+      "Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported. Missing evidence is reported as null, never as zero.",
       "Duplicate-question detection is not computable from the snapshot and is not asserted here.",
       "Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.",
-      "No human subject-expert review is recorded for session 2026-27."
+      "No human subject-expert review is recorded for session 2026-27.",
+      "Five academic-overreach flags remain open in the gap register.",
+      "Two Science ambiguities remain unresolved in the candidate baseline."
     ]
   },
   "depth_law": "verified items per unit >= max(2 x diagnostic target, 2 x outcomes x per-outcome minimum, 2 x diagnostic minimum)",

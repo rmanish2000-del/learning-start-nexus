@@ -1,7 +1,10 @@
 # EduOS — Class 10 (2026-27) Gemini Crosswalk Review Bundle
 
-**Extraction timestamp:** 2026-08-28T20:27:52.927Z  
-**Repository full SHA:** b94a22c6a96f08e800e24faa4228f69a4e845c22  
+**Bundle format version:** 2.0.0  
+**Bundle generation timestamp:** 2026-08-28T20:37:38.187Z  
+**source_evidence_commit:** 4ad886df33a0795a1f4f4ad29a53d3856d2b485b  
+**bundle_generation_base_commit:** 6cdc73129059b548675aba8dd2392bedae5e45c8  
+**package_commit:** REPORTED_AFTER_COMMIT (see final response / repository history)  
 **Validator:** compliance-validator/1.0.0  
 **CLASS_10_COMPLIANCE_STATUS:** SOURCE_PENDING
 
@@ -34,6 +37,8 @@ Each `exports/*.json` carries a `provenance` block with extraction timestamp, re
 | Official requirements in baseline | 38 | 46 |
 | Crosswalk rows emitted | 38 | 46 |
 | Requirements without a complete unit+chapter mapping | 2 | 13 |
+| Declared exclusions in baseline | 0 | 6 |
+| Declared ambiguities in baseline | 0 | 2 |
 
 Every official requirement produces exactly one crosswalk row. Missing mappings are emitted with `null` values and an explicit verdict; they are never omitted.
 
@@ -52,13 +57,20 @@ Preserved unchanged: **CLASS_10_COMPLIANCE_STATUS: SOURCE_PENDING**. No source r
 ## Limitations
 
 - CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.
+- No official source document has been checksummed; every source record remains PENDING_CONFIRMATION.
 - Atom identifiers are not present in the frozen snapshot; atom counts are reported and atom_ids is null.
 - EduOS chapter and topic identifiers are not present in the frozen snapshot; titles are reported and ids are null.
-- Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported.
+- Approved-question counts are not separately recorded in the snapshot; total and verified question counts are reported. Missing evidence is reported as null, never as zero.
 - Duplicate-question detection is not computable from the snapshot and is not asserted here.
 - Official-requirement level depth is inherited from the mapped EduOS chapter's outcomes; CBSE does not publish per-requirement item counts.
 - No human subject-expert review is recorded for session 2026-27.
+- Five academic-overreach flags remain open in the gap register.
+- Two Science ambiguities remain unresolved in the candidate baseline.
+
+## Provenance and self-reference
+
+`source_evidence_commit` is the commit containing the evidence read by the exporter. `bundle_generation_base_commit` is the commit checked out when the exporter ran. `package_commit` is deliberately **not** stored inside the bundle — a file inside a commit cannot contain that commit's own SHA — and is reported after commit (REPORTED_AFTER_COMMIT) in the final response and repository history. This bundle is therefore not self-authenticating.
 
 ## Integrity
 
-`GEMINI_REVIEW_BUNDLE_MANIFEST.json` lists every file with byte size, SHA-256, content category, source provenance, privacy classification and extraction timestamp. `GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256` is a `sha256sum -c` compatible checklist covering the same files.
+`GEMINI_REVIEW_BUNDLE_MANIFEST.json` lists every file with byte size, SHA-256, content category, source provenance, privacy classification and bundle generation timestamp. `bundle_tree_hash` is a deterministic hash over all payload files. `GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256` is a `sha256sum -c` compatible checklist covering the same files.
