@@ -155,15 +155,15 @@ describe("learner subject selections", () => {
   }
 
   it("supports multiple subjects with no stream label", () => {
-    const scope = scopeWith(["phy", "che", "mat"]);
+    const scope = scopeWith(["phy", "che", "mat11"]);
     expect(scope.streamLabel).toBeNull();
     expect(scope.selections).toHaveLength(3);
   });
 
   it.each([
-    ["PCM", ["phy", "che", "mat"]],
+    ["PCM", ["phy", "che", "mat11"]],
     ["PCB", ["phy", "che", "bio"]],
-    ["PCMB", ["phy", "che", "mat", "bio"]],
+    ["PCMB", ["phy", "che", "mat11", "bio"]],
   ])("supports %s structurally", (label, ids) => {
     const scope = scopeWith(ids, label);
     expect(isStructurallyValidSelection(scope, available)).toBe(true);
