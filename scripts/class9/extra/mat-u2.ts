@@ -73,7 +73,7 @@ const remainderTheoremTopic: AuthoredTopic = {
           difficulty: 4,
           stimulus:
             "Assertion: (x + 3) is a factor of x³ + 3x² − x − 3. Reason: By the factor theorem, (x − a) is a factor of p(x) if and only if p(a) = 0.",
-          prompt: "Choose the correct option about the assertion and the reason.",
+          prompt: "Pick the statement that correctly links the given assertion with the given reason.",
           options: [
             "Both are true and the reason correctly explains the assertion",
             "Both are true but the reason does not explain the assertion",
@@ -163,7 +163,7 @@ const simultaneousEquationsTopic: AuthoredTopic = {
           difficulty: 4,
           stimulus:
             "Assertion: The linear equation 2x + y = 7 has infinitely many solutions. Reason: For every real value chosen for x, a corresponding value of y can be found so that the ordered pair satisfies the equation.",
-          prompt: "Choose the correct option about the assertion and the reason.",
+          prompt: "Decide whether the reason given properly justifies the stated assertion.",
           options: [
             "Both are true and the reason correctly explains the assertion",
             "Both are true but the reason does not explain the assertion",
@@ -249,7 +249,7 @@ const factorisationExtra: AuthoredQuestion[] = [
     difficulty: 4,
     stimulus:
       "Assertion: x³ + 8 factorises as (x + 2)(x² − 2x + 4). Reason: a³ + b³ = (a + b)(a² − ab + b²) for all real a and b.",
-    prompt: "Choose the correct option about the assertion and the reason.",
+    prompt: "Select the option that correctly relates this assertion to this reason.",
     options: [
       "Both are true and the reason correctly explains the assertion",
       "Both are true but the reason does not explain the assertion",
@@ -329,7 +329,7 @@ const graphExtra: AuthoredQuestion[] = [
     difficulty: 5,
     stimulus:
       "Assertion: The lines y = 2x + 1 and y = 2x − 3 never meet. Reason: Two distinct lines with the same slope are parallel and do not intersect.",
-    prompt: "Choose the correct option about the assertion and the reason.",
+    prompt: "Identify which option best describes how this reason relates to this assertion.",
     options: [
       "Both are true and the reason correctly explains the assertion",
       "Both are true but the reason does not explain the assertion",
