@@ -186,3 +186,19 @@ Curriculum scope, entitlement and pricing are now data-driven. Any future class 
 by passing `evaluateCommercialReadiness()` and being set to `commercial_status = 'purchasable'` by an admin with
 named subject-expert evidence. Never hardcode a price or a class in a route component: resolve it through
 `src/lib/catalogue.server.ts`.
+
+---
+
+## 2026-08-28 11:44 UTC — Wave 0 Production Closeout
+
+- Canonical branch: `main` (working branch `edit/edt-09c92cdc`, canonical tree).
+- Wave 0 application commit: `e38a303b361ec1848c12ce7e490a8e0a7945f528` — "Implemented Wave 0 foundation".
+- Deployed production commit: `e6e34008bd264b1533707180428d860dda76a6f9` (Wave 0 + P0 profile-org RLS hardening migration `20260828114401_*.sql`).
+- Deployment: https://www.eduos.global — LIVE, HTTP 200, verified 2026-08-28 ~11:47 UTC.
+- Tests 135/135 (13 files) · typecheck clean · production build clean · worktree clean.
+- Migrations committed: `20260828112426_*` (Wave 0 additive) and `20260828114401_*` (profiles org_id self-assignment fix). Translations: none required (English-only).
+- Security: the critical finding "any user can join any organization" (pre-existing profiles INSERT/UPDATE policy allowing self-assigned `org_id`) was found during the closeout scan and fixed: self-insert must have `org_id IS NULL`, self-update must keep `org_id` unchanged, admins remain scoped to their own org. Rescan: 0 critical, warnings only.
+- Database: Wave 0 migration applied; 2 purchasable subjects; 1 active class (Class 10); 0 active streams; 0 orphan catalogue links; 0 duplicate canonical codes; 5 legacy entitlements grandfathered; RLS active on every new table; order amounts unchanged (19 900 / 280 000 paise); active plans 19 900 / 299 900 paise.
+- Production verification: ₹199, ₹2,999, ₹2,800, CBSE Class 10 Mathematics and Science all present; Classes 9/11/12, Commerce, Humanities and all streams absent from public surfaces; English-only copy intact.
+- Rollback: code `48548b420c601f8bcaf11a47c6853a55ebfb5526`; both migrations are additive/policy-only and require no data rollback.
+- Next gate: Wave 1 — Class 9 Mathematics and Science content preparation (not started).
