@@ -1100,6 +1100,167 @@
       }
     },
     {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which organelle is described as the powerhouse of the cell because it releases energy by respiration?",
+      "options": [
+        "Mitochondrion",
+        "Ribosome",
+        "Golgi apparatus",
+        "Vacuole"
+      ],
+      "correctAnswer": "Mitochondrion",
+      "explanation": "Mitochondria break down food molecules to release energy and store it as ATP, which is why they are called the powerhouses of the cell.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Ribosomes are the sites where proteins are synthesised inside a cell.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Ribosomes translate genetic information into polypeptide chains, making them the cell's protein-synthesising machinery.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "What role does the Golgi apparatus play after proteins are made in the endoplasmic reticulum?",
+      "options": null,
+      "correctAnswer": "It modifies, packages and dispatches these proteins to their destinations inside or outside the cell.",
+      "explanation": "The Golgi apparatus receives materials from the endoplasmic reticulum, packs them into vesicles after chemical modification, and sends them to the correct location.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": "Assertion: Muscle cells of an athlete contain an unusually large number of mitochondria. Reason: Mitochondria are the main site of ATP generation, and muscle activity demands a continuous energy supply.",
+      "prompt": "Choose the correct option about the assertion and the reason.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Cells with high energy demand, such as active muscle cells, contain more mitochondria to meet their greater requirement for ATP generated during respiration.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The smooth endoplasmic reticulum in liver cells is chiefly associated with which function?",
+      "options": [
+        "Synthesis of lipids and detoxification of substances",
+        "Synthesis of proteins on attached ribosomes",
+        "Digestion of worn-out cell organelles",
+        "Storage of the cell's genetic material"
+      ],
+      "correctAnswer": "Synthesis of lipids and detoxification of substances",
+      "explanation": "Smooth endoplasmic reticulum lacks ribosomes and is mainly involved in lipid synthesis and in detoxifying drugs and poisons, notably in liver cells.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T1-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T1/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH1-T1-O1",
+      "atomId": "C9-SCI-U2-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A plant cell is observed to have a large central sac occupying most of its volume, pushing the cytoplasm to the edge. This structure is most likely the:",
+      "options": [
+        "Vacuole",
+        "Nucleus",
+        "Mitochondrion",
+        "Golgi apparatus"
+      ],
+      "correctAnswer": "Vacuole",
+      "explanation": "Mature plant cells typically have one large central vacuole bound by the tonoplast that stores water, sap and wastes, and maintains turgidity.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U2-CH1-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q1",
       "outcomeId": "C9-SCI-U2-CH1-T2-O1",
@@ -1139,6 +1300,272 @@
       "options": null,
       "correctAnswer": "Because it allows only certain substances to pass through it while restricting others.",
       "explanation": "The lipid–protein membrane lets small or specific molecules such as water, oxygen and carbon dioxide move across, but controls or blocks the passage of many other solutes.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "The net movement of a substance from a region of its higher concentration to a region of its lower concentration, without using energy, is called:",
+      "options": [
+        "Diffusion",
+        "Active transport",
+        "Plasmolysis",
+        "Turgor"
+      ],
+      "correctAnswer": "Diffusion",
+      "explanation": "Diffusion is the passive movement of particles down their concentration gradient and does not require the cell to expend energy.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Osmosis is the diffusion of water molecules from a region of lower water concentration to a region of higher water concentration across a semi-permeable membrane.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Osmosis moves water from a region of higher water concentration (dilute solution) to a region of lower water concentration (concentrated solution) across a semi-permeable membrane.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State what happens to red blood cells when they are placed in distilled water.",
+      "options": null,
+      "correctAnswer": "They gain water by osmosis, swell and may burst because distilled water is hypotonic to the cell contents.",
+      "explanation": "Distilled water has a very high water concentration compared with the cell interior, so water enters the cells by osmosis, causing swelling and possible bursting since red blood cells lack a rigid wall.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Raisins soaked in plain water swell up after some time. This happens mainly because:",
+      "options": [
+        "water enters the raisin cells by osmosis as the surrounding water is hypotonic",
+        "water leaves the raisin cells by osmosis into the surrounding solution",
+        "sugar diffuses out of the raisin faster than water enters",
+        "the raisin cells undergo active transport of water"
+      ],
+      "correctAnswer": "water enters the raisin cells by osmosis as the surrounding water is hypotonic",
+      "explanation": "The dried raisin has a low internal water concentration, so when placed in plain water, water moves into the cells by osmosis, making the raisin swell.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": "Assertion: Farmers avoid applying excess chemical fertiliser too close to plant roots. Reason: A highly concentrated fertiliser solution around the roots can draw water out of root cells by osmosis and damage them.",
+      "prompt": "Choose the correct option about the assertion and the reason.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Excess fertiliser makes the soil solution hypertonic to root cells, so water moves out of the roots by osmosis, causing wilting, which is why farmers avoid over-concentration near roots.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T2-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T2/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH1-T2-O1",
+      "atomId": "C9-SCI-U2-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "When a plant cell placed in pure water becomes fully swollen and firm without bursting, this state is called:",
+      "options": [
+        "Turgidity",
+        "Plasmolysis",
+        "Flaccidity",
+        "Dehydration"
+      ],
+      "correctAnswer": "Turgidity",
+      "explanation": "The rigid cell wall resists excess water entry and pushes back on the swollen protoplast, so the cell becomes firm and turgid instead of bursting.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "The cell theory states that all living organisms are composed of cells and that:",
+      "options": [
+        "cells arise only from pre-existing cells",
+        "every cell contains chlorophyll",
+        "cells always occur singly, never in groups",
+        "only plants are made of cells"
+      ],
+      "correctAnswer": "cells arise only from pre-existing cells",
+      "explanation": "The cell theory holds that the cell is the basic unit of life, all organisms are made of one or more cells, and new cells form by division of existing cells.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "A bacterial cell has a well-defined nuclear membrane enclosing its genetic material.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Bacteria are prokaryotes: their genetic material lies free in the cytoplasm as a nucleoid, without a surrounding nuclear membrane.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Give one structural feature that distinguishes a eukaryotic cell from a prokaryotic cell.",
+      "options": null,
+      "correctAnswer": "A eukaryotic cell has a nucleus enclosed by a nuclear membrane, unlike a prokaryotic cell.",
+      "explanation": "Eukaryotic cells possess a true, membrane-bound nucleus and membrane-bound organelles, while prokaryotic cells lack both.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-5",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH1-T3-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH1-T3-O1",
+      "atomId": "C9-SCI-U2-CH1-T3-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 3,
+      "stimulus": "Assertion: An onion cell and a cheek cell are both classified as eukaryotic cells. Reason: Both cells possess a nucleus enclosed within a nuclear membrane.",
+      "prompt": "Choose the correct option about the assertion and the reason.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Both onion and cheek cells have a nuclear membrane enclosing their genetic material, which is precisely why they are grouped as eukaryotic cells.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -1202,6 +1629,162 @@
       }
     },
     {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which meristem is located at the tips of roots and shoots and is responsible for increase in length?",
+      "options": [
+        "Apical meristem",
+        "Lateral meristem",
+        "Intercalary meristem",
+        "Ground meristem"
+      ],
+      "correctAnswer": "Apical meristem",
+      "explanation": "Apical meristems occur at root and shoot tips and their continuous cell division brings about growth in the length of the plant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Lateral meristem is responsible for increase in the girth (thickness) of stems and roots.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Lateral meristem, such as the vascular cambium, lies parallel to the long axis of the organ and its division increases the diameter of stems and roots.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Why does grass regain its height quickly after being cut close to the ground?",
+      "options": null,
+      "correctAnswer": "Because intercalary meristem present at the base of the leaves and internodes keeps dividing and adds new tissue.",
+      "explanation": "Intercalary meristem occurs at the base of leaves or internodes, away from the tip, and its activity allows rapid regrowth after cutting or grazing.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A ring of new wood is added around the stem of a tree every year, increasing its girth. Which tissue is responsible for this?",
+      "options": [
+        "Vascular cambium (a lateral meristem)",
+        "Apical meristem",
+        "Epidermis",
+        "Sclerenchyma"
+      ],
+      "correctAnswer": "Vascular cambium (a lateral meristem)",
+      "explanation": "The vascular cambium is a lateral meristem between xylem and phloem; its cell division each growing season produces the annual growth rings seen in tree trunks.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Phloem mainly functions to transport:",
+      "options": [
+        "Food materials such as sugars from leaves to other plant parts",
+        "Water and minerals from roots to leaves",
+        "Oxygen from stomata to internal tissues",
+        "Waste products out of the plant body"
+      ],
+      "correctAnswer": "Food materials such as sugars from leaves to other plant parts",
+      "explanation": "Phloem, made of sieve tubes and companion cells, conducts the products of photosynthesis from leaves to the rest of the plant, in contrast to xylem, which conducts water.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T1-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T1/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH2-T1-O1",
+      "atomId": "C9-SCI-U2-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "How do the cells of meristematic tissue generally differ in shape from the cells of permanent tissue?",
+      "options": null,
+      "correctAnswer": "Meristematic cells are small, thin-walled and roughly spherical or polygonal with dense cytoplasm, while permanent tissue cells are larger and often specialised in shape.",
+      "explanation": "Because meristematic cells divide repeatedly, they stay compact with little vacuolation and dense cytoplasm; once they differentiate into permanent tissue, they enlarge and take on shapes suited to a specific function.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U2-CH2-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q1",
       "outcomeId": "C9-SCI-U2-CH2-T2-O1",
@@ -1241,6 +1824,272 @@
       "options": null,
       "correctAnswer": "Blood",
       "explanation": "Blood is a fluid connective tissue whose plasma matrix carries cells, dissolved gases, nutrients and wastes throughout the body.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which tissue forms the outer covering of the body and lines internal cavities such as the gut?",
+      "options": [
+        "Epithelial tissue",
+        "Connective tissue",
+        "Muscular tissue",
+        "Nervous tissue"
+      ],
+      "correctAnswer": "Epithelial tissue",
+      "explanation": "Epithelial tissue consists of closely packed cells forming continuous sheets that cover body surfaces and line internal organs and cavities.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Neurons, the structural units of nervous tissue, are specialised to conduct electrical impulses over long distances.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "A neuron has a cell body with long extensions called axons and dendrites that allow it to receive and transmit nerve impulses rapidly across distances.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Name the connective tissue that binds bones to each other at joints, and state one feature suited to this role.",
+      "options": null,
+      "correctAnswer": "Ligament; it is fibrous and elastic, allowing some flexibility while firmly holding bones together at a joint.",
+      "explanation": "Ligaments are strong yet slightly elastic bands of connective tissue that connect bone to bone, stabilising joints while permitting a controlled range of movement.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q6",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The lining of the small intestine is made of a single layer of tall, closely fitted cells adapted for absorption. This is an example of:",
+      "options": [
+        "Columnar epithelium",
+        "Squamous epithelium",
+        "Cardiac muscle",
+        "Adipose tissue"
+      ],
+      "correctAnswer": "Columnar epithelium",
+      "explanation": "Columnar epithelial cells are tall and pillar-like, often bearing microvilli, and line the intestine where their shape and arrangement favour absorption and secretion.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q7",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which type of muscle tissue is spindle-shaped, unstriated and found in the walls of the stomach and blood vessels?",
+      "options": [
+        "Smooth muscle",
+        "Skeletal muscle",
+        "Cardiac muscle",
+        "Areolar tissue"
+      ],
+      "correctAnswer": "Smooth muscle",
+      "explanation": "Smooth (unstriated) muscle cells are spindle-shaped and involuntary, forming the walls of internal organs such as the stomach, intestine and blood vessels.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T2-O1-Q8",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T2/O1/Q8",
+      "outcomeId": "C9-SCI-U2-CH2-T2-O1",
+      "atomId": "C9-SCI-U2-CH2-T2-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": "Assertion: Adipose tissue is classified as a connective tissue. Reason: Its cells are packed with fat and are embedded in a matrix, similar to other connective tissues.",
+      "prompt": "Choose the correct option about the assertion and the reason.",
+      "options": [
+        "Both are true and the reason correctly explains the assertion",
+        "Both are true but the reason does not explain the assertion",
+        "The assertion is true but the reason is false",
+        "The assertion is false but the reason is true"
+      ],
+      "correctAnswer": "Both are true and the reason correctly explains the assertion",
+      "explanation": "Adipose tissue stores fat within cells set in a sparse matrix, and this matrix-embedded cellular arrangement is the defining feature that places it among connective tissues.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q1",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which simple tissue consists of loosely packed, thin-walled living cells and mainly stores food?",
+      "options": [
+        "Parenchyma",
+        "Sclerenchyma",
+        "Xylem",
+        "Cambium"
+      ],
+      "correctAnswer": "Parenchyma",
+      "explanation": "Parenchyma cells are living, thin-walled and loosely packed with intercellular spaces, and commonly store food and water in soft plant parts.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q2",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Sclerenchyma cells are living at maturity and provide flexibility to plant organs.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Sclerenchyma cells are dead at maturity, with thick lignified walls, and they provide rigidity and mechanical strength rather than flexibility.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q3",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which simple tissue gives flexibility to the stems of young plants and allows them to bend without breaking?",
+      "options": null,
+      "correctAnswer": "Collenchyma",
+      "explanation": "Collenchyma cells have unevenly thickened corners and remain living, giving mechanical support while still permitting some flexibility and growth.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-6",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U2-CH2-T3-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1/Q4",
+      "outcomeId": "C9-SCI-U2-CH2-T3-O1",
+      "atomId": "C9-SCI-U2-CH2-T3-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "The hard, gritty texture felt while eating a guava fruit is due to clusters of:",
+      "options": [
+        "Parenchyma cells",
+        "Sclerenchyma cells (sclereids)",
+        "Collenchyma cells",
+        "Meristematic cells"
+      ],
+      "correctAnswer": "Sclerenchyma cells (sclereids)",
+      "explanation": "Sclereids are a type of sclerenchyma with extremely thick, lignified walls, forming the hard, gritty groups of cells found in fruits such as guava and pear.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -2355,6 +3204,116 @@
       }
     },
     {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Kharif crops are sown at the start of the monsoon and harvested in autumn.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Kharif crops such as paddy and maize are sown around June-July with the onset of rains and harvested around September-October.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A farmer wants a wheat variety that resists lodging in strong wind. Which trait should the seed catalogue highlight for this need?",
+      "options": [
+        "High protein content",
+        "Short and sturdy stem",
+        "Early maturity",
+        "Attractive grain colour"
+      ],
+      "correctAnswer": "Short and sturdy stem",
+      "explanation": "Lodging is the bending or falling of tall, weak stems under wind or rain; a short, sturdy stem resists this and keeps the crop standing.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): Excessive use of chemical fertiliser over many years can reduce soil fertility. Reason (R): Fertilisers add only mineral nutrients and do not replenish soil organic matter.",
+      "options": [
+        "Both A and R are true and R is the correct explanation of A",
+        "Both A and R are true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true"
+      ],
+      "correctAnswer": "Both A and R are true and R is the correct explanation of A",
+      "explanation": "Repeated fertiliser use without organic matter can degrade soil structure and microbial activity, since fertilisers supply nutrients but not humus.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T1-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T1/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T1-O1",
+      "atomId": "C9-SCI-U4-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of these is an example of a desirable agronomic trait bred into an improved crop variety?",
+      "options": [
+        "Susceptibility to pests",
+        "Resistance to lodging",
+        "Longer maturity period",
+        "Low yield stability"
+      ],
+      "correctAnswer": "Resistance to lodging",
+      "explanation": "Crop variety improvement programmes select for traits like lodging resistance, disease resistance, higher yield and better quality that benefit the farmer.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U4-CH1-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q1",
       "outcomeId": "C9-SCI-U4-CH1-T2-O1",
@@ -2394,6 +3353,774 @@
       "options": null,
       "correctAnswer": "By stocking species that feed at different levels of the pond, so all available food is used without competition.",
       "explanation": "Surface feeders, mid-zone feeders, bottom feeders and weed feeders are combined so that each ecological niche of the pond is exploited, raising total production.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Broiler poultry birds are reared mainly for which purpose?",
+      "options": [
+        "Egg production",
+        "Meat production",
+        "Wool production",
+        "Draught labour"
+      ],
+      "correctAnswer": "Meat production",
+      "explanation": "Broilers are chicken varieties selected and reared specifically for meat, growing quickly to market weight, unlike layers which are kept for eggs.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Cross-breeding is used in cattle rearing to combine high milk yield with disease resistance.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Cross-breeding mates a high-yielding exotic breed with a disease-resistant local breed so offspring inherit both desirable traits.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A dairy farmer notices her cows fall ill often despite giving good milk yield. Which breeding approach would most directly address disease resistance while retaining yield?",
+      "options": [
+        "Inbreeding within the same herd",
+        "Cross-breeding with a disease-resistant indigenous breed",
+        "Feeding only concentrated feed",
+        "Increasing the milking frequency"
+      ],
+      "correctAnswer": "Cross-breeding with a disease-resistant indigenous breed",
+      "explanation": "Cross-breeding introduces genes for disease resistance from indigenous breeds while the exotic parentage maintains higher milk yield.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T2-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T2/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T2-O1",
+      "atomId": "C9-SCI-U4-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Name two categories of feed given to dairy cattle to maintain both maintenance and milk production.",
+      "options": null,
+      "correctAnswer": "Roughage and concentrate",
+      "explanation": "Roughage (fibrous fodder) meets maintenance needs while concentrate (nutrient-dense feed) supports the additional demand of milk production.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A1",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which of the following is NOT a commonly desired trait in an improved crop variety?",
+      "options": [
+        "Higher yield",
+        "Disease resistance",
+        "Poor storage quality",
+        "Better grain quality"
+      ],
+      "correctAnswer": "Poor storage quality",
+      "explanation": "Breeders aim for traits that benefit farmers and consumers, such as high yield, disease resistance and good storage quality, not poor storage quality.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Hybridisation involves crossing genetically different plants to combine desirable traits in the offspring.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Hybridisation crosses two plants with different desirable characters so that the resulting hybrid combines the best traits of both parents.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State one reason plant breeders develop crop varieties with early maturity.",
+      "options": null,
+      "correctAnswer": "Early-maturing varieties allow farmers to grow more crops in a year, increasing overall cropping intensity.",
+      "explanation": "A shorter growing period frees the field sooner for the next crop, which raises the number of crop cycles possible per year on the same land.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A region frequently faces a fungal leaf blight that reduces rice yield. Which improvement strategy would most directly protect future harvests?",
+      "options": [
+        "Breeding rice varieties resistant to the blight",
+        "Increasing irrigation frequency only",
+        "Switching to a taller variety",
+        "Delaying the sowing date by one month"
+      ],
+      "correctAnswer": "Breeding rice varieties resistant to the blight",
+      "explanation": "Introducing genetic resistance to the specific pathogen directly reduces crop losses, whereas irrigation or sowing changes do not address the disease itself.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Improved crop varieties are often selected for wider climatic adaptability so that they can:",
+      "options": [
+        "Grow only in one narrow climate zone",
+        "Be grown successfully in varied climatic conditions",
+        "Require no water at all",
+        "Avoid producing seeds"
+      ],
+      "correctAnswer": "Be grown successfully in varied climatic conditions",
+      "explanation": "Wide adaptability allows the same variety to perform well across different regions and seasons, which is valuable for large-scale cultivation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T3-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T3-O1",
+      "atomId": "C9-SCI-U4-CH1-T3-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): Improved crop varieties can increase quality of produce along with yield. Reason (R): Quality traits such as protein content or oil content in seeds can be selected for during breeding.",
+      "options": [
+        "Both A and R are true and R is the correct explanation of A",
+        "Both A and R are true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true"
+      ],
+      "correctAnswer": "Both A and R are true and R is the correct explanation of A",
+      "explanation": "Breeding programmes select for nutritional and quality traits alongside yield, so improved varieties can be both higher-yielding and better in quality.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of the following is a macro-nutrient required by plants in relatively large amounts?",
+      "options": [
+        "Nitrogen",
+        "Boron",
+        "Zinc",
+        "Molybdenum"
+      ],
+      "correctAnswer": "Nitrogen",
+      "explanation": "Nitrogen, phosphorus and potassium are macro-nutrients needed in large quantities, while boron, zinc and molybdenum are micro-nutrients needed in traces.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Biofertilisers use living microorganisms to enrich soil with nutrients such as nitrogen.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Biofertilisers contain organisms like nitrogen-fixing bacteria that convert atmospheric nitrogen into forms plants can absorb, enriching the soil biologically.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Explain why compost is considered environmentally beneficial compared to synthetic fertiliser overuse.",
+      "options": null,
+      "correctAnswer": "Compost recycles organic waste into humus that improves soil structure without the runoff and pollution risks of excess synthetic fertiliser.",
+      "explanation": "Compost is made from decomposed organic matter, improving soil texture and water retention, whereas excess synthetic fertiliser can leach into water bodies and cause pollution such as eutrophication.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A field has been fertilised heavily every season for years, and nearby ponds show excessive algal growth. Which practice most likely caused the pond problem?",
+      "options": [
+        "Crop rotation with legumes",
+        "Nutrient runoff from excess chemical fertiliser",
+        "Use of organic compost only",
+        "Intercropping with pulses"
+      ],
+      "correctAnswer": "Nutrient runoff from excess chemical fertiliser",
+      "explanation": "Excess nitrogen and phosphorus from over-fertilised fields can wash into water bodies, causing eutrophication and excessive algal growth.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Growing a leguminous crop between two cereal crops mainly helps to replenish which nutrient in the soil?",
+      "options": [
+        "Nitrogen",
+        "Potassium",
+        "Iron",
+        "Sulphur"
+      ],
+      "correctAnswer": "Nitrogen",
+      "explanation": "Leguminous plants host nitrogen-fixing bacteria in root nodules that convert atmospheric nitrogen into usable compounds, enriching soil nitrogen.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Chemical fertilisers act more slowly than organic manure in supplying nutrients to plants.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Chemical fertilisers are readily soluble and act quickly, whereas organic manure releases nutrients gradually as it decomposes.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T4-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1/Q7",
+      "outcomeId": "C9-SCI-U4-CH1-T4-O1",
+      "atomId": "C9-SCI-U4-CH1-T4-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Give one reason crop rotation with different nutrient demands helps maintain soil fertility.",
+      "options": null,
+      "correctAnswer": "It prevents the depletion of any one nutrient because different crops draw on different nutrients from the soil.",
+      "explanation": "Continuous cultivation of the same crop depletes specific nutrients; rotating crops with different nutrient requirements balances nutrient use and helps restore fertility.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Drip irrigation is preferred in water-scarce regions mainly because it:",
+      "options": [
+        "Floods the entire field uniformly",
+        "Delivers water drop by drop directly near the plant roots, reducing wastage",
+        "Requires no water source at all",
+        "Increases water evaporation from the soil surface"
+      ],
+      "correctAnswer": "Delivers water drop by drop directly near the plant roots, reducing wastage",
+      "explanation": "Drip irrigation supplies water precisely at the root zone in small measured amounts, minimising evaporation and runoff losses compared to flood irrigation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Intercropping means growing two or more crops in a definite row pattern in the same field at the same time.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Intercropping arranges different crops in alternating rows in the same season, allowing efficient use of resources and reducing pest spread.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A farmer in a drought-prone area wants to conserve water while still irrigating a vegetable field regularly. Which method best suits this need?",
+      "options": [
+        "Flood irrigation",
+        "Sprinkler or drip irrigation",
+        "Leaving the field unirrigated",
+        "Digging an open uncovered canal"
+      ],
+      "correctAnswer": "Sprinkler or drip irrigation",
+      "explanation": "Sprinkler and drip systems apply water efficiently in controlled amounts, conserving water compared to flood irrigation, which is important in drought-prone regions.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Differentiate mixed cropping from intercropping in one sentence.",
+      "options": null,
+      "correctAnswer": "In mixed cropping, seeds of two or more crops are sown together without a fixed row pattern, while intercropping grows crops in a defined alternating row pattern.",
+      "explanation": "Mixed cropping mixes seeds randomly to reduce risk of total crop failure, whereas intercropping deliberately arranges rows of different crops for efficient resource use.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which of these is a traditional source of irrigation water still used in many Indian villages?",
+      "options": [
+        "Drip irrigation",
+        "Wells and tanks",
+        "Fertigation",
+        "Sprinkler system"
+      ],
+      "correctAnswer": "Wells and tanks",
+      "explanation": "Wells, tanks, canals and rivers are traditional irrigation sources, while drip and sprinkler systems are modern water-efficient methods.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T5-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T5-O1",
+      "atomId": "C9-SCI-U4-CH1-T5-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion (A): Crop rotation with a legume crop can reduce the need for nitrogen fertiliser in the following season. Reason (R): Legume roots host bacteria that fix atmospheric nitrogen into the soil.",
+      "options": [
+        "Both A and R are true and R is the correct explanation of A",
+        "Both A and R are true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true"
+      ],
+      "correctAnswer": "Both A and R are true and R is the correct explanation of A",
+      "explanation": "Legumes enrich soil nitrogen through their root-nodule bacteria, so a following cereal crop needs less added nitrogen fertiliser.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q1",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q1",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A1",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Weeds compete with the main crop mainly for:",
+      "options": [
+        "Shade only",
+        "Water, nutrients, space and light",
+        "Carbon dioxide only",
+        "Pollinators only"
+      ],
+      "correctAnswer": "Water, nutrients, space and light",
+      "explanation": "Weeds are unwanted plants that grow alongside crops and compete for the same resources — water, nutrients, space and sunlight — reducing crop yield.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q2",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q2",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Storing grain with high moisture content increases the risk of fungal attack and spoilage.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Moist grain provides a favourable environment for fungi and insects to grow, leading to spoilage, so grain must be dried before storage.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q3",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Name two factors, besides insects, that cause deterioration of grain during storage.",
+      "options": null,
+      "correctAnswer": "Moisture and inappropriate temperature",
+      "explanation": "Excess moisture encourages fungal growth and germination, while unsuitable temperature also promotes spoilage; both must be controlled in storage.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q4",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A farmer stores wheat in sacks in a damp, poorly ventilated room and later finds fungal growth on the grain. What was the most likely primary cause?",
+      "options": [
+        "Excess grain moisture combined with poor ventilation",
+        "Too much sunlight exposure",
+        "Using pest-resistant seed variety",
+        "Storing grain in metal bins"
+      ],
+      "correctAnswer": "Excess grain moisture combined with poor ventilation",
+      "explanation": "Damp, poorly ventilated storage keeps grain moisture high, creating ideal conditions for fungal growth and spoilage.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q5",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which practice helps control insect pests on a standing crop without harming it excessively?",
+      "options": [
+        "Timely application of appropriate pesticide at recommended dose",
+        "Flooding the field permanently",
+        "Removing all irrigation water",
+        "Sowing seeds without any prior treatment"
+      ],
+      "correctAnswer": "Timely application of appropriate pesticide at recommended dose",
+      "explanation": "Applying the correct pesticide at the right time and dose controls pests effectively while minimising damage to the crop and environment.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U4-CH1-T6-O1-Q6",
+      "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1/Q6",
+      "outcomeId": "C9-SCI-U4-CH1-T6-O1",
+      "atomId": "C9-SCI-U4-CH1-T6-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Weeding is unnecessary once a crop variety resistant to weeds has been sown.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "No crop variety eliminates weed competition entirely, so weeding or weed control measures remain necessary even with resistant varieties.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",

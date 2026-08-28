@@ -450,6 +450,41 @@
                   "prerequisites": []
                 }
               ]
+            },
+            {
+              "id": "C9-SCI-U2-CH1-T3",
+              "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3",
+              "title": "Cell theory and prokaryotic vs eukaryotic organisation",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U2-CH1-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U2/CH1/T3/O1",
+                  "code": "C9-SCI-02.01.31",
+                  "title": "Explain the cell theory and differentiate prokaryotic from eukaryotic cells",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "true_false",
+                    "short_answer",
+                    "assertion_reason"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U2-CH1-T3-O1-A1",
+                      "text": "State the cell theory and identify the cell as the basic structural unit"
+                    },
+                    {
+                      "id": "C9-SCI-U2-CH1-T3-O1-A2",
+                      "text": "Compare prokaryotic and eukaryotic cells on the basis of a membrane-bound nucleus"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
             }
           ]
         },
@@ -526,6 +561,41 @@
                     {
                       "id": "C9-SCI-U2-CH2-T2-O1-A2",
                       "text": "Distinguish striated, unstriated and cardiac muscle"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U2-CH2-T3",
+              "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3",
+              "title": "Simple permanent plant tissues",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U2-CH2-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U2/CH2/T3/O1",
+                  "code": "C9-SCI-02.02.31",
+                  "title": "Distinguish parenchyma, collenchyma and sclerenchyma by structure and role",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "true_false",
+                    "short_answer",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U2-CH2-T3-O1-A1",
+                      "text": "Identify parenchyma, collenchyma and sclerenchyma from cell wall thickness and living status"
+                    },
+                    {
+                      "id": "C9-SCI-U2-CH2-T3-O1-A2",
+                      "text": "Relate sclerenchyma's dead, lignified cells to a mechanical support function"
                     }
                   ],
                   "prerequisites": []
@@ -1030,6 +1100,146 @@
                     {
                       "id": "C9-SCI-U4-CH1-T2-O1-A2",
                       "text": "Compare capture fishery with aquaculture"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U4-CH1-T3",
+              "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3",
+              "title": "Crop variety improvement",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U4-CH1-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T3/O1",
+                  "code": "C9-SCI-04.01.31",
+                  "title": "Explain how crop varieties are improved for desirable agronomic traits",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U4-CH1-T3-O1-A1",
+                      "text": "List desirable traits sought in improved crop varieties"
+                    },
+                    {
+                      "id": "C9-SCI-U4-CH1-T3-O1-A2",
+                      "text": "Describe hybridisation as a method of crop improvement"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U4-CH1-T4",
+              "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4",
+              "title": "Nutrient management in crop production",
+              "position": 4,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U4-CH1-T4-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T4/O1",
+                  "code": "C9-SCI-04.01.41",
+                  "title": "Compare sources of plant nutrients and methods of nutrient management",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U4-CH1-T4-O1-A1",
+                      "text": "Distinguish macro-nutrients and micro-nutrients required by plants"
+                    },
+                    {
+                      "id": "C9-SCI-U4-CH1-T4-O1-A2",
+                      "text": "Compare organic manure, biofertilisers and chemical fertilisers"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U4-CH1-T5",
+              "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5",
+              "title": "Irrigation methods and cropping patterns",
+              "position": 5,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U4-CH1-T5-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T5/O1",
+                  "code": "C9-SCI-04.01.51",
+                  "title": "Describe irrigation methods and cropping patterns that improve water-use efficiency and yield",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U4-CH1-T5-O1-A1",
+                      "text": "Compare traditional irrigation sources with modern methods such as drip irrigation"
+                    },
+                    {
+                      "id": "C9-SCI-U4-CH1-T5-O1-A2",
+                      "text": "Distinguish mixed cropping, intercropping and crop rotation"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-SCI-U4-CH1-T6",
+              "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6",
+              "title": "Crop protection and storage of grains",
+              "position": 6,
+              "outcomes": [
+                {
+                  "id": "C9-SCI-U4-CH1-T6-O1",
+                  "externalRef": "CBSE/2026-27/C9/SCI/U4/CH1/T6/O1",
+                  "code": "C9-SCI-04.01.61",
+                  "title": "Explain methods of protecting standing crops and stored grain from losses",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 3,
+                  "diagnosticWeight": 3,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-SCI-U4-CH1-T6-O1-A1",
+                      "text": "Identify weeds, insect pests and pathogens as causes of crop loss"
+                    },
+                    {
+                      "id": "C9-SCI-U4-CH1-T6-O1-A2",
+                      "text": "Describe conditions that prevent grain spoilage during storage"
                     }
                   ],
                   "prerequisites": []
