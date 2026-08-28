@@ -202,3 +202,65 @@ named subject-expert evidence. Never hardcode a price or a class in a route comp
 - Production verification: ₹199, ₹2,999, ₹2,800, CBSE Class 10 Mathematics and Science all present; Classes 9/11/12, Commerce, Humanities and all streams absent from public surfaces; English-only copy intact.
 - Rollback: code `48548b420c601f8bcaf11a47c6853a55ebfb5526`; both migrations are additive/policy-only and require no data rollback.
 - Next gate: Wave 1 — Class 9 Mathematics and Science content preparation (not started).
+
+---
+
+## 2026-08-28 16:45 UTC — Wave 0 Continuity and New-Chat Handoff Closeout (documentation-only)
+
+### Repository authority rule (permanent)
+
+| Repository | Authority | Use |
+|---|---|---|
+| `eduos-ai` | Product Authority | product definition, strategy, canonical product truth |
+| `learning-start-nexus` | Application Authority | **only** production deployment source; all live application work |
+| `eduos` | Fleet Authority | EDUOS fleet seat / fleet-level configuration |
+
+Agents must select the repository according to the authority being changed. Ordinary live application work
+defaults to `learning-start-nexus`.
+
+### Standing founder communication rule (permanent)
+
+Whenever implementation, verification, remediation or deployment work is discussed, the coordinating AI must
+provide a separate, self-contained, copy-paste-ready Lovable assignment that automatically includes: target
+authority; target repository; objective; implementation scope; complete affected tests; journey verification;
+canonical repository commit; full 40-character commit SHA; clean-working-tree confirmation; confirmation of no
+missing migrations or translations; publish/deploy when appropriate; production verification; production URL and
+deployment status; evidence; known limitations; rollback commit and procedure.
+
+Never wait for the founder to request committing or publishing separately.
+
+### Standing delivery rule (permanent)
+
+```text
+Build → Verify → Commit → Publish when appropriate → Verify Production
+```
+
+### Authoritative release identity (unchanged by this assignment)
+
+- Canonical branch: `main`
+- Wave 0 **functional application** commit: `e38a303b361ec1848c12ce7e490a8e0a7945f528`
+- **Deployed production** commit: `e6e34008bd264b1533707180428d860dda76a6f9` (Wave 0 + P0 profiles org_id RLS correction)
+- Production URL: https://www.eduos.global — LIVE
+- Rollback commit: `48548b420c601f8bcaf11a47c6853a55ebfb5526`
+- Tests 135/135 across 13 files · typecheck PASS · build PASS · worktree CLEAN · 0 critical security findings
+
+`e38a303` is **not** the deployed production HEAD; `e6e3400` is.
+
+### P0 security correction recorded
+
+Original `profiles` INSERT/UPDATE policies allowed a user to self-assign an arbitrary `org_id`
+(cross-organisation access). Corrected policies enforce: self-insert must leave `org_id` null; self-update must
+preserve `org_id`; organisation administrators remain restricted to their own organisation. Post-fix scan: 0 critical.
+
+### Known limitations preserved
+
+- legacy `parent_entitlements` remains the live write path;
+- `catalogue_subject_id` NOT NULL tightening is deferred;
+- content volume is the binding constraint for future waves;
+- academic-year rollover policy is undecided;
+- INR is the only supported currency;
+- remaining security findings are non-critical warnings, accepted and recorded in the security memory.
+
+### Current gate
+
+Wave 1 — Class 9 Mathematics and Science content preparation. **NOT STARTED.**

@@ -672,3 +672,60 @@ If the new chat cannot answer these from the supplied files, provide the missing
 - Production verification: ₹199, ₹2,999, ₹2,800, CBSE Class 10 Mathematics and Science all present; Classes 9/11/12, Commerce, Humanities and all streams absent from public surfaces; English-only copy intact.
 - Rollback: code `48548b420c601f8bcaf11a47c6853a55ebfb5526`; both migrations are additive/policy-only and require no data rollback.
 - Next gate: Wave 1 — Class 9 Mathematics and Science content preparation (not started).
+
+---
+
+## 2026-08-28 16:45 UTC — New-Chat Continuity Closeout (authoritative)
+
+A new chat taking over EduOS must accept the following as current truth.
+
+### Release identity
+
+| Item | Value |
+|---|---|
+| Canonical branch | `main` |
+| Wave 0 functional application commit | `e38a303b361ec1848c12ce7e490a8e0a7945f528` |
+| **Deployed production commit** | **`e6e34008bd264b1533707180428d860dda76a6f9`** |
+| Production URL | https://www.eduos.global (LIVE) |
+| Rollback commit | `48548b420c601f8bcaf11a47c6853a55ebfb5526` |
+| Verification | 135/135 tests (13 files) · typecheck PASS · build PASS · worktree CLEAN · Class 10 regression PASS · 0 critical security findings |
+
+Do not describe `e38a303` as the deployed production HEAD.
+
+### Repository authority
+
+- `eduos-ai` = canonical **Product Authority**
+- `learning-start-nexus` = canonical **Application Authority** and the only production deployment source
+- `eduos` = **Fleet Authority** / EDUOS fleet seat
+
+Select the repository by the authority being changed; ordinary live application work defaults to
+`learning-start-nexus`.
+
+### Production security correction (recorded)
+
+The release includes a P0 `profiles` organisation-isolation correction: self-insert must leave `org_id` null,
+self-update must preserve `org_id`, admins remain scoped to their own organisation. Post-fix scan: 0 critical.
+
+### Standing rules
+
+- **Founder communication rule:** every discussion of implementation, verification, remediation or deployment must
+  be accompanied by a separate, self-contained, copy-paste-ready Lovable assignment covering target authority,
+  target repository, objective, scope, tests, journey verification, commit + full SHA, clean worktree, migration
+  and translation confirmation, publish/deploy, production verification, URL and status, evidence, known
+  limitations, and rollback commit and procedure.
+- **Delivery rule:** Build → Verify → Commit → Publish when appropriate → Verify Production.
+- Never wait for the founder to ask for a commit or a publish.
+
+### Known limitations
+
+- legacy `parent_entitlements` remains the live write path;
+- `catalogue_subject_id` NOT NULL tightening deferred;
+- content volume is the binding constraint for future waves;
+- academic-year rollover policy undecided;
+- INR is the only supported currency;
+- remaining security findings are accepted non-critical warnings.
+
+### Current gate
+
+Wave 1 — Class 9 Mathematics and Science content preparation. **NOT STARTED and not authorised.**
+Do not begin Wave 1 without an explicit founder assignment.
