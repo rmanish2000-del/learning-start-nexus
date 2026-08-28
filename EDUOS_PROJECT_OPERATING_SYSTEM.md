@@ -264,3 +264,30 @@ preserve `org_id`; organisation administrators remain restricted to their own or
 ### Current gate
 
 Wave 1 — Class 9 Mathematics and Science content preparation. **NOT STARTED.**
+
+---
+
+## Wave 1 — Class 9 content preparation (2026-08-28)
+
+**Status: IN PREPARATION — WAVE_1_CONTENT_PREPARATION: PARTIAL.** Authorised as content preparation only;
+Class 9 activation, pricing and commercial release remain unauthorised.
+
+- Authoritative record: `EDUOS_WAVE_1_CLASS_9_CONTENT_PREPARATION_REPORT.md`.
+- Prepared inactive packs: `content/class-9/{mathematics,science}.{curriculum,questions}.json`
+  (Mathematics 6 units / 12 chapters / 20 topics / 20 outcomes / 40 questions;
+  Science 4 units / 12 chapters / 24 topics / 24 outcomes / 48 questions).
+- Contracts and validators: `src/lib/class9-content-schema.ts`, `scripts/class9/*`.
+- Everything is draft, unverified, inactive, hidden and excluded from paid diagnostics.
+- **Zero database writes.** No migration. No production deployment. Deployed commit unchanged (`e6e3400`).
+- Derived volume law (from live gates, not prose): required verified questions per unit =
+  max(2 × diagnostic_target, 2 × outcomes × min_questions_per_outcome, 2 × diagnostic_minimum) = **40**.
+  Wave 1 requirement: 240 (Mathematics) + 160 (Science) = **400**; drafted 88; verified 0.
+- Conflict recorded: Wave 0 created no Class 9 `catalogue_subjects` rows — Class 9 is non-purchasable by absence.
+- Blockers to activation: remaining 312 items, named subject-expert review, verification, catalogue rows,
+  2026-27 syllabus confirmation, and a separate founder activation gate.
+- Test baseline moved from 135/13 files to **153/14 files**, all passing.
+- `eduos-ai` was not used; the `eduos` fleet repository was not modified.
+
+### Current gate
+
+Wave 1 content authoring and named subject-expert review. **Class 9 activation NOT AUTHORISED.**
