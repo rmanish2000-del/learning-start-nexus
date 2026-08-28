@@ -103,8 +103,8 @@ describe("Wave 1 continuation — 400-question preparation target", () => {
   const byKey = Object.fromEntries(packs.map((p) => [p.subject.subjectKey, p]));
 
   it("prepares 240 Mathematics and 160 Science questions (400 total)", () => {
-    expect(byKey.Mathematics!.questions.questions.length).toBe(240);
-    expect(byKey.Science!.questions.questions.length).toBe(160);
+    expect(byKey["Mathematics"]!.questions.questions.length).toBe(240);
+    expect(byKey["Science"]!.questions.questions.length).toBe(160);
     expect(packs.reduce((s, p) => s + p.questions.questions.length, 0)).toBe(400);
   });
 
