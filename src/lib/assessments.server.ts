@@ -188,8 +188,8 @@ export function scoreSession(
 
 export type CreateDraftInput = {
   title: string;
-  description?: string | null;
-  timeLimitMinutes?: number | null;
+  description?: string | null | undefined;
+  timeLimitMinutes?: number | null | undefined;
   bookId: string;
   unitId: string;
   questionIds: string[];
