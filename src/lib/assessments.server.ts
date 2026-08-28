@@ -288,10 +288,26 @@ export async function createAssessmentDraft(
       time_limit_minutes: input.timeLimitMinutes ?? null,
       book_id: input.bookId,
       unit_id: input.unitId,
+      client_request_id: input.clientRequestId ?? null,
     })
     .select("id")
     .single();
-  if (error) throw new Error(error.message);
+  if (error) {
+    // Unique (org_id, client_request_id): this exact request already produced a
+    // draft — a double-click or network retry. Return that draft untouched
+    // instead of creating a duplicate. Distinct requests never land here.
+    const code = (error as { code?: string }).code;
+    if (code === "23505" && input.clientRequestId) {
+      const { data: prior } = await supabase
+        .from("assessments")
+        .select("id")
+        .eq("org_id", ctx.orgId)
+        .eq("client_request_id", input.clientRequestId)
+        .maybeSingle();
+      if (prior) return { id: prior.id, status: "draft", deduped: true };
+    }
+    throw new Error(error.message);
+  }
   if (!created) throw new Error("The draft could not be created.");
 
   const { error: mapError } = await supabase.from("assessment_question_map").insert(
