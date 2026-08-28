@@ -37,23 +37,10 @@ export const createAssessment = createServerFn({ method: "POST" })
       );
     }
 
-    // Idempotency: a double-click / network retry with the same request id and
-    // title returns the assessment already created instead of a duplicate.
-    if (data.clientRequestId) {
-      const since = new Date(Date.now() - 2 * 60 * 1000).toISOString();
-      const { data: existing } = await context.supabase
-        .from("assessments")
-        .select("id")
-        .eq("title", data.title)
-        .eq("created_by", context.userId)
-        .eq("status", "draft")
-        .gte("created_at", since)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
-      if (existing) return { id: existing.id, status: "draft" as const, deduped: true };
-    }
-
+    // Idempotency is request-scoped, never title-scoped: two intentional
+    // creates with the same title are two distinct drafts. Only a retry of the
+    // very same request (same clientRequestId) collapses, enforced by the
+    // unique (org_id, client_request_id) index inside createAssessmentDraft.
     const created = await createAssessmentDraft(
       context.supabase,
       { orgId, userId: context.userId },
@@ -64,10 +51,11 @@ export const createAssessment = createServerFn({ method: "POST" })
         bookId: data.bookId,
         unitId: data.unitId,
         questionIds: data.questionIds,
+        clientRequestId: data.clientRequestId,
       },
     );
 
-    return { id: created.id, status: "draft" as const, deduped: false };
+    return { id: created.id, status: "draft" as const, deduped: created.deduped };
   });
 
 // Staff: explicit publication. Every gate is re-checked server-side; a blocked
