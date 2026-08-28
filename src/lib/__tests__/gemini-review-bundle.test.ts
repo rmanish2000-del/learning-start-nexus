@@ -17,6 +17,47 @@ const walk = (dir: string): string[] =>
     e.isDirectory() ? walk(join(dir, e.name)) : [relative(BUNDLE, join(dir, e.name))],
   );
 
+// Minimal JSON scanner that reports duplicate keys within any single object.
+function findDuplicateKeys(text: string): string[] {
+  const dupes: string[] = [];
+  const stack: Set<string>[] = [];
+  let i = 0;
+  let pendingKey: string | null = null;
+  while (i < text.length) {
+    const c = text[i]!;
+    if (c === "{") {
+      stack.push(new Set());
+      i++;
+    } else if (c === "}") {
+      stack.pop();
+      i++;
+    } else if (c === '"') {
+      let j = i + 1;
+      let raw = "";
+      while (j < text.length && text[j] !== '"') {
+        if (text[j] === "\\") { raw += text[j]! + text[j + 1]!; j += 2; continue; }
+        raw += text[j]!;
+        j++;
+      }
+      const value = JSON.parse(`"${raw}"`) as string;
+      let k = j + 1;
+      while (k < text.length && /\s/.test(text[k]!)) k++;
+      if (text[k] === ":" && stack.length) {
+        const top = stack[stack.length - 1]!;
+        if (top.has(value)) dupes.push(value);
+        top.add(value);
+      }
+      pendingKey = value;
+      i = j + 1;
+    } else {
+      i++;
+    }
+  }
+  void pendingKey;
+  return dupes;
+}
+
+
 const manifest = json("GEMINI_REVIEW_BUNDLE_MANIFEST.json");
 
 describe("gemini review bundle — structure", () => {
