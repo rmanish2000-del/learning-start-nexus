@@ -598,13 +598,19 @@ export function runComplianceGates(input: GateInput): GateResult[] {
   const outOfSyllabus = input.units.filter((u) => u.outOfSyllabusActive);
   results.push({
     gate: "CURRICULUM_GATE",
-    pass: input.unmappedOfficialTopics.length === 0 && input.duplicateOfficialMappings.length === 0 && outOfSyllabus.length === 0,
+    pass:
+      input.unmappedOfficialTopics.length === 0 &&
+      input.duplicateOfficialMappings.length === 0 &&
+      outOfSyllabus.length === 0 &&
+      input.unapprovedSourceBooks.length === 0,
     checks: [
       { id: "all_assessable_topics_mapped", pass: input.unmappedOfficialTopics.length === 0, detail: `${input.unmappedOfficialTopics.length} unmapped official topic(s)` },
       { id: "no_duplicate_mapping", pass: input.duplicateOfficialMappings.length === 0, detail: `${input.duplicateOfficialMappings.length} duplicate mapping(s)` },
       { id: "no_active_out_of_syllabus", pass: outOfSyllabus.length === 0, detail: outOfSyllabus.map((u) => u.unitId).join(", ") || "none" },
+      { id: "source_books_approved", pass: input.unapprovedSourceBooks.length === 0, detail: input.unapprovedSourceBooks.join(", ") || "all mapped source books approved" },
     ],
   });
+
 
   const orphans = input.units.reduce((s, u) => s + u.orphanOutcomes, 0);
   const atomGaps = input.units.reduce((s, u) => s + u.atomsWithoutQuestions, 0);
