@@ -1,7 +1,227 @@
+// Wave 1 extension: extra questions for C9-SCI-U1 (Matter — Its Nature and Behaviour).
+// Original items only. Draft + unverified, consistent with Wave 1 baseline.
+
 import type { UnitExtension } from "../extension-types";
+import type { AuthoredQuestion } from "../authoring";
 
 export const EXT: UnitExtension = {
   unitId: "C9-SCI-U1",
   newTopics: [],
-  extraQuestions: {},
+  extraQuestions: {
+    "C9-SCI-U1-CH1-T1-O1": [
+      {
+        kind: "mcq",
+        difficulty: 1,
+        prompt: "In which state of matter are the constituent particles most loosely packed and free to move throughout the container?",
+        options: ["Solid", "Liquid", "Gas", "Plasma at room temperature"],
+        answer: "Gas",
+        explanation: "Gas particles have negligible intermolecular force and large spacing, so they occupy the entire container.",
+      },
+      {
+        kind: "true_false",
+        difficulty: 2,
+        prompt: "During the melting of ice at 0 degree C, the temperature of the ice-water mixture keeps rising until melting is complete.",
+        options: ["True", "False"],
+        answer: "False",
+        explanation: "Temperature stays constant at the melting point because supplied heat is used as latent heat to overcome intermolecular force, not to raise temperature.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 3,
+        prompt: "A solid is heated and its temperature rises steadily, then remains constant for several minutes before rising again. Explain what is happening during the constant-temperature interval.",
+        answer: "The solid is melting; absorbed heat is latent heat of fusion used to overcome intermolecular attraction, so temperature stays constant until melting is complete.",
+        explanation: "This tests interpretation of a heating curve plateau as a change of state, not a temperature change.",
+      },
+    ],
+    "C9-SCI-U1-CH1-T2-O1": [
+      {
+        kind: "applied_mcq",
+        difficulty: 2,
+        prompt: "Wet clothes dry faster on a windy afternoon than on a calm humid morning. Which pair of factors best explains this observation?",
+        options: [
+          "Higher wind speed and lower humidity increase evaporation rate",
+          "Lower wind speed and higher humidity increase evaporation rate",
+          "Wind speed has no effect; only surface area matters",
+          "Humidity has no effect; only temperature matters",
+        ],
+        answer: "Higher wind speed and lower humidity increase evaporation rate",
+        explanation: "Wind removes vapour molecules from near the surface and low humidity keeps the air far from saturation, both speeding evaporation.",
+      },
+      {
+        kind: "mcq",
+        difficulty: 1,
+        prompt: "Sweating helps cool the human body mainly because",
+        options: [
+          "evaporation of sweat absorbs heat from the skin",
+          "sweat is naturally cold when secreted",
+          "sweat increases the boiling point of skin surface",
+          "sweat reflects sunlight away from the body",
+        ],
+        answer: "evaporation of sweat absorbs heat from the skin",
+        explanation: "Evaporation requires latent heat, which is drawn from the body surface, lowering skin temperature.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 3,
+        prompt: "Explain why spreading a liquid over a larger surface area, such as pouring tea into a saucer, causes it to cool faster than leaving it in a cup.",
+        answer: "A larger exposed surface area allows more molecules to escape as vapour per second, increasing the rate of evaporation and hence the rate of cooling.",
+        explanation: "Directly applies the surface-area factor governing evaporation rate.",
+      },
+    ],
+    "C9-SCI-U1-CH2-T1-O1": [
+      {
+        kind: "mcq",
+        difficulty: 1,
+        prompt: "Which of the following is a heterogeneous mixture?",
+        options: ["Sugar solution", "Air", "Oil floating on water", "Brass alloy"],
+        answer: "Oil floating on water",
+        explanation: "Oil and water form visibly distinct layers with a boundary, so the composition is not uniform throughout.",
+      },
+      {
+        kind: "applied_mcq",
+        difficulty: 3,
+        prompt: "A solution is prepared by dissolving 15 g of common salt in 135 g of water. What is the mass by mass percentage of the solution?",
+        options: ["10 percent", "15 percent", "11.1 percent", "9 percent"],
+        answer: "10 percent",
+        explanation: "Mass percent equals mass of solute divided by total mass of solution, which is 15 divided by 150, multiplied by 100, giving 10 percent.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 2,
+        prompt: "State one difference each between a compound and a mixture in terms of composition and separation of components.",
+        answer: "A compound has a fixed composition and its constituent elements can be separated only by chemical means, whereas a mixture has variable composition and its components can be separated by physical means.",
+        explanation: "Tests the conceptual distinction between compounds and mixtures required by the outcome.",
+      },
+    ],
+    "C9-SCI-U1-CH2-T2-O1": [
+      {
+        kind: "applied_mcq",
+        difficulty: 3,
+        prompt: "A mixture contains a dye that is a blend of several coloured components with different solubilities in the same solvent. Which technique is most suitable to separate the individual components?",
+        options: ["Chromatography", "Simple distillation", "Sublimation", "Filtration"],
+        answer: "Chromatography",
+        explanation: "Chromatography separates components that have different rates of movement on a stationary phase due to differing solubility and adsorption.",
+      },
+      {
+        kind: "mcq",
+        difficulty: 2,
+        prompt: "Which technique is used to separate cream from milk based on a difference in density under high-speed rotation?",
+        options: ["Centrifugation", "Evaporation", "Sedimentation", "Fractional distillation"],
+        answer: "Centrifugation",
+        explanation: "Centrifugation spins the mixture rapidly so denser and lighter components separate quickly by density difference.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 4,
+        prompt: "A mixture of two miscible liquids has boiling points of 78 degree C and 100 degree C. Name the separation technique you would use and justify your choice using the relevant property.",
+        answer: "Fractional distillation should be used because the liquids are miscible and have a boiling point difference, allowing the more volatile liquid to vaporise and be collected first through a fractionating column.",
+        explanation: "Applies the property-to-technique matching rule for miscible liquids with different boiling points.",
+      },
+    ],
+    "C9-SCI-U1-CH3-T1-O1": [
+      {
+        kind: "true_false",
+        difficulty: 2,
+        prompt: "According to the law of conservation of mass, the total mass of reactants must always equal the total mass of products in a closed chemical reaction.",
+        options: ["True", "False"],
+        answer: "True",
+        explanation: "In a closed system, mass is neither created nor destroyed during a chemical reaction, so total mass is conserved.",
+      },
+      {
+        kind: "applied_mcq",
+        difficulty: 3,
+        prompt: "How many moles of carbon dioxide are present in 88 g of the gas? (Molar mass of carbon dioxide is 44 g per mole)",
+        options: ["1 mole", "2 moles", "0.5 mole", "4 moles"],
+        answer: "2 moles",
+        explanation: "Number of moles equals given mass divided by molar mass, which is 88 divided by 44, giving 2 moles.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 4,
+        prompt: "Calculate the number of molecules present in 0.5 mole of oxygen gas, given Avogadro's number is 6.022 times 10 to the power 23 per mole.",
+        answer: "Number of molecules equals moles multiplied by Avogadro's number, which is 0.5 multiplied by 6.022 times 10 to the power 23, giving 3.011 times 10 to the power 23 molecules.",
+        explanation: "Applies the relation between moles and number of particles using Avogadro's number.",
+      },
+    ],
+    "C9-SCI-U1-CH3-T2-O1": [
+      {
+        kind: "applied_mcq",
+        difficulty: 3,
+        prompt: "Magnesium has a valency of 2 and nitrogen has a valency of 3. What is the correct chemical formula of magnesium nitride formed by the criss-cross method?",
+        options: ["Mg3N2", "Mg2N3", "MgN2", "Mg2N"],
+        answer: "Mg3N2",
+        explanation: "Criss-crossing the valencies gives 3 magnesium atoms and 2 nitrogen atoms as the smallest whole number ratio.",
+      },
+      {
+        kind: "mcq",
+        difficulty: 2,
+        prompt: "What is the molecular mass of water, H2O, given atomic masses of hydrogen equal 1 u and oxygen equal 16 u?",
+        options: ["17 u", "18 u", "16 u", "19 u"],
+        answer: "18 u",
+        explanation: "Molecular mass equals 2 times 1 plus 16, which is 2 plus 16 equal to 18 u.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 3,
+        prompt: "Calculate the formula unit mass of calcium chloride, CaCl2, given atomic masses calcium equals 40 u and chlorine equals 35.5 u.",
+        answer: "Formula unit mass equals 40 plus 2 times 35.5, which is 40 plus 71, giving 111 u.",
+        explanation: "Directly applies addition of atomic masses to find formula unit mass of an ionic compound.",
+      },
+    ],
+    "C9-SCI-U1-CH4-T1-O1": [
+      {
+        kind: "assertion_reason",
+        difficulty: 3,
+        prompt: "Assertion: Most alpha particles passed straight through the gold foil in Rutherford's experiment. Reason: Most of the space inside an atom is empty.",
+        options: [
+          "Both assertion and reason are true and reason correctly explains the assertion",
+          "Both assertion and reason are true but reason does not correctly explain the assertion",
+          "Assertion is true but reason is false",
+          "Assertion is false but reason is true",
+        ],
+        answer: "Both assertion and reason are true and reason correctly explains the assertion",
+        explanation: "The undeflected passage of most alpha particles was direct evidence that atoms are mostly empty space.",
+      },
+      {
+        kind: "mcq",
+        difficulty: 2,
+        prompt: "Which subatomic particle carries no electric charge and is located inside the nucleus?",
+        options: ["Electron", "Proton", "Neutron", "Positron"],
+        answer: "Neutron",
+        explanation: "The neutron is electrically neutral and resides in the nucleus along with the proton.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 2,
+        prompt: "State one limitation of Rutherford's atomic model that was later addressed by Bohr's model.",
+        answer: "Rutherford's model could not explain the stability of the atom, since an electron revolving around the nucleus should lose energy and spiral into it; Bohr's model resolved this by proposing fixed energy orbits.",
+        explanation: "Tests comparison of atomic models as required by the outcome.",
+      },
+    ],
+    "C9-SCI-U1-CH4-T2-O1": [
+      {
+        kind: "applied_mcq",
+        difficulty: 3,
+        prompt: "An atom has atomic number 17. Using the 2n squared rule, what is its electronic configuration?",
+        options: ["2, 8, 7", "2, 7, 8", "2, 8, 8", "8, 8, 1"],
+        answer: "2, 8, 7",
+        explanation: "Filling shells as 2, 8, then the remaining 7 electrons in the third shell gives 2, 8, 7 for 17 electrons.",
+      },
+      {
+        kind: "true_false",
+        difficulty: 2,
+        prompt: "Isotopes of an element have the same atomic number but different mass numbers due to a different number of neutrons.",
+        options: ["True", "False"],
+        answer: "True",
+        explanation: "Isotopes share the same proton number but differ in neutron number, giving different mass numbers.",
+      },
+      {
+        kind: "short_answer",
+        difficulty: 4,
+        prompt: "Two atoms X and Y have the same mass number but different atomic numbers. What are such atoms called, and what does this imply about their neutron counts?",
+        answer: "Such atoms are called isobars; since mass number is the same but atomic number differs, the number of neutrons must differ between them to keep the sum of protons and neutrons equal.",
+        explanation: "Tests the isobar concept and the relationship between atomic number, mass number and neutron count.",
+      },
+    ],
+  },
 };

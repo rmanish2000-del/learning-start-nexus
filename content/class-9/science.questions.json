@@ -56,6 +56,83 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "In which state of matter are the constituent particles most loosely packed and free to move throughout the container?",
+      "options": [
+        "Solid",
+        "Liquid",
+        "Gas",
+        "Plasma at room temperature"
+      ],
+      "correctAnswer": "Gas",
+      "explanation": "Gas particles have negligible intermolecular force and large spacing, so they occupy the entire container.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "During the melting of ice at 0 degree C, the temperature of the ice-water mixture keeps rising until melting is complete.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "explanation": "Temperature stays constant at the melting point because supplied heat is used as latent heat to overcome intermolecular force, not to raise temperature.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH1-T1-O1",
+      "atomId": "C9-SCI-U1-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A solid is heated and its temperature rises steadily, then remains constant for several minutes before rising again. Explain what is happening during the constant-temperature interval.",
+      "options": null,
+      "correctAnswer": "The solid is melting; absorbed heat is latent heat of fusion used to overcome intermolecular attraction, so temperature stays constant until melting is complete.",
+      "explanation": "This tests interpretation of a heating curve plateau as a change of state, not a temperature change.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH1-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH1-T2-O1",
@@ -107,6 +184,85 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Wet clothes dry faster on a windy afternoon than on a calm humid morning. Which pair of factors best explains this observation?",
+      "options": [
+        "Higher wind speed and lower humidity increase evaporation rate",
+        "Lower wind speed and higher humidity increase evaporation rate",
+        "Wind speed has no effect; only surface area matters",
+        "Humidity has no effect; only temperature matters"
+      ],
+      "correctAnswer": "Higher wind speed and lower humidity increase evaporation rate",
+      "explanation": "Wind removes vapour molecules from near the surface and low humidity keeps the air far from saturation, both speeding evaporation.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Sweating helps cool the human body mainly because",
+      "options": [
+        "evaporation of sweat absorbs heat from the skin",
+        "sweat is naturally cold when secreted",
+        "sweat increases the boiling point of skin surface",
+        "sweat reflects sunlight away from the body"
+      ],
+      "correctAnswer": "evaporation of sweat absorbs heat from the skin",
+      "explanation": "Evaporation requires latent heat, which is drawn from the body surface, lowering skin temperature.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH1-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH1/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH1-T2-O1",
+      "atomId": "C9-SCI-U1-CH1-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Explain why spreading a liquid over a larger surface area, such as pouring tea into a saucer, causes it to cool faster than leaving it in a cup.",
+      "options": null,
+      "correctAnswer": "A larger exposed surface area allows more molecules to escape as vapour per second, increasing the rate of evaporation and hence the rate of cooling.",
+      "explanation": "Directly applies the surface-area factor governing evaporation rate.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-1",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH2-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH2-T1-O1",
@@ -146,6 +302,85 @@
       ],
       "correctAnswer": "Carbon dioxide",
       "explanation": "Carbon dioxide has elements combined chemically in a fixed ratio with new properties. Air and soil are heterogeneous or homogeneous mixtures, and brass is an alloy, which is also a mixture.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "Which of the following is a heterogeneous mixture?",
+      "options": [
+        "Sugar solution",
+        "Air",
+        "Oil floating on water",
+        "Brass alloy"
+      ],
+      "correctAnswer": "Oil floating on water",
+      "explanation": "Oil and water form visibly distinct layers with a boundary, so the composition is not uniform throughout.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A solution is prepared by dissolving 15 g of common salt in 135 g of water. What is the mass by mass percentage of the solution?",
+      "options": [
+        "10 percent",
+        "15 percent",
+        "11.1 percent",
+        "9 percent"
+      ],
+      "correctAnswer": "10 percent",
+      "explanation": "Mass percent equals mass of solute divided by total mass of solution, which is 15 divided by 150, multiplied by 100, giving 10 percent.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH2-T1-O1",
+      "atomId": "C9-SCI-U1-CH2-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State one difference each between a compound and a mixture in terms of composition and separation of components.",
+      "options": null,
+      "correctAnswer": "A compound has a fixed composition and its constituent elements can be separated only by chemical means, whereas a mixture has variable composition and its components can be separated by physical means.",
+      "explanation": "Tests the conceptual distinction between compounds and mixtures required by the outcome.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -214,6 +449,85 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A mixture contains a dye that is a blend of several coloured components with different solubilities in the same solvent. Which technique is most suitable to separate the individual components?",
+      "options": [
+        "Chromatography",
+        "Simple distillation",
+        "Sublimation",
+        "Filtration"
+      ],
+      "correctAnswer": "Chromatography",
+      "explanation": "Chromatography separates components that have different rates of movement on a stationary phase due to differing solubility and adsorption.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which technique is used to separate cream from milk based on a difference in density under high-speed rotation?",
+      "options": [
+        "Centrifugation",
+        "Evaporation",
+        "Sedimentation",
+        "Fractional distillation"
+      ],
+      "correctAnswer": "Centrifugation",
+      "explanation": "Centrifugation spins the mixture rapidly so denser and lighter components separate quickly by density difference.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH2-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH2/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH2-T2-O1",
+      "atomId": "C9-SCI-U1-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A mixture of two miscible liquids has boiling points of 78 degree C and 100 degree C. Name the separation technique you would use and justify your choice using the relevant property.",
+      "options": null,
+      "correctAnswer": "Fractional distillation should be used because the liquids are miscible and have a boiling point difference, allowing the more volatile liquid to vaporise and be collected first through a fractionating column.",
+      "explanation": "Applies the property-to-technique matching rule for miscible liquids with different boiling points.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-2",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH3-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH3-T1-O1",
@@ -253,6 +567,83 @@
       ],
       "correctAnswer": "8.2 g",
       "explanation": "Mass is conserved in a closed system, so the product mass equals the total reactant mass: 5.0 + 3.2 = 8.2 g.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "According to the law of conservation of mass, the total mass of reactants must always equal the total mass of products in a closed chemical reaction.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "In a closed system, mass is neither created nor destroyed during a chemical reaction, so total mass is conserved.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "How many moles of carbon dioxide are present in 88 g of the gas? (Molar mass of carbon dioxide is 44 g per mole)",
+      "options": [
+        "1 mole",
+        "2 moles",
+        "0.5 mole",
+        "4 moles"
+      ],
+      "correctAnswer": "2 moles",
+      "explanation": "Number of moles equals given mass divided by molar mass, which is 88 divided by 44, giving 2 moles.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH3-T1-O1",
+      "atomId": "C9-SCI-U1-CH3-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Calculate the number of molecules present in 0.5 mole of oxygen gas, given Avogadro's number is 6.022 times 10 to the power 23 per mole.",
+      "options": null,
+      "correctAnswer": "Number of molecules equals moles multiplied by Avogadro's number, which is 0.5 multiplied by 6.022 times 10 to the power 23, giving 3.011 times 10 to the power 23 molecules.",
+      "explanation": "Applies the relation between moles and number of particles using Avogadro's number.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -316,6 +707,85 @@
       }
     },
     {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Magnesium has a valency of 2 and nitrogen has a valency of 3. What is the correct chemical formula of magnesium nitride formed by the criss-cross method?",
+      "options": [
+        "Mg3N2",
+        "Mg2N3",
+        "MgN2",
+        "Mg2N"
+      ],
+      "correctAnswer": "Mg3N2",
+      "explanation": "Criss-crossing the valencies gives 3 magnesium atoms and 2 nitrogen atoms as the smallest whole number ratio.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "What is the molecular mass of water, H2O, given atomic masses of hydrogen equal 1 u and oxygen equal 16 u?",
+      "options": [
+        "17 u",
+        "18 u",
+        "16 u",
+        "19 u"
+      ],
+      "correctAnswer": "18 u",
+      "explanation": "Molecular mass equals 2 times 1 plus 16, which is 2 plus 16 equal to 18 u.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH3-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH3/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH3-T2-O1",
+      "atomId": "C9-SCI-U1-CH3-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Calculate the formula unit mass of calcium chloride, CaCl2, given atomic masses calcium equals 40 u and chlorine equals 35.5 u.",
+      "options": null,
+      "correctAnswer": "Formula unit mass equals 40 plus 2 times 35.5, which is 40 plus 71, giving 111 u.",
+      "explanation": "Directly applies addition of atomic masses to find formula unit mass of an ionic compound.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-3",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U1-CH4-T1-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q1",
       "outcomeId": "C9-SCI-U1-CH4-T1-O1",
@@ -355,6 +825,85 @@
       "options": null,
       "correctAnswer": "Mass number 23; the atom is neutral (charge 0)",
       "explanation": "Mass number = protons + neutrons = 11 + 12 = 23. Equal numbers of protons and electrons make the net charge zero.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Assertion: Most alpha particles passed straight through the gold foil in Rutherford's experiment. Reason: Most of the space inside an atom is empty.",
+      "options": [
+        "Both assertion and reason are true and reason correctly explains the assertion",
+        "Both assertion and reason are true but reason does not correctly explain the assertion",
+        "Assertion is true but reason is false",
+        "Assertion is false but reason is true"
+      ],
+      "correctAnswer": "Both assertion and reason are true and reason correctly explains the assertion",
+      "explanation": "The undeflected passage of most alpha particles was direct evidence that atoms are mostly empty space.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Which subatomic particle carries no electric charge and is located inside the nucleus?",
+      "options": [
+        "Electron",
+        "Proton",
+        "Neutron",
+        "Positron"
+      ],
+      "correctAnswer": "Neutron",
+      "explanation": "The neutron is electrically neutral and resides in the nucleus along with the proton.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T1-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T1/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH4-T1-O1",
+      "atomId": "C9-SCI-U1-CH4-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "State one limitation of Rutherford's atomic model that was later addressed by Bohr's model.",
+      "options": null,
+      "correctAnswer": "Rutherford's model could not explain the stability of the atom, since an electron revolving around the nucleus should lose energy and spiral into it; Bohr's model resolved this by proposing fixed energy orbits.",
+      "explanation": "Tests comparison of atomic models as required by the outcome.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -411,6 +960,83 @@
       ],
       "correctAnswer": "Isotopes",
       "explanation": "Isotopes share the proton count (atomic number) but differ in neutron count, so their mass numbers differ. Isobars are the reverse case.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "An atom has atomic number 17. Using the 2n squared rule, what is its electronic configuration?",
+      "options": [
+        "2, 8, 7",
+        "2, 7, 8",
+        "2, 8, 8",
+        "8, 8, 1"
+      ],
+      "correctAnswer": "2, 8, 7",
+      "explanation": "Filling shells as 2, 8, then the remaining 7 electrons in the third shell gives 2, 8, 7 for 17 electrons.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Isotopes of an element have the same atomic number but different mass numbers due to a different number of neutrons.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "Isotopes share the same proton number but differ in neutron number, giving different mass numbers.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-4",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U1-CH4-T2-O1-Q5",
+      "externalRef": "CBSE/2026-27/C9/SCI/U1/CH4/T2/O1/Q5",
+      "outcomeId": "C9-SCI-U1-CH4-T2-O1",
+      "atomId": "C9-SCI-U1-CH4-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Two atoms X and Y have the same mass number but different atomic numbers. What are such atoms called, and what does this imply about their neutron counts?",
+      "options": null,
+      "correctAnswer": "Such atoms are called isobars; since mass number is the same but atomic number differs, the number of neutrons must differ between them to keep the sum of protons and neutrons equal.",
+      "explanation": "Tests the isobar concept and the relationship between atomic number, mass number and neutron count.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -678,6 +1304,57 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH1-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH1-T1-O1",
+      "atomId": "C9-SCI-U3-CH1-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A car starts from rest and accelerates uniformly at 2 m/s² for 5 s. What is its final velocity?",
+      "options": [
+        "5 m/s",
+        "10 m/s",
+        "15 m/s",
+        "20 m/s"
+      ],
+      "correctAnswer": "10 m/s",
+      "explanation": "Using v = u + at: v = 0 + 2 x 5 = 10 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH1-T1-O1",
+      "atomId": "C9-SCI-U3-CH1-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A cyclist covers 300 m north then 400 m east in 100 s. Find the magnitude of displacement.",
+      "options": null,
+      "correctAnswer": "500 m",
+      "explanation": "Displacement magnitude = sqrt(300^2 + 400^2) = sqrt(90000+160000) = sqrt(250000) = 500 m.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH1-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH1-T2-O1",
@@ -722,6 +1399,62 @@
       ],
       "correctAnswer": "the direction of velocity changes continuously",
       "explanation": "Velocity is a vector. Even at constant speed, a continuously changing direction means the velocity changes, so the motion is accelerated.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH1-T2-O1",
+      "atomId": "C9-SCI-U3-CH1-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "On a velocity-time graph, a straight horizontal line parallel to the time axis represents",
+      "options": [
+        "uniform acceleration",
+        "uniform velocity",
+        "uniform retardation",
+        "an object at rest"
+      ],
+      "correctAnswer": "uniform velocity",
+      "explanation": "A horizontal v-t line has zero slope, so acceleration is zero and velocity stays constant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-7",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH1-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH1/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH1-T2-O1",
+      "atomId": "C9-SCI-U3-CH1-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A body moves in a circle of radius 7 m at constant speed, completing one round in 22 s. Its speed is (use pi = 22/7)",
+      "options": [
+        "1 m/s",
+        "2 m/s",
+        "3 m/s",
+        "4 m/s"
+      ],
+      "correctAnswer": "2 m/s",
+      "explanation": "Speed = circumference / time = (2 x 22/7 x 7) / 22 = 44/22 = 2 m/s.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -785,6 +1518,60 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH2-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH2-T1-O1",
+      "atomId": "C9-SCI-U3-CH2-T1-O1-A2",
+      "kind": "true_false",
+      "difficulty": 1,
+      "stimulus": null,
+      "prompt": "A passenger standing in a bus tends to fall backward when the bus suddenly starts moving forward, due to inertia of rest.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "By Newton's first law, the passenger's body resists the sudden change from rest, causing a backward lurch.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH2-T1-O1",
+      "atomId": "C9-SCI-U3-CH2-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A net force of 15 N acts on a block of mass 3 kg initially at rest. What acceleration does it produce?",
+      "options": [
+        "3 m/s²",
+        "5 m/s²",
+        "8 m/s²",
+        "45 m/s²"
+      ],
+      "correctAnswer": "5 m/s²",
+      "explanation": "Using F = ma: a = F/m = 15/3 = 5 m/s².",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH2-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH2-T2-O1",
@@ -824,6 +1611,57 @@
       ],
       "correctAnswer": "1 m/s",
       "explanation": "Total momentum before = 2 × 3 = 6 kg·m/s. After the collision the combined mass is 6 kg, so v = 6 ÷ 6 = 1 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH2-T2-O1",
+      "atomId": "C9-SCI-U3-CH2-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Calculate the momentum of a 4 kg object moving at 6 m/s.",
+      "options": null,
+      "correctAnswer": "24 kg m/s",
+      "explanation": "Momentum p = mv = 4 x 6 = 24 kg m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-8",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH2-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH2/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH2-T2-O1",
+      "atomId": "C9-SCI-U3-CH2-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A 2 kg trolley moving at 3 m/s collides with a stationary 1 kg trolley and they stick together. Find their common velocity.",
+      "options": [
+        "1 m/s",
+        "2 m/s",
+        "3 m/s",
+        "4 m/s"
+      ],
+      "correctAnswer": "2 m/s",
+      "explanation": "By conservation of momentum: 2x3 + 1x0 = (2+1)v, so 6 = 3v, v = 2 m/s.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -887,6 +1725,62 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH3-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH3-T1-O1",
+      "atomId": "C9-SCI-U3-CH3-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "The weight of an object of mass 5 kg on Earth's surface (g = 10 m/s²) is",
+      "options": [
+        "5 N",
+        "10 N",
+        "50 N",
+        "500 N"
+      ],
+      "correctAnswer": "50 N",
+      "explanation": "Weight W = mg = 5 x 10 = 50 N.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH3-T1-O1",
+      "atomId": "C9-SCI-U3-CH3-T1-O1-A2",
+      "kind": "assertion_reason",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "Assertion: The mass of an object is the same on the Earth and on the Moon. Reason: The gravitational force of attraction on an object depends on the mass of the planet.",
+      "options": [
+        "Both assertion and reason are true, and reason correctly explains assertion",
+        "Both assertion and reason are true, but reason does not correctly explain assertion",
+        "Assertion is true but reason is false",
+        "Assertion is false but reason is true"
+      ],
+      "correctAnswer": "Both assertion and reason are true, but reason does not correctly explain assertion",
+      "explanation": "Mass stays constant everywhere as it depends only on the object, while weight changes because g differs on the Moon; the reason is a true fact but does not explain why mass is constant.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH3-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH3-T2-O1",
@@ -926,6 +1820,60 @@
       ],
       "correctAnswer": "less than that of water",
       "explanation": "A floating object displaces a weight of liquid equal to its own weight, which is possible only when its average density is lower than that of the liquid.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH3-T2-O1",
+      "atomId": "C9-SCI-U3-CH3-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A force of 40 N acts perpendicularly on an area of 2 m². The pressure exerted is",
+      "options": [
+        "10 Pa",
+        "20 Pa",
+        "40 Pa",
+        "80 Pa"
+      ],
+      "correctAnswer": "20 Pa",
+      "explanation": "Pressure P = F/A = 40/2 = 20 Pa.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-9",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH3-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH3/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH3-T2-O1",
+      "atomId": "C9-SCI-U3-CH3-T2-O1-A2",
+      "kind": "true_false",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "According to Archimedes' principle, an object floats only if its density is less than or equal to the density of the fluid it is placed in.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "explanation": "An object floats when the upthrust from displaced fluid equals its weight, which occurs when its average density does not exceed the fluid's density.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -989,6 +1937,57 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH4-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH4-T1-O1",
+      "atomId": "C9-SCI-U3-CH4-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "A boy pushes a box with a force of 20 N and moves it 5 m in the direction of the force. The work done is",
+      "options": [
+        "4 J",
+        "15 J",
+        "25 J",
+        "100 J"
+      ],
+      "correctAnswer": "100 J",
+      "explanation": "Work W = F x d = 20 x 5 = 100 J.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH4-T1-O1",
+      "atomId": "C9-SCI-U3-CH4-T1-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "Find the kinetic energy of a 2 kg ball moving with a speed of 5 m/s.",
+      "options": null,
+      "correctAnswer": "25 J",
+      "explanation": "KE = 1/2 m v^2 = 0.5 x 2 x 25 = 25 J.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH4-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH4-T2-O1",
@@ -1028,6 +2027,62 @@
       ],
       "correctAnswer": "entirely kinetic",
       "explanation": "As the height falls to zero the potential energy mgh becomes zero, and by conservation of energy all of it has converted into kinetic energy.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH4-T2-O1",
+      "atomId": "C9-SCI-U3-CH4-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A motor does 600 J of work in 20 s. What is its power output?",
+      "options": [
+        "10 W",
+        "30 W",
+        "600 W",
+        "12000 W"
+      ],
+      "correctAnswer": "30 W",
+      "explanation": "Power P = W/t = 600/20 = 30 W.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-10",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH4-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH4/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH4-T2-O1",
+      "atomId": "C9-SCI-U3-CH4-T2-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "When a ball is dropped from a height and falls freely under gravity, ignoring air resistance, its",
+      "options": [
+        "kinetic energy decreases and potential energy increases",
+        "total mechanical energy remains constant",
+        "total mechanical energy keeps decreasing",
+        "potential energy alone remains constant"
+      ],
+      "correctAnswer": "total mechanical energy remains constant",
+      "explanation": "By the law of conservation of energy, potential energy converts to kinetic energy so their sum stays constant in free fall without friction.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -1091,6 +2146,62 @@
       }
     },
     {
+      "id": "C9-SCI-U3-CH5-T1-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH5-T1-O1",
+      "atomId": "C9-SCI-U3-CH5-T1-O1-A2",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stimulus": null,
+      "prompt": "Sound waves travelling through air are best described as",
+      "options": [
+        "transverse waves",
+        "longitudinal waves",
+        "electromagnetic waves",
+        "standing waves only"
+      ],
+      "correctAnswer": "longitudinal waves",
+      "explanation": "In sound waves, particles of the medium vibrate parallel to the direction of wave propagation, which defines a longitudinal wave.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T1-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T1/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH5-T1-O1",
+      "atomId": "C9-SCI-U3-CH5-T1-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A sound wave has a frequency of 250 Hz and wavelength of 1.4 m. What is its speed?",
+      "options": [
+        "178.6 m/s",
+        "251.4 m/s",
+        "350 m/s",
+        "500 m/s"
+      ],
+      "correctAnswer": "350 m/s",
+      "explanation": "Speed v = frequency x wavelength = 250 x 1.4 = 350 m/s.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-SCI-U3-CH5-T2-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q1",
       "outcomeId": "C9-SCI-U3-CH5-T2-O1",
@@ -1130,6 +2241,57 @@
       "options": null,
       "correctAnswer": "Because the ear retains a sound for about 0.1 s, and in that time sound at 344 m/s travels about 34 m to and fro, that is roughly 17 m each way.",
       "explanation": "The persistence of hearing is about 0.1 s. For the echo to be heard separately the total path must take at least this long: 344 × 0.1 ≈ 34 m, so the obstacle must be about 17 m away.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T2-O1-Q3",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q3",
+      "outcomeId": "C9-SCI-U3-CH5-T2-O1",
+      "atomId": "C9-SCI-U3-CH5-T2-O1-A2",
+      "kind": "applied_mcq",
+      "difficulty": 4,
+      "stimulus": null,
+      "prompt": "A ship sends a SONAR signal that returns after 4 s. If the speed of sound in water is 1500 m/s, how deep is the sea below the ship?",
+      "options": [
+        "750 m",
+        "1500 m",
+        "3000 m",
+        "6000 m"
+      ],
+      "correctAnswer": "3000 m",
+      "explanation": "Distance travelled by sound = speed x time = 1500 x 4 = 6000 m, and depth is half of that (down and back): 6000/2 = 3000 m.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-SCI-2026-27",
+        "sourceRef": "NCERT-C9-SCI-2026-27#chapter-11",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-SCI-U3-CH5-T2-O1-Q4",
+      "externalRef": "CBSE/2026-27/C9/SCI/U3/CH5/T2/O1/Q4",
+      "outcomeId": "C9-SCI-U3-CH5-T2-O1",
+      "atomId": "C9-SCI-U3-CH5-T2-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "State the minimum distance between a listener and a reflecting surface needed to hear a distinct echo, taking the speed of sound as 340 m/s (persistence of hearing is 0.1 s).",
+      "options": null,
+      "correctAnswer": "17 m",
+      "explanation": "Minimum distance = (speed x time)/2 = (340 x 0.1)/2 = 34/2 = 17 m.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",

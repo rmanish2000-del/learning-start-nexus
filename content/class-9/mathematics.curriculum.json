@@ -116,6 +116,141 @@
                   "prerequisites": []
                 }
               ]
+            },
+            {
+              "id": "C9-MAT-U1-CH1-T3",
+              "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T3",
+              "title": "Squares, cubes and estimation of roots",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U1-CH1-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T3/O1",
+                  "code": "C9-MAT-01.01.31",
+                  "title": "Estimate and verify square roots and cube roots of numbers using known perfect powers",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U1-CH1-T3-O1-A1",
+                      "text": "Estimate the square root of a non-perfect-square number using nearby perfect squares"
+                    },
+                    {
+                      "id": "C9-MAT-U1-CH1-T3-O1-A2",
+                      "text": "Estimate the cube root of a non-perfect-cube number using nearby perfect cubes"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U1-CH1-T4",
+              "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T4",
+              "title": "Representing real numbers on the number line",
+              "position": 4,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U1-CH1-T4-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T4/O1",
+                  "code": "C9-MAT-01.01.41",
+                  "title": "Locate rational and irrational numbers on the number line using geometric and successive magnification methods",
+                  "category": "conceptual",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U1-CH1-T4-O1-A1",
+                      "text": "Represent √n geometrically using the Pythagoras theorem construction on a number line"
+                    },
+                    {
+                      "id": "C9-MAT-U1-CH1-T4-O1-A2",
+                      "text": "Locate a given decimal number between two points using successive magnification"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U1-CH1-T5",
+              "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T5",
+              "title": "Operations on real numbers",
+              "position": 5,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U1-CH1-T5-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T5/O1",
+                  "code": "C9-MAT-01.01.51",
+                  "title": "Perform addition, subtraction, multiplication and division involving rational and irrational numbers correctly",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U1-CH1-T5-O1-A1",
+                      "text": "Add or subtract two surds after expressing them with the same irrational part"
+                    },
+                    {
+                      "id": "C9-MAT-U1-CH1-T5-O1-A2",
+                      "text": "Determine whether the sum, difference, product or quotient of a rational and an irrational number is rational or irrational"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U1-CH1-T6",
+              "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T6",
+              "title": "Laws of exponents for real numbers",
+              "position": 6,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U1-CH1-T6-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U1/CH1/T6/O1",
+                  "code": "C9-MAT-01.01.61",
+                  "title": "Use the laws of exponents to simplify expressions involving rational exponents and negative powers",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U1-CH1-T6-O1-A1",
+                      "text": "Simplify expressions using a^m ÷ a^n = a^(m−n) and (ab)^m = a^m × b^m"
+                    },
+                    {
+                      "id": "C9-MAT-U1-CH1-T6-O1-A2",
+                      "text": "Evaluate expressions with zero and negative rational exponents"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
             }
           ]
         }
@@ -206,6 +341,42 @@
                   "prerequisites": []
                 }
               ]
+            },
+            {
+              "id": "C9-MAT-U2-CH1-T3",
+              "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T3",
+              "title": "Remainder theorem and value of polynomials",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U2-CH1-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U2/CH1/T3/O1",
+                  "code": "C9-MAT-02.01.31",
+                  "title": "Apply the remainder theorem to find remainders and use it to check factors",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq",
+                    "assertion_reason"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U2-CH1-T3-O1-A1",
+                      "text": "Use the remainder theorem to find the remainder of p(x) on division by (x − a)"
+                    },
+                    {
+                      "id": "C9-MAT-U2-CH1-T3-O1-A2",
+                      "text": "Use the remainder/factor theorem to test whether (x − a) is a factor of p(x)"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
             }
           ]
         },
@@ -287,6 +458,42 @@
                   "prerequisites": []
                 }
               ]
+            },
+            {
+              "id": "C9-MAT-U2-CH2-T3",
+              "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T3",
+              "title": "Simultaneous linear equations and applications",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U2-CH2-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U2/CH2/T3/O1",
+                  "code": "C9-MAT-02.02.31",
+                  "title": "Solve real-life problems using linear equations in two variables and represent them graphically",
+                  "category": "application",
+                  "bloomLevel": "analyse",
+                  "difficulty": 3,
+                  "diagnosticWeight": 5,
+                  "questionTypes": [
+                    "mcq",
+                    "short_answer",
+                    "true_false",
+                    "applied_mcq",
+                    "assertion_reason"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U2-CH2-T3-O1-A1",
+                      "text": "Find the common solution of two linear equations in two variables"
+                    },
+                    {
+                      "id": "C9-MAT-U2-CH2-T3-O1-A2",
+                      "text": "Translate a word problem into a pair of linear equations and interpret the graph"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
             }
           ]
         }
@@ -339,6 +546,178 @@
                     {
                       "id": "C9-MAT-U3-CH1-T1-O1-A2",
                       "text": "Identify points lying on the x-axis or y-axis"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U3-CH1-T2",
+              "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T2",
+              "title": "Axes, origin and coordinates",
+              "position": 2,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U3-CH1-T2-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T2/O1",
+                  "code": "C9-MAT-03.01.21",
+                  "title": "Describe the axes, origin and coordinates of a point in the Cartesian plane",
+                  "category": "conceptual",
+                  "bloomLevel": "remember",
+                  "difficulty": 1,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "true_false",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U3-CH1-T2-O1-A1",
+                      "text": "State the names given to the horizontal and vertical reference lines"
+                    },
+                    {
+                      "id": "C9-MAT-U3-CH1-T2-O1-A2",
+                      "text": "State the coordinates of the point where the axes meet"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U3-CH1-T3",
+              "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T3",
+              "title": "Quadrants and sign rules",
+              "position": 3,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U3-CH1-T3-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T3/O1",
+                  "code": "C9-MAT-03.01.31",
+                  "title": "Determine the quadrant of a point using the sign pattern of its coordinates",
+                  "category": "conceptual",
+                  "bloomLevel": "understand",
+                  "difficulty": 2,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "assertion_reason",
+                    "true_false"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U3-CH1-T3-O1-A1",
+                      "text": "Match the sign combination (+,+), (-,+), (-,-), (+,-) to quadrants I, II, III, IV"
+                    },
+                    {
+                      "id": "C9-MAT-U3-CH1-T3-O1-A2",
+                      "text": "Decide the quadrant of a point given only its sign pattern"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U3-CH1-T4",
+              "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T4",
+              "title": "Plotting and reading points",
+              "position": 4,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U3-CH1-T4-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T4/O1",
+                  "code": "C9-MAT-03.01.41",
+                  "title": "Plot given ordered pairs and read off coordinates of marked points on a grid",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "applied_mcq",
+                    "short_answer"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U3-CH1-T4-O1-A1",
+                      "text": "Locate a point on a squared grid given its ordered pair"
+                    },
+                    {
+                      "id": "C9-MAT-U3-CH1-T4-O1-A2",
+                      "text": "Write the ordered pair for a point already marked on a grid"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U3-CH1-T5",
+              "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T5",
+              "title": "Points on the axes and distances along an axis",
+              "position": 5,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U3-CH1-T5-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T5/O1",
+                  "code": "C9-MAT-03.01.51",
+                  "title": "Identify points lying on the axes and compute distances between points sharing an axis value",
+                  "category": "procedural",
+                  "bloomLevel": "apply",
+                  "difficulty": 2,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "true_false",
+                    "short_answer",
+                    "applied_mcq"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U3-CH1-T5-O1-A1",
+                      "text": "Recognise that points on the x-axis have y-coordinate 0 and points on the y-axis have x-coordinate 0"
+                    },
+                    {
+                      "id": "C9-MAT-U3-CH1-T5-O1-A2",
+                      "text": "Find the distance between two points that lie on the same horizontal or vertical line"
+                    }
+                  ],
+                  "prerequisites": []
+                }
+              ]
+            },
+            {
+              "id": "C9-MAT-U3-CH1-T6",
+              "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T6",
+              "title": "Graphs of linear equations of the form y = mx",
+              "position": 6,
+              "outcomes": [
+                {
+                  "id": "C9-MAT-U3-CH1-T6-O1",
+                  "externalRef": "CBSE/2026-27/C9/MAT/U3/CH1/T6/O1",
+                  "code": "C9-MAT-03.01.61",
+                  "title": "Draw and interpret the graph of a linear equation of the form y = mx passing through the origin",
+                  "category": "application",
+                  "bloomLevel": "apply",
+                  "difficulty": 3,
+                  "diagnosticWeight": 4,
+                  "questionTypes": [
+                    "mcq",
+                    "applied_mcq",
+                    "short_answer",
+                    "true_false"
+                  ],
+                  "atoms": [
+                    {
+                      "id": "C9-MAT-U3-CH1-T6-O1-A1",
+                      "text": "Generate a table of values for y = mx and use it to plot the line"
+                    },
+                    {
+                      "id": "C9-MAT-U3-CH1-T6-O1-A2",
+                      "text": "Check whether a given point satisfies an equation of the form y = mx"
                     }
                   ],
                   "prerequisites": []
