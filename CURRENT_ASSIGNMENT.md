@@ -54,6 +54,26 @@ No pilot invitations and no sales material have been issued.
 - **Pricing unchanged:** ₹199 diagnostic, ₹2,999 annual plan, ₹199 credit (₹2,800 upgrade). All candidate expansion prices are founder-approval hypotheses only.
 - Audit is documentation-only: no application code changed, no migration applied, no deployment.
 - Deliverable: `EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md` (constraint map, target schema, additive migration plan, content pipeline, JSON schemas, subject requirements, entitlement and pricing architecture, UX impact, release gates, copyright register, waves, testing, rollback, founder decisions).
-- Open defect logged, not fixed: homepage FAQ still claims Hindi support (`src/routes/index.tsx`). Requires a separate approved copy fix.
+- Open defect closed under D9: the homepage FAQ no longer claims Hindi support; it states the interface is English only (`src/routes/index.tsx`).
 
-**Next gate:** founder approval of the expansion architecture (decisions D1–D9). Classes 9–12 stay unsupported until each class-subject passes its own release gate.
+**Founder decisions received 2026-08-28:** D1 approved (database-driven catalogue) · D2 approved
+(academic-year versioning from CBSE 2026–27) · D3 approved (Classes 9–10 core, Classes 11–12 Science
+including English Core) · D4 approved for architecture only (prices unapproved) · D5 approved (one
+eligible ₹199 credit, same learner, qualifying subject or bundle, once) · D6 approved for
+configuration (tax inactive until accounting approval) · D7 approved (named subject-expert sign-off
+before commercial activation) · D8 approved for architecture (centre pricing per active learner/year)
+· D9 fixed now (English-only FAQ correction shipped).
+
+---
+
+## 2026-08-28 — Wave 0 Preparation Gate — CURRENT
+
+**Priority:** P0 Expansion Foundation · **Status:** Complete — baseline committed and published.
+
+- Architecture audit and continuity documents committed; D1–D9 recorded in
+  `EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md` §14.
+- Only code change: the homepage FAQ Hindi correction. No schema, migration, content import,
+  class/subject activation, pricing change, or new selector.
+- Production remains English-only, CBSE Class 10 Mathematics and Science, pricing unchanged.
+
+**Next gate:** Wave 0 catalogue, versioning, entitlement and pricing-foundation implementation.

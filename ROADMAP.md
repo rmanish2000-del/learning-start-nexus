@@ -112,3 +112,19 @@ The founder owns the "Candidate next" section and sets priorities. The Lovable a
 - Minimum content bar derived from live allocation logic: ≥20 approved+verified items per unit for the diagnostic, plus a disjoint ≥20 for reassessment, ≥1 per weighted outcome.
 - **No class-subject may be marked supported until it passes its own release gate.**
 - Reference: `EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md`.
+
+
+---
+
+## 2026-08-28 — Wave 0 Preparation Gate (founder decisions recorded) — CURRENT
+
+- Founder decisions D1–D9 recorded in `EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md` §14:
+  catalogue approved, academic-year versioning from CBSE 2026–27, subject list approved
+  (including Classes 11–12 English Core), pricing approved for architecture only, single
+  ₹199 diagnostic credit rule approved, tax configurable but inactive, named subject-expert
+  sign-off required before commercial activation, centre pricing per active learner/year
+  approved for architecture, and the stale Hindi FAQ claim fixed.
+- Scope of this assignment: documentation plus a one-line public copy correction. No curriculum
+  tables, no migration, no content import, no class or subject activation, no pricing change,
+  no new selectors.
+- **Next gate:** Wave 0 catalogue, versioning, entitlement and pricing-foundation implementation.
