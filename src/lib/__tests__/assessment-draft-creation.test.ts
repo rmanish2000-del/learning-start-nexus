@@ -44,6 +44,9 @@ function seed(opts: { subject?: string; grade?: number; board?: string; verified
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const client = (db: Db) => createFakeSupabase(db) as any;
 
+const tbl = (db: Db, name: string) => db[name] ?? [];
+const row0 = (db: Db, name: string) => tbl(db, name)[0] ?? {};
+
 describe("createAssessmentDraft", () => {
   it("inherits CBSE Class 10 Mathematics metadata from the book, as an active draft", async () => {
     const { db, questionIds } = seed();
@@ -54,17 +57,17 @@ describe("createAssessmentDraft", () => {
       questionIds,
     });
 
-    const row = db.assessments[0]!;
+    const row = row0(db, "assessments");
     expect(res.status).toBe("draft");
-    expect(row.status).toBe("draft");
-    expect(row.grade).toBe(10);
-    expect(row.subject).toBe("Mathematics");
-    expect(row.topic).toBe("Algebra");
-    expect(row.book_id).toBe("book-1");
-    expect(row.unit_id).toBe("unit-1");
-    expect(row.archived_at ?? null).toBeNull();
+    expect(row["status"]).toBe("draft");
+    expect(row["grade"]).toBe(10);
+    expect(row["subject"]).toBe("Mathematics");
+    expect(row["topic"]).toBe("Algebra");
+    expect(row["book_id"]).toBe("book-1");
+    expect(row["unit_id"]).toBe("unit-1");
+    expect(row["archived_at"] ?? null).toBeNull();
     // The defect signature: a new draft must never be legacy content.
-    expect(isLegacyContent({ grade: row.grade as number, subject: row.subject as string })).toBe(
+    expect(isLegacyContent({ grade: row["grade"] as number, subject: row["subject"] as string })).toBe(
       false,
     );
   });
@@ -77,9 +80,9 @@ describe("createAssessmentDraft", () => {
       unitId: "unit-1",
       questionIds,
     });
-    const row = db.assessments[0]!;
-    expect(row.subject).toBe("Science");
-    expect(isLegacyContent({ grade: row.grade as number, subject: row.subject as string })).toBe(
+    const row = row0(db, "assessments");
+    expect(row["subject"]).toBe("Science");
+    expect(isLegacyContent({ grade: row["grade"] as number, subject: row["subject"] as string })).toBe(
       false,
     );
   });
@@ -93,12 +96,12 @@ describe("createAssessmentDraft", () => {
       questionIds,
       timeLimitMinutes: 30,
     });
-    const row = db.assessments[0]!;
+    const row = row0(db, "assessments");
     expect(
       publishBlockers({
-        title: row.title as string,
-        subject: row.subject as string,
-        grade: row.grade as number,
+        title: row["title"] as string,
+        subject: row["subject"] as string,
+        grade: row["grade"] as number,
         board: "CBSE",
         questionCount: questionIds.length,
         unverifiedCount: 0,
@@ -117,9 +120,9 @@ describe("createAssessmentDraft", () => {
       unitId: "unit-1",
       questionIds,
     });
-    expect(db.assessment_question_map).toHaveLength(questionIds.length);
-    expect(db.assessment_question_map[0]!.sort_order).toBe(1);
-    expect(db.assessment_sessions ?? []).toHaveLength(0);
+    expect(tbl(db, "assessment_question_map")).toHaveLength(questionIds.length);
+    expect(row0(db, "assessment_question_map")["sort_order"]).toBe(1);
+    expect(tbl(db, "assessment_sessions") ?? []).toHaveLength(0);
   });
 
   it("blocks an unsupported grade", async () => {
@@ -160,7 +163,7 @@ describe("createAssessmentDraft", () => {
 
   it("blocks archived legacy books", async () => {
     const { db, questionIds } = seed();
-    db.books[0]!.archived_at = "2026-01-01";
+    row0(db, "books")["archived_at"] = "2026-01-01";
     await expect(
       createAssessmentDraft(client(db), CTX, {
         title: "Algebra",
@@ -197,7 +200,7 @@ describe("createAssessmentDraft", () => {
 
   it("blocks questions whose outcome sits outside the chosen unit", async () => {
     const { db, questionIds } = seed();
-    db.question_bank[0]!.outcome_id = "out-2";
+    row0(db, "question_bank")["outcome_id"] = "out-2";
     await expect(
       createAssessmentDraft(client(db), CTX, {
         title: "Algebra",
