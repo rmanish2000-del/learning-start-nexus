@@ -5745,6 +5745,34 @@
       }
     },
     {
+      "id": "C9-MAT-U6-CH1-T3-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T3/O1/Q7",
+      "outcomeId": "C9-MAT-U6-CH1-T3-O1",
+      "atomId": "C9-MAT-U6-CH1-T3-O1-A2",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stimulus": null,
+      "prompt": "A questionnaire filled directly by respondents for a fresh survey produces:",
+      "options": [
+        "Secondary data",
+        "Primary data",
+        "A histogram",
+        "A class interval"
+      ],
+      "correctAnswer": "Primary data",
+      "explanation": "Data gathered first-hand for the specific purpose of the survey, such as a fresh questionnaire, is primary data.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-MAT-U6-CH1-T4-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T4/O1/Q1",
       "outcomeId": "C9-MAT-U6-CH1-T4-O1",
@@ -5894,6 +5922,29 @@
       ],
       "correctAnswer": "(upper limit + lower limit) divided by 2",
       "explanation": "The class mark, or mid-value, is the average of the two limits of the class interval.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U6-CH1-T4-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T4/O1/Q7",
+      "outcomeId": "C9-MAT-U6-CH1-T4-O1",
+      "atomId": "C9-MAT-U6-CH1-T4-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": "Class intervals used: 10–20, 20–30, 30–40, each of frequency 5, 8 and 7 respectively",
+      "prompt": "Find the total number of observations represented by these three classes.",
+      "options": null,
+      "correctAnswer": "20",
+      "explanation": "Adding the frequencies of all classes gives the total observations: 5 + 8 + 7 = 20.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",
@@ -6067,6 +6118,29 @@
       }
     },
     {
+      "id": "C9-MAT-U6-CH1-T5-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T5/O1/Q7",
+      "outcomeId": "C9-MAT-U6-CH1-T5-O1",
+      "atomId": "C9-MAT-U6-CH1-T5-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 2,
+      "stimulus": "Bar graph of favourite sports: Cricket 30, Football 22, Badminton 18, Hockey 10",
+      "prompt": "Which sport is shown by the tallest bar?",
+      "options": null,
+      "correctAnswer": "Cricket",
+      "explanation": "Cricket has the highest count, 30, so its bar is the tallest in the bar graph.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
       "id": "C9-MAT-U6-CH1-T6-O1-Q1",
       "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T6/O1/Q1",
       "outcomeId": "C9-MAT-U6-CH1-T6-O1",
@@ -6216,6 +6290,29 @@
       ],
       "correctAnswer": "allows two or more distributions to be compared easily on the same axes",
       "explanation": "Because a frequency polygon is a line graph rather than solid bars, multiple polygons can be overlaid on the same axes for easy visual comparison.",
+      "language": "en",
+      "status": "draft",
+      "verificationState": "unverified",
+      "reviewNote": "",
+      "provenance": {
+        "sourceId": "NCERT-C9-MAT-2026-27",
+        "sourceRef": "NCERT-C9-MAT-2026-27#chapter-12",
+        "retrievedOn": "2026-08-28",
+        "note": "Original EduOS item aligned to the cited chapter; not copied from any textbook exercise."
+      }
+    },
+    {
+      "id": "C9-MAT-U6-CH1-T6-O1-Q7",
+      "externalRef": "CBSE/2026-27/C9/MAT/U6/CH1/T6/O1/Q7",
+      "outcomeId": "C9-MAT-U6-CH1-T6-O1",
+      "atomId": "C9-MAT-U6-CH1-T6-O1-A2",
+      "kind": "short_answer",
+      "difficulty": 3,
+      "stimulus": "Class marks and frequencies: 5 (0, boundary), 15 (6), 25 (14), 35 (10), 45 (0, boundary)",
+      "prompt": "How many points in total are plotted to draw this frequency polygon, including the two zero-frequency boundary points?",
+      "options": null,
+      "correctAnswer": "5",
+      "explanation": "The polygon plots one point per class mark plus the two added zero-frequency boundary points, giving 3 + 2 = 5 points.",
       "language": "en",
       "status": "draft",
       "verificationState": "unverified",

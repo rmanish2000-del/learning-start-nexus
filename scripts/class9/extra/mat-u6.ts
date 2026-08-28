@@ -153,7 +153,15 @@ const dataCollectionTopic: AuthoredTopic = {
           prompt: "How many families own exactly one pet?",
           answer: "4",
           explanation: "Scanning the list, the value 1 appears 4 times, so 4 families own exactly one pet.",
+        },        {
+          kind: "mcq",
+          difficulty: 3,
+          prompt: "A questionnaire filled directly by respondents for a fresh survey produces:",
+          options: ["Secondary data", "Primary data", "A histogram", "A class interval"],
+          answer: "Primary data",
+          explanation: "Data gathered first-hand for the specific purpose of the survey, such as a fresh questionnaire, is primary data.",
         },
+
       ],
     },
   ],
@@ -229,7 +237,15 @@ const classIntervalsTopic: AuthoredTopic = {
           ],
           answer: "(upper limit + lower limit) divided by 2",
           explanation: "The class mark, or mid-value, is the average of the two limits of the class interval.",
+        },        {
+          kind: "short_answer",
+          difficulty: 3,
+          stimulus: "Class intervals used: 10–20, 20–30, 30–40, each of frequency 5, 8 and 7 respectively",
+          prompt: "Find the total number of observations represented by these three classes.",
+          answer: "20",
+          explanation: "Adding the frequencies of all classes gives the total observations: 5 + 8 + 7 = 20.",
         },
+
       ],
     },
   ],
@@ -318,7 +334,15 @@ const barGraphHistogramTopic: AuthoredTopic = {
           answer: "grouped continuous numerical data",
           explanation:
             "Histograms are designed to show the distribution of continuous data split into class intervals, unlike pie charts or line graphs.",
+        },        {
+          kind: "short_answer",
+          difficulty: 2,
+          stimulus: "Bar graph of favourite sports: Cricket 30, Football 22, Badminton 18, Hockey 10",
+          prompt: "Which sport is shown by the tallest bar?",
+          answer: "Cricket",
+          explanation: "Cricket has the highest count, 30, so its bar is the tallest in the bar graph.",
         },
+
       ],
     },
   ],
@@ -402,7 +426,15 @@ const frequencyPolygonTopic: AuthoredTopic = {
           answer: "allows two or more distributions to be compared easily on the same axes",
           explanation:
             "Because a frequency polygon is a line graph rather than solid bars, multiple polygons can be overlaid on the same axes for easy visual comparison.",
+        },        {
+          kind: "short_answer",
+          difficulty: 3,
+          stimulus: "Class marks and frequencies: 5 (0, boundary), 15 (6), 25 (14), 35 (10), 45 (0, boundary)",
+          prompt: "How many points in total are plotted to draw this frequency polygon, including the two zero-frequency boundary points?",
+          answer: "5",
+          explanation: "The polygon plots one point per class mark plus the two added zero-frequency boundary points, giving 3 + 2 = 5 points.",
         },
+
       ],
     },
   ],
