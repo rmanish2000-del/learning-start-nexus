@@ -19,6 +19,8 @@ import { useI18n } from "@/lib/i18n/context";
 import { getParentAccount, createStudentProfile } from "@/lib/parent-account.functions";
 import { PILOT_BOARD, PILOT_CLASS, type ParentAccount, type ParentStudent } from "@/lib/parent-account-shared";
 import { FreeCheckPanel } from "@/components/free-check-panel";
+import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
+
 import { LoginInstructionActions, StudentLoginPanel } from "@/components/student-credentials";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
@@ -71,9 +73,15 @@ export function ParentLearners() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Adding a child is refused server-side until name + mobile exist, so
+            the form to complete them must live here, not only in checkout. */}
+        {!parentDetailsComplete(account.profile) ? (
+          <ParentDetailsCard profile={account.profile} onSaved={() => void query.refetch()} />
+        ) : null}
         {students.length === 0 ? (
           <EmptyLearners />
         ) : (
+
           <>
             <div className="flex flex-wrap items-center gap-2">
               {students.map((s) => (

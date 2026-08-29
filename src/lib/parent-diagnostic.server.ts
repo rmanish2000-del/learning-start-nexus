@@ -581,7 +581,7 @@ export async function failFromWebhook(input: {
 // Provisioning: learner + curriculum-mapped diagnostic + session
 // ---------------------------------------------------------------------------
 
-async function generateParentDiagnostic(row: OrderRow, learnerName: string): Promise<{
+async function generateParentDiagnostic(row: OrderRow, _learnerName: string): Promise<{
   assessmentId: string;
   questionCount: number;
 }> {
@@ -641,7 +641,10 @@ async function generateParentDiagnostic(row: OrderRow, learnerName: string): Pro
     .from("assessments")
     .insert({
       org_id: row.org_id!,
-      title: `${unitRes.data!.title} — Parent Diagnostic (${learnerName})`,
+      // Never embed a child's name: published diagnostics are reused by the
+      // self-serve start path, which would show one family's name to another.
+      title: `${unitRes.data!.title} — Parent Diagnostic (${row.order_ref})`,
+
       description: `₹199 parent diagnostic generated from blueprint weights. Order ${row.order_ref}. Coverage ${plan.compliance.actualCoveragePct}%.`,
       subject: bookRes.data!.subject,
       topic: unitRes.data!.title,
