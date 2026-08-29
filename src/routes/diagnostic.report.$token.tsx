@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
 import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { BandPill, DiagnosticShell } from "@/components/diagnostic-shell";
+import { ACTIVE_ACADEMIC_YEAR } from "@/lib/catalogue-shared";
 import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
@@ -140,10 +141,14 @@ function DiagnosticReportPageBody() {
   }
 
   return (
-    <DiagnosticShell wide footerNote={`${view.subject} · ${view.unitTitle}`}>
+    <DiagnosticShell
+      wide
+      footerNote={`${view.subject} · ${view.unitTitle} · Academic year ${ACTIVE_ACADEMIC_YEAR}`}
+    >
       <section className="space-y-3">
         <Badge variant="secondary">
-          {view.order.board ?? "CBSE"} Class {view.order.grade ?? 10} · {view.subject} · {view.unitTitle}
+          {view.order.board ?? "CBSE"} {ACTIVE_ACADEMIC_YEAR} · Class {view.order.grade ?? 10} · {view.subject} ·{" "}
+          {view.unitTitle}
         </Badge>
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           {t(

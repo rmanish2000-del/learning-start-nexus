@@ -1,0 +1,4278 @@
+{
+  "provenance": {
+    "contract_version": "1.0.0",
+    "board": "CBSE",
+    "class_level": 10,
+    "academic_year": "2026-27",
+    "evidence_contract_version": "1.0.0",
+    "source_verification_status": "SOURCES_VERIFIED",
+    "generator": "scripts/compliance/evidence-verify.ts",
+    "determinism_note": "Derived only from committed inputs; no timestamps are embedded."
+  },
+  "total_requirements": 84,
+  "rows": [
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_001",
+      "official_unit": "Unit I: Number Systems",
+      "official_chapter": "Real Numbers",
+      "official_topic": "Fundamental Theorem of Arithmetic",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_id": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7",
+      "eduos_chapter_title": "Real Numbers",
+      "eduos_topic_id": "d9ecd250-4844-495e-9dfd-61d19aa4e565",
+      "eduos_topic_title": "Fundamental Theorem of Arithmetic",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "EXACT",
+      "topic_match_score": 1,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "06d5cc10-c4bc-4005-b129-fd9284977e22",
+        "d8663faa-0acf-4a54-bb78-a78a18671bac"
+      ],
+      "assessment_outcome_ids": [
+        "6810a065-c2af-4e4f-b115-9aca39a6c78e",
+        "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M1.1.1",
+        "LO_M1.1.2"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer",
+        "true_false"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_002",
+      "official_unit": "Unit I: Number Systems",
+      "official_chapter": "Real Numbers",
+      "official_topic": "Prime Factorization Applications",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_id": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7",
+      "eduos_chapter_title": "Real Numbers",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "06d5cc10-c4bc-4005-b129-fd9284977e22",
+        "d8663faa-0acf-4a54-bb78-a78a18671bac"
+      ],
+      "assessment_outcome_ids": [
+        "6810a065-c2af-4e4f-b115-9aca39a6c78e",
+        "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M1.1.1",
+        "LO_M1.1.2"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer",
+        "true_false"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_003",
+      "official_unit": "Unit I: Number Systems",
+      "official_chapter": "Real Numbers",
+      "official_topic": "Irrationality Proofs",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_id": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7",
+      "eduos_chapter_title": "Real Numbers",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "06d5cc10-c4bc-4005-b129-fd9284977e22",
+        "d8663faa-0acf-4a54-bb78-a78a18671bac"
+      ],
+      "assessment_outcome_ids": [
+        "6810a065-c2af-4e4f-b115-9aca39a6c78e",
+        "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M1.1.1",
+        "LO_M1.1.2"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer",
+        "true_false"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_004",
+      "official_unit": "Unit I: Number Systems",
+      "official_chapter": "Real Numbers",
+      "official_topic": "Contextual Applications",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+      "eduos_unit_title": "Number Systems",
+      "eduos_chapter_id": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7",
+      "eduos_chapter_title": "Real Numbers",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "06d5cc10-c4bc-4005-b129-fd9284977e22",
+        "d8663faa-0acf-4a54-bb78-a78a18671bac"
+      ],
+      "assessment_outcome_ids": [
+        "6810a065-c2af-4e4f-b115-9aca39a6c78e",
+        "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M1.1.1",
+        "LO_M1.1.2"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer",
+        "true_false"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_005",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Polynomials",
+      "official_topic": "Zeros of Polynomials",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "a8e9b23d-a566-4a04-917d-df2c3d6aa920",
+      "eduos_chapter_title": "Polynomials",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "0a10a11d-f184-4556-8e00-0de6a2464d8d"
+      ],
+      "assessment_outcome_ids": [
+        "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_006",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Polynomials",
+      "official_topic": "Zeros and Coefficients Relationship",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "a8e9b23d-a566-4a04-917d-df2c3d6aa920",
+      "eduos_chapter_title": "Polynomials",
+      "eduos_topic_id": "78693be5-7824-458e-81d3-334c5f4c5e8d",
+      "eduos_topic_title": "Zeroes of a Polynomial and Relationship with Coefficients",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.43,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "0a10a11d-f184-4556-8e00-0de6a2464d8d"
+      ],
+      "assessment_outcome_ids": [
+        "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_007",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Polynomials",
+      "official_topic": "Geometric Meaning of Zeros",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "a8e9b23d-a566-4a04-917d-df2c3d6aa920",
+      "eduos_chapter_title": "Polynomials",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "0a10a11d-f184-4556-8e00-0de6a2464d8d"
+      ],
+      "assessment_outcome_ids": [
+        "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_008",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Pair of Linear Equations in Two Variables",
+      "official_topic": "Graphical Solution and Consistency",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "9f40e65a-a7f3-44f7-9c38-2946b4013031",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "5c66f0db-e0fa-456b-853f-fc49d7f661ae"
+      ],
+      "assessment_outcome_ids": [
+        "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_009",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Pair of Linear Equations in Two Variables",
+      "official_topic": "Algebraic Conditions for Solutions",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "9f40e65a-a7f3-44f7-9c38-2946b4013031",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "5c66f0db-e0fa-456b-853f-fc49d7f661ae"
+      ],
+      "assessment_outcome_ids": [
+        "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_010",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Pair of Linear Equations in Two Variables",
+      "official_topic": "Substitution Method",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "9f40e65a-a7f3-44f7-9c38-2946b4013031",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "5c66f0db-e0fa-456b-853f-fc49d7f661ae"
+      ],
+      "assessment_outcome_ids": [
+        "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_011",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Pair of Linear Equations in Two Variables",
+      "official_topic": "Elimination Method",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "9f40e65a-a7f3-44f7-9c38-2946b4013031",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "5c66f0db-e0fa-456b-853f-fc49d7f661ae"
+      ],
+      "assessment_outcome_ids": [
+        "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_012",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Pair of Linear Equations in Two Variables",
+      "official_topic": "Situational Word Problems",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 2",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "9f40e65a-a7f3-44f7-9c38-2946b4013031",
+      "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "5c66f0db-e0fa-456b-853f-fc49d7f661ae"
+      ],
+      "assessment_outcome_ids": [
+        "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_013",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Quadratic Equations",
+      "official_topic": "Standard Form of Quadratic Equations",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "c43f5930-670a-4b57-b62c-198baae8c65b",
+      "eduos_chapter_title": "Quadratic Equations",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "525b982f-d673-4428-869b-fa75b8611ef6"
+      ],
+      "assessment_outcome_ids": [
+        "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_014",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Quadratic Equations",
+      "official_topic": "Factorization Method",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "c43f5930-670a-4b57-b62c-198baae8c65b",
+      "eduos_chapter_title": "Quadratic Equations",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "525b982f-d673-4428-869b-fa75b8611ef6"
+      ],
+      "assessment_outcome_ids": [
+        "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_015",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Quadratic Equations",
+      "official_topic": "Quadratic Formula Method",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "c43f5930-670a-4b57-b62c-198baae8c65b",
+      "eduos_chapter_title": "Quadratic Equations",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "525b982f-d673-4428-869b-fa75b8611ef6"
+      ],
+      "assessment_outcome_ids": [
+        "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_016",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Quadratic Equations",
+      "official_topic": "Discriminant and Nature of Roots",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "c43f5930-670a-4b57-b62c-198baae8c65b",
+      "eduos_chapter_title": "Quadratic Equations",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "525b982f-d673-4428-869b-fa75b8611ef6"
+      ],
+      "assessment_outcome_ids": [
+        "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_017",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Quadratic Equations",
+      "official_topic": "Situational Quadratic Problems",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "c43f5930-670a-4b57-b62c-198baae8c65b",
+      "eduos_chapter_title": "Quadratic Equations",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "525b982f-d673-4428-869b-fa75b8611ef6"
+      ],
+      "assessment_outcome_ids": [
+        "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_018",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Arithmetic Progressions",
+      "official_topic": "Motivation for AP",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "07f25ffe-20ee-42c8-89e9-8504cd7d5933",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "e0cf93e9-6734-40f9-8664-6be5b95d7f29"
+      ],
+      "assessment_outcome_ids": [
+        "8d050f31-cbce-4bea-a751-b889027a0254"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M5.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_019",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Arithmetic Progressions",
+      "official_topic": "nth Term Derivation",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "07f25ffe-20ee-42c8-89e9-8504cd7d5933",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "e0cf93e9-6734-40f9-8664-6be5b95d7f29"
+      ],
+      "assessment_outcome_ids": [
+        "8d050f31-cbce-4bea-a751-b889027a0254"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M5.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_020",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Arithmetic Progressions",
+      "official_topic": "Sum of n Terms Derivation",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "07f25ffe-20ee-42c8-89e9-8504cd7d5933",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "e0cf93e9-6734-40f9-8664-6be5b95d7f29"
+      ],
+      "assessment_outcome_ids": [
+        "8d050f31-cbce-4bea-a751-b889027a0254"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M5.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_021",
+      "official_unit": "Unit II: Algebra",
+      "official_chapter": "Arithmetic Progressions",
+      "official_topic": "Daily Life AP Applications",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+      "eduos_unit_title": "Algebra",
+      "eduos_chapter_id": "07f25ffe-20ee-42c8-89e9-8504cd7d5933",
+      "eduos_chapter_title": "Arithmetic Progressions",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "e0cf93e9-6734-40f9-8664-6be5b95d7f29"
+      ],
+      "assessment_outcome_ids": [
+        "8d050f31-cbce-4bea-a751-b889027a0254"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M5.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_022",
+      "official_unit": "Unit III: Coordinate Geometry",
+      "official_chapter": "Coordinate Geometry",
+      "official_topic": "Distance Formula",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "2dec1571-2599-4b23-9163-730872353215",
+      "eduos_unit_title": "Coordinate Geometry",
+      "eduos_chapter_id": "5057feec-e0be-4f95-bde8-e889bf1e3851",
+      "eduos_chapter_title": "Coordinate Geometry",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "73ca0742-4b6e-48c0-ae14-483f180854b8"
+      ],
+      "assessment_outcome_ids": [
+        "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M7.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_023",
+      "official_unit": "Unit III: Coordinate Geometry",
+      "official_chapter": "Coordinate Geometry",
+      "official_topic": "Section Formula",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 3",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "2dec1571-2599-4b23-9163-730872353215",
+      "eduos_unit_title": "Coordinate Geometry",
+      "eduos_chapter_id": "5057feec-e0be-4f95-bde8-e889bf1e3851",
+      "eduos_chapter_title": "Coordinate Geometry",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "73ca0742-4b6e-48c0-ae14-483f180854b8"
+      ],
+      "assessment_outcome_ids": [
+        "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M7.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_024",
+      "official_unit": "Unit IV: Geometry",
+      "official_chapter": "Triangles",
+      "official_topic": "Basic Proportionality Theorem Proof",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_id": "a1470d2c-37f3-4e3d-bd20-bcef495850a2",
+      "eduos_chapter_title": "Triangles",
+      "eduos_topic_id": "c815e803-d2cf-48ab-9ba5-1bd9b8a18937",
+      "eduos_topic_title": "Similarity of Triangles and Basic Proportionality Theorem",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.43,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "34d01103-d0df-4df4-8858-6b992ec4f55f"
+      ],
+      "assessment_outcome_ids": [
+        "a83eeff7-b944-4850-9d32-447617627acc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M6.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_025",
+      "official_unit": "Unit IV: Geometry",
+      "official_chapter": "Triangles",
+      "official_topic": "Converse of BPT Statement",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "SUPPORTING_CONTEXT",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_id": "a1470d2c-37f3-4e3d-bd20-bcef495850a2",
+      "eduos_chapter_title": "Triangles",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "34d01103-d0df-4df4-8858-6b992ec4f55f"
+      ],
+      "assessment_outcome_ids": [
+        "a83eeff7-b944-4850-9d32-447617627acc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M6.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_026",
+      "official_unit": "Unit IV: Geometry",
+      "official_chapter": "Triangles",
+      "official_topic": "Triangle Similarity Criteria",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_id": "a1470d2c-37f3-4e3d-bd20-bcef495850a2",
+      "eduos_chapter_title": "Triangles",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "34d01103-d0df-4df4-8858-6b992ec4f55f"
+      ],
+      "assessment_outcome_ids": [
+        "a83eeff7-b944-4850-9d32-447617627acc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M6.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_027",
+      "official_unit": "Unit IV: Geometry",
+      "official_chapter": "Circles",
+      "official_topic": "Tangent Radius Perpendicularity Proof",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_id": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982",
+      "eduos_chapter_title": "Circles",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "748c04bd-6acf-4ac5-a536-334f33d87329"
+      ],
+      "assessment_outcome_ids": [
+        "7faf0623-1326-4adf-af09-755f81784d24"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M10.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_028",
+      "official_unit": "Unit IV: Geometry",
+      "official_chapter": "Circles",
+      "official_topic": "External Tangents Equality Proof",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+      "eduos_unit_title": "Geometry",
+      "eduos_chapter_id": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982",
+      "eduos_chapter_title": "Circles",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "748c04bd-6acf-4ac5-a536-334f33d87329"
+      ],
+      "assessment_outcome_ids": [
+        "7faf0623-1326-4adf-af09-755f81784d24"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M10.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_029",
+      "official_unit": "Unit V: Trigonometry",
+      "official_chapter": "Introduction to Trigonometry",
+      "official_topic": "Trigonometric Ratios Definition",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_id": "26a18c0c-428c-4f53-be90-6f08878b51bb",
+      "eduos_chapter_title": "Introduction to Trigonometry",
+      "eduos_topic_id": "d4943516-5abd-4bd0-b84f-59e94671660f",
+      "eduos_topic_title": "Trigonometric Ratios and Identities",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.4,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "9df1e4eb-3c63-44c8-a726-717c872cd88c"
+      ],
+      "assessment_outcome_ids": [
+        "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M8.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_030",
+      "official_unit": "Unit V: Trigonometry",
+      "official_chapter": "Introduction to Trigonometry",
+      "official_topic": "Specific Angle Values",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_id": "26a18c0c-428c-4f53-be90-6f08878b51bb",
+      "eduos_chapter_title": "Introduction to Trigonometry",
+      "eduos_topic_id": "d4943516-5abd-4bd0-b84f-59e94671660f",
+      "eduos_topic_title": "Trigonometric Ratios and Identities",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.38,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "9df1e4eb-3c63-44c8-a726-717c872cd88c"
+      ],
+      "assessment_outcome_ids": [
+        "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M8.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_031",
+      "official_unit": "Unit V: Trigonometry",
+      "official_chapter": "Introduction to Trigonometry",
+      "official_topic": "Pythagorean Identity",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 4",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_id": "26a18c0c-428c-4f53-be90-6f08878b51bb",
+      "eduos_chapter_title": "Introduction to Trigonometry",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "9df1e4eb-3c63-44c8-a726-717c872cd88c"
+      ],
+      "assessment_outcome_ids": [
+        "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M8.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_032",
+      "official_unit": "Unit V: Trigonometry",
+      "official_chapter": "Heights and Distances",
+      "official_topic": "Elevation and Depression Angles",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_id": "9450ae1c-de24-403b-8485-0f221c78ef90",
+      "eduos_chapter_title": "Some Applications of Trigonometry",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "0901a021-ef2b-4d92-8b0f-c1a7fd2409fd"
+      ],
+      "assessment_outcome_ids": [
+        "12cd0743-df5f-45ee-b771-03dfadaa392d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M9.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_033",
+      "official_unit": "Unit V: Trigonometry",
+      "official_chapter": "Heights and Distances",
+      "official_topic": "Heights and Distances Problems",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+      "eduos_unit_title": "Trigonometry",
+      "eduos_chapter_id": "9450ae1c-de24-403b-8485-0f221c78ef90",
+      "eduos_chapter_title": "Some Applications of Trigonometry",
+      "eduos_topic_id": "a4a46a5c-31ca-4991-ac46-77cd439499f0",
+      "eduos_topic_title": "Heights and Distances",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.75,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "0901a021-ef2b-4d92-8b0f-c1a7fd2409fd"
+      ],
+      "assessment_outcome_ids": [
+        "12cd0743-df5f-45ee-b771-03dfadaa392d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M9.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_034",
+      "official_unit": "Unit VI: Mensuration",
+      "official_chapter": "Areas Related to Circles",
+      "official_topic": "Sectors and Segments Area",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "7bdc9cf5-d3c7-4da8-85e8-50cef220452e",
+      "eduos_unit_title": "Mensuration",
+      "eduos_chapter_id": "e047c750-13fb-4aa8-9ced-871e68bbdc34",
+      "eduos_chapter_title": "Areas Related to Circles",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "4cbfe77e-f5e0-4cc2-aec8-7253d5db9249"
+      ],
+      "assessment_outcome_ids": [
+        "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M11.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_035",
+      "official_unit": "Unit VI: Mensuration",
+      "official_chapter": "Areas Related to Circles",
+      "official_topic": "Central Angles Limitation",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "7bdc9cf5-d3c7-4da8-85e8-50cef220452e",
+      "eduos_unit_title": "Mensuration",
+      "eduos_chapter_id": "e047c750-13fb-4aa8-9ced-871e68bbdc34",
+      "eduos_chapter_title": "Areas Related to Circles",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "4cbfe77e-f5e0-4cc2-aec8-7253d5db9249"
+      ],
+      "assessment_outcome_ids": [
+        "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M11.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_036",
+      "official_unit": "Unit VI: Mensuration",
+      "official_chapter": "Surface Areas and Volumes",
+      "official_topic": "Combination Solids Mensuration",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "7bdc9cf5-d3c7-4da8-85e8-50cef220452e",
+      "eduos_unit_title": "Mensuration",
+      "eduos_chapter_id": "e16beb6a-0ece-4f5e-8fc3-681430616331",
+      "eduos_chapter_title": "Surface Areas and Volumes",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "c90d89d6-a445-4d82-ab09-f673f427b47b"
+      ],
+      "assessment_outcome_ids": [
+        "e5500b35-cb38-4e79-8006-7a3867749440"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M12.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_037",
+      "official_unit": "Unit VII: Statistics and Probability",
+      "official_chapter": "Statistics",
+      "official_topic": "Grouped Data Statistics",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "b19490a1-5180-43f5-aef3-cdc73ba98d3c",
+      "eduos_unit_title": "Statistics & Probability",
+      "eduos_chapter_id": "707fade6-2ddc-42d9-808c-ee02b9e6f407",
+      "eduos_chapter_title": "Statistics",
+      "eduos_topic_id": "515308ec-3b2d-4aa1-98f7-b584d14c1a74",
+      "eduos_topic_title": "Mean, Median, and Mode of Grouped Data",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.43,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "d10f6e5f-34d6-4a6f-8ff0-c8c8ef4778a3"
+      ],
+      "assessment_outcome_ids": [
+        "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M13.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Mathematics",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_MATH_2026_038",
+      "official_unit": "Unit VII: Statistics and Probability",
+      "official_chapter": "Probability",
+      "official_topic": "Classical Probability Definition",
+      "official_source_reference": "Maths_SecP1X_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "eduos_book_status": "approved",
+      "eduos_unit_id": "b19490a1-5180-43f5-aef3-cdc73ba98d3c",
+      "eduos_unit_title": "Statistics & Probability",
+      "eduos_chapter_id": "844813c6-8b2d-4d64-9dc0-924de270c431",
+      "eduos_chapter_title": "Probability",
+      "eduos_topic_id": "a96734be-2d82-4b4c-803a-71459a7b5870",
+      "eduos_topic_title": "Classical Approach to Probability",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "938ece88-9967-481d-b4e7-89966ad01d34"
+      ],
+      "assessment_outcome_ids": [
+        "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_M14.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_001",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Chemical Reactions and Equations",
+      "official_topic": "Chemical Equations",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "eduos_topic_id": "041225fa-0e99-48d7-ab80-c4531728cd42",
+      "eduos_topic_title": "Chemical Equations",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "EXACT",
+      "topic_match_score": 1,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "22b40019-0e38-4dad-b2ac-3d41b2d90d04",
+        "cd01c3cd-f18a-42c5-a971-1caa1ba8a413"
+      ],
+      "assessment_outcome_ids": [
+        "01b3b746-1c0b-4983-81da-9c45d28dbf1d",
+        "11f1da35-2375-45c8-9b04-de23302ddd93"
+      ],
+      "assessment_outcome_codes": [
+        "LO_1.1.2.1",
+        "LO_1.1.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_002",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Chemical Reactions and Equations",
+      "official_topic": "Implications of Balanced Equations",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "22b40019-0e38-4dad-b2ac-3d41b2d90d04",
+        "cd01c3cd-f18a-42c5-a971-1caa1ba8a413",
+        "f1ba2613-61d9-45a5-aa20-7c0fd6e81142",
+        "eade9809-2202-4449-acc6-29b995fa93d3",
+        "6f7473d4-8727-4e4f-8ba3-fdc9f8342872",
+        "e14d929c-708b-4097-af9e-a138261fb192",
+        "cf31bc06-f52c-426f-a0b1-4c10b9fbba43",
+        "c4a58d08-bc5b-484c-8dcc-a16e11c91be8",
+        "8032d92b-fb62-42f0-87f1-436cfb1ea0e2"
+      ],
+      "assessment_outcome_ids": [
+        "01b3b746-1c0b-4983-81da-9c45d28dbf1d",
+        "11f1da35-2375-45c8-9b04-de23302ddd93",
+        "12ad2875-8d81-4401-af3c-05cd71da7798",
+        "585c1704-8cc1-402d-a109-2e7056f765d9",
+        "5bb3fc7b-ae9a-49e7-aa4f-91f9bf15911f",
+        "6cb5827d-187e-4bef-828e-d46b3cc8d062",
+        "996f80e6-15c3-4370-9872-ca1191721b4e",
+        "a058468e-fba7-4340-84c8-9c3df2441324",
+        "f5582aac-2d56-4e56-b255-26548598f1a4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_1.1.2.1",
+        "LO_1.1.1.1",
+        "LO_1.2.4.1",
+        "LO_1.3.2.1",
+        "LO_1.2.2.1",
+        "LO_1.3.1.1",
+        "LO_1.2.1.1",
+        "LO_1.2.3.1",
+        "LO_1.2.5.1"
+      ],
+      "question_total": 27,
+      "question_approved": 27,
+      "question_verified": 27,
+      "question_diagnostic_eligible": 27,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_003",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Chemical Reactions and Equations",
+      "official_topic": "Types of Chemical Reactions: Combination and Decomposition",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "eduos_topic_id": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5",
+      "eduos_topic_title": "Types of Chemical Reactions",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "f1ba2613-61d9-45a5-aa20-7c0fd6e81142",
+        "eade9809-2202-4449-acc6-29b995fa93d3",
+        "6f7473d4-8727-4e4f-8ba3-fdc9f8342872",
+        "e14d929c-708b-4097-af9e-a138261fb192",
+        "cf31bc06-f52c-426f-a0b1-4c10b9fbba43"
+      ],
+      "assessment_outcome_ids": [
+        "12ad2875-8d81-4401-af3c-05cd71da7798",
+        "5bb3fc7b-ae9a-49e7-aa4f-91f9bf15911f",
+        "996f80e6-15c3-4370-9872-ca1191721b4e",
+        "a058468e-fba7-4340-84c8-9c3df2441324",
+        "f5582aac-2d56-4e56-b255-26548598f1a4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_1.2.4.1",
+        "LO_1.2.2.1",
+        "LO_1.2.1.1",
+        "LO_1.2.3.1",
+        "LO_1.2.5.1"
+      ],
+      "question_total": 15,
+      "question_approved": 15,
+      "question_verified": 15,
+      "question_diagnostic_eligible": 15,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_004",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Chemical Reactions and Equations",
+      "official_topic": "Types of Chemical Reactions: Displacement and Double Displacement",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "eduos_topic_id": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5",
+      "eduos_topic_title": "Types of Chemical Reactions",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "f1ba2613-61d9-45a5-aa20-7c0fd6e81142",
+        "eade9809-2202-4449-acc6-29b995fa93d3",
+        "6f7473d4-8727-4e4f-8ba3-fdc9f8342872",
+        "e14d929c-708b-4097-af9e-a138261fb192",
+        "cf31bc06-f52c-426f-a0b1-4c10b9fbba43"
+      ],
+      "assessment_outcome_ids": [
+        "12ad2875-8d81-4401-af3c-05cd71da7798",
+        "5bb3fc7b-ae9a-49e7-aa4f-91f9bf15911f",
+        "996f80e6-15c3-4370-9872-ca1191721b4e",
+        "a058468e-fba7-4340-84c8-9c3df2441324",
+        "f5582aac-2d56-4e56-b255-26548598f1a4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_1.2.4.1",
+        "LO_1.2.2.1",
+        "LO_1.2.1.1",
+        "LO_1.2.3.1",
+        "LO_1.2.5.1"
+      ],
+      "question_total": 15,
+      "question_approved": 15,
+      "question_verified": 15,
+      "question_diagnostic_eligible": 15,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_005",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Chemical Reactions and Equations",
+      "official_topic": "Types of Chemical Reactions: Precipitation and Neutralization",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "eduos_topic_id": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5",
+      "eduos_topic_title": "Types of Chemical Reactions",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "f1ba2613-61d9-45a5-aa20-7c0fd6e81142",
+        "eade9809-2202-4449-acc6-29b995fa93d3",
+        "6f7473d4-8727-4e4f-8ba3-fdc9f8342872",
+        "e14d929c-708b-4097-af9e-a138261fb192",
+        "cf31bc06-f52c-426f-a0b1-4c10b9fbba43"
+      ],
+      "assessment_outcome_ids": [
+        "12ad2875-8d81-4401-af3c-05cd71da7798",
+        "5bb3fc7b-ae9a-49e7-aa4f-91f9bf15911f",
+        "996f80e6-15c3-4370-9872-ca1191721b4e",
+        "a058468e-fba7-4340-84c8-9c3df2441324",
+        "f5582aac-2d56-4e56-b255-26548598f1a4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_1.2.4.1",
+        "LO_1.2.2.1",
+        "LO_1.2.1.1",
+        "LO_1.2.3.1",
+        "LO_1.2.5.1"
+      ],
+      "question_total": 15,
+      "question_approved": 15,
+      "question_verified": 15,
+      "question_diagnostic_eligible": 15,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_006",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Chemical Reactions and Equations",
+      "official_topic": "Types of Chemical Reactions: Oxidation and Reduction",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+      "eduos_chapter_title": "Chemical Reactions and Equations",
+      "eduos_topic_id": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5",
+      "eduos_topic_title": "Types of Chemical Reactions",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "f1ba2613-61d9-45a5-aa20-7c0fd6e81142",
+        "eade9809-2202-4449-acc6-29b995fa93d3",
+        "6f7473d4-8727-4e4f-8ba3-fdc9f8342872",
+        "e14d929c-708b-4097-af9e-a138261fb192",
+        "cf31bc06-f52c-426f-a0b1-4c10b9fbba43"
+      ],
+      "assessment_outcome_ids": [
+        "12ad2875-8d81-4401-af3c-05cd71da7798",
+        "5bb3fc7b-ae9a-49e7-aa4f-91f9bf15911f",
+        "996f80e6-15c3-4370-9872-ca1191721b4e",
+        "a058468e-fba7-4340-84c8-9c3df2441324",
+        "f5582aac-2d56-4e56-b255-26548598f1a4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_1.2.4.1",
+        "LO_1.2.2.1",
+        "LO_1.2.1.1",
+        "LO_1.2.3.1",
+        "LO_1.2.5.1"
+      ],
+      "question_total": 15,
+      "question_approved": 15,
+      "question_verified": 15,
+      "question_diagnostic_eligible": 15,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_007",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Acids, Bases and Salts",
+      "official_topic": "Acid and Base Definitions",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "070ea239-fe68-46d1-8f84-70e471a5f1f3",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "c9219af2-33a0-4e8f-a934-1b81804513b4",
+        "be184aee-03c1-4747-a2cd-16bbff2e734f",
+        "8eeef79b-f754-4409-bf84-a7beb611f124",
+        "2433d817-bfc8-471e-9c0f-36adad6683e1",
+        "d60fafb1-9663-40ae-a7d4-5353b987ce00",
+        "89af274f-e980-460c-852b-15486738d243",
+        "58efb3aa-f27b-46ce-b841-084093686b0b",
+        "b964135a-4172-43b5-a54d-52e971a380b9",
+        "35a3f167-4b20-4d63-957e-165de6185e26",
+        "98861841-19bb-4275-8b9c-0e70361c1912",
+        "d668690a-0a82-4500-981b-6053716127a6"
+      ],
+      "assessment_outcome_ids": [
+        "4da0e020-ac1b-46d5-8611-72d4113e72da",
+        "4f7acc37-3b21-4445-b866-f4b0969f4ae9",
+        "5dcbc735-9493-4321-a94c-0e2888ff8057",
+        "7d02484c-6e00-4f13-9816-fb2eb53cffc3",
+        "84032ca8-0aba-4f4c-9203-1b5fed1e748a",
+        "907b267a-f3f7-4f59-8b69-444502b47a72",
+        "ab50321a-b654-4070-9ada-339194f52fff",
+        "b35282b3-a032-4f5a-86d4-816efb8d3c38",
+        "c4178aa7-57ad-497c-8b9a-3a2aafbca8d4",
+        "c63b980e-bcfd-4131-994f-f5fab0404802",
+        "f13a795b-4a85-4b31-896f-724d16e651f0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_2.4.1.1",
+        "LO_2.4.3.1",
+        "LO_2.1.3.1",
+        "LO_2.1.2.1",
+        "LO_2.4.2.1",
+        "LO_2.1.1.1",
+        "LO_2.3.1.1",
+        "LO_2.1.5.1",
+        "LO_2.2.1.1",
+        "LO_2.1.6.1",
+        "LO_2.1.4.1"
+      ],
+      "question_total": 33,
+      "question_approved": 33,
+      "question_verified": 33,
+      "question_diagnostic_eligible": 33,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_008",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Acids, Bases and Salts",
+      "official_topic": "Chemical Properties of Acids and Bases",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "070ea239-fe68-46d1-8f84-70e471a5f1f3",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "eduos_topic_id": "5084cd04-8c40-4a23-9cab-03f3457c392e",
+      "eduos_topic_title": "Understanding the Chemical Properties of Acids and Bases",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.71,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "c9219af2-33a0-4e8f-a934-1b81804513b4",
+        "be184aee-03c1-4747-a2cd-16bbff2e734f",
+        "8eeef79b-f754-4409-bf84-a7beb611f124",
+        "2433d817-bfc8-471e-9c0f-36adad6683e1",
+        "d60fafb1-9663-40ae-a7d4-5353b987ce00",
+        "89af274f-e980-460c-852b-15486738d243"
+      ],
+      "assessment_outcome_ids": [
+        "5dcbc735-9493-4321-a94c-0e2888ff8057",
+        "7d02484c-6e00-4f13-9816-fb2eb53cffc3",
+        "907b267a-f3f7-4f59-8b69-444502b47a72",
+        "b35282b3-a032-4f5a-86d4-816efb8d3c38",
+        "c63b980e-bcfd-4131-994f-f5fab0404802",
+        "f13a795b-4a85-4b31-896f-724d16e651f0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_2.1.3.1",
+        "LO_2.1.2.1",
+        "LO_2.1.1.1",
+        "LO_2.1.5.1",
+        "LO_2.1.6.1",
+        "LO_2.1.4.1"
+      ],
+      "question_total": 18,
+      "question_approved": 18,
+      "question_verified": 18,
+      "question_diagnostic_eligible": 18,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_009",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Acids, Bases and Salts",
+      "official_topic": "Concept of pH Scale",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "070ea239-fe68-46d1-8f84-70e471a5f1f3",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "c9219af2-33a0-4e8f-a934-1b81804513b4",
+        "be184aee-03c1-4747-a2cd-16bbff2e734f",
+        "8eeef79b-f754-4409-bf84-a7beb611f124",
+        "2433d817-bfc8-471e-9c0f-36adad6683e1",
+        "d60fafb1-9663-40ae-a7d4-5353b987ce00",
+        "89af274f-e980-460c-852b-15486738d243",
+        "58efb3aa-f27b-46ce-b841-084093686b0b",
+        "b964135a-4172-43b5-a54d-52e971a380b9",
+        "35a3f167-4b20-4d63-957e-165de6185e26",
+        "98861841-19bb-4275-8b9c-0e70361c1912",
+        "d668690a-0a82-4500-981b-6053716127a6"
+      ],
+      "assessment_outcome_ids": [
+        "4da0e020-ac1b-46d5-8611-72d4113e72da",
+        "4f7acc37-3b21-4445-b866-f4b0969f4ae9",
+        "5dcbc735-9493-4321-a94c-0e2888ff8057",
+        "7d02484c-6e00-4f13-9816-fb2eb53cffc3",
+        "84032ca8-0aba-4f4c-9203-1b5fed1e748a",
+        "907b267a-f3f7-4f59-8b69-444502b47a72",
+        "ab50321a-b654-4070-9ada-339194f52fff",
+        "b35282b3-a032-4f5a-86d4-816efb8d3c38",
+        "c4178aa7-57ad-497c-8b9a-3a2aafbca8d4",
+        "c63b980e-bcfd-4131-994f-f5fab0404802",
+        "f13a795b-4a85-4b31-896f-724d16e651f0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_2.4.1.1",
+        "LO_2.4.3.1",
+        "LO_2.1.3.1",
+        "LO_2.1.2.1",
+        "LO_2.4.2.1",
+        "LO_2.1.1.1",
+        "LO_2.3.1.1",
+        "LO_2.1.5.1",
+        "LO_2.2.1.1",
+        "LO_2.1.6.1",
+        "LO_2.1.4.1"
+      ],
+      "question_total": 33,
+      "question_approved": 33,
+      "question_verified": 33,
+      "question_diagnostic_eligible": 33,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_010",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Acids, Bases and Salts",
+      "official_topic": "Everyday Applications of pH",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "070ea239-fe68-46d1-8f84-70e471a5f1f3",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "c9219af2-33a0-4e8f-a934-1b81804513b4",
+        "be184aee-03c1-4747-a2cd-16bbff2e734f",
+        "8eeef79b-f754-4409-bf84-a7beb611f124",
+        "2433d817-bfc8-471e-9c0f-36adad6683e1",
+        "d60fafb1-9663-40ae-a7d4-5353b987ce00",
+        "89af274f-e980-460c-852b-15486738d243",
+        "58efb3aa-f27b-46ce-b841-084093686b0b",
+        "b964135a-4172-43b5-a54d-52e971a380b9",
+        "35a3f167-4b20-4d63-957e-165de6185e26",
+        "98861841-19bb-4275-8b9c-0e70361c1912",
+        "d668690a-0a82-4500-981b-6053716127a6"
+      ],
+      "assessment_outcome_ids": [
+        "4da0e020-ac1b-46d5-8611-72d4113e72da",
+        "4f7acc37-3b21-4445-b866-f4b0969f4ae9",
+        "5dcbc735-9493-4321-a94c-0e2888ff8057",
+        "7d02484c-6e00-4f13-9816-fb2eb53cffc3",
+        "84032ca8-0aba-4f4c-9203-1b5fed1e748a",
+        "907b267a-f3f7-4f59-8b69-444502b47a72",
+        "ab50321a-b654-4070-9ada-339194f52fff",
+        "b35282b3-a032-4f5a-86d4-816efb8d3c38",
+        "c4178aa7-57ad-497c-8b9a-3a2aafbca8d4",
+        "c63b980e-bcfd-4131-994f-f5fab0404802",
+        "f13a795b-4a85-4b31-896f-724d16e651f0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_2.4.1.1",
+        "LO_2.4.3.1",
+        "LO_2.1.3.1",
+        "LO_2.1.2.1",
+        "LO_2.4.2.1",
+        "LO_2.1.1.1",
+        "LO_2.3.1.1",
+        "LO_2.1.5.1",
+        "LO_2.2.1.1",
+        "LO_2.1.6.1",
+        "LO_2.1.4.1"
+      ],
+      "question_total": 33,
+      "question_approved": 33,
+      "question_verified": 33,
+      "question_diagnostic_eligible": 33,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_011",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Acids, Bases and Salts",
+      "official_topic": "Preparation and Uses of Important Chemical Compounds",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "070ea239-fe68-46d1-8f84-70e471a5f1f3",
+      "eduos_chapter_title": "Acids, Bases and Salts",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "c9219af2-33a0-4e8f-a934-1b81804513b4",
+        "be184aee-03c1-4747-a2cd-16bbff2e734f",
+        "8eeef79b-f754-4409-bf84-a7beb611f124",
+        "2433d817-bfc8-471e-9c0f-36adad6683e1",
+        "d60fafb1-9663-40ae-a7d4-5353b987ce00",
+        "89af274f-e980-460c-852b-15486738d243",
+        "58efb3aa-f27b-46ce-b841-084093686b0b",
+        "b964135a-4172-43b5-a54d-52e971a380b9",
+        "35a3f167-4b20-4d63-957e-165de6185e26",
+        "98861841-19bb-4275-8b9c-0e70361c1912",
+        "d668690a-0a82-4500-981b-6053716127a6"
+      ],
+      "assessment_outcome_ids": [
+        "4da0e020-ac1b-46d5-8611-72d4113e72da",
+        "4f7acc37-3b21-4445-b866-f4b0969f4ae9",
+        "5dcbc735-9493-4321-a94c-0e2888ff8057",
+        "7d02484c-6e00-4f13-9816-fb2eb53cffc3",
+        "84032ca8-0aba-4f4c-9203-1b5fed1e748a",
+        "907b267a-f3f7-4f59-8b69-444502b47a72",
+        "ab50321a-b654-4070-9ada-339194f52fff",
+        "b35282b3-a032-4f5a-86d4-816efb8d3c38",
+        "c4178aa7-57ad-497c-8b9a-3a2aafbca8d4",
+        "c63b980e-bcfd-4131-994f-f5fab0404802",
+        "f13a795b-4a85-4b31-896f-724d16e651f0"
+      ],
+      "assessment_outcome_codes": [
+        "LO_2.4.1.1",
+        "LO_2.4.3.1",
+        "LO_2.1.3.1",
+        "LO_2.1.2.1",
+        "LO_2.4.2.1",
+        "LO_2.1.1.1",
+        "LO_2.3.1.1",
+        "LO_2.1.5.1",
+        "LO_2.2.1.1",
+        "LO_2.1.6.1",
+        "LO_2.1.4.1"
+      ],
+      "question_total": 33,
+      "question_approved": 33,
+      "question_verified": 33,
+      "question_diagnostic_eligible": 33,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_012",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Metals and Non-metals",
+      "official_topic": "Properties of Metals and Non-metals",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "18824c2d-00e8-44a4-b311-4a33d4a6e818",
+      "eduos_chapter_title": "Metals and Non-metals",
+      "eduos_topic_id": "b9aef4c5-bcf0-42ec-b669-d703f1ae92d9",
+      "eduos_topic_title": "How do Metals and Non-metals React?",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "f7ace9b3-9994-44f1-9306-c07028d25aeb"
+      ],
+      "assessment_outcome_ids": [
+        "6fc27ce1-7312-4d29-8aba-e572fad03b0f"
+      ],
+      "assessment_outcome_codes": [
+        "LO_3.3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_013",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Metals and Non-metals",
+      "official_topic": "Reactivity Series",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "18824c2d-00e8-44a4-b311-4a33d4a6e818",
+      "eduos_chapter_title": "Metals and Non-metals",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "aa50c0a4-e211-46e0-b504-b8494a31427b",
+        "3bfadefd-7053-4fe4-8c46-5b4b42602741",
+        "b5c0ccd1-f522-4297-a24e-d9c0a1547c55",
+        "5a506381-0982-4879-9d6e-1f95d0f8e547",
+        "f7ace9b3-9994-44f1-9306-c07028d25aeb",
+        "696766f8-b547-4e06-8b6a-b85ea831f74a",
+        "d4516c37-75b3-464e-bd6c-183d0c994800"
+      ],
+      "assessment_outcome_ids": [
+        "162c9c8d-cfbe-4b15-a230-455bd2f59880",
+        "2bb72cdd-42dd-434e-874a-73de44dfe969",
+        "61c88e04-b897-42ca-9544-cc1043c15332",
+        "6fc27ce1-7312-4d29-8aba-e572fad03b0f",
+        "7025ec88-6f71-4d1f-8e63-3637f776e297",
+        "b2bfcd72-b095-4b8e-a03e-99ac12363859",
+        "dd0a28ae-3e92-46d8-ad34-3d0626aab997"
+      ],
+      "assessment_outcome_codes": [
+        "LO_3.5.1.1",
+        "LO_3.2.3.1",
+        "LO_3.2.1.1",
+        "LO_3.3.1.1",
+        "LO_3.2.2.1",
+        "LO_3.1.1.1",
+        "LO_3.4.1.1"
+      ],
+      "question_total": 21,
+      "question_approved": 21,
+      "question_verified": 21,
+      "question_diagnostic_eligible": 21,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_014",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Metals and Non-metals",
+      "official_topic": "Formation and Properties of Ionic Compounds",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 5",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "18824c2d-00e8-44a4-b311-4a33d4a6e818",
+      "eduos_chapter_title": "Metals and Non-metals",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "aa50c0a4-e211-46e0-b504-b8494a31427b",
+        "3bfadefd-7053-4fe4-8c46-5b4b42602741",
+        "b5c0ccd1-f522-4297-a24e-d9c0a1547c55",
+        "5a506381-0982-4879-9d6e-1f95d0f8e547",
+        "f7ace9b3-9994-44f1-9306-c07028d25aeb",
+        "696766f8-b547-4e06-8b6a-b85ea831f74a",
+        "d4516c37-75b3-464e-bd6c-183d0c994800"
+      ],
+      "assessment_outcome_ids": [
+        "162c9c8d-cfbe-4b15-a230-455bd2f59880",
+        "2bb72cdd-42dd-434e-874a-73de44dfe969",
+        "61c88e04-b897-42ca-9544-cc1043c15332",
+        "6fc27ce1-7312-4d29-8aba-e572fad03b0f",
+        "7025ec88-6f71-4d1f-8e63-3637f776e297",
+        "b2bfcd72-b095-4b8e-a03e-99ac12363859",
+        "dd0a28ae-3e92-46d8-ad34-3d0626aab997"
+      ],
+      "assessment_outcome_codes": [
+        "LO_3.5.1.1",
+        "LO_3.2.3.1",
+        "LO_3.2.1.1",
+        "LO_3.3.1.1",
+        "LO_3.2.2.1",
+        "LO_3.1.1.1",
+        "LO_3.4.1.1"
+      ],
+      "question_total": 21,
+      "question_approved": 21,
+      "question_verified": 21,
+      "question_diagnostic_eligible": 21,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_015",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Covalent Bonding in Carbon Compounds",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": "b03cd9df-3bbc-4ee3-86db-b0feb7cae57a",
+      "eduos_topic_title": "Bonding in Carbon - The Covalent Bond",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "3e2b5f16-2ee6-4694-be8e-3e43f1a78d31"
+      ],
+      "assessment_outcome_ids": [
+        "50ad2bc8-1f9f-44f5-a197-2cab1a0ea70c"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.1.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_016",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Versatile Nature of Carbon and Hydrocarbons",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": "d1c4a5ac-a2e3-44b6-87ee-1f4cde23badf",
+      "eduos_topic_title": "Versatile Nature of Carbon",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.6,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "f954b2a1-ee35-41e3-a54e-9caa89b87032"
+      ],
+      "assessment_outcome_ids": [
+        "9ae708d0-d6e1-44a5-bc5a-a53979d29e9f"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_017",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Homologous Series",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "3e2b5f16-2ee6-4694-be8e-3e43f1a78d31",
+        "f954b2a1-ee35-41e3-a54e-9caa89b87032",
+        "0fb487a4-cb25-4207-8566-aba02475738b",
+        "eb091671-d7bf-4fb2-bcc5-9474006f8a27",
+        "ae0bfc46-384f-42a6-839d-ec5641f34a15"
+      ],
+      "assessment_outcome_ids": [
+        "24400a3e-6f3a-4f98-8421-3cb74245a061",
+        "50ad2bc8-1f9f-44f5-a197-2cab1a0ea70c",
+        "52e174b0-a926-45a2-a7b3-086baebb6701",
+        "899338e7-dde1-4c8d-a331-7ee6ce2a35a9",
+        "9ae708d0-d6e1-44a5-bc5a-a53979d29e9f"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.3.1.1",
+        "LO_4.1.1.1",
+        "LO_4.4.1.1",
+        "LO_4.5.1.1",
+        "LO_4.2.1.1"
+      ],
+      "question_total": 15,
+      "question_approved": 15,
+      "question_verified": 15,
+      "question_diagnostic_eligible": 15,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_018",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Nomenclature of Carbon Compounds",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": "2622c074-bec1-4efa-9cf7-2d2e3d16b053",
+      "eduos_topic_title": "Chemical Properties of Carbon Compounds",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.4,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "0fb487a4-cb25-4207-8566-aba02475738b"
+      ],
+      "assessment_outcome_ids": [
+        "24400a3e-6f3a-4f98-8421-3cb74245a061"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_019",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Chemical Properties of Carbon Compounds",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": "2622c074-bec1-4efa-9cf7-2d2e3d16b053",
+      "eduos_topic_title": "Chemical Properties of Carbon Compounds",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "EXACT",
+      "topic_match_score": 1,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "0fb487a4-cb25-4207-8566-aba02475738b"
+      ],
+      "assessment_outcome_ids": [
+        "24400a3e-6f3a-4f98-8421-3cb74245a061"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_020",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Ethanol and Ethanoic Acid",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": "c6afc255-03c5-4d1e-91b8-ccee088e4fa4",
+      "eduos_topic_title": "Some Important Carbon Compounds - Ethanol and Ethanoic Acid",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "eb091671-d7bf-4fb2-bcc5-9474006f8a27"
+      ],
+      "assessment_outcome_ids": [
+        "52e174b0-a926-45a2-a7b3-086baebb6701"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_021",
+      "official_unit": "Unit I: Chemical Substances - Nature and Behaviour",
+      "official_chapter": "Carbon and its Compounds",
+      "official_topic": "Soaps and Detergents",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+      "eduos_unit_title": "Chemical Substances - Nature and Behaviour",
+      "eduos_chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+      "eduos_chapter_title": "Carbon and its Compounds",
+      "eduos_topic_id": "1ec5ab63-af62-48d5-9a57-e689204a72f7",
+      "eduos_topic_title": "Soaps and Detergents",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "EXACT",
+      "topic_match_score": 1,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "ae0bfc46-384f-42a6-839d-ec5641f34a15"
+      ],
+      "assessment_outcome_ids": [
+        "899338e7-dde1-4c8d-a331-7ee6ce2a35a9"
+      ],
+      "assessment_outcome_codes": [
+        "LO_4.5.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_022",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Life Processes",
+      "official_topic": "Concept of Living Beings",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "fb925d96-9ee8-4f93-b54d-1c2758757143",
+      "eduos_chapter_title": "Life Processes",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "1e714254-e7a2-47fb-89a5-03334b031596",
+        "6dd5f47a-c71f-4a25-bbec-27110b4c68bf",
+        "34560384-88f6-4102-9254-f274408da1a4",
+        "0ccf3148-e710-4c78-affb-efbb9112e7b1",
+        "845f6291-04cd-401f-8b92-0782c0dd5a23",
+        "1555eb97-7f84-412a-88c2-eab663a1dde4"
+      ],
+      "assessment_outcome_ids": [
+        "3d9ae369-ffef-420f-84eb-0613d7256e6d",
+        "59a4dbff-b348-400a-a34b-398489a27c1d",
+        "5a0d9876-43fb-43ca-bf63-977470e09e06",
+        "8162ae6b-7b12-4f21-a2a5-5090f52d2bc1",
+        "b076ee43-f955-4415-a98f-d9a19f33d0df",
+        "c61c4cd5-0efd-406a-89aa-e1b5d07d81a1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_5.5.1.1",
+        "LO_5.4.1.1",
+        "LO_5.2.2.1",
+        "LO_5.2.1.1",
+        "LO_5.1.1.1",
+        "LO_5.3.1.1"
+      ],
+      "question_total": 18,
+      "question_approved": 18,
+      "question_verified": 18,
+      "question_diagnostic_eligible": 18,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_023",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Life Processes",
+      "official_topic": "Nutrition Mechanisms",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "fb925d96-9ee8-4f93-b54d-1c2758757143",
+      "eduos_chapter_title": "Life Processes",
+      "eduos_topic_id": "af3f5101-6e2f-4e95-85cb-980105ac4dcf",
+      "eduos_topic_title": "Nutrition",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "6dd5f47a-c71f-4a25-bbec-27110b4c68bf",
+        "34560384-88f6-4102-9254-f274408da1a4"
+      ],
+      "assessment_outcome_ids": [
+        "5a0d9876-43fb-43ca-bf63-977470e09e06",
+        "8162ae6b-7b12-4f21-a2a5-5090f52d2bc1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_5.2.2.1",
+        "LO_5.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_024",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Life Processes",
+      "official_topic": "Respiration Mechanisms",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "fb925d96-9ee8-4f93-b54d-1c2758757143",
+      "eduos_chapter_title": "Life Processes",
+      "eduos_topic_id": "68c88f1f-8def-4bc4-9ab1-0a02dfce72a5",
+      "eduos_topic_title": "Respiration",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "0ccf3148-e710-4c78-affb-efbb9112e7b1"
+      ],
+      "assessment_outcome_ids": [
+        "c61c4cd5-0efd-406a-89aa-e1b5d07d81a1"
+      ],
+      "assessment_outcome_codes": [
+        "LO_5.3.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_025",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Life Processes",
+      "official_topic": "Transportation Systems",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "fb925d96-9ee8-4f93-b54d-1c2758757143",
+      "eduos_chapter_title": "Life Processes",
+      "eduos_topic_id": "57ecb6d9-0c4c-4bb0-b1fd-a505b85e4893",
+      "eduos_topic_title": "Transportation",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "845f6291-04cd-401f-8b92-0782c0dd5a23"
+      ],
+      "assessment_outcome_ids": [
+        "59a4dbff-b348-400a-a34b-398489a27c1d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_5.4.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_026",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Life Processes",
+      "official_topic": "Excretion Mechanisms",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "fb925d96-9ee8-4f93-b54d-1c2758757143",
+      "eduos_chapter_title": "Life Processes",
+      "eduos_topic_id": "4cf1b3ea-9273-49d3-84ef-a706a9d89425",
+      "eduos_topic_title": "Excretion",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "1555eb97-7f84-412a-88c2-eab663a1dde4"
+      ],
+      "assessment_outcome_ids": [
+        "3d9ae369-ffef-420f-84eb-0613d7256e6d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_5.5.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_027",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Control and Coordination in Animals and Plants",
+      "official_topic": "Tropic Movements in Plants",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "173fb710-5021-4950-8d6e-bbd4ee6efc67",
+      "eduos_chapter_title": "Control and Coordination",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "HIGH_CONFIDENCE",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "81ebed62-8ddb-4a37-8ed6-0df275da5b05",
+        "608e540d-a92b-4644-8c92-48cbd69c7da3",
+        "e32dce66-fdc4-4c68-baa9-daead5310175"
+      ],
+      "assessment_outcome_ids": [
+        "1f5e2087-52c6-4933-b374-48deb555dac9",
+        "41c605ea-f8a1-47b4-9701-ce5efddb0388",
+        "ea36cb3f-b15a-495c-99d2-27a8d6666b88"
+      ],
+      "assessment_outcome_codes": [
+        "LO_6.2.1.1",
+        "LO_6.1.1.1",
+        "LO_6.3.1.1"
+      ],
+      "question_total": 9,
+      "question_approved": 9,
+      "question_verified": 9,
+      "question_diagnostic_eligible": 9,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_028",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Control and Coordination in Animals and Plants",
+      "official_topic": "Plant Hormones",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "173fb710-5021-4950-8d6e-bbd4ee6efc67",
+      "eduos_chapter_title": "Control and Coordination",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "HIGH_CONFIDENCE",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "81ebed62-8ddb-4a37-8ed6-0df275da5b05",
+        "608e540d-a92b-4644-8c92-48cbd69c7da3",
+        "e32dce66-fdc4-4c68-baa9-daead5310175"
+      ],
+      "assessment_outcome_ids": [
+        "1f5e2087-52c6-4933-b374-48deb555dac9",
+        "41c605ea-f8a1-47b4-9701-ce5efddb0388",
+        "ea36cb3f-b15a-495c-99d2-27a8d6666b88"
+      ],
+      "assessment_outcome_codes": [
+        "LO_6.2.1.1",
+        "LO_6.1.1.1",
+        "LO_6.3.1.1"
+      ],
+      "question_total": 9,
+      "question_approved": 9,
+      "question_verified": 9,
+      "question_diagnostic_eligible": 9,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_029",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Control and Coordination in Animals and Plants",
+      "official_topic": "Nervous System and Reflex Action",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "173fb710-5021-4950-8d6e-bbd4ee6efc67",
+      "eduos_chapter_title": "Control and Coordination",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "HIGH_CONFIDENCE",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "81ebed62-8ddb-4a37-8ed6-0df275da5b05",
+        "608e540d-a92b-4644-8c92-48cbd69c7da3",
+        "e32dce66-fdc4-4c68-baa9-daead5310175"
+      ],
+      "assessment_outcome_ids": [
+        "1f5e2087-52c6-4933-b374-48deb555dac9",
+        "41c605ea-f8a1-47b4-9701-ce5efddb0388",
+        "ea36cb3f-b15a-495c-99d2-27a8d6666b88"
+      ],
+      "assessment_outcome_codes": [
+        "LO_6.2.1.1",
+        "LO_6.1.1.1",
+        "LO_6.3.1.1"
+      ],
+      "question_total": 9,
+      "question_approved": 9,
+      "question_verified": 9,
+      "question_diagnostic_eligible": 9,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_030",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Control and Coordination in Animals and Plants",
+      "official_topic": "Chemical Coordination: Animal Hormones",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "173fb710-5021-4950-8d6e-bbd4ee6efc67",
+      "eduos_chapter_title": "Control and Coordination",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "HIGH_CONFIDENCE",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "81ebed62-8ddb-4a37-8ed6-0df275da5b05",
+        "608e540d-a92b-4644-8c92-48cbd69c7da3",
+        "e32dce66-fdc4-4c68-baa9-daead5310175"
+      ],
+      "assessment_outcome_ids": [
+        "1f5e2087-52c6-4933-b374-48deb555dac9",
+        "41c605ea-f8a1-47b4-9701-ce5efddb0388",
+        "ea36cb3f-b15a-495c-99d2-27a8d6666b88"
+      ],
+      "assessment_outcome_codes": [
+        "LO_6.2.1.1",
+        "LO_6.1.1.1",
+        "LO_6.3.1.1"
+      ],
+      "question_total": 9,
+      "question_approved": 9,
+      "question_verified": 9,
+      "question_diagnostic_eligible": 9,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_031",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "How do Organisms Reproduce?",
+      "official_topic": "Modes of Reproduction",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "795f3330-3d3c-4b82-b214-00064579d4ff",
+      "eduos_chapter_title": "How do Organisms Reproduce?",
+      "eduos_topic_id": "5e0fea62-389d-484a-b742-706deb136d47",
+      "eduos_topic_title": "Modes of Reproduction Used by Single Organisms",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.4,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "bc6b7c76-db25-4cfb-a82c-b9ce04fd70a3"
+      ],
+      "assessment_outcome_ids": [
+        "cd8207e7-5e75-4b9d-aa1d-c4afcf895c4d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_7.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_032",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "How do Organisms Reproduce?",
+      "official_topic": "Reproductive Health and Family Planning",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "795f3330-3d3c-4b82-b214-00064579d4ff",
+      "eduos_chapter_title": "How do Organisms Reproduce?",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "bc3a2850-3a64-4c53-9ccd-f949c1b84b19",
+        "bc6b7c76-db25-4cfb-a82c-b9ce04fd70a3"
+      ],
+      "assessment_outcome_ids": [
+        "589953b6-28c5-429b-9952-8d2b0bf18da8",
+        "cd8207e7-5e75-4b9d-aa1d-c4afcf895c4d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_7.1.1.1",
+        "LO_7.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_033",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "How do Organisms Reproduce?",
+      "official_topic": "Sexually Transmitted Diseases and Women Health",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "795f3330-3d3c-4b82-b214-00064579d4ff",
+      "eduos_chapter_title": "How do Organisms Reproduce?",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "bc3a2850-3a64-4c53-9ccd-f949c1b84b19",
+        "bc6b7c76-db25-4cfb-a82c-b9ce04fd70a3"
+      ],
+      "assessment_outcome_ids": [
+        "589953b6-28c5-429b-9952-8d2b0bf18da8",
+        "cd8207e7-5e75-4b9d-aa1d-c4afcf895c4d"
+      ],
+      "assessment_outcome_codes": [
+        "LO_7.1.1.1",
+        "LO_7.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_034",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Heredity and Evolution",
+      "official_topic": "Principles of Heredity",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+      "eduos_chapter_title": "Heredity",
+      "eduos_topic_id": "92ca6693-9721-409f-aa94-8c2f9ac70ef6",
+      "eduos_topic_title": "Heredity",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "40eed912-adee-4613-8b52-e539adca1e36"
+      ],
+      "assessment_outcome_ids": [
+        "3be88c3d-173b-4fdf-a124-c45aa107cefc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_8.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_035",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Heredity and Evolution",
+      "official_topic": "Mendelian Inheritance",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+      "eduos_chapter_title": "Heredity",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "9099e69e-dfe1-4aa6-91d5-0b71d6e1de09",
+        "40eed912-adee-4613-8b52-e539adca1e36"
+      ],
+      "assessment_outcome_ids": [
+        "1a92d658-1c91-4f77-bd98-fa998ebf519f",
+        "3be88c3d-173b-4fdf-a124-c45aa107cefc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_8.1.1.1",
+        "LO_8.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_036",
+      "official_unit": "Unit II: World of Living",
+      "official_chapter": "Heredity and Evolution",
+      "official_topic": "Sex Determination Mechanisms",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 6",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+      "eduos_unit_title": "World of Living",
+      "eduos_chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+      "eduos_chapter_title": "Heredity",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "9099e69e-dfe1-4aa6-91d5-0b71d6e1de09",
+        "40eed912-adee-4613-8b52-e539adca1e36"
+      ],
+      "assessment_outcome_ids": [
+        "1a92d658-1c91-4f77-bd98-fa998ebf519f",
+        "3be88c3d-173b-4fdf-a124-c45aa107cefc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_8.1.1.1",
+        "LO_8.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_037",
+      "official_unit": "Unit III: Natural Phenomena",
+      "official_chapter": "Light: Reflection and Refraction",
+      "official_topic": "Reflection and Spherical Mirrors",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "07350c07-c273-4430-8354-73a2bec1d5c4",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_id": "d6865acb-d2e0-45a2-908e-6e1c628bd70f",
+      "eduos_chapter_title": "Light – Reflection and Refraction",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "57d0c983-d9c6-47a8-947e-917f78cc855f",
+        "4f4676ee-f4d1-434a-8730-95ddb3b12a16"
+      ],
+      "assessment_outcome_ids": [
+        "00c969e0-e024-48cd-89b0-f62a09b9a33a",
+        "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_9.2.1.1",
+        "LO_9.1.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_038",
+      "official_unit": "Unit III: Natural Phenomena",
+      "official_chapter": "Light: Reflection and Refraction",
+      "official_topic": "Refraction and Spherical Lenses",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "07350c07-c273-4430-8354-73a2bec1d5c4",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_id": "d6865acb-d2e0-45a2-908e-6e1c628bd70f",
+      "eduos_chapter_title": "Light – Reflection and Refraction",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "57d0c983-d9c6-47a8-947e-917f78cc855f",
+        "4f4676ee-f4d1-434a-8730-95ddb3b12a16"
+      ],
+      "assessment_outcome_ids": [
+        "00c969e0-e024-48cd-89b0-f62a09b9a33a",
+        "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+      ],
+      "assessment_outcome_codes": [
+        "LO_9.2.1.1",
+        "LO_9.1.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_039",
+      "official_unit": "Unit III: Natural Phenomena",
+      "official_chapter": "The Human Eye and the Colourful World",
+      "official_topic": "Human Eye Lens Function and Vision Defects",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "07350c07-c273-4430-8354-73a2bec1d5c4",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_id": "eccb7279-6cc0-489e-b4df-73d8261f59cc",
+      "eduos_chapter_title": "The Human Eye and the Colourful World",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "5c8ecb09-b0b4-4d88-bc81-4e0a974f12eb",
+        "52320411-9566-45c4-9a87-973e439b8f2c"
+      ],
+      "assessment_outcome_ids": [
+        "95f23b55-eed6-469f-b295-f85d1554f5fb",
+        "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+      ],
+      "assessment_outcome_codes": [
+        "LO_10.1.1.1",
+        "LO_10.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_040",
+      "official_unit": "Unit III: Natural Phenomena",
+      "official_chapter": "The Human Eye and the Colourful World",
+      "official_topic": "Prism Refraction, Dispersion, and Atmospheric Phenomena",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "07350c07-c273-4430-8354-73a2bec1d5c4",
+      "eduos_unit_title": "Natural Phenomena",
+      "eduos_chapter_id": "eccb7279-6cc0-489e-b4df-73d8261f59cc",
+      "eduos_chapter_title": "The Human Eye and the Colourful World",
+      "eduos_topic_id": "2c86ae45-4222-4971-bc63-5a6ea1327e51",
+      "eduos_topic_title": "Prismatic Dispersion and Atmospheric Optics",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.38,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "52320411-9566-45c4-9a87-973e439b8f2c"
+      ],
+      "assessment_outcome_ids": [
+        "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+      ],
+      "assessment_outcome_codes": [
+        "LO_10.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_041",
+      "official_unit": "Unit IV: How Things Work",
+      "official_chapter": "Electricity",
+      "official_topic": "Electric Current, Ohm's Law, and Resistance",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "0da7b020-1389-41d8-913b-fe1582b7647e",
+      "eduos_unit_title": "Effects of Current",
+      "eduos_chapter_id": "9b74dbd9-3f6c-49a5-881c-ef8438842e4a",
+      "eduos_chapter_title": "Electricity",
+      "eduos_topic_id": "06c9ed47-44ca-4e2d-93eb-cf5423e136ba",
+      "eduos_topic_title": "Electric Potential and Ohm's Law",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.57,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "7591921d-9eb9-4bba-a0dd-9705f1df912f"
+      ],
+      "assessment_outcome_ids": [
+        "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+      ],
+      "assessment_outcome_codes": [
+        "LO_11.1.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_042",
+      "official_unit": "Unit IV: How Things Work",
+      "official_chapter": "Electricity",
+      "official_topic": "Heating Effect of Current and Electric Power",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "0da7b020-1389-41d8-913b-fe1582b7647e",
+      "eduos_unit_title": "Effects of Current",
+      "eduos_chapter_id": "9b74dbd9-3f6c-49a5-881c-ef8438842e4a",
+      "eduos_chapter_title": "Electricity",
+      "eduos_topic_id": "7fcb17d3-90e0-460e-9959-b6b64d73f87a",
+      "eduos_topic_title": "Heating Effect of Electric Current",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.67,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "c2526a73-2c40-4e97-8782-ed1509cf0bbb"
+      ],
+      "assessment_outcome_ids": [
+        "48cea350-651c-4314-a694-b55a4e901191"
+      ],
+      "assessment_outcome_codes": [
+        "LO_11.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_043",
+      "official_unit": "Unit IV: How Things Work",
+      "official_chapter": "Magnetic Effects of Electric Current",
+      "official_topic": "Magnetic Fields and Forces on Conductors",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "0da7b020-1389-41d8-913b-fe1582b7647e",
+      "eduos_unit_title": "Effects of Current",
+      "eduos_chapter_id": "e135389d-7024-4e31-936d-09b83f642d03",
+      "eduos_chapter_title": "Magnetic Effects of Electric Current",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "c6592493-9dcc-4954-acd5-5fecd6534594",
+        "c23614c3-b098-425c-a22e-cfe81e3233d9"
+      ],
+      "assessment_outcome_ids": [
+        "916e28d1-e41a-4a89-98b4-673683204179",
+        "f4dce651-899c-4581-add5-4cffc05786a7"
+      ],
+      "assessment_outcome_codes": [
+        "LO_12.1.1.1",
+        "LO_12.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_044",
+      "official_unit": "Unit IV: How Things Work",
+      "official_chapter": "Magnetic Effects of Electric Current",
+      "official_topic": "Direct Current, Alternating Current, and Domestic Circuits",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 7",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "0da7b020-1389-41d8-913b-fe1582b7647e",
+      "eduos_unit_title": "Effects of Current",
+      "eduos_chapter_id": "e135389d-7024-4e31-936d-09b83f642d03",
+      "eduos_chapter_title": "Magnetic Effects of Electric Current",
+      "eduos_topic_id": "1557f2d2-8ed5-43dc-9840-b4de072fe12e",
+      "eduos_topic_title": "Force on a Current-Carrying Conductor and Domestic Circuits",
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.44,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "c23614c3-b098-425c-a22e-cfe81e3233d9"
+      ],
+      "assessment_outcome_ids": [
+        "f4dce651-899c-4581-add5-4cffc05786a7"
+      ],
+      "assessment_outcome_codes": [
+        "LO_12.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_045",
+      "official_unit": "Unit V: Natural Resources",
+      "official_chapter": "Our Environment",
+      "official_topic": "Ecosystem Dynamics and Environmental Problems",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 8",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "a318d753-4458-4393-836b-75d9e01ff2d3",
+      "eduos_unit_title": "Natural Resources",
+      "eduos_chapter_id": "0cbfcf79-babb-43ed-afac-0aeadf5800c3",
+      "eduos_chapter_title": "Our Environment",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "71fb4f8e-b6ea-454f-9952-4cfbb74707fb",
+        "2932c72c-7245-4da5-82e0-ebba2db81c66"
+      ],
+      "assessment_outcome_ids": [
+        "3562d84b-cfd5-4f05-815a-4de87bcf1553",
+        "a502f5d5-b310-439f-a0c8-99083514dfaa"
+      ],
+      "assessment_outcome_codes": [
+        "LO_13.1.1.1",
+        "LO_13.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    },
+    {
+      "subject": "Science",
+      "academic_year": "2026-27",
+      "official_requirement_id": "REQ_SCI_2026_046",
+      "official_unit": "Unit V: Natural Resources",
+      "official_chapter": "Our Environment",
+      "official_topic": "Waste Management and Biodegradability",
+      "official_source_reference": "Science_SecP1_2026-27.pdf Page 8",
+      "assessability": "ASSESSABLE_CORE",
+      "eduos_book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "eduos_book_status": "processed",
+      "eduos_unit_id": "a318d753-4458-4393-836b-75d9e01ff2d3",
+      "eduos_unit_title": "Natural Resources",
+      "eduos_chapter_id": "0cbfcf79-babb-43ed-afac-0aeadf5800c3",
+      "eduos_chapter_title": "Our Environment",
+      "eduos_topic_id": null,
+      "eduos_topic_title": null,
+      "unit_match": "EXACT",
+      "chapter_match": "EXACT",
+      "topic_match": "UNMATCHED",
+      "topic_match_score": 0,
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "71fb4f8e-b6ea-454f-9952-4cfbb74707fb",
+        "2932c72c-7245-4da5-82e0-ebba2db81c66"
+      ],
+      "assessment_outcome_ids": [
+        "3562d84b-cfd5-4f05-815a-4de87bcf1553",
+        "a502f5d5-b310-439f-a0c8-99083514dfaa"
+      ],
+      "assessment_outcome_codes": [
+        "LO_13.1.1.1",
+        "LO_13.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
+      "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
+      "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
+    }
+  ]
+}

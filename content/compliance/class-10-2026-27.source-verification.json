@@ -1,0 +1,202 @@
+{
+  "contractVersion": "1.0.0",
+  "board": "CBSE",
+  "classLevel": 10,
+  "academicYear": "2026-27",
+  "generatedAt": "2026-08-29T04:31:49.887Z",
+  "sources": [
+    {
+      "sourceId": "SRC_CBSE_MATH_2627",
+      "subject": "Mathematics",
+      "officialUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
+      "retrievalTimestamp": "2026-08-29T04:31:47.514Z",
+      "httpStatus": 200,
+      "finalUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
+      "contentType": "application/pdf",
+      "byteLength": 270782,
+      "sha256": "d773e7c12b99e0bd498067e2b8268c76d0496bf9cad1c9e41c8652ab68b412a5",
+      "checksumAlgorithm": "sha256",
+      "extractedCharacters": 15072,
+      "probes": [
+        {
+          "probeId": "IDENTITY_SUBJECT",
+          "description": "Document declares Mathematics",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "IDENTITY_CODE",
+          "description": "Subject code 041",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "IDENTITY_CLASS_YEAR",
+          "description": "Class X, session 2026-27",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_NUMBER_SYSTEMS",
+          "description": "Unit I Number Systems present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_ALGEBRA",
+          "description": "Unit II Algebra present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_COORDINATE_GEOMETRY",
+          "description": "Unit III Coordinate Geometry present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_GEOMETRY",
+          "description": "Unit IV Geometry present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_TRIGONOMETRY",
+          "description": "Unit V Trigonometry present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_MENSURATION",
+          "description": "Unit VI Mensuration present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_STATISTICS_PROBABILITY",
+          "description": "Unit VII Statistics and Probability present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        }
+      ],
+      "retrievalStatus": "RETRIEVED",
+      "verificationStatus": "VERIFIED",
+      "documentRetained": false,
+      "retentionNote": "The PDF is not committed to the repository. Identity is preserved through the official URL, byte length and SHA-256 checksum recorded here."
+    },
+    {
+      "sourceId": "SRC_CBSE_SCI_2026_27",
+      "subject": "Science",
+      "officialUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
+      "retrievalTimestamp": "2026-08-29T04:31:49.316Z",
+      "httpStatus": 200,
+      "finalUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
+      "contentType": "application/pdf",
+      "byteLength": 279280,
+      "sha256": "1bec4a9e44452b22c9d422d8cb528b4de30598f56c243461845165771df7bc37",
+      "checksumAlgorithm": "sha256",
+      "extractedCharacters": 21544,
+      "probes": [
+        {
+          "probeId": "IDENTITY_SUBJECT",
+          "description": "Document declares Science",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "IDENTITY_CODE",
+          "description": "Subject code 086",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "IDENTITY_CLASS_YEAR",
+          "description": "Class X, session 2026-27",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_CHEMICAL_SUBSTANCES",
+          "description": "Unit I Chemical Substances present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_WORLD_OF_LIVING",
+          "description": "Unit II World of Living present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_NATURAL_PHENOMENA",
+          "description": "Unit III Natural Phenomena present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_EFFECTS_OF_CURRENT",
+          "description": "Unit IV Effects of Current present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "UNIT_NATURAL_RESOURCES",
+          "description": "Unit V Natural Resources present",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "RETAINED_PERIODIC_CLASSIFICATION",
+          "description": "Periodic Classification of Elements is retained in the syllabus (contradicting baseline exclusion EXCL_SCI_2026_001)",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "FORMATIVE_ONLY_BLOCK",
+          "description": "Formative-only assessment block present, which is what governs Periodic Classification and Evolution",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "NOT_ASSESSED_NOTE",
+          "description": "Note for Teachers records topics not assessed in the year-end examination",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "TOPIC_HUMAN_EYE",
+          "description": "Human eye covered under Unit III Natural Phenomena",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        }
+      ],
+      "retrievalStatus": "RETRIEVED",
+      "verificationStatus": "VERIFIED",
+      "documentRetained": false,
+      "retentionNote": "The PDF is not committed to the repository. Identity is preserved through the official URL, byte length and SHA-256 checksum recorded here."
+    }
+  ],
+  "overallStatus": "SOURCES_VERIFIED"
+}

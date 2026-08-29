@@ -201,7 +201,9 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
         intervention_generation_active: true,
         tutor_scope_bound_to_intervention: true,
         reassessment_reserve_available: units.every((u) => u.verified >= requiredVerifiedPerUnit(gates, u.outcomes)),
-        outcome_report_year_labelled: false,
+        // The learner outcome report renders ACTIVE_ACADEMIC_YEAR in its header
+        // badge and footer note (src/routes/diagnostic.report.$token.tsx).
+        outcome_report_year_labelled: true,
       },
       review: { reviewerName: null, reviewedAt: null, decision: null, unresolvedAmbiguities: unmappedOfficialTopics.length },
       commercial: {
