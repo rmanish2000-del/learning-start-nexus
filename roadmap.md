@@ -19,9 +19,21 @@ rollback and official curriculum correctness.
 - [x] Full suite 256 tests + typecheck + build clean.
 - [x] Deliverables: `EDUOS_CLASS_10_326_ITEM_BUILD_REPORT.md` (clean-rebuild report), `EDUOS_CLASS_10_PILOT_UNIT_DISPOSITION.md`, `EDUOS_CLASS_10_FINAL_CURRICULUM_MAP.json`, `EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json`, `EDUOS_CLASS_10_VALIDATION_RESULTS.json`, `EDUOS_CLASS_10_REVIEW_QUEUE.json`.
 
+## Compliance certification gate (2026-08-29) — complete
+
+- [x] Live snapshot re-exported; validator, report, audit bundle and Gemini bundle regenerated.
+- [x] Source registry corrected: both CBSE subject syllabi now `final`/`applicable` with live SHA-256 evidence (0 errors, 3 warnings).
+- [x] Verdicts issued — Mathematics **NOT_COMPLIANT** (7 checks), Science **NOT_COMPLIANT** (9 checks), overall `SOURCE_PENDING`.
+- [x] Journey, pricing (₹199 / ₹2,999 / ₹199 credit / ₹2,800 upgrade) and security verified.
+- [x] Deliverables: `EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md`, `EDUOS_CLASS10_LAUNCH_READINESS_REPORT.md`.
+- Launch gate: **controlled pilot only**; external launch withheld.
+
 ## Open
 
-- [ ] Subject-expert approval of the 326 drafts (blocks commercial readiness).
+- [ ] Subject-expert approval of the 326 drafts (LB-1/LB-2 — blocks commercial readiness and clears LB-3, LB-4, LB-5).
+- [ ] Set the Science source book to `approved` (LB-6).
+- [ ] Retrieve the remaining official source documents (LB-7).
+- [ ] Year-stamp new purchases into the Wave 0 `entitlements` table before the 2027-28 rollover (NB-2).
 
 ## Standing constraints
 

@@ -1,9 +1,9 @@
 {
   "provenance": {
     "bundle_format_version": "2.0.0",
-    "bundle_generation_timestamp": "2026-08-28T20:37:38.187Z",
-    "source_evidence_commit": "4ad886df33a0795a1f4f4ad29a53d3856d2b485b",
-    "bundle_generation_base_commit": "6cdc73129059b548675aba8dd2392bedae5e45c8",
+    "bundle_generation_timestamp": "2026-08-29T05:30:06.925Z",
+    "source_evidence_commit": "88d9ef1d1f452f1a6953e1e4b9016b9327ef2100",
+    "bundle_generation_base_commit": "93b70c33e698c44bae21be6764cc407f744b0d2f",
     "package_commit": "REPORTED_AFTER_COMMIT",
     "self_reference_policy": "The final Git package commit SHA is NOT embedded in any bundle file: a file inside a commit cannot contain that commit's own SHA. package_commit is reported only in the Lovable final response and repository history (REPORTED_AFTER_COMMIT). GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 intentionally excludes its own hash, and bundle_tree_hash is computed over all payload files excluding GEMINI_REVIEW_BUNDLE_MANIFEST.json and GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256. This bundle is therefore not self-authenticating.",
     "data_source": "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
@@ -33,16 +33,6 @@
     {
       "level": "warning",
       "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "CBSE-2026-27-C10-MAT-SYLLABUS"
-    },
-    {
-      "level": "warning",
-      "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "CBSE-2026-27-C10-SCI-SYLLABUS"
-    },
-    {
-      "level": "warning",
-      "code": "SOURCE_PENDING_CONFIRMATION",
       "detail": "NCERT-2026-27-C10-MAT-TEXTBOOK"
     },
     {
@@ -55,7 +45,7 @@
     {
       "subject": "Mathematics",
       "status": "SOURCE_PENDING",
-      "failing_checks": 11,
+      "failing_checks": 7,
       "gates": [
         {
           "gate": "SOURCE_GATE",
@@ -63,13 +53,13 @@
           "checks": [
             {
               "id": "sources_recorded",
-              "pass": false,
-              "detail": "0 applicable source(s)"
+              "pass": true,
+              "detail": "1 applicable source(s)"
             },
             {
               "id": "required_types_present",
               "pass": false,
-              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+              "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
             },
             {
               "id": "registry_valid",
@@ -80,7 +70,7 @@
         },
         {
           "gate": "CURRICULUM_GATE",
-          "pass": false,
+          "pass": true,
           "checks": [
             {
               "id": "all_assessable_topics_mapped",
@@ -94,8 +84,8 @@
             },
             {
               "id": "no_active_out_of_syllabus",
-              "pass": false,
-              "detail": "Unit 1 — Number Systems, Unit 2 — Algebra"
+              "pass": true,
+              "detail": "none"
             },
             {
               "id": "source_books_approved",
@@ -132,7 +122,7 @@
             {
               "id": "verified_depth",
               "pass": false,
-              "detail": "Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40"
+              "detail": "Number Systems:6/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40"
             },
             {
               "id": "atom_coverage",
@@ -146,8 +136,8 @@
             },
             {
               "id": "type_coverage",
-              "pass": false,
-              "detail": "Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability"
+              "pass": true,
+              "detail": "≥2 question types per unit"
             },
             {
               "id": "duplicate_free",
@@ -187,8 +177,8 @@
             },
             {
               "id": "outcome_report_year_labelled",
-              "pass": false,
-              "detail": "not verified"
+              "pass": true,
+              "detail": "verified"
             }
           ]
         },
@@ -254,7 +244,7 @@
     {
       "subject": "Science",
       "status": "SOURCE_PENDING",
-      "failing_checks": 13,
+      "failing_checks": 9,
       "gates": [
         {
           "gate": "SOURCE_GATE",
@@ -262,13 +252,13 @@
           "checks": [
             {
               "id": "sources_recorded",
-              "pass": false,
-              "detail": "0 applicable source(s)"
+              "pass": true,
+              "detail": "1 applicable source(s)"
             },
             {
               "id": "required_types_present",
               "pass": false,
-              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+              "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
             },
             {
               "id": "registry_valid",
@@ -283,8 +273,8 @@
           "checks": [
             {
               "id": "all_assessable_topics_mapped",
-              "pass": false,
-              "detail": "1 unmapped official topic(s)"
+              "pass": true,
+              "detail": "0 unmapped official topic(s)"
             },
             {
               "id": "no_duplicate_mapping",
@@ -346,7 +336,7 @@
             {
               "id": "type_coverage",
               "pass": false,
-              "detail": "Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources"
+              "detail": "Chemical Substances - Nature and Behaviour, World of Living"
             },
             {
               "id": "duplicate_free",
@@ -386,8 +376,8 @@
             },
             {
               "id": "outcome_report_year_labelled",
-              "pass": false,
-              "detail": "not verified"
+              "pass": true,
+              "detail": "verified"
             }
           ]
         },
@@ -412,8 +402,8 @@
             },
             {
               "id": "no_unresolved_ambiguity",
-              "pass": false,
-              "detail": "1 unresolved"
+              "pass": true,
+              "detail": "0 unresolved"
             }
           ]
         },

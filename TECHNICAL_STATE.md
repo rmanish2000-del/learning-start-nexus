@@ -1,7 +1,7 @@
 # EduOS — Technical State
 
-**Last verified:** 2026-08-27 (UTC)
-**Evidence sources:** repository at commit `6f570d0`, `package.json`, `src/routes` and `src/lib` listings, live database introspection, `bunx vitest run`, runtime secret presence check.
+**Last verified:** 2026-08-29 (UTC)
+**Evidence sources:** repository at commit `ebfda38`, `package.json`, `src/routes` and `src/lib` listings, live database introspection, `bunx vitest run`, runtime secret presence check.
 
 ---
 
@@ -16,8 +16,27 @@
 | Server logic | `createServerFn` in `*.functions.ts`, implementations in `*.server.ts` |
 | Public HTTP | `src/routes/api/public/*` (Razorpay webhook) |
 | AI | Lovable AI Gateway via `@ai-sdk/openai-compatible` (`src/lib/ai-gateway.server.ts`) |
-| Tests | Vitest — **46 passing, 5 files** (2026-08-27) |
+| Tests | Vitest — **256 passing, 19 files** (2026-08-29) |
 | Typography | Geist / Geist Mono; dark + light themes |
+
+## 1a. Compliance toolchain (2026-08-29)
+
+Deterministic, read-only and reproducible from committed inputs:
+
+| Script | Purpose |
+|---|---|
+| `scripts/compliance/export-snapshot.ts` | Re-exports the live Class 10 curriculum/question snapshot (needs read-only `SUPABASE_DB_URL`) |
+| `scripts/compliance/validate.ts` | Runs the seven gates in `src/lib/compliance-shared.ts`; non-zero exit while non-compliant |
+| `scripts/compliance/report.ts` · `bundle.ts` | Generate the coverage audit, crosswalks, matrices and gap register |
+| `scripts/compliance/gemini-bundle.ts` | Builds the portable, PII-free independent review bundle |
+
+Source registry `content/compliance/cbse-2026-27.sources.json` now records the two
+CBSE subject syllabus documents as `final` / `applicable` with live-retrieved
+SHA-256 checksums; registry validation reports 0 errors, 3 warnings.
+
+Content gating invariant: the paid diagnostic catalogue filters
+`source = 'import'` AND `status = 'approved'` AND `verification_state = 'verified'`,
+so the 326 rebuilt draft items are structurally unable to reach a paying learner.
 
 ## 2. Code shape
 

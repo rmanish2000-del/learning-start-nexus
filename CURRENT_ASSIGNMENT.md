@@ -1,7 +1,7 @@
 ---
 # EduOS — Current Assignment
 
-**Last verified:** 2026-08-28 (UTC)
+**Last verified:** 2026-08-29 (UTC)
 **Evidence source:** the founder's active request in this Lovable thread.
 
 This file holds **only** the active assignment. When it is complete, replace the contents with the next assignment — do not append history.
@@ -10,18 +10,40 @@ This file holds **only** the active assignment. When it is complete, replace the
 
 ## Active assignment
 
-**Title:** Post-Visual-Acceptance English-Only Release, Security Scan and Controlled-Pilot Readiness Gate
-**Received:** 2026-08-28
-**Priority:** P0 Release Hardening and Product-Language Simplification
-**Status:** Complete — verdict returned.
+**Title:** Class 10 Compliance Certification & Launch Readiness Gate
+**Received:** 2026-08-29
+**Priority:** P0 Launch Critical Path
+**Status:** Complete — verdicts returned.
 
-### Founder decision
+### Verdicts
 
-EduOS supports **English only** at this stage. The Hindi language toggle and the
-Hindi dictionary are removed; no user-facing mechanism can switch the app out of
-English. The generic `t()` seam is retained as an English identity function.
+| Item | Result |
+|---|---|
+| Requirements verified | 84 / 84 |
+| Mathematics (041) | **NOT_COMPLIANT** — 7 failing gate checks |
+| Science (086) | **NOT_COMPLIANT** — 9 failing gate checks |
+| Overall compliance status | `SOURCE_PENDING` |
+| Journey / pricing / security | PASS |
+| Launch gate | **CONTROLLED PILOT ONLY — external launch withheld** |
+| Tests · typecheck · build | 256 / 256 · clean · clean |
+| Security scan | 0 critical, 1 pre-existing accepted warning |
+| Deployed | No — no runtime behaviour changed |
 
-### Outcome
+Launch blockers LB-1 … LB-7 and non-blocking items NB-1 … NB-5 are recorded in
+`EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md`. Six of the seven blockers
+clear with one act: a named subject-expert review approving the 326 rebuilt items.
+
+### Next gate
+
+Subject-expert review of the 326 rebuilt Class 10 items and the Science source
+book. No Class 9, 11 or 12 work, no pricing expansion and no new features until
+Class 10 receives a compliance certificate.
+
+### Superseded
+
+The 2026-08-28 English-Only Release assignment below is **complete and superseded**.
+
+### Outcome (2026-08-28 — English-only release, superseded)
 
 | Item | Result |
 |---|---|

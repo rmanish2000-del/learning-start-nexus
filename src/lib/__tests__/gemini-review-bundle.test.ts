@@ -193,7 +193,9 @@ describe("gemini review bundle — integrity", () => {
       mathematics_crosswalk_rows: 38,
       science_crosswalk_rows: 46,
       unmapped_mathematics_requirements: 2,
-      unmapped_science_requirements: 13,
+      // 11 after the 2026-27 clean rebuild: the two previously unmapped
+      // "Effects of Current" chapter rows now resolve to live EduOS chapters.
+      unmapped_science_requirements: 11,
       science_exclusions: 6,
       science_ambiguities: 2,
     });
@@ -258,13 +260,16 @@ describe("gemini review bundle — depth evidence", () => {
     expect(depth.atom_level.rows.length).toBeGreaterThan(0);
   });
 
-  it("includes Coordinate Geometry, Chemical Substances and both Meridian pilot units", () => {
+  it("covers the twelve active 2026-27 units and no retired pilot unit", () => {
     const titles = depth.unit_level.map((u: { unit_title: string }) => u.unit_title);
     expect(titles).toContain("Coordinate Geometry");
     expect(titles).toContain("Chemical Substances - Nature and Behaviour");
-    for (const t of ["Unit 1 — Number Systems", "Unit 2 — Algebra"]) expect(titles).toContain(t);
+    expect(titles).toHaveLength(12);
+    // The Meridian pilot book was reversibly archived in the clean rebuild, so
+    // its two units must no longer appear in the depth evidence.
+    for (const t of ["Unit 1 — Number Systems", "Unit 2 — Algebra"]) expect(titles).not.toContain(t);
     const meridian = depth.unit_level.filter((u: { meridian_pilot_unit: boolean }) => u.meridian_pilot_unit);
-    expect(meridian.length).toBe(2);
+    expect(meridian.length).toBe(0);
   });
 
   it("reports reassessment reserve for every unit", () => {

@@ -1,9 +1,9 @@
 # EduOS — Class 10 (2026-27) Gemini Crosswalk Review Bundle
 
 **Bundle format version:** 2.0.0  
-**Bundle generation timestamp:** 2026-08-28T20:37:38.187Z  
-**source_evidence_commit:** 4ad886df33a0795a1f4f4ad29a53d3856d2b485b  
-**bundle_generation_base_commit:** 6cdc73129059b548675aba8dd2392bedae5e45c8  
+**Bundle generation timestamp:** 2026-08-29T05:30:06.925Z  
+**source_evidence_commit:** 88d9ef1d1f452f1a6953e1e4b9016b9327ef2100  
+**bundle_generation_base_commit:** 93b70c33e698c44bae21be6764cc407f744b0d2f  
 **package_commit:** REPORTED_AFTER_COMMIT (see final response / repository history)  
 **Validator:** compliance-validator/1.0.0  
 **CLASS_10_COMPLIANCE_STATUS:** SOURCE_PENDING
@@ -36,7 +36,7 @@ Each `exports/*.json` carries a `provenance` block with extraction timestamp, re
 |---|---|---|
 | Official requirements in baseline | 38 | 46 |
 | Crosswalk rows emitted | 38 | 46 |
-| Requirements without a complete unit+chapter mapping | 2 | 13 |
+| Requirements without a complete unit+chapter mapping | 2 | 11 |
 | Declared exclusions in baseline | 0 | 6 |
 | Declared ambiguities in baseline | 0 | 2 |
 
