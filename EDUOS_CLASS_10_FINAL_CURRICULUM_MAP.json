@@ -1,0 +1,486 @@
+{
+  "generated_at": "2026-08-29T00:00:00.000Z",
+  "board": "CBSE",
+  "class_level": 10,
+  "academic_year": "2026-27",
+  "subject_codes": {
+    "Mathematics": [
+      "041",
+      "241"
+    ],
+    "Science": [
+      "086"
+    ]
+  },
+  "official_sources": null,
+  "pilot_content": {
+    "disposition": "RETIRED_FROM_ACTIVE_2026_27",
+    "book": "CBSE Class 10 Mathematics — Meridian Pilot",
+    "action": "book archived, its questions retired; rows and learner history preserved"
+  },
+  "subjects": [
+    {
+      "subject": "Mathematics",
+      "book_id": "ad8318f3-c41d-4846-8173-c84e5cde20ad",
+      "book_title": "CBSE Class 10 Mathematics — Meridian Pilot",
+      "book_status": "processed",
+      "units": 2,
+      "chapters": 2,
+      "requirements": 38,
+      "unmapped_requirements": 0,
+      "new_draft_questions": 235,
+      "unit_detail": [
+        {
+          "unit_id": "c023481c-8577-4eff-bc0d-69976fb4a3ce",
+          "title": "Unit 1 — Number Systems",
+          "status": "suggested",
+          "chapters": [
+            {
+              "chapter_id": "c6ed32a6-bbdc-4491-a847-ed72ad6a8f82",
+              "title": "Real Numbers",
+              "topics": 3
+            }
+          ],
+          "assessment_outcomes": 3,
+          "atoms": 3,
+          "official_requirements": [],
+          "new_draft_questions": 0
+        },
+        {
+          "unit_id": "ebe99e72-8eb8-478a-8837-6159672331e1",
+          "title": "Unit 2 — Algebra",
+          "status": "suggested",
+          "chapters": [
+            {
+              "chapter_id": "81a5d638-6724-4244-9664-f8812bd84201",
+              "title": "Polynomials",
+              "topics": 2
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [],
+          "new_draft_questions": 0
+        }
+      ]
+    },
+    {
+      "subject": "Mathematics",
+      "book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
+      "book_title": "NCERT Class 10 Mathematics (CBSE)",
+      "book_status": "approved",
+      "units": 7,
+      "chapters": 14,
+      "requirements": 38,
+      "unmapped_requirements": 0,
+      "new_draft_questions": 235,
+      "unit_detail": [
+        {
+          "unit_id": "3833206a-5b47-4b14-bdf3-f79b541b4afa",
+          "title": "Number Systems",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7",
+              "title": "Real Numbers",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [
+            "REQ_MATH_2026_001",
+            "REQ_MATH_2026_002",
+            "REQ_MATH_2026_003",
+            "REQ_MATH_2026_004"
+          ],
+          "new_draft_questions": 34
+        },
+        {
+          "unit_id": "43f863ad-8e90-468f-bdd2-b488ed207dcb",
+          "title": "Algebra",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "a8e9b23d-a566-4a04-917d-df2c3d6aa920",
+              "title": "Polynomials",
+              "topics": 1
+            },
+            {
+              "chapter_id": "9f40e65a-a7f3-44f7-9c38-2946b4013031",
+              "title": "Pair of Linear Equations in Two Variables",
+              "topics": 1
+            },
+            {
+              "chapter_id": "c43f5930-670a-4b57-b62c-198baae8c65b",
+              "title": "Quadratic Equations",
+              "topics": 1
+            },
+            {
+              "chapter_id": "07f25ffe-20ee-42c8-89e9-8504cd7d5933",
+              "title": "Arithmetic Progressions",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 4,
+          "atoms": 4,
+          "official_requirements": [
+            "REQ_MATH_2026_005",
+            "REQ_MATH_2026_006",
+            "REQ_MATH_2026_007",
+            "REQ_MATH_2026_008",
+            "REQ_MATH_2026_009",
+            "REQ_MATH_2026_010",
+            "REQ_MATH_2026_011",
+            "REQ_MATH_2026_012",
+            "REQ_MATH_2026_013",
+            "REQ_MATH_2026_014",
+            "REQ_MATH_2026_015",
+            "REQ_MATH_2026_016",
+            "REQ_MATH_2026_017",
+            "REQ_MATH_2026_018",
+            "REQ_MATH_2026_019",
+            "REQ_MATH_2026_020",
+            "REQ_MATH_2026_021"
+          ],
+          "new_draft_questions": 28
+        },
+        {
+          "unit_id": "94ad5f05-f0d5-4f09-9b5d-f9c650648028",
+          "title": "Geometry",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "a1470d2c-37f3-4e3d-bd20-bcef495850a2",
+              "title": "Triangles",
+              "topics": 1
+            },
+            {
+              "chapter_id": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982",
+              "title": "Circles",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [
+            "REQ_MATH_2026_024",
+            "REQ_MATH_2026_025",
+            "REQ_MATH_2026_026",
+            "REQ_MATH_2026_027",
+            "REQ_MATH_2026_028"
+          ],
+          "new_draft_questions": 34
+        },
+        {
+          "unit_id": "2dec1571-2599-4b23-9163-730872353215",
+          "title": "Coordinate Geometry",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "5057feec-e0be-4f95-bde8-e889bf1e3851",
+              "title": "Coordinate Geometry",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 1,
+          "atoms": 1,
+          "official_requirements": [
+            "REQ_MATH_2026_022",
+            "REQ_MATH_2026_023"
+          ],
+          "new_draft_questions": 37
+        },
+        {
+          "unit_id": "348ad1cc-46c4-4105-9aef-617fc7d17748",
+          "title": "Trigonometry",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "26a18c0c-428c-4f53-be90-6f08878b51bb",
+              "title": "Introduction to Trigonometry",
+              "topics": 1
+            },
+            {
+              "chapter_id": "9450ae1c-de24-403b-8485-0f221c78ef90",
+              "title": "Some Applications of Trigonometry",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [
+            "REQ_MATH_2026_029",
+            "REQ_MATH_2026_030",
+            "REQ_MATH_2026_031",
+            "REQ_MATH_2026_032",
+            "REQ_MATH_2026_033"
+          ],
+          "new_draft_questions": 34
+        },
+        {
+          "unit_id": "7bdc9cf5-d3c7-4da8-85e8-50cef220452e",
+          "title": "Mensuration",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "e047c750-13fb-4aa8-9ced-871e68bbdc34",
+              "title": "Areas Related to Circles",
+              "topics": 1
+            },
+            {
+              "chapter_id": "e16beb6a-0ece-4f5e-8fc3-681430616331",
+              "title": "Surface Areas and Volumes",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [
+            "REQ_MATH_2026_034",
+            "REQ_MATH_2026_035",
+            "REQ_MATH_2026_036"
+          ],
+          "new_draft_questions": 34
+        },
+        {
+          "unit_id": "b19490a1-5180-43f5-aef3-cdc73ba98d3c",
+          "title": "Statistics & Probability",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "707fade6-2ddc-42d9-808c-ee02b9e6f407",
+              "title": "Statistics",
+              "topics": 1
+            },
+            {
+              "chapter_id": "844813c6-8b2d-4d64-9dc0-924de270c431",
+              "title": "Probability",
+              "topics": 1
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [
+            "REQ_MATH_2026_037",
+            "REQ_MATH_2026_038"
+          ],
+          "new_draft_questions": 34
+        }
+      ]
+    },
+    {
+      "subject": "Science",
+      "book_id": "9a9ee914-468e-4ef2-9269-eab8c9ba85a8",
+      "book_title": "NCERT Class 10 Science (CBSE)",
+      "book_status": "processed",
+      "units": 5,
+      "chapters": 13,
+      "requirements": 46,
+      "unmapped_requirements": 0,
+      "new_draft_questions": 91,
+      "unit_detail": [
+        {
+          "unit_id": "6514852c-f6b6-4a31-9e08-ac2058c7d370",
+          "title": "Chemical Substances - Nature and Behaviour",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "bf632a15-48d2-4207-939e-90d011a69cf6",
+              "title": "Chemical Reactions and Equations",
+              "topics": 3
+            },
+            {
+              "chapter_id": "070ea239-fe68-46d1-8f84-70e471a5f1f3",
+              "title": "Acids, Bases and Salts",
+              "topics": 4
+            },
+            {
+              "chapter_id": "18824c2d-00e8-44a4-b311-4a33d4a6e818",
+              "title": "Metals and Non-metals",
+              "topics": 5
+            },
+            {
+              "chapter_id": "90ab5ad8-9991-47f3-af98-df2d8a948fa7",
+              "title": "Carbon and its Compounds",
+              "topics": 5
+            }
+          ],
+          "assessment_outcomes": 32,
+          "atoms": 32,
+          "official_requirements": [
+            "REQ_SCI_2026_001",
+            "REQ_SCI_2026_002",
+            "REQ_SCI_2026_003",
+            "REQ_SCI_2026_004",
+            "REQ_SCI_2026_005",
+            "REQ_SCI_2026_006",
+            "REQ_SCI_2026_007",
+            "REQ_SCI_2026_008",
+            "REQ_SCI_2026_009",
+            "REQ_SCI_2026_010",
+            "REQ_SCI_2026_011",
+            "REQ_SCI_2026_012",
+            "REQ_SCI_2026_013",
+            "REQ_SCI_2026_014",
+            "REQ_SCI_2026_015",
+            "REQ_SCI_2026_016",
+            "REQ_SCI_2026_017",
+            "REQ_SCI_2026_018",
+            "REQ_SCI_2026_019",
+            "REQ_SCI_2026_020",
+            "REQ_SCI_2026_021"
+          ],
+          "new_draft_questions": 0
+        },
+        {
+          "unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
+          "title": "World of Living",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "fb925d96-9ee8-4f93-b54d-1c2758757143",
+              "title": "Life Processes",
+              "topics": 5
+            },
+            {
+              "chapter_id": "173fb710-5021-4950-8d6e-bbd4ee6efc67",
+              "title": "Control and Coordination",
+              "topics": 3
+            },
+            {
+              "chapter_id": "795f3330-3d3c-4b82-b214-00064579d4ff",
+              "title": "How do Organisms Reproduce?",
+              "topics": 2
+            },
+            {
+              "chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+              "title": "Heredity",
+              "topics": 2
+            }
+          ],
+          "assessment_outcomes": 13,
+          "atoms": 13,
+          "official_requirements": [
+            "REQ_SCI_2026_022",
+            "REQ_SCI_2026_023",
+            "REQ_SCI_2026_024",
+            "REQ_SCI_2026_025",
+            "REQ_SCI_2026_026",
+            "REQ_SCI_2026_027",
+            "REQ_SCI_2026_028",
+            "REQ_SCI_2026_029",
+            "REQ_SCI_2026_030",
+            "REQ_SCI_2026_031",
+            "REQ_SCI_2026_032",
+            "REQ_SCI_2026_033",
+            "REQ_SCI_2026_034",
+            "REQ_SCI_2026_035",
+            "REQ_SCI_2026_036"
+          ],
+          "new_draft_questions": 1
+        },
+        {
+          "unit_id": "07350c07-c273-4430-8354-73a2bec1d5c4",
+          "title": "Natural Phenomena",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "d6865acb-d2e0-45a2-908e-6e1c628bd70f",
+              "title": "Light – Reflection and Refraction",
+              "topics": 2
+            },
+            {
+              "chapter_id": "eccb7279-6cc0-489e-b4df-73d8261f59cc",
+              "title": "The Human Eye and the Colourful World",
+              "topics": 2
+            }
+          ],
+          "assessment_outcomes": 4,
+          "atoms": 4,
+          "official_requirements": [
+            "REQ_SCI_2026_037",
+            "REQ_SCI_2026_038",
+            "REQ_SCI_2026_039",
+            "REQ_SCI_2026_040"
+          ],
+          "new_draft_questions": 28
+        },
+        {
+          "unit_id": "0da7b020-1389-41d8-913b-fe1582b7647e",
+          "title": "Effects of Current",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "9b74dbd9-3f6c-49a5-881c-ef8438842e4a",
+              "title": "Electricity",
+              "topics": 2
+            },
+            {
+              "chapter_id": "e135389d-7024-4e31-936d-09b83f642d03",
+              "title": "Magnetic Effects of Electric Current",
+              "topics": 2
+            }
+          ],
+          "assessment_outcomes": 4,
+          "atoms": 4,
+          "official_requirements": [
+            "REQ_SCI_2026_041",
+            "REQ_SCI_2026_042",
+            "REQ_SCI_2026_043",
+            "REQ_SCI_2026_044"
+          ],
+          "new_draft_questions": 28
+        },
+        {
+          "unit_id": "a318d753-4458-4393-836b-75d9e01ff2d3",
+          "title": "Natural Resources",
+          "status": "approved",
+          "chapters": [
+            {
+              "chapter_id": "0cbfcf79-babb-43ed-afac-0aeadf5800c3",
+              "title": "Our Environment",
+              "topics": 2
+            }
+          ],
+          "assessment_outcomes": 2,
+          "atoms": 2,
+          "official_requirements": [
+            "REQ_SCI_2026_045",
+            "REQ_SCI_2026_046"
+          ],
+          "new_draft_questions": 34
+        }
+      ]
+    },
+    {
+      "subject": "Science",
+      "book_id": "26ac60d7-794d-4805-8cdb-5b73bcb40c53",
+      "book_title": "NCERT Science — Class 10, Chapter 1: Chemical Reactions and Equations",
+      "book_status": "archived",
+      "units": 1,
+      "chapters": 1,
+      "requirements": 46,
+      "unmapped_requirements": 0,
+      "new_draft_questions": 91,
+      "unit_detail": [
+        {
+          "unit_id": "234cc8b4-a653-4f38-9c67-6ffc5cd1c101",
+          "title": "Chemical Reactions and Equations",
+          "status": "suggested",
+          "chapters": [
+            {
+              "chapter_id": "b14f8e71-7dc5-4e8c-98a2-062f2376b1aa",
+              "title": "Chemical Reactions and Equations",
+              "topics": 8
+            }
+          ],
+          "assessment_outcomes": 8,
+          "atoms": 0,
+          "official_requirements": [],
+          "new_draft_questions": 0
+        }
+      ]
+    }
+  ]
+}
