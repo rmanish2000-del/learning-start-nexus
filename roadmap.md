@@ -6,19 +6,22 @@ verified 2026-27 baseline over making weak legacy data compliant. Keep only the
 safety gates for schema integrity, auth, payments/entitlements, security,
 rollback and official curriculum correctness.
 
+## Done (2026-08-29)
+
+- [x] Pre-rebuild snapshot with SHA-256 manifest — `audit-data/class10/rollback/`.
+- [x] Confirmed the verified structure matches the official shape (Maths 7 units / 14 chapters, Science 5 units / 13 chapters, 84 requirements, 0 unmapped) — no structural rebuild needed.
+- [x] Retired the pilot-only Mathematics book and its questions from active 2026-27 selectors (reversible, no hard delete).
+- [x] Revalidated the question specification: 326 items (Maths 235, Science 91).
+- [x] Generated the original question bank (125 diagnostic / 201 reassessment), answers computed in code, loaded as `draft` + `unverified`.
+- [x] Automated validation: 0 errors, 0 duplicates/near-duplicates, 0 exclusion leakage, 192 numeric claims recomputed.
+- [x] Review queues with reviewer fields null, status `REVIEW_PENDING`.
+- [x] Science book machine gates pass -> READY_FOR_EXPERT_REVIEW (still not human-approved).
+- [x] Full suite 256 tests + typecheck + build clean.
+- [x] Deliverables: `EDUOS_CLASS_10_326_ITEM_BUILD_REPORT.md` (clean-rebuild report), `EDUOS_CLASS_10_PILOT_UNIT_DISPOSITION.md`, `EDUOS_CLASS_10_FINAL_CURRICULUM_MAP.json`, `EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json`, `EDUOS_CLASS_10_VALIDATION_RESULTS.json`, `EDUOS_CLASS_10_REVIEW_QUEUE.json`.
+
 ## Open
 
-- [ ] Pre-rebuild snapshot of Class 10 Mathematics + Science academic data, with SHA-256 manifest, stored for rollback only.
-- [ ] Replacement-boundary classification per table (SAFE_TO_REPLACE / REFERENCE_REQUIRES_REPOINTING / PLATFORM / PAYMENT / AUTH).
-- [ ] Confirm the verified structure already satisfies the official shape (Maths 7 units / 14 chapters, Science 5 units / 13 chapters, 84 requirements) — rebuild only what deviates.
-- [ ] Retire pilot-only units from active 2026-27 selectors (reversible, no hard delete).
-- [ ] Revalidate the question specification against the clean structure; report original vs final count.
-- [ ] Generate the original question bank (diagnostic + fresh-reassessment pools), answers computed in code.
-- [ ] Automated validation: mapping, answers, numeric recomputation, duplicates/near-duplicates, exclusion leakage, originality, markup contamination.
-- [ ] Review queues (Mathematics / Science), reviewer fields null, status REVIEW_PENDING.
-- [ ] Science book: machine gates -> READY_FOR_EXPERT_REVIEW, never human-approved without a named reviewer.
-- [ ] Full suite + typecheck + build + secret scan; one authoritative test total.
-- [ ] Deliverables: EDUOS_CLASS_10_CLEAN_REBUILD_REPORT.md, EDUOS_CLASS_10_FINAL_CURRICULUM_MAP.json, EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json, EDUOS_CLASS_10_VALIDATION_RESULTS.json, EDUOS_CLASS_10_REVIEW_QUEUE.json.
+- [ ] Subject-expert approval of the 326 drafts (blocks commercial readiness).
 
 ## Standing constraints
 
