@@ -1,0 +1,1 @@
+UPDATE public.learners SET is_demo = true, focus_note = 'INTERNAL PILOT — non-production test learner.' WHERE id = 'fcf01804-83b3-434a-9ba5-29a1a70b3702';
