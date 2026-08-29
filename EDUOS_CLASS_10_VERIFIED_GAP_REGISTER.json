@@ -1,0 +1,133 @@
+{
+  "provenance": {
+    "contract_version": "1.0.0",
+    "board": "CBSE",
+    "class_level": 10,
+    "academic_year": "2026-27",
+    "evidence_contract_version": "1.0.0",
+    "source_verification_status": "SOURCES_VERIFIED",
+    "generator": "scripts/compliance/evidence-verify.ts",
+    "determinism_note": "Derived only from committed inputs; no timestamps are embedded."
+  },
+  "total_gaps": 13,
+  "blocking_gaps": 5,
+  "gaps": [
+    {
+      "gap_id": "VGAP-001",
+      "subject": "Mathematics",
+      "category": "REQUIREMENT_MAPPING",
+      "severity": "BLOCKING",
+      "detail": "37 of 38 official requirements resolve no EduOS topic or outcome: REQ_MATH_2026_002, REQ_MATH_2026_003, REQ_MATH_2026_004, REQ_MATH_2026_005, REQ_MATH_2026_006, REQ_MATH_2026_007, REQ_MATH_2026_008, REQ_MATH_2026_009, REQ_MATH_2026_010, REQ_MATH_2026_011, REQ_MATH_2026_012, REQ_MATH_2026_013, REQ_MATH_2026_014, REQ_MATH_2026_015, REQ_MATH_2026_016, REQ_MATH_2026_017, REQ_MATH_2026_018, REQ_MATH_2026_019, REQ_MATH_2026_020, REQ_MATH_2026_021, REQ_MATH_2026_022, REQ_MATH_2026_023, REQ_MATH_2026_024, REQ_MATH_2026_025, REQ_MATH_2026_026, REQ_MATH_2026_027, REQ_MATH_2026_028, REQ_MATH_2026_029, REQ_MATH_2026_030, REQ_MATH_2026_031, REQ_MATH_2026_032, REQ_MATH_2026_033, REQ_MATH_2026_034, REQ_MATH_2026_035, REQ_MATH_2026_036, REQ_MATH_2026_037, REQ_MATH_2026_038",
+      "remediation": "Create the missing topic/outcome rows against the governing book before generation.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-002",
+      "subject": "Mathematics",
+      "category": "QUESTION_DEPTH",
+      "severity": "MAJOR",
+      "detail": "Number Systems:6/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40",
+      "remediation": "Author to the depth law before the unit can serve both a diagnostic and a reassessment set.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-003",
+      "subject": "Science",
+      "category": "REQUIREMENT_MAPPING",
+      "severity": "BLOCKING",
+      "detail": "43 of 46 official requirements resolve no EduOS topic or outcome: REQ_SCI_2026_002, REQ_SCI_2026_003, REQ_SCI_2026_004, REQ_SCI_2026_005, REQ_SCI_2026_006, REQ_SCI_2026_007, REQ_SCI_2026_008, REQ_SCI_2026_009, REQ_SCI_2026_010, REQ_SCI_2026_011, REQ_SCI_2026_012, REQ_SCI_2026_013, REQ_SCI_2026_014, REQ_SCI_2026_015, REQ_SCI_2026_016, REQ_SCI_2026_017, REQ_SCI_2026_018, REQ_SCI_2026_020, REQ_SCI_2026_022, REQ_SCI_2026_023, REQ_SCI_2026_024, REQ_SCI_2026_025, REQ_SCI_2026_026, REQ_SCI_2026_027, REQ_SCI_2026_028, REQ_SCI_2026_029, REQ_SCI_2026_030, REQ_SCI_2026_031, REQ_SCI_2026_032, REQ_SCI_2026_033, REQ_SCI_2026_034, REQ_SCI_2026_035, REQ_SCI_2026_036, REQ_SCI_2026_037, REQ_SCI_2026_038, REQ_SCI_2026_039, REQ_SCI_2026_040, REQ_SCI_2026_041, REQ_SCI_2026_042, REQ_SCI_2026_043, REQ_SCI_2026_044, REQ_SCI_2026_045, REQ_SCI_2026_046",
+      "remediation": "Create the missing topic/outcome rows against the governing book before generation.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-004",
+      "subject": "Science",
+      "category": "QUESTION_DEPTH",
+      "severity": "MAJOR",
+      "detail": "Chemical Substances - Nature and Behaviour:96/64, World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40",
+      "remediation": "Author to the depth law before the unit can serve both a diagnostic and a reassessment set.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-005",
+      "subject": "Science",
+      "category": "PHASE_6_AMBIGUITY",
+      "severity": "BLOCKING",
+      "detail": "FIND_SCI_PERIODIC_CLASSIFICATION: The retrieved CBSE Science 2026-27 syllabus retains Periodic Classification of Elements inside Unit I under the heading 'included in the syllabus but will be assessed only formatively', and the Note for Teachers states it will not be assessed in the year-end examination.",
+      "remediation": "Reclassify the exclusion as NOT_ASSESSED_IN_YEAR_END_EXAMINATION. Do not generate summative diagnostic items for this topic.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-006",
+      "subject": "Science",
+      "category": "PHASE_6_AMBIGUITY",
+      "severity": "MAJOR",
+      "detail": "FIND_SCI_EVOLUTION: Unit II separates assessable Heredity from Evolution, which is listed as formative-only. The Note for Teachers repeats that Heredity and Evolution content is not assessed in the year-end examination.",
+      "remediation": "Label Evolution outcomes as formative and exclude them from diagnostic weighting.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-007",
+      "subject": "Science",
+      "category": "PHASE_6_AMBIGUITY",
+      "severity": "BLOCKING",
+      "detail": "FIND_SCI_MOTOR_GENERATOR: Unit IV lists Motor, Electromagnetic Induction and Electric Generator under the formative-only block.",
+      "remediation": "Mark these outcomes formative; exclude from summative depth targets.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-008",
+      "subject": "Science",
+      "category": "PHASE_3_UNMAPPED",
+      "severity": "MAJOR",
+      "detail": "FIND_SCI_HUMAN_EYE_SPELLING: The chapter exists in EduOS as 'The Human Eye and the Colorful World'. The gap was an orthographic mismatch (US spelling), not missing content.",
+      "remediation": "Rename the chapter to the official British spelling. Safe metadata-only fix.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-009",
+      "subject": "Mathematics",
+      "category": "PHASE_4_PILOT_DISPOSITION",
+      "severity": "BLOCKING",
+      "detail": "FIND_MAT_MERIDIAN_PILOT_UNITS: The unmapped units in the live database are 'Unit 1 — Number Systems' and 'Unit 2 — Algebra', both belonging to the book 'CBSE Class 10 Mathematics — Meridian Pilot' (status processed, units status suggested). They duplicate the governing NCERT units. One pilot topic, Euclid's division lemma, does not appear anywhere in the retrieved 2026-27 syllabus.",
+      "remediation": "Retire the two pilot units rather than mapping them. They carry 15 unverified questions and duplicate approved coverage. Retirement is a content decision and is NOT executed by this pass.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-010",
+      "subject": "Mathematics",
+      "category": "PHASE_6_OVERREACH",
+      "severity": "MAJOR",
+      "detail": "FIND_MAT_FRUSTUM_OUT_OF_SCOPE: The string 'frustum' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
+      "remediation": "Do not author frustum items for 2026-27.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-011",
+      "subject": "Mathematics",
+      "category": "PHASE_6_OVERREACH",
+      "severity": "MAJOR",
+      "detail": "FIND_MAT_EUCLID_OUT_OF_SCOPE: The string 'Euclid' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
+      "remediation": "Exclude from generation; retire with the pilot unit.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-012",
+      "subject": "Science",
+      "category": "PHASE_5_BOOK_STATUS",
+      "severity": "MAJOR",
+      "detail": "FIND_SCI_BOOK_STATUS: books.status for 'NCERT Class 10 Science (CBSE)' is 'processed'. It is not approved. The Mathematics counterpart is 'approved'. All 209 Science questions therefore hang off a non-approved book.",
+      "remediation": "Approval is a human editorial act. It is not performed by this pass. The compliance gate must continue to fail source_books_approved for Science.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    },
+    {
+      "gap_id": "VGAP-013",
+      "subject": "All",
+      "category": "PHASE_7_DEPTH",
+      "severity": "MAJOR",
+      "detail": "FIND_QUESTION_STATE_SEPARATION: question_bank carries two independent axes: status (draft/approved/retired) and verification_state (unverified/verified/rejected). Live counts are 213 verified+approved, 52 approved+unverified, 39 draft+unverified. Only status='approved' AND verification_state='verified' is diagnostic-eligible.",
+      "remediation": "All depth arithmetic in this pass uses the diagnostic-eligible intersection.",
+      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
+    }
+  ]
+}

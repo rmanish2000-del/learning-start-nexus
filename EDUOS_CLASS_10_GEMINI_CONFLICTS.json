@@ -1,0 +1,2060 @@
+{
+  "provenance": {
+    "contract_version": "1.0.0",
+    "board": "CBSE",
+    "class_level": 10,
+    "academic_year": "2026-27",
+    "evidence_contract_version": "1.0.0",
+    "source_verification_status": "SOURCES_VERIFIED",
+    "generator": "scripts/compliance/evidence-verify.ts",
+    "determinism_note": "Derived only from committed inputs; no timestamps are embedded."
+  },
+  "prior_claim_source": "review-bundles/class10-2026-27-gemini/exports/baseline-to-eduos-crosswalk.json",
+  "narrative_conflicts": [
+    {
+      "finding_id": "FIND_SCI_PERIODIC_CLASSIFICATION",
+      "phase": "PHASE_6_AMBIGUITY",
+      "subject": "Science",
+      "baseline_claim": "EXCL_SCI_2026_001 records Periodic Classification of Elements as RATIONALISED_CHAPTER_OMISSION, and AMB_SCI_2026_001 recommends OFFICIALLY_EXCLUDED.",
+      "verified_truth": "The retrieved CBSE Science 2026-27 syllabus retains Periodic Classification of Elements inside Unit I under the heading 'included in the syllabus but will be assessed only formatively', and the Note for Teachers states it will not be assessed in the year-end examination.",
+      "resolution": "RETAINED_FORMATIVE_ONLY",
+      "baseline_status": "BASELINE_CLAIM_CONTRADICTED",
+      "remediation": "Reclassify the exclusion as NOT_ASSESSED_IN_YEAR_END_EXAMINATION. Do not generate summative diagnostic items for this topic."
+    },
+    {
+      "finding_id": "FIND_SCI_EVOLUTION",
+      "phase": "PHASE_6_AMBIGUITY",
+      "subject": "Science",
+      "baseline_claim": "Baseline treats Heredity and Evolution as a single assessable block.",
+      "verified_truth": "Unit II separates assessable Heredity from Evolution, which is listed as formative-only. The Note for Teachers repeats that Heredity and Evolution content is not assessed in the year-end examination.",
+      "resolution": "EVOLUTION_FORMATIVE_ONLY",
+      "baseline_status": "BASELINE_CLAIM_PARTIAL",
+      "remediation": "Label Evolution outcomes as formative and exclude them from diagnostic weighting."
+    },
+    {
+      "finding_id": "FIND_SCI_MOTOR_GENERATOR",
+      "phase": "PHASE_6_AMBIGUITY",
+      "subject": "Science",
+      "baseline_claim": "Motor, Electromagnetic Induction and Electric Generator treated as assessable in Unit IV.",
+      "verified_truth": "Unit IV lists Motor, Electromagnetic Induction and Electric Generator under the formative-only block.",
+      "resolution": "FORMATIVE_ONLY",
+      "baseline_status": "BASELINE_CLAIM_CONTRADICTED",
+      "remediation": "Mark these outcomes formative; exclude from summative depth targets."
+    },
+    {
+      "finding_id": "FIND_SCI_HUMAN_EYE_SPELLING",
+      "phase": "PHASE_3_UNMAPPED",
+      "subject": "Science",
+      "baseline_claim": "Prior gap register recorded 1 unmapped official Science topic (SCI-U3-C2 The Human Eye and the Colourful World).",
+      "verified_truth": "The chapter exists in EduOS as 'The Human Eye and the Colorful World'. The gap was an orthographic mismatch (US spelling), not missing content.",
+      "resolution": "MAPPED_AFTER_TITLE_CORRECTION",
+      "baseline_status": "PRIOR_GAP_INVALID",
+      "remediation": "Rename the chapter to the official British spelling. Safe metadata-only fix."
+    },
+    {
+      "finding_id": "FIND_MAT_MERIDIAN_PILOT_UNITS",
+      "phase": "PHASE_4_PILOT_DISPOSITION",
+      "subject": "Mathematics",
+      "baseline_claim": "The review claimed the unmapped Meridian-pilot units were 'Trigonometric Identities' and 'Mensuration (frustum)'.",
+      "verified_truth": "The unmapped units in the live database are 'Unit 1 — Number Systems' and 'Unit 2 — Algebra', both belonging to the book 'CBSE Class 10 Mathematics — Meridian Pilot' (status processed, units status suggested). They duplicate the governing NCERT units. One pilot topic, Euclid's division lemma, does not appear anywhere in the retrieved 2026-27 syllabus.",
+      "resolution": "RETIRE_DUPLICATE_PILOT_UNITS",
+      "baseline_status": "PRIOR_CLAIM_FACTUALLY_WRONG",
+      "remediation": "Retire the two pilot units rather than mapping them. They carry 15 unverified questions and duplicate approved coverage. Retirement is a content decision and is NOT executed by this pass."
+    },
+    {
+      "finding_id": "FIND_MAT_EUCLID_OUT_OF_SCOPE",
+      "phase": "PHASE_6_OVERREACH",
+      "subject": "Mathematics",
+      "baseline_claim": "Euclid's division lemma assumed in-scope by the Meridian pilot import.",
+      "verified_truth": "The string 'Euclid' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
+      "resolution": "CONFIRMED_OUT_OF_SYLLABUS",
+      "baseline_status": "PILOT_CONTENT_OUT_OF_SCOPE",
+      "remediation": "Exclude from generation; retire with the pilot unit."
+    },
+    {
+      "finding_id": "FIND_QUESTION_STATE_SEPARATION",
+      "phase": "PHASE_7_DEPTH",
+      "subject": "All",
+      "baseline_claim": "Prior reports conflated 'approved' and 'verified' question counts.",
+      "verified_truth": "question_bank carries two independent axes: status (draft/approved/retired) and verification_state (unverified/verified/rejected). Live counts are 213 verified+approved, 52 approved+unverified, 39 draft+unverified. Only status='approved' AND verification_state='verified' is diagnostic-eligible.",
+      "resolution": "SEPARATED",
+      "baseline_status": "MEASUREMENT_CORRECTED",
+      "remediation": "All depth arithmetic in this pass uses the diagnostic-eligible intersection."
+    }
+  ],
+  "row_conflicts": [
+    {
+      "official_requirement_id": "REQ_MATH_2026_001",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "d9ecd250-4844-495e-9dfd-61d19aa4e565"
+        },
+        {
+          "field": "verdict",
+          "claimed": "MAPPED_DEPTH_SHORTFALL",
+          "verified": "MAPPED_WITH_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_002",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_003",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_004",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_005",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "a8e9b23d-a566-4a04-917d-df2c3d6aa920"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_006",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "a8e9b23d-a566-4a04-917d-df2c3d6aa920"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_007",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "a8e9b23d-a566-4a04-917d-df2c3d6aa920"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_008",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_009",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_010",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_011",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_012",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_013",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_014",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_015",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_016",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_017",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_018",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_019",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_020",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_021",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_022",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "5057feec-e0be-4f95-bde8-e889bf1e3851"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_023",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "5057feec-e0be-4f95-bde8-e889bf1e3851"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_024",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "a1470d2c-37f3-4e3d-bd20-bcef495850a2"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_025",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "a1470d2c-37f3-4e3d-bd20-bcef495850a2"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_026",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "a1470d2c-37f3-4e3d-bd20-bcef495850a2"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_027",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_028",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_029",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "26a18c0c-428c-4f53-be90-6f08878b51bb"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_030",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "26a18c0c-428c-4f53-be90-6f08878b51bb"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_031",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "26a18c0c-428c-4f53-be90-6f08878b51bb"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_032",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_033",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_034",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e047c750-13fb-4aa8-9ced-871e68bbdc34"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_035",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e047c750-13fb-4aa8-9ced-871e68bbdc34"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_036",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e16beb6a-0ece-4f5e-8fc3-681430616331"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_037",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "707fade6-2ddc-42d9-808c-ee02b9e6f407"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_MATH_2026_038",
+      "subject": "Mathematics",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "844813c6-8b2d-4d64-9dc0-924de270c431"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 3,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 3,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_001",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "041225fa-0e99-48d7-ab80-c4531728cd42"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 27,
+          "verified": 6
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 27,
+          "verified": 6
+        },
+        {
+          "field": "verdict",
+          "claimed": "MAPPED_DEPTH_SHORTFALL",
+          "verified": "MAPPED_WITH_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_002",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 27,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 27,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_003",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 27,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 27,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_004",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 27,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 27,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_005",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 27,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 27,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_006",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 27,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 27,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_007",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 33,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 33,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_008",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 33,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 33,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_009",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 33,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 33,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_010",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 33,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 33,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_011",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 33,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 33,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_012",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "18824c2d-00e8-44a4-b311-4a33d4a6e818"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 21,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 21,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_013",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "18824c2d-00e8-44a4-b311-4a33d4a6e818"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 21,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 21,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_014",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "18824c2d-00e8-44a4-b311-4a33d4a6e818"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 21,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 21,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_015",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_016",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_017",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_018",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_019",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "2622c074-bec1-4efa-9cf7-2d2e3d16b053"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 3
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "MAPPED_DEPTH_SHORTFALL",
+          "verified": "MAPPED_WITH_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_020",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_021",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "1ec5ab63-af62-48d5-9a57-e689204a72f7"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 15,
+          "verified": 3
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 15,
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "MAPPED_DEPTH_SHORTFALL",
+          "verified": "MAPPED_WITH_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_022",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 18,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 18,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_023",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 18,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 18,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_024",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 18,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 18,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_025",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 18,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 18,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_026",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 18,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 18,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_027",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_028",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_029",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_030",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_031",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "795f3330-3d3c-4b82-b214-00064579d4ff"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_032",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "795f3330-3d3c-4b82-b214-00064579d4ff"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_033",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "795f3330-3d3c-4b82-b214-00064579d4ff"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_034",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_035",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_036",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 39,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "CHAPTER_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_037",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "d6865acb-d2e0-45a2-908e-6e1c628bd70f"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_038",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "d6865acb-d2e0-45a2-908e-6e1c628bd70f"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_039",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "eccb7279-6cc0-489e-b4df-73d8261f59cc"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 12,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 12,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "TOPIC_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_040",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "eccb7279-6cc0-489e-b4df-73d8261f59cc"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 12,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 12,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_CHAPTER",
+          "verified": "TOPIC_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_041",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_UNIT",
+          "verified": "UNIT_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_042",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_UNIT",
+          "verified": "UNIT_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_043",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_UNIT",
+          "verified": "UNIT_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_044",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "verified_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": null,
+          "verified": 0
+        },
+        {
+          "field": "verdict",
+          "claimed": "UNMAPPED_UNIT",
+          "verified": "UNIT_UNMAPPED"
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_045",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "0cbfcf79-babb-43ed-afac-0aeadf5800c3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    },
+    {
+      "official_requirement_id": "REQ_SCI_2026_046",
+      "subject": "Science",
+      "conflict_type": "ROW_CLAIM_DELTA",
+      "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
+      "deltas": [
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "0cbfcf79-babb-43ed-afac-0aeadf5800c3"
+        },
+        {
+          "field": "verified_question_count",
+          "claimed": 6,
+          "verified": 0
+        },
+        {
+          "field": "approved_question_count",
+          "claimed": 6,
+          "verified": 0
+        }
+      ]
+    }
+  ],
+  "total_row_conflicts": 84
+}
