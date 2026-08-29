@@ -3,13 +3,13 @@
   "board": "CBSE",
   "classLevel": 10,
   "academicYear": "2026-27",
-  "generatedAt": "2026-08-29T04:27:53.114Z",
+  "generatedAt": "2026-08-29T04:31:08.258Z",
   "sources": [
     {
       "sourceId": "SRC_CBSE_MATH_2627",
       "subject": "Mathematics",
       "officialUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
-      "retrievalTimestamp": "2026-08-29T04:27:49.924Z",
+      "retrievalTimestamp": "2026-08-29T04:31:05.240Z",
       "httpStatus": 200,
       "finalUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
       "contentType": "application/pdf",
@@ -98,7 +98,7 @@
       "sourceId": "SRC_CBSE_SCI_2026_27",
       "subject": "Science",
       "officialUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
-      "retrievalTimestamp": "2026-08-29T04:27:52.260Z",
+      "retrievalTimestamp": "2026-08-29T04:31:07.675Z",
       "httpStatus": 200,
       "finalUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
       "contentType": "application/pdf",
@@ -164,18 +164,32 @@
           "result": "PASS"
         },
         {
-          "probeId": "EXCLUSION_PERIODIC_CLASSIFICATION",
-          "description": "Periodic Classification of Elements absent (baseline exclusion EXCL_SCI_2026_001)",
-          "expect": "absent",
+          "probeId": "RETAINED_PERIODIC_CLASSIFICATION",
+          "description": "Periodic Classification of Elements is retained in the syllabus (contradicting baseline exclusion EXCL_SCI_2026_001)",
+          "expect": "present",
           "found": true,
-          "result": "FAIL"
+          "result": "PASS"
         },
         {
-          "probeId": "CHAPTER_HUMAN_EYE",
-          "description": "Human Eye and the Colourful World present with British spelling",
+          "probeId": "FORMATIVE_ONLY_BLOCK",
+          "description": "Formative-only assessment block present, which is what governs Periodic Classification and Evolution",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
+        },
+        {
+          "probeId": "NOT_ASSESSED_NOTE",
+          "description": "Note for Teachers records topics not assessed in the year-end examination",
           "expect": "present",
           "found": false,
           "result": "FAIL"
+        },
+        {
+          "probeId": "TOPIC_HUMAN_EYE",
+          "description": "Human eye covered under Unit III Natural Phenomena",
+          "expect": "present",
+          "found": true,
+          "result": "PASS"
         }
       ],
       "retrievalStatus": "RETRIEVED",
