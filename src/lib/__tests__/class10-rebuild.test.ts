@@ -23,8 +23,8 @@ describe("Class 10 2026-27 rebuild", () => {
 
   it("maps every official requirement", () => {
     const subjects = Object.fromEntries(map.subjects.map((s: any) => [s.subject, s]));
-    expect(subjects.Mathematics.requirements).toBe(38);
-    expect(subjects.Science.requirements).toBe(46);
+    expect(subjects['Mathematics'].requirements).toBe(38);
+    expect(subjects['Science'].requirements).toBe(46);
     for (const subject of map.subjects) {
       expect(subject.unmapped_requirements).toBe(0);
     }
