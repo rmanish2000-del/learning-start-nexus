@@ -466,12 +466,12 @@ const CIRCLE_AREAS: OutcomeAuthor = {
     di(
       "MAT-ARC-R-TABLE",
       3,
-      "Two sectors are cut from card, with pi taken as 22/7:\n| Sector | Radius | Central angle |\n| S1 | 7 cm | 120 degrees |\n| S2 | 14 cm | 30 degrees |",
+      "Two sectors are cut from card, with pi taken as 22/7:\n| Sector | Radius | Central angle |\n| S1 | 7 cm | 120 degrees |\n| S2 | 21 cm | 30 degrees |",
       "Which sector has the greater area, and what is that area?",
-      `S2, with an area of ${round((30 / 360) * P * 196, 2)} cm^2`,
-      "S1 has area (1/3) x 22/7 x 49 = 51.33 cm^2 and S2 has area (1/12) x 22/7 x 196 = 51.33 cm^2 rounded, but the exact values are 51.33 and 51.33; computing precisely, S1 = 51.33 cm^2 and S2 = 51.33 cm^2 are equal to two decimal places, so the sectors have the same area.",
+      `S2, with an area of ${round((30 / 360) * P * 441, 2)} cm^2`,
+      "S1 has area (120/360) x 22/7 x 49 = 51.33 cm^2 and S2 has area (30/360) x 22/7 x 441 = 115.5 cm^2, so S2 is larger.",
       3,
-      { fn: "sector_area", args: [14, 30, P], expect: round((30 / 360) * P * 196, 2), tolerance: 0.01 },
+      { fn: "sector_area", args: [21, 30, P], expect: round((30 / 360) * P * 441, 2), tolerance: 0.01 },
     ),
     ar(
       "MAT-ARC-R-AR-RADIUS",
