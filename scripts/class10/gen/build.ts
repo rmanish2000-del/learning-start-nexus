@@ -53,6 +53,7 @@ export function buildItems(): GeneratedItem[] {
   const refs = outcomeRefs();
   const items: GeneratedItem[] = [];
   const seenRef = new Set<string>();
+  const seq = new Map<string, number>();
 
   for (const unit of allocate()) {
     for (const slot of unit.perOutcome) {
@@ -72,7 +73,10 @@ export function buildItems(): GeneratedItem[] {
         }
         for (let i = 0; i < need; i += 1) {
           const draft = drafts[i]!;
-          const externalRef = `C10-2627-${subjectTag(ref.subject)}-${requirementSlug(ref.officialRequirementIds)}-${poolTag(pool)}-${String(i + 1).padStart(3, "0")}`;
+          const slug = `${subjectTag(ref.subject)}-${requirementSlug(ref.officialRequirementIds)}-${poolTag(pool)}`;
+          const n = (seq.get(slug) ?? 0) + 1;
+          seq.set(slug, n);
+          const externalRef = `C10-2627-${slug}-${String(n).padStart(3, "0")}`;
           if (seenRef.has(externalRef)) throw new Error(`duplicate external reference ${externalRef}`);
           seenRef.add(externalRef);
 
