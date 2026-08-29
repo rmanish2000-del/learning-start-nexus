@@ -3,17 +3,17 @@
   "board": "CBSE",
   "classLevel": 10,
   "academicYear": "2026-27",
-  "generatedAt": "2026-08-29T04:31:08.258Z",
+  "generatedAt": "2026-08-29T04:31:49.887Z",
   "sources": [
     {
       "sourceId": "SRC_CBSE_MATH_2627",
       "subject": "Mathematics",
       "officialUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
-      "retrievalTimestamp": "2026-08-29T04:31:05.240Z",
+      "retrievalTimestamp": "2026-08-29T04:31:47.514Z",
       "httpStatus": 200,
       "finalUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
       "contentType": "application/pdf",
-      "byteLength": 0,
+      "byteLength": 270782,
       "sha256": "d773e7c12b99e0bd498067e2b8268c76d0496bf9cad1c9e41c8652ab68b412a5",
       "checksumAlgorithm": "sha256",
       "extractedCharacters": 15072,
@@ -98,11 +98,11 @@
       "sourceId": "SRC_CBSE_SCI_2026_27",
       "subject": "Science",
       "officialUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
-      "retrievalTimestamp": "2026-08-29T04:31:07.675Z",
+      "retrievalTimestamp": "2026-08-29T04:31:49.316Z",
       "httpStatus": 200,
       "finalUrl": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
       "contentType": "application/pdf",
-      "byteLength": 0,
+      "byteLength": 279280,
       "sha256": "1bec4a9e44452b22c9d422d8cb528b4de30598f56c243461845165771df7bc37",
       "checksumAlgorithm": "sha256",
       "extractedCharacters": 21544,
@@ -181,8 +181,8 @@
           "probeId": "NOT_ASSESSED_NOTE",
           "description": "Note for Teachers records topics not assessed in the year-end examination",
           "expect": "present",
-          "found": false,
-          "result": "FAIL"
+          "found": true,
+          "result": "PASS"
         },
         {
           "probeId": "TOPIC_HUMAN_EYE",
@@ -193,10 +193,10 @@
         }
       ],
       "retrievalStatus": "RETRIEVED",
-      "verificationStatus": "VERIFICATION_FAILED",
+      "verificationStatus": "VERIFIED",
       "documentRetained": false,
       "retentionNote": "The PDF is not committed to the repository. Identity is preserved through the official URL, byte length and SHA-256 checksum recorded here."
     }
   ],
-  "overallStatus": "SOURCES_PENDING"
+  "overallStatus": "SOURCES_VERIFIED"
 }

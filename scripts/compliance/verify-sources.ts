@@ -71,7 +71,7 @@ const TARGETS: Target[] = [
       {
         probeId: "NOT_ASSESSED_NOTE",
         description: "Note for Teachers records topics not assessed in the year-end examination",
-        pattern: /will\s+not\s+be\s+assessed\s+in\s+the\s+year-end/i,
+        pattern: /will\s*not\s*be\s*assessed\s*in\s*the\s*year\s*-?\s*end/i,
         expect: "present",
       },
       {
@@ -102,6 +102,9 @@ async function main() {
     const startedAt = new Date().toISOString();
     const response = await fetch(target.url, { redirect: "follow" });
     const buffer = new Uint8Array(await response.arrayBuffer());
+    // Capture length and checksum before extraction: pdf.js detaches the
+    // underlying ArrayBuffer, after which buffer.length reads 0.
+    const byteLength = buffer.length;
     const sha256 = createHash("sha256").update(buffer).digest("hex");
     const text = response.ok ? await extractText(buffer) : "";
     const probes = target.probes.map((p) => {
@@ -117,7 +120,7 @@ async function main() {
       httpStatus: response.status,
       finalUrl: response.url,
       contentType: response.headers.get("content-type"),
-      byteLength: buffer.length,
+      byteLength,
       sha256,
       checksumAlgorithm: "sha256",
       extractedCharacters: text.length,
