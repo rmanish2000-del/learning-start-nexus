@@ -11,6 +11,13 @@
 // Canonical identifiers
 // ---------------------------------------------------------------------------
 
+/**
+ * The CBSE session every live Class 10 outcome is graded against. Learner-facing
+ * outcome reports must carry this label so a report can never be mistaken for a
+ * different session's evidence.
+ */
+export const ACTIVE_ACADEMIC_YEAR = "2026-27" as const;
+
 export const SUBJECT_KEY_CODES: Record<string, string> = {
   Mathematics: "MAT",
   Science: "SCI",
