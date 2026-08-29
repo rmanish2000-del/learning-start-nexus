@@ -29,38 +29,13 @@
   "checks": {
     "itemsValidated": 326,
     "numericClaimsRecomputed": 192,
-    "errors": 4,
+    "errors": 0,
     "humanReviewRequired": 0,
     "duplicates": 0,
-    "nearDuplicates": 1,
+    "nearDuplicates": 0,
     "exclusionLeakage": 0,
-    "markupContamination": 2,
+    "markupContamination": 0,
     "poolSeparationBreaches": 0
   },
-  "findings": [
-    {
-      "externalRef": "C10-2627-MATH-REQ001-DIAG-014",
-      "check": "markup_contamination",
-      "severity": "ERROR",
-      "detail": "prompt contains HTML or Markdown markup"
-    },
-    {
-      "externalRef": "C10-2627-MATH-REQ001-REASS-012",
-      "check": "near_duplicate_across_pools",
-      "severity": "ERROR",
-      "detail": "60% four-word overlap with C10-2627-MATH-REQ001-DIAG-009"
-    },
-    {
-      "externalRef": "C10-2627-MATH-REQ001-REASS-018",
-      "check": "markup_contamination",
-      "severity": "ERROR",
-      "detail": "prompt contains HTML or Markdown markup"
-    },
-    {
-      "externalRef": "C10-2627-SCI-REQ042-REASS-003",
-      "check": "explanation_present",
-      "severity": "ERROR",
-      "detail": "explanation too short"
-    }
-  ]
+  "findings": []
 }

@@ -242,7 +242,7 @@ const IRRATIONAL: OutcomeAuthor = {
     mc(
       "MAT-IRR-RATIONAL-PICK",
       2,
-      "Which of the following numbers is rational?",
+      "Exactly one number in the list below can be written as a ratio of two integers. Identify it.",
       "root 16",
       ["root 20", "2 + root 3", "root 2 x root 5"],
       "root 16 = 4. The others reduce to 2 root 5, an irrational sum, and root 10, all irrational.",
