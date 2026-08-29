@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
 import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { BandPill, DiagnosticShell } from "@/components/diagnostic-shell";
+import { ACTIVE_ACADEMIC_YEAR } from "@/lib/catalogue-shared";
 import { useI18n } from "@/lib/i18n/context";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
