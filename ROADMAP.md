@@ -1,6 +1,6 @@
 # EduOS — Roadmap
 
-**Last verified:** 2026-08-27 (UTC)
+**Last verified:** 2026-08-29 (UTC)
 **Evidence sources:** repository at commit `6f570d0`, database state, `EDUOS_CLASS10_IMPORT_APPROVAL_FINAL.md`, `EDUOS_LIVE_PAYMENT_VALIDATION.md`, `EDUOS_PRODUCTION_RELEASE_REPORT.md`, project memory (pilot standby since 2026-08-24).
 
 This roadmap records what is done and what is queued. It does **not** authorise work — see `CURRENT_ASSIGNMENT.md`.
@@ -24,6 +24,9 @@ This roadmap records what is done and what is queued. It does **not** authorise 
 | Class 10 launch cleanup | Grade 3 archived, Class 10 Maths + Science imported and validated |
 | P0 founder remediation | 8 founder-reported issues closed |
 | Educator-free diagnostic journey | Auto-generated study plan when `educator_id` is null |
+| Wave 0 — expansion foundation | Catalogue hierarchy, academic-year versioning, scoped entitlement tables |
+| Class 10 2026-27 clean rebuild | Pilot corpus reversibly archived; 326 original items authored, validated and loaded as draft |
+| Class 10 compliance certification gate | 84/84 requirements verified; both subjects **NOT_COMPLIANT**; launch gate = controlled pilot only (`EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md`, `EDUOS_CLASS10_LAUNCH_READINESS_REPORT.md`) |
 
 ## Open items (evidence-backed, not yet scheduled)
 
@@ -32,10 +35,13 @@ This roadmap records what is done and what is queued. It does **not** authorise 
 | 1 | Live ₹199 acceptance purchase + refund | Live keys are in place but no verified live capture exists |
 | 2 | Confirm the live-mode webhook secret matches the live dashboard endpoint | Not verifiable from the app side |
 | 3 | Publish the post-release commits (including `6f570d0`) | Publishing is manual; publish state after 2026-08-26 17:03 UTC is unverified |
-| 4 | Verification Center sign-off on the 210 imported questions | They remain `draft` / `unverified` |
+| 4 | **Named subject-expert review of the 326 rebuilt Class 10 items** (LB-1, LB-2) | Blocks the compliance certificate; clears six of seven launch blockers |
+| 4b | Set the Science source book to `approved` (LB-6) | Currently `processed`; fails CURRICULUM_GATE |
+| 4c | Retrieve rationalised-content notice, sample paper, marking sheet + pin NCERT editions (LB-7) | SOURCE_GATE cannot pass without them |
+| 4d | Year-stamp new purchases into the Wave 0 `entitlements` table (NB-2) | Must land before the 2027-28 rollover |
 | 5 | Resolve the duplicate single-chapter Science book | Overlaps the full Science pack |
-| 6 | Thicken the Maths pack (currently 15 outcomes / 45 atoms) | Causes diagnostic allocation shortfalls |
-| 7 | Re-run security scan and DB linter | None run since the import and study-plan work |
+| 6 | Coordinate Geometry unsellable (3 verified items < minimum 5) and 9 of 11 units serve a short diagnostic (LB-3, LB-4) | Clears when the rebuilt bank is approved |
+| 7 | ~~Re-run security scan~~ — done 2026-08-29: 0 critical, 1 accepted warning | Closed |
 | 8 | Point apex `eduos.global` DNS | Domain status: awaiting DNS |
 | 9 | Investigate the failed ₹2,800 upgrade order for Earth Patel | Cause unverified |
 | 10 | Investigate the 2 `created` orders that never reached `paid` | Cause unverified |

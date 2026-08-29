@@ -1,13 +1,31 @@
 # EduOS — Project Status
 
-**Last verified:** 2026-08-28 (UTC)
-**Evidence sources:** repository at commit `6f570d0`, live database queries (books, curriculum, question_bank, parent_orders, parent_entitlements, user_roles, assessment_sessions), `bunx vitest run` output, runtime secret inspection, prior reports listed in §7.
+**Last verified:** 2026-08-29 (UTC)
+**Evidence sources:** repository at commit `ebfda38`, live database queries (books, curriculum, question_bank, parent_orders, parent_entitlements, user_roles, assessment_sessions), `bunx vitest run` output, runtime secret inspection, prior reports listed in §7.
 
 ---
 
 ## 1. One-line status
 
 The Class 10 pilot product is built, imported and deployed; the parent ₹199 diagnostic journey works end-to-end in the database, and the payment gateway now holds **live-mode** credentials. No live acceptance purchase has been verified yet.
+
+## 1a. Class 10 compliance and launch gate (2026-08-29, VERIFIED)
+
+| Item | Result |
+|---|---|
+| Official requirements verified | 84 / 84 mapped |
+| Mathematics (041) | **NOT_COMPLIANT** (7 failing gate checks) |
+| Science (086) | **NOT_COMPLIANT** (9 failing gate checks) |
+| Derived compliance status | `SOURCE_PENDING` |
+| Journey · pricing · security | PASS · PASS · PASS |
+| Launch gate | **CONTROLLED PILOT ONLY** — external launch withheld |
+| Tests | **256 passing / 19 files** |
+
+Verified question depth is 45 items (Mathematics) and 165 (Science); the 326
+rebuilt items are loaded but held as `draft`/`unverified` and cannot reach a
+paying learner. Coordinate Geometry is currently unsellable (3 verified items).
+Full evidence: `EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md` and
+`EDUOS_CLASS10_LAUNCH_READINESS_REPORT.md`.
 
 ## 1b. Product language
 
@@ -22,7 +40,7 @@ dictionary are removed; a regression test blocks their return. See
 | Stack | TanStack Start v1 + React 19 + Vite 7 + Tailwind v4; backend on Lovable Cloud | repo |
 | Routes | 16 public/route files + 41 authenticated route files | `src/routes` listing |
 | Roles in use | admin 1, reviewer 1, educator 5, parent 3, student 15 (25 auth users) | `user_roles`, `auth.users` |
-| Automated tests | **105 passing / 12 files** | `bunx vitest run`, 2026-08-28 |
+| Automated tests | **256 passing / 19 files** | `bunx vitest run`, 2026-08-29 |
 | Production URL (English-only release live, HEAD `d874fb4`) | https://www.eduos.global (also learning-start-nexus.lovable.app) | project settings |
 | Custom domain | `www.eduos.global` live; apex `eduos.global` **awaiting DNS** | project domain status |
 
