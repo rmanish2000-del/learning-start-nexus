@@ -193,7 +193,9 @@ describe("gemini review bundle — integrity", () => {
       mathematics_crosswalk_rows: 38,
       science_crosswalk_rows: 46,
       unmapped_mathematics_requirements: 2,
-      unmapped_science_requirements: 13,
+      // 11 after the 2026-27 clean rebuild: the two previously unmapped
+      // "Effects of Current" chapter rows now resolve to live EduOS chapters.
+      unmapped_science_requirements: 11,
       science_exclusions: 6,
       science_ambiguities: 2,
     });
