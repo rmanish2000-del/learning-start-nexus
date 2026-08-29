@@ -31,7 +31,7 @@ const EXCLUDED_TERMS = [
   "cross multiplication method",
 ];
 
-const MARKUP = /<\/?[a-z][^>]*>|(^|\s)[*_]{2}\S|```|&nbsp;/i;
+const MARKUP = /<\/?[a-z][^>]*>|\*\*\S|__[a-z0-9]|```|&nbsp;/i;
 
 /** Very small shingle overlap measure used for near-duplicate detection. */
 function shingles(text: string): Set<string> {

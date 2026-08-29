@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-29T00:00:00.000Z",
+  "summary": {
+    "total": 326,
+    "mathematics": 235,
+    "science": 91,
+    "diagnostic": 125,
+    "reassessment": 201,
+    "outcomes": 26,
+    "atoms": 26,
+    "requirements": 49,
+    "atomMappingRequired": 0,
+    "byFormat": {
+      "assertion_reason": 38,
+      "case_study": 36,
+      "data_interpretation": 17,
+      "fill_blank": 2,
+      "mcq": 63,
+      "short_answer": 145,
+      "true_false": 25
+    },
+    "byDifficulty": {
+      "1": 27,
+      "2": 126,
+      "3": 137,
+      "4": 36
+    }
+  },
+  "checks": {
+    "itemsValidated": 326,
+    "numericClaimsRecomputed": 192,
+    "errors": 0,
+    "humanReviewRequired": 0,
+    "duplicates": 0,
+    "nearDuplicates": 0,
+    "exclusionLeakage": 0,
+    "markupContamination": 0,
+    "poolSeparationBreaches": 0
+  },
+  "findings": []
+}
