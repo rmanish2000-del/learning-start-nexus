@@ -1,9 +1,9 @@
 {
   "provenance": {
     "bundle_format_version": "2.0.0",
-    "bundle_generation_timestamp": "2026-08-28T20:37:38.187Z",
-    "source_evidence_commit": "4ad886df33a0795a1f4f4ad29a53d3856d2b485b",
-    "bundle_generation_base_commit": "6cdc73129059b548675aba8dd2392bedae5e45c8",
+    "bundle_generation_timestamp": "2026-08-29T05:30:06.925Z",
+    "source_evidence_commit": "88d9ef1d1f452f1a6953e1e4b9016b9327ef2100",
+    "bundle_generation_base_commit": "93b70c33e698c44bae21be6764cc407f744b0d2f",
     "package_commit": "REPORTED_AFTER_COMMIT",
     "self_reference_policy": "The final Git package commit SHA is NOT embedded in any bundle file: a file inside a commit cannot contain that commit's own SHA. package_commit is reported only in the Lovable final response and repository history (REPORTED_AFTER_COMMIT). GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 intentionally excludes its own hash, and bundle_tree_hash is computed over all payload files excluding GEMINI_REVIEW_BUNDLE_MANIFEST.json and GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256. This bundle is therefore not self-authenticating.",
     "data_source": "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
@@ -30,10 +30,10 @@
       "diagnostic_target": 20,
       "diagnostic_minimum": 5,
       "min_questions_per_outcome": 1,
-      "units": 9,
-      "outcomes": 20,
-      "atoms": 20,
-      "questions": 60,
+      "units": 7,
+      "outcomes": 15,
+      "atoms": 15,
+      "questions": 280,
       "verified": 45,
       "status": "SOURCE_PENDING"
     },
@@ -45,7 +45,7 @@
       "units": 5,
       "outcomes": 55,
       "atoms": 55,
-      "questions": 165,
+      "questions": 256,
       "verified": 165,
       "status": "SOURCE_PENDING"
     }
@@ -58,48 +58,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "required_verified": 40,
       "diagnostic_set": 6,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 2,
-      "question_types": 2,
-      "verdict": "SHORTFALL"
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 1 — Number Systems",
-      "official_mapped": false,
-      "meridian_pilot_unit": true,
-      "outcomes": 3,
-      "atoms": 3,
-      "questions": 9,
-      "verified": 0,
-      "required_verified": 40,
-      "diagnostic_set": 0,
-      "reassessment_reserve": 0,
-      "fresh_reassessment_ready": false,
-      "difficulty_bands": 2,
-      "question_types": 3,
-      "verdict": "SHORTFALL"
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 2 — Algebra",
-      "official_mapped": false,
-      "meridian_pilot_unit": true,
-      "outcomes": 2,
-      "atoms": 2,
-      "questions": 6,
-      "verified": 0,
-      "required_verified": 40,
-      "diagnostic_set": 0,
-      "reassessment_reserve": 0,
-      "fresh_reassessment_ready": false,
-      "difficulty_bands": 2,
-      "question_types": 3,
+      "difficulty_bands": 4,
+      "question_types": 7,
       "verdict": "SHORTFALL"
     },
     {
@@ -109,14 +75,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 4,
       "atoms": 4,
-      "questions": 12,
+      "questions": 40,
       "verified": 12,
       "required_verified": 40,
       "diagnostic_set": 12,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
       "difficulty_bands": 3,
-      "question_types": 1,
+      "question_types": 4,
       "verdict": "SHORTFALL"
     },
     {
@@ -126,14 +92,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "required_verified": 40,
       "diagnostic_set": 6,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 2,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 6,
       "verdict": "SHORTFALL"
     },
     {
@@ -143,14 +109,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 40,
       "verified": 3,
       "required_verified": 40,
       "diagnostic_set": 3,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 2,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 6,
       "verdict": "SHORTFALL"
     },
     {
@@ -160,14 +126,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "required_verified": 40,
       "diagnostic_set": 6,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 2,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 6,
       "verdict": "SHORTFALL"
     },
     {
@@ -177,14 +143,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "required_verified": 40,
       "diagnostic_set": 6,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 3,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 6,
       "verdict": "SHORTFALL"
     },
     {
@@ -194,14 +160,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "required_verified": 40,
       "diagnostic_set": 6,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 3,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 6,
       "verdict": "SHORTFALL"
     },
     {
@@ -228,7 +194,7 @@
       "meridian_pilot_unit": false,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "required_verified": 40,
       "diagnostic_set": 20,
@@ -245,14 +211,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 4,
       "atoms": 4,
-      "questions": 12,
+      "questions": 40,
       "verified": 12,
       "required_verified": 40,
       "diagnostic_set": 12,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 3,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 4,
       "verdict": "SHORTFALL"
     },
     {
@@ -262,14 +228,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 4,
       "atoms": 4,
-      "questions": 12,
+      "questions": 40,
       "verified": 12,
       "required_verified": 40,
       "diagnostic_set": 12,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 3,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 4,
       "verdict": "SHORTFALL"
     },
     {
@@ -279,14 +245,14 @@
       "meridian_pilot_unit": false,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "required_verified": 40,
       "diagnostic_set": 6,
       "reassessment_reserve": 0,
       "fresh_reassessment_ready": false,
-      "difficulty_bands": 3,
-      "question_types": 1,
+      "difficulty_bands": 4,
+      "question_types": 6,
       "verdict": "SHORTFALL"
     }
   ],
@@ -298,7 +264,7 @@
       "eduos_chapter_title": "Real Numbers",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -311,7 +277,7 @@
       "eduos_chapter_title": "Real Numbers",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -324,7 +290,7 @@
       "eduos_chapter_title": "Real Numbers",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -337,7 +303,7 @@
       "eduos_chapter_title": "Real Numbers",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -350,7 +316,7 @@
       "eduos_chapter_title": "Polynomials",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -363,7 +329,7 @@
       "eduos_chapter_title": "Polynomials",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -376,7 +342,7 @@
       "eduos_chapter_title": "Polynomials",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -389,7 +355,7 @@
       "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -402,7 +368,7 @@
       "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -415,7 +381,7 @@
       "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -428,7 +394,7 @@
       "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -441,7 +407,7 @@
       "eduos_chapter_title": "Pair of Linear Equations in Two Variables",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -454,7 +420,7 @@
       "eduos_chapter_title": "Quadratic Equations",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -467,7 +433,7 @@
       "eduos_chapter_title": "Quadratic Equations",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -480,7 +446,7 @@
       "eduos_chapter_title": "Quadratic Equations",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -493,7 +459,7 @@
       "eduos_chapter_title": "Quadratic Equations",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -506,7 +472,7 @@
       "eduos_chapter_title": "Quadratic Equations",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -519,7 +485,7 @@
       "eduos_chapter_title": "Arithmetic Progressions",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -532,7 +498,7 @@
       "eduos_chapter_title": "Arithmetic Progressions",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -545,7 +511,7 @@
       "eduos_chapter_title": "Arithmetic Progressions",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -558,7 +524,7 @@
       "eduos_chapter_title": "Arithmetic Progressions",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -571,7 +537,7 @@
       "eduos_chapter_title": "Coordinate Geometry",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 40,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -584,7 +550,7 @@
       "eduos_chapter_title": "Coordinate Geometry",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 40,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -597,7 +563,7 @@
       "eduos_chapter_title": "Triangles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -610,7 +576,7 @@
       "eduos_chapter_title": "Triangles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -623,7 +589,7 @@
       "eduos_chapter_title": "Triangles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -636,7 +602,7 @@
       "eduos_chapter_title": "Circles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -649,7 +615,7 @@
       "eduos_chapter_title": "Circles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -662,7 +628,7 @@
       "eduos_chapter_title": "Introduction to Trigonometry",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -675,7 +641,7 @@
       "eduos_chapter_title": "Introduction to Trigonometry",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -688,7 +654,7 @@
       "eduos_chapter_title": "Introduction to Trigonometry",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -701,7 +667,7 @@
       "eduos_chapter_title": null,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -714,7 +680,7 @@
       "eduos_chapter_title": null,
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -727,7 +693,7 @@
       "eduos_chapter_title": "Areas Related to Circles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -740,7 +706,7 @@
       "eduos_chapter_title": "Areas Related to Circles",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -753,7 +719,7 @@
       "eduos_chapter_title": "Surface Areas and Volumes",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -766,7 +732,7 @@
       "eduos_chapter_title": "Statistics",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -779,7 +745,7 @@
       "eduos_chapter_title": "Probability",
       "outcomes": 1,
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1065,7 +1031,7 @@
       "eduos_chapter_title": "Life Processes",
       "outcomes": 6,
       "atoms": 6,
-      "questions": 18,
+      "questions": 19,
       "verified": 18,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1078,7 +1044,7 @@
       "eduos_chapter_title": "Life Processes",
       "outcomes": 6,
       "atoms": 6,
-      "questions": 18,
+      "questions": 19,
       "verified": 18,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1091,7 +1057,7 @@
       "eduos_chapter_title": "Life Processes",
       "outcomes": 6,
       "atoms": 6,
-      "questions": 18,
+      "questions": 19,
       "verified": 18,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1104,7 +1070,7 @@
       "eduos_chapter_title": "Life Processes",
       "outcomes": 6,
       "atoms": 6,
-      "questions": 18,
+      "questions": 19,
       "verified": 18,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1117,7 +1083,7 @@
       "eduos_chapter_title": "Life Processes",
       "outcomes": 6,
       "atoms": 6,
-      "questions": 18,
+      "questions": 19,
       "verified": 18,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1130,7 +1096,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1143,7 +1109,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1156,7 +1122,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1169,7 +1135,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1221,7 +1187,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1234,7 +1200,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1247,7 +1213,7 @@
       "eduos_chapter_title": null,
       "outcomes": 13,
       "atoms": 13,
-      "questions": 39,
+      "questions": 40,
       "verified": 39,
       "diagnostic_target": 20,
       "reassessment_reserve": 19,
@@ -1260,7 +1226,7 @@
       "eduos_chapter_title": "Light – Reflection and Refraction",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 20,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1273,7 +1239,7 @@
       "eduos_chapter_title": "Light – Reflection and Refraction",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 20,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1283,27 +1249,27 @@
       "subject": "Science",
       "official_requirement_id": "REQ_SCI_2026_039",
       "eduos_unit_title": "Natural Phenomena",
-      "eduos_chapter_title": null,
-      "outcomes": 4,
-      "atoms": 4,
-      "questions": 12,
-      "verified": 12,
+      "eduos_chapter_title": "The Human Eye and the Colourful World",
+      "outcomes": 0,
+      "atoms": 0,
+      "questions": 0,
+      "verified": 0,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
-      "verdict": "UNMAPPED_CHAPTER"
+      "verdict": "TOPIC_UNMAPPED"
     },
     {
       "subject": "Science",
       "official_requirement_id": "REQ_SCI_2026_040",
       "eduos_unit_title": "Natural Phenomena",
-      "eduos_chapter_title": null,
-      "outcomes": 4,
-      "atoms": 4,
-      "questions": 12,
-      "verified": 12,
+      "eduos_chapter_title": "The Human Eye and the Colourful World",
+      "outcomes": 0,
+      "atoms": 0,
+      "questions": 0,
+      "verified": 0,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
-      "verdict": "UNMAPPED_CHAPTER"
+      "verdict": "TOPIC_UNMAPPED"
     },
     {
       "subject": "Science",
@@ -1364,7 +1330,7 @@
       "eduos_chapter_title": "Our Environment",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1377,7 +1343,7 @@
       "eduos_chapter_title": "Our Environment",
       "outcomes": 2,
       "atoms": 2,
-      "questions": 6,
+      "questions": 40,
       "verified": 6,
       "diagnostic_target": 20,
       "reassessment_reserve": 0,
@@ -1393,14 +1359,20 @@
       "outcome_title": "Express composite numbers as products of prime factors and calculate HCF and LCM using prime factorization.",
       "chapter_category": "Real Numbers",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "3": 1
+        "2": 10,
+        "3": 9,
+        "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 3,
+        "true_false": 1,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 2
       },
       "meets_per_outcome_minimum": true
     },
@@ -1412,118 +1384,23 @@
       "outcome_title": "Prove the irrationality of numbers such as square root of 2, square root of 3, and square root of 5.",
       "chapter_category": "Real Numbers",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "3": 1
+        "1": 1,
+        "2": 8,
+        "3": 9,
+        "4": 2
       },
       "kind_distribution": {
-        "true_false": 1,
-        "short_answer": 2
+        "mcq": 3,
+        "case_study": 2,
+        "fill_blank": 2,
+        "true_false": 3,
+        "short_answer": 8,
+        "assertion_reason": 2
       },
       "meets_per_outcome_minimum": true
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 1 — Number Systems",
-      "meridian_pilot_unit": true,
-      "outcome_id": "LO_MAT10_U1_01",
-      "outcome_title": "Euclid's division lemma",
-      "chapter_category": "Unit 1 — Number Systems",
-      "atoms": 1,
-      "questions": 3,
-      "verified": 0,
-      "difficulty_distribution": {
-        "2": 3
-      },
-      "kind_distribution": {
-        "mcq": 2,
-        "short_answer": 1
-      },
-      "meets_per_outcome_minimum": false
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 1 — Number Systems",
-      "meridian_pilot_unit": true,
-      "outcome_id": "LO_MAT10_U1_02",
-      "outcome_title": "Fundamental Theorem of Arithmetic",
-      "chapter_category": "Unit 1 — Number Systems",
-      "atoms": 1,
-      "questions": 3,
-      "verified": 0,
-      "difficulty_distribution": {
-        "2": 2,
-        "3": 1
-      },
-      "kind_distribution": {
-        "mcq": 1,
-        "case_study": 1,
-        "short_answer": 1
-      },
-      "meets_per_outcome_minimum": false
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 1 — Number Systems",
-      "meridian_pilot_unit": true,
-      "outcome_id": "LO_MAT10_U1_03",
-      "outcome_title": "Irrational numbers",
-      "chapter_category": "Unit 1 — Number Systems",
-      "atoms": 1,
-      "questions": 3,
-      "verified": 0,
-      "difficulty_distribution": {
-        "2": 2,
-        "3": 1
-      },
-      "kind_distribution": {
-        "mcq": 1,
-        "case_study": 1,
-        "short_answer": 1
-      },
-      "meets_per_outcome_minimum": false
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 2 — Algebra",
-      "meridian_pilot_unit": true,
-      "outcome_id": "LO_MAT10_U2_01",
-      "outcome_title": "Zeroes of a polynomial",
-      "chapter_category": "Unit 2 — Algebra",
-      "atoms": 1,
-      "questions": 3,
-      "verified": 0,
-      "difficulty_distribution": {
-        "2": 3
-      },
-      "kind_distribution": {
-        "mcq": 2,
-        "short_answer": 1
-      },
-      "meets_per_outcome_minimum": false
-    },
-    {
-      "subject": "Mathematics",
-      "unit_title": "Unit 2 — Algebra",
-      "meridian_pilot_unit": true,
-      "outcome_id": "LO_MAT10_U2_02",
-      "outcome_title": "Relationship between zeroes and coefficients",
-      "chapter_category": "Unit 2 — Algebra",
-      "atoms": 1,
-      "questions": 3,
-      "verified": 0,
-      "difficulty_distribution": {
-        "2": 2,
-        "3": 1
-      },
-      "kind_distribution": {
-        "mcq": 1,
-        "case_study": 1,
-        "short_answer": 1
-      },
-      "meets_per_outcome_minimum": false
     },
     {
       "subject": "Mathematics",
@@ -1533,14 +1410,17 @@
       "outcome_title": "Determine zeroes geometrically and apply relationships between zeroes and coefficients of quadratic polynomials.",
       "chapter_category": "Polynomials",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "3": 1
+        "2": 6,
+        "3": 4
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1552,15 +1432,18 @@
       "outcome_title": "Analyze consistency conditions and solve system of linear equations using Substitution and Elimination methods.",
       "chapter_category": "Pair of Linear Equations in Two Variables",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "2": 2,
+        "3": 7,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1572,14 +1455,18 @@
       "outcome_title": "Solve quadratic equations using factorization and quadratic formula, and determine nature of roots using discriminant.",
       "chapter_category": "Quadratic Equations",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "4": 1
+        "2": 5,
+        "3": 2,
+        "4": 3
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1591,14 +1478,18 @@
       "outcome_title": "Derive and apply formulas for the nth term (an) and sum of first n terms (Sn) of an Arithmetic Progression.",
       "chapter_category": "Arithmetic Progressions",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "4": 1
+        "2": 4,
+        "3": 4,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1610,14 +1501,21 @@
       "outcome_title": "Prove and apply theorems regarding tangents to a circle from an external point.",
       "chapter_category": "Circles",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "3": 1
+        "1": 4,
+        "2": 8,
+        "3": 6,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1629,14 +1527,21 @@
       "outcome_title": "State and apply Basic Proportionality Theorem (Thales Theorem) and criteria for similarity (AAA, SAS, SSS).",
       "chapter_category": "Triangles",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "3": 1
+        "1": 1,
+        "2": 7,
+        "3": 10,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1648,14 +1553,21 @@
       "outcome_title": "Derive and apply Distance Formula and Section Formula in Cartesian coordinate space.",
       "chapter_category": "Coordinate Geometry",
       "atoms": 1,
-      "questions": 3,
+      "questions": 40,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "4": 1
+        "1": 2,
+        "2": 13,
+        "3": 13,
+        "4": 12
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 7,
+        "case_study": 4,
+        "true_false": 2,
+        "short_answer": 23,
+        "assertion_reason": 2,
+        "data_interpretation": 2
       },
       "meets_per_outcome_minimum": true
     },
@@ -1667,14 +1579,20 @@
       "outcome_title": "Define trigonometric ratios for acute angles and evaluate expression using standard values and fundamental trigonometric identity sin^2 A + cos^2 A = 1.",
       "chapter_category": "Introduction to Trigonometry",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
+        "1": 4,
+        "2": 12,
+        "3": 3,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "true_false": 2,
+        "short_answer": 12,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1686,14 +1604,21 @@
       "outcome_title": "Solve real-world problems involving angles of elevation and depression using trigonometric ratios.",
       "chapter_category": "Some Applications of Trigonometry",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "4": 1
+        "1": 2,
+        "2": 11,
+        "3": 5,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1705,14 +1630,21 @@
       "outcome_title": "Calculate arc lengths, areas of sectors, and areas of segments of circles.",
       "chapter_category": "Areas Related to Circles",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "4": 1
+        "1": 1,
+        "2": 10,
+        "3": 5,
+        "4": 4
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1724,15 +1656,20 @@
       "outcome_title": "Determine surface areas and volumes of combinations of basic 3D solids (cubes, cuboids, spheres, hemispheres, cylinders, cones).",
       "chapter_category": "Surface Areas and Volumes",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
-        "4": 1
+        "2": 10,
+        "3": 6,
+        "4": 4
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -1744,15 +1681,20 @@
       "outcome_title": "Calculate Mean, Median, and Mode of grouped data and apply empirical relationship.",
       "chapter_category": "Statistics",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
-        "4": 1
+        "1": 2,
+        "2": 8,
+        "3": 6,
+        "4": 4
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "true_false": 2,
+        "short_answer": 9,
+        "assertion_reason": 2,
+        "data_interpretation": 4
       },
       "meets_per_outcome_minimum": true
     },
@@ -1764,14 +1706,21 @@
       "outcome_title": "Calculate theoretical probability of single and compound events.",
       "chapter_category": "Probability",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 2,
-        "4": 1
+        "1": 4,
+        "2": 9,
+        "3": 5,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2422,15 +2371,15 @@
       "outcome_title": "Define life processes and explain why simple diffusion is inadequate for multicellular organisms.",
       "chapter_category": "Life Processes",
       "atoms": 1,
-      "questions": 3,
+      "questions": 4,
       "verified": 3,
       "difficulty_distribution": {
         "2": 1,
-        "3": 1,
+        "3": 2,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "short_answer": 4
       },
       "meets_per_outcome_minimum": true
     },
@@ -2682,15 +2631,18 @@
       "outcome_title": "Explain eye accommodation and correct Myopia, Hypermetropia, and Presbyopia using spherical lenses.",
       "chapter_category": "The Human Eye and the Colorful World",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
-        "4": 1
+        "2": 4,
+        "3": 4,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2702,15 +2654,18 @@
       "outcome_title": "Analyze light dispersion, atmospheric refraction (twinkling), and Rayleigh scattering (blue sky/red sunset).",
       "chapter_category": "The Human Eye and the Colorful World",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "2": 3,
+        "3": 6,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2722,15 +2677,19 @@
       "outcome_title": "Construct ray diagrams for concave/convex mirrors and apply the mirror formula.",
       "chapter_category": "Light – Reflection and Refraction",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "1": 1,
+        "2": 2,
+        "3": 6,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2742,15 +2701,18 @@
       "outcome_title": "Apply Snell's law, solve thin-lens equations, and calculate optical power in dioptres.",
       "chapter_category": "Light – Reflection and Refraction",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "2": 5,
+        "3": 4,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 1,
+        "case_study": 1,
+        "short_answer": 7,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2762,15 +2724,17 @@
       "outcome_title": "State Ohm's Law, calculate equivalent resistances, and analyze factors affecting electrical resistivity.",
       "chapter_category": "Electricity",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
-        "4": 1
+        "2": 5,
+        "3": 3,
+        "4": 2
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 1,
+        "short_answer": 8,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2782,15 +2746,19 @@
       "outcome_title": "Apply Joule's Law of Heating and compute commercial electrical energy consumption in kWh.",
       "chapter_category": "Electricity",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "1": 1,
+        "2": 2,
+        "3": 6,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 1,
+        "case_study": 1,
+        "short_answer": 7,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2802,15 +2770,18 @@
       "outcome_title": "Determine magnetic field patterns using Right-Hand Thumb Rule for straight conductors, circular loops, and solenoids.",
       "chapter_category": "Magnetic Effects of Electric Current",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "2": 5,
+        "3": 4,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2822,15 +2793,18 @@
       "outcome_title": "Apply Fleming's Left-Hand Rule to force vectors and detail safety features in domestic electric circuits.",
       "chapter_category": "Magnetic Effects of Electric Current",
       "atoms": 1,
-      "questions": 3,
+      "questions": 10,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "2": 3,
+        "3": 6,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 2,
+        "case_study": 1,
+        "short_answer": 6,
+        "assertion_reason": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2842,15 +2816,21 @@
       "outcome_title": "Apply Lindeman's 10% Energy Law to food chains and evaluate biological magnification.",
       "chapter_category": "Our Environment",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
-        "4": 1
+        "1": 2,
+        "2": 6,
+        "3": 9,
+        "4": 3
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     },
@@ -2862,15 +2842,21 @@
       "outcome_title": "Explain ozone formation/CFC destruction and compare biodegradable vs non-biodegradable waste impacts.",
       "chapter_category": "Our Environment",
       "atoms": 1,
-      "questions": 3,
+      "questions": 20,
       "verified": 3,
       "difficulty_distribution": {
-        "2": 1,
-        "3": 1,
+        "1": 2,
+        "2": 5,
+        "3": 12,
         "4": 1
       },
       "kind_distribution": {
-        "short_answer": 3
+        "mcq": 3,
+        "case_study": 2,
+        "true_false": 2,
+        "short_answer": 10,
+        "assertion_reason": 2,
+        "data_interpretation": 1
       },
       "meets_per_outcome_minimum": true
     }
@@ -2884,7 +2870,7 @@
         "outcome_id": "LO_M1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -2894,58 +2880,8 @@
         "outcome_id": "LO_M1.1.2",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
-        "atoms_without_questions": 0
-      },
-      {
-        "subject": "Mathematics",
-        "unit_title": "Unit 1 — Number Systems",
-        "outcome_id": "LO_MAT10_U1_01",
-        "atom_ids": null,
-        "atom_count": 1,
-        "questions_attached_to_outcome": 3,
-        "verified_attached_to_outcome": 0,
-        "atoms_without_questions": 0
-      },
-      {
-        "subject": "Mathematics",
-        "unit_title": "Unit 1 — Number Systems",
-        "outcome_id": "LO_MAT10_U1_02",
-        "atom_ids": null,
-        "atom_count": 1,
-        "questions_attached_to_outcome": 3,
-        "verified_attached_to_outcome": 0,
-        "atoms_without_questions": 0
-      },
-      {
-        "subject": "Mathematics",
-        "unit_title": "Unit 1 — Number Systems",
-        "outcome_id": "LO_MAT10_U1_03",
-        "atom_ids": null,
-        "atom_count": 1,
-        "questions_attached_to_outcome": 3,
-        "verified_attached_to_outcome": 0,
-        "atoms_without_questions": 0
-      },
-      {
-        "subject": "Mathematics",
-        "unit_title": "Unit 2 — Algebra",
-        "outcome_id": "LO_MAT10_U2_01",
-        "atom_ids": null,
-        "atom_count": 1,
-        "questions_attached_to_outcome": 3,
-        "verified_attached_to_outcome": 0,
-        "atoms_without_questions": 0
-      },
-      {
-        "subject": "Mathematics",
-        "unit_title": "Unit 2 — Algebra",
-        "outcome_id": "LO_MAT10_U2_02",
-        "atom_ids": null,
-        "atom_count": 1,
-        "questions_attached_to_outcome": 3,
-        "verified_attached_to_outcome": 0,
         "atoms_without_questions": 0
       },
       {
@@ -2954,7 +2890,7 @@
         "outcome_id": "LO_M2.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -2964,7 +2900,7 @@
         "outcome_id": "LO_M3.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -2974,7 +2910,7 @@
         "outcome_id": "LO_M4.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -2984,7 +2920,7 @@
         "outcome_id": "LO_M5.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -2994,7 +2930,7 @@
         "outcome_id": "LO_M10.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3004,7 +2940,7 @@
         "outcome_id": "LO_M6.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3014,7 +2950,7 @@
         "outcome_id": "LO_M7.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 40,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3024,7 +2960,7 @@
         "outcome_id": "LO_M8.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3034,7 +2970,7 @@
         "outcome_id": "LO_M9.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3044,7 +2980,7 @@
         "outcome_id": "LO_M11.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3054,7 +2990,7 @@
         "outcome_id": "LO_M12.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3064,7 +3000,7 @@
         "outcome_id": "LO_M13.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3074,7 +3010,7 @@
         "outcome_id": "LO_M14.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3404,7 +3340,7 @@
         "outcome_id": "LO_5.1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 4,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3534,7 +3470,7 @@
         "outcome_id": "LO_10.1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3544,7 +3480,7 @@
         "outcome_id": "LO_10.2.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3554,7 +3490,7 @@
         "outcome_id": "LO_9.1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3564,7 +3500,7 @@
         "outcome_id": "LO_9.2.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3574,7 +3510,7 @@
         "outcome_id": "LO_11.1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3584,7 +3520,7 @@
         "outcome_id": "LO_11.2.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3594,7 +3530,7 @@
         "outcome_id": "LO_12.1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3604,7 +3540,7 @@
         "outcome_id": "LO_12.2.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 10,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3614,7 +3550,7 @@
         "outcome_id": "LO_13.1.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       },
@@ -3624,7 +3560,7 @@
         "outcome_id": "LO_13.2.1.1",
         "atom_ids": null,
         "atom_count": 1,
-        "questions_attached_to_outcome": 3,
+        "questions_attached_to_outcome": 20,
         "verified_attached_to_outcome": 3,
         "atoms_without_questions": 0
       }

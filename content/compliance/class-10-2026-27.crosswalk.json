@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28",
+  "generatedAt": "2026-08-29",
   "validator": "compliance-validator/1.0.0",
   "board": "CBSE",
   "classLevel": 10,
@@ -10,16 +10,6 @@
       "level": "warning",
       "code": "SOURCE_PENDING_CONFIRMATION",
       "detail": "CBSE-2026-27-C10-CURRICULUM"
-    },
-    {
-      "level": "warning",
-      "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "CBSE-2026-27-C10-MAT-SYLLABUS"
-    },
-    {
-      "level": "warning",
-      "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "CBSE-2026-27-C10-SCI-SYLLABUS"
     },
     {
       "level": "warning",
@@ -36,7 +26,7 @@
     {
       "subject": "Mathematics",
       "status": "SOURCE_PENDING",
-      "gaps": 11,
+      "gaps": 7,
       "volumeGates": {
         "diagnosticTarget": 20,
         "diagnosticMinimum": 5,
@@ -208,40 +198,10 @@
           "orphanOutcomes": 0,
           "atoms": 2,
           "atomsWithoutQuestions": 0,
-          "questions": 6,
+          "questions": 40,
           "verified": 6,
-          "difficulties": 2,
-          "kinds": 2,
-          "duplicateQuestions": 0
-        },
-        {
-          "unitId": "Unit 1 — Number Systems",
-          "title": "Unit 1 — Number Systems",
-          "officialMapped": false,
-          "outOfSyllabusActive": true,
-          "outcomes": 3,
-          "orphanOutcomes": 0,
-          "atoms": 3,
-          "atomsWithoutQuestions": 0,
-          "questions": 9,
-          "verified": 0,
-          "difficulties": 2,
-          "kinds": 3,
-          "duplicateQuestions": 0
-        },
-        {
-          "unitId": "Unit 2 — Algebra",
-          "title": "Unit 2 — Algebra",
-          "officialMapped": false,
-          "outOfSyllabusActive": true,
-          "outcomes": 2,
-          "orphanOutcomes": 0,
-          "atoms": 2,
-          "atomsWithoutQuestions": 0,
-          "questions": 6,
-          "verified": 0,
-          "difficulties": 2,
-          "kinds": 3,
+          "difficulties": 4,
+          "kinds": 7,
           "duplicateQuestions": 0
         },
         {
@@ -253,10 +213,10 @@
           "orphanOutcomes": 0,
           "atoms": 4,
           "atomsWithoutQuestions": 0,
-          "questions": 12,
+          "questions": 40,
           "verified": 12,
           "difficulties": 3,
-          "kinds": 1,
+          "kinds": 4,
           "duplicateQuestions": 0
         },
         {
@@ -268,10 +228,10 @@
           "orphanOutcomes": 0,
           "atoms": 2,
           "atomsWithoutQuestions": 0,
-          "questions": 6,
+          "questions": 40,
           "verified": 6,
-          "difficulties": 2,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 6,
           "duplicateQuestions": 0
         },
         {
@@ -283,10 +243,10 @@
           "orphanOutcomes": 0,
           "atoms": 1,
           "atomsWithoutQuestions": 0,
-          "questions": 3,
+          "questions": 40,
           "verified": 3,
-          "difficulties": 2,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 6,
           "duplicateQuestions": 0
         },
         {
@@ -298,10 +258,10 @@
           "orphanOutcomes": 0,
           "atoms": 2,
           "atomsWithoutQuestions": 0,
-          "questions": 6,
+          "questions": 40,
           "verified": 6,
-          "difficulties": 2,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 6,
           "duplicateQuestions": 0
         },
         {
@@ -313,10 +273,10 @@
           "orphanOutcomes": 0,
           "atoms": 2,
           "atomsWithoutQuestions": 0,
-          "questions": 6,
+          "questions": 40,
           "verified": 6,
-          "difficulties": 3,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 6,
           "duplicateQuestions": 0
         },
         {
@@ -328,18 +288,15 @@
           "orphanOutcomes": 0,
           "atoms": 2,
           "atomsWithoutQuestions": 0,
-          "questions": 6,
+          "questions": 40,
           "verified": 6,
-          "difficulties": 3,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 6,
           "duplicateQuestions": 0
         }
       ],
       "unmappedOfficialTopics": [],
-      "outOfSyllabusUnits": [
-        "Unit 1 — Number Systems [c023481c-8577-4eff-bc0d-69976fb4a3ce] (book processed)",
-        "Unit 2 — Algebra [ebe99e72-8eb8-478a-8837-6159672331e1] (book processed)"
-      ],
+      "outOfSyllabusUnits": [],
       "gateResults": [
         {
           "gate": "SOURCE_GATE",
@@ -347,13 +304,13 @@
           "checks": [
             {
               "id": "sources_recorded",
-              "pass": false,
-              "detail": "0 applicable source(s)"
+              "pass": true,
+              "detail": "1 applicable source(s)"
             },
             {
               "id": "required_types_present",
               "pass": false,
-              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+              "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
             },
             {
               "id": "registry_valid",
@@ -364,7 +321,7 @@
         },
         {
           "gate": "CURRICULUM_GATE",
-          "pass": false,
+          "pass": true,
           "checks": [
             {
               "id": "all_assessable_topics_mapped",
@@ -378,8 +335,8 @@
             },
             {
               "id": "no_active_out_of_syllabus",
-              "pass": false,
-              "detail": "Unit 1 — Number Systems, Unit 2 — Algebra"
+              "pass": true,
+              "detail": "none"
             },
             {
               "id": "source_books_approved",
@@ -416,7 +373,7 @@
             {
               "id": "verified_depth",
               "pass": false,
-              "detail": "Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40"
+              "detail": "Number Systems:6/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40"
             },
             {
               "id": "atom_coverage",
@@ -430,8 +387,8 @@
             },
             {
               "id": "type_coverage",
-              "pass": false,
-              "detail": "Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability"
+              "pass": true,
+              "detail": "≥2 question types per unit"
             },
             {
               "id": "duplicate_free",
@@ -471,8 +428,8 @@
             },
             {
               "id": "outcome_report_year_labelled",
-              "pass": false,
-              "detail": "not verified"
+              "pass": true,
+              "detail": "verified"
             }
           ]
         },
@@ -538,7 +495,7 @@
     {
       "subject": "Science",
       "status": "SOURCE_PENDING",
-      "gaps": 13,
+      "gaps": 9,
       "volumeGates": {
         "diagnosticTarget": 20,
         "diagnosticMinimum": 5,
@@ -627,7 +584,7 @@
             {
               "ref": "SCI-U3-C2",
               "title": "The Human Eye and the Colourful World",
-              "mapped": false
+              "mapped": true
             }
           ]
         },
@@ -696,7 +653,7 @@
           "orphanOutcomes": 0,
           "atoms": 13,
           "atomsWithoutQuestions": 0,
-          "questions": 39,
+          "questions": 40,
           "verified": 39,
           "difficulties": 3,
           "kinds": 1,
@@ -711,10 +668,10 @@
           "orphanOutcomes": 0,
           "atoms": 4,
           "atomsWithoutQuestions": 0,
-          "questions": 12,
+          "questions": 40,
           "verified": 12,
-          "difficulties": 3,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 4,
           "duplicateQuestions": 0
         },
         {
@@ -726,10 +683,10 @@
           "orphanOutcomes": 0,
           "atoms": 4,
           "atomsWithoutQuestions": 0,
-          "questions": 12,
+          "questions": 40,
           "verified": 12,
-          "difficulties": 3,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 4,
           "duplicateQuestions": 0
         },
         {
@@ -741,16 +698,14 @@
           "orphanOutcomes": 0,
           "atoms": 2,
           "atomsWithoutQuestions": 0,
-          "questions": 6,
+          "questions": 40,
           "verified": 6,
-          "difficulties": 3,
-          "kinds": 1,
+          "difficulties": 4,
+          "kinds": 6,
           "duplicateQuestions": 0
         }
       ],
-      "unmappedOfficialTopics": [
-        "SCI-U3-C2 The Human Eye and the Colourful World"
-      ],
+      "unmappedOfficialTopics": [],
       "outOfSyllabusUnits": [],
       "gateResults": [
         {
@@ -759,13 +714,13 @@
           "checks": [
             {
               "id": "sources_recorded",
-              "pass": false,
-              "detail": "0 applicable source(s)"
+              "pass": true,
+              "detail": "1 applicable source(s)"
             },
             {
               "id": "required_types_present",
               "pass": false,
-              "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+              "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
             },
             {
               "id": "registry_valid",
@@ -780,8 +735,8 @@
           "checks": [
             {
               "id": "all_assessable_topics_mapped",
-              "pass": false,
-              "detail": "1 unmapped official topic(s)"
+              "pass": true,
+              "detail": "0 unmapped official topic(s)"
             },
             {
               "id": "no_duplicate_mapping",
@@ -843,7 +798,7 @@
             {
               "id": "type_coverage",
               "pass": false,
-              "detail": "Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources"
+              "detail": "Chemical Substances - Nature and Behaviour, World of Living"
             },
             {
               "id": "duplicate_free",
@@ -883,8 +838,8 @@
             },
             {
               "id": "outcome_report_year_labelled",
-              "pass": false,
-              "detail": "not verified"
+              "pass": true,
+              "detail": "verified"
             }
           ]
         },
@@ -909,8 +864,8 @@
             },
             {
               "id": "no_unresolved_ambiguity",
-              "pass": false,
-              "detail": "1 unresolved"
+              "pass": true,
+              "detail": "0 unresolved"
             }
           ]
         },
@@ -953,44 +908,20 @@
       "id": "GAP-MAT-001",
       "subject": "Mathematics",
       "gate": "SOURCE_GATE",
-      "check": "sources_recorded",
-      "detail": "0 applicable source(s)",
+      "check": "required_types_present",
+      "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
       "severity": "BLOCKING"
     },
     {
       "id": "GAP-MAT-002",
       "subject": "Mathematics",
-      "gate": "SOURCE_GATE",
-      "check": "required_types_present",
-      "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
-      "severity": "BLOCKING"
+      "gate": "QUESTION_GATE",
+      "check": "verified_depth",
+      "detail": "Number Systems:6/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40",
+      "severity": "MAJOR"
     },
     {
       "id": "GAP-MAT-003",
-      "subject": "Mathematics",
-      "gate": "CURRICULUM_GATE",
-      "check": "no_active_out_of_syllabus",
-      "detail": "Unit 1 — Number Systems, Unit 2 — Algebra",
-      "severity": "BLOCKING"
-    },
-    {
-      "id": "GAP-MAT-004",
-      "subject": "Mathematics",
-      "gate": "QUESTION_GATE",
-      "check": "verified_depth",
-      "detail": "Number Systems:6/40, Unit 1 — Number Systems:0/40, Unit 2 — Algebra:0/40, Algebra:12/40, Geometry:6/40, Coordinate Geometry:3/40, Trigonometry:6/40, Mensuration:6/40, Statistics & Probability:6/40",
-      "severity": "MAJOR"
-    },
-    {
-      "id": "GAP-MAT-005",
-      "subject": "Mathematics",
-      "gate": "QUESTION_GATE",
-      "check": "type_coverage",
-      "detail": "Algebra, Geometry, Coordinate Geometry, Trigonometry, Mensuration, Statistics & Probability",
-      "severity": "MAJOR"
-    },
-    {
-      "id": "GAP-MAT-006",
       "subject": "Mathematics",
       "gate": "LEARNING_LOOP_GATE",
       "check": "reassessment_reserve_available",
@@ -998,15 +929,7 @@
       "severity": "MAJOR"
     },
     {
-      "id": "GAP-MAT-007",
-      "subject": "Mathematics",
-      "gate": "LEARNING_LOOP_GATE",
-      "check": "outcome_report_year_labelled",
-      "detail": "not verified",
-      "severity": "MAJOR"
-    },
-    {
-      "id": "GAP-MAT-008",
+      "id": "GAP-MAT-004",
       "subject": "Mathematics",
       "gate": "REVIEW_GATE",
       "check": "named_reviewer",
@@ -1014,7 +937,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-MAT-009",
+      "id": "GAP-MAT-005",
       "subject": "Mathematics",
       "gate": "REVIEW_GATE",
       "check": "review_timestamp",
@@ -1022,7 +945,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-MAT-010",
+      "id": "GAP-MAT-006",
       "subject": "Mathematics",
       "gate": "REVIEW_GATE",
       "check": "review_decision",
@@ -1030,7 +953,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-MAT-011",
+      "id": "GAP-MAT-007",
       "subject": "Mathematics",
       "gate": "COMMERCIAL_GATE",
       "check": "entitlements_scoped",
@@ -1038,31 +961,15 @@
       "severity": "MAJOR"
     },
     {
-      "id": "GAP-SCI-012",
-      "subject": "Science",
-      "gate": "SOURCE_GATE",
-      "check": "sources_recorded",
-      "detail": "0 applicable source(s)",
-      "severity": "BLOCKING"
-    },
-    {
-      "id": "GAP-SCI-013",
+      "id": "GAP-SCI-008",
       "subject": "Science",
       "gate": "SOURCE_GATE",
       "check": "required_types_present",
-      "detail": "missing: cbse_curriculum, subject_syllabus, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
+      "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-SCI-014",
-      "subject": "Science",
-      "gate": "CURRICULUM_GATE",
-      "check": "all_assessable_topics_mapped",
-      "detail": "1 unmapped official topic(s)",
-      "severity": "BLOCKING"
-    },
-    {
-      "id": "GAP-SCI-015",
+      "id": "GAP-SCI-009",
       "subject": "Science",
       "gate": "CURRICULUM_GATE",
       "check": "source_books_approved",
@@ -1070,7 +977,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-SCI-016",
+      "id": "GAP-SCI-010",
       "subject": "Science",
       "gate": "QUESTION_GATE",
       "check": "verified_depth",
@@ -1078,15 +985,15 @@
       "severity": "MAJOR"
     },
     {
-      "id": "GAP-SCI-017",
+      "id": "GAP-SCI-011",
       "subject": "Science",
       "gate": "QUESTION_GATE",
       "check": "type_coverage",
-      "detail": "Chemical Substances - Nature and Behaviour, World of Living, Natural Phenomena, Effects of Current, Natural Resources",
+      "detail": "Chemical Substances - Nature and Behaviour, World of Living",
       "severity": "MAJOR"
     },
     {
-      "id": "GAP-SCI-018",
+      "id": "GAP-SCI-012",
       "subject": "Science",
       "gate": "LEARNING_LOOP_GATE",
       "check": "reassessment_reserve_available",
@@ -1094,15 +1001,7 @@
       "severity": "MAJOR"
     },
     {
-      "id": "GAP-SCI-019",
-      "subject": "Science",
-      "gate": "LEARNING_LOOP_GATE",
-      "check": "outcome_report_year_labelled",
-      "detail": "not verified",
-      "severity": "MAJOR"
-    },
-    {
-      "id": "GAP-SCI-020",
+      "id": "GAP-SCI-013",
       "subject": "Science",
       "gate": "REVIEW_GATE",
       "check": "named_reviewer",
@@ -1110,7 +1009,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-SCI-021",
+      "id": "GAP-SCI-014",
       "subject": "Science",
       "gate": "REVIEW_GATE",
       "check": "review_timestamp",
@@ -1118,7 +1017,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-SCI-022",
+      "id": "GAP-SCI-015",
       "subject": "Science",
       "gate": "REVIEW_GATE",
       "check": "review_decision",
@@ -1126,15 +1025,7 @@
       "severity": "BLOCKING"
     },
     {
-      "id": "GAP-SCI-023",
-      "subject": "Science",
-      "gate": "REVIEW_GATE",
-      "check": "no_unresolved_ambiguity",
-      "detail": "1 unresolved",
-      "severity": "BLOCKING"
-    },
-    {
-      "id": "GAP-SCI-024",
+      "id": "GAP-SCI-016",
       "subject": "Science",
       "gate": "COMMERCIAL_GATE",
       "check": "entitlements_scoped",
