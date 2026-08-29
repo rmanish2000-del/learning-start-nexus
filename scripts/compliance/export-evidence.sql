@@ -44,6 +44,7 @@ assessment_outcome_rows AS (
            ) ORDER BY ao.code
          ) AS rows
   FROM assessment_outcomes ao
+  LEFT JOIN question_rollup r ON r.outcome_id = ao.id
   GROUP BY ao.unit_id
 ),
 topic_rows AS (
