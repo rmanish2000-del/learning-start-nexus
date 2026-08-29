@@ -1738,19 +1738,29 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "dbb78840-1b1d-47de-8e94-5117e948050e"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "92ca6693-9721-409f-aa94-8c2f9ac70ef6"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1761,19 +1771,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "dbb78840-1b1d-47de-8e94-5117e948050e"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1784,19 +1799,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "dbb78840-1b1d-47de-8e94-5117e948050e"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },

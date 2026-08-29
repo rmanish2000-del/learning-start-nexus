@@ -3652,25 +3652,37 @@
       "eduos_book_status": "processed",
       "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
       "eduos_unit_title": "World of Living",
-      "eduos_chapter_id": null,
-      "eduos_chapter_title": null,
-      "eduos_topic_id": null,
-      "eduos_topic_title": null,
+      "eduos_chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+      "eduos_chapter_title": "Heredity",
+      "eduos_topic_id": "92ca6693-9721-409f-aa94-8c2f9ac70ef6",
+      "eduos_topic_title": "Heredity",
       "unit_match": "EXACT",
-      "chapter_match": "UNMATCHED",
-      "topic_match": "UNMATCHED",
-      "topic_match_score": 0,
-      "evidence_scope": "NONE",
-      "curriculum_outcome_ids": [],
-      "assessment_outcome_ids": [],
-      "assessment_outcome_codes": [],
-      "question_total": 0,
-      "question_approved": 0,
-      "question_verified": 0,
-      "question_diagnostic_eligible": 0,
-      "question_kinds": [],
-      "question_difficulties": [],
-      "verdict": "CHAPTER_UNMAPPED",
+      "chapter_match": "EXACT",
+      "topic_match": "HIGH_CONFIDENCE",
+      "topic_match_score": 0.5,
+      "evidence_scope": "TOPIC",
+      "curriculum_outcome_ids": [
+        "40eed912-adee-4613-8b52-e539adca1e36"
+      ],
+      "assessment_outcome_ids": [
+        "3be88c3d-173b-4fdf-a124-c45aa107cefc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_8.2.1.1"
+      ],
+      "question_total": 3,
+      "question_approved": 3,
+      "question_verified": 3,
+      "question_diagnostic_eligible": 3,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_WITH_EVIDENCE",
       "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
       "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
     },
@@ -3687,25 +3699,40 @@
       "eduos_book_status": "processed",
       "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
       "eduos_unit_title": "World of Living",
-      "eduos_chapter_id": null,
-      "eduos_chapter_title": null,
+      "eduos_chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+      "eduos_chapter_title": "Heredity",
       "eduos_topic_id": null,
       "eduos_topic_title": null,
       "unit_match": "EXACT",
-      "chapter_match": "UNMATCHED",
+      "chapter_match": "EXACT",
       "topic_match": "UNMATCHED",
       "topic_match_score": 0,
-      "evidence_scope": "NONE",
-      "curriculum_outcome_ids": [],
-      "assessment_outcome_ids": [],
-      "assessment_outcome_codes": [],
-      "question_total": 0,
-      "question_approved": 0,
-      "question_verified": 0,
-      "question_diagnostic_eligible": 0,
-      "question_kinds": [],
-      "question_difficulties": [],
-      "verdict": "CHAPTER_UNMAPPED",
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "9099e69e-dfe1-4aa6-91d5-0b71d6e1de09",
+        "40eed912-adee-4613-8b52-e539adca1e36"
+      ],
+      "assessment_outcome_ids": [
+        "1a92d658-1c91-4f77-bd98-fa998ebf519f",
+        "3be88c3d-173b-4fdf-a124-c45aa107cefc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_8.1.1.1",
+        "LO_8.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
       "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
       "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
     },
@@ -3722,25 +3749,40 @@
       "eduos_book_status": "processed",
       "eduos_unit_id": "c4e3d1fb-2e53-4a26-9a35-9310f7f080f1",
       "eduos_unit_title": "World of Living",
-      "eduos_chapter_id": null,
-      "eduos_chapter_title": null,
+      "eduos_chapter_id": "dbb78840-1b1d-47de-8e94-5117e948050e",
+      "eduos_chapter_title": "Heredity",
       "eduos_topic_id": null,
       "eduos_topic_title": null,
       "unit_match": "EXACT",
-      "chapter_match": "UNMATCHED",
+      "chapter_match": "EXACT",
       "topic_match": "UNMATCHED",
       "topic_match_score": 0,
-      "evidence_scope": "NONE",
-      "curriculum_outcome_ids": [],
-      "assessment_outcome_ids": [],
-      "assessment_outcome_codes": [],
-      "question_total": 0,
-      "question_approved": 0,
-      "question_verified": 0,
-      "question_diagnostic_eligible": 0,
-      "question_kinds": [],
-      "question_difficulties": [],
-      "verdict": "CHAPTER_UNMAPPED",
+      "evidence_scope": "CHAPTER",
+      "curriculum_outcome_ids": [
+        "9099e69e-dfe1-4aa6-91d5-0b71d6e1de09",
+        "40eed912-adee-4613-8b52-e539adca1e36"
+      ],
+      "assessment_outcome_ids": [
+        "1a92d658-1c91-4f77-bd98-fa998ebf519f",
+        "3be88c3d-173b-4fdf-a124-c45aa107cefc"
+      ],
+      "assessment_outcome_codes": [
+        "LO_8.1.1.1",
+        "LO_8.2.1.1"
+      ],
+      "question_total": 6,
+      "question_approved": 6,
+      "question_verified": 6,
+      "question_diagnostic_eligible": 6,
+      "question_kinds": [
+        "short_answer"
+      ],
+      "question_difficulties": [
+        2,
+        3,
+        4
+      ],
+      "verdict": "MAPPED_CHAPTER_LEVEL_ONLY",
       "evidence_reference": "content/compliance/class-10-2026-27.evidence.json",
       "human_review_status": "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT"
     },

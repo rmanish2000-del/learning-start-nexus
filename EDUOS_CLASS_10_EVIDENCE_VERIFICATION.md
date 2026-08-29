@@ -16,7 +16,7 @@ Full retrieval record, including every probe and its expectation: `content/compl
 | Subject | Requirements | Mapped with evidence | Mapped without usable questions | Unmapped |
 |---|---|---|---|---|
 | Mathematics | 38 | 8 | 0 | 0 |
-| Science | 46 | 22 | 0 | 3 |
+| Science | 46 | 23 | 0 | 0 |
 
 ## 3. Question depth (diagnostic-eligible = approved AND verified)
 
@@ -113,5 +113,5 @@ Full retrieval record, including every probe and its expectation: `content/compl
 
 ## 5. Verified gap register
 
-Total 12 gaps, 4 blocking. Machine-readable: `EDUOS_CLASS_10_VERIFIED_GAP_REGISTER.json`.
+Total 11 gaps, 3 blocking. Machine-readable: `EDUOS_CLASS_10_VERIFIED_GAP_REGISTER.json`.
 

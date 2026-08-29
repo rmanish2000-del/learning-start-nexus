@@ -129,6 +129,10 @@ const UNIT_ALIASES: Record<string, string> = {
 const CHAPTER_ALIASES: Record<string, string> = {
   // NCERT chapter title for the Heights and Distances content.
   "heights and distances": "some applications of trigonometry",
+  // Official Unit II keeps Heredity assessable and moves Evolution into the
+  // formative-only block (finding FIND_SCI_EVOLUTION), so the combined legacy
+  // chapter label resolves to the assessable Heredity chapter.
+  "heredity and evolution": "heredity",
 };
 
 const tokens = (s: string) => new Set(norm(s).split(" ").filter((t) => t.length > 2));

@@ -9,8 +9,8 @@
     "generator": "scripts/compliance/evidence-verify.ts",
     "determinism_note": "Derived only from committed inputs; no timestamps are embedded."
   },
-  "total_gaps": 12,
-  "blocking_gaps": 4,
+  "total_gaps": 11,
+  "blocking_gaps": 3,
   "gaps": [
     {
       "gap_id": "VGAP-001",
@@ -24,15 +24,6 @@
     {
       "gap_id": "VGAP-002",
       "subject": "Science",
-      "category": "REQUIREMENT_MAPPING",
-      "severity": "BLOCKING",
-      "detail": "3 of 46 official requirements resolve no EduOS topic or outcome: REQ_SCI_2026_034, REQ_SCI_2026_035, REQ_SCI_2026_036",
-      "remediation": "Create the missing topic/outcome rows against the governing book before generation.",
-      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
-    },
-    {
-      "gap_id": "VGAP-003",
-      "subject": "Science",
       "category": "QUESTION_DEPTH",
       "severity": "MAJOR",
       "detail": "Chemical Substances - Nature and Behaviour:96/64, World of Living:39/40, Natural Phenomena:12/40, Effects of Current:12/40, Natural Resources:6/40",
@@ -40,7 +31,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-004",
+      "gap_id": "VGAP-003",
       "subject": "Science",
       "category": "PHASE_6_AMBIGUITY",
       "severity": "BLOCKING",
@@ -49,7 +40,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-005",
+      "gap_id": "VGAP-004",
       "subject": "Science",
       "category": "PHASE_6_AMBIGUITY",
       "severity": "MAJOR",
@@ -58,7 +49,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-006",
+      "gap_id": "VGAP-005",
       "subject": "Science",
       "category": "PHASE_6_AMBIGUITY",
       "severity": "BLOCKING",
@@ -67,7 +58,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-007",
+      "gap_id": "VGAP-006",
       "subject": "Science",
       "category": "PHASE_3_UNMAPPED",
       "severity": "MAJOR",
@@ -76,7 +67,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-008",
+      "gap_id": "VGAP-007",
       "subject": "Mathematics",
       "category": "PHASE_4_PILOT_DISPOSITION",
       "severity": "BLOCKING",
@@ -85,7 +76,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-009",
+      "gap_id": "VGAP-008",
       "subject": "Mathematics",
       "category": "PHASE_6_OVERREACH",
       "severity": "MAJOR",
@@ -94,7 +85,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-010",
+      "gap_id": "VGAP-009",
       "subject": "Mathematics",
       "category": "PHASE_6_OVERREACH",
       "severity": "MAJOR",
@@ -103,7 +94,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-011",
+      "gap_id": "VGAP-010",
       "subject": "Science",
       "category": "PHASE_5_BOOK_STATUS",
       "severity": "MAJOR",
@@ -112,7 +103,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-012",
+      "gap_id": "VGAP-011",
       "subject": "All",
       "category": "PHASE_7_DEPTH",
       "severity": "MAJOR",
