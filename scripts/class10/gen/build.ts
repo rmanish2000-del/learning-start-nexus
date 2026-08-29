@@ -57,6 +57,7 @@ export function buildItems(): GeneratedItem[] {
 
   for (const unit of allocate()) {
     for (const slot of unit.perOutcome) {
+      if (slot.diagnostic === 0 && slot.reassessment === 0) continue;
       const ref = refs.get(slot.outcomeId);
       if (!ref) throw new Error(`no outcome ref for ${slot.outcomeId}`);
       const author = authorByCode.get(ref.outcomeCode);
