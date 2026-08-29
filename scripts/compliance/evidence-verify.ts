@@ -110,15 +110,93 @@ const subjects = [
   { subject: "Science", file: "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json" },
 ] as const;
 
+// Baseline unit and chapter labels are auditor paraphrases of the official
+// document, so exact string equality under-reports coverage. Matching is
+// therefore three-tiered and every tier is recorded on the row:
+//   EXACT            normalised titles are identical
+//   HIGH_CONFIDENCE  token overlap (Jaccard) at or above the threshold below
+//   CHAPTER_LEVEL    the topic could not be resolved; the chapter's whole
+//                    outcome set is used and the row is flagged for review
+// Aliases below are justified against the retrieved official documents.
+const TOPIC_MATCH_THRESHOLD = 0.34;
+
+const UNIT_ALIASES: Record<string, string> = {
+  // The official Science syllabus prints "Unit IV: Effects of Current" with
+  // "Theme: How Things Work" beneath it. The baseline captured the theme.
+  "how things work": "effects of current",
+};
+
+const CHAPTER_ALIASES: Record<string, string> = {
+  // NCERT chapter title for the Heights and Distances content.
+  "heights and distances": "some applications of trigonometry",
+};
+
+const tokens = (s: string) => new Set(norm(s).split(" ").filter((t) => t.length > 2));
+const jaccard = (a: string, b: string) => {
+  const A = tokens(a);
+  const B = tokens(b);
+  if (A.size === 0 || B.size === 0) return 0;
+  let shared = 0;
+  for (const t of A) if (B.has(t)) shared += 1;
+  return shared / (A.size + B.size - shared);
+};
+
+function bestMatch<T>(candidates: T[], title: (c: T) => string, want: string) {
+  let best: { item: T; score: number } | null = null;
+  for (const c of candidates) {
+    const score = jaccard(title(c), want);
+    if (!best || score > best.score || (score === best.score && title(c) < title(best.item))) best = { item: c, score };
+  }
+  return best;
+}
+
 type VerifiedRow = ReturnType<typeof buildRow>;
 
 function buildRow(subject: string, req: Requirement) {
   const book = bookFor(subject);
-  const unit = book.units.find((u) => norm(u.title) === norm(stripUnitPrefix(req.official_unit))) ?? null;
-  const chapter = unit?.chapters.find((c) => norm(c.title) === norm(req.official_chapter)) ?? null;
-  const topic = chapter?.topics.find((t) => norm(t.title) === norm(req.official_topic)) ?? null;
 
-  const curriculumOutcomes = topic?.curriculumOutcomes ?? [];
+  const wantUnit = norm(stripUnitPrefix(req.official_unit));
+  const unitKey = UNIT_ALIASES[wantUnit] ?? wantUnit;
+  let unit = book.units.find((u) => norm(u.title) === unitKey) ?? null;
+  let unitMatch = unit ? "EXACT" : "UNMATCHED";
+  if (!unit) {
+    const best = bestMatch(book.units, (u) => u.title, unitKey);
+    if (best && best.score >= TOPIC_MATCH_THRESHOLD) {
+      unit = best.item;
+      unitMatch = "HIGH_CONFIDENCE";
+    }
+  }
+
+  const wantChapter = norm(req.official_chapter);
+  const chapterKey = CHAPTER_ALIASES[wantChapter] ?? wantChapter;
+  let chapter = unit?.chapters.find((c) => norm(c.title) === chapterKey) ?? null;
+  let chapterMatch = chapter ? "EXACT" : "UNMATCHED";
+  if (!chapter && unit) {
+    const best = bestMatch(unit.chapters, (c) => c.title, chapterKey);
+    if (best && best.score >= TOPIC_MATCH_THRESHOLD) {
+      chapter = best.item;
+      chapterMatch = "HIGH_CONFIDENCE";
+    }
+  }
+
+  // Topic resolution matches against the EduOS topic title and, failing that,
+  // against the official requirement sentence, which is usually richer.
+  let topic = chapter?.topics.find((t) => norm(t.title) === norm(req.official_topic)) ?? null;
+  let topicMatch = topic ? "EXACT" : "UNMATCHED";
+  let topicScore = topic ? 1 : 0;
+  if (!topic && chapter) {
+    const byTopic = bestMatch(chapter.topics, (t) => t.title, req.official_topic);
+    const byRequirement = bestMatch(chapter.topics, (t) => t.title, `${req.official_topic} ${req.official_requirement}`);
+    const best = byTopic && byRequirement ? (byTopic.score >= byRequirement.score ? byTopic : byRequirement) : (byTopic ?? byRequirement);
+    if (best && best.score >= TOPIC_MATCH_THRESHOLD) {
+      topic = best.item;
+      topicMatch = "HIGH_CONFIDENCE";
+      topicScore = Math.round(best.score * 100) / 100;
+    }
+  }
+
+  const scope = topic ? "TOPIC" : chapter ? "CHAPTER" : "NONE";
+  const curriculumOutcomes = topic ? topic.curriculumOutcomes : chapter ? chapter.topics.flatMap((t) => t.curriculumOutcomes) : [];
   const assessmentOutcomeIds = [...new Set(curriculumOutcomes.flatMap((o) => o.assessmentOutcomeIds))].sort();
   const outcomes = assessmentOutcomeIds.map((id) => outcomeIndex.get(id)).filter((o): o is OutcomeRow => Boolean(o));
 
@@ -127,9 +205,9 @@ function buildRow(subject: string, req: Requirement) {
   let verdict: string;
   if (!unit) verdict = "UNIT_UNMAPPED";
   else if (!chapter) verdict = "CHAPTER_UNMAPPED";
-  else if (!topic) verdict = "TOPIC_UNMAPPED";
   else if (outcomes.length === 0) verdict = "OUTCOME_UNMAPPED";
   else if (sum((o) => o.questionDiagnosticEligible) === 0) verdict = "MAPPED_NO_USABLE_QUESTIONS";
+  else if (!topic) verdict = "MAPPED_CHAPTER_LEVEL_ONLY";
   else verdict = "MAPPED_WITH_EVIDENCE";
 
   return {
