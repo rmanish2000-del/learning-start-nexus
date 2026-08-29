@@ -462,7 +462,7 @@ const HEATING: OutcomeAuthor = {
       2,
       "An appliance draws a current of 5 A from a 220 V supply. Find its power.",
       "1100 W",
-      "P = VI = 220 x 5 = 1100 watt.",
+      "Electric power is the product of the potential difference and the current, so P = VI = 220 x 5 = 1100 watt, that is 1.1 kilowatt.",
       2,
       { fn: "power_vi", args: [220, 5], expect: 1100 },
     ),
