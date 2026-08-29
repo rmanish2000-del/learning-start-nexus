@@ -118,14 +118,9 @@
           "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -141,14 +136,9 @@
           "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -164,14 +154,9 @@
           "verified": "e9d2e7c3-2719-4d31-bf6d-15c6c7941ff7"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -187,14 +172,9 @@
           "verified": "a8e9b23d-a566-4a04-917d-df2c3d6aa920"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -210,14 +190,14 @@
           "verified": "a8e9b23d-a566-4a04-917d-df2c3d6aa920"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "78693be5-7824-458e-81d3-334c5f4c5e8d"
         },
         {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -233,14 +213,9 @@
           "verified": "a8e9b23d-a566-4a04-917d-df2c3d6aa920"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -256,14 +231,9 @@
           "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -279,14 +249,9 @@
           "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -302,14 +267,9 @@
           "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -325,14 +285,9 @@
           "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -348,14 +303,9 @@
           "verified": "9f40e65a-a7f3-44f7-9c38-2946b4013031"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -371,14 +321,9 @@
           "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -394,14 +339,9 @@
           "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -417,14 +357,9 @@
           "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -440,14 +375,9 @@
           "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -463,14 +393,9 @@
           "verified": "c43f5930-670a-4b57-b62c-198baae8c65b"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -486,14 +411,9 @@
           "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -509,14 +429,9 @@
           "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -532,14 +447,9 @@
           "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -555,14 +465,9 @@
           "verified": "07f25ffe-20ee-42c8-89e9-8504cd7d5933"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -578,14 +483,9 @@
           "verified": "5057feec-e0be-4f95-bde8-e889bf1e3851"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -601,14 +501,9 @@
           "verified": "5057feec-e0be-4f95-bde8-e889bf1e3851"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -624,14 +519,14 @@
           "verified": "a1470d2c-37f3-4e3d-bd20-bcef495850a2"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "c815e803-d2cf-48ab-9ba5-1bd9b8a18937"
         },
         {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -647,14 +542,9 @@
           "verified": "a1470d2c-37f3-4e3d-bd20-bcef495850a2"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -670,14 +560,9 @@
           "verified": "a1470d2c-37f3-4e3d-bd20-bcef495850a2"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -693,14 +578,9 @@
           "verified": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -716,14 +596,9 @@
           "verified": "bbdb3be0-5a9d-4f92-ac3e-88af0a439982"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -739,14 +614,14 @@
           "verified": "26a18c0c-428c-4f53-be90-6f08878b51bb"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "d4943516-5abd-4bd0-b84f-59e94671660f"
         },
         {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -762,14 +637,14 @@
           "verified": "26a18c0c-428c-4f53-be90-6f08878b51bb"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "d4943516-5abd-4bd0-b84f-59e94671660f"
         },
         {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -785,14 +660,9 @@
           "verified": "26a18c0c-428c-4f53-be90-6f08878b51bb"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -803,19 +673,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9450ae1c-de24-403b-8485-0f221c78ef90"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 6,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 6,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -826,19 +701,29 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9450ae1c-de24-403b-8485-0f221c78ef90"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "a4a46a5c-31ca-4991-ac46-77cd439499f0"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 6,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 6,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -854,14 +739,9 @@
           "verified": "e047c750-13fb-4aa8-9ced-871e68bbdc34"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -877,14 +757,9 @@
           "verified": "e047c750-13fb-4aa8-9ced-871e68bbdc34"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -900,14 +775,9 @@
           "verified": "e16beb6a-0ece-4f5e-8fc3-681430616331"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -923,14 +793,14 @@
           "verified": "707fade6-2ddc-42d9-808c-ee02b9e6f407"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "515308ec-3b2d-4aa1-98f7-b584d14c1a74"
         },
         {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -946,14 +816,14 @@
           "verified": "844813c6-8b2d-4d64-9dc0-924de270c431"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "a96734be-2d82-4b4c-803a-71459a7b5870"
         },
         {
-          "field": "approved_question_count",
-          "claimed": 3,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1002,14 +872,9 @@
           "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 27,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 27,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1025,14 +890,24 @@
           "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
         },
         {
           "field": "approved_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1048,14 +923,24 @@
           "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
         },
         {
           "field": "approved_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1071,14 +956,24 @@
           "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
         },
         {
           "field": "approved_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1094,14 +989,24 @@
           "verified": "bf632a15-48d2-4207-939e-90d011a69cf6"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "e3e8913b-e9cc-4afc-8bb3-e27ab6147aa5"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
         },
         {
           "field": "approved_question_count",
           "claimed": 27,
-          "verified": 0
+          "verified": 15
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1117,14 +1022,9 @@
           "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 33,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 33,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1140,14 +1040,24 @@
           "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "5084cd04-8c40-4a23-9cab-03f3457c392e"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 33,
-          "verified": 0
+          "verified": 18
         },
         {
           "field": "approved_question_count",
           "claimed": 33,
-          "verified": 0
+          "verified": 18
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1163,14 +1073,9 @@
           "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 33,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 33,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1186,14 +1091,9 @@
           "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 33,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 33,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1209,14 +1109,9 @@
           "verified": "070ea239-fe68-46d1-8f84-70e471a5f1f3"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 33,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 33,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1232,14 +1127,24 @@
           "verified": "18824c2d-00e8-44a4-b311-4a33d4a6e818"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "b9aef4c5-bcf0-42ec-b669-d703f1ae92d9"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 21,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 21,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1255,14 +1160,9 @@
           "verified": "18824c2d-00e8-44a4-b311-4a33d4a6e818"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 21,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 21,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1278,14 +1178,9 @@
           "verified": "18824c2d-00e8-44a4-b311-4a33d4a6e818"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 21,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 21,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1301,14 +1196,24 @@
           "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "b03cd9df-3bbc-4ee3-86db-b0feb7cae57a"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1324,14 +1229,24 @@
           "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "d1c4a5ac-a2e3-44b6-87ee-1f4cde23badf"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1347,14 +1262,9 @@
           "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 15,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 15,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1370,14 +1280,24 @@
           "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "2622c074-bec1-4efa-9cf7-2d2e3d16b053"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1426,14 +1346,24 @@
           "verified": "90ab5ad8-9991-47f3-af98-df2d8a948fa7"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "c6afc255-03c5-4d1e-91b8-ccee088e4fa4"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 15,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1482,14 +1412,9 @@
           "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 18,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 18,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1505,14 +1430,24 @@
           "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "af3f5101-6e2f-4e95-85cb-980105ac4dcf"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "approved_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 6
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1528,14 +1463,24 @@
           "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "68c88f1f-8def-4bc4-9ab1-0a02dfce72a5"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1551,14 +1496,24 @@
           "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "57ecb6d9-0c4c-4bb0-b1fd-a505b85e4893"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1574,14 +1529,24 @@
           "verified": "fb925d96-9ee8-4f93-b54d-1c2758757143"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "4cf1b3ea-9273-49d3-84ef-a706a9d89425"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 18,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1592,19 +1557,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "173fb710-5021-4950-8d6e-bbd4ee6efc67"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1615,19 +1585,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "173fb710-5021-4950-8d6e-bbd4ee6efc67"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1638,19 +1613,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "173fb710-5021-4950-8d6e-bbd4ee6efc67"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1661,19 +1641,24 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "173fb710-5021-4950-8d6e-bbd4ee6efc67"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "approved_question_count",
           "claimed": 39,
-          "verified": 0
+          "verified": 9
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "CHAPTER_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1689,14 +1674,24 @@
           "verified": "795f3330-3d3c-4b82-b214-00064579d4ff"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "5e0fea62-389d-484a-b742-706deb136d47"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 6,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 6,
-          "verified": 0
+          "verified": 3
+        },
+        {
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1712,14 +1707,9 @@
           "verified": "795f3330-3d3c-4b82-b214-00064579d4ff"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1735,14 +1725,9 @@
           "verified": "795f3330-3d3c-4b82-b214-00064579d4ff"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1827,14 +1812,9 @@
           "verified": "d6865acb-d2e0-45a2-908e-6e1c628bd70f"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1850,14 +1830,9 @@
           "verified": "d6865acb-d2e0-45a2-908e-6e1c628bd70f"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1875,17 +1850,17 @@
         {
           "field": "verified_question_count",
           "claimed": 12,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "approved_question_count",
           "claimed": 12,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "TOPIC_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1901,19 +1876,24 @@
           "verified": "eccb7279-6cc0-489e-b4df-73d8261f59cc"
         },
         {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "2c86ae45-4222-4971-bc63-5a6ea1327e51"
+        },
+        {
           "field": "verified_question_count",
           "claimed": 12,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": 12,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_CHAPTER",
-          "verified": "TOPIC_UNMAPPED"
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1924,19 +1904,34 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_unit_id",
+          "claimed": null,
+          "verified": "0da7b020-1389-41d8-913b-fe1582b7647e"
+        },
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9b74dbd9-3f6c-49a5-881c-ef8438842e4a"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "06c9ed47-44ca-4e2d-93eb-cf5423e136ba"
+        },
+        {
           "field": "verified_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_UNIT",
-          "verified": "UNIT_UNMAPPED"
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1947,19 +1942,34 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_unit_id",
+          "claimed": null,
+          "verified": "0da7b020-1389-41d8-913b-fe1582b7647e"
+        },
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "9b74dbd9-3f6c-49a5-881c-ef8438842e4a"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "7fcb17d3-90e0-460e-9959-b6b64d73f87a"
+        },
+        {
           "field": "verified_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_UNIT",
-          "verified": "UNIT_UNMAPPED"
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -1970,19 +1980,29 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_unit_id",
+          "claimed": null,
+          "verified": "0da7b020-1389-41d8-913b-fe1582b7647e"
+        },
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e135389d-7024-4e31-936d-09b83f642d03"
+        },
+        {
           "field": "verified_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "approved_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 6
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_UNIT",
-          "verified": "UNIT_UNMAPPED"
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -1993,19 +2013,34 @@
       "cause": "Prior rows reported unit-level aggregates and outcome codes only; this pass resolves requirement-level chapter, topic and outcome identifiers and separates approved from verified questions.",
       "deltas": [
         {
+          "field": "eduos_unit_id",
+          "claimed": null,
+          "verified": "0da7b020-1389-41d8-913b-fe1582b7647e"
+        },
+        {
+          "field": "eduos_chapter_id",
+          "claimed": null,
+          "verified": "e135389d-7024-4e31-936d-09b83f642d03"
+        },
+        {
+          "field": "eduos_topic_id",
+          "claimed": null,
+          "verified": "1557f2d2-8ed5-43dc-9840-b4de072fe12e"
+        },
+        {
           "field": "verified_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "approved_question_count",
           "claimed": null,
-          "verified": 0
+          "verified": 3
         },
         {
           "field": "verdict",
           "claimed": "UNMAPPED_UNIT",
-          "verified": "UNIT_UNMAPPED"
+          "verified": "MAPPED_WITH_EVIDENCE"
         }
       ]
     },
@@ -2021,14 +2056,9 @@
           "verified": "0cbfcf79-babb-43ed-afac-0aeadf5800c3"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     },
@@ -2044,14 +2074,9 @@
           "verified": "0cbfcf79-babb-43ed-afac-0aeadf5800c3"
         },
         {
-          "field": "verified_question_count",
-          "claimed": 6,
-          "verified": 0
-        },
-        {
-          "field": "approved_question_count",
-          "claimed": 6,
-          "verified": 0
+          "field": "verdict",
+          "claimed": "TOPIC_UNMAPPED",
+          "verified": "MAPPED_CHAPTER_LEVEL_ONLY"
         }
       ]
     }

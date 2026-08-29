@@ -9,20 +9,11 @@
     "generator": "scripts/compliance/evidence-verify.ts",
     "determinism_note": "Derived only from committed inputs; no timestamps are embedded."
   },
-  "total_gaps": 13,
-  "blocking_gaps": 5,
+  "total_gaps": 12,
+  "blocking_gaps": 4,
   "gaps": [
     {
       "gap_id": "VGAP-001",
-      "subject": "Mathematics",
-      "category": "REQUIREMENT_MAPPING",
-      "severity": "BLOCKING",
-      "detail": "37 of 38 official requirements resolve no EduOS topic or outcome: REQ_MATH_2026_002, REQ_MATH_2026_003, REQ_MATH_2026_004, REQ_MATH_2026_005, REQ_MATH_2026_006, REQ_MATH_2026_007, REQ_MATH_2026_008, REQ_MATH_2026_009, REQ_MATH_2026_010, REQ_MATH_2026_011, REQ_MATH_2026_012, REQ_MATH_2026_013, REQ_MATH_2026_014, REQ_MATH_2026_015, REQ_MATH_2026_016, REQ_MATH_2026_017, REQ_MATH_2026_018, REQ_MATH_2026_019, REQ_MATH_2026_020, REQ_MATH_2026_021, REQ_MATH_2026_022, REQ_MATH_2026_023, REQ_MATH_2026_024, REQ_MATH_2026_025, REQ_MATH_2026_026, REQ_MATH_2026_027, REQ_MATH_2026_028, REQ_MATH_2026_029, REQ_MATH_2026_030, REQ_MATH_2026_031, REQ_MATH_2026_032, REQ_MATH_2026_033, REQ_MATH_2026_034, REQ_MATH_2026_035, REQ_MATH_2026_036, REQ_MATH_2026_037, REQ_MATH_2026_038",
-      "remediation": "Create the missing topic/outcome rows against the governing book before generation.",
-      "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
-    },
-    {
-      "gap_id": "VGAP-002",
       "subject": "Mathematics",
       "category": "QUESTION_DEPTH",
       "severity": "MAJOR",
@@ -31,16 +22,16 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-003",
+      "gap_id": "VGAP-002",
       "subject": "Science",
       "category": "REQUIREMENT_MAPPING",
       "severity": "BLOCKING",
-      "detail": "43 of 46 official requirements resolve no EduOS topic or outcome: REQ_SCI_2026_002, REQ_SCI_2026_003, REQ_SCI_2026_004, REQ_SCI_2026_005, REQ_SCI_2026_006, REQ_SCI_2026_007, REQ_SCI_2026_008, REQ_SCI_2026_009, REQ_SCI_2026_010, REQ_SCI_2026_011, REQ_SCI_2026_012, REQ_SCI_2026_013, REQ_SCI_2026_014, REQ_SCI_2026_015, REQ_SCI_2026_016, REQ_SCI_2026_017, REQ_SCI_2026_018, REQ_SCI_2026_020, REQ_SCI_2026_022, REQ_SCI_2026_023, REQ_SCI_2026_024, REQ_SCI_2026_025, REQ_SCI_2026_026, REQ_SCI_2026_027, REQ_SCI_2026_028, REQ_SCI_2026_029, REQ_SCI_2026_030, REQ_SCI_2026_031, REQ_SCI_2026_032, REQ_SCI_2026_033, REQ_SCI_2026_034, REQ_SCI_2026_035, REQ_SCI_2026_036, REQ_SCI_2026_037, REQ_SCI_2026_038, REQ_SCI_2026_039, REQ_SCI_2026_040, REQ_SCI_2026_041, REQ_SCI_2026_042, REQ_SCI_2026_043, REQ_SCI_2026_044, REQ_SCI_2026_045, REQ_SCI_2026_046",
+      "detail": "3 of 46 official requirements resolve no EduOS topic or outcome: REQ_SCI_2026_034, REQ_SCI_2026_035, REQ_SCI_2026_036",
       "remediation": "Create the missing topic/outcome rows against the governing book before generation.",
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-004",
+      "gap_id": "VGAP-003",
       "subject": "Science",
       "category": "QUESTION_DEPTH",
       "severity": "MAJOR",
@@ -49,7 +40,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-005",
+      "gap_id": "VGAP-004",
       "subject": "Science",
       "category": "PHASE_6_AMBIGUITY",
       "severity": "BLOCKING",
@@ -58,7 +49,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-006",
+      "gap_id": "VGAP-005",
       "subject": "Science",
       "category": "PHASE_6_AMBIGUITY",
       "severity": "MAJOR",
@@ -67,7 +58,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-007",
+      "gap_id": "VGAP-006",
       "subject": "Science",
       "category": "PHASE_6_AMBIGUITY",
       "severity": "BLOCKING",
@@ -76,7 +67,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-008",
+      "gap_id": "VGAP-007",
       "subject": "Science",
       "category": "PHASE_3_UNMAPPED",
       "severity": "MAJOR",
@@ -85,7 +76,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-009",
+      "gap_id": "VGAP-008",
       "subject": "Mathematics",
       "category": "PHASE_4_PILOT_DISPOSITION",
       "severity": "BLOCKING",
@@ -94,7 +85,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-010",
+      "gap_id": "VGAP-009",
       "subject": "Mathematics",
       "category": "PHASE_6_OVERREACH",
       "severity": "MAJOR",
@@ -103,7 +94,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-011",
+      "gap_id": "VGAP-010",
       "subject": "Mathematics",
       "category": "PHASE_6_OVERREACH",
       "severity": "MAJOR",
@@ -112,7 +103,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-012",
+      "gap_id": "VGAP-011",
       "subject": "Science",
       "category": "PHASE_5_BOOK_STATUS",
       "severity": "MAJOR",
@@ -121,7 +112,7 @@
       "verified_against": "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json"
     },
     {
-      "gap_id": "VGAP-013",
+      "gap_id": "VGAP-012",
       "subject": "All",
       "category": "PHASE_7_DEPTH",
       "severity": "MAJOR",
