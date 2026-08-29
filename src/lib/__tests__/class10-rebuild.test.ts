@@ -35,7 +35,7 @@ describe("Class 10 2026-27 rebuild", () => {
     expect(validation.errors ?? []).toHaveLength(0);
     for (const item of register.items) {
       expect(item.status).toBe("draft");
-      expect(item.externalRef).toMatch(/^C10-2627-(MATH|SCI)-REQ\d{3}-(DIAG|REASSESS)-\d{3}$/);
+      expect(item.externalRef).toMatch(/^C10-2627-(MATH|SCI)-REQ\d{3}-(DIAG|REASS)-\d{3}$/);
     }
     const refs = new Set(register.items.map((i: any) => i.externalRef));
     expect(refs.size).toBe(326);
