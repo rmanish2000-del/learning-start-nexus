@@ -41,3 +41,11 @@ rollback and official curriculum correctness.
 - No question becomes diagnostic- or reassessment-eligible without named expert approval.
 - Do not touch auth, roles, payments, orders, payment events, secrets.
 - Frustum, Euclid's division lemma and formative-only topics must never enter active 2026-27 diagnostics.
+
+## Internal pilot execution (2026-08-29)
+
+- Full parent → learner → diagnostic → gap → evidence journey executed live: PASS.
+- Fixed DEF-1 (parent details form missing from the parent portal) and DEF-2
+  (another family's child name shown in a shared diagnostic title).
+- Verdict: READY_FOR_INTERNAL_PILOT. See `EDUOS_INTERNAL_PILOT_EXECUTION_REPORT.md`
+  and `EDUOS_LAUNCH_BLOCKERS_FINAL.md`.
