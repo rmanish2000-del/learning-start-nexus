@@ -1,0 +1,19 @@
+{
+  "snapshot": "class10-pre-rebuild-snapshot.json",
+  "purpose": "rollback only \u2014 not an active dataset",
+  "taken_at": "2026-08-29",
+  "counts": {
+    "books": 4,
+    "units": 15,
+    "chapters": 30,
+    "topics": 66,
+    "curriculum_outcomes": 75,
+    "assessment_outcomes": 83,
+    "outcome_map": 75,
+    "question_bank": 269
+  },
+  "bytes": 478665,
+  "sha256": "baf41bb5512003bf12f0c68d03d5dd763bedfa82776a290d9bf9118e18fba410",
+  "redaction": "uploader, creator and verifier user ids and storage paths removed; no learner rows, no payment rows, no secrets",
+  "restore": "psql \\copy of each array back into its table in the order books, curriculum_units, curriculum_chapters, curriculum_topics, curriculum_outcomes, assessment_outcomes, outcome_map, question_bank"
+}
