@@ -1375,7 +1375,7 @@
       "templateId": "MAT-IRR-RATIONAL-PICK",
       "kind": "mcq",
       "difficulty": 2,
-      "prompt": "Which of the following numbers is rational?",
+      "prompt": "Exactly one number in the list below can be written as a ratio of two integers. Identify it.",
       "options": [
         "root 2 x root 5",
         "root 16",
@@ -14759,7 +14759,7 @@
       "difficulty": 2,
       "prompt": "An appliance draws a current of 5 A from a 220 V supply. Find its power.",
       "correctAnswer": "1100 W",
-      "explanation": "P = VI = 220 x 5 = 1100 watt.",
+      "explanation": "Electric power is the product of the potential difference and the current, so P = VI = 220 x 5 = 1100 watt, that is 1.1 kilowatt.",
       "marks": 2,
       "numericCheck": {
         "fn": "power_vi",
