@@ -21,51 +21,6 @@
   "subjects": [
     {
       "subject": "Mathematics",
-      "book_id": "ad8318f3-c41d-4846-8173-c84e5cde20ad",
-      "book_title": "CBSE Class 10 Mathematics — Meridian Pilot",
-      "book_status": "processed",
-      "units": 2,
-      "chapters": 2,
-      "requirements": 38,
-      "unmapped_requirements": 0,
-      "new_draft_questions": 235,
-      "unit_detail": [
-        {
-          "unit_id": "c023481c-8577-4eff-bc0d-69976fb4a3ce",
-          "title": "Unit 1 — Number Systems",
-          "status": "suggested",
-          "chapters": [
-            {
-              "chapter_id": "c6ed32a6-bbdc-4491-a847-ed72ad6a8f82",
-              "title": "Real Numbers",
-              "topics": 3
-            }
-          ],
-          "assessment_outcomes": 3,
-          "atoms": 3,
-          "official_requirements": [],
-          "new_draft_questions": 0
-        },
-        {
-          "unit_id": "ebe99e72-8eb8-478a-8837-6159672331e1",
-          "title": "Unit 2 — Algebra",
-          "status": "suggested",
-          "chapters": [
-            {
-              "chapter_id": "81a5d638-6724-4244-9664-f8812bd84201",
-              "title": "Polynomials",
-              "topics": 2
-            }
-          ],
-          "assessment_outcomes": 2,
-          "atoms": 2,
-          "official_requirements": [],
-          "new_draft_questions": 0
-        }
-      ]
-    },
-    {
-      "subject": "Mathematics",
       "book_id": "1ab1e104-8ecb-465e-a5f0-d9bd94641623",
       "book_title": "NCERT Class 10 Mathematics (CBSE)",
       "book_status": "approved",
@@ -450,35 +405,6 @@
             "REQ_SCI_2026_046"
           ],
           "new_draft_questions": 34
-        }
-      ]
-    },
-    {
-      "subject": "Science",
-      "book_id": "26ac60d7-794d-4805-8cdb-5b73bcb40c53",
-      "book_title": "NCERT Science — Class 10, Chapter 1: Chemical Reactions and Equations",
-      "book_status": "archived",
-      "units": 1,
-      "chapters": 1,
-      "requirements": 46,
-      "unmapped_requirements": 0,
-      "new_draft_questions": 91,
-      "unit_detail": [
-        {
-          "unit_id": "234cc8b4-a653-4f38-9c67-6ffc5cd1c101",
-          "title": "Chemical Reactions and Equations",
-          "status": "suggested",
-          "chapters": [
-            {
-              "chapter_id": "b14f8e71-7dc5-4e8c-98a2-062f2376b1aa",
-              "title": "Chemical Reactions and Equations",
-              "topics": 8
-            }
-          ],
-          "assessment_outcomes": 8,
-          "atoms": 0,
-          "official_requirements": [],
-          "new_draft_questions": 0
         }
       ]
     }

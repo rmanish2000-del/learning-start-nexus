@@ -14,7 +14,11 @@ const items = buildItems();
 type Row = { subject: string; official_requirement_id: string; official_unit: string; official_chapter: string; official_topic: string; official_source_reference: string | null; assessability: string; eduos_unit_id: string; assessment_outcome_ids: string[] };
 const rows = crosswalk.rows as Row[];
 
-const books = (evidence.books as any[]).filter((b) => b.subject === "Mathematics" || b.subject === "Science");
+const ACTIVE_BOOK_IDS = new Set([
+  "1ab1e104-8ecb-465e-a5f0-d9bd94641623", // NCERT Class 10 Mathematics (CBSE)
+  "9a9ee914-468e-4ef2-9269-eab8c9ba85a8", // NCERT Class 10 Science (CBSE)
+]);
+const books = (evidence.books as any[]).filter((b) => ACTIVE_BOOK_IDS.has(b.bookId));
 
 const map = {
   generated_at: "2026-08-29T00:00:00.000Z",
