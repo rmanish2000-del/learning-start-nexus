@@ -18,7 +18,14 @@ import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
 
-import { DIFFICULTY_LABELS, type RunnerQuestion, type ResultEntry } from "@/lib/assessment-shared";
+import {
+  DIFFICULTY_LABELS,
+  normalizeResultEntries,
+  summarizeResultEntries,
+  type RunnerQuestion,
+  type ResultEntry,
+} from "@/lib/assessment-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 import {
   AlertDialog,
   AlertDialogAction,
