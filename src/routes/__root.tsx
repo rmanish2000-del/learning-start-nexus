@@ -111,6 +111,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "google-site-verification",
         content: "UzXloytj3vcQZ00A2FT7I7EBDwcFvWf7vuDCt8IwPMs",
       },
+      // Staging and preview deployments must never be indexed.
+      ...(SHOULD_NOINDEX ? [{ name: "robots", content: "noindex, nofollow" }] : []),
     ],
     links: [
       {
