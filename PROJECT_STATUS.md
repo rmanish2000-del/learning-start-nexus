@@ -41,7 +41,7 @@ dictionary are removed; a regression test blocks their return. See
 | Routes | 16 public/route files + 41 authenticated route files | `src/routes` listing |
 | Roles in use | admin 1, reviewer 1, educator 5, parent 3, student 15 (25 auth users) | `user_roles`, `auth.users` |
 | Automated tests | **256 passing / 19 files** | `bunx vitest run`, 2026-08-29 |
-| Production URL (English-only release live, HEAD `d874fb4`) | https://www.eduos.global (also learning-start-nexus.lovable.app) | project settings |
+| Production URL (live, HEAD `463eb6d`) | https://www.eduos.global (also learning-start-nexus.lovable.app) | HTTP 200 + bundle verification |
 | Custom domain | `www.eduos.global` live; apex `eduos.global` **awaiting DNS** | project domain status |
 
 ## 3. Content — Class 10 import status (VERIFIED)
