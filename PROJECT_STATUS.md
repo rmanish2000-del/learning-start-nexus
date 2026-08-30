@@ -1,7 +1,7 @@
 # EduOS — Project Status
 
-**Last verified:** 2026-08-29 (UTC)
-**Evidence sources:** repository at commit `ebfda38`, live database queries (books, curriculum, question_bank, parent_orders, parent_entitlements, user_roles, assessment_sessions), `bunx vitest run` output, runtime secret inspection, prior reports listed in §7.
+**Last verified:** 2026-08-30 (UTC)
+**Evidence sources:** repository at commit `463eb6ddd610d0e117520dc333e4228cf851b5b8`, live HTTP fetches of https://www.eduos.global, bundle-content probing, `bunx vitest run` output, prior reports listed in §7.
 
 ---
 
