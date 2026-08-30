@@ -31,6 +31,7 @@ import { getDiagnosticAudit, runEngineProbesFn } from "@/lib/diagnostic-audit.fu
 import type { EngineCount, EngineProbe } from "@/lib/diagnostic-audit.server";
 import { DIAG_EXPECTED } from "@/lib/diagnostic-audit.server";
 import { RISK_BAND_LABELS } from "@/lib/diagnostic-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/diagnostic-engine-audit")({
   head: () => ({
@@ -155,7 +156,7 @@ function DiagnosticEngineAuditPage() {
       const passing = result.probes.filter((p) => p.pass).length;
       toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }

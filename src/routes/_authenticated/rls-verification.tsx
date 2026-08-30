@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { AUDIT_TABLES, type CrossOrgTest } from "@/lib/audit.server";
 import { getRlsPolicyAudit, runCrossOrgTestRunner } from "@/lib/audit.functions";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/rls-verification")({
   head: () => ({
@@ -63,7 +64,7 @@ function RlsVerificationPage() {
       if (failed === 0) toast.success("All cross-organization tests passed.");
       else toast.error(`${failed} test(s) FAILED — policy breach detected.`);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Test runner failed");
+      toast.error(friendlyErrorMessage(err, "Test runner failed"));
     } finally {
       setRunning(false);
     }

@@ -30,6 +30,7 @@ import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { OUTCOME_STATUS_LABELS, type OutcomeStatus } from "@/lib/outcome-shared";
 import { getSprint5Audit, runSprint5ProbesFn } from "@/lib/sprint5-audit.functions";
 import type { Sprint5Count, Sprint5Probe } from "@/lib/sprint5-audit.server";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/sprint-5-audit")({
   head: () => ({
@@ -207,7 +208,7 @@ function Sprint5AuditPage() {
       if (failed === 0) toast.success("All probes passed.");
       else toast.warning(`${failed} probe(s) did not pass — inspect the details.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }

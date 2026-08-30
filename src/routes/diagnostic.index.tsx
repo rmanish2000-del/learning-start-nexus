@@ -34,6 +34,7 @@ import { useSupabaseUser } from "@/lib/use-supabase-user";
 import { Input } from "@/components/ui/input";
 import { PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 import { useI18n } from "@/lib/i18n/context";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 const TITLE = "Class 10 Diagnostic — ₹199 | EduOS";
 const DESCRIPTION =
@@ -148,7 +149,7 @@ function DiagnosticPurchasePage() {
       await account.refetch();
       toast.success("Student profile added.");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not add the student.");
+      toast.error(friendlyErrorMessage(error, "Could not add the student."));
     } finally {
       setAddingStudent(false);
     }
@@ -198,7 +199,7 @@ function DiagnosticPurchasePage() {
       const order = await startFn({ data: { bookId, unitId, learnerId: activeStudentId } });
       await navigate({ to: "/diagnostic/checkout/$orderRef", params: { orderRef: order.orderRef } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("diag.toast.startFailed", "Could not start checkout."));
+      toast.error(friendlyErrorMessage(error, t("diag.toast.startFailed", "Could not start checkout.")));
       setPending(false);
     }
   }

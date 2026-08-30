@@ -5,7 +5,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import type { ResultEntry } from "./assessment-shared";
+import { asResultEntries, type ResultEntry } from "./assessment-shared";
 
 type Client = SupabaseClient<Database>;
 
@@ -449,7 +449,7 @@ export async function fetchAuditChain(supabase: Client): Promise<AuditChain | nu
       correctCount: row.correct_count,
       totalCount: row.total_count,
       submittedAt: row.submitted_at,
-      breakdown: (row.result ?? []) as ResultEntry[],
+      breakdown: asResultEntries(row.result),
     },
     learnerAssessment: la
       ? {

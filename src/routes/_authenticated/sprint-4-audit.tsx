@@ -30,6 +30,7 @@ import {
 import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { getSprint4Audit, runSprint4ProbesFn } from "@/lib/sprint4-audit.functions";
 import type { Sprint4Count, Sprint4Probe } from "@/lib/sprint4-audit.server";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/sprint-4-audit")({
   head: () => ({
@@ -194,7 +195,7 @@ function Sprint4AuditPage() {
       if (failed === 0) toast.success("All probes passed.");
       else toast.warning(`${failed} probe(s) did not pass — inspect the details.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }

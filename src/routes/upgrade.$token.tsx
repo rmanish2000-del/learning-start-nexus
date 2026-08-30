@@ -25,6 +25,7 @@ import {
 } from "@/lib/parent-diagnostic.functions";
 import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { CHAPTER_GROUP_MARKS, PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 const TITLE = "Board Success Plan — ₹2,999 a year | EduOS";
 const DESCRIPTION =
@@ -128,7 +129,7 @@ function UpgradePageBody() {
       await query.refetch();
       await navigate({ to: "/diagnostic/report/$token", params: { token } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "The upgrade could not be completed.");
+      toast.error(friendlyErrorMessage(error, "The upgrade could not be completed."));
     } finally {
       setPending(false);
     }

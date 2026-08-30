@@ -4,7 +4,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import type { ResultEntry } from "./assessment-shared";
+import { asResultEntries, type ResultEntry } from "./assessment-shared";
 import {
   computeSubtopicStats,
   RECOMMENDATION_RULES,
@@ -192,7 +192,7 @@ export async function runDetectionProbe(
     assessments: { title: string } | null;
   };
   const joined = row as unknown as Joined;
-  const breakdown = (row.result ?? []) as ResultEntry[];
+  const breakdown = asResultEntries(row.result);
   const stats = computeSubtopicStats(breakdown);
 
   const params = {

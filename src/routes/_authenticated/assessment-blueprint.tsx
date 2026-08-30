@@ -63,6 +63,7 @@ import {
   updateMasteryLevelFn,
 } from "@/lib/blueprint.functions";
 import { getCurriculumLibrary } from "@/lib/curriculum.functions";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/assessment-blueprint")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -495,7 +496,7 @@ function FrameworkTab({ levels, isAdmin }: { levels: MasteryLevelDto[]; isAdmin:
       setEditing(null);
       await queryClient.invalidateQueries({ queryKey: ["mastery-levels"] });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Update failed.");
+      toast.error(friendlyErrorMessage(error, "Update failed."));
     } finally {
       setSaving(false);
     }
@@ -652,7 +653,7 @@ function AssessmentBlueprintPage() {
       }
       await pageQueryClient.invalidateQueries({ queryKey: ["blueprint-workspace", bookId] });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not generate outcomes.");
+      toast.error(friendlyErrorMessage(error, "Could not generate outcomes."));
     } finally {
       setGenerating(false);
     }

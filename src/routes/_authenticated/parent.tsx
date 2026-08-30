@@ -51,6 +51,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/parent")({
   head: () => ({
@@ -504,7 +505,7 @@ function ConsentCard({
       setMobile("");
       onRecorded();
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Could not record consent"),
+    onError: (e) => toast.error(friendlyErrorMessage(e, "Could not record consent")),
   });
 
   // Withdrawal appends a new event; nothing in the history is removed.
@@ -514,7 +515,7 @@ function ConsentCard({
       toast.success("Consent withdrawn — AI Tutor is now locked");
       onRecorded();
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Could not withdraw consent"),
+    onError: (e) => toast.error(friendlyErrorMessage(e, "Could not withdraw consent")),
   });
 
   return (

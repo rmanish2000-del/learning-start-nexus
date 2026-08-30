@@ -22,6 +22,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { useI18n } from "@/lib/i18n/context";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 const TITLE = "Free learning check | EduOS";
 const DESCRIPTION = "A short five-question check. Answers save as you go.";
@@ -115,7 +116,7 @@ function FreeCheckBody() {
     try {
       await saveFn({ data: { checkId, questionId: question.id, answer: value, position: nextIndex } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "That answer could not be saved.");
+      toast.error(friendlyErrorMessage(error, "That answer could not be saved."));
     } finally {
       setSaving(false);
     }
@@ -129,7 +130,7 @@ function FreeCheckBody() {
       await submitFn({ data: { checkId } });
       await query.refetch();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "The check could not be submitted.");
+      toast.error(friendlyErrorMessage(error, "The check could not be submitted."));
     } finally {
       setSubmitting(false);
     }

@@ -61,6 +61,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/assessments")({
   beforeLoad: ({ context }) => {
@@ -275,7 +276,7 @@ function AssessmentsPage() {
       queryClient.invalidateQueries({ queryKey: ["assessment-maps"] });
     },
     onError: (e) =>
-      toast.error(e instanceof Error ? e.message : "Could not save the draft. Nothing was published."),
+      toast.error(friendlyErrorMessage(e, "Could not save the draft. Nothing was published.")),
   });
 
   const assignMutation = useMutation({
@@ -288,7 +289,7 @@ function AssessmentsPage() {
       setDueDate("");
       queryClient.invalidateQueries({ queryKey: ["assessment-sessions"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Could not assign assessment."),
+    onError: (e) => toast.error(friendlyErrorMessage(e, "Could not assign assessment.")),
   });
 
   const toggle = (set: Set<string>, id: string, apply: (s: Set<string>) => void) => {

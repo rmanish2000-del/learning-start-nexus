@@ -72,6 +72,7 @@ import {
   VERIFICATION_LABELS,
   type CbseKind,
 } from "@/lib/pilot-evidence-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/question-bank")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -208,7 +209,7 @@ function QuestionFormDialog({
       onOpenChange(false);
       onSaved();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Save failed.");
+      toast.error(friendlyErrorMessage(error, "Save failed."));
     } finally {
       setSaving(false);
     }
@@ -394,7 +395,7 @@ function QuestionCard({
       toast.success(done);
       onChanged();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Action failed.");
+      toast.error(friendlyErrorMessage(error, "Action failed."));
     } finally {
       setBusy(false);
     }
@@ -571,7 +572,7 @@ function BatchGenerationCard({
       }
       onChanged();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Batch generation failed.");
+      toast.error(friendlyErrorMessage(error, "Batch generation failed."));
     } finally {
       setRunning(false);
     }
@@ -751,7 +752,7 @@ function OutcomePanel({
       );
       onChanged();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Generation failed.");
+      toast.error(friendlyErrorMessage(error, "Generation failed."));
     } finally {
       setGenerating(false);
     }

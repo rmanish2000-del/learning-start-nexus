@@ -18,7 +18,14 @@ import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
 
-import { DIFFICULTY_LABELS, type RunnerQuestion, type ResultEntry } from "@/lib/assessment-shared";
+import {
+  DIFFICULTY_LABELS,
+  normalizeResultEntries,
+  summarizeResultEntries,
+  type RunnerQuestion,
+  type ResultEntry,
+} from "@/lib/assessment-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -92,7 +99,7 @@ function TakeAssessmentPage() {
     onSuccess: () => setSaveState("saved"),
     onError: (e) => {
       setSaveState("idle");
-      toast.error(e instanceof Error ? e.message : "Could not save progress.");
+      toast.error(friendlyErrorMessage(e, "Could not save progress."));
     },
   });
 
@@ -120,7 +127,7 @@ function TakeAssessmentPage() {
       queryClient.invalidateQueries({ queryKey: ["student-session", sessionId] });
       queryClient.invalidateQueries({ queryKey: ["my-assessment-sessions"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Submission failed."),
+    onError: (e) => toast.error(friendlyErrorMessage(e, "Submission failed.")),
   });
 
   const questions = useMemo(() => data?.questions ?? [], [data]);
@@ -139,7 +146,9 @@ function TakeAssessmentPage() {
     );
   }
 
-  if (error || !data) {
+  // A session whose assessment row was archived/deleted must not crash the
+  // runner on `data.assessment.title`.
+  if (error || !data || !data.assessment) {
     return (
       <div className="mx-auto max-w-3xl space-y-4 py-8">
         <QueryError
@@ -156,8 +165,29 @@ function TakeAssessmentPage() {
 
 
   // ---- Submitted: result view ----
+  // `result` may hold a diagnostic report object rather than a review
+  // breakdown (parent-diagnostic pipeline) — normalise before rendering.
   if (data.session.status === "submitted") {
-    return <ResultView questions={questions as RunnerQuestion[]} result={(data.session.result ?? []) as ResultEntry[]} scorePct={data.session.score_pct ?? 0} correct={data.session.correct_count ?? 0} total={data.session.total_count ?? 0} title={data.assessment.title} />;
+    const entries = normalizeResultEntries(
+      data.session.result,
+      questions as RunnerQuestion[],
+      (data.session.answers as Record<string, string>) ?? {},
+    );
+    const totals = summarizeResultEntries(entries, {
+      scorePct: data.session.score_pct,
+      correct: data.session.correct_count,
+      total: data.session.total_count,
+    });
+    return (
+      <ResultView
+        questions={questions as RunnerQuestion[]}
+        result={entries}
+        scorePct={totals.scorePct}
+        correct={totals.correct}
+        total={totals.total}
+        title={data.assessment.title}
+      />
+    );
   }
 
   const resumed = data.session.status === "in_progress" && Object.keys(data.session.answers ?? {}).length > 0;

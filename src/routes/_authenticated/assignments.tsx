@@ -35,6 +35,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { listStaffUsers } from "@/lib/admin.functions";
 import { assignEducator } from "@/lib/learners.functions";
 import { cn } from "@/lib/utils";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 const UNASSIGNED = "__unassigned__";
 
@@ -118,7 +119,7 @@ function AssignmentsPage() {
       await queryClient.invalidateQueries({ queryKey: ["learners"] });
     },
     onError: (err) => {
-      toast.error(err instanceof Error ? err.message : "Could not assign educator.");
+      toast.error(friendlyErrorMessage(err, "Could not assign educator."));
     },
   });
 

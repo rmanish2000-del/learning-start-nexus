@@ -24,6 +24,7 @@ import { getParentAccount } from "@/lib/parent-account.functions";
 import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { formatInr } from "@/lib/parent-diagnostic-shared";
 import { useI18n } from "@/lib/i18n/context";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 const TITLE = "Checkout — Class 10 Diagnostic | EduOS";
 const DESCRIPTION =
@@ -118,7 +119,7 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
       const { accessToken } = await setupFn({ data: { orderRef } });
       await navigate({ to: "/diagnostic/handoff/$token", params: { token: accessToken } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("checkout.error.failed", "Payment could not be completed."));
+      toast.error(friendlyErrorMessage(error, t("checkout.error.failed", "Payment could not be completed.")));
       setStage("idle");
     }
   }

@@ -52,6 +52,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   beforeLoad: ({ context }) => {
@@ -88,7 +89,7 @@ function AdminPage() {
       toast.success("Temporary password issued.");
     },
     onError: (err) =>
-      toast.error(err instanceof Error ? err.message : "Could not reset that password."),
+      toast.error(friendlyErrorMessage(err, "Could not reset that password.")),
   });
   const updateRoleFn = useServerFn(updateUserRole);
 
@@ -285,7 +286,7 @@ function AdminPage() {
             <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm">
               <p className="font-medium">Staff accounts couldn't be loaded.</p>
               <p className="mt-1 text-muted-foreground">
-                {staffError instanceof Error ? staffError.message : "Please try again."}
+                {friendlyErrorMessage(staffError, "Please try again.")}
               </p>
               <Button size="sm" variant="outline" className="mt-3" onClick={() => void refetchStaff()}>
                 Try again
@@ -424,7 +425,7 @@ function StudentLoginsCard() {
       void queryClient.invalidateQueries({ queryKey: ["admin-student-logins"] });
     },
     onError: (err) =>
-      toast.error(err instanceof Error ? err.message : "Could not set that PIN."),
+      toast.error(friendlyErrorMessage(err, "Could not set that PIN.")),
   });
 
   return (
@@ -774,7 +775,7 @@ function ParentAccessCard() {
           <div className="rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm">
             <p className="font-medium">Parent links couldn't be loaded.</p>
             <p className="mt-1 text-muted-foreground">
-              {error instanceof Error ? error.message : "Please try again."}
+              {friendlyErrorMessage(error, "Please try again.")}
             </p>
             <Button size="sm" variant="outline" className="mt-3" onClick={() => void refetch()}>
               Try again

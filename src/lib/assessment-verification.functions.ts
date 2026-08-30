@@ -6,7 +6,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { requireAuditRole } from "./admin.server";
-import type { ResultEntry } from "./assessment-shared";
+import { asResultEntries, type ResultEntry } from "./assessment-shared";
 
 type CountComparison = {
   table: string;
@@ -255,7 +255,7 @@ export const getAssessmentVerification = createServerFn({ method: "GET" })
           totalCount: submitted.total_count,
           submittedAt: submitted.submitted_at,
           lastActivityAt: submitted.last_activity_at,
-          breakdown: (submitted.result ?? []) as ResultEntry[],
+          breakdown: asResultEntries(submitted.result),
         }
       : null;
 
