@@ -101,6 +101,7 @@ def build_subject_workbook(subject, items, path):
     wb = Workbook()
     ws = wb.active
     ws.title = "Review"
+    ws.append([h for h, _ in headers])
     for item in items:
         ws.append(
             [cell_value(item, h, k) for h, k, _ in SYSTEM_COLS]
