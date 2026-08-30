@@ -49,3 +49,10 @@ rollback and official curriculum correctness.
   (another family's child name shown in a shared diagnostic title).
 - Verdict: READY_FOR_INTERNAL_PILOT. See `EDUOS_INTERNAL_PILOT_EXECUTION_REPORT.md`
   and `EDUOS_LAUNCH_BLOCKERS_FINAL.md`.
+
+## Staging / sandbox environment (2026-08-30)
+
+- [x] Environment separation layer: `src/lib/environment.ts`, staging ribbon, non-production `noindex`, live-Razorpay-key rejection outside production.
+- [x] Staging user seeder + reset: `scripts/staging/seed-staging-users.ts` (staging-only guard, `@staging.eduos.test` scope, git-ignored credential file).
+- [x] Runbook, test-user inventory, Razorpay test-mode checklist and promotion flow: `STAGING_ENVIRONMENT.md`.
+- [ ] Founder action: remix this project as `eduos-staging`, set `VITE_APP_ENV=staging`, add Razorpay test keys + test webhook, run the seeder, then execute staging UAT.
