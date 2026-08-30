@@ -17,7 +17,7 @@ export function parentDetailsComplete(profile: ParentProfile | undefined | null)
   return Boolean(profile?.fullName?.trim() && profile?.phone?.trim());
 }
 
-type FieldErrors = { fullName?: string; phone?: string; email?: string };
+type FieldErrors = { fullName?: string | undefined; phone?: string | undefined; email?: string | undefined };
 
 /**
  * Purchases are refused server-side until the parent profile carries a name
