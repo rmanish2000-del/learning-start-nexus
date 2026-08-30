@@ -145,6 +145,16 @@ export async function resolveRazorpayCredentials(): Promise<RazorpayCredentials 
     };
   }
 
+  // Environment separation: only the production deployment may ever hold live
+  // keys. If a live key reaches staging or a preview build we refuse it rather
+  // than risk charging a real card from a sandbox.
+  if (value && !IS_PRODUCTION && value.keyId.startsWith("rzp_live_")) {
+    console.error(
+      `[payments] live Razorpay key rejected in ${APP_ENV}; configure test-mode keys for this environment`,
+    );
+    value = null;
+  }
+
   cache = { value, at: now };
   return value;
 }
