@@ -163,8 +163,29 @@ function TakeAssessmentPage() {
 
 
   // ---- Submitted: result view ----
+  // `result` may hold a diagnostic report object rather than a review
+  // breakdown (parent-diagnostic pipeline) — normalise before rendering.
   if (data.session.status === "submitted") {
-    return <ResultView questions={questions as RunnerQuestion[]} result={(data.session.result ?? []) as ResultEntry[]} scorePct={data.session.score_pct ?? 0} correct={data.session.correct_count ?? 0} total={data.session.total_count ?? 0} title={data.assessment.title} />;
+    const entries = normalizeResultEntries(
+      data.session.result,
+      questions as RunnerQuestion[],
+      (data.session.answers as Record<string, string>) ?? {},
+    );
+    const totals = summarizeResultEntries(entries, {
+      scorePct: data.session.score_pct,
+      correct: data.session.correct_count,
+      total: data.session.total_count,
+    });
+    return (
+      <ResultView
+        questions={questions as RunnerQuestion[]}
+        result={entries}
+        scorePct={totals.scorePct}
+        correct={totals.correct}
+        total={totals.total}
+        title={data.assessment.title}
+      />
+    );
   }
 
   const resumed = data.session.status === "in_progress" && Object.keys(data.session.answers ?? {}).length > 0;
