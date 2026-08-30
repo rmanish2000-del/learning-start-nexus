@@ -18,6 +18,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { CookieConsentBanner } from "@/components/cookie-consent";
 import { InstallBanner } from "@/components/install-banner";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { StagingBanner } from "@/components/staging-banner";
+import { SHOULD_NOINDEX } from "@/lib/environment";
 
 function NotFoundComponent() {
   return (
@@ -109,6 +111,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "google-site-verification",
         content: "UzXloytj3vcQZ00A2FT7I7EBDwcFvWf7vuDCt8IwPMs",
       },
+      // Staging and preview deployments must never be indexed.
+      ...(SHOULD_NOINDEX ? [{ name: "robots", content: "noindex, nofollow" }] : []),
     ],
     links: [
       {
@@ -167,6 +171,7 @@ function RootComponent() {
     <ThemeProvider>
       <LanguageProvider>
         <QueryClientProvider client={queryClient}>
+          <StagingBanner />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <Toaster />
