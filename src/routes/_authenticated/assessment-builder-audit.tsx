@@ -32,6 +32,7 @@ import type { BuilderCount, BuilderProbe } from "@/lib/builder-audit.server";
 import { BUILDER_EXPECTED } from "@/lib/builder-audit.server";
 import { KIND_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
 import { TEMPLATE_LABELS } from "@/lib/builder-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/assessment-builder-audit")({
   head: () => ({
@@ -152,7 +153,7 @@ function AssessmentBuilderAuditPage() {
       const passing = result.probes.filter((p) => p.pass).length;
       toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }

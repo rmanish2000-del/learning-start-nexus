@@ -54,6 +54,7 @@ import {
 } from "@/lib/builder.functions";
 import { KIND_LABELS, QB_DIFFICULTY_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
 import { cn } from "@/lib/utils";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 type Search = { book?: string | undefined; unit?: string | undefined; built?: string | undefined };
 
@@ -283,7 +284,7 @@ function AssessmentBuilderPage() {
       await workspaceQuery.refetch();
       navigate({ search: { book: bookId, unit: workspace.selectedUnitId, built: result.assessmentId } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Build failed.");
+      toast.error(friendlyErrorMessage(error, "Build failed."));
     } finally {
       setBuilding(false);
     }

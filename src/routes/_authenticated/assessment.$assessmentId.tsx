@@ -37,6 +37,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/assessment/$assessmentId")({
   beforeLoad: ({ context }) => {
@@ -178,7 +179,7 @@ function AssessmentDetailPage() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof Error ? e.message : "Could not publish. The assessment is still a draft.",
+        friendlyErrorMessage(e, "Could not publish. The assessment is still a draft."),
       ),
   });
 

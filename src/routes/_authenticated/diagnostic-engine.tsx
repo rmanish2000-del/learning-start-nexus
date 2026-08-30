@@ -51,6 +51,7 @@ import {
 } from "@/lib/diagnostic-shared";
 import { KIND_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
 import { fmt } from "@/components/audit-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/diagnostic-engine")({
   head: () => ({
@@ -180,7 +181,7 @@ function DiagnosticEnginePage() {
       );
       await queryClient.invalidateQueries({ queryKey: ["diagnostic-workspace"] });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Generation failed.");
+      toast.error(friendlyErrorMessage(error, "Generation failed."));
     } finally {
       setGenerating(false);
     }

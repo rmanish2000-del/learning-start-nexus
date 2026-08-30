@@ -81,6 +81,7 @@ import {
   updateOutcomeFn,
   uploadBookFileFn,
 } from "@/lib/curriculum.functions";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/curriculum")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -150,7 +151,7 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
       setUploadMeta({ title: "", board: "", grade: "6", subject: "" });
       await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Upload failed.");
+      toast.error(friendlyErrorMessage(error, "Upload failed."));
     } finally {
       setBusy(false);
     }
@@ -166,7 +167,7 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
       await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
       navigate({ to: "/curriculum", search: { book: bookId, tab: "review" } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Extraction failed.");
+      toast.error(friendlyErrorMessage(error, "Extraction failed."));
       await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
     } finally {
       setExtractingId(null);
@@ -196,7 +197,7 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
       await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
       navigate({ to: "/curriculum", search: { book: result.bookId, tab: "review" } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Import failed — check the JSON structure.");
+      toast.error(friendlyErrorMessage(error, "Import failed — check the JSON structure."));
     } finally {
       setBusy(false);
     }
@@ -503,7 +504,7 @@ function ReviewTab({ workspace }: { workspace: BookWorkspace }) {
       setEdit(null);
       await refresh();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Action failed.");
+      toast.error(friendlyErrorMessage(error, "Action failed."));
     } finally {
       setBusy(false);
     }
@@ -792,7 +793,7 @@ function OutcomeRow({
       toast.success(success);
       await refresh();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Action failed.");
+      toast.error(friendlyErrorMessage(error, "Action failed."));
     }
   };
 
@@ -973,7 +974,7 @@ function OutcomesTab({ workspace, isStaff }: { workspace: BookWorkspace; isStaff
                   queryKey: ["curriculum-book", workspace.book.id],
                 });
               } catch (error) {
-                toast.error(error instanceof Error ? error.message : "Bulk approve failed.");
+                toast.error(friendlyErrorMessage(error, "Bulk approve failed."));
               }
             }}
           >
@@ -1135,7 +1136,7 @@ function WorkspaceView({ bookId, tab, isStaff }: { bookId: string; tab: string; 
                 await queryClient.invalidateQueries({ queryKey: ["curriculum-book", bookId] });
                 await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
               } catch (error) {
-                toast.error(error instanceof Error ? error.message : "Approve failed.");
+                toast.error(friendlyErrorMessage(error, "Approve failed."));
               }
             }}
           >
@@ -1152,7 +1153,7 @@ function WorkspaceView({ bookId, tab, isStaff }: { bookId: string; tab: string; 
                 await queryClient.invalidateQueries({ queryKey: ["curriculum-book", bookId] });
                 await queryClient.invalidateQueries({ queryKey: ["curriculum-library"] });
               } catch (error) {
-                toast.error(error instanceof Error ? error.message : "Action failed.");
+                toast.error(friendlyErrorMessage(error, "Action failed."));
               }
             }}
           >

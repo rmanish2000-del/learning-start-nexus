@@ -31,6 +31,7 @@ import { getGapAuditFn, runGapProbesFn } from "@/lib/gap-audit.functions";
 import type { GapCount, GapProbe, GapSnapshotSession } from "@/lib/gap-audit.server";
 import { GAP_EXPECTED } from "@/lib/gap-audit.server";
 import { GAP_CATEGORY_LABELS, RISK_LABELS } from "@/lib/gap-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/gap-analysis-audit")({
   head: () => ({
@@ -240,7 +241,7 @@ function GapAnalysisAuditPage() {
       const passing = result.probes.filter((p) => p.pass).length;
       toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }

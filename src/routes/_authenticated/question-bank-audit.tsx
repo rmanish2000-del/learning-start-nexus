@@ -32,6 +32,7 @@ import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { getQuestionBankAudit, runQuestionBankProbesFn } from "@/lib/question-bank-audit.functions";
 import type { QuestionBankCount, QuestionBankProbe } from "@/lib/question-bank-audit.server";
 import { GENERATION_CONTRACT, KIND_LABELS, type QuestionKind } from "@/lib/question-bank-shared";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/question-bank-audit")({
   head: () => ({
@@ -148,7 +149,7 @@ function QuestionBankAuditPage() {
       const passing = result.probes.filter((p) => p.pass).length;
       toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }

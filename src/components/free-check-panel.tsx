@@ -15,6 +15,7 @@ import type { ParentStudent } from "@/lib/parent-account-shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 /**
  * The free learning check: five verified questions, no payment, answered by the
@@ -40,7 +41,7 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
       void queryClient.invalidateQueries({ queryKey: ["free-check-status", student.id] });
     },
     onError: (error) =>
-      toast.error(error instanceof Error ? error.message : "The free check could not be started."),
+      toast.error(friendlyErrorMessage(error, "The free check could not be started.")),
   });
 
   return (

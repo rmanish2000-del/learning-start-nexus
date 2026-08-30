@@ -44,6 +44,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/learners")({
   beforeLoad: ({ context }) => {
@@ -222,7 +223,7 @@ function LearnersPage() {
                   <Label htmlFor="educatorId">Educator</Label>
                   {staffIsError && (
                     <p className="text-xs text-destructive">
-                      {staffError instanceof Error ? staffError.message : "Educators couldn't be loaded."}
+                      {friendlyErrorMessage(staffError, "Educators couldn't be loaded.")}
                     </p>
                   )}
                   <Select name="educatorId">

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 /** Explicit account-type picker — the first decision on the sign-in screen. */
 const ROLE_OPTIONS = [
@@ -230,7 +231,7 @@ function AuthPage() {
       }
       if (data.user) await goHome(data.user);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Could not complete sign-in.");
+      toast.error(friendlyErrorMessage(error, "Could not complete sign-in."));
     } finally {
       setPending(false);
     }

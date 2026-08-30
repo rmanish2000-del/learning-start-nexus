@@ -2,6 +2,7 @@ import { AlertTriangle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 /**
  * Shared failure state for data-backed panels. Distinguishes "you don't have
@@ -19,7 +20,7 @@ export function QueryError({
   onRetry?: () => void;
   compact?: boolean;
 }) {
-  const raw = error instanceof Error ? error.message : "";
+  const raw = friendlyErrorMessage(error, "");
   const denied = /permission|unauthori|forbidden|row-level/i.test(raw);
   const message = denied
     ? "You don't have access to this information. If that looks wrong, ask your center's admin to check your account."

@@ -99,7 +99,7 @@ function TakeAssessmentPage() {
     onSuccess: () => setSaveState("saved"),
     onError: (e) => {
       setSaveState("idle");
-      toast.error(e instanceof Error ? e.message : "Could not save progress.");
+      toast.error(friendlyErrorMessage(e, "Could not save progress."));
     },
   });
 
@@ -127,7 +127,7 @@ function TakeAssessmentPage() {
       queryClient.invalidateQueries({ queryKey: ["student-session", sessionId] });
       queryClient.invalidateQueries({ queryKey: ["my-assessment-sessions"] });
     },
-    onError: (e) => toast.error(e instanceof Error ? e.message : "Submission failed."),
+    onError: (e) => toast.error(friendlyErrorMessage(e, "Submission failed.")),
   });
 
   const questions = useMemo(() => data?.questions ?? [], [data]);

@@ -29,6 +29,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 /**
  * Learner management is the first thing a signed-in parent sees. Creating a
@@ -158,7 +159,7 @@ function AddLearnerForm({ onDone }: { onDone?: () => void }) {
       onDone?.();
     },
     onError: (error) =>
-      toast.error(error instanceof Error ? error.message : "That child could not be added."),
+      toast.error(friendlyErrorMessage(error, "That child could not be added.")),
   });
 
   return (

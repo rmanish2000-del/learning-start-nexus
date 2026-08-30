@@ -38,6 +38,7 @@ import {
 } from "@/components/install-banner";
 import { getLaunchAudit, runLaunchAuditProbes } from "@/lib/launch-audit.functions";
 import type { LaunchProbe } from "@/lib/launch-audit.server";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/launch-audit")({
   head: () => ({
@@ -246,7 +247,7 @@ function LaunchAuditPage() {
     try {
       setProbes(await runProbes());
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Probe run failed");
+      toast.error(friendlyErrorMessage(err, "Probe run failed"));
     } finally {
       setRunning(false);
     }
@@ -267,7 +268,7 @@ function LaunchAuditPage() {
         <Card>
           <CardHeader>
             <CardTitle>Launch audit unavailable</CardTitle>
-            <CardDescription>{error instanceof Error ? error.message : "Unknown error"}</CardDescription>
+            <CardDescription>{friendlyErrorMessage(error, "Unknown error")}</CardDescription>
           </CardHeader>
         </Card>
       </div>

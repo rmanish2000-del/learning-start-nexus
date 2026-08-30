@@ -23,6 +23,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { getSprint3Audit, runSprint3Probes } from "@/lib/sprint3-audit.functions";
 import type { Sprint3Count, Sprint3CrossOrgTest } from "@/lib/sprint3-audit.server";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/sprint-3-audit")({
   head: () => ({
@@ -188,7 +189,7 @@ function Sprint3AuditPage() {
       else toast.error(`${failed} probe(s) FAILED.`);
       void auditQuery.refetch();
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Probe run failed");
+      toast.error(friendlyErrorMessage(err, "Probe run failed"));
     } finally {
       setRunning(false);
     }

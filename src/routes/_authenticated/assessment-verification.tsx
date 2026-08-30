@@ -32,6 +32,7 @@ import {
 import { DIFFICULTY_LABELS } from "@/lib/assessment-shared";
 import { getAssessmentVerification } from "@/lib/assessment-verification.functions";
 import { assignAssessment, createAssessment } from "@/lib/assessments.functions";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/assessment-verification")({
   head: () => ({
@@ -113,7 +114,7 @@ function AssessmentVerificationPage() {
       await refresh();
       toast.success("Probe assessment created. Reload the page — it will still be listed below.");
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Create failed");
+      toast.error(friendlyErrorMessage(err, "Create failed"));
     } finally {
       setBusy(null);
     }
@@ -134,7 +135,7 @@ function AssessmentVerificationPage() {
         `Assigned "${published.title}" to ${learner.fullName}. Reload the page — the session row persists.`,
       );
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Assign failed");
+      toast.error(friendlyErrorMessage(err, "Assign failed"));
     } finally {
       setBusy(null);
     }

@@ -30,6 +30,7 @@ import {
 import { DbErrorBlock, Mono, Pass, fmt } from "@/components/audit-shared";
 import { getCurriculumAudit, runCurriculumProbesFn } from "@/lib/curriculum-audit.functions";
 import type { CurriculumCount, CurriculumProbe } from "@/lib/curriculum-audit.server";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 export const Route = createFileRoute("/_authenticated/curriculum-audit")({
   head: () => ({
@@ -172,7 +173,7 @@ function CurriculumAuditPage() {
       const passing = result.probes.filter((p) => p.pass).length;
       toast.success(`Probes finished — ${passing}/${result.probes.length} passing.`);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Probe run failed.");
+      toast.error(friendlyErrorMessage(error, "Probe run failed."));
     } finally {
       setRunning(false);
     }
