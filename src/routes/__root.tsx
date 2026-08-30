@@ -171,6 +171,7 @@ function RootComponent() {
     <ThemeProvider>
       <LanguageProvider>
         <QueryClientProvider client={queryClient}>
+          <StagingBanner />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <Toaster />
