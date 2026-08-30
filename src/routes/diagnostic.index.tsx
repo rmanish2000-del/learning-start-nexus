@@ -199,7 +199,7 @@ function DiagnosticPurchasePage() {
       const order = await startFn({ data: { bookId, unitId, learnerId: activeStudentId } });
       await navigate({ to: "/diagnostic/checkout/$orderRef", params: { orderRef: order.orderRef } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("diag.toast.startFailed", "Could not start checkout."));
+      toast.error(friendlyErrorMessage(error, t("diag.toast.startFailed", "Could not start checkout.")));
       setPending(false);
     }
   }

@@ -23,6 +23,7 @@ import {
   saveDiagnosticAnswer,
   submitDiagnosticRun,
 } from "@/lib/parent-diagnostic.functions";
+import { friendlyErrorMessage } from "@/lib/user-errors";
 
 const TITLE = "Diagnostic in progress | EduOS";
 const DESCRIPTION = "Answer one question at a time. Progress is saved after every answer and can be resumed later.";
@@ -114,7 +115,7 @@ function DiagnosticSessionPageBody() {
     try {
       await saveFn({ data: { token, questionId: question.id, answer: value, position: nextIndex } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("session.error.save", "That answer could not be saved."));
+      toast.error(friendlyErrorMessage(error, t("session.error.save", "That answer could not be saved.")));
     } finally {
       setSaving(false);
     }
@@ -136,7 +137,7 @@ function DiagnosticSessionPageBody() {
       await submitFn({ data: { token } });
       await navigate({ to: "/diagnostic/complete/$token", params: { token } });
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : t("session.error.submit", "The diagnostic could not be submitted."));
+      toast.error(friendlyErrorMessage(error, t("session.error.submit", "The diagnostic could not be submitted.")));
       setSubmitting(false);
     }
   }
