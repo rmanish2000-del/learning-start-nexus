@@ -244,10 +244,17 @@ async function assertLearnerAnswerer(row: OrderRow, userId: string | null): Prom
   if (error) throw new Error(error.message);
   if (!learner) throw new Error("That student profile could not be found.");
   if (!userId || !learner.student_user_id || learner.student_user_id !== userId) {
+    // Privacy: the learner's name may only be echoed back to the parent who
+    // owns the order. Anyone else — another family's student, a stranger with
+    // the link — gets a message that discloses nothing about the child.
+    const ownerViewing = row.parent_user_id != null && row.parent_user_id === userId;
     throw new Error(
-      `Only ${learner.full_name} can answer this diagnostic. Ask them to sign in as a student with their handle and PIN.`,
+      ownerViewing
+        ? `Only ${learner.full_name} can answer this diagnostic. Ask them to sign in as a student with their handle and PIN.`
+        : "This diagnostic can only be answered by the student it was bought for. Ask them to sign in with their handle and PIN.",
     );
   }
+
   return { fullName: learner.full_name, handle: learner.handle };
 }
 
