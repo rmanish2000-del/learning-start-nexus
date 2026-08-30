@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 from openpyxl import Workbook
-from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.styles import Alignment, Font, PatternFill, Protection
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
@@ -88,7 +88,7 @@ def style_sheet(ws, rows, headers, expert_start):
             c.font = Font(name=FONT, size=10)
             c.alignment = Alignment(vertical="top", wrap_text=True)
             editable = idx >= expert_start
-            c.protection = c.protection.copy(locked=not editable)
+            c.protection = Protection(locked=not editable)
             if not editable:
                 c.fill = LOCKED_FILL
             else:
@@ -115,7 +115,6 @@ def build_subject_workbook(subject, items, path):
     dv.add(f"{col}2:{col}{len(items) + 1}")
     ws.protection.sheet = True
     ws.protection.enable()
-    ws.protection.password = None
     ws.protection.autoFilter = False
     ws.protection.sort = False
     ws.protection.formatCells = False
