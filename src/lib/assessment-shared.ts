@@ -193,3 +193,8 @@ export function summarizeResultEntries(
   const scorePct = stored.scorePct ?? (total === 0 ? 0 : Math.round((correct / total) * 100));
   return { scorePct, correct, total };
 }
+
+/** Safe read of the polymorphic `result` column when no questions are at hand. */
+export function asResultEntries(value: unknown): ResultEntry[] {
+  return Array.isArray(value) ? value.filter(isResultEntry) : [];
+}
