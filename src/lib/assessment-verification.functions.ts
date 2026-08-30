@@ -6,7 +6,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { requireAuditRole } from "./admin.server";
-import type { ResultEntry } from "./assessment-shared";
+import { asResultEntries, type ResultEntry } from "./assessment-shared";
 
 type CountComparison = {
   table: string;

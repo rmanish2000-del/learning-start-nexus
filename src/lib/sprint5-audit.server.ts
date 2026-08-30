@@ -9,7 +9,7 @@ import {
   type DbErrorShape,
   type PolicyAuditRow,
 } from "./audit.server";
-import type { ResultEntry } from "./assessment-shared";
+import { asResultEntries, type ResultEntry } from "./assessment-shared";
 import { computeSubtopicStats } from "./intervention-shared";
 import {
   classifyOutcome,
