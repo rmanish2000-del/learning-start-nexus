@@ -145,3 +145,51 @@ export function summarizeBreakdown(breakdown: ResultEntry[]): { strong: string[]
   }
   return { strong, needs };
 }
+
+// ---------------------------------------------------------------------------
+// Result normalisation.
+//
+// `assessment_sessions.result` is written by two pipelines: the student runner
+// stores a `ResultEntry[]` breakdown, while the parent-diagnostic pipeline
+// stores a whole DiagnosticReport object. The student runner used to assume an
+// array and crashed (`result.map is not a function`) whenever a student opened
+// a submitted parent diagnostic. Always read the column through this helper.
+// ---------------------------------------------------------------------------
+
+function isResultEntry(value: unknown): value is ResultEntry {
+  return (
+    !!value &&
+    typeof value === "object" &&
+    typeof (value as ResultEntry).item_id === "string" &&
+    typeof (value as ResultEntry).correct === "boolean"
+  );
+}
+
+/**
+ * Coerces the stored `result` column into review entries the runner can render.
+ * Falls back to re-deriving the breakdown from the stored answers when the
+ * column holds something other than a `ResultEntry[]` (or is missing).
+ */
+export function normalizeResultEntries(
+  result: unknown,
+  questions: { id: string; subtopic: string; kind: ItemKind; correct_answer: string }[],
+  answers: Record<string, string> | null | undefined,
+): ResultEntry[] {
+  if (Array.isArray(result)) {
+    const entries = result.filter(isResultEntry);
+    if (entries.length > 0) return entries;
+  }
+  if (questions.length === 0) return [];
+  return scoreItems(questions, answers ?? {}).breakdown;
+}
+
+/** Submitted-session headline numbers, recomputed when the stored ones are absent. */
+export function summarizeResultEntries(
+  entries: ResultEntry[],
+  stored: { scorePct?: number | null; correct?: number | null; total?: number | null } = {},
+): { scorePct: number; correct: number; total: number } {
+  const total = stored.total ?? entries.length;
+  const correct = stored.correct ?? entries.filter((e) => e.correct).length;
+  const scorePct = stored.scorePct ?? (total === 0 ? 0 : Math.round((correct / total) * 100));
+  return { scorePct, correct, total };
+}
