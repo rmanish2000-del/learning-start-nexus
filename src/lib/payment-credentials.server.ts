@@ -18,6 +18,7 @@
 import { createCipheriv, createDecipheriv, hkdfSync, randomBytes } from "node:crypto";
 
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { APP_ENV, IS_PRODUCTION } from "@/lib/environment";
 
 export type CredentialSource = "database" | "environment" | "missing";
 
