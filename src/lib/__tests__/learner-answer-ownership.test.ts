@@ -82,25 +82,26 @@ describe("diagnostic answer ownership", () => {
     ).rejects.toThrow(/Only Aarav Sharma can answer this diagnostic/);
   });
 
-  it("rejects an unrelated signed-in user", async () => {
+  it("rejects an unrelated signed-in user without naming the child", async () => {
     const { saveRunAnswer } = await import("../parent-diagnostic.server");
-    await expect(
-      saveRunAnswer({
-        token: "tok_run",
-        questionId: "q1",
-        answer: "A",
-        position: 0,
-        userId: OTHER_USER,
-      }),
-    ).rejects.toThrow(/Only Aarav Sharma can answer this diagnostic/);
+    const call = saveRunAnswer({
+      token: "tok_run",
+      questionId: "q1",
+      answer: "A",
+      position: 0,
+      userId: OTHER_USER,
+    });
+    await expect(call).rejects.toThrow(/only be answered by the student it was bought for/);
+    await expect(call).rejects.not.toThrow(/Aarav Sharma/);
   });
 
-  it("rejects an anonymous caller", async () => {
+  it("rejects an anonymous caller without naming the child", async () => {
     const { saveRunAnswer } = await import("../parent-diagnostic.server");
-    await expect(
-      saveRunAnswer({ token: "tok_run", questionId: "q1", answer: "A", position: 0, userId: null }),
-    ).rejects.toThrow(/Only Aarav Sharma can answer this diagnostic/);
+    const call = saveRunAnswer({ token: "tok_run", questionId: "q1", answer: "A", position: 0, userId: null });
+    await expect(call).rejects.toThrow(/only be answered by the student it was bought for/);
+    await expect(call).rejects.not.toThrow(/Aarav Sharma/);
   });
+
 
   it("lets the linked learner save an answer", async () => {
     const { saveRunAnswer } = await import("../parent-diagnostic.server");
