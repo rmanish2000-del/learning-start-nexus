@@ -22,7 +22,15 @@ export default defineTool({
       .select("id, full_name, handle, grade, subject, board, status, learner_mode, mastery_score, mastery_lift")
       .order("full_name", { ascending: true })
       .limit(limit ?? 25);
-    if (search) query = query.or(`full_name.ilike.%${search}%,handle.ilike.%${search}%`);
+    if (search) {
+      // PostgREST filter strings are parsed, so raw search text could inject
+      // extra conditions. Strip every character that carries meaning there.
+      const safe = search.replace(/[,.()\\"*:]/g, " ").trim();
+      if (!safe) {
+        return { content: [{ type: "text", text: "Search term contains no searchable characters." }], isError: true };
+      }
+      query = query.or(`full_name.ilike.%${safe}%,handle.ilike.%${safe}%`);
+    }
     const { data, error } = await query;
     if (error) return { content: [{ type: "text", text: error.message }], isError: true };
     return {
