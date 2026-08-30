@@ -146,7 +146,9 @@ function TakeAssessmentPage() {
     );
   }
 
-  if (error || !data) {
+  // A session whose assessment row was archived/deleted must not crash the
+  // runner on `data.assessment.title`.
+  if (error || !data || !data.assessment) {
     return (
       <div className="mx-auto max-w-3xl space-y-4 py-8">
         <QueryError
