@@ -192,7 +192,7 @@ export async function runDetectionProbe(
     assessments: { title: string } | null;
   };
   const joined = row as unknown as Joined;
-  const breakdown = (row.result ?? []) as ResultEntry[];
+  const breakdown = asResultEntries(row.result);
   const stats = computeSubtopicStats(breakdown);
 
   const params = {

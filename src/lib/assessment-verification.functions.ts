@@ -255,7 +255,7 @@ export const getAssessmentVerification = createServerFn({ method: "GET" })
           totalCount: submitted.total_count,
           submittedAt: submitted.submitted_at,
           lastActivityAt: submitted.last_activity_at,
-          breakdown: (submitted.result ?? []) as ResultEntry[],
+          breakdown: asResultEntries(submitted.result),
         }
       : null;
 

@@ -449,7 +449,7 @@ export async function fetchAuditChain(supabase: Client): Promise<AuditChain | nu
       correctCount: row.correct_count,
       totalCount: row.total_count,
       submittedAt: row.submitted_at,
-      breakdown: (row.result ?? []) as ResultEntry[],
+      breakdown: asResultEntries(row.result),
     },
     learnerAssessment: la
       ? {

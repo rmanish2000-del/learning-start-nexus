@@ -202,7 +202,7 @@ export async function runSprint5Probes(
         .select("total_count, result")
         .eq("id", o.reassessment_session_id)
         .maybeSingle();
-      const breakdown = ((session?.result as ResultEntry[] | null) ?? []) as ResultEntry[];
+      const breakdown = asResultEntries(session?.result);
       const stats = computeSubtopicStats(breakdown);
       const subtopicPct = stats.find((s) => s.subtopic === o.subtopic)?.pct ?? null;
 

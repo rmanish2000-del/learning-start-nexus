@@ -6,7 +6,8 @@ import { ArrowLeft, CircleCheck, CircleX, Eye, Send } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
-import { DIFFICULTY_LABELS, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
+import {
+  asResultEntries, DIFFICULTY_LABELS, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -484,7 +485,7 @@ function AssessmentDetailPage() {
             <DialogDescription>Per-question breakdown from automatic scoring.</DialogDescription>
           </DialogHeader>
           <div className="max-h-96 space-y-2 overflow-y-auto pr-1">
-            {((reviewSession?.result as ResultEntry[] | null) ?? []).map((entry, i) => (
+            {asResultEntries(reviewSession?.result).map((entry, i) => (
               <div key={entry.item_id} className="flex items-start gap-3 rounded-lg border p-3">
                 {entry.correct ? (
                   <CircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />

@@ -19,6 +19,7 @@ import {
 } from "./assessments.server";
 import { applyGapDetection } from "./interventions.server";
 import { finalizeOutcomesForSession } from "./outcomes.server";
+import { asResultEntries } from "@/lib/assessment-shared";
 
 // Staff: create a diagnostic from item-bank items (all writes via caller's
 // RLS-scoped client — policies enforce org isolation and staff role).
@@ -237,7 +238,7 @@ export const submitAssessment = createServerFn({ method: "POST" })
         scorePct: session.score_pct ?? 0,
         correctCount: session.correct_count ?? 0,
         totalCount: session.total_count ?? 0,
-        breakdown: session.result ?? [],
+        breakdown: asResultEntries(session.result),
       };
     }
 
