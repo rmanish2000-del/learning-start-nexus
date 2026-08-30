@@ -45,7 +45,8 @@ export function parseZodIssues(text: string): { field: string | null; message: s
     const raw = typeof issue.message === "string" ? issue.message.trim() : "";
     const generic =
       !raw ||
-      /^(required|invalid|invalid input|invalid type|expected .*received .*)$/i.test(raw);
+      /^(required|invalid|invalid input|invalid type)\b/i.test(raw) ||
+      /expected .*received /i.test(raw);
     if (generic) {
       return { field: label, message: label ? `${label} is required` : "Please check this field" };
     }
@@ -90,7 +91,6 @@ const TECHNICAL_PATTERNS: { test: RegExp; message: string }[] = [
     message: "We couldn't reach the server. Check your connection and try again.",
   },
   { test: /^\s*[[{]/, message: "Please check the details and try again." },
-  { test: /\bat\s+\w+.*\(.*:\d+:\d+\)/, message: "Something went wrong. Please try again." },
 ];
 
 /**
@@ -109,6 +109,8 @@ export function friendlyErrorMessage(error: unknown, fallback = "Something went 
 
   const text = raw.trim();
   if (!text) return fallback;
+  // Stack traces are always internal.
+  if (/\bat\s+[\w.<>]+\s*\(.*:\d+:\d+\)/.test(text) || text.includes("\n    at ")) return fallback;
 
   const issues = parseZodIssues(text);
   if (issues) {
