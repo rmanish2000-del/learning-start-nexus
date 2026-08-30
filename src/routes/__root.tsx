@@ -18,6 +18,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { CookieConsentBanner } from "@/components/cookie-consent";
 import { InstallBanner } from "@/components/install-banner";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { StagingBanner } from "@/components/staging-banner";
+import { SHOULD_NOINDEX } from "@/lib/environment";
 
 function NotFoundComponent() {
   return (
