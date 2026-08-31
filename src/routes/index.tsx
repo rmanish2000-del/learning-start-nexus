@@ -181,11 +181,11 @@ function Hero() {
             >
               CBSE Class 10 · Maths &amp; Science
             </Badge>
-            <h1 className="mt-6 max-w-2xl text-[2rem] leading-[1.1] font-semibold tracking-tight sm:text-[2.6rem] lg:text-[2.75rem]">
-              See exactly where your child is
-              <br className="hidden sm:block" />{" "}
+            <h1 className="mt-6 max-w-2xl text-[2rem] leading-[1.1] font-semibold tracking-tight text-balance sm:text-[2.6rem] lg:text-[2.75rem]">
+              See exactly where your child is{" "}
               <span className="text-primary">losing marks.</span>
             </h1>
+
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               A ₹199 diagnostic names the specific Maths and Science skills behind the marks, gives
               a targeted next step for each gap, and reassesses on fresh questions to show whether
