@@ -75,7 +75,7 @@ const WHAT_YOU_GET = [
   {
     icon: FileText,
     title: "A report you can keep",
-    detail: "Permanently accessible from your link, whether or not you ever upgrade.",
+    detail: "Kept in your account and accessible from your report link, whether or not you upgrade.",
   },
 ];
 
@@ -97,9 +97,10 @@ const FAQS = [
     a: "The report is written as a diagnosis, not a verdict. It names what is already secure alongside the gaps, and every gap comes with the intervention that closes it.",
   },
   {
-    q: "Is the ₹199 adjusted against the plan?",
-    a: `Yes. If you upgrade to the Board Success Plan within ${PRICING.creditWindowDays} days, the ₹199 is credited against year one — you pay ${formatInr(PRICING.planPaise - PRICING.creditPaise)} instead of ${formatInr(PRICING.planPaise)}.`,
+    q: "Is the ₹199 adjusted against the Annual Plan?",
+    a: `Yes. If you upgrade to the ₹2,999 Annual Plan within ${PRICING.creditWindowDays} days, the ₹199 is credited — you pay ${formatInr(PRICING.planPaise - PRICING.creditPaise)} instead of ${formatInr(PRICING.planPaise)}.`,
   },
+
   {
     q: "What happens to the data?",
     a: "It is stored against your child's learning record and used only to produce the report and the plan. You can request deletion at any time from the Contact page.",
@@ -468,7 +469,7 @@ function DiagnosticPurchasePage() {
               <p className="text-sm text-muted-foreground">
                 {t(
                   "diag.price.note",
-                  "One-time. No auto-renew, no card stored by EduOS. Full refund within 7 days if the diagnostic was never submitted.",
+                  "One-time payment. No auto-renew, and no card details are stored by EduOS.",
                 )}
               </p>
             </div>
@@ -482,9 +483,9 @@ function DiagnosticPurchasePage() {
           <span className="flex items-center gap-1.5">
             <Wallet className="h-3.5 w-3.5" /> {t("diag.trust.methods", "UPI · cards · netbanking")}
           </span>
-          <span>{t("diag.trust.noCalls", "No marketing calls")}</span>
-          <span>{t("diag.trust.india", "Data stays in India")}</span>
+          <span>{t("diag.trust.support", "Support: support@eduos.global")}</span>
         </div>
+
       </section>
 
       <section className="mt-12 space-y-4">

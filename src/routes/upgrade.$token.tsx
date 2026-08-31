@@ -27,7 +27,7 @@ import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { CHAPTER_GROUP_MARKS, PRICING, formatInr } from "@/lib/parent-diagnostic-shared";
 import { friendlyErrorMessage } from "@/lib/user-errors";
 
-const TITLE = "Board Success Plan — ₹2,999 a year | EduOS";
+const TITLE = "Annual Plan — ₹2,999 a year | EduOS";
 const DESCRIPTION =
   "Unlimited diagnostics and reassessments on fresh items, AI Tutor scoped to approved interventions, and fortnightly parent reports for one child's board year.";
 
@@ -125,7 +125,7 @@ function UpgradePageBody() {
         });
         if (paid.status !== "paid") throw new Error("Payment was not captured.");
       }
-      toast.success(t("upgrade.activated", "Board Success Plan activated."));
+      toast.success(t("upgrade.activated", "Annual Plan activated."));
       await query.refetch();
       await navigate({ to: "/diagnostic/report/$token", params: { token } });
     } catch (error) {
@@ -158,7 +158,7 @@ function UpgradePageBody() {
     <DiagnosticShell footerNote={`${view.subject} · ${view.unitTitle}`}>
       <section className="space-y-3">
         <Badge variant="secondary">
-          {t("upgrade.badge", "Board Success Plan · one child · one board year")}
+          {t("upgrade.badge", "Annual Plan · one child · one board year")}
         </Badge>
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           {gapCount > 0

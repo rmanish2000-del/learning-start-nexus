@@ -103,15 +103,14 @@ export function PublicSiteHeader() {
             Sign In
           </Link>
           <Button asChild size="sm" variant="outline">
-            <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
-              Book Demo
-            </Link>
-          </Button>
-          <Button asChild size="sm" className="shadow-sm">
             <Link to="/auth" search={FREE_CHECK_SEARCH}>
               Free Learning Check
             </Link>
           </Button>
+          <Button asChild size="sm" className="shadow-sm">
+            <Link to="/diagnostic">Start the ₹199 Diagnostic</Link>
+          </Button>
+
         </div>
 
 
@@ -166,17 +165,21 @@ export function PublicSiteHeader() {
               </Link>
             </nav>
             <div className="mt-3 grid gap-2">
-              <Button asChild variant="outline" onClick={() => setOpen(false)}>
-                <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
-                  Book Demo
-                </Link>
+              <Button asChild className="min-h-11" onClick={() => setOpen(false)}>
+                <Link to="/diagnostic">Start the ₹199 Diagnostic</Link>
               </Button>
-              <Button asChild onClick={() => setOpen(false)}>
+              <Button asChild variant="outline" className="min-h-11" onClick={() => setOpen(false)}>
                 <Link to="/auth" search={FREE_CHECK_SEARCH}>
                   Free Learning Check
                 </Link>
               </Button>
+              <Button asChild variant="ghost" className="min-h-11" onClick={() => setOpen(false)}>
+                <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
+                  Book a Centre Demo
+                </Link>
+              </Button>
             </div>
+
           </div>
         </div>
       ) : null}

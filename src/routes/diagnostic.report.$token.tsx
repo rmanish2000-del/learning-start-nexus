@@ -356,7 +356,7 @@ function DiagnosticReportPageBody() {
               </div>
               <Separator />
               <p className="text-sm font-medium">
-                {t("upgrade.report.planName", "Class 10 Board Success Plan — annual access")}
+                {t("upgrade.report.planName", "Class 10 Annual Plan — annual access")}
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
@@ -383,7 +383,7 @@ function DiagnosticReportPageBody() {
               </ul>
               {view.planPurchased ? (
                 <Badge variant="secondary">
-                  {t("upgrade.report.active", `Board Success Plan active — ${view.planOrderRef}`, {
+                  {t("upgrade.report.active", `Annual Plan active — ${view.planOrderRef}`, {
                     ref: view.planOrderRef ?? "",
                   })}
                 </Badge>
@@ -398,7 +398,7 @@ function DiagnosticReportPageBody() {
                         )
                       : t(
                           "upgrade.report.cta.secure",
-                          `See the Board Success Plan — ${formatInr(view.offer.firstInvoicePaise)}`,
+                          `See the Annual Plan — ${formatInr(view.offer.firstInvoicePaise)}`,
                           { price: formatInr(view.offer.firstInvoicePaise) },
                         )}
                     <ArrowRight className="ml-2 h-4 w-4" />
