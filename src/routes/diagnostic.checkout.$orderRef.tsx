@@ -205,14 +205,15 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
               <p className="text-xs text-muted-foreground">
                 {t(
                   "checkout.refund",
-                  "One-time. No auto-renew. Full refund within 7 days if the diagnostic is never submitted.",
+                  "One-time payment. No auto-renew, and no card details are stored by EduOS.",
                 )}
               </p>
+
               <div className="space-y-2 pt-1 text-xs text-muted-foreground">
                 {[
                   "Outcome-mapped questions, allocated by board weight",
                   "Server-side scoring against CBSE outcomes",
-                  "Ranked gap report you keep permanently",
+                  "Ranked gap report, kept in your account",
                 ].map((line, i) => (
                   <p key={line} className="flex items-start gap-1.5">
                     <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />

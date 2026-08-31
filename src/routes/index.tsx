@@ -28,40 +28,41 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const TITLE = "EduOS — Find the learning gaps. Prove the progress.";
+const TITLE = "EduOS — CBSE Class 10 Maths & Science learning diagnostics";
 const DESCRIPTION =
-  "EduOS is a Learning Intelligence and Intervention System. It identifies specific learning gaps, creates targeted next steps, tracks interventions and uses fresh reassessment to evidence progress. CBSE Class 10 Mathematics and Science.";
+  "Find out exactly which CBSE Class 10 Maths and Science skills your child is losing marks on. ₹199 diagnostic, outcome-by-outcome report, targeted next steps and reassessment on fresh questions.";
 
 const FAQS = [
   {
-    q: "What exactly is EduOS?",
-    a: "A Learning Intelligence and Intervention System. It runs a diagnostic, names the specific learning gaps behind the marks, records the intervention taken against each gap, and reassesses on fresh questions to determine whether the gap has closed.",
+    q: "What does the ₹199 diagnostic include?",
+    a: "One curriculum-mapped diagnostic of up to twenty questions on the chapter group you choose, an outcome-by-outcome report, the named gaps ranked, and the recommended next step for each one.",
   },
   {
-    q: "What does the free learning check include?",
-    a: "Five verified questions, one per subject area, with no payment and no card required. The learner answers it in their own workspace and the parent sees a limited preview of the report.",
+    q: "Who creates the account, and who takes the test?",
+    a: "The parent creates the account and makes the purchase. The learner signs in separately with their own handle and PIN and answers the questions themselves. The parent receives the report and the progress evidence.",
   },
   {
-    q: "What does the ₹199 diagnostic add?",
-    a: "A full curriculum-mapped diagnostic of up to twenty questions with an outcome-by-outcome report, the named gaps ranked, and the recommended next step for each one.",
+    q: "Is there anything free to try first?",
+    a: "Yes. The free learning check is five questions per subject with no payment and no card. The learner answers it in their own workspace and the parent sees a preview of the skills checked.",
   },
   {
-    q: "How does the ₹2,999 plan work?",
-    a: "The annual Board Success Plan is ₹2,999. If you have already paid for the ₹199 diagnostic and upgrade within the credit window, that ₹199 is applied, so ₹2,800 is payable.",
+    q: "How does the ₹2,999 Annual Plan work?",
+    a: "The Annual Plan is ₹2,999. If you have already paid ₹199 for the diagnostic and upgrade within 30 days, that ₹199 is credited, so ₹2,800 is payable.",
   },
   {
     q: "Can the AI tutor change results?",
-    a: "No. The tutor works inside an approved intervention and can explain or question. It cannot edit a score, and it cannot mark a gap closed — only a fresh reassessment does that.",
+    a: "No. The tutor works inside an approved intervention and can explain or question. It cannot edit a score, and it cannot mark a gap closed — only a reassessment on fresh questions does that.",
   },
   {
-    q: "Which board, class and subjects are supported today?",
+    q: "Which board, class and subjects are covered?",
     a: "CBSE Class 10 Mathematics and Science, in India, priced in INR. The interface is English only.",
   },
   {
-    q: "Can a school use EduOS?",
-    a: "School engagement is consultation-led. EduOS can support earlier gap visibility, interventions, reassessment and evidence, but school-specific structures such as classes, sections, timetables, attendance and academic calendars are not implemented today.",
+    q: "Can a learning centre or school use EduOS?",
+    a: "Centres can onboard an organisation, import a roster and run the same loop across learners. School engagement is consultation-led — school-specific structures such as classes, sections, timetables and attendance are not implemented today.",
   },
 ];
+
 
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
@@ -178,37 +179,38 @@ function Hero() {
               variant="secondary"
               className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[0.7rem] font-medium tracking-widest text-primary uppercase"
             >
-              Learning Intelligence &amp; Intervention
+              CBSE Class 10 · Maths &amp; Science
             </Badge>
-            <h1 className="mt-6 max-w-2xl text-[2rem] leading-[1.08] font-semibold tracking-tight sm:text-[2.6rem] lg:text-[2.75rem]">
-              Find the learning gaps.
-              <br className="hidden sm:block" /> Close them with purpose.
+            <h1 className="mt-6 max-w-2xl text-[2rem] leading-[1.1] font-semibold tracking-tight sm:text-[2.6rem] lg:text-[2.75rem]">
+              See exactly where your child is
               <br className="hidden sm:block" />{" "}
-              <span className="text-primary">Prove the progress.</span>
+              <span className="text-primary">losing marks.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              EduOS identifies specific learning gaps, creates targeted next steps, tracks
-              interventions, and uses fresh reassessment to provide evidence of demonstrated
-              progress.
+              A ₹199 diagnostic names the specific Maths and Science skills behind the marks, gives
+              a targeted next step for each gap, and reassesses on fresh questions to show whether
+              the gap has closed.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button asChild size="lg" className="min-h-11 shadow-sm">
-                <Link to="/auth" search={FREE_CHECK_SEARCH}>
-                  Start a Free Learning Check <ArrowRight className="h-4 w-4" aria-hidden />
+                <Link to="/diagnostic">
+                  Start the ₹199 Diagnostic <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="min-h-11 bg-background">
-                <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
-                  Book a Centre Demo
+                <Link to="/auth" search={FREE_CHECK_SEARCH}>
+                  Try the free learning check
                 </Link>
               </Button>
             </div>
 
             <p className="mt-5 flex items-start gap-2 text-sm text-muted-foreground">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-              CBSE Class 10 Mathematics and Science. No credit card required for the free check.
+              You create the account and pay. Your child signs in separately with their own handle
+              and PIN and answers the questions. You receive the report.
             </p>
+
 
             <StatRow />
           </div>
@@ -374,35 +376,38 @@ function ParentsSection() {
     <AudienceSection
       id="parents"
       eyebrow="For parents"
-      title="See where your child is actually struggling"
-      lede="Start with a free learning check. Your child answers it themselves, and you get a readable view of the skills behind the marks."
+      title="How it works for your family"
+      lede="You own the account and the purchase. Your child signs in separately with a handle and PIN, answers the questions unaided, and you get the report and the evidence."
       points={[
-        "A diagnostic that reports skill by skill, not just a total score",
-        "A targeted study plan built from the gaps that were detected",
-        "Progress visibility as steps are completed and reassessed",
-        "The learner answers independently — you receive the report and evidence",
-        "A gap is only treated as closed after a fresh reassessment",
+        "A report skill by skill, not just a total score",
+        "The gaps named and ranked, with a targeted next step for each",
+        "A study plan built from the gaps that were detected",
+        "Reassessment on fresh questions decides whether a gap has closed",
+        "You can start free: five questions per subject, no card needed",
       ]}
-      cta={{ label: "Start a Free Learning Check", to: "/auth", search: { ...FREE_CHECK_SEARCH } }}
+      cta={{ label: "Start the ₹199 Diagnostic", to: "/diagnostic" }}
       secondary={
         <Button asChild size="lg" variant="outline">
-          <Link to="/diagnostic">See the ₹199 diagnostic</Link>
+          <Link to="/auth" search={FREE_CHECK_SEARCH}>
+            Try the free learning check
+          </Link>
         </Button>
       }
       qualifier="EduOS reports what the assessments show. It does not promise that every gap will close or that a particular grade will be achieved."
       muted
       aside={
         <div className="rounded-2xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">What a parent receives</h3>
+          <h3 className="text-sm font-semibold">What you receive</h3>
           <ul className="mt-3 space-y-2.5 text-sm text-muted-foreground">
             <li>A free 5-question learning check per subject, with a preview report.</li>
-            <li>The ₹199 full diagnostic report, outcome by outcome.</li>
+            <li>The ₹199 diagnostic report, outcome by outcome.</li>
             <li>The named gaps and the recommended next step for each.</li>
             <li>Reassessment results showing whether a gap has closed.</li>
           </ul>
         </div>
       }
     />
+
   );
 }
 
@@ -465,10 +470,11 @@ function PricingSection() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
         <p className="text-xs font-medium tracking-widest text-primary uppercase">Pricing</p>
         <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-          Direct-parent pricing, in INR
+          Simple pricing, in INR
         </h2>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          Centres and schools are priced after a demo, based on roster size and scope.
+          Pay ₹199 once for the diagnostic. If you later upgrade, that ₹199 comes off the Annual
+          Plan. Centres and schools are priced after a demo.
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -476,39 +482,41 @@ function PricingSection() {
             <h3 className="text-sm font-semibold">Free Learning Check</h3>
             <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">Free</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Five verified questions per subject, answered by the learner, with a preview of the
-              skills checked and possible gaps. No card required.
+              Five questions per subject, answered by the learner, with a preview of the skills
+              checked and possible gaps. No card required.
             </p>
-            <Button asChild className="mt-4 w-full">
+            <Button asChild variant="outline" className="mt-4 w-full">
               <Link to="/auth" search={FREE_CHECK_SEARCH}>Start free</Link>
             </Button>
           </div>
 
           <div className="rounded-xl border-2 border-primary bg-card p-5">
-            <h3 className="text-sm font-semibold">Full Diagnostic</h3>
+            <h3 className="text-sm font-semibold">Diagnostic</h3>
             <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹199</p>
             <p className="mt-2 text-sm text-muted-foreground">
               One curriculum-mapped diagnostic of up to twenty questions, an outcome-by-outcome gap
               report and the recommended next step for each gap.
             </p>
             <Button asChild className="mt-4 w-full">
-              <Link to="/diagnostic">Start the ₹199 diagnostic</Link>
+              <Link to="/diagnostic">Start the ₹199 Diagnostic</Link>
             </Button>
           </div>
 
           <div className="rounded-xl border bg-card p-5">
-            <h3 className="text-sm font-semibold">Annual Board Success Plan</h3>
+            <h3 className="text-sm font-semibold">Annual Plan</h3>
             <p className="mt-1 text-3xl font-semibold tabular-nums tracking-tight">₹2,999</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Guided practice, AI tutor access with guardian consent, reassessment on fresh items
-              and evidence records for the year.
+              Guided practice, AI tutor access with guardian consent, reassessment on fresh
+              questions and evidence records for the year.
             </p>
             <p className="mt-3 rounded-lg bg-muted p-3 text-xs text-muted-foreground">
-              Already paid for the ₹199 diagnostic? That ₹199 is credited against an eligible
-              upgrade, so <span className="font-medium text-foreground">₹2,800</span> is payable.
+              Already paid ₹199 for the diagnostic? That ₹199 is credited if you upgrade within 30
+              days, so <span className="font-medium text-foreground">₹2,800</span> is payable. The
+              Annual Plan is offered from your diagnostic report.
             </p>
           </div>
         </div>
+
       </div>
     </section>
   );
