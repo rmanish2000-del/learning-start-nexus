@@ -59,6 +59,16 @@ export const createLearner = createServerFn({ method: "POST" })
       .insert({ user_id: created.user.id, role: "student" });
     if (roleError) throw new Error(roleError.message);
 
+    // The signup trigger homes new profiles to the first organisation; without
+    // re-homing, a student in any other org cannot see their own learner row.
+    const { error: studentProfileError } = await supabaseAdmin
+      .from("profiles")
+      .upsert(
+        { id: created.user.id, org_id: profile?.org_id ?? null, full_name: data.fullName },
+        { onConflict: "id" },
+      );
+    if (studentProfileError) throw new Error(studentProfileError.message);
+
     const { data: learner, error: learnerError } = await supabaseAdmin
       .from("learners")
       .insert({

@@ -374,7 +374,7 @@ function AuthPage() {
 
 
             <TabsContent value="staff" className="pt-6">
-              <form onSubmit={onStaffSubmit} className="space-y-4">
+              <form method="post" onSubmit={onStaffSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <div className="relative">
@@ -412,7 +412,7 @@ function AuthPage() {
             </TabsContent>
 
             <TabsContent value="student" className="pt-6">
-              <form onSubmit={onStudentSubmit} className="space-y-4">
+              <form method="post" onSubmit={onStudentSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="handle">Student handle</Label>
                   <div className="relative">
@@ -455,7 +455,7 @@ function AuthPage() {
             </TabsContent>
 
             <TabsContent value="parent" className="pt-6">
-              <form onSubmit={onParentSubmit} className="space-y-4">
+              <form method="post" onSubmit={onParentSubmit} className="space-y-4">
                 {parentMode === "signup" ? (
                   <>
                     <div className="space-y-2">

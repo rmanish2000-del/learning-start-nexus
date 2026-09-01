@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import {
-  asResultEntries, DIFFICULTY_LABELS, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
+  asResultEntries, DIFFICULTY_LABELS, normalizeQuestionOptions, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -128,7 +128,7 @@ function AssessmentDetailPage() {
             difficulty: q.difficulty,
             kind: q.kind,
             prompt: q.prompt,
-            options: (q.options as string[] | null) ?? null,
+            options: normalizeQuestionOptions(q.options),
             correct_answer: q.correct_answer,
             explanation: q.explanation,
             sort_order: row.sort_order,
@@ -143,8 +143,15 @@ function AssessmentDetailPage() {
         .order("sort_order");
       if (error) throw error;
       return (data ?? []).map((row) => {
-        const item = row.assessment_items as unknown as Omit<RunnerQuestion, "sort_order" | "points">;
-        return { ...item, sort_order: row.sort_order, points: row.points };
+        const item = row.assessment_items as unknown as Omit<RunnerQuestion, "sort_order" | "points" | "options"> & {
+          options: unknown;
+        };
+        return {
+          ...item,
+          options: normalizeQuestionOptions(item.options),
+          sort_order: row.sort_order,
+          points: row.points,
+        };
       });
     },
   });
@@ -406,7 +413,7 @@ function AssessmentDetailPage() {
                   <TableCell className="max-w-md">
                     <p className="text-sm">{item.prompt}</p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      {item.kind === "mcq" ? `Options: ${(item.options ?? []).join(" · ")}` : "Numeric answer"} ·{" "}
+                      {item.kind === "mcq" ? `Options: ${(item.options ?? []).map((o) => o.label).join(" · ")}` : "Numeric answer"} ·{" "}
                       {DIFFICULTY_LABELS[item.difficulty]}
                     </p>
                   </TableCell>

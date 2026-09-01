@@ -37,11 +37,23 @@ import { friendlyErrorMessage } from "@/lib/user-errors";
  * child, hand over sign-in details and run a free learning check without ever
  * opening checkout.
  */
-export function ParentLearners() {
+export function ParentLearners({
+  selectedId: controlledId,
+  onSelect,
+}: {
+  /** Optional controlled selection so the page shows one child everywhere. */
+  selectedId?: string | null;
+  onSelect?: (id: string) => void;
+} = {}) {
   const { t } = useI18n();
   const accountFn = useServerFn(getParentAccount);
   const query = useQuery({ queryKey: ["parent-account"], queryFn: () => accountFn() });
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [internalId, setInternalId] = useState<string | null>(null);
+  const selectedId = controlledId !== undefined ? controlledId : internalId;
+  const setSelectedId = (id: string) => {
+    setInternalId(id);
+    onSelect?.(id);
+  };
 
   if (query.isLoading) return <Skeleton className="h-56 w-full" />;
   if (query.isError) {
@@ -57,7 +69,9 @@ export function ParentLearners() {
   const account = query.data as ParentAccount | undefined;
   if (!account) return null;
 
-  const students = account.students;
+  const students = [...account.students].sort(
+    (a, b) => a.fullName.localeCompare(b.fullName) || a.id.localeCompare(b.id),
+  );
   const selected = students.find((s) => s.id === selectedId) ?? students[0] ?? null;
 
   return (

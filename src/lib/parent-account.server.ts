@@ -86,7 +86,10 @@ export async function listStudents(userId: string): Promise<ParentStudent[]> {
       "id, full_name, grade, board, subject, mastery_score, created_at, handle, student_user_id, educator_id",
     )
     .in("id", ids)
-    .order("created_at");
+    // Stable, deterministic order: bulk-created siblings can share created_at,
+    // and an unstable list shuffles the child tabs between refetches.
+    .order("created_at")
+    .order("id");
   if (lError) throw new Error(lError.message);
 
   // Educator names power the "Awaiting educator assignment / Educator assigned"
@@ -142,7 +145,7 @@ export async function setStudentPinAsAdmin(
   const input = { learnerId, pin };
   const { data: learner, error } = await supabaseAdmin
     .from("learners")
-    .select("id, handle, full_name, student_user_id")
+    .select("id, org_id, handle, full_name, student_user_id")
     .eq("id", input.learnerId)
     .single();
   if (error || !learner) throw new Error("Student profile not found.");
@@ -174,6 +177,16 @@ export async function setStudentPinAsAdmin(
     .from("user_roles")
     .insert({ user_id: created.user.id, role: "student" })
     .then(() => undefined, () => undefined);
+
+  // The signup trigger homes every new profile to the first organisation, so a
+  // student created for a learner in any other org is hidden from their own
+  // account by the org-scoped learner policy ("profile isn't linked yet").
+  await supabaseAdmin
+    .from("profiles")
+    .upsert(
+      { id: created.user.id, org_id: learner.org_id, full_name: learner.full_name },
+      { onConflict: "id" },
+    );
 
   const { error: linkError } = await supabaseAdmin
     .from("learners")

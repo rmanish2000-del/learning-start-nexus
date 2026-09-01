@@ -8,6 +8,7 @@ import {
   type ItemKind,
   type AssessmentSession,
   type ResultEntry,
+  normalizeQuestionOptions,
   type RunnerQuestion,
 } from "./assessment-shared";
 import { isLegacyContent, SUPPORTED_SCOPE } from "./assessment-lifecycle";
@@ -106,7 +107,7 @@ export async function fetchAssessmentItems(assessmentId: string): Promise<Runner
         difficulty: q.difficulty,
         kind: q.kind as ItemKind,
         prompt: q.prompt,
-        options: (q.options as string[] | null) ?? null,
+        options: normalizeQuestionOptions(q.options),
         correct_answer: q.correct_answer,
         explanation: q.explanation,
         sort_order: row.sort_order,
@@ -138,7 +139,7 @@ export async function fetchAssessmentItems(assessmentId: string): Promise<Runner
       difficulty: item.difficulty,
       kind: item.kind as ItemKind,
       prompt: item.prompt,
-      options: (item.options as string[] | null) ?? null,
+      options: normalizeQuestionOptions(item.options),
       correct_answer: item.correct_answer,
       explanation: item.explanation,
       sort_order: row.sort_order,

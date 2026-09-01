@@ -159,6 +159,21 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
     return () => window.removeEventListener(START_TOUR_EVENT, handler);
   }, [tourId, start]);
 
+  // Escape closes the tour. The overlay swallows clicks on the page beneath
+  // it, so a keyboard user (or anyone who misses the small X) must have a way
+  // out that doesn't depend on hitting one 14px button.
+  useEffect(() => {
+    if (active === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        finish();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active, finish]);
+
   // Track the highlighted element's position.
   useEffect(() => {
     if (active === null) return;
