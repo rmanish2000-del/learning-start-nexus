@@ -68,13 +68,49 @@ export type ResultEntry = {
 
 // The question shape the student runner actually needs. Both pipelines
 // (legacy assessment_items, curriculum question_bank) are mapped into this.
+export type RunnerOption = {
+  /** The value stored as the learner's answer and compared to correct_answer. */
+  key: string;
+  /** What the learner reads. */
+  label: string;
+};
+
+// Question options arrive in two shapes: legacy assessment_items store plain
+// strings (the answer key IS the option text), while curriculum question_bank
+// rows store { key, text } objects (the answer key is "A"/"B"/...). Rendering
+// the raw jsonb crashes the runner, so everything is normalized here.
+export function normalizeQuestionOptions(raw: unknown): RunnerOption[] | null {
+  if (!Array.isArray(raw)) return null;
+  const options: RunnerOption[] = [];
+  for (const entry of raw) {
+    if (typeof entry === "string") {
+      options.push({ key: entry, label: entry });
+      continue;
+    }
+    if (entry && typeof entry === "object") {
+      const o = entry as Record<string, unknown>;
+      const key = typeof o["key"] === "string" ? o["key"] : null;
+      const label =
+        typeof o["text"] === "string"
+          ? o["text"]
+          : typeof o["label"] === "string"
+            ? o["label"]
+            : null;
+      if (key !== null || label !== null) {
+        options.push({ key: key ?? label!, label: label ?? key! });
+      }
+    }
+  }
+  return options.length > 0 ? options : null;
+}
+
 export type RunnerQuestion = {
   id: string;
   subtopic: string; // legacy subtopic label, or the outcome code for curriculum questions
   difficulty: number;
   kind: ItemKind;
   prompt: string;
-  options: string[] | null;
+  options: RunnerOption[] | null;
   correct_answer: string; // stripped for students before submission (see stripAnswers)
   explanation: string | null;
   sort_order: number;

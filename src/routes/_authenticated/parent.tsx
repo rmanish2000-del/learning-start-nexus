@@ -95,9 +95,12 @@ function ParentPortal() {
         .select("learner_id, learners(id, full_name, grade, mastery_score, mastery_lift)")
         .eq("parent_user_id", user.id);
       if (error) throw error;
+      // Deterministic order: without it the child tabs reshuffle on every
+      // refetch, which moves the tab a parent is about to tap.
       return (data ?? [])
         .map((row) => row.learners)
-        .filter((l): l is NonNullable<typeof l> => l !== null);
+        .filter((l): l is NonNullable<typeof l> => l !== null)
+        .sort((a, b) => a.full_name.localeCompare(b.full_name) || a.id.localeCompare(b.id));
     },
   });
 
@@ -224,7 +227,7 @@ function ParentPortal() {
           <ContextHelp page="/parent" />
         </div>
 
-        <ParentLearners />
+        <ParentLearners selectedId={learner?.id ?? null} onSelect={setSelectedId} />
 
         <ParentPurchases />
 

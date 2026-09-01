@@ -279,11 +279,11 @@ function TakeAssessmentPage() {
             (question.options ?? []).length > 0 ? (
               <div className="grid gap-2 sm:grid-cols-2">
                 {(question.options ?? []).map((option) => {
-                  const selected = answers[question.id] === option;
+                  const selected = answers[question.id] === option.key;
                   return (
                     <button
-                      key={option}
-                      onClick={() => pickAnswer(question.id, option)}
+                      key={option.key}
+                      onClick={() => pickAnswer(question.id, option.key)}
                       className={cn(
                         "flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-colors",
                         selected
@@ -299,7 +299,7 @@ function TakeAssessmentPage() {
                       >
                         {selected && <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />}
                       </span>
-                      {option}
+                      {option.label}
                     </button>
                   );
                 })}
