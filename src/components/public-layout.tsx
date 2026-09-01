@@ -9,11 +9,13 @@ import { Button } from "@/components/ui/button";
  * these entries are hash targets on "/" and work from every public route.
  */
 const AUDIENCE_LINKS = [
-  { hash: "/#parents", label: "For Parents" },
-  { hash: "/#centres", label: "For Centres" },
-  { hash: "/#schools", label: "For Schools" },
-  { hash: "/about", label: "About" },
+  { hash: "/#parents", label: "For Parents", shortLabel: "Parents" },
+  { hash: "/#centres", label: "For Centres", shortLabel: "Centres" },
+  { hash: "/#schools", label: "For Schools", shortLabel: "Schools" },
+  { hash: "/about", label: "About", shortLabel: "About" },
 ] as const;
+
+
 
 /** Verified entry point for the free learning check: parent account → parent portal. */
 export const FREE_CHECK_SEARCH = {
@@ -94,24 +96,19 @@ export function PublicSiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             to="/auth"
             search={{ tab: "parent", mode: "signin" }}
-            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            className="rounded-md px-2 py-2 text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             Sign In
           </Link>
-          <Button asChild size="sm" variant="outline">
-            <Link to="/auth" search={FREE_CHECK_SEARCH}>
-              Free Learning Check
-            </Link>
-          </Button>
           <Button asChild size="sm" className="shadow-sm">
             <Link to="/diagnostic">Start the ₹199 Diagnostic</Link>
           </Button>
-
         </div>
+
 
 
         <div className="flex items-center gap-1.5 lg:hidden">
@@ -152,7 +149,7 @@ export function PublicSiteHeader() {
                   onClick={() => setOpen(false)}
                   className="flex min-h-11 items-center rounded-md px-2 text-base font-medium hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
-                  {item.label}
+                  {item.shortLabel}
                 </a>
               ))}
               <Link
@@ -168,17 +165,13 @@ export function PublicSiteHeader() {
               <Button asChild className="min-h-11" onClick={() => setOpen(false)}>
                 <Link to="/diagnostic">Start the ₹199 Diagnostic</Link>
               </Button>
-              <Button asChild variant="outline" className="min-h-11" onClick={() => setOpen(false)}>
-                <Link to="/auth" search={FREE_CHECK_SEARCH}>
-                  Free Learning Check
-                </Link>
-              </Button>
               <Button asChild variant="ghost" className="min-h-11" onClick={() => setOpen(false)}>
                 <Link to="/contact" search={CENTRE_DEMO_SEARCH}>
                   Book a Centre Demo
                 </Link>
               </Button>
             </div>
+
 
           </div>
         </div>
@@ -233,8 +226,9 @@ export function PublicSiteFooter() {
               support@eduos.global
             </a>
             <a href="tel:+919850820909" className="block hover:text-foreground">
-              9850820909
+              +91 98508 20909
             </a>
+
             <span className="block">
               Tilak Ward, Deori, Sagar, Madhya Pradesh 470226, India
             </span>

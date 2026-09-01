@@ -246,7 +246,7 @@ function LearnerDetail({ student, account }: { student: ParentStudent; account: 
               >
                 <div className="min-w-0">
                   <p className="truncate text-sm">
-                    {p.purpose === "diagnostic" ? "Diagnostic" : "Board Success Plan"}
+                    {p.purpose === "diagnostic" ? "Diagnostic" : "Annual Plan"}
                     {p.subject ? ` · ${p.subject}` : ""}
                   </p>
                   <p className="flex items-center gap-1.5 text-xs text-muted-foreground">

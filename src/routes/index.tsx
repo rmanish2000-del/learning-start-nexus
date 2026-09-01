@@ -10,9 +10,11 @@ import {
 } from "lucide-react";
 
 import { PilotForm } from "@/components/landing/pilot-form";
-import { AudienceSection } from "@/components/landing/audience-section";
+import type { AudienceContent } from "@/components/landing/audience-section";
+import { AudienceTabs } from "@/components/landing/audience-tabs";
 import { LoopSection } from "@/components/landing/loop-section";
 import { TrustSection } from "@/components/landing/trust-section";
+
 import {
   CENTRE_DEMO_SEARCH,
   FREE_CHECK_SEARCH,
@@ -152,14 +154,13 @@ function LandingPage() {
         <Hero />
         <ProblemSection />
         <LoopSection />
-        <ParentsSection />
-        <CentresSection />
-        <SchoolsSection />
+        <AudienceTabs audiences={AUDIENCES} />
         <TrustSection />
         <PricingSection />
         <FaqSection />
         <CentreCtaSection />
       </main>
+
       <PublicSiteFooter />
     </div>
   );
@@ -191,18 +192,24 @@ function Hero() {
               a targeted next step for each gap, and reassesses on fresh questions to show whether
               the gap has closed.
             </p>
+            <p className="mt-3 max-w-xl text-base font-medium text-foreground">
+              Most tests give a score. EduOS names the skill, acts on it, and re-tests on fresh
+              questions.
+            </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button asChild size="lg" className="min-h-11 shadow-sm">
+            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
+              <Button asChild size="lg" className="min-h-11 w-full shadow-sm sm:w-auto">
                 <Link to="/diagnostic">
                   Start the ₹199 Diagnostic <ArrowRight className="h-4 w-4" aria-hidden />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="min-h-11 bg-background">
-                <Link to="/auth" search={FREE_CHECK_SEARCH}>
-                  Try the free learning check
-                </Link>
-              </Button>
+              <Link
+                to="/auth"
+                search={FREE_CHECK_SEARCH}
+                className="inline-flex min-h-11 items-center rounded-md text-sm font-medium text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              >
+                Or try the free learning check
+              </Link>
             </div>
 
             <p className="mt-5 flex items-start gap-2 text-sm text-muted-foreground">
@@ -210,6 +217,7 @@ function Hero() {
               You create the account and pay. Your child signs in separately with their own handle
               and PIN and answers the questions. You receive the report.
             </p>
+
 
 
             <StatRow />
@@ -371,98 +379,92 @@ function ProblemSection() {
 }
 
 
-function ParentsSection() {
-  return (
-    <AudienceSection
-      id="parents"
-      eyebrow="For parents"
-      title="How it works for your family"
-      lede="You own the account and the purchase. Your child signs in separately with a handle and PIN, answers the questions unaided, and you get the report and the evidence."
-      points={[
-        "A report skill by skill, not just a total score",
-        "The gaps named and ranked, with a targeted next step for each",
-        "A study plan built from the gaps that were detected",
-        "Reassessment on fresh questions decides whether a gap has closed",
-        "You can start free: five questions per subject, no card needed",
-      ]}
-      cta={{ label: "Start the ₹199 Diagnostic", to: "/diagnostic" }}
-      secondary={
-        <Button asChild size="lg" variant="outline">
-          <Link to="/auth" search={FREE_CHECK_SEARCH}>
-            Try the free learning check
-          </Link>
-        </Button>
-      }
-      qualifier="EduOS reports what the assessments show. It does not promise that every gap will close or that a particular grade will be achieved."
-      muted
-      aside={
-        <div className="rounded-2xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">What you receive</h3>
-          <ul className="mt-3 space-y-2.5 text-sm text-muted-foreground">
-            <li>A free 5-question learning check per subject, with a preview report.</li>
-            <li>The ₹199 diagnostic report, outcome by outcome.</li>
-            <li>The named gaps and the recommended next step for each.</li>
-            <li>Reassessment results showing whether a gap has closed.</li>
-          </ul>
-        </div>
-      }
-    />
+const AUDIENCES: (AudienceContent & { tabLabel: string })[] = [
+  {
+    id: "parents",
+    tabLabel: "Parents",
+    eyebrow: "For parents",
+    title: "How it works for your family",
+    lede: "You own the account and the purchase. Your child signs in separately with a handle and PIN, answers the questions unaided, and you get the report and the evidence.",
+    points: [
+      "A report skill by skill, not just a total score",
+      "The gaps named and ranked, with a targeted next step for each",
+      "A study plan built from the gaps that were detected",
+      "Reassessment on fresh questions decides whether a gap has closed",
+      "You can start free: five questions per subject, no card needed",
+    ],
+    cta: { label: "Start the ₹199 Diagnostic", to: "/diagnostic" },
+    secondary: (
+      <Link
+        to="/auth"
+        search={FREE_CHECK_SEARCH}
+        className="inline-flex min-h-11 items-center rounded-md text-sm font-medium text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      >
+        Or try the free learning check
+      </Link>
+    ),
+    qualifier:
+      "EduOS reports what the assessments show. It does not promise that every gap will close or that a particular grade will be achieved.",
+    aside: (
+      <div className="rounded-2xl border bg-card p-5">
+        <h4 className="text-sm font-semibold">What you receive</h4>
+        <ul className="mt-3 space-y-2.5 text-sm text-muted-foreground">
+          <li>A free 5-question learning check per subject, with a preview report.</li>
+          <li>The ₹199 diagnostic report, outcome by outcome.</li>
+          <li>The named gaps and the recommended next step for each.</li>
+          <li>Reassessment results showing whether a gap has closed.</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    id: "centres",
+    tabLabel: "Centres",
+    eyebrow: "For learning centres",
+    title: "Run the gap-closure loop across your roster",
+    lede: "Onboard your centre, import your learners, assign diagnostics, and work a prioritised intervention queue with evidence at the end of it.",
+    points: [
+      "Centre onboarding with organization and first-admin provisioning",
+      "Educator workflows for assignment, review and approval",
+      "CSV learner import for your existing roster",
+      "Educator-to-learner assignment and diagnostic assignment",
+      "Learner gap visibility, intervention queues and cohort heatmaps",
+      "Reassessment and evidence records per learner",
+      "Tenant isolation, so each centre sees only its own data",
+    ],
+    cta: { label: "Book a Centre Demo", to: "/contact", search: { ...CENTRE_DEMO_SEARCH } },
+    qualifier:
+      "EduOS is not a fee, payroll, attendance, timetable or scheduling product. It is the learning-outcome layer alongside whatever you already use for operations.",
+    aside: (
+      <div className="rounded-2xl border bg-card p-5">
+        <h4 className="text-sm font-semibold">A centre's working week</h4>
+        <ol className="mt-3 space-y-2.5 text-sm text-muted-foreground">
+          <li>1. Assign a diagnostic to a group of learners.</li>
+          <li>2. Read the cohort heatmap and see which outcomes are weak.</li>
+          <li>3. Work the intervention queue, worst gap first.</li>
+          <li>4. Reassess on fresh items and share the evidence with families.</li>
+        </ol>
+      </div>
+    ),
+  },
+  {
+    id: "schools",
+    tabLabel: "Schools",
+    eyebrow: "For schools",
+    title: "Earlier gap visibility, explored with us first",
+    lede: "EduOS can help schools explore earlier learning-gap visibility, structured interventions, reassessment and evidence. School deployment is consultation-led.",
+    points: [
+      "Diagnostics that report against learning outcomes, not only totals",
+      "Structured interventions recorded against each detected gap",
+      "Reassessment on fresh items to determine closure",
+      "Evidence records that can be reviewed by staff",
+    ],
+    cta: { label: "Talk to EduOS", to: "/contact", search: { topic: "school" } },
+    qualifier:
+      "Current operational content is CBSE Class 10 Mathematics and Science. School-specific structures — classes and sections, timetables, attendance, academic calendars, district reporting and SIS/LMS integration — are not implemented today and would require configuration or future development. We will tell you plainly what fits before anything is agreed.",
+  },
+];
 
-  );
-}
-
-function CentresSection() {
-  return (
-    <AudienceSection
-      id="centres"
-      eyebrow="For learning centres"
-      title="Run the gap-closure loop across your roster"
-      lede="Onboard your centre, import your learners, assign diagnostics, and work a prioritised intervention queue with evidence at the end of it."
-      points={[
-        "Centre onboarding with organization and first-admin provisioning",
-        "Educator workflows for assignment, review and approval",
-        "CSV learner import for your existing roster",
-        "Educator-to-learner assignment and diagnostic assignment",
-        "Learner gap visibility, intervention queues and cohort heatmaps",
-        "Reassessment and evidence records per learner",
-        "Tenant isolation, so each centre sees only its own data",
-      ]}
-      cta={{ label: "Book a Centre Demo", to: "/contact", search: { ...CENTRE_DEMO_SEARCH } }}
-      qualifier="EduOS is not a fee, payroll, attendance, timetable or scheduling product. It is the learning-outcome layer alongside whatever you already use for operations."
-      aside={
-        <div className="rounded-2xl border bg-card p-5">
-          <h3 className="text-sm font-semibold">A centre's working week</h3>
-          <ol className="mt-3 space-y-2.5 text-sm text-muted-foreground">
-            <li>1. Assign a diagnostic to a group of learners.</li>
-            <li>2. Read the cohort heatmap and see which outcomes are weak.</li>
-            <li>3. Work the intervention queue, worst gap first.</li>
-            <li>4. Reassess on fresh items and share the evidence with families.</li>
-          </ol>
-        </div>
-      }
-    />
-  );
-}
-
-function SchoolsSection() {
-  return (
-    <AudienceSection
-      id="schools"
-      eyebrow="For schools"
-      title="Earlier gap visibility, explored with us first"
-      lede="EduOS can help schools explore earlier learning-gap visibility, structured interventions, reassessment and evidence. School deployment is consultation-led."
-      points={[
-        "Diagnostics that report against learning outcomes, not only totals",
-        "Structured interventions recorded against each detected gap",
-        "Reassessment on fresh items to determine closure",
-        "Evidence records that can be reviewed by staff",
-      ]}
-      cta={{ label: "Talk to EduOS", to: "/contact", search: { topic: "school" } }}
-      qualifier="Current operational content is CBSE Class 10 Mathematics and Science. School-specific structures — classes and sections, timetables, attendance, academic calendars, district reporting and SIS/LMS integration — are not implemented today and would require configuration or future development. We will tell you plainly what fits before anything is agreed."
-      muted
-    />
-  );
-}
 
 function PricingSection() {
   return (
@@ -476,6 +478,16 @@ function PricingSection() {
           Pay ₹199 once for the diagnostic. If you later upgrade, that ₹199 comes off the Annual
           Plan. Centres and schools are priced after a demo.
         </p>
+
+        {/* Credit callout: the exact runtime rule (₹199 credited within a
+            30-day window, so ₹2,800 is payable on the ₹2,999 Annual Plan). */}
+        <p className="mt-5 max-w-2xl rounded-xl border border-primary/30 bg-primary/5 p-4 text-sm text-foreground">
+          Your ₹199 is credited toward the Annual Plan. You pay{" "}
+          <span className="font-semibold tabular-nums">₹2,800</span>, not{" "}
+          <span className="tabular-nums">₹2,999</span> — valid for 30 days.
+        </p>
+
+
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           <div className="rounded-xl border bg-card p-5">

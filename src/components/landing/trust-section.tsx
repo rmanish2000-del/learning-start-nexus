@@ -23,12 +23,13 @@ const CHAIN = [
   },
 ];
 
-const PRINCIPLES = [
-  "Effort alone does not close a gap — reassessment determines closure.",
-  "Each step in the chain is timestamped where the application currently records it.",
-  "The AI tutor explains and questions; it cannot change a score or close a gap.",
-  "Reviewer controls apply on the surfaces where they are currently implemented.",
-];
+/**
+ * Figma P1: the four principle cards competed with the evidence chain for
+ * attention. They are now one muted caption below the chain.
+ */
+const PRINCIPLES_CAPTION =
+  "Effort alone does not close a gap — reassessment determines closure. Each step is timestamped where the application records it. The AI tutor explains and questions; it cannot change a score or close a gap. Reviewer controls apply on the surfaces where they are currently implemented.";
+
 
 /**
  * Trust and evidence section. Describes only the chain the application
@@ -71,13 +72,10 @@ export function TrustSection() {
           ))}
         </ol>
 
-        <ul className="mt-8 grid gap-2.5 sm:grid-cols-2">
-          {PRINCIPLES.map((principle) => (
-            <li key={principle} className="rounded-lg border bg-muted/40 p-3 text-sm text-muted-foreground">
-              {principle}
-            </li>
-          ))}
-        </ul>
+        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">
+          {PRINCIPLES_CAPTION}
+        </p>
+
       </div>
     </section>
   );
