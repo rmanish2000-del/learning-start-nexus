@@ -58,7 +58,7 @@ export function ParentPurchases() {
               <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">2 · Educator</p>
               <p className="mt-1 text-sm">
                 {awaiting > 0
-                  ? "An educator is only assigned when you take the Board Success Plan. Our centre admin does it within 1 working day — you never have to pick one."
+                  ? "An educator is only assigned when you take the Annual Plan. Our centre admin does it within 1 working day — you never have to pick one."
                   : "An educator is assigned and reviewing the report."}
               </p>
             </div>
@@ -92,7 +92,7 @@ export function ParentPurchases() {
               >
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">
-                    {p.purpose === "diagnostic" ? "Diagnostic" : "Board Success Plan"}
+                    {p.purpose === "diagnostic" ? "Diagnostic" : "Annual Plan"}
                     {p.subject ? ` · ${p.subject}` : ""}
                   </p>
                   <p className="truncate text-xs text-muted-foreground">

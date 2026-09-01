@@ -475,7 +475,7 @@ export async function startRazorpayCheckout(ref: string, userId: string | null =
   const description =
     row.purpose === "diagnostic"
       ? `Class ${row.grade ?? 10} ${row.subject ?? ""} diagnostic`.trim()
-      : "Board Success Plan — one child, one board year";
+      : "Annual Plan — one child, one board year";
 
   if (row.status === "paid") {
     return {

@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_authenticated/payment-audit")({
       {
         name: "description",
         content:
-          "Live payment validation: orders, captures, failures, webhook deliveries, duplicate events and entitlement grants for the parent diagnostic and Board Success Plan.",
+          "Live payment validation: orders, captures, failures, webhook deliveries, duplicate events and entitlement grants for the parent diagnostic and Annual Plan.",
       },
       { name: "robots", content: "noindex" },
       { property: "og:title", content: "Payment Audit Dashboard — EduOS" },

@@ -1,5 +1,13 @@
 import { BadgeCheck, Bot, ClipboardList, MessagesSquare, RefreshCcw, Target } from "lucide-react";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+
 const STEPS = [
   {
     icon: Target,
@@ -51,7 +59,37 @@ export function LoopSection() {
           decide and approve; the tutor teaches within those bounds; reassessment decides closure.
         </p>
 
-        <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Mobile: accordion so the six steps do not become a long scroll.
+            Radix supplies the button/region roles and keyboard support. */}
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="step-0"
+          className="mt-8 rounded-xl border bg-card px-4 sm:hidden"
+        >
+          {STEPS.map((step, index) => (
+            <AccordionItem key={step.title} value={`step-${index}`}>
+              <AccordionTrigger className="text-left text-sm font-medium">
+                <span className="flex items-center gap-2.5">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <step.icon className="h-4 w-4 text-primary" aria-hidden />
+                  </span>
+                  <span>
+                    <span className="block text-[11px] font-semibold tabular-nums text-muted-foreground">
+                      Step {index + 1}
+                    </span>
+                    {step.title}
+                  </span>
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                {step.body}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+
+        <ol className="mt-8 hidden gap-3 sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {STEPS.map((step, index) => (
             <li
               key={step.title}
@@ -70,6 +108,7 @@ export function LoopSection() {
             </li>
           ))}
         </ol>
+
       </div>
     </section>
   );

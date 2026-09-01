@@ -105,13 +105,13 @@ export function computePaymentMetrics(
       key: "entitlements_granted",
       label: "Entitlements granted",
       value: entitlements.length,
-      hint: "Diagnostic credits + Board Success Plan grants.",
+      hint: "Diagnostic credits + Annual Plan grants.",
     },
     {
       key: "credits_applied",
       label: "Upgrade credits applied",
       value: entitlements.filter((e) => e.kind === "diagnostic_credit" && e.consumedAt).length,
-      hint: "₹199 diagnostic credits consumed by a Board Success Plan purchase.",
+      hint: "₹199 diagnostic credits consumed by an Annual Plan purchase.",
     },
   ];
 }

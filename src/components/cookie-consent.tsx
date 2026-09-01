@@ -55,7 +55,7 @@ export function CookieConsentBanner() {
       aria-label="Cookie consent"
       className="fixed inset-x-0 bottom-0 z-50 border-t bg-background/95 shadow-lg backdrop-blur print:hidden"
     >
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:gap-6">
+      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:gap-6">
         <div className="flex min-w-0 flex-1 items-start gap-3">
           <Cookie className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
           <p className="text-sm text-muted-foreground">
@@ -68,15 +68,21 @@ export function CookieConsentBanner() {
             .
           </p>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => choose("essential")}>
+        <div className="grid shrink-0 grid-cols-2 items-center gap-2 sm:flex">
+          <Button
+            variant="outline"
+            size="sm"
+            className="min-h-11 sm:min-h-9"
+            onClick={() => choose("essential")}
+          >
             Essential only
           </Button>
-          <Button size="sm" onClick={() => choose("all")}>
+          <Button size="sm" className="min-h-11 sm:min-h-9" onClick={() => choose("all")}>
             Accept
           </Button>
         </div>
       </div>
     </div>
+
   );
 }
