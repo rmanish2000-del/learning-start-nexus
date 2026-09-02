@@ -87,8 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      // PWA (manifest-only installability — no service worker, no caching).
-      { name: "theme-color", content: "#017C5D" },
+      // Safe PWA Phase 1: installability plus a static-asset-only worker.
+      { name: "theme-color", content: "#F97316" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-title", content: "EduOS" },

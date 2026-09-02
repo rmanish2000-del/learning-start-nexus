@@ -17,6 +17,10 @@ import { toast } from "sonner";
 
 import { QueryError } from "@/components/query-error";
 import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
+import {
+  AssessmentOfflineNotice,
+  useAssessmentOnline,
+} from "@/components/assessment-offline-guard";
 
 import {
   DIFFICULTY_LABELS,
@@ -66,6 +70,7 @@ function TakeAssessmentPage() {
   const getSession = useServerFn(getStudentSession);
   const saveFn = useServerFn(saveSessionProgress);
   const submitFn = useServerFn(submitAssessment);
+  const online = useAssessmentOnline();
 
   const { data, isPending, error, refetch } = useQuery({
     queryKey: ["student-session", sessionId],
@@ -336,7 +341,12 @@ function TakeAssessmentPage() {
             Next <ChevronRight className="h-4 w-4" />
           </Button>
         ) : (
-          <Button onClick={() => setConfirmOpen(true)} disabled={submitMutation.isPending}>
+          <Button
+            onClick={() => setConfirmOpen(true)}
+            disabled={submitMutation.isPending || !online}
+            aria-disabled={submitMutation.isPending || !online}
+            data-eduos-submit="assessment"
+          >
             <CheckCircle2 className="h-4 w-4" />
             {submitMutation.isPending ? "Submitting…" : "Submit assessment"}
           </Button>
@@ -348,11 +358,16 @@ function TakeAssessmentPage() {
           <button
             className="text-xs text-muted-foreground underline-offset-2 hover:underline"
             onClick={() => setConfirmOpen(true)}
+            disabled={!online}
+            aria-disabled={!online}
+            data-eduos-submit="assessment-early"
           >
             Finish and submit now
           </button>
         </div>
       )}
+
+      <AssessmentOfflineNotice online={online} />
 
       <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <AlertDialogContent>
