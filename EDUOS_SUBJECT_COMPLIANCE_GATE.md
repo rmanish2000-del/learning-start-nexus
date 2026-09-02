@@ -48,6 +48,6 @@ A subject-year passes only when all seven gates pass. Every check is objective a
 
 Failures resolve to the first blocking category: source → mapping → content/loop → review; otherwise `BLOCKED`. All gates green → `COMPLIANT`, or `COMPLIANT_WITH_ACCEPTED_LIMITATIONS` when the founder has recorded explicit accepted limitations.
 
-## Class 10 2026-27 result (2026-08-28)
+## Class 10 2026-27 result (revalidated 2026-09-02)
 
-Mathematics **SOURCE_PENDING** (11 failing checks) · Science **SOURCE_PENDING** (13 failing checks). Per-check evidence: `EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md`.
+Mathematics **SOURCE_PENDING** (7 failing checks) · Science **SOURCE_PENDING** (9 failing checks) · overall `SOURCE_PENDING`. Supersedes the 2026-08-28 result of 11/13 failing checks, which predated the source-registry correction. Per-check evidence: `EDUOS_CLASS10_COMPLIANCE_BASELINE.md`, `EDUOS_CLASS_10_GAP_REGISTER.md` and `EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md`.
