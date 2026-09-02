@@ -399,9 +399,12 @@ The canonical rollback procedure is in `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.
 
 ## 12. Immediate Current Mission
 
-Do not begin another development package until the consolidated production release receives founder retesting.
+**[SUPERSEDED 2026-09-02 by the Founder Non-Execution Rule.]** The sequences below are an
+**optional founder acceptance walkthrough**, never an execution task list assigned to the founder.
+Every step in them must first be executed and evidenced by the responsible AI/tool (Lovable browser
+automation, tests, production probes). The founder is involved only for acceptance judgement.
 
-Founder retest sequence:
+Acceptance walkthrough (AI-executed first, founder-optional afterwards):
 
 ### A. Parent and learner management
 
