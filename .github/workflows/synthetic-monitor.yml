@@ -1,0 +1,53 @@
+name: Production synthetic monitor
+
+# Polls the public EduOS production surfaces every 5 minutes and fails the run
+# (which notifies watchers) on any outage or latency-budget breach.
+#
+# Safety notes:
+# - Read-only, unauthenticated probes. No credentials, no secrets are required.
+# - Touches no application code, no database and no deployment.
+# - MONITOR_BASE_URL is a public URL, not a secret.
+
+on:
+  schedule:
+    # Every 5 minutes (UTC). GitHub may delay ticks under load.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Base URL to probe"
+        required: false
+        default: "https://www.eduos.global"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: synthetic-monitor
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    name: Probe public surfaces
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      MONITOR_BASE_URL: ${{ github.event.inputs.base_url || 'https://www.eduos.global' }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Run synthetic probes
+        run: bun scripts/ops/synthetic-monitor.ts
+
+      - name: Optional Slack alert on failure
+        # Only fires when the repository owner has configured the webhook.
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        run: |
+          curl -sS -X POST -H 'Content-Type: application/json' \
+            -d "{\"text\":\"EduOS synthetic monitor FAILED for $MONITOR_BASE_URL — run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}" \
+            "$SLACK_WEBHOOK_URL"
