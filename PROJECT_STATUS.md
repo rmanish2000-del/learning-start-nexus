@@ -9,7 +9,7 @@
 
 The Class 10 pilot product is built, imported and deployed; the parent ₹199 diagnostic journey works end-to-end in the database, and the payment gateway now holds **live-mode** credentials. No live acceptance purchase has been verified yet.
 
-## 1a. Class 10 compliance and launch gate (2026-08-29, VERIFIED)
+## 1a. Class 10 compliance and launch gate (revalidated 2026-09-02, VERIFIED)
 
 | Item | Result |
 |---|---|
