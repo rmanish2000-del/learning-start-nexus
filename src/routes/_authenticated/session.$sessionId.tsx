@@ -282,12 +282,15 @@ function TakeAssessmentPage() {
 
             {(question.kind === "mcq" || question.kind === "true_false") &&
             (question.options ?? []).length > 0 ? (
-              <div className="grid gap-2 sm:grid-cols-2">
+              <div className="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Answer options">
                 {(question.options ?? []).map((option) => {
                   const selected = answers[question.id] === option.key;
                   return (
                     <button
                       key={option.key}
+                      role="radio"
+                      aria-checked={selected}
+                      data-eduos-option={selected ? "selected" : "option"}
                       onClick={() => pickAnswer(question.id, option.key)}
                       className={cn(
                         "flex items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm transition-colors",
