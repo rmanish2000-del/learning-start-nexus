@@ -85,7 +85,11 @@ function FreeCheckBody() {
   const query = useQuery({
     queryKey: ["free-check-run", checkId],
     queryFn: () => runFn({ data: { checkId } }),
+    // A stale, malformed, non-owned or cross-organisation link is a permanent
+    // answer, not a blip: retrying it just leaves the learner on a skeleton.
+    retry: false,
   });
+
 
   const run = query.data;
   const questions = useMemo(() => run?.questions ?? [], [run]);
@@ -234,9 +238,9 @@ function FreeCheckBody() {
                   const id = `${question.id}-${i}`;
                   return (
                     <div key={id} className="flex items-start gap-3 rounded-md border p-3">
-                      <RadioGroupItem value={option} id={id} className="mt-0.5" />
+                      <RadioGroupItem value={option.key} id={id} className="mt-0.5" />
                       <Label htmlFor={id} className="cursor-pointer text-sm font-normal leading-relaxed">
-                        {option}
+                        {option.label}
                       </Label>
                     </div>
                   );

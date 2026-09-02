@@ -14,6 +14,7 @@ import {
   type FreeCheckSubject,
 } from "./free-check-shared";
 import { GAP_THRESHOLD_PCT } from "./parent-diagnostic-shared";
+import { normalizeQuestionOptions } from "./assessment-shared";
 
 type CheckRow = {
   id: string;
@@ -260,10 +261,17 @@ async function assertLearnerSession(
   if (error) throw new Error(error.message);
   if (!learner) throw new Error("That student profile could not be found.");
   if (!learner.student_user_id || learner.student_user_id !== userId) {
+    // Privacy: the learner's name may only be echoed back to the parent who
+    // started the check. Another family's student or a stranger holding the
+    // link gets a message that discloses nothing about the child.
+    const ownerViewing = row.parent_user_id != null && row.parent_user_id === userId;
     throw new Error(
-      `Only ${learner.full_name} can answer this learning check. Ask them to sign in as a student.`,
+      ownerViewing
+        ? `Only ${learner.full_name} can answer this learning check. Ask them to sign in as a student.`
+        : "This learning check can only be answered by the student it was created for.",
     );
   }
+
   return { fullName: learner.full_name };
 }
 
@@ -285,7 +293,7 @@ export async function loadFreeCheckRun(checkId: string, userId: string): Promise
       kind: q.kind,
       prompt: q.prompt,
       stimulus: q.stimulus,
-      options: (q.options as string[] | null) ?? null,
+      options: normalizeQuestionOptions(q.options),
       outcomeCode: outcomes.get(q.outcome_id)?.code ?? "—",
     })),
   };

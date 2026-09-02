@@ -5,6 +5,7 @@
 // parent as a deliberately limited preview. Nothing here performs I/O.
 
 import { z } from "zod";
+import type { RunnerOption } from "./assessment-shared";
 
 /** Five approved + verified questions. Never more: the paid diagnostic is 20. */
 export const FREE_CHECK_QUESTION_COUNT = 5;
@@ -31,7 +32,8 @@ export type FreeCheckQuestion = {
   kind: string;
   prompt: string;
   stimulus: string | null;
-  options: string[] | null;
+  /** Normalized {key,label} pairs; question_bank rows store {key,text} objects. */
+  options: RunnerOption[] | null;
   outcomeCode: string;
 };
 
