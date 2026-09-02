@@ -24,6 +24,10 @@ import {
   submitDiagnosticRun,
 } from "@/lib/parent-diagnostic.functions";
 import { friendlyErrorMessage } from "@/lib/user-errors";
+import {
+  AssessmentOfflineNotice,
+  useAssessmentOnline,
+} from "@/components/assessment-offline-guard";
 
 const TITLE = "Diagnostic in progress | EduOS";
 const DESCRIPTION = "Answer one question at a time. Progress is saved after every answer and can be resumed later.";
@@ -67,6 +71,7 @@ function DiagnosticSessionPage() {
 }
 
 function DiagnosticSessionPageBody() {
+  const online = useAssessmentOnline();
   const { t } = useI18n();
   const { token } = Route.useParams();
   const runFn = useServerFn(fetchDiagnosticRun);
@@ -246,7 +251,12 @@ function DiagnosticSessionPageBody() {
                 <ArrowLeft className="mr-2 h-4 w-4" /> {t("common.back", "Back")}
               </Button>
               {isLast ? (
-                <Button onClick={submit} disabled={submitting}>
+                <Button
+                  onClick={submit}
+                  disabled={submitting || !online}
+                  aria-disabled={submitting || !online}
+                  data-eduos-submit="assessment"
+                >
                   {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                   {t("session.submit", "Submit and score")}
                 </Button>
@@ -256,6 +266,7 @@ function DiagnosticSessionPageBody() {
                 </Button>
               )}
             </div>
+            <AssessmentOfflineNotice online={online} />
           </CardContent>
         </Card>
       ) : (

@@ -168,3 +168,90 @@
     letter-spacing: -0.01em;
   }
 }
+/* EduOS PWA Design Tokens
+   Phase 1 · Installable PWA · No Offline Assessments
+   Generated: 2026-09-02 */
+
+:root {
+  /* ── Brand ─────────────────────────────────── */
+  --pwa-brand-primary:         #F97316;   /* orange-500 — CTA, install button */
+  --pwa-brand-dark:            #0C1628;   /* deep navy — nav, offline bg */
+  --pwa-brand-surface:         #FFFFFF;   /* install banner, update prompt */
+
+  /* ── Offline screen ─────────────────────────── */
+  --pwa-offline-bg:            #0C1628;
+  --pwa-offline-icon-bg:       rgba(239, 68, 68, 0.10);
+  --pwa-offline-icon-border:   rgba(239, 68, 68, 0.20);
+  --pwa-offline-icon-color:    #EF4444;
+  --pwa-offline-heading:       #FFFFFF;
+  --pwa-offline-body:          rgba(255, 255, 255, 0.50);
+  --pwa-offline-note:          rgba(255, 255, 255, 0.30);
+  --pwa-offline-footer:        rgba(255, 255, 255, 0.15);
+
+  /* ── Connection lost — general (amber) ──────── */
+  --pwa-warn-bg:               #FFFBEB;
+  --pwa-warn-border:           #FDE68A;
+  --pwa-warn-heading:          #92400E;
+  --pwa-warn-body:             #B45309;
+  --pwa-warn-icon:             #F59E0B;
+  --pwa-warn-dismiss:          #B45309;
+
+  /* ── Connection lost — assessment (red) ─────── */
+  --pwa-error-bg:              #FEF2F2;
+  --pwa-error-border:          #FECACA;
+  --pwa-error-heading:         #991B1B;
+  --pwa-error-body:            #B91C1C;
+  --pwa-error-icon:            #EF4444;
+
+  /* ── Connection restored (green) ────────────── */
+  --pwa-success-bg:            #ECFDF5;
+  --pwa-success-border:        #6EE7B7;
+  --pwa-success-heading:       #065F46;
+  --pwa-success-body:          #047857;
+  --pwa-success-icon:          #059669;
+
+  /* ── Install banner ─────────────────────────── */
+  --pwa-install-bg:            #FFFFFF;
+  --pwa-install-border:        #E3E5EE;
+  --pwa-install-scrim:         rgba(0, 0, 0, 0.50);
+
+  /* ── Update prompt ──────────────────────────── */
+  --pwa-update-bg:             #FFFFFF;
+  --pwa-update-border:         #E3E5EE;
+  --pwa-update-shadow:         0 4px 16px rgba(0, 0, 0, 0.10);
+  --pwa-update-note-bg:        #F2F3F7;
+  --pwa-update-note-text:      #6B7280;
+
+  /* ── Typography ─────────────────────────────── */
+  --pwa-font-display:          "Outfit", system-ui, "Noto Sans", sans-serif;
+  --pwa-font-body:             "Inter", system-ui, "Noto Sans", sans-serif;
+  --pwa-font-mono:             "DM Mono", "Courier New", monospace;
+
+  /* ── Spacing ────────────────────────────────── */
+  --pwa-banner-height-desktop: 56px;
+  --pwa-toast-width-desktop:   280px;
+  --pwa-update-card-width:     320px;
+  --pwa-sheet-radius:          12px;
+  --pwa-icon-sm:               28px;
+  --pwa-icon-md:               36px;
+  --pwa-icon-lg:               64px;
+  --pwa-touch-min:             44px;
+  --pwa-border-radius-btn:     10px;
+  --pwa-border-radius-card:    16px;
+
+  /* ── Animation ──────────────────────────────── */
+  --pwa-slide-up-duration:     200ms;
+  --pwa-slide-up-easing:       ease-out;
+  --pwa-toast-duration:        4000ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pwa-slide-up-duration: 0ms;
+  }
+}
+
+@keyframes eduos-pwa-slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0C1628" />
+    <title>EduOS — Offline</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <style>
+      :root {
+        --pwa-offline-bg: #0c1628;
+        --pwa-brand-primary: #f97316;
+        --pwa-offline-icon-bg: rgba(239, 68, 68, 0.1);
+        --pwa-offline-icon-border: rgba(239, 68, 68, 0.2);
+        --pwa-offline-icon-color: #ef4444;
+        --pwa-offline-heading: #ffffff;
+        --pwa-offline-body: rgba(255, 255, 255, 0.5);
+        --pwa-offline-note: rgba(255, 255, 255, 0.3);
+        --pwa-offline-footer: rgba(255, 255, 255, 0.15);
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        background: var(--pwa-offline-bg);
+        color: var(--pwa-offline-heading);
+        font-family: Inter, system-ui, "Noto Sans", sans-serif;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .brand { font-weight: 700; letter-spacing: -0.01em; font-size: 15px; }
+      .pill {
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--pwa-offline-icon-color);
+        background: var(--pwa-offline-icon-bg);
+        border: 1px solid var(--pwa-offline-icon-border);
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .card { width: 100%; max-width: 320px; text-align: center; }
+      .icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 20px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: var(--pwa-offline-icon-bg);
+        border: 1px solid var(--pwa-offline-icon-border);
+        color: var(--pwa-offline-icon-color);
+      }
+      h1 { font-size: 21px; font-weight: 700; margin: 0 0 10px; }
+      p { margin: 0 0 14px; font-size: 14px; line-height: 1.6; color: var(--pwa-offline-body); }
+      .note {
+        font-family: "DM Mono", "Courier New", monospace;
+        font-size: 11px;
+        color: var(--pwa-offline-note);
+        margin-bottom: 24px;
+      }
+      button {
+        min-width: 160px;
+        min-height: 44px;
+        background: var(--pwa-brand-primary);
+        color: #fff;
+        border: 0;
+        border-radius: 10px;
+        padding: 11px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button[aria-disabled="true"] { opacity: 0.6; cursor: progress; }
+      button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+      a.secondary {
+        display: inline-block;
+        margin-top: 16px;
+        font-size: 13px;
+        color: var(--pwa-offline-body);
+        text-decoration: none;
+        min-height: 44px;
+        line-height: 44px;
+      }
+      a.secondary:hover { color: #fff; }
+      footer {
+        padding: 16px;
+        text-align: center;
+        font-family: "DM Mono", "Courier New", monospace;
+        font-size: 10px;
+        color: var(--pwa-offline-footer);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="brand">EduOS</span>
+      <span class="pill" role="status">Offline</span>
+    </nav>
+    <main>
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M1 1l22 22" />
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9" />
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" />
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+            <path d="M12 20h.01" />
+          </svg>
+        </div>
+        <h1>You're offline</h1>
+        <p>
+          EduOS needs an internet connection to load your dashboard, run assessments, and show
+          reports.
+        </p>
+        <p class="note">Assessments are not available offline.</p>
+        <button id="retry" type="button" aria-label="Try reconnecting">Try again</button>
+        <br />
+        <a class="secondary" href="https://www.eduos.global" target="_blank" rel="noopener"
+          >Open in browser →</a
+        >
+      </div>
+    </main>
+    <footer>No learner data is stored on this device.</footer>
+    <script>
+      document.getElementById("retry").addEventListener("click", function (e) {
+        var b = e.currentTarget;
+        b.setAttribute("aria-disabled", "true");
+        b.setAttribute("aria-busy", "true");
+        b.textContent = "Checking connection…";
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

@@ -23,6 +23,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { useI18n } from "@/lib/i18n/context";
 import { friendlyErrorMessage } from "@/lib/user-errors";
+import {
+  AssessmentOfflineNotice,
+  useAssessmentOnline,
+} from "@/components/assessment-offline-guard";
 
 const TITLE = "Free learning check | EduOS";
 const DESCRIPTION = "A short five-question check. Answers save as you go.";
@@ -75,6 +79,7 @@ function FreeCheckPage() {
 
 /** Answering is learner-only; the server refuses a parent session outright. */
 function FreeCheckBody() {
+  const online = useAssessmentOnline();
   const { t } = useI18n();
   const { checkId } = Route.useParams();
   const runFn = useServerFn(getFreeCheckRun);
@@ -265,7 +270,12 @@ function FreeCheckBody() {
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </Button>
               {isLast ? (
-                <Button onClick={submit} disabled={submitting}>
+                <Button
+                  onClick={submit}
+                  disabled={submitting || !online}
+                  aria-disabled={submitting || !online}
+                  data-eduos-submit="assessment"
+                >
                   {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                   {t("freeCheck.finish", "Finish check")}
                 </Button>
@@ -281,6 +291,7 @@ function FreeCheckBody() {
                 </Button>
               )}
             </div>
+            <AssessmentOfflineNotice online={online} />
           </CardContent>
         </Card>
       ) : null}

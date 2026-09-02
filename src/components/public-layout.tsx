@@ -3,6 +3,7 @@ import { GraduationCap, Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
+import { IosInstallGuide } from "@/components/ios-install-guide";
 
 /**
  * Public marketing navigation. Audience sections live on the home page, so
@@ -190,6 +191,9 @@ export function PublicSiteFooter() {
             A Learning Intelligence and Intervention System. Find the gaps, close them with
             purpose, prove the progress.
           </p>
+          <div className="mt-3">
+            <IosInstallGuide />
+          </div>
         </div>
 
         <div>
