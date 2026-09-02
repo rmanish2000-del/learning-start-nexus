@@ -33,6 +33,7 @@ jobs:
     timeout-minutes: 5
     env:
       MONITOR_BASE_URL: ${{ github.event.inputs.base_url || 'https://www.eduos.global' }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,8 +47,6 @@ jobs:
       - name: Optional Slack alert on failure
         # Only fires when the repository owner has configured the webhook.
         if: failure() && env.SLACK_WEBHOOK_URL != ''
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           curl -sS -X POST -H 'Content-Type: application/json' \
             -d "{\"text\":\"EduOS synthetic monitor FAILED for $MONITOR_BASE_URL — run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}" \
