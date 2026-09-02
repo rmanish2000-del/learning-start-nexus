@@ -20,6 +20,7 @@ import { InstallBanner } from "@/components/install-banner";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { StagingBanner } from "@/components/staging-banner";
 import { OfflineBanner } from "@/components/offline-banner";
+import { PwaUpdatePrompt } from "@/components/pwa-update-prompt";
 import { SHOULD_NOINDEX } from "@/lib/environment";
 
 function NotFoundComponent() {
@@ -179,6 +180,7 @@ function RootComponent() {
           <Toaster />
           <CookieConsentBanner />
           <InstallBanner />
+          <PwaUpdatePrompt />
         </QueryClientProvider>
       </LanguageProvider>
     </ThemeProvider>
