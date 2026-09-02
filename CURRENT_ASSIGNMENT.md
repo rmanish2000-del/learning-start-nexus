@@ -54,3 +54,27 @@ Revert the documentation commit; no data or deployment rollback is required.
 Subject-expert review and approval of the 326 rebuilt Class 10 items (content governance, not software).
 No Class 9, 11 or 12 work, no pricing expansion and no new features until Class 10 receives a compliance
 certificate.
+
+---
+
+## Assignment: Canonical Evidence Reconciliation — Class 10 Certification Review Package (2026-09-02)
+
+**Mode:** Lovable, local repository + live database analysis. Read-only. No deployment.
+**Status:** Complete.
+
+| Item | Result |
+|---|---|
+| Deliverables | `EDUOS_CLASS10_CERTIFICATION_REVIEW_PACKAGE_CORRECTED.md`, `EDUOS_CLASS10_CONTRADICTION_RECONCILIATION_REGISTER.md` |
+| Reconciliation base HEAD | `8b58bd61449c04236caed1f9a230eec72fbbbcaf` (assignment named `96615046…`; discrepancy disclosed) |
+| Superseded evidence commit | `916614a399b8a2786cf26a93827d077120dd3bad` — not used |
+| Contradictions | 2 VALID (C-09, C-11), 7 RESOLVED, 3 STALE, 0 UNSUPPORTED |
+| Certification status | Mathematics NOT_CERTIFIED · Science NOT_CERTIFIED |
+| Validation | 293/293 tests, typecheck clean, build clean, JSON↔CSV exact, source hashes re-verified live |
+| Security | 0 critical / 0 error / 3 warn (advisory) |
+| Deployment | None. Production remains `b559058753b9d0acc6a25438fdc0cf79122ce4af`, health 200 |
+
+### Next gate
+
+Named SME review and promotion of the 326 existing Class 10 draft items, Science book approval, and
+retrieval of the five missing official source types. No new authoring is required — the deficit
+(235 Mathematics + 91 Science) equals the existing draft corpus exactly.
