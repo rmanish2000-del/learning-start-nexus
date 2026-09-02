@@ -19,6 +19,7 @@ import { CookieConsentBanner } from "@/components/cookie-consent";
 import { InstallBanner } from "@/components/install-banner";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { StagingBanner } from "@/components/staging-banner";
+import { OfflineBanner } from "@/components/offline-banner";
 import { SHOULD_NOINDEX } from "@/lib/environment";
 
 function NotFoundComponent() {
@@ -172,6 +173,7 @@ function RootComponent() {
       <LanguageProvider>
         <QueryClientProvider client={queryClient}>
           <StagingBanner />
+          <OfflineBanner />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <Toaster />

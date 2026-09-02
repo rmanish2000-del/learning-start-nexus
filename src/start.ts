@@ -2,7 +2,19 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 
 import { renderErrorPage } from "./lib/error-page";
 import { isProtectedPath } from "./lib/protected-routes";
+import { applySecurityHeaders } from "./lib/security-headers";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+
+// Clickjacking / browser-feature hardening on every HTML document response.
+const securityHeadersMiddleware = createMiddleware().server(async ({ next }) => {
+  // `next()` resolves to the middleware context, not a bare Response, so the
+  // headers must be applied to `result.response`.
+  const result = await next();
+  if (result instanceof Response) return applySecurityHeaders(result);
+  if (result?.response instanceof Response) applySecurityHeaders(result.response);
+  return result;
+});
+
 
 const errorMiddleware = createMiddleware().server(async ({ next, handlerType, request }) => {
   try {
@@ -60,5 +72,5 @@ const authGateMiddleware = createMiddleware().server(({ next, request }) => {
 
 export const startInstance = createStart(() => ({
   functionMiddleware: [attachSupabaseAuth],
-  requestMiddleware: [errorMiddleware, csrfMiddleware, authGateMiddleware],
+  requestMiddleware: [securityHeadersMiddleware, errorMiddleware, csrfMiddleware, authGateMiddleware],
 }));
