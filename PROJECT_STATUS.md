@@ -19,12 +19,14 @@ The Class 10 pilot product is built, imported and deployed; the parent ₹199 di
 | Derived compliance status | `SOURCE_PENDING` |
 | Journey · pricing · security | PASS · PASS · PASS |
 | Launch gate | **CONTROLLED PILOT ONLY** — external launch withheld |
-| Tests | **256 passing / 19 files** |
+| Tests | **293 passing / 26 files** |
 
 Verified question depth is 45 items (Mathematics) and 165 (Science); the 326
 rebuilt items are loaded but held as `draft`/`unverified` and cannot reach a
 paying learner. Coordinate Geometry is currently unsellable (3 verified items).
-Full evidence: `EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md` and
+Eleven of twelve units hold a zero fresh-reassessment reserve. Full evidence:
+`EDUOS_CLASS10_COMPLIANCE_BASELINE.md` (+ `EDUOS_CLASS10_COMPLIANCE_MATRIX.json`),
+`EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md` and
 `EDUOS_CLASS10_LAUNCH_READINESS_REPORT.md`.
 
 ## 1b. Product language
