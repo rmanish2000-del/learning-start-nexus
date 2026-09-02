@@ -1,0 +1,528 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-09-02",
+  "auditMode": "baseline_read_only",
+  "repository": "learning-start-nexus",
+  "canonicalHead": "b559058753b9d0acc6a25438fdc0cf79122ce4af",
+  "productionSha": "b559058753b9d0acc6a25438fdc0cf79122ce4af",
+  "production": "https://www.eduos.global",
+  "externalUserMode": "INTERNAL_ONLY",
+  "board": "CBSE",
+  "classLevel": 10,
+  "academicYear": "2026-27",
+  "overallStatus": "SOURCE_PENDING",
+  "verdicts": {
+    "Mathematics": {
+      "verdict": "FAIL",
+      "failingChecks": 7
+    },
+    "Science": {
+      "verdict": "FAIL",
+      "failingChecks": 9
+    }
+  },
+  "scope": {
+    "activeNonClass10Books": 0,
+    "activeCatalogueClasses": [
+      "Class 10"
+    ],
+    "inactiveCatalogueClasses": [
+      "Class 9",
+      "Class 11",
+      "Class 12"
+    ],
+    "activeSubjects": [
+      "Mathematics",
+      "Science"
+    ],
+    "activePricePlans": [
+      {
+        "code": "CBSE-2026-27-C10-DIAGNOSTIC",
+        "amountPaise": 19900
+      },
+      {
+        "code": "CBSE-2026-27-C10-ANNUAL",
+        "amountPaise": 299900
+      }
+    ]
+  },
+  "structure": {
+    "books": [
+      {
+        "title": "NCERT Class 10 Mathematics (CBSE)",
+        "subject": "Mathematics",
+        "status": "approved",
+        "units": 7,
+        "chapters": 14,
+        "topics": 14,
+        "outcomes": 15,
+        "atoms": 15,
+        "questions": 280
+      },
+      {
+        "title": "NCERT Class 10 Science (CBSE)",
+        "subject": "Science",
+        "status": "processed",
+        "units": 5,
+        "chapters": 13,
+        "topics": 39,
+        "outcomes": 55,
+        "atoms": 55,
+        "questions": 256
+      }
+    ],
+    "totals": {
+      "units": 12,
+      "chapters": 27,
+      "topics": 53,
+      "outcomes": 70,
+      "atoms": 70,
+      "questions": 536
+    }
+  },
+  "questionComposition": {
+    "Mathematics": {
+      "approvedVerified": 45,
+      "draftUnverified": 235
+    },
+    "Science": {
+      "approvedVerified": 165,
+      "draftUnverified": 91
+    }
+  },
+  "depthLaw": {
+    "diagnosticTarget": 20,
+    "diagnosticMinimum": 5,
+    "minQuestionsPerOutcome": 1,
+    "requiredVerifiedPerUnit": "max(2*target, 2*outcomes*minPerOutcome, 2*minimum)"
+  },
+  "units": [
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Number Systems",
+      "atoms": 2,
+      "totalItems": 40,
+      "verifiedItems": 6,
+      "requiredVerified": 40,
+      "diagnosticSet": 6,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Algebra",
+      "atoms": 4,
+      "totalItems": 40,
+      "verifiedItems": 12,
+      "requiredVerified": 40,
+      "diagnosticSet": 12,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Coordinate Geometry",
+      "atoms": 1,
+      "totalItems": 40,
+      "verifiedItems": 3,
+      "requiredVerified": 40,
+      "diagnosticSet": 3,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Geometry",
+      "atoms": 2,
+      "totalItems": 40,
+      "verifiedItems": 6,
+      "requiredVerified": 40,
+      "diagnosticSet": 6,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Trigonometry",
+      "atoms": 2,
+      "totalItems": 40,
+      "verifiedItems": 6,
+      "requiredVerified": 40,
+      "diagnosticSet": 6,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Mensuration",
+      "atoms": 2,
+      "totalItems": 40,
+      "verifiedItems": 6,
+      "requiredVerified": 40,
+      "diagnosticSet": 6,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Mathematics",
+      "subjectCode": "041",
+      "unit": "Statistics & Probability",
+      "atoms": 2,
+      "totalItems": 40,
+      "verifiedItems": 6,
+      "requiredVerified": 40,
+      "diagnosticSet": 6,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Science",
+      "subjectCode": "086",
+      "unit": "Chemical Substances - Nature and Behaviour",
+      "atoms": 32,
+      "totalItems": 96,
+      "verifiedItems": 96,
+      "requiredVerified": 64,
+      "diagnosticSet": 20,
+      "reassessmentReserve": 76,
+      "depthVerdict": "PASS",
+      "sellable": true
+    },
+    {
+      "subject": "Science",
+      "subjectCode": "086",
+      "unit": "World of Living",
+      "atoms": 13,
+      "totalItems": 40,
+      "verifiedItems": 39,
+      "requiredVerified": 40,
+      "diagnosticSet": 20,
+      "reassessmentReserve": 19,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Science",
+      "subjectCode": "086",
+      "unit": "Natural Phenomena",
+      "atoms": 4,
+      "totalItems": 40,
+      "verifiedItems": 12,
+      "requiredVerified": 40,
+      "diagnosticSet": 12,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Science",
+      "subjectCode": "086",
+      "unit": "Effects of Current",
+      "atoms": 4,
+      "totalItems": 40,
+      "verifiedItems": 12,
+      "requiredVerified": 40,
+      "diagnosticSet": 12,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    },
+    {
+      "subject": "Science",
+      "subjectCode": "086",
+      "unit": "Natural Resources",
+      "atoms": 2,
+      "totalItems": 40,
+      "verifiedItems": 6,
+      "requiredVerified": 40,
+      "diagnosticSet": 6,
+      "reassessmentReserve": 0,
+      "depthVerdict": "SHORTFALL",
+      "sellable": false
+    }
+  ],
+  "poolSeparation": {
+    "crossKindReuse": 0,
+    "assessmentQuestionMappings": 96,
+    "distinctQuestionsUsed": 66,
+    "assessmentKindsPresent": [
+      "diagnostic"
+    ],
+    "reassessmentExercised": false,
+    "reassessmentReadyFlag": {
+      "Mathematics": false,
+      "Science": false
+    }
+  },
+  "integrity": {
+    "duplicatePrompts": 0,
+    "orphanAtoms": 0,
+    "atomsWithoutQuestions": 0,
+    "questionsWithoutOutcome": 0,
+    "verifiedNotApproved": 0,
+    "unmappedOfficialRequirements": 0,
+    "officialRequirementsMapped": 84,
+    "nearDuplicateDetection": "not_computed"
+  },
+  "sources": [
+    {
+      "id": "CBSE-2026-27-C10-MAT-SYLLABUS",
+      "subject": "Mathematics",
+      "type": "subject_syllabus",
+      "academicYear": "2026-27",
+      "title": "CBSE Class X Mathematics (041) syllabus, session 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf",
+      "retrievedAt": "2026-08-29T04:31:47.514Z",
+      "sha256": "d773e7c12b99e0bd498067e2b8268c76d0496bf9cad1c9e41c8652ab68b412a5",
+      "status": "final",
+      "applicability": "applicable"
+    },
+    {
+      "id": "CBSE-2026-27-C10-SCI-SYLLABUS",
+      "subject": "Science",
+      "type": "subject_syllabus",
+      "academicYear": "2026-27",
+      "title": "CBSE Class X Science (086) syllabus, session 2026-27",
+      "url": "https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Science_SecP1_2026-27.pdf",
+      "retrievedAt": "2026-08-29T04:31:49.316Z",
+      "sha256": "1bec4a9e44452b22c9d422d8cb528b4de30598f56c243461845165771df7bc37",
+      "status": "final",
+      "applicability": "applicable"
+    },
+    {
+      "id": "CBSE-2026-27-C10-CURRICULUM",
+      "subject": "All",
+      "type": "cbse_curriculum",
+      "academicYear": "2026-27",
+      "title": "CBSE Secondary School Curriculum, Class X, session 2026-27",
+      "url": null,
+      "retrievedAt": null,
+      "sha256": null,
+      "status": "draft",
+      "applicability": "pending_confirmation"
+    },
+    {
+      "id": "NCERT-2026-27-C10-MAT-TEXTBOOK",
+      "subject": "Mathematics",
+      "type": "ncert_textbook",
+      "academicYear": "2026-27",
+      "title": "NCERT Mathematics, Class X, current edition",
+      "url": null,
+      "retrievedAt": null,
+      "sha256": null,
+      "status": "draft",
+      "applicability": "pending_confirmation"
+    },
+    {
+      "id": "NCERT-2026-27-C10-SCI-TEXTBOOK",
+      "subject": "Science",
+      "type": "ncert_textbook",
+      "academicYear": "2026-27",
+      "title": "NCERT Science, Class X, current edition",
+      "url": null,
+      "retrievedAt": null,
+      "sha256": null,
+      "status": "draft",
+      "applicability": "pending_confirmation"
+    }
+  ],
+  "missingSourceTypes": [
+    "cbse_curriculum",
+    "ncert_textbook",
+    "rationalised_content_notice",
+    "sample_paper",
+    "marking_scheme"
+  ],
+  "sourceRegistry": {
+    "errors": 0,
+    "warnings": 3
+  },
+  "gaps": [
+    {
+      "id": "GAP-MAT-001",
+      "subject": "Mathematics",
+      "gate": "SOURCE_GATE",
+      "check": "required_types_present",
+      "severity": "BLOCKING",
+      "evidence": "five required source types absent",
+      "remediation": "Retrieve, checksum and record each official document"
+    },
+    {
+      "id": "GAP-MAT-002",
+      "subject": "Mathematics",
+      "gate": "QUESTION_GATE",
+      "check": "verified_depth",
+      "severity": "MAJOR",
+      "evidence": "all 7 units below 40 verified",
+      "remediation": "Expert-review and promote the 235 draft items"
+    },
+    {
+      "id": "GAP-MAT-003",
+      "subject": "Mathematics",
+      "gate": "LEARNING_LOOP_GATE",
+      "check": "reassessment_reserve_available",
+      "severity": "MAJOR",
+      "evidence": "reserve 0 in all units",
+      "remediation": "Clears with GAP-MAT-002"
+    },
+    {
+      "id": "GAP-MAT-004",
+      "subject": "Mathematics",
+      "gate": "REVIEW_GATE",
+      "check": "named_reviewer",
+      "severity": "BLOCKING",
+      "evidence": "none recorded",
+      "remediation": "Appoint and record a named subject expert"
+    },
+    {
+      "id": "GAP-MAT-005",
+      "subject": "Mathematics",
+      "gate": "REVIEW_GATE",
+      "check": "review_timestamp",
+      "severity": "BLOCKING",
+      "evidence": "none recorded",
+      "remediation": "Record on review completion"
+    },
+    {
+      "id": "GAP-MAT-006",
+      "subject": "Mathematics",
+      "gate": "REVIEW_GATE",
+      "check": "review_decision",
+      "severity": "BLOCKING",
+      "evidence": "none recorded",
+      "remediation": "Record explicit decision"
+    },
+    {
+      "id": "GAP-MAT-007",
+      "subject": "Mathematics",
+      "gate": "COMMERCIAL_GATE",
+      "check": "entitlements_scoped",
+      "severity": "MAJOR",
+      "evidence": "false",
+      "remediation": "Scope entitlements to board/class/subject/session"
+    },
+    {
+      "id": "GAP-SCI-008",
+      "subject": "Science",
+      "gate": "SOURCE_GATE",
+      "check": "required_types_present",
+      "severity": "BLOCKING",
+      "evidence": "five required source types absent",
+      "remediation": "As GAP-MAT-001"
+    },
+    {
+      "id": "GAP-SCI-009",
+      "subject": "Science",
+      "gate": "CURRICULUM_GATE",
+      "check": "source_books_approved",
+      "severity": "BLOCKING",
+      "evidence": "Science book status is processed",
+      "remediation": "Promote to approved after expert sign-off"
+    },
+    {
+      "id": "GAP-SCI-010",
+      "subject": "Science",
+      "gate": "QUESTION_GATE",
+      "check": "verified_depth",
+      "severity": "MAJOR",
+      "evidence": "4 of 5 units below 40 verified",
+      "remediation": "Expert-review and promote the 91 draft items"
+    },
+    {
+      "id": "GAP-SCI-011",
+      "subject": "Science",
+      "gate": "QUESTION_GATE",
+      "check": "type_coverage",
+      "severity": "MAJOR",
+      "evidence": "single verified question type in 2 units",
+      "remediation": "Diversify verified item formats to >=2 per unit"
+    },
+    {
+      "id": "GAP-SCI-012",
+      "subject": "Science",
+      "gate": "LEARNING_LOOP_GATE",
+      "check": "reassessment_reserve_available",
+      "severity": "MAJOR",
+      "evidence": "reserve 0 in 3 of 5 units",
+      "remediation": "Clears with GAP-SCI-010"
+    },
+    {
+      "id": "GAP-SCI-013",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "named_reviewer",
+      "severity": "BLOCKING",
+      "evidence": "none recorded",
+      "remediation": "Appoint and record a named subject expert"
+    },
+    {
+      "id": "GAP-SCI-014",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "review_timestamp",
+      "severity": "BLOCKING",
+      "evidence": "none recorded",
+      "remediation": "Record on review completion"
+    },
+    {
+      "id": "GAP-SCI-015",
+      "subject": "Science",
+      "gate": "REVIEW_GATE",
+      "check": "review_decision",
+      "severity": "BLOCKING",
+      "evidence": "none recorded",
+      "remediation": "Record explicit decision"
+    },
+    {
+      "id": "GAP-SCI-016",
+      "subject": "Science",
+      "gate": "COMMERCIAL_GATE",
+      "check": "entitlements_scoped",
+      "severity": "MAJOR",
+      "evidence": "false",
+      "remediation": "As GAP-MAT-007"
+    }
+  ],
+  "additionalRisks": [
+    {
+      "id": "RISK-C10-A",
+      "severity": "MAJOR",
+      "detail": "catalogue_subjects records review_state=approved, curriculum_approved, outcomes_reviewed and diagnostic_eligible=true for both subjects while no reviewer, timestamp or decision is recorded in the compliance evidence.",
+      "remediation": "Record real reviewer evidence or reset review_state to pending under founder sign-off. Not executed in this read-only baseline."
+    }
+  ],
+  "validation": {
+    "tests": {
+      "files": 26,
+      "passed": 293,
+      "failed": 0
+    },
+    "typecheck": "pass",
+    "productionBuild": "pass",
+    "securityScan": "no_issues",
+    "complianceValidatorExit": 1,
+    "evidenceBundleRegeneration": "byte_identical",
+    "productionSmoke": {
+      "/": 200,
+      "/auth": 307,
+      "/robots.txt": 200,
+      "/sitemap.xml": 200,
+      "/api/public/health": 200
+    }
+  },
+  "curriculumDataModified": false,
+  "commercialActivationChanged": false
+}

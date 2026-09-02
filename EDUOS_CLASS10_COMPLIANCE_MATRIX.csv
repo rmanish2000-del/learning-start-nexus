@@ -1,0 +1,13 @@
+subject,subject_code,unit,atoms,total_items,verified_items,required_verified,diagnostic_set,reassessment_reserve,depth_verdict,subject_verdict
+Mathematics,041,Number Systems,2,40,6,40,6,0,SHORTFALL,FAIL
+Mathematics,041,Algebra,4,40,12,40,12,0,SHORTFALL,FAIL
+Mathematics,041,Coordinate Geometry,1,40,3,40,3,0,SHORTFALL,FAIL
+Mathematics,041,Geometry,2,40,6,40,6,0,SHORTFALL,FAIL
+Mathematics,041,Trigonometry,2,40,6,40,6,0,SHORTFALL,FAIL
+Mathematics,041,Mensuration,2,40,6,40,6,0,SHORTFALL,FAIL
+Mathematics,041,Statistics & Probability,2,40,6,40,6,0,SHORTFALL,FAIL
+Science,086,Chemical Substances - Nature and Behaviour,32,96,96,64,20,76,PASS,FAIL
+Science,086,World of Living,13,40,39,40,20,19,SHORTFALL,FAIL
+Science,086,Natural Phenomena,4,40,12,40,12,0,SHORTFALL,FAIL
+Science,086,Effects of Current,4,40,12,40,12,0,SHORTFALL,FAIL
+Science,086,Natural Resources,2,40,6,40,6,0,SHORTFALL,FAIL
