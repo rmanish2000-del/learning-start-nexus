@@ -1,7 +1,7 @@
 # EDUOS NEW-CHAT HANDOFF PACKAGE
 
 **Prepared:** 2026-08-23  
-**Purpose:** Start a new AI chat without losing project state, decisions, working style, release discipline, or the immediate founder-retest position.
+**Purpose:** Start a new AI chat without losing project state, decisions, working style, release discipline, or the immediate acceptance position. **[SUPERSEDED 2026-09-02: see §G1 Founder Non-Execution Rule — the founder never executes verification work.]**
 
 > Important: Repository and production facts below are based on the latest reports supplied in the prior chat. The new chat must re-read the canonical repository documents and treat live evidence as authoritative when it conflicts with this handoff.
 
@@ -45,7 +45,7 @@ Source-of-truth order:
 If sources conflict, do not guess. Identify the conflict and request or perform evidence-based verification.
 
 Current mission:
-Founder retest of the consolidated production release, followed by independent verification and a five-family controlled pilot only if the founder retest passes.
+AI-executed verification of the consolidated production release, presented to the founder for acceptance only (§G1), followed by independent verification and a five-family controlled pilot only if acceptance passes.
 
 Standing Lovable rule:
 Every Lovable assignment must automatically include implementation, full verification, commit to the canonical repository, full commit SHA, clean-working-tree confirmation, publication/deployment when appropriate, production verification, production URL, tests/evidence, known limitations, and rollback notes. Do not wait for the founder to ask for commit or publish. High-risk or destructive changes require the appropriate safety gate before publication.
@@ -399,9 +399,12 @@ The canonical rollback procedure is in `EDUOS_CONSOLIDATED_RELEASE_VERIFICATION.
 
 ## 12. Immediate Current Mission
 
-Do not begin another development package until the consolidated production release receives founder retesting.
+**[SUPERSEDED 2026-09-02 by the Founder Non-Execution Rule.]** The sequences below are an
+**optional founder acceptance walkthrough**, never an execution task list assigned to the founder.
+Every step in them must first be executed and evidenced by the responsible AI/tool (Lovable browser
+automation, tests, production probes). The founder is involved only for acceptance judgement.
 
-Founder retest sequence:
+Acceptance walkthrough (AI-executed first, founder-optional afterwards):
 
 ### A. Parent and learner management
 
@@ -516,7 +519,7 @@ Root cause
 → Clean worktree
 → Publish
 → Production verification
-→ Founder retest
+→ Founder acceptance (AI-executed evidence; §G1)
 ```
 
 ---
@@ -619,7 +622,7 @@ The new chat must correctly answer all of these before continuing:
 7. What alone can close a gap?
 8. What is the assessment lifecycle?
 9. What is the standing Lovable commit/publish rule?
-10. What is the current founder-retest mission?
+10. What is the current acceptance gate awaiting the founder (decision only, never execution)?
 11. What is the exact full deployed SHA?
 12. What remains unverified?
 
@@ -776,3 +779,54 @@ BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW.** Supersedes the volume figures in the
 ### Current gate
 
 Named subject-expert review cycle. **Class 9 activation, pricing and commercial release remain unauthorised.**
+
+---
+
+## 2026-09-02 — Permanent Multi-AI Continuity Governance (inherited by every future chat)
+
+These rules are permanent. They are inherited automatically by every new EduOS chat and must never be
+re-requested by the founder.
+
+### G1. Founder Non-Execution Rule (MANDATORY, overrides all earlier wording)
+
+Never assign execution work to the founder. Complete all possible work through the appropriate AI/tool
+assignment. Involve the founder **only** for:
+
+1. an unavoidable manual action no available tool can perform;
+2. an inaccessible credential or secret;
+3. a payment;
+4. a legal, contractual or external approval;
+5. a decision that cannot be made by the available tools.
+
+Any earlier instruction in this file, or in any continuity document, that asks the founder to test,
+verify, run, retest, configure or execute anything is **superseded**: the AI executes it, and the founder
+is asked only for acceptance or for one of the five exceptions above.
+
+### G2. Continuity ownership
+
+M365 Copilot is **AI Program Director and continuity owner**. Verified results are handed back to M365
+Copilot at the end of every assignment.
+
+### G3. Proactive completion
+
+Continue proactively until the objective is fully completed. Do not stop at a partial result and wait for
+a prompt when the remaining work is executable by an available tool.
+
+### G4. Delegation format
+
+Every delegated task ships as a separate, self-contained, copy-paste-ready assignment that names the exact
+tool and mode (for example: "TOOL/MODE: Lovable, implementation mode"). Every implementation or
+verification stage includes its own separate Lovable assignment. Every Figma assignment includes the
+complete downloadable implementation package.
+
+### G5. Language rules
+
+- All assignments are written entirely in **English**.
+- Normal EduOS conversational responses are very short, relevant and in **Devanagari Hindi**, while
+  technical and standard terms remain in English.
+- These are chat/communication rules only. The **product** remains English-only; no Hindi copy, dictionary
+  or language toggle may be reintroduced into the application.
+
+### G6. Duplication
+
+Avoid duplicate work unless it is intentional independent verification, and say so explicitly when it is.
