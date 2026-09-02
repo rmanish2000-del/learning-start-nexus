@@ -46,20 +46,21 @@ dictionary are removed; a regression test blocks their return. See
 | Production URL (live, HEAD `463eb6d`) | https://www.eduos.global (also learning-start-nexus.lovable.app) | HTTP 200 + bundle verification |
 | Custom domain | `www.eduos.global` live; apex `eduos.global` **awaiting DNS** | project domain status |
 
-## 3. Content — Class 10 import status (VERIFIED)
+## 3. Content — Class 10 status (live database, verified 2026-09-02)
 
-| Book | Grade | Status | Units | Chapters |
-|---|---|---|---|---|
-| NCERT Class 10 Mathematics (CBSE) | 10 | approved | 7 | 14 |
-| NCERT Class 10 Science (CBSE) | 10 | approved | 5 | 13 |
-| NCERT Science — Class 10, Ch. 1 (earlier partial upload) | 10 | approved | 1 | 1 |
-| Knowledge Bank for Children | 3 | archived | 6 | 64 |
+| Book | Grade | Status | Units | Chapters | Atoms | Questions |
+|---|---|---|---|---|---|---|
+| NCERT Class 10 Mathematics (CBSE) | 10 | approved | 7 | 14 | 15 | 280 |
+| NCERT Class 10 Science (CBSE) | 10 | **processed** (not yet approved) | 5 | 13 | 55 | 256 |
+| CBSE Class 10 Mathematics — Meridian Pilot | 10 | archived 2026-08-29 | 2 | 2 | 5 | 15 |
+| NCERT Science — Class 10, Ch. 1 (earlier partial upload) | 10 | archived 2026-08-27 | 1 | 1 | 8 | 44 |
+| Knowledge Bank for Children | 3 | archived 2026-08-26 | 6 | 64 | 18 | 35 |
 
-Aggregate: **4 books, 19 units, 92 chapters, 96 assessment outcomes, 289 question-bank rows** of which **210 have `source = import`** (Maths 45 + Science 165, per the import execution report), 51 AI-generated, 28 manual.
+Active Class 10 scope: **2 books, 12 units, 27 chapters, 53 topics, 70 outcomes, 70 atoms, 536 question-bank rows** — 210 `import`/`approved`/`verified` (Maths 45 + Science 165) and 326 `ai`/`draft`/`unverified` (Maths 235 + Science 91). No non-Class-10 book is active.
 
 Import is idempotent via `question_bank.external_ref` unique index. Both packs passed the four validation gates in `EDUOS_CLASS10_IMPORT_EXECUTION_REPORT.md`.
 
-⚠️ **Unresolved:** the single-chapter Science book (`26ac60d7…`) duplicates Chapter 1 content of the full Science pack. Not verified whether it is intentionally retained or leftover.
+Resolved: the single-chapter Science book (`26ac60d7…`) that duplicated Chapter 1 of the full Science pack is archived and out of every active selector.
 
 ## 4. Parent monetization status (VERIFIED)
 
