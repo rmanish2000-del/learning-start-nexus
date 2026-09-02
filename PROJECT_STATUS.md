@@ -1,7 +1,7 @@
 # EduOS — Project Status
 
-**Last verified:** 2026-08-30 (UTC)
-**Evidence sources:** repository at commit `463eb6ddd610d0e117520dc333e4228cf851b5b8`, live HTTP fetches of https://www.eduos.global, bundle-content probing, `bunx vitest run` output, prior reports listed in §7.
+**Last verified:** 2026-09-02 (UTC)
+**Evidence sources:** repository at commit `b559058753b9d0acc6a25438fdc0cf79122ce4af` (= deployed production SHA), live HTTP fetches of https://www.eduos.global, live database queries, `bunx vitest run` output, prior reports listed in §7.
 
 ---
 
