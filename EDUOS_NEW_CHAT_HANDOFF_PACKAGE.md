@@ -779,3 +779,54 @@ BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW.** Supersedes the volume figures in the
 ### Current gate
 
 Named subject-expert review cycle. **Class 9 activation, pricing and commercial release remain unauthorised.**
+
+---
+
+## 2026-09-02 — Permanent Multi-AI Continuity Governance (inherited by every future chat)
+
+These rules are permanent. They are inherited automatically by every new EduOS chat and must never be
+re-requested by the founder.
+
+### G1. Founder Non-Execution Rule (MANDATORY, overrides all earlier wording)
+
+Never assign execution work to the founder. Complete all possible work through the appropriate AI/tool
+assignment. Involve the founder **only** for:
+
+1. an unavoidable manual action no available tool can perform;
+2. an inaccessible credential or secret;
+3. a payment;
+4. a legal, contractual or external approval;
+5. a decision that cannot be made by the available tools.
+
+Any earlier instruction in this file, or in any continuity document, that asks the founder to test,
+verify, run, retest, configure or execute anything is **superseded**: the AI executes it, and the founder
+is asked only for acceptance or for one of the five exceptions above.
+
+### G2. Continuity ownership
+
+M365 Copilot is **AI Program Director and continuity owner**. Verified results are handed back to M365
+Copilot at the end of every assignment.
+
+### G3. Proactive completion
+
+Continue proactively until the objective is fully completed. Do not stop at a partial result and wait for
+a prompt when the remaining work is executable by an available tool.
+
+### G4. Delegation format
+
+Every delegated task ships as a separate, self-contained, copy-paste-ready assignment that names the exact
+tool and mode (for example: "TOOL/MODE: Lovable, implementation mode"). Every implementation or
+verification stage includes its own separate Lovable assignment. Every Figma assignment includes the
+complete downloadable implementation package.
+
+### G5. Language rules
+
+- All assignments are written entirely in **English**.
+- Normal EduOS conversational responses are very short, relevant and in **Devanagari Hindi**, while
+  technical and standard terms remain in English.
+- These are chat/communication rules only. The **product** remains English-only; no Hindi copy, dictionary
+  or language toggle may be reintroduced into the application.
+
+### G6. Duplication
+
+Avoid duplicate work unless it is intentional independent verification, and say so explicitly when it is.

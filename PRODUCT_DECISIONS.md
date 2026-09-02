@@ -131,3 +131,26 @@ Updated by the Lovable agent whenever a decision is implemented, reversed, or co
 - Production verification: ₹199, ₹2,999, ₹2,800, CBSE Class 10 Mathematics and Science all present; Classes 9/11/12, Commerce, Humanities and all streams absent from public surfaces; English-only copy intact.
 - Rollback: code `48548b420c601f8bcaf11a47c6853a55ebfb5526`; both migrations are additive/policy-only and require no data rollback.
 - Next gate: Wave 1 — Class 9 Mathematics and Science content preparation (not started).
+
+---
+
+## 2026-09-02 — D10–D16: Founder Non-Execution Rule and multi-AI continuity governance
+
+Durable governance decisions. Permanent unless the founder explicitly revokes them.
+
+- **D10 Founder Non-Execution Rule (mandatory).** Never assign execution work to the founder. All
+  possible work is completed through the appropriate AI/tool assignment. The founder is involved only for
+  an unavoidable manual action, an inaccessible credential, a payment, a legal/external approval, or a
+  decision that cannot be performed by available tools. This supersedes every earlier founder-retest,
+  founder-verification or founder-configuration instruction in the continuity set.
+- **D11.** M365 Copilot is AI Program Director and continuity owner; verified results are handed back to it.
+- **D12.** Continue proactively until the objective is fully completed.
+- **D13.** Every delegated task has a separate copy-paste-ready assignment naming the exact tool and mode;
+  every implementation or verification stage includes a separate Lovable assignment.
+- **D14.** Every Figma assignment includes the complete downloadable implementation package.
+- **D15.** All assignments are written entirely in English. Normal EduOS responses are very short,
+  relevant and in Devanagari Hindi, with technical and standard terms in English. D9 (English-only
+  product copy) is unchanged: this is a communication rule, not a product-language change.
+- **D16.** Avoid duplicate work unless it is intentional independent verification.
+
+No product, pricing, scope, schema or runtime decision is changed by this entry.

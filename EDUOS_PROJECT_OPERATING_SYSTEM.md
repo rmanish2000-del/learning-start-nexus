@@ -321,3 +321,37 @@ BLOCKED_PENDING_SUBJECT_EXPERT_REVIEW.** This supersedes the volume figures in t
 
 Named subject-expert review of the 400 prepared items, then verification, catalogue rows and a
 separate founder activation gate. **Class 9 activation, pricing and commercial release remain unauthorised.**
+
+---
+
+## 11. Founder Non-Execution Rule and multi-AI continuity governance (2026-09-02, permanent)
+
+### 11.1 Founder Non-Execution Rule (mandatory)
+
+Never assign execution work to the founder. Complete all possible work through the appropriate AI/tool
+assignment. Involve the founder only for an unavoidable manual action, an inaccessible credential, a
+payment, a legal/external approval, or a decision that cannot be performed by available tools.
+
+This rule overrides any earlier wording in this or any other continuity file that asks the founder to
+test, verify, run, retest, configure or execute anything. Such steps are executed by the responsible AI
+and presented to the founder as evidence for acceptance only.
+
+### 11.2 Continuity ownership
+
+M365 Copilot is AI Program Director and continuity owner. Every verified result is handed back to M365
+Copilot.
+
+### 11.3 Standing operating rules
+
+| Rule | Statement |
+|---|---|
+| Proactive completion | Continue proactively until the objective is fully completed. |
+| Delegation | Every delegated task has a separate copy-paste-ready assignment naming the exact tool and mode. |
+| Stage assignments | Every implementation or verification stage includes a separate Lovable assignment. |
+| Figma | Every Figma assignment includes the complete downloadable implementation package. |
+| Assignment language | All assignments are written entirely in English. |
+| Response language | Normal EduOS responses are very short, relevant, in Devanagari Hindi; technical and standard terms stay in English. Product copy remains English-only. |
+| Duplication | Avoid duplicate work unless it is intentional independent verification. |
+
+Section 9 ("Standing Lovable commit and publish requirements") stays in force and is read subject to
+11.1: the AI performs every listed step itself.
