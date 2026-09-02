@@ -124,7 +124,7 @@ require safety verification and rollback readiness **before** publication.
 Failure handling:
 
 ```text
-Root cause → Fix → Full regression tests → Commit → Full SHA → Clean worktree → Publish → Production verification → Founder retest
+Root cause → Fix → Full regression tests → Commit → Full SHA → Clean worktree → Publish → Production verification → Founder acceptance (AI-executed evidence; see §11.1 — never a founder execution task)
 ```
 
 Fix the first failing founder step. Do not author a new roadmap when a concrete

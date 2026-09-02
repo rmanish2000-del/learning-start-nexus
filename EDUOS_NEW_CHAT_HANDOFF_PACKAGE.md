@@ -1,7 +1,7 @@
 # EDUOS NEW-CHAT HANDOFF PACKAGE
 
 **Prepared:** 2026-08-23  
-**Purpose:** Start a new AI chat without losing project state, decisions, working style, release discipline, or the immediate founder-retest position.
+**Purpose:** Start a new AI chat without losing project state, decisions, working style, release discipline, or the immediate acceptance position. **[SUPERSEDED 2026-09-02: see §G1 Founder Non-Execution Rule — the founder never executes verification work.]**
 
 > Important: Repository and production facts below are based on the latest reports supplied in the prior chat. The new chat must re-read the canonical repository documents and treat live evidence as authoritative when it conflicts with this handoff.
 
@@ -45,7 +45,7 @@ Source-of-truth order:
 If sources conflict, do not guess. Identify the conflict and request or perform evidence-based verification.
 
 Current mission:
-Founder retest of the consolidated production release, followed by independent verification and a five-family controlled pilot only if the founder retest passes.
+AI-executed verification of the consolidated production release, presented to the founder for acceptance only (§G1), followed by independent verification and a five-family controlled pilot only if acceptance passes.
 
 Standing Lovable rule:
 Every Lovable assignment must automatically include implementation, full verification, commit to the canonical repository, full commit SHA, clean-working-tree confirmation, publication/deployment when appropriate, production verification, production URL, tests/evidence, known limitations, and rollback notes. Do not wait for the founder to ask for commit or publish. High-risk or destructive changes require the appropriate safety gate before publication.
@@ -519,7 +519,7 @@ Root cause
 → Clean worktree
 → Publish
 → Production verification
-→ Founder retest
+→ Founder acceptance (AI-executed evidence; §G1)
 ```
 
 ---
@@ -622,7 +622,7 @@ The new chat must correctly answer all of these before continuing:
 7. What alone can close a gap?
 8. What is the assessment lifecycle?
 9. What is the standing Lovable commit/publish rule?
-10. What is the current founder-retest mission?
+10. What is the current acceptance gate awaiting the founder (decision only, never execution)?
 11. What is the exact full deployed SHA?
 12. What remains unverified?
 
