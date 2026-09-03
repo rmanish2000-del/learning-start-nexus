@@ -161,3 +161,25 @@ status only; checkout and webhook signature verification green; secret scans of
 repository and client bundle clean; 320/320 tests, typecheck, build and security
 scan pass; production health 200. Details in
 `EDUOS_PAYMENT_SETTINGS_SECURITY_AUDIT.md`.
+
+## 2026-09-03 — SME workflow production closeout and current-year content activation
+
+- Deployed SHA (production artifact verified): `3e6866900afacfd2ebe232d1b2e4f43af57372ca`
+- Production: https://www.eduos.global — health 200, landing 200; `/sme-review/mathematics`,
+  `/sme-review/science`, `/sme-review/` all 302 to `/auth` for anonymous document requests.
+- SME workflow live: per-subject queues, four outcomes (only `verified` promotes), mandatory
+  reviewer name, qualification and per-item decision basis, append-only decision trail.
+- Draft queue unchanged and unreviewed: Mathematics 235 + Science 91 = 326.
+- Pilot activation: learner-facing item pools now require `status=approved` AND
+  `verification_state=verified` (diagnostic workspace + unit builder), matching the
+  build-time rule already enforced in `assessments.server.ts`.
+- Migration `20260903145431_...` archived every published paper that was out of current-year
+  scope, empty, or contained a non-verified item. Remaining published papers:
+  Mathematics "Number Systems — Parent Diagnostic" 12/12 verified items,
+  Science "Chemical Substances — Parent Diagnostic" 40/40 verified items.
+- Verified approved+verified pool: Mathematics 45, Science 165 (210 total).
+- AI Tutor boundary re-audited: writes only `tutor_sessions` / `tutor_interactions`;
+  no writes to mastery, assessments, evidence, gaps, recommendations or interventions.
+- Tests 339/339, typecheck clean, clean worktree.
+- Rollback: republish the previous artifact and
+  `UPDATE public.assessments SET status='published' WHERE id IN (...)` for the archived papers.

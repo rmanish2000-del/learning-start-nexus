@@ -8,6 +8,7 @@ import {
   SME_EXPECTED_TOTAL,
   SME_WORKFLOW_RULES,
 } from "../sme-review-shared";
+import { isProtectedPath } from "../protected-routes";
 
 const validation = JSON.parse(
   readFileSync("content/compliance/class-10-2026-27.draft-validation.json", "utf8"),
@@ -160,5 +161,13 @@ describe("four-outcome attribution migration", () => {
 
   it("keeps non-approval outcomes as drafts", () => {
     expect(sql).toContain("WHEN NEW.action = 'verified' THEN 'approved'");
+  });
+});
+
+describe("sme review route protection", () => {
+  it("gates both subject queues behind the server-side auth gate", () => {
+    expect(isProtectedPath("/sme-review")).toBe(true);
+    expect(isProtectedPath("/sme-review/mathematics")).toBe(true);
+    expect(isProtectedPath("/sme-review/science")).toBe(true);
   });
 });
