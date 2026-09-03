@@ -61,24 +61,29 @@ function SmeReviewPage() {
   const queryClient = useQueryClient();
   const load = useServerFn(getSmeReviewFn);
   const decide = useServerFn(recordSmeDecisionFn);
+  const { subject: subjectSlug } = useParams({ from: "/_authenticated/sme-review/$subject" });
+  const subject: SmeSubject = smeSubjectFromSlug(subjectSlug) ?? "Mathematics";
   const [reviewerName, setReviewerName] = useState("");
+  const [reviewerQualification, setReviewerQualification] = useState("");
+  const [basis, setBasis] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [subject, setSubject] = useState<SmeSubject>("Mathematics");
 
   const query = useQuery({ queryKey: ["sme-review"], queryFn: () => load() });
 
   const mutation = useMutation({
-    mutationFn: (vars: { questionId: string; action: "verified" | "rejected" }) =>
+    mutationFn: (vars: { questionId: string; action: SmeDecision }) =>
       decide({
         data: {
           questionId: vars.questionId,
           action: vars.action,
           reviewerName: reviewerName.trim(),
+          reviewerQualification: reviewerQualification.trim(),
+          decisionBasis: basis[vars.questionId]?.trim() ?? "",
           note: notes[vars.questionId]?.trim() || null,
         },
       }),
     onSuccess: (_r, vars) => {
-      toast.success(vars.action === "verified" ? "Question approved" : "Question rejected");
+      toast.success(`Decision recorded: ${SME_DECISION_LABELS[vars.action]}`);
       void queryClient.invalidateQueries({ queryKey: ["sme-review"] });
     },
     onError: (error) => toast.error(friendlyErrorMessage(error)),
@@ -93,7 +98,11 @@ function SmeReviewPage() {
   if (query.isLoading) return <Skeleton className="h-96 w-full" />;
   if (query.isError) return <QueryError error={query.error} onRetry={() => query.refetch()} />;
 
-  const nameReady = reviewerName.trim().length >= 2;
+  const identityReady =
+    reviewerName.trim().length >= 2 && reviewerQualification.trim().length >= 2;
+  const decisionReady = (id: string) =>
+    identityReady && (basis[id]?.trim().length ?? 0) >= 10;
+
 
   return (
     <div className="space-y-6">
