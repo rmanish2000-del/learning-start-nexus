@@ -1,7 +1,7 @@
 // Named-SME review of the 326 existing Class 10 (2026-27) drafts.
 // Reviewer/admin only. One explicit decision at a time — no bulk approval.
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useParams } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { AlertTriangle, BadgeCheck, Copy, ShieldCheck, XCircle } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -19,19 +19,25 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { friendlyErrorMessage } from "@/lib/user-errors";
 import { getSmeReviewFn, recordSmeDecisionFn } from "@/lib/sme-review.functions";
 import {
   NCERT_OVERLAP_CANDIDATES,
   NEAR_DUPLICATE_PAIRS,
+  SME_DECISIONS,
+  SME_DECISION_LABELS,
   SME_SUBJECTS,
   SME_WORKFLOW_RULES,
+  smeSubjectFromSlug,
+  type SmeDecision,
   type SmeSubject,
 } from "@/lib/sme-review-shared";
 
 export const Route = createFileRoute("/_authenticated/sme-review/$subject")({
+  beforeLoad: ({ params }) => {
+    if (!smeSubjectFromSlug(params.subject)) throw notFound();
+  },
   component: SmeReviewPage,
   head: () => ({
     meta: [
