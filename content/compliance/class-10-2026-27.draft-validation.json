@@ -1,0 +1,1792 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-09-03T01:50:42.031Z",
+  "board": "CBSE",
+  "classLevel": 10,
+  "academicYear": "2026-27",
+  "reconciliation": {
+    "registerCount": 326,
+    "databaseDraftCount": 326,
+    "matched": 326,
+    "inRegisterOnly": [],
+    "inDatabaseOnly": [],
+    "duplicateRefsInRegister": 0,
+    "exactlyOnce": true
+  },
+  "queueCounts": {
+    "Mathematics": 235,
+    "Science": 91
+  },
+  "findingsBySeverity": {
+    "BLOCKER": 0,
+    "WARNING": 242
+  },
+  "findingsByCheck": {
+    "NUMERIC_CHECK": 184,
+    "RUBRIC_MARKS": 5,
+    "STIMULUS_EMBEDDED": 53
+  },
+  "itemsWithBlockers": 0,
+  "duplicates": {
+    "exactDuplicateGroups": 0,
+    "nearDuplicatePairs": 1,
+    "threshold": 0.85,
+    "exactGroups": [],
+    "nearPairs": [
+      {
+        "a": "C10-2627-MATH-REQ001-DIAG-012",
+        "b": "C10-2627-MATH-REQ001-REASS-013",
+        "similarity": 0.909,
+        "subject": "Mathematics"
+      }
+    ]
+  },
+  "poolAllocation": [
+    {
+      "subject": "Mathematics",
+      "total": 235,
+      "DIAGNOSTIC": 95,
+      "REASSESSMENT": 0,
+      "FRESH_REASSESSMENT": 140,
+      "reassessmentTotal": 140,
+      "poolsDisjoint": true,
+      "overlappingRefs": []
+    },
+    {
+      "subject": "Science",
+      "total": 91,
+      "DIAGNOSTIC": 30,
+      "REASSESSMENT": 0,
+      "FRESH_REASSESSMENT": 61,
+      "reassessmentTotal": 61,
+      "poolsDisjoint": true,
+      "overlappingRefs": []
+    }
+  ],
+  "copyrightContamination": {
+    "performed": true,
+    "method": "12-token verbatim shingle overlap against 27 official NCERT Class X chapter PDFs (jemh1, jesc1)",
+    "ncertShingleCount": 148391,
+    "itemsChecked": 326,
+    "contaminatedItems": 4,
+    "hits": [
+      {
+        "externalRef": "C10-2627-MATH-REQ024-DIAG-004",
+        "subject": "Mathematics",
+        "matchedShingle": "tower casts a shadow 28 m long. find the height of the"
+      },
+      {
+        "externalRef": "C10-2627-MATH-REQ022-DIAG-009",
+        "subject": "Mathematics",
+        "matchedShingle": "find the coordinates of the points of trisection of the line segment"
+      },
+      {
+        "externalRef": "C10-2627-MATH-REQ032-DIAG-001",
+        "subject": "Mathematics",
+        "matchedShingle": "the angle of elevation of the top of a tower from a"
+      },
+      {
+        "externalRef": "C10-2627-MATH-REQ034-REASS-005",
+        "subject": "Mathematics",
+        "matchedShingle": "cm subtends a right angle at the centre. find the area of"
+      }
+    ]
+  },
+  "promotionPolicy": "No item is promoted. All 326 remain status=draft, verification_state=unverified pending named SME sign-off.",
+  "findings": [
+    {
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'product_over' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'gcd3' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-006",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'product_of_primes' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'lcm3' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'product_over' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-008",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-009",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'gcd3' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-013",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ001-REASS-016",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'quadratic_roots_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sum_zeroes' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'poly_from_roots_b' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'product_zeroes' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sum_zeroes_from_pair' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sum_zeroes_from_pair' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ005-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ008-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'linear2' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ008-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'linear2' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ008-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ratio_k' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ008-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'linear2' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ008-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ008-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'linear2' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'quadratic_roots_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'discriminant' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'discriminant' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'equal_roots_k' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'discriminant' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ013-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sum_of_squares' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ap_term' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ap_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ap_index' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ap_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ap_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ018-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ap_sum_first_last' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tangent_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tangent_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-DIAG-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'op_from_angle' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tangent_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'circumscribed_da' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tangent_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'op_from_angle' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-008",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'hypotenuse' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-009",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'angle_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tangent_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ027-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'bpt_ec' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'square_ratio' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'proportion' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-DIAG-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'proportion' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'bpt_ec' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sqrt_ratio' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ratio_equal' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'proportion' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'proportion' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-008",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'altitude_right' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'square_ratio' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ024-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'equidistant_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'midpoint_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'section_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-006",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-008",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-009",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'section_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-011",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'axis_ratio_y' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-013",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-013",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-014",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'fourth_vertex_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-015",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'midpoint_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-016",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'path_two_legs' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-DIAG-016",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'equidistant_y' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'midpoint_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'section_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'triangle_perimeter' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-008",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-009",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'section_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-011",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'axis_ratio_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-013",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-013",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-014",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'fourth_vertex_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-015",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-016",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-016",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-018",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'triangle_perimeter' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-019",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'equidistant_x' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ022-REASS-020",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cos_from_sin' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'trig_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'pythag_identity' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arctan_deg' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "RUBRIC_MARKS",
+      "severity": "WARNING",
+      "detail": "short_answer carries 1 mark"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sec_from_tan' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sin_from_cos' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_cot_sum' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'two_sin_cos' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arcsin_deg' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "RUBRIC_MARKS",
+      "severity": "WARNING",
+      "detail": "short_answer carries 1 mark"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cot_from_cosec' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'pythag_identity' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arctan_deg' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ029-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_squared' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arctan_deg' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sin_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arctan_deg' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sin_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sin_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-009",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'tan_distance' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ032-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arctan_deg' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arc_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'segment_area_right' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'arc_length' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area_multi' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'segment_area_right' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_perimeter' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ034-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sector_angle' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'hemisphere_volume' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cone_volume' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sphere_area' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cone_plus_hemisphere_volume' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cylinder_csa' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'sphere_volume' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cone_csa' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'hemisphere_tsa' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'capsule_volume' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'recast_cylinder_height' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cylinder_volume' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cylinder_over_cone' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ036-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'half' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'grouped_mean' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'empirical_mode' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'class_mark' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'median_class_cf' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'grouped_mode' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'grouped_mean' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'empirical_median' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'class_mark' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'grouped_median' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'grouped_mode' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'assumed_mean' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'half' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ037-REASS-010",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'cumulative' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-001",
+      "subject": "Mathematics",
+      "checkId": "RUBRIC_MARKS",
+      "severity": "WARNING",
+      "detail": "short_answer carries 1 mark"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-002",
+      "subject": "Mathematics",
+      "checkId": "RUBRIC_MARKS",
+      "severity": "WARNING",
+      "detail": "short_answer carries 1 mark"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'complement' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-001",
+      "subject": "Mathematics",
+      "checkId": "RUBRIC_MARKS",
+      "severity": "WARNING",
+      "detail": "short_answer carries 1 mark"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-002",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-003",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'complement' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-004",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-005",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-006",
+      "subject": "Mathematics",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-MATH-REQ038-REASS-007",
+      "subject": "Mathematics",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'probability' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ039-DIAG-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'myopia_power' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ039-REASS-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'hypermetropia_power' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ039-REASS-004",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ039-REASS-009",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-DIAG-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'mirror_v' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'mirror_magnification' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-002",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'mirror_v' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-003",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'half' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-004",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-DIAG-003",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'lens_v' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-DIAG-004",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'lens_power' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-006",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'lens_v' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-007",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'lens_power' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ037-REASS-009",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ041-DIAG-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ohm_current' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ041-DIAG-002",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'series_r' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ041-REASS-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'parallel_r' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ041-REASS-002",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'ohm_voltage' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ041-REASS-003",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'resistivity_r' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ042-DIAG-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'joule_heat' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ042-REASS-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'energy_kwh' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ042-REASS-002",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'energy_cost' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ042-REASS-003",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'power_vi' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ042-REASS-004",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ043-REASS-002",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'turns_field' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ043-REASS-004",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ043-REASS-009",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-DIAG-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'trophic_energy' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-DIAG-004",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-DIAG-005",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'trophic_energy' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-001",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'trophic_energy' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-004",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-005",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'trophic_energy' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-010",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'percentage' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-010",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-DIAG-011",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-014",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-019",
+      "subject": "Science",
+      "checkId": "NUMERIC_CHECK",
+      "severity": "WARNING",
+      "detail": "numericCheck fn 'percentage' not machine-checked"
+    },
+    {
+      "externalRef": "C10-2627-SCI-REQ045-REASS-019",
+      "subject": "Science",
+      "checkId": "STIMULUS_EMBEDDED",
+      "severity": "WARNING",
+      "detail": "context is embedded in the prompt, not a separate stimulus field"
+    }
+  ]
+}
