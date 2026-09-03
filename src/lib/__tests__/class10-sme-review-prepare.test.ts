@@ -124,7 +124,7 @@ describe("duplicate detection", () => {
   it("groups exact duplicates and flags near duplicates", () => {
     const a = { ...base, externalRef: "A", prompt: "Find the HCF of 96 and 404." };
     const b = { ...base, externalRef: "B", prompt: "find  the hcf of 96 and 404" };
-    const c = { ...base, externalRef: "C", prompt: "Find the HCF of 96 and 404 quickly." };
+    const c = { ...base, externalRef: "C", prompt: "Please find the HCF of 96 and 404." };
     const result = findDuplicates([a, b, c]);
     expect(result.exactGroups).toHaveLength(1);
     expect(result.near.some((p) => p.a === "A" && p.b === "C")).toBe(true);
