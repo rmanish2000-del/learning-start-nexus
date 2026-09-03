@@ -52,6 +52,7 @@ import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_au
 import { Route as AuthenticatedQuickStartRouteImport } from './routes/_authenticated/quick-start'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedSmeReviewRouteImport } from './routes/_authenticated/sme-review'
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
 import { Route as AuthenticatedSprint4AuditRouteImport } from './routes/_authenticated/sprint-4-audit'
 import { Route as AuthenticatedSprint5AuditRouteImport } from './routes/_authenticated/sprint-5-audit'
@@ -314,6 +315,11 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSmeReviewRoute = AuthenticatedSmeReviewRouteImport.update({
+  id: '/sme-review',
+  path: '/sme-review',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSprint3AuditRoute =
   AuthenticatedSprint3AuditRouteImport.update({
     id: '/sprint-3-audit',
@@ -480,6 +486,7 @@ export interface FileRoutesByFullPath {
   '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/sme-review': typeof AuthenticatedSmeReviewRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
@@ -546,6 +553,7 @@ export interface FileRoutesByTo {
   '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/sme-review': typeof AuthenticatedSmeReviewRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
@@ -614,6 +622,7 @@ export interface FileRoutesById {
   '/_authenticated/quick-start': typeof AuthenticatedQuickStartRoute
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/sme-review': typeof AuthenticatedSmeReviewRoute
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/_authenticated/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/_authenticated/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
@@ -682,6 +691,7 @@ export interface FileRouteTypes {
     | '/quick-start'
     | '/rls-verification'
     | '/settings'
+    | '/sme-review'
     | '/sprint-3-audit'
     | '/sprint-4-audit'
     | '/sprint-5-audit'
@@ -748,6 +758,7 @@ export interface FileRouteTypes {
     | '/quick-start'
     | '/rls-verification'
     | '/settings'
+    | '/sme-review'
     | '/sprint-3-audit'
     | '/sprint-4-audit'
     | '/sprint-5-audit'
@@ -815,6 +826,7 @@ export interface FileRouteTypes {
     | '/_authenticated/quick-start'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
+    | '/_authenticated/sme-review'
     | '/_authenticated/sprint-3-audit'
     | '/_authenticated/sprint-4-audit'
     | '/_authenticated/sprint-5-audit'
@@ -1168,6 +1180,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/sme-review': {
+      id: '/_authenticated/sme-review'
+      path: '/sme-review'
+      fullPath: '/sme-review'
+      preLoaderRoute: typeof AuthenticatedSmeReviewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/sprint-3-audit': {
       id: '/_authenticated/sprint-3-audit'
       path: '/sprint-3-audit'
@@ -1371,6 +1390,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedQuickStartRoute: typeof AuthenticatedQuickStartRoute
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedSmeReviewRoute: typeof AuthenticatedSmeReviewRoute
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
   AuthenticatedSprint4AuditRoute: typeof AuthenticatedSprint4AuditRoute
   AuthenticatedSprint5AuditRoute: typeof AuthenticatedSprint5AuditRoute
@@ -1419,6 +1439,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedQuickStartRoute: AuthenticatedQuickStartRoute,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedSmeReviewRoute: AuthenticatedSmeReviewRoute,
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,
   AuthenticatedSprint4AuditRoute: AuthenticatedSprint4AuditRoute,
   AuthenticatedSprint5AuditRoute: AuthenticatedSprint5AuditRoute,
