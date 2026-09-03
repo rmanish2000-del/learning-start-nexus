@@ -34,3 +34,55 @@ Decision: **SAFE_FOR_LIVE_KEYS** (after fixes applied in this audit)
 ## Decision
 
 **SAFE_FOR_LIVE_KEYS** — live `rzp_live_*` credentials and the webhook secret can be stored via `/payment-settings`.
+
+
+---
+
+## 2026-09-03 — P0 remediation: `payment_credentials_admin_readable_secrets`
+
+**Finding.** `public.payment_credentials` carried four `TO authenticated`
+policies gated only on `private.has_role(auth.uid(), 'admin')`. That role check
+is *not* organisation-scoped, so an admin of any tenant matched it. No table
+privilege was granted to `anon`/`authenticated`, so the rows were not actually
+reachable through the Data API — but a single future `GRANT` would have silently
+exposed platform-wide gateway secrets. Treated as a real P0 latent exposure.
+
+**Proof taken before the fix.**
+`has_table_privilege('authenticated','public.payment_credentials','SELECT')` =
+false (no live read path), while `pg_policies` showed the four admin policies
+present and org-agnostic (latent cross-organisation access).
+
+**Remediation applied (migration `20260903045542_…`).**
+- Dropped all four `payment_credentials` authenticated policies and the dead
+  admin SELECT policy on `payment_credential_audit`.
+- `REVOKE ALL … FROM anon, authenticated` on both tables; `service_role` retains
+  full access to `payment_credentials` and `SELECT, INSERT` on the audit table.
+- RLS re-asserted on both tables — enabled with **zero** policies, so the only
+  access path is the service-role server module.
+- Audit trail made immutable: a `BEFORE UPDATE OR DELETE` trigger
+  (`payment_credential_audit_immutable`) raises, making the log append-only.
+
+**Post-fix verification.** `pg_policies` count for both tables = 0;
+`has_table_privilege` false for `anon` and `authenticated` on SELECT/UPDATE and
+on the audit table; `service_role` SELECT = true.
+
+**Application paths.** Unchanged and still working: all reads/writes go through
+`src/lib/payment-credentials.server.ts` using the service-role client; the admin
+UI, connection test, webhook signature verification and order creation all
+resolve credentials server-side. Server functions in
+`payment-settings.functions.ts` remain admin-gated and return masked status only.
+
+**Regression tests.** `src/lib/__tests__/payment-credential-access.test.ts` —
+12 cases covering policy removal, privilege revocation, service-role grant,
+audit immutability, no later re-grant, admin-client-only table access, no
+browser-facing module touching the tables, write-only status shape, masked-only
+audit inserts, no secret logging, and no live-key literals. Suite: 320/320.
+
+**Rotation assessment.** `public.payment_credentials` is **empty** (no stored
+override); live gateway credentials exist only as platform environment secrets,
+which were never exposed by this finding, never returned to a client, and never
+present in the repository or build output. **Rotation is therefore not required.**
+If the founder still wants precautionary rotation, that is the single unavoidable
+external dependency (Razorpay Dashboard → Settings → API Keys / Webhooks); all
+technical readiness is complete — new keys can be pasted into `/payment-settings`
+with zero code change, and the change is recorded in the immutable audit log.
