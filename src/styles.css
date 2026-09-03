@@ -1,30 +1,48 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/geist-mono";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
- * EduOS design system.
- * Professional SaaS direction: quiet neutral surfaces, a single confident
- * evergreen accent, subtle borders, and Geist typography. Light + dark.
+ * EduOS design system — single source of truth.
+ *
+ * Generated from the approved Figma design package v1.0.0 (2026-09-03):
+ *   design/figma/eduos-design-tokens.json  (104 token definitions)
+ *   sha256 5624f28cbff0095913d45d478ac2092d97e96e3917bf00b28e8c9b3bfba6a8b7
+ *
+ * Layer 1: global primitives (--eds-*) — literal values from the package.
+ * Layer 2: semantic tokens (--eds-color-*, spacing, radius, shadow, motion, z)
+ *          — aliases exactly as the package declares them.
+ * Layer 3: shadcn/ui runtime variables mapped onto the semantic layer, so every
+ *          existing component inherits the approved palette without rewrites.
+ *
+ * The former --pwa-* token block has been retired; PWA surfaces now consume the
+ * same semantic tokens. Fonts are loaded via <link> in src/routes/__root.tsx
+ * (Tailwind v4 resolves CSS @import from the filesystem, not the network).
  */
 
 @theme {
-  --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Outfit", "Inter", system-ui, sans-serif;
+  --font-editorial: "Playfair Display", Georgia, serif;
+  --font-mono: "DM Mono", "Courier New", ui-monospace, monospace;
+
+  /* semantic.breakpoints */
+  --breakpoint-mobile: 375px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-wide: 1440px;
 }
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-sm: var(--eds-radius-sm);
+  --radius-md: var(--eds-radius-md);
+  --radius-lg: var(--eds-radius-lg);
+  --radius-xl: var(--eds-radius-xl);
+  --radius-2xl: var(--eds-radius-2xl);
+  --radius-3xl: calc(var(--eds-radius-2xl) + 8px);
+  --radius-4xl: calc(var(--eds-radius-2xl) + 16px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -43,6 +61,7 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-success: var(--success);
   --color-warning: var(--warning);
+  --color-info: var(--info);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -60,8 +79,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* Marketing-only ink surface used by the illustrative product preview.
-     Intentionally identical in light and dark themes. */
+  /* Marketing / navigation ink surface = package brand-dark. */
   --color-ink: var(--ink);
   --color-ink-raised: var(--ink-raised);
   --color-ink-border: var(--ink-border);
@@ -70,87 +88,204 @@
   --color-ink-accent: var(--ink-accent);
 }
 
-
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.99 0.003 250);
-  --foreground: oklch(0.22 0.02 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.02 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 260);
-  --primary: oklch(0.52 0.105 168);
-  --primary-foreground: oklch(0.98 0.01 160);
-  --secondary: oklch(0.96 0.005 250);
-  --secondary-foreground: oklch(0.3 0.02 260);
-  --muted: oklch(0.962 0.005 250);
-  --muted-foreground: oklch(0.53 0.02 260);
-  --accent: oklch(0.945 0.02 168);
-  --accent-foreground: oklch(0.35 0.07 168);
-  --destructive: oklch(0.577 0.215 27);
-  --destructive-foreground: oklch(0.985 0.005 250);
-  --success: oklch(0.58 0.12 155);
-  --warning: oklch(0.66 0.13 65);
-  --border: oklch(0.918 0.006 250);
-  --input: oklch(0.918 0.006 250);
-  --ring: oklch(0.52 0.105 168);
-  --chart-1: oklch(0.52 0.105 168);
-  --chart-2: oklch(0.65 0.12 200);
-  --chart-3: oklch(0.55 0.08 260);
-  --chart-4: oklch(0.7 0.12 90);
-  --chart-5: oklch(0.62 0.15 30);
-  --sidebar: oklch(0.978 0.004 250);
-  --sidebar-foreground: oklch(0.28 0.02 260);
-  --sidebar-primary: oklch(0.52 0.105 168);
-  --sidebar-primary-foreground: oklch(0.98 0.01 160);
-  --sidebar-accent: oklch(0.945 0.02 168);
-  --sidebar-accent-foreground: oklch(0.35 0.07 168);
-  --sidebar-border: oklch(0.918 0.006 250);
-  --sidebar-ring: oklch(0.52 0.105 168);
-  --ink: oklch(0.21 0.018 260);
-  --ink-raised: oklch(0.26 0.018 260);
-  --ink-border: oklch(1 0 0 / 12%);
-  --ink-foreground: oklch(0.96 0.005 250);
-  --ink-muted: oklch(0.74 0.015 255);
-  --ink-accent: oklch(0.78 0.13 168);
+  /* ── Layer 1 · global primitives (27) ─────────────────────── */
+  --eds-orange-500: #f97316;
+  --eds-blue-50: #eff6ff;
+  --eds-blue-100: #dbeafe;
+  --eds-blue-200: #bfdbfe;
+  --eds-blue-300: #93c5fd;
+  --eds-blue-600: #2563eb;
+  --eds-blue-700: #1d4ed8;
+  --eds-green-50: #ecfdf5;
+  --eds-green-200: #6ee7b7;
+  --eds-green-500: #059669;
+  --eds-green-600: #047857;
+  --eds-red-50: #fef2f2;
+  --eds-red-200: #fecaca;
+  --eds-red-600: #dc2626;
+  --eds-amber-50: #fffbeb;
+  --eds-amber-200: #fde68a;
+  --eds-amber-500: #d97706;
+  --eds-neutral-50: #f8f9fb;
+  --eds-neutral-100: #f2f3f7;
+  --eds-neutral-200: #e3e5ee;
+  --eds-neutral-400: #9ca3af;
+  --eds-neutral-500: #6b7280;
+  --eds-neutral-600: #4b5563;
+  --eds-neutral-700: #374151;
+  --eds-neutral-900: #111827;
+  --eds-dark-nav: #0c1628;
+  --eds-dark-footer: #080f1c;
+
+  /* ── Layer 2 · semantic colour ────────────────────────────── */
+  --eds-color-brand-primary: var(--eds-orange-500);
+  --eds-color-brand-dark: var(--eds-dark-nav);
+  --eds-color-blue-trust: var(--eds-blue-600);
+  --eds-color-surface-page: var(--eds-neutral-50);
+  --eds-color-surface-section: var(--eds-neutral-100);
+  --eds-color-surface-card: #ffffff;
+  --eds-color-border-default: var(--eds-neutral-200);
+  --eds-color-border-focus: var(--eds-blue-600);
+  --eds-color-text-primary: var(--eds-neutral-900);
+  --eds-color-text-secondary: var(--eds-neutral-500);
+  --eds-color-text-tertiary: var(--eds-neutral-400);
+  --eds-color-text-on-brand: #ffffff;
+  --eds-color-focus-ring: var(--eds-blue-600);
+  --eds-color-state-success: var(--eds-green-500);
+  --eds-color-state-error: var(--eds-red-600);
+  --eds-color-state-warning: var(--eds-amber-500);
+  --eds-color-state-info: var(--eds-blue-600);
+
+  /* ── Layer 2 · typography scale ───────────────────────────── */
+  --eds-size-xs: 10px;
+  --eds-size-sm: 12px;
+  --eds-size-base: 14px;
+  --eds-size-lg: 16px;
+  --eds-size-xl: 18px;
+  --eds-size-2xl: 20px;
+  --eds-size-3xl: 24px;
+  --eds-size-4xl: 30px;
+  --eds-size-5xl: 36px;
+  --eds-weight-regular: 400;
+  --eds-weight-medium: 500;
+  --eds-weight-semibold: 600;
+  --eds-weight-bold: 700;
+  --eds-leading-tight: 1.25;
+  --eds-leading-normal: 1.5;
+  --eds-leading-relaxed: 1.65;
+
+  /* ── Layer 2 · spacing ────────────────────────────────────── */
+  --eds-space-0-5: 2px;
+  --eds-space-1: 4px;
+  --eds-space-2: 8px;
+  --eds-space-3: 12px;
+  --eds-space-4: 16px;
+  --eds-space-5: 20px;
+  --eds-space-6: 24px;
+  --eds-space-8: 32px;
+  --eds-space-10: 40px;
+  --eds-space-12: 48px;
+  --eds-space-16: 64px;
+  --eds-space-20: 80px;
+
+  /* ── Layer 2 · radius ─────────────────────────────────────── */
+  --eds-radius-sm: 8px;
+  --eds-radius-md: 12px;
+  --eds-radius-lg: 16px;
+  --eds-radius-xl: 20px;
+  --eds-radius-2xl: 24px;
+  --eds-radius-full: 9999px;
+
+  /* ── Layer 2 · shadow ─────────────────────────────────────── */
+  --eds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --eds-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --eds-shadow-modal: 0 4px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+  --eds-shadow-nav: 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* ── Layer 2 · motion ─────────────────────────────────────── */
+  --eds-duration-fast: 150ms;
+  --eds-duration-base: 250ms;
+  --eds-duration-slow: 400ms;
+  --eds-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --eds-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --eds-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  /* ── Layer 2 · z-index ────────────────────────────────────── */
+  --eds-z-base: 0;
+  --eds-z-raised: 10;
+  --eds-z-dropdown: 100;
+  --eds-z-sticky: 200;
+  --eds-z-overlay: 300;
+  --eds-z-modal: 400;
+  --eds-z-toast: 500;
+
+  /* ── Layer 3 · shadcn runtime mapping (light) ─────────────── */
+  --radius: var(--eds-radius-md);
+  --background: var(--eds-color-surface-page);
+  --foreground: var(--eds-color-text-primary);
+  --card: var(--eds-color-surface-card);
+  --card-foreground: var(--eds-color-text-primary);
+  --popover: var(--eds-color-surface-card);
+  --popover-foreground: var(--eds-color-text-primary);
+  --primary: var(--eds-color-brand-primary);
+  --primary-foreground: var(--eds-color-text-on-brand);
+  --secondary: var(--eds-color-surface-section);
+  --secondary-foreground: var(--eds-neutral-700);
+  --muted: var(--eds-color-surface-section);
+  --muted-foreground: var(--eds-color-text-secondary);
+  --accent: var(--eds-blue-50);
+  --accent-foreground: var(--eds-blue-700);
+  --destructive: var(--eds-color-state-error);
+  --destructive-foreground: #ffffff;
+  --success: var(--eds-color-state-success);
+  --warning: var(--eds-color-state-warning);
+  --info: var(--eds-color-state-info);
+  --border: var(--eds-color-border-default);
+  --input: var(--eds-color-border-default);
+  --ring: var(--eds-color-focus-ring);
+  --chart-1: var(--eds-orange-500);
+  --chart-2: var(--eds-blue-600);
+  --chart-3: var(--eds-green-500);
+  --chart-4: var(--eds-amber-500);
+  --chart-5: var(--eds-neutral-500);
+  --sidebar: var(--eds-color-surface-card);
+  --sidebar-foreground: var(--eds-neutral-700);
+  --sidebar-primary: var(--eds-color-brand-primary);
+  --sidebar-primary-foreground: var(--eds-color-text-on-brand);
+  --sidebar-accent: var(--eds-color-surface-section);
+  --sidebar-accent-foreground: var(--eds-neutral-900);
+  --sidebar-border: var(--eds-color-border-default);
+  --sidebar-ring: var(--eds-color-focus-ring);
+  --ink: var(--eds-color-brand-dark);
+  --ink-raised: #14243c;
+  --ink-border: rgba(255, 255, 255, 0.12);
+  --ink-foreground: #ffffff;
+  --ink-muted: rgba(255, 255, 255, 0.62);
+  --ink-accent: var(--eds-orange-500);
 }
 
-
+/*
+ * Dark theme. The approved package ships no dark-mode token set; these values
+ * are the package's own navy/footer surfaces plus its state hues raised for
+ * contrast on dark. No new hues are introduced.
+ */
 .dark {
-  --background: oklch(0.165 0.012 260);
-  --foreground: oklch(0.94 0.005 250);
-  --card: oklch(0.2 0.012 260);
-  --card-foreground: oklch(0.94 0.005 250);
-  --popover: oklch(0.2 0.012 260);
-  --popover-foreground: oklch(0.94 0.005 250);
-  --primary: oklch(0.7 0.12 168);
-  --primary-foreground: oklch(0.16 0.03 170);
-  --secondary: oklch(0.24 0.012 260);
-  --secondary-foreground: oklch(0.9 0.005 250);
-  --muted: oklch(0.24 0.012 260);
-  --muted-foreground: oklch(0.68 0.015 255);
-  --accent: oklch(0.28 0.03 168);
-  --accent-foreground: oklch(0.82 0.08 168);
-  --destructive: oklch(0.62 0.19 25);
-  --destructive-foreground: oklch(0.96 0.005 250);
-  --success: oklch(0.72 0.13 155);
-  --warning: oklch(0.78 0.13 75);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.7 0.12 168);
-  --chart-1: oklch(0.7 0.12 168);
-  --chart-2: oklch(0.72 0.11 200);
-  --chart-3: oklch(0.68 0.08 260);
-  --chart-4: oklch(0.76 0.11 90);
-  --chart-5: oklch(0.7 0.14 30);
-  --sidebar: oklch(0.185 0.012 260);
-  --sidebar-foreground: oklch(0.88 0.005 250);
-  --sidebar-primary: oklch(0.7 0.12 168);
-  --sidebar-primary-foreground: oklch(0.16 0.03 170);
-  --sidebar-accent: oklch(0.28 0.03 168);
-  --sidebar-accent-foreground: oklch(0.88 0.06 168);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.7 0.12 168);
+  --background: var(--eds-dark-footer);
+  --foreground: #f3f4f6;
+  --card: var(--eds-dark-nav);
+  --card-foreground: #f3f4f6;
+  --popover: var(--eds-dark-nav);
+  --popover-foreground: #f3f4f6;
+  --primary: var(--eds-orange-500);
+  --primary-foreground: #1a0d02;
+  --secondary: #14243c;
+  --secondary-foreground: #e5e7eb;
+  --muted: #14243c;
+  --muted-foreground: #9ca3af;
+  --accent: #14243c;
+  --accent-foreground: var(--eds-blue-300);
+  --destructive: #f87171;
+  --destructive-foreground: #1a0505;
+  --success: var(--eds-green-200);
+  --warning: #fbbf24;
+  --info: var(--eds-blue-300);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.14);
+  --ring: var(--eds-blue-300);
+  --chart-1: var(--eds-orange-500);
+  --chart-2: var(--eds-blue-300);
+  --chart-3: var(--eds-green-200);
+  --chart-4: #fbbf24;
+  --chart-5: var(--eds-neutral-400);
+  --sidebar: var(--eds-dark-nav);
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: var(--eds-orange-500);
+  --sidebar-primary-foreground: #1a0d02;
+  --sidebar-accent: #14243c;
+  --sidebar-accent-foreground: #f3f4f6;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: var(--eds-blue-300);
 }
 
 @layer base {
@@ -165,93 +300,57 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-size: var(--eds-size-lg);
+    line-height: var(--eds-leading-normal);
+  }
+
+  /* Outfit is the display face: headings, buttons, nav, badges, tab labels. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  [role="tab"] {
+    font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--eds-leading-tight);
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+  }
 }
-/* EduOS PWA Design Tokens
-   Phase 1 · Installable PWA · No Offline Assessments
-   Generated: 2026-09-02 */
 
-:root {
-  /* ── Brand ─────────────────────────────────── */
-  --pwa-brand-primary:         #F97316;   /* orange-500 — CTA, install button */
-  --pwa-brand-dark:            #0C1628;   /* deep navy — nav, offline bg */
-  --pwa-brand-surface:         #FFFFFF;   /* install banner, update prompt */
-
-  /* ── Offline screen ─────────────────────────── */
-  --pwa-offline-bg:            #0C1628;
-  --pwa-offline-icon-bg:       rgba(239, 68, 68, 0.10);
-  --pwa-offline-icon-border:   rgba(239, 68, 68, 0.20);
-  --pwa-offline-icon-color:    #EF4444;
-  --pwa-offline-heading:       #FFFFFF;
-  --pwa-offline-body:          rgba(255, 255, 255, 0.50);
-  --pwa-offline-note:          rgba(255, 255, 255, 0.30);
-  --pwa-offline-footer:        rgba(255, 255, 255, 0.15);
-
-  /* ── Connection lost — general (amber) ──────── */
-  --pwa-warn-bg:               #FFFBEB;
-  --pwa-warn-border:           #FDE68A;
-  --pwa-warn-heading:          #92400E;
-  --pwa-warn-body:             #B45309;
-  --pwa-warn-icon:             #F59E0B;
-  --pwa-warn-dismiss:          #B45309;
-
-  /* ── Connection lost — assessment (red) ─────── */
-  --pwa-error-bg:              #FEF2F2;
-  --pwa-error-border:          #FECACA;
-  --pwa-error-heading:         #991B1B;
-  --pwa-error-body:            #B91C1C;
-  --pwa-error-icon:            #EF4444;
-
-  /* ── Connection restored (green) ────────────── */
-  --pwa-success-bg:            #ECFDF5;
-  --pwa-success-border:        #6EE7B7;
-  --pwa-success-heading:       #065F46;
-  --pwa-success-body:          #047857;
-  --pwa-success-icon:          #059669;
-
-  /* ── Install banner ─────────────────────────── */
-  --pwa-install-bg:            #FFFFFF;
-  --pwa-install-border:        #E3E5EE;
-  --pwa-install-scrim:         rgba(0, 0, 0, 0.50);
-
-  /* ── Update prompt ──────────────────────────── */
-  --pwa-update-bg:             #FFFFFF;
-  --pwa-update-border:         #E3E5EE;
-  --pwa-update-shadow:         0 4px 16px rgba(0, 0, 0, 0.10);
-  --pwa-update-note-bg:        #F2F3F7;
-  --pwa-update-note-text:      #6B7280;
-
-  /* ── Typography ─────────────────────────────── */
-  --pwa-font-display:          "Outfit", system-ui, "Noto Sans", sans-serif;
-  --pwa-font-body:             "Inter", system-ui, "Noto Sans", sans-serif;
-  --pwa-font-mono:             "DM Mono", "Courier New", monospace;
-
-  /* ── Spacing ────────────────────────────────── */
-  --pwa-banner-height-desktop: 56px;
-  --pwa-toast-width-desktop:   280px;
-  --pwa-update-card-width:     320px;
-  --pwa-sheet-radius:          12px;
-  --pwa-icon-sm:               28px;
-  --pwa-icon-md:               36px;
-  --pwa-icon-lg:               64px;
-  --pwa-touch-min:             44px;
-  --pwa-border-radius-btn:     10px;
-  --pwa-border-radius-card:    16px;
-
-  /* ── Animation ──────────────────────────────── */
-  --pwa-slide-up-duration:     200ms;
-  --pwa-slide-up-easing:       ease-out;
-  --pwa-toast-duration:        4000ms;
+/* Playfair Display is reserved for marketing hero headings (/, /about). */
+@utility font-editorial {
+  font-family: var(--font-editorial);
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --pwa-slide-up-duration: 0ms;
+    --eds-duration-fast: 0ms;
+    --eds-duration-base: 0ms;
+    --eds-duration-slow: 0ms;
   }
 }
 
 @keyframes eduos-pwa-slide-up {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

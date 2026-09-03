@@ -49,18 +49,18 @@ export function OfflineBanner() {
       role="alert"
       aria-live="assertive"
       className="sticky top-0 z-[70] flex w-full items-start gap-2 border-b px-3 py-2 print:hidden"
-      style={{ background: "var(--pwa-warn-bg)", borderColor: "var(--pwa-warn-border)" }}
+      style={{ background: "var(--eds-amber-50)", borderColor: "var(--eds-amber-200)" }}
     >
       <WifiOff
         className="mt-0.5 h-3.5 w-3.5 shrink-0"
-        style={{ color: "var(--pwa-warn-icon)" }}
+        style={{ color: "var(--eds-color-state-warning)" }}
         aria-hidden
       />
       <div className="flex-1 text-left">
-        <p className="text-xs font-bold" style={{ color: "var(--pwa-warn-heading)" }}>
+        <p className="text-xs font-bold" style={{ color: "var(--eds-amber-500)" }}>
           No internet connection
         </p>
-        <p className="text-[11px]" style={{ color: "var(--pwa-warn-body)" }}>
+        <p className="text-[11px]" style={{ color: "var(--eds-amber-500)" }}>
           Your connection was lost. Some features may not be available.
         </p>
       </div>
@@ -69,7 +69,7 @@ export function OfflineBanner() {
         onClick={() => setDismissed(true)}
         aria-label="Dismiss connection notice"
         className="-my-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-md"
-        style={{ color: "var(--pwa-warn-dismiss)" }}
+        style={{ color: "var(--eds-amber-500)" }}
       >
         <X className="h-4 w-4" aria-hidden />
       </button>

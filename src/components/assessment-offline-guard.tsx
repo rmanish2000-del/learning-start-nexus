@@ -28,20 +28,20 @@ export function AssessmentOfflineNotice({ online }: { online: boolean }) {
       aria-live="assertive"
       className="mt-4 flex items-start gap-3 rounded-[10px] border p-3"
       style={{
-        background: "var(--pwa-error-bg)",
-        borderColor: "var(--pwa-error-border)",
+        background: "var(--eds-red-50)",
+        borderColor: "var(--eds-red-200)",
       }}
     >
       <AlertTriangle
         className="mt-0.5 h-4 w-4 shrink-0"
-        style={{ color: "var(--pwa-error-icon)" }}
+        style={{ color: "var(--eds-color-state-error)" }}
         aria-hidden
       />
       <div>
-        <p className="text-xs font-bold" style={{ color: "var(--pwa-error-heading)" }}>
+        <p className="text-xs font-bold" style={{ color: "var(--eds-red-600)" }}>
           Connection lost during assessment
         </p>
-        <p className="mt-1 text-[11px] leading-relaxed" style={{ color: "var(--pwa-error-body)" }}>
+        <p className="mt-1 text-[11px] leading-relaxed" style={{ color: "var(--eds-red-600)" }}>
           Do not close this page. Reconnect before submitting your answers. Answers already saved
           are safe.
         </p>

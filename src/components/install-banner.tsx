@@ -196,9 +196,9 @@ export function InstallBanner() {
       aria-label="Install EduOS app"
       className="fixed inset-x-0 bottom-0 z-40 border-t shadow-lg print:hidden"
       style={{
-        background: "var(--pwa-install-bg)",
-        borderColor: "var(--pwa-install-border)",
-        animation: "eduos-pwa-slide-up var(--pwa-slide-up-duration) var(--pwa-slide-up-easing)",
+        background: "var(--eds-color-surface-card)",
+        borderColor: "var(--eds-color-border-default)",
+        animation: "eduos-pwa-slide-up var(--eds-duration-base) var(--eds-easing-decelerate)",
       }}
     >
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:gap-6">
@@ -235,7 +235,7 @@ export function InstallBanner() {
           <Button
             size="sm"
             onClick={install}
-            className="min-h-11 bg-[var(--pwa-brand-primary)] text-white hover:bg-[var(--pwa-brand-primary)]/90"
+            className="min-h-11 bg-[var(--eds-color-brand-primary)] text-white hover:bg-[var(--eds-color-brand-primary)]/90"
           >
             <Download className="mr-1.5 h-4 w-4" aria-hidden />
             <span className="sm:hidden">Add to Home Screen</span>
