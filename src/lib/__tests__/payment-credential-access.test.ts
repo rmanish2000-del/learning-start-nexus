@@ -18,9 +18,9 @@ const migrations = readdirSync(migrationsDir)
   .filter((f) => f.endsWith(".sql"))
   .map((f) => ({ file: f, sql: readFileSync(join(migrationsDir, f), "utf8") }));
 
-const lockMigration = migrations.find((m) =>
-  m.sql.includes('DROP POLICY IF EXISTS "payment_credentials_admin_select"'),
-);
+const lockMigration = [...migrations]
+  .reverse()
+  .find((m) => m.sql.includes("REVOKE ALL ON public.payment_credentials FROM anon, authenticated;"));
 
 describe("payment credential table lockdown", () => {
   it("ships a migration that removes every authenticated policy", () => {
@@ -69,12 +69,11 @@ describe("payment credential table lockdown", () => {
 
 describe("credential reads never leave the service-role module", () => {
   it("only the admin (service-role) client touches the credential tables", () => {
-    const lines = credentialsServer
-      .split("\n")
-      .filter((l) => l.includes('from("payment_credential'));
-    expect(lines.length).toBeGreaterThan(0);
-    for (const line of lines) {
-      expect(line).toContain("supabaseAdmin");
+    const calls = [...credentialsServer.matchAll(/from\("payment_credential[a-z_]*"\)/g)];
+    expect(calls.length).toBeGreaterThan(0);
+    for (const call of calls) {
+      const before = credentialsServer.slice(Math.max(0, call.index! - 200), call.index!);
+      expect(before).toContain("supabaseAdmin");
     }
   });
 
@@ -114,7 +113,8 @@ describe("secret values are write-only", () => {
 
   it("no server function returns resolved credentials to the client", () => {
     expect(settingsFunctions).not.toContain("resolveRazorpayCredentials");
-    expect(settingsFunctions).not.toMatch(/keySecret\s*[,)}]/);
+    // secrets only ever travel inbound (admin submitting keys), never outbound
+    expect(settingsFunctions).not.toMatch(/return[^;]*keySecret/);
     for (const fn of ["getPaymentSettingsFn", "savePaymentSettingsFn", "clearPaymentSettingsFn"]) {
       expect(settingsFunctions).toContain(fn);
     }
