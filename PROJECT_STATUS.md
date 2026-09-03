@@ -1,7 +1,8 @@
 # EduOS — Project Status
 
-**Last verified:** 2026-09-02 (UTC)
-**Evidence sources:** repository at commit `b559058753b9d0acc6a25438fdc0cf79122ce4af` (= deployed production SHA), live HTTP fetches of https://www.eduos.global, live database queries, `bunx vitest run` output, prior reports listed in §7.
+**Last verified:** 2026-09-03 (UTC)
+**Evidence sources:** canonical repository HEAD (Safe PWA Phase 1 promotion re-verified and republished on 2026-09-03; prior production SHA `b559058753b9d0acc6a25438fdc0cf79122ce4af`), live HTTP fetches of https://www.eduos.global, live database queries, `bunx vitest run` output, prior reports listed in §7.
+**Safe PWA Phase 1:** promoted and verified in production — 241 precache entries, 0 private entries, NetworkOnly navigations, no background sync, `?sw=off` recovery active. See `EDUOS_SAFE_PWA_PRODUCTION_PROMOTION_VERIFICATION.md`.
 
 ---
 
