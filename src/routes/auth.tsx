@@ -4,6 +4,7 @@ import { GraduationCap, KeyRound, Mail, Phone, UserRound } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
 import { setSessionMarker } from "@/lib/session-marker";
@@ -237,6 +238,49 @@ function AuthPage() {
     }
   };
 
+  // Google sign-in for parents and staff only. Student accounts stay on
+  // handle + PIN — they have no inbox, and linking one needs an explicit,
+  // verified step. Google never assigns or changes a role: goHome() reads
+  // the existing role row exactly as password sign-in does.
+  const onGoogle = async () => {
+    setPending(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) {
+        toast.error(friendlyErrorMessage(result.error, "Google sign-in did not complete."));
+        setPending(false);
+        return;
+      }
+      if (result.redirected) return;
+      const { data } = await supabase.auth.getUser();
+      if (!data.user) {
+        toast.error("Google sign-in did not complete. Please try again.");
+        setPending(false);
+        return;
+      }
+      await goHome(data.user);
+    } catch (error) {
+      toast.error(friendlyErrorMessage(error, "Google sign-in did not complete."));
+    } finally {
+      setPending(false);
+    }
+  };
+
+  const googleBlock = (
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <span className="h-px flex-1 bg-border" />
+        <span className="text-xs uppercase tracking-wide text-muted-foreground">or</span>
+        <span className="h-px flex-1 bg-border" />
+      </div>
+      <Button type="button" variant="outline" className="w-full" onClick={onGoogle} disabled={pending}>
+        Continue with Google
+      </Button>
+    </div>
+  );
+
   const onStaffSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
@@ -410,6 +454,7 @@ function AuthPage() {
                   {pending ? "Signing in…" : "Sign in"}
                 </Button>
               </form>
+              {googleBlock}
             </TabsContent>
 
             <TabsContent value="student" className="pt-6">
