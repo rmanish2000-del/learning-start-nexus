@@ -129,3 +129,24 @@ pricing expansion and no new features until Class 10 receives a compliance certi
 Named SME review and promotion of the 326 existing Class 10 draft items, Science book approval, and
 retrieval of the five missing official source types. No new authoring is required — the deficit
 (235 Mathematics + 91 Science) equals the existing draft corpus exactly.
+
+
+---
+
+## 2026-09-03 — P0 SECURITY CLOSED: payment credential access lockdown
+
+`payment_credentials_admin_readable_secrets` is **remediated**. Any-organisation
+admin policies on `public.payment_credentials` were dropped; `anon` and
+`authenticated` privileges revoked on the credential and audit tables; RLS
+enabled with zero policies (service-role-only access); credential audit made
+append-only by trigger. Supersedes any earlier statement that admin-readable
+payment credential policies were acceptable or that the credential table was
+already fully locked down.
+
+Evidence: migration `20260903045542_c9575a2f-747a-40b2-9f0e-2c94e1f15e2c.sql`,
+tests 320/320 (incl. 12 new credential-access regression cases), typecheck and
+production build clean, security scan zero critical/high.
+
+Razorpay key rotation: **not required** (credential table empty; live keys live
+only in platform environment secrets and were never exposed). Optional
+precautionary rotation is the only external-credential dependency.
