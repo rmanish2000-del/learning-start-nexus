@@ -22,35 +22,25 @@
       "subjects": {
         "Mathematics": {
           "papersAnalysed": 9,
-          "attributedQuestions": 12,
-          "unattributedQuestions": 114,
+          "attributedQuestions": 6,
+          "unattributedQuestions": 120,
           "chapters": [
-            {
-              "chapter": "Statistics",
-              "questions": 6,
-              "marks": 6,
-              "markShare": 0.5,
-              "questionShare": 0.5,
-              "byYear": {
-                "2022": 6
-              }
-            },
             {
               "chapter": "Circles",
               "questions": 3,
               "marks": 3,
-              "markShare": 0.25,
-              "questionShare": 0.25,
+              "markShare": 0.5,
+              "questionShare": 0.5,
               "byYear": {
                 "2022": 3
               }
             },
             {
-              "chapter": "Introduction to Trigonometry",
+              "chapter": "Statistics",
               "questions": 2,
               "marks": 2,
-              "markShare": 0.1667,
-              "questionShare": 0.1667,
+              "markShare": 0.3333,
+              "questionShare": 0.3333,
               "byYear": {
                 "2022": 2
               }
@@ -59,8 +49,8 @@
               "chapter": "Some Applications of Trigonometry",
               "questions": 1,
               "marks": 1,
-              "markShare": 0.0833,
-              "questionShare": 0.0833,
+              "markShare": 0.1667,
+              "questionShare": 0.1667,
               "byYear": {
                 "2022": 1
               }
@@ -83,6 +73,14 @@
             },
             {
               "chapter": "Coordinate Geometry",
+              "questions": 0,
+              "marks": 0,
+              "markShare": 0.0,
+              "questionShare": 0.0,
+              "byYear": {}
+            },
+            {
+              "chapter": "Introduction to Trigonometry",
               "questions": 0,
               "marks": 0,
               "markShare": 0.0,
@@ -151,20 +149,8 @@
           },
           "repeatedConcepts": [
             {
-              "concept": "tangent",
+              "concept": "tangents",
               "occurrences": 3
-            },
-            {
-              "concept": "tan",
-              "occurrences": 2
-            },
-            {
-              "concept": "mode",
-              "occurrences": 2
-            },
-            {
-              "concept": "mean",
-              "occurrences": 2
             },
             {
               "concept": "median",
@@ -178,58 +164,46 @@
         },
         "Science": {
           "papersAnalysed": 11,
-          "attributedQuestions": 33,
-          "unattributedQuestions": 132,
+          "attributedQuestions": 9,
+          "unattributedQuestions": 156,
           "chapters": [
             {
-              "chapter": "Acids, Bases and Salts",
-              "questions": 20,
-              "marks": 20,
-              "markShare": 0.6061,
-              "questionShare": 0.6061,
-              "byYear": {
-                "2022": 20
-              }
-            },
-            {
               "chapter": "Electricity",
-              "questions": 6,
-              "marks": 6,
-              "markShare": 0.1818,
-              "questionShare": 0.1818,
-              "byYear": {
-                "2022": 6
-              }
-            },
-            {
-              "chapter": "Metals and Non-metals",
               "questions": 5,
               "marks": 5,
-              "markShare": 0.1515,
-              "questionShare": 0.1515,
+              "markShare": 0.5556,
+              "questionShare": 0.5556,
               "byYear": {
                 "2022": 5
+              }
+            },
+            {
+              "chapter": "Magnetic Effects of Electric Current",
+              "questions": 3,
+              "marks": 3,
+              "markShare": 0.3333,
+              "questionShare": 0.3333,
+              "byYear": {
+                "2022": 3
               }
             },
             {
               "chapter": "Heredity",
               "questions": 1,
               "marks": 1,
-              "markShare": 0.0303,
-              "questionShare": 0.0303,
+              "markShare": 0.1111,
+              "questionShare": 0.1111,
               "byYear": {
                 "2022": 1
               }
             },
             {
-              "chapter": "Magnetic Effects of Electric Current",
-              "questions": 1,
-              "marks": 1,
-              "markShare": 0.0303,
-              "questionShare": 0.0303,
-              "byYear": {
-                "2022": 1
-              }
+              "chapter": "Acids, Bases and Salts",
+              "questions": 0,
+              "marks": 0,
+              "markShare": 0.0,
+              "questionShare": 0.0,
+              "byYear": {}
             },
             {
               "chapter": "Carbon and its Compounds",
@@ -280,6 +254,14 @@
               "byYear": {}
             },
             {
+              "chapter": "Metals and Non-metals",
+              "questions": 0,
+              "marks": 0,
+              "markShare": 0.0,
+              "questionShare": 0.0,
+              "byYear": {}
+            },
+            {
               "chapter": "Our Environment",
               "questions": 0,
               "marks": 0,
@@ -301,20 +283,12 @@
           },
           "repeatedConcepts": [
             {
-              "concept": "base",
-              "occurrences": 10
-            },
-            {
-              "concept": "ph",
-              "occurrences": 10
-            },
-            {
               "concept": "ohm",
-              "occurrences": 5
+              "occurrences": 4
             },
             {
-              "concept": "ore",
-              "occurrences": 5
+              "concept": "electric motor",
+              "occurrences": 2
             },
             {
               "concept": "sex determination",
@@ -347,28 +321,28 @@
       "subjects": {
         "Mathematics": {
           "papersAnalysed": 47,
-          "attributedQuestions": 265,
-          "unattributedQuestions": 1347,
+          "attributedQuestions": 165,
+          "unattributedQuestions": 1447,
           "chapters": [
             {
               "chapter": "Introduction to Trigonometry",
-              "questions": 135,
-              "marks": 247,
-              "markShare": 0.4591,
-              "questionShare": 0.5094,
+              "questions": 64,
+              "marks": 134,
+              "markShare": 0.3785,
+              "questionShare": 0.3879,
               "byYear": {
-                "2023": 48,
-                "2024": 23,
-                "2025": 32,
-                "2026": 32
+                "2023": 17,
+                "2024": 13,
+                "2025": 16,
+                "2026": 18
               }
             },
             {
               "chapter": "Real Numbers",
               "questions": 55,
               "marks": 83,
-              "markShare": 0.1543,
-              "questionShare": 0.2075,
+              "markShare": 0.2345,
+              "questionShare": 0.3333,
               "byYear": {
                 "2023": 23,
                 "2024": 16,
@@ -377,26 +351,14 @@
               }
             },
             {
-              "chapter": "Arithmetic Progressions",
-              "questions": 29,
-              "marks": 65,
-              "markShare": 0.1208,
-              "questionShare": 0.1094,
-              "byYear": {
-                "2023": 14,
-                "2024": 3,
-                "2026": 12
-              }
-            },
-            {
               "chapter": "Statistics",
-              "questions": 12,
-              "marks": 44,
-              "markShare": 0.0818,
-              "questionShare": 0.0453,
+              "questions": 8,
+              "marks": 28,
+              "markShare": 0.0791,
+              "questionShare": 0.0485,
               "byYear": {
-                "2023": 6,
-                "2024": 5,
+                "2023": 4,
+                "2024": 3,
                 "2026": 1
               }
             },
@@ -404,8 +366,8 @@
               "chapter": "Probability",
               "questions": 8,
               "marks": 26,
-              "markShare": 0.0483,
-              "questionShare": 0.0302,
+              "markShare": 0.0734,
+              "questionShare": 0.0485,
               "byYear": {
                 "2023": 1,
                 "2024": 6,
@@ -416,8 +378,8 @@
               "chapter": "Circles",
               "questions": 7,
               "marks": 25,
-              "markShare": 0.0465,
-              "questionShare": 0.0264,
+              "markShare": 0.0706,
+              "questionShare": 0.0424,
               "byYear": {
                 "2023": 1,
                 "2024": 4,
@@ -425,45 +387,45 @@
               }
             },
             {
-              "chapter": "Areas Related to Circles",
-              "questions": 7,
-              "marks": 11,
-              "markShare": 0.0204,
-              "questionShare": 0.0264,
-              "byYear": {
-                "2023": 3,
-                "2024": 3,
-                "2025": 1
-              }
-            },
-            {
               "chapter": "Quadratic Equations",
-              "questions": 4,
-              "marks": 11,
-              "markShare": 0.0204,
-              "questionShare": 0.0151,
+              "questions": 7,
+              "marks": 14,
+              "markShare": 0.0395,
+              "questionShare": 0.0424,
               "byYear": {
-                "2023": 3,
+                "2023": 6,
                 "2024": 1
               }
             },
             {
               "chapter": "Surface Areas and Volumes",
-              "questions": 3,
-              "marks": 10,
-              "markShare": 0.0186,
-              "questionShare": 0.0113,
+              "questions": 4,
+              "marks": 14,
+              "markShare": 0.0395,
+              "questionShare": 0.0242,
               "byYear": {
+                "2024": 1,
                 "2025": 1,
                 "2026": 2
+              }
+            },
+            {
+              "chapter": "Areas Related to Circles",
+              "questions": 6,
+              "marks": 9,
+              "markShare": 0.0254,
+              "questionShare": 0.0364,
+              "byYear": {
+                "2023": 3,
+                "2024": 3
               }
             },
             {
               "chapter": "Polynomials",
               "questions": 3,
               "marks": 8,
-              "markShare": 0.0149,
-              "questionShare": 0.0113,
+              "markShare": 0.0226,
+              "questionShare": 0.0182,
               "byYear": {
                 "2024": 3
               }
@@ -471,25 +433,35 @@
             {
               "chapter": "Coordinate Geometry",
               "questions": 1,
-              "marks": 4,
-              "markShare": 0.0074,
-              "questionShare": 0.0038,
+              "marks": 5,
+              "markShare": 0.0141,
+              "questionShare": 0.0061,
               "byYear": {
-                "2024": 1
+                "2026": 1
               }
             },
             {
               "chapter": "Some Applications of Trigonometry",
               "questions": 1,
               "marks": 4,
-              "markShare": 0.0074,
-              "questionShare": 0.0038,
+              "markShare": 0.0113,
+              "questionShare": 0.0061,
               "byYear": {
                 "2026": 1
               }
             },
             {
-              "chapter": "Pair of Linear Equations in Two Variables",
+              "chapter": "Triangles",
+              "questions": 1,
+              "marks": 4,
+              "markShare": 0.0113,
+              "questionShare": 0.0061,
+              "byYear": {
+                "2026": 1
+              }
+            },
+            {
+              "chapter": "Arithmetic Progressions",
               "questions": 0,
               "marks": 0,
               "markShare": 0.0,
@@ -497,7 +469,7 @@
               "byYear": {}
             },
             {
-              "chapter": "Triangles",
+              "chapter": "Pair of Linear Equations in Two Variables",
               "questions": 0,
               "marks": 0,
               "markShare": 0.0,
@@ -515,27 +487,7 @@
           },
           "repeatedConcepts": [
             {
-              "concept": "sin",
-              "occurrences": 76
-            },
-            {
-              "concept": "tan",
-              "occurrences": 72
-            },
-            {
-              "concept": "cos",
-              "occurrences": 64
-            },
-            {
-              "concept": "sec",
-              "occurrences": 57
-            },
-            {
               "concept": "hcf",
-              "occurrences": 43
-            },
-            {
-              "concept": "cosec",
               "occurrences": 43
             },
             {
@@ -543,8 +495,12 @@
               "occurrences": 40
             },
             {
-              "concept": "a.p",
-              "occurrences": 29
+              "concept": "cosec",
+              "occurrences": 39
+            },
+            {
+              "concept": "cot",
+              "occurrences": 34
             },
             {
               "concept": "probability",
@@ -555,73 +511,67 @@
               "occurrences": 8
             },
             {
-              "concept": "tangent",
+              "concept": "tangents",
               "occurrences": 7
             },
             {
-              "concept": "mean",
-              "occurrences": 7
+              "concept": "discriminant",
+              "occurrences": 6
+            },
+            {
+              "concept": "sector",
+              "occurrences": 3
+            },
+            {
+              "concept": "tangent",
+              "occurrences": 3
+            },
+            {
+              "concept": "arc",
+              "occurrences": 3
+            },
+            {
+              "concept": "polynomial",
+              "occurrences": 3
             }
           ]
         },
         "Science": {
           "papersAnalysed": 47,
-          "attributedQuestions": 180,
-          "unattributedQuestions": 1456,
+          "attributedQuestions": 42,
+          "unattributedQuestions": 1594,
           "chapters": [
             {
-              "chapter": "Acids, Bases and Salts",
-              "questions": 97,
-              "marks": 222,
-              "markShare": 0.4625,
-              "questionShare": 0.5389,
+              "chapter": "Carbon and its Compounds",
+              "questions": 8,
+              "marks": 35,
+              "markShare": 0.2333,
+              "questionShare": 0.1905,
               "byYear": {
-                "2023": 38,
-                "2024": 17,
-                "2025": 26,
-                "2026": 16
-              }
-            },
-            {
-              "chapter": "Metals and Non-metals",
-              "questions": 24,
-              "marks": 77,
-              "markShare": 0.1604,
-              "questionShare": 0.1333,
-              "byYear": {
-                "2023": 23,
+                "2023": 4,
+                "2024": 1,
+                "2025": 2,
                 "2026": 1
               }
             },
             {
               "chapter": "Electricity",
-              "questions": 25,
-              "marks": 61,
-              "markShare": 0.1271,
-              "questionShare": 0.1389,
+              "questions": 11,
+              "marks": 27,
+              "markShare": 0.18,
+              "questionShare": 0.2619,
               "byYear": {
-                "2023": 13,
-                "2024": 12
-              }
-            },
-            {
-              "chapter": "Carbon and its Compounds",
-              "questions": 9,
-              "marks": 29,
-              "markShare": 0.0604,
-              "questionShare": 0.05,
-              "byYear": {
-                "2023": 7,
-                "2024": 1,
-                "2026": 1
+                "2023": 2,
+                "2024": 8,
+                "2025": 1
               }
             },
             {
               "chapter": "Magnetic Effects of Electric Current",
               "questions": 6,
               "marks": 27,
-              "markShare": 0.0563,
-              "questionShare": 0.0333,
+              "markShare": 0.18,
+              "questionShare": 0.1429,
               "byYear": {
                 "2023": 3,
                 "2024": 1,
@@ -629,80 +579,101 @@
               }
             },
             {
-              "chapter": "Chemical Reactions and Equations",
-              "questions": 7,
-              "marks": 24,
-              "markShare": 0.05,
-              "questionShare": 0.0389,
+              "chapter": "Light \u2013 Reflection and Refraction",
+              "questions": 3,
+              "marks": 14,
+              "markShare": 0.0933,
+              "questionShare": 0.0714,
               "byYear": {
                 "2023": 1,
                 "2024": 1,
-                "2025": 1,
-                "2026": 4
-              }
-            },
-            {
-              "chapter": "Light \u2013 Reflection and Refraction",
-              "questions": 4,
-              "marks": 18,
-              "markShare": 0.0375,
-              "questionShare": 0.0222,
-              "byYear": {
-                "2023": 1,
-                "2024": 2,
                 "2025": 1
               }
             },
             {
-              "chapter": "Control and Coordination",
-              "questions": 2,
-              "marks": 6,
-              "markShare": 0.0125,
-              "questionShare": 0.0111,
+              "chapter": "How do Organisms Reproduce?",
+              "questions": 3,
+              "marks": 9,
+              "markShare": 0.06,
+              "questionShare": 0.0714,
               "byYear": {
                 "2023": 1,
+                "2025": 1,
                 "2026": 1
               }
             },
             {
-              "chapter": "How do Organisms Reproduce?",
+              "chapter": "Chemical Reactions and Equations",
               "questions": 2,
-              "marks": 5,
-              "markShare": 0.0104,
-              "questionShare": 0.0111,
+              "marks": 8,
+              "markShare": 0.0533,
+              "questionShare": 0.0476,
               "byYear": {
                 "2023": 1,
-                "2026": 1
+                "2024": 1
               }
             },
             {
               "chapter": "Our Environment",
+              "questions": 2,
+              "marks": 8,
+              "markShare": 0.0533,
+              "questionShare": 0.0476,
+              "byYear": {
+                "2023": 1,
+                "2024": 1
+              }
+            },
+            {
+              "chapter": "Life Processes",
+              "questions": 3,
+              "marks": 6,
+              "markShare": 0.04,
+              "questionShare": 0.0714,
+              "byYear": {
+                "2023": 1,
+                "2024": 1,
+                "2026": 1
+              }
+            },
+            {
+              "chapter": "Control and Coordination",
               "questions": 1,
               "marks": 5,
-              "markShare": 0.0104,
-              "questionShare": 0.0056,
+              "markShare": 0.0333,
+              "questionShare": 0.0238,
               "byYear": {
-                "2024": 1
+                "2023": 1
               }
             },
             {
               "chapter": "Heredity",
               "questions": 1,
               "marks": 4,
-              "markShare": 0.0083,
-              "questionShare": 0.0056,
+              "markShare": 0.0267,
+              "questionShare": 0.0238,
               "byYear": {
                 "2023": 1
               }
             },
             {
-              "chapter": "Life Processes",
-              "questions": 2,
-              "marks": 2,
-              "markShare": 0.0042,
-              "questionShare": 0.0111,
+              "chapter": "Metals and Non-metals",
+              "questions": 1,
+              "marks": 4,
+              "markShare": 0.0267,
+              "questionShare": 0.0238,
               "byYear": {
-                "2026": 2
+                "2023": 1
+              }
+            },
+            {
+              "chapter": "Acids, Bases and Salts",
+              "questions": 1,
+              "marks": 3,
+              "markShare": 0.02,
+              "questionShare": 0.0238,
+              "byYear": {
+                "2026": 1
               }
             },
             {
@@ -724,32 +695,8 @@
           },
           "repeatedConcepts": [
             {
-              "concept": "base",
-              "occurrences": 47
-            },
-            {
-              "concept": "ph",
-              "occurrences": 45
-            },
-            {
               "concept": "ohm",
-              "occurrences": 24
-            },
-            {
-              "concept": "ore",
-              "occurrences": 21
-            },
-            {
-              "concept": "carbon",
               "occurrences": 8
-            },
-            {
-              "concept": "chemical equation",
-              "occurrences": 7
-            },
-            {
-              "concept": "acid",
-              "occurrences": 7
             },
             {
               "concept": "magnetic field",
@@ -757,19 +704,43 @@
             },
             {
               "concept": "ethanol",
-              "occurrences": 6
-            },
-            {
-              "concept": "ethanoic",
-              "occurrences": 6
+              "occurrences": 5
             },
             {
               "concept": "focal length",
               "occurrences": 3
             },
             {
+              "concept": "resistance",
+              "occurrences": 3
+            },
+            {
               "concept": "solenoid",
               "occurrences": 3
+            },
+            {
+              "concept": "ethanoic acid",
+              "occurrences": 3
+            },
+            {
+              "concept": "hydrocarbon",
+              "occurrences": 2
+            },
+            {
+              "concept": "homologous series",
+              "occurrences": 2
+            },
+            {
+              "concept": "parallel combination",
+              "occurrences": 2
+            },
+            {
+              "concept": "trophic level",
+              "occurrences": 2
+            },
+            {
+              "concept": "excretion",
+              "occurrences": 2
             }
           ]
         }
