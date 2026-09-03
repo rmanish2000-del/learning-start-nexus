@@ -32,6 +32,7 @@ export const PROTECTED_ROUTES = [
   "/home",
   "/launch-audit",
   "/parent",
+  "/pilot-access",
   "/curriculum",
   "/curriculum-audit",
   "/sprint-5-audit",
