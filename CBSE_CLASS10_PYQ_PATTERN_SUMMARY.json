@@ -1,0 +1,136 @@
+{
+  "acceptedPdfs": 188,
+  "quarantinedPdfs": 16,
+  "byYearSubject": {
+    "2022 Mathematics Standard": 18,
+    "2022 Science": 20,
+    "2023 Mathematics Standard": 24,
+    "2023 Science": 24,
+    "2024 Mathematics Standard": 16,
+    "2024 Science": 16,
+    "2025 Mathematics Standard": 19,
+    "2025 Science": 19,
+    "2026 Mathematics Standard": 16,
+    "2026 Science": 16
+  },
+  "maxMarksDistribution": {
+    "2022 Mathematics Standard": {
+      "40": 9,
+      "unstated": 9
+    },
+    "2022 Science": {
+      "40": 11,
+      "unstated": 9
+    },
+    "2023 Mathematics Standard": {
+      "unstated": 6,
+      "80": 18
+    },
+    "2023 Science": {
+      "unstated": 6,
+      "80": 18
+    },
+    "2024 Mathematics Standard": {
+      "8": 7,
+      "unstated": 9
+    },
+    "2024 Science": {
+      "unstated": 9,
+      "80": 7
+    },
+    "2025 Mathematics Standard": {
+      "unstated": 10,
+      "80": 9
+    },
+    "2025 Science": {
+      "unstated": 10,
+      "80": 9
+    },
+    "2026 Mathematics Standard": {
+      "80": 7,
+      "unstated": 9
+    },
+    "2026 Science": {
+      "80": 13,
+      "unstated": 3
+    }
+  },
+  "medianPages": {
+    "2022 Mathematics Standard": 11,
+    "2022 Science": 12,
+    "2023 Mathematics Standard": 23,
+    "2023 Science": 27,
+    "2024 Mathematics Standard": 23,
+    "2024 Science": 27,
+    "2025 Mathematics Standard": 24,
+    "2025 Science": 27,
+    "2026 Mathematics Standard": 24,
+    "2026 Science": 31
+  },
+  "quarantine": [
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1158-1_430-4-1 Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1158-2_430-4-2 Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1158-3_430-4-3 Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1159-1_430-5-1 Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1159-2_430-5-2 Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1159-3_430-5-3 Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/1167_430(B)_Mathematics (Basic).pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-1-1_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-1-2_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-1-3_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-2-1_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-2-2_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-2-3_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-3-1_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-3-2_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    },
+    {
+      "pdf": "2026/041_Mathematics_Standard_2026-extracted/Mathematics_Standard/430-3-3_Mathematics Basic.pdf",
+      "reason": "MATHEMATICS_BASIC_241"
+    }
+  ]
+}
