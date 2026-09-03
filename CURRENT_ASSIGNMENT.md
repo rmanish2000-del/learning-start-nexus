@@ -31,6 +31,30 @@ Full text: `EDUOS_PROJECT_OPERATING_SYSTEM.md` §11, `PRODUCT_DECISIONS.md` D10�
 
 ## Active assignment
 
+**Title:** Safe PWA Phase 1 — exact verified production promotion
+**Received:** 2026-09-03
+**Priority:** P0
+**Status:** Complete. Patch reconciled as already-present in canonical code; all gates re-run and production republished.
+
+### Outcome
+
+| Item | Result |
+|---|---|
+| Patch reconciliation | 1067/1068 added lines byte-present; only difference is a stricter `vite-plugin-pwa` pin (`1.3.0` vs `^1.3.0`). No material divergence, no unrelated change |
+| Tests | 308/308 passing, 27 files (317 is the staging suite, which carries staging-only tests) |
+| PWA safety · offline gating tests | 5/5 · 3/3 |
+| Typecheck · build | clean · success, 241 precache entries |
+| Service Worker audit | 0 disallowed precache entries; NetworkOnly navigations + `offline.html` fallback; no `clientsClaim`, single gated `skipWaiting`, no background sync |
+| Cache Storage | zero private HTML/API/learner/assessment/answer/report/auth/payment content |
+| Security scan | 0 critical, 0 error, 3 pre-existing advisory warnings |
+| Deployment | Production republished from canonical HEAD; `/api/public/health` → 200 |
+
+Evidence: `EDUOS_SAFE_PWA_PRODUCTION_PROMOTION_VERIFICATION.md`.
+
+---
+
+## Previous assignment (complete)
+
 **Title:** Compliance evidence completion and draft-review preparation (Class 10, 2026-27)
 **Received:** 2026-09-03
 **Priority:** P0
