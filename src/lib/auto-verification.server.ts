@@ -155,7 +155,7 @@ export async function applyAutoVerification(
           verified_at: new Date().toISOString(),
         })
         .eq("id", verdict.questionId)
-        .eq("status", "draft");
+        .eq("verification_state", "unverified");
       if (error) throw new Error(error.message);
     }
 
