@@ -3181,6 +3181,138 @@ export type Database = {
           },
         ]
       }
+      pyq_practice_sessions: {
+        Row: {
+          answers: Json
+          chapter: string | null
+          cohort: string
+          correct_count: number | null
+          created_at: string
+          duration_minutes: number | null
+          id: string
+          items: Json
+          learner_id: string
+          mode: string
+          org_id: string
+          score_pct: number | null
+          started_at: string
+          status: string
+          subject: string
+          submitted_at: string | null
+          total_count: number | null
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          chapter?: string | null
+          cohort?: string
+          correct_count?: number | null
+          created_at?: string
+          duration_minutes?: number | null
+          id?: string
+          items?: Json
+          learner_id: string
+          mode?: string
+          org_id: string
+          score_pct?: number | null
+          started_at?: string
+          status?: string
+          subject: string
+          submitted_at?: string | null
+          total_count?: number | null
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          chapter?: string | null
+          cohort?: string
+          correct_count?: number | null
+          created_at?: string
+          duration_minutes?: number | null
+          id?: string
+          items?: Json
+          learner_id?: string
+          mode?: string
+          org_id?: string
+          score_pct?: number | null
+          started_at?: string
+          status?: string
+          subject?: string
+          submitted_at?: string | null
+          total_count?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pyq_practice_sessions_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pyq_practice_sessions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_auto_verifications: {
+        Row: {
+          checks: Json
+          confidence: number
+          created_at: string
+          created_by: string | null
+          engine_version: string
+          id: string
+          org_id: string
+          outcome: string
+          question_id: string
+          run_id: string
+        }
+        Insert: {
+          checks?: Json
+          confidence?: number
+          created_at?: string
+          created_by?: string | null
+          engine_version: string
+          id?: string
+          org_id: string
+          outcome: string
+          question_id: string
+          run_id: string
+        }
+        Update: {
+          checks?: Json
+          confidence?: number
+          created_at?: string
+          created_by?: string | null
+          engine_version?: string
+          id?: string
+          org_id?: string
+          outcome?: string
+          question_id?: string
+          run_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_auto_verifications_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_auto_verifications_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       question_bank: {
         Row: {
           book_id: string
@@ -3204,6 +3336,7 @@ export type Database = {
           updated_at: string
           verification_note: string | null
           verification_state: string
+          verification_tier: string | null
           verified_at: string | null
           verified_by: string | null
         }
@@ -3229,6 +3362,7 @@ export type Database = {
           updated_at?: string
           verification_note?: string | null
           verification_state?: string
+          verification_tier?: string | null
           verified_at?: string | null
           verified_by?: string | null
         }
@@ -3254,6 +3388,7 @@ export type Database = {
           updated_at?: string
           verification_note?: string | null
           verification_state?: string
+          verification_tier?: string | null
           verified_at?: string | null
           verified_by?: string | null
         }

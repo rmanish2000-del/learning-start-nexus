@@ -43,6 +43,8 @@ export const PROTECTED_ROUTES = [
   "/payment-settings",
   "/ux-phase1-plan",
   "/sme-review",
+  "/exam-pattern",
+  "/auto-verification",
 ] as const;
 
 export function isProtectedPath(pathname: string): boolean {

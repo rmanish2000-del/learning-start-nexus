@@ -7,6 +7,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/integrations/supabase/types";
+import { chapterForOutcomeCode, pyqChapterWeight } from "./pyq-shared";
+import { normaliseSubject } from "./pyq.server";
 import {
   aggregateBreakdown,
   labelFor,
@@ -274,16 +276,33 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
       }),
   );
 
+  // Ranking blends the curriculum's own diagnostic weight with the mark share
+  // that chapter actually carried in the official 2023-2026 CBSE papers, so the
+  // next topics are the ones most likely to be examined.
   const assessed = new Set(codes);
+  const examSubject = normaliseSubject(learner.subject);
+  const examWeight = (code: string) => {
+    const chapter = chapterForOutcomeCode(code);
+    return chapter ? pyqChapterWeight(examSubject, chapter) : 0;
+  };
+  const rank = (o: { code: string; diagnostic_weight: number | null }) =>
+    (o.diagnostic_weight ?? 0) + examWeight(o.code) * 100;
   const nextTopics: NextTopic[] = (outcomeRows ?? [])
     .filter((o) => !assessed.has(o.code))
-    .sort((a, b) => (b.diagnostic_weight ?? 0) - (a.diagnostic_weight ?? 0))
+    .sort((a, b) => rank(b) - rank(a))
     .slice(0, 4)
-    .map((o) => ({
-      code: o.code,
-      title: o.title,
-      reason: "Next outcome in this chapter group, ranked by board weight.",
-    }));
+    .map((o) => {
+      const chapter = chapterForOutcomeCode(o.code);
+      const share = chapter ? pyqChapterWeight(examSubject, chapter) : 0;
+      return {
+        code: o.code,
+        title: o.title,
+        reason:
+          share > 0
+            ? `High-yield: ${chapter} carried ${Math.round(share * 100)}% of attributed marks in the 2023-2026 CBSE papers.`
+            : "Next outcome in this chapter group, ranked by board weight.",
+      };
+    });
 
   return {
     ...base,
