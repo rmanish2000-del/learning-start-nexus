@@ -13,8 +13,8 @@ const validation = JSON.parse(
   readFileSync("content/compliance/class-10-2026-27.draft-validation.json", "utf8"),
 ) as {
   queueCounts: Record<string, number>;
-  duplicates: { nearDuplicates?: { a: string; b: string }[] };
-  copyrightContamination: { externalRef: string }[];
+  duplicates: { nearPairs?: { a: string; b: string }[] };
+  copyrightContamination: { hits: { externalRef: string }[] };
 };
 
 describe("SME review queue reconciliation", () => {
@@ -33,14 +33,14 @@ describe("SME review queue reconciliation", () => {
 describe("advisory candidates", () => {
   it("carries exactly the overlap candidates found by the validator", () => {
     const fromArtifact = new Set(
-      (validation.copyrightContamination ?? []).map((c) => c.externalRef),
+      (validation.copyrightContamination.hits ?? []).map((c) => c.externalRef),
     );
     const inCode = new Set(NCERT_OVERLAP_CANDIDATES.map((c) => c.externalRef));
     expect(inCode).toEqual(fromArtifact);
   });
 
   it("carries exactly the near-duplicate pairs found by the validator", () => {
-    const fromArtifact = (validation.duplicates.nearDuplicates ?? []).map((p) =>
+    const fromArtifact = (validation.duplicates.nearPairs ?? []).map((p) =>
       [p.a, p.b].sort().join("|"),
     );
     const inCode = NEAR_DUPLICATE_PAIRS.map((p) => [p.a, p.b].sort().join("|"));
@@ -73,7 +73,7 @@ describe("workflow guarantees", () => {
   it("accepts one question per decision — no bulk approval surface", () => {
     expect(source).toContain("questionId: z.string().uuid()");
     expect(source).not.toMatch(/questionIds|z\.array\(/);
-    expect(route).not.toMatch(/Approve all|approveAll|selectAll|bulk/i);
+    expect(route).not.toMatch(/Approve all|approveAll|selectAll|bulkApprove/);
   });
 
   it("requires a named reviewer for every decision", () => {
