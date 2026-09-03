@@ -68,12 +68,9 @@ def main() -> None:
         rows = [r for r in csv.DictReader(fh) if r["status"] == "ACCEPTED"]
     todo = []
     for r in rows:
-        path = os.path.join(EVIDENCE, r["relative_path"]) if not os.path.isabs(r["relative_path"]) else r["relative_path"]
+        path = os.path.join(EVIDENCE, r["pdf_entry"])
         if not os.path.exists(path):
-            hits = glob.glob(os.path.join(EVIDENCE, "**", os.path.basename(r["relative_path"])), recursive=True)
-            if not hits:
-                continue
-            path = hits[0]
+            continue
         k = cache_key(path)
         if os.path.exists(k) and os.path.getsize(k) >= THRESHOLD:
             continue
