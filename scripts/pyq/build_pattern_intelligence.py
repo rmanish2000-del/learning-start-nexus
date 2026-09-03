@@ -1,0 +1,265 @@
+"""Derive CBSE Class 10 exam-pattern intelligence from the officially retrieved
+2022-2026 question-paper archives.
+
+    python3 scripts/pyq/build_pattern_intelligence.py
+
+Reads ONLY the private evidence tree written by scripts/pyq/acquire-cbse-class10.ts
+and the verified inventory CSV. No question text is copied into the repository:
+the output contains counts, mark weights and chapter attribution ratios only.
+
+Cohorts are kept strictly separate:
+  * term_2022      - 2022 used the two-term, 40-mark format. Reported, never
+                     blended into the recent-pattern weights.
+  * recent_2023_2026 - the comparable 80-mark single-examination format used for
+                     every blueprint weight EduOS consumes.
+"""
+
+from __future__ import annotations
+
+import csv
+import glob
+import json
+import os
+import re
+from collections import Counter, defaultdict
+
+from pypdf import PdfReader
+
+EVIDENCE = "/mnt/documents/eduos-private-evidence/cbse-class10-pyq"
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUT = os.path.join(REPO, "content", "pyq", "class10-pyq-intelligence.json")
+INVENTORY = os.path.join(REPO, "CBSE_CLASS10_PYQ_EXTRACTION_INVENTORY.csv")
+
+# CBSE Class 10 single-examination (80 marks) section structure, 2023 onwards.
+def marks_for(q: int) -> int:
+    if 1 <= q <= 20:
+        return 1
+    if 21 <= q <= 25:
+        return 2
+    if 26 <= q <= 31:
+        return 3
+    if 32 <= q <= 35:
+        return 5
+    if 36 <= q <= 38:
+        return 4
+    return 0
+
+
+def competency_for(q: int) -> str:
+    if 1 <= q <= 18:
+        return "objective"
+    if 19 <= q <= 20:
+        return "assertion_reason"
+    if 21 <= q <= 25:
+        return "very_short_answer"
+    if 26 <= q <= 31:
+        return "short_answer"
+    if 32 <= q <= 35:
+        return "long_answer"
+    return "case_study"
+
+
+CHAPTER_KEYWORDS: dict[str, dict[str, list[str]]] = {
+    "Mathematics": {
+        "Real Numbers": ["hcf", "lcm", "prime factorisation", "prime factorization", "irrational", "euclid", "terminating decimal"],
+        "Polynomials": ["polynomial", "zeroes", "zeros", "quadratic polynomial"],
+        "Pair of Linear Equations in Two Variables": ["pair of linear equations", "linear equations in two variables", "consistent", "inconsistent", "substitution method", "elimination method"],
+        "Quadratic Equations": ["quadratic equation", "discriminant", "real roots", "equal roots", "roots of the equation"],
+        "Arithmetic Progressions": ["arithmetic progression", "common difference", "nth term", "sum of the first", "sum of first"],
+        "Triangles": ["similar triangles", "basic proportionality", "thales", "similarity", "corresponding sides"],
+        "Coordinate Geometry": ["section formula", "mid-point", "midpoint", "distance formula", "trisection", "collinear"],
+        "Introduction to Trigonometry": ["trigonometric", "trigonometry", "cosec", "cot", "identity"],
+        "Some Applications of Trigonometry": ["angle of elevation", "angle of depression", "line of sight", "shadow"],
+        "Circles": ["tangent", "tangents", "chord", "concentric", "circumscrib"],
+        "Areas Related to Circles": ["sector", "minor segment", "major segment", "area swept", "arc"],
+        "Surface Areas and Volumes": ["surface area", "volume", "cylinder", "cone", "hemisphere", "frustum"],
+        "Statistics": ["median", "modal class", "frequency distribution", "class interval", "ogive", "cumulative frequency"],
+        "Probability": ["probability", "die is thrown", "drawn at random", "well shuffled"],
+    },
+    "Science": {
+        "Chemical Reactions and Equations": ["balanced chemical equation", "skeletal equation", "decomposition reaction", "displacement reaction", "rancidity", "corrosion", "exothermic"],
+        "Acids, Bases and Salts": ["ph value", "ph scale", "litmus", "bleaching powder", "baking soda", "washing soda", "neutralisation", "neutralization", "water of crystallisation"],
+        "Metals and Non-metals": ["reactivity series", "alloy", "roasting", "calcination", "ionic compound", "malleable", "ductile", "amphoteric"],
+        "Carbon and its Compounds": ["hydrocarbon", "ethanol", "ethanoic acid", "covalent bond", "homologous series", "micelle", "saponification", "catenation"],
+        "Life Processes": ["autotrophic", "photosynthesis", "digestion", "excretion", "nephron", "stomata", "xylem", "phloem", "alveoli"],
+        "Control and Coordination": ["neuron", "reflex arc", "hormone", "cerebellum", "phototropism", "endocrine", "thyroxine"],
+        "How do Organisms Reproduce?": ["fertilisation", "fertilization", "pollination", "gamete", "placenta", "budding", "contraceptive", "vegetative propagation"],
+        "Heredity": ["mendel", "dominant trait", "recessive", "genotype", "phenotype", "f1 generation", "sex determination", "chromosome"],
+        "Light – Reflection and Refraction": ["concave mirror", "convex mirror", "focal length", "refractive index", "mirror formula", "lens formula", "power of a lens"],
+        "The Human Eye and the Colourful World": ["human eye", "myopia", "hypermetropia", "dispersion", "prism", "scattering", "tyndall", "presbyopia"],
+        "Electricity": ["resistance", "resistivity", "ohm", "ammeter", "voltmeter", "electric power", "series combination", "parallel combination"],
+        "Magnetic Effects of Electric Current": ["magnetic field", "solenoid", "electromagnetic induction", "right hand thumb", "fleming", "electric motor"],
+        "Our Environment": ["food chain", "trophic level", "ecosystem", "biodegradable", "ozone", "biomagnification"],
+    },
+}
+
+QUESTION_RE = re.compile(r"(?:^|\n)\s*(\d{1,2})\s*[\.\)]\s+")
+
+
+CACHE = "/tmp/pyq-text-cache"
+
+
+def paper_text(path: str) -> str:
+    os.makedirs(CACHE, exist_ok=True)
+    key = os.path.join(CACHE, path.replace("/", "_") + ".txt")
+    if os.path.exists(key):
+        with open(key) as fh:
+            return fh.read()
+    try:
+        reader = PdfReader(path)
+        text = "\n".join((page.extract_text() or "") for page in reader.pages)
+    except Exception:
+        text = ""
+    with open(key, "w") as fh:
+        fh.write(text)
+    return text
+
+
+def segment(text: str) -> list[tuple[int, str]]:
+    matches = list(QUESTION_RE.finditer(text))
+    blocks: list[tuple[int, str]] = []
+    seen: set[int] = set()
+    for i, m in enumerate(matches):
+        number = int(m.group(1))
+        if number < 1 or number > 38 or number in seen:
+            continue
+        seen.add(number)
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        blocks.append((number, text[m.end() : end].lower()))
+    return blocks
+
+
+KEYWORD_RE: dict[str, dict[str, list[tuple[str, re.Pattern[str]]]]] = {
+    subject: {
+        chapter: [(k, re.compile(r"\b" + re.escape(k) + r"\b")) for k in keywords]
+        for chapter, keywords in chapters.items()
+    }
+    for subject, chapters in CHAPTER_KEYWORDS.items()
+}
+
+
+def attribute(subject: str, body: str) -> tuple[str | None, list[str]]:
+    """Attribute a question to one chapter. Ties are left unattributed: an
+    ambiguous match is never allowed to inflate a chapter weight."""
+    scores: list[tuple[int, str, list[str]]] = []
+    for chapter, keywords in KEYWORD_RE[subject].items():
+        hits = [k for k, rx in keywords if rx.search(body)]
+        if hits:
+            scores.append((len(hits), chapter, hits))
+    if not scores:
+        return None, []
+    scores.sort(key=lambda s: (-s[0], s[1]))
+    if len(scores) > 1 and scores[0][0] == scores[1][0]:
+        return None, []
+    return scores[0][1], scores[0][2]
+
+
+def main() -> None:
+    with open(INVENTORY, newline="") as fh:
+        inventory = [r for r in csv.DictReader(fh)]
+
+    accepted = [r for r in inventory if r["status"] == "ACCEPTED"]
+    quarantined = [r for r in inventory if r["status"] == "QUARANTINED"]
+
+    cohorts = {
+        "term_2022": [r for r in accepted if r["year"] == "2022"],
+        "recent_2023_2026": [r for r in accepted if r["year"] != "2022"],
+    }
+
+    result: dict = {
+        "generatedFrom": "official CBSE archive binaries (private evidence tree)",
+        "academicYear": "2026-27",
+        "provenance": {
+            "archives": 10,
+            "acceptedPdfs": len(accepted),
+            "quarantinedPdfs": len(quarantined),
+            "quarantineReasons": sorted({r["exclusion_reason"] for r in quarantined}),
+        },
+        "cohorts": {},
+    }
+
+    for cohort, rows in cohorts.items():
+        per_subject: dict[str, dict] = {}
+        analysed = 0
+        skipped_no_text = 0
+        for subject in ("Mathematics Standard", "Science"):
+            subject_key = "Mathematics" if subject.startswith("Math") else "Science"
+            chapter_marks: Counter[str] = Counter()
+            chapter_questions: Counter[str] = Counter()
+            chapter_by_year: dict[str, Counter[str]] = defaultdict(Counter)
+            competency: Counter[str] = Counter()
+            concept_hits: Counter[str] = Counter()
+            unattributed = 0
+            papers = 0
+            for row in rows:
+                if row["subject"] != subject:
+                    continue
+                path = os.path.join(EVIDENCE, row["pdf_entry"])
+                text = paper_text(path)
+                if len(text) < 800:
+                    skipped_no_text += 1
+                    continue
+                papers += 1
+                analysed += 1
+                for number, body in segment(text):
+                    chapter, hits = attribute(subject_key, body)
+                    competency[competency_for(number)] += 1
+                    if chapter is None:
+                        unattributed += 1
+                        continue
+                    marks = marks_for(number) if cohort == "recent_2023_2026" else 1
+                    chapter_questions[chapter] += 1
+                    chapter_marks[chapter] += marks
+                    chapter_by_year[row["year"]][chapter] += 1
+                    for hit in hits:
+                        concept_hits[hit.strip()] += 1
+
+            total_marks = sum(chapter_marks.values()) or 1
+            total_q = sum(chapter_questions.values()) or 1
+            per_subject[subject_key] = {
+                "papersAnalysed": papers,
+                "attributedQuestions": sum(chapter_questions.values()),
+                "unattributedQuestions": unattributed,
+                "chapters": [
+                    {
+                        "chapter": chapter,
+                        "questions": chapter_questions[chapter],
+                        "marks": chapter_marks[chapter],
+                        "markShare": round(chapter_marks[chapter] / total_marks, 4),
+                        "questionShare": round(chapter_questions[chapter] / total_q, 4),
+                        "byYear": {
+                            year: counts[chapter]
+                            for year, counts in sorted(chapter_by_year.items())
+                            if counts[chapter]
+                        },
+                    }
+                    for chapter in sorted(
+                        CHAPTER_KEYWORDS[subject_key],
+                        key=lambda c: (-chapter_marks[c], c),
+                    )
+                ],
+                "competencyMix": dict(sorted(competency.items())),
+                "repeatedConcepts": [
+                    {"concept": concept, "occurrences": count}
+                    for concept, count in concept_hits.most_common(12)
+                ],
+            }
+        result["cohorts"][cohort] = {
+            "years": sorted({r["year"] for r in rows}),
+            "format": "two-term, 40 marks" if cohort == "term_2022" else "single examination, 80 marks",
+            "usedForBlueprintWeights": cohort == "recent_2023_2026",
+            "pdfsInCohort": len(rows),
+            "pdfsAnalysed": analysed,
+            "pdfsWithoutTextLayer": skipped_no_text,
+            "subjects": per_subject,
+        }
+
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w") as fh:
+        json.dump(result, fh, indent=2)
+        fh.write("\n")
+    print(json.dumps({k: {"analysed": v["pdfsAnalysed"], "noText": v["pdfsWithoutTextLayer"]} for k, v in result["cohorts"].items()}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

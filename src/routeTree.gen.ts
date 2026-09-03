@@ -30,11 +30,13 @@ import { Route as AuthenticatedAssessmentProofRouteImport } from './routes/_auth
 import { Route as AuthenticatedAssessmentVerificationRouteImport } from './routes/_authenticated/assessment-verification'
 import { Route as AuthenticatedAssessmentsRouteImport } from './routes/_authenticated/assessments'
 import { Route as AuthenticatedAssignmentsRouteImport } from './routes/_authenticated/assignments'
+import { Route as AuthenticatedAutoVerificationRouteImport } from './routes/_authenticated/auto-verification'
 import { Route as AuthenticatedCurriculumRouteImport } from './routes/_authenticated/curriculum'
 import { Route as AuthenticatedCurriculumAuditRouteImport } from './routes/_authenticated/curriculum-audit'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDiagnosticEngineRouteImport } from './routes/_authenticated/diagnostic-engine'
 import { Route as AuthenticatedDiagnosticEngineAuditRouteImport } from './routes/_authenticated/diagnostic-engine-audit'
+import { Route as AuthenticatedExamPatternRouteImport } from './routes/_authenticated/exam-pattern'
 import { Route as AuthenticatedGapAnalysisRouteImport } from './routes/_authenticated/gap-analysis'
 import { Route as AuthenticatedGapAnalysisAuditRouteImport } from './routes/_authenticated/gap-analysis-audit'
 import { Route as AuthenticatedHelpRouteImport } from './routes/_authenticated/help'
@@ -193,6 +195,12 @@ const AuthenticatedAssignmentsRoute =
     path: '/assignments',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAutoVerificationRoute =
+  AuthenticatedAutoVerificationRouteImport.update({
+    id: '/auto-verification',
+    path: '/auto-verification',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedCurriculumRoute = AuthenticatedCurriculumRouteImport.update({
   id: '/curriculum',
   path: '/curriculum',
@@ -219,6 +227,12 @@ const AuthenticatedDiagnosticEngineAuditRoute =
   AuthenticatedDiagnosticEngineAuditRouteImport.update({
     id: '/diagnostic-engine-audit',
     path: '/diagnostic-engine-audit',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedExamPatternRoute =
+  AuthenticatedExamPatternRouteImport.update({
+    id: '/exam-pattern',
+    path: '/exam-pattern',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedGapAnalysisRoute =
@@ -479,11 +493,13 @@ export interface FileRoutesByFullPath {
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
   '/assignments': typeof AuthenticatedAssignmentsRoute
+  '/auto-verification': typeof AuthenticatedAutoVerificationRoute
   '/curriculum': typeof AuthenticatedCurriculumRoute
   '/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
+  '/exam-pattern': typeof AuthenticatedExamPatternRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/help': typeof AuthenticatedHelpRoute
@@ -548,11 +564,13 @@ export interface FileRoutesByTo {
   '/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/assessments': typeof AuthenticatedAssessmentsRoute
   '/assignments': typeof AuthenticatedAssignmentsRoute
+  '/auto-verification': typeof AuthenticatedAutoVerificationRoute
   '/curriculum': typeof AuthenticatedCurriculumRoute
   '/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
+  '/exam-pattern': typeof AuthenticatedExamPatternRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/help': typeof AuthenticatedHelpRoute
@@ -619,11 +637,13 @@ export interface FileRoutesById {
   '/_authenticated/assessment-verification': typeof AuthenticatedAssessmentVerificationRoute
   '/_authenticated/assessments': typeof AuthenticatedAssessmentsRoute
   '/_authenticated/assignments': typeof AuthenticatedAssignmentsRoute
+  '/_authenticated/auto-verification': typeof AuthenticatedAutoVerificationRoute
   '/_authenticated/curriculum': typeof AuthenticatedCurriculumRoute
   '/_authenticated/curriculum-audit': typeof AuthenticatedCurriculumAuditRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/_authenticated/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
+  '/_authenticated/exam-pattern': typeof AuthenticatedExamPatternRoute
   '/_authenticated/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/_authenticated/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/_authenticated/help': typeof AuthenticatedHelpRoute
@@ -690,11 +710,13 @@ export interface FileRouteTypes {
     | '/assessment-verification'
     | '/assessments'
     | '/assignments'
+    | '/auto-verification'
     | '/curriculum'
     | '/curriculum-audit'
     | '/dashboard'
     | '/diagnostic-engine'
     | '/diagnostic-engine-audit'
+    | '/exam-pattern'
     | '/gap-analysis'
     | '/gap-analysis-audit'
     | '/help'
@@ -759,11 +781,13 @@ export interface FileRouteTypes {
     | '/assessment-verification'
     | '/assessments'
     | '/assignments'
+    | '/auto-verification'
     | '/curriculum'
     | '/curriculum-audit'
     | '/dashboard'
     | '/diagnostic-engine'
     | '/diagnostic-engine-audit'
+    | '/exam-pattern'
     | '/gap-analysis'
     | '/gap-analysis-audit'
     | '/help'
@@ -829,11 +853,13 @@ export interface FileRouteTypes {
     | '/_authenticated/assessment-verification'
     | '/_authenticated/assessments'
     | '/_authenticated/assignments'
+    | '/_authenticated/auto-verification'
     | '/_authenticated/curriculum'
     | '/_authenticated/curriculum-audit'
     | '/_authenticated/dashboard'
     | '/_authenticated/diagnostic-engine'
     | '/_authenticated/diagnostic-engine-audit'
+    | '/_authenticated/exam-pattern'
     | '/_authenticated/gap-analysis'
     | '/_authenticated/gap-analysis-audit'
     | '/_authenticated/help'
@@ -1053,6 +1079,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssignmentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/auto-verification': {
+      id: '/_authenticated/auto-verification'
+      path: '/auto-verification'
+      fullPath: '/auto-verification'
+      preLoaderRoute: typeof AuthenticatedAutoVerificationRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/curriculum': {
       id: '/_authenticated/curriculum'
       path: '/curriculum'
@@ -1086,6 +1119,13 @@ declare module '@tanstack/react-router' {
       path: '/diagnostic-engine-audit'
       fullPath: '/diagnostic-engine-audit'
       preLoaderRoute: typeof AuthenticatedDiagnosticEngineAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/exam-pattern': {
+      id: '/_authenticated/exam-pattern'
+      path: '/exam-pattern'
+      fullPath: '/exam-pattern'
+      preLoaderRoute: typeof AuthenticatedExamPatternRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/gap-analysis': {
@@ -1409,11 +1449,13 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssessmentVerificationRoute: typeof AuthenticatedAssessmentVerificationRoute
   AuthenticatedAssessmentsRoute: typeof AuthenticatedAssessmentsRoute
   AuthenticatedAssignmentsRoute: typeof AuthenticatedAssignmentsRoute
+  AuthenticatedAutoVerificationRoute: typeof AuthenticatedAutoVerificationRoute
   AuthenticatedCurriculumRoute: typeof AuthenticatedCurriculumRoute
   AuthenticatedCurriculumAuditRoute: typeof AuthenticatedCurriculumAuditRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedDiagnosticEngineRoute: typeof AuthenticatedDiagnosticEngineRoute
   AuthenticatedDiagnosticEngineAuditRoute: typeof AuthenticatedDiagnosticEngineAuditRoute
+  AuthenticatedExamPatternRoute: typeof AuthenticatedExamPatternRoute
   AuthenticatedGapAnalysisRoute: typeof AuthenticatedGapAnalysisRoute
   AuthenticatedGapAnalysisAuditRoute: typeof AuthenticatedGapAnalysisAuditRoute
   AuthenticatedHelpRoute: typeof AuthenticatedHelpRoute
@@ -1459,12 +1501,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedAssessmentVerificationRoute,
   AuthenticatedAssessmentsRoute: AuthenticatedAssessmentsRoute,
   AuthenticatedAssignmentsRoute: AuthenticatedAssignmentsRoute,
+  AuthenticatedAutoVerificationRoute: AuthenticatedAutoVerificationRoute,
   AuthenticatedCurriculumRoute: AuthenticatedCurriculumRoute,
   AuthenticatedCurriculumAuditRoute: AuthenticatedCurriculumAuditRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedDiagnosticEngineRoute: AuthenticatedDiagnosticEngineRoute,
   AuthenticatedDiagnosticEngineAuditRoute:
     AuthenticatedDiagnosticEngineAuditRoute,
+  AuthenticatedExamPatternRoute: AuthenticatedExamPatternRoute,
   AuthenticatedGapAnalysisRoute: AuthenticatedGapAnalysisRoute,
   AuthenticatedGapAnalysisAuditRoute: AuthenticatedGapAnalysisAuditRoute,
   AuthenticatedHelpRoute: AuthenticatedHelpRoute,
