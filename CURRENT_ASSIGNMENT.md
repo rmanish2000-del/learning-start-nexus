@@ -31,29 +31,49 @@ Full text: `EDUOS_PROJECT_OPERATING_SYSTEM.md` §11, `PRODUCT_DECISIONS.md` D10�
 
 ## Active assignment
 
-**Title:** Continuity-governance update — Founder Non-Execution Rule encoding
-**Received:** 2026-09-02
-**Priority:** P1 (documentation-only)
-**Status:** Complete.
+**Title:** Compliance evidence completion and draft-review preparation (Class 10, 2026-27)
+**Received:** 2026-09-03
+**Priority:** P0
+**Status:** Complete. Local repository only — production untouched, nothing deployed, nothing promoted.
 
 ### Outcome
 
 | Item | Result |
 |---|---|
-| Files updated | `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md`, `EDUOS_PROJECT_OPERATING_SYSTEM.md`, `PRODUCT_DECISIONS.md`, `CURRENT_ASSIGNMENT.md` |
-| Conflicting founder-execution wording | §12 of the handoff package annotated as superseded; no other conflicting instruction remains |
-| Code / schema / migration / translation changes | None |
-| Deployment | Not performed — documentation-only change |
+| Official source categories completed | 4 of 6 now `final`/`applicable`: CBSE curriculum, both subject syllabi, NCERT textbooks (27 chapter PDFs, composite checksum), NCERT rationalised-content booklet |
+| Still missing | `sample_paper`, `marking_scheme` for 2026-27 — CBSE has not published them (index HTTP 404). No substitute used; 2025-26 equivalents recorded as `not_applicable` |
+| Source registry | Regenerated, 14 records, 0 errors, 2 pending-confirmation warnings |
+| 326-draft reconciliation | Register 326 = database 326, sorted `external_ref` MD5 identical, 0 orphans |
+| Automated draft validation | **0 blockers**, 242 warnings; 0 exact duplicates, 1 near-duplicate pair, 4 NCERT verbatim flags |
+| Pool allocation | 125 DIAGNOSTIC / 201 FRESH_REASSESSMENT, disjoint, never combined |
+| SME queues | Mathematics 235 rows, Science 91 rows — separate files, six empty SME sign-off columns each |
+| Promotions | **None.** All 326 remain `draft`/`unverified`; Science source book remains unapproved |
+| Compliance verdict | `SOURCE_PENDING` — Mathematics and Science remain NOT_CERTIFIED |
+| Tests · typecheck | 308 passing / 27 files · clean |
+| Deployment | Not performed |
+
+### Deliverables
+
+`EDUOS_CLASS10_MISSING_OFFICIAL_SOURCES_REPORT.md`, `EDUOS_CLASS10_DRAFT_VALIDATION_REPORT.md`,
+`EDUOS_CLASS10_DUPLICATE_REPORT.md`, `EDUOS_CLASS10_COPYRIGHT_CONTAMINATION_REPORT.md`,
+`EDUOS_CLASS10_POOL_ALLOCATION_REPORT.md`, `EDUOS_CLASS10_MATHS_SME_REVIEW_QUEUE.csv`,
+`EDUOS_CLASS10_SCIENCE_SME_REVIEW_QUEUE.csv`, `content/compliance/class-10-2026-27.{missing-sources,sha256-manifest,draft-db-snapshot,draft-validation}.json`,
+regenerated `content/compliance/cbse-2026-27.sources.json` and `EDUOS_CLASS_10_GAP_REGISTER.md`.
+
+New reproducible tooling: `scripts/compliance/retrieve-missing-sources.ts`,
+`scripts/compliance/update-source-register.ts`, `scripts/class10/sme-review-prepare.ts`,
+covered by `src/lib/__tests__/class10-sme-review-prepare.test.ts`.
 
 ### Rollback
 
-Revert the documentation commit; no data or deployment rollback is required.
+Revert the commit for this assignment. It touches documentation, compliance evidence files and
+new scripts only — no schema, no migration, no data mutation, no deployment.
 
 ### Next gate
 
-Subject-expert review and approval of the 326 rebuilt Class 10 items (content governance, not software).
-No Class 9, 11 or 12 work, no pricing expansion and no new features until Class 10 receives a compliance
-certificate.
+Named Mathematics and Science SME sign-off on the two review queues (content governance, not software),
+plus CBSE publication of the 2026-27 sample papers and marking schemes. No Class 9, 11 or 12 work, no
+pricing expansion and no new features until Class 10 receives a compliance certificate.
 
 ---
 

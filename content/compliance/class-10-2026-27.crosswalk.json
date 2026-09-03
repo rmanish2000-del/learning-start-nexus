@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02",
+  "generatedAt": "2026-09-03",
   "validator": "compliance-validator/1.0.0",
   "board": "CBSE",
   "classLevel": 10,
@@ -9,17 +9,12 @@
     {
       "level": "warning",
       "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "CBSE-2026-27-C10-CURRICULUM"
+      "detail": "CBSE-2026-27-C10-MARKING-SCHEME"
     },
     {
       "level": "warning",
       "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "NCERT-2026-27-C10-MAT-TEXTBOOK"
-    },
-    {
-      "level": "warning",
-      "code": "SOURCE_PENDING_CONFIRMATION",
-      "detail": "NCERT-2026-27-C10-SCI-TEXTBOOK"
+      "detail": "CBSE-2026-27-C10-SAMPLE-PAPER"
     }
   ],
   "subjects": [
@@ -305,12 +300,12 @@
             {
               "id": "sources_recorded",
               "pass": true,
-              "detail": "1 applicable source(s)"
+              "detail": "4 applicable source(s)"
             },
             {
               "id": "required_types_present",
               "pass": false,
-              "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+              "detail": "missing: sample_paper, marking_scheme"
             },
             {
               "id": "registry_valid",
@@ -715,12 +710,12 @@
             {
               "id": "sources_recorded",
               "pass": true,
-              "detail": "1 applicable source(s)"
+              "detail": "4 applicable source(s)"
             },
             {
               "id": "required_types_present",
               "pass": false,
-              "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme"
+              "detail": "missing: sample_paper, marking_scheme"
             },
             {
               "id": "registry_valid",
@@ -909,7 +904,7 @@
       "subject": "Mathematics",
       "gate": "SOURCE_GATE",
       "check": "required_types_present",
-      "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
+      "detail": "missing: sample_paper, marking_scheme",
       "severity": "BLOCKING"
     },
     {
@@ -965,7 +960,7 @@
       "subject": "Science",
       "gate": "SOURCE_GATE",
       "check": "required_types_present",
-      "detail": "missing: cbse_curriculum, ncert_textbook, rationalised_content_notice, sample_paper, marking_scheme",
+      "detail": "missing: sample_paper, marking_scheme",
       "severity": "BLOCKING"
     },
     {
