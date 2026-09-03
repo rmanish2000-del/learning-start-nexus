@@ -69,6 +69,14 @@ export const Route = createFileRoute("/_authenticated")({
       throw redirect({ to: roleHome(role) });
     }
 
+    // Pilot access grants free journeys — admin authority only.
+    if (
+      (location.pathname === "/pilot-access" || location.pathname.startsWith("/pilot-access/")) &&
+      role !== "admin"
+    ) {
+      throw redirect({ to: roleHome(role) });
+    }
+
     // Payment settings are admin-only (keys, secrets, environment switch).
     if (
       (location.pathname === "/payment-settings" ||

@@ -25,6 +25,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
+import { myPilotAccessFn, startPilotRunFn } from "@/lib/pilot-access.functions";
 import { createStudentProfile, getParentAccount } from "@/lib/parent-account.functions";
 import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
 
@@ -111,6 +112,8 @@ function DiagnosticPurchasePage() {
   const { t } = useI18n();
   const catalogFn = useServerFn(getDiagnosticCatalog);
   const startFn = useServerFn(startDiagnosticOrder);
+  const pilotAccessFn = useServerFn(myPilotAccessFn);
+  const startPilot = useServerFn(startPilotRunFn);
   const accountFn = useServerFn(getParentAccount);
   const addStudentFn = useServerFn(createStudentProfile);
   const navigate = useNavigate();
@@ -130,6 +133,14 @@ function DiagnosticPurchasePage() {
 
   const activeStudentId = learnerId || (students.length === 1 ? students[0]!.id : "");
   const detailsComplete = parentDetailsComplete(account.data?.profile);
+
+  // Pilot families run the same journey for free. Pilot access is an
+  // administrative entitlement — it never creates an order or a payment.
+  const pilot = useQuery({
+    queryKey: ["my-pilot-access"],
+    queryFn: () => pilotAccessFn(),
+    enabled: Boolean(user),
+  });
 
 
   async function addStudent() {
@@ -172,6 +183,33 @@ function DiagnosticPurchasePage() {
     setUnitId("");
   }
 
+  const pilotGrant = useMemo(() => {
+    const grants = pilot.data ?? [];
+    if (grants.length === 0 || !activeStudentId) return null;
+    return (
+      grants.find(
+        (g) =>
+          (g.learnerId == null || g.learnerId === activeStudentId) &&
+          (g.subject == null || !subject?.subject || g.subject === subject.subject),
+      ) ?? null
+    );
+  }, [pilot.data, activeStudentId, subject]);
+
+  async function beginPilotRun() {
+    if (!bookId || !unitId || !activeStudentId) {
+      toast.error("Choose a student, a subject and a chapter group first.");
+      return;
+    }
+    setPending(true);
+    try {
+      const run = await startPilot({ data: { bookId, unitId, learnerId: activeStudentId } });
+      await navigate({ to: "/diagnostic/handoff/$token", params: { token: run.accessToken } });
+    } catch (error) {
+      toast.error(friendlyErrorMessage(error, "Could not start the pilot diagnostic."));
+      setPending(false);
+    }
+  }
+
   async function beginCheckout() {
     if (!bookId || !unitId) {
       toast.error(t("diag.toast.chooseFirst", "Choose a subject and a chapter group first."));
@@ -205,7 +243,18 @@ function DiagnosticPurchasePage() {
     }
   }
 
-  const cta = (
+  const cta = pilotGrant ? (
+    <Button
+      size="lg"
+      className="w-full sm:w-auto"
+      onClick={beginPilotRun}
+      disabled={pending || !unitId || !activeStudentId}
+    >
+      {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+      Start the pilot diagnostic — free
+      <ArrowRight className="ml-2 h-4 w-4" />
+    </Button>
+  ) : (
     <Button
       size="lg"
       className="w-full sm:w-auto"
