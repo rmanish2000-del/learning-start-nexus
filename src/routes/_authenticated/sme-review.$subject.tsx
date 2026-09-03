@@ -272,38 +272,47 @@ function SmeReviewPage() {
                     placeholder="Reviewer comment or required correction (optional)"
                     aria-label={`Reviewer comment for ${item.externalRef ?? item.id}`}
                   />
+                  <Textarea
+                    value={basis[item.id] ?? ""}
+                    onChange={(e) => setBasis((b) => ({ ...b, [item.id]: e.target.value }))}
+                    placeholder="Decision basis — required. Cite the syllabus point or academic reasoning."
+                    aria-label={`Decision basis for ${item.externalRef ?? item.id}`}
+                  />
                   <div className="flex flex-wrap gap-2">
-                    <Button
-                      size="sm"
-                      disabled={!nameReady || mutation.isPending}
-                      onClick={() =>
-                        mutation.mutate({ questionId: item.id, action: "verified" })
-                      }
-                    >
-                      <BadgeCheck className="mr-1 size-4" /> Approve this question
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      disabled={!nameReady || mutation.isPending}
-                      onClick={() =>
-                        mutation.mutate({ questionId: item.id, action: "rejected" })
-                      }
-                    >
-                      <XCircle className="mr-1 size-4" /> Reject
-                    </Button>
+                    {SME_DECISIONS.map((action) => (
+                      <Button
+                        key={action}
+                        size="sm"
+                        variant={
+                          action === "verified"
+                            ? "default"
+                            : action === "rejected"
+                              ? "destructive"
+                              : "outline"
+                        }
+                        disabled={!decisionReady(item.id) || mutation.isPending}
+                        onClick={() => mutation.mutate({ questionId: item.id, action })}
+                      >
+                        {action === "verified" ? (
+                          <BadgeCheck className="mr-1 size-4" />
+                        ) : action === "rejected" ? (
+                          <XCircle className="mr-1 size-4" />
+                        ) : null}
+                        {SME_DECISION_LABELS[action]}
+                      </Button>
+                    ))}
                   </div>
-                  {!nameReady ? (
+                  {!decisionReady(item.id) ? (
                     <p className="text-muted-foreground text-xs">
-                      Enter the reviewing expert&apos;s name above to enable decisions.
+                      Reviewer name, qualification and a decision basis of at least 10 characters
+                      are required before a decision can be recorded.
                     </p>
                   ) : null}
                 </CardContent>
               </Card>
             ))}
-          </TabsContent>
-        ))}
-      </Tabs>
+      </div>
+
 
       <Card>
         <CardHeader>
