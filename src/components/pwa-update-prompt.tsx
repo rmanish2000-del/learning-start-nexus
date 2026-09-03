@@ -50,7 +50,7 @@ export function PwaUpdatePrompt() {
       aria-label="Update available"
       className="fixed bottom-4 right-4 z-50 w-[320px] max-w-[calc(100vw-2rem)] rounded-[16px] border bg-background p-4 shadow-lg print:hidden"
       style={{
-        animation: "eduos-pwa-slide-up var(--pwa-slide-up-duration) var(--pwa-slide-up-easing)",
+        animation: "eduos-pwa-slide-up var(--eds-duration-base) var(--eds-easing-decelerate)",
       }}
     >
       <div className="flex items-start justify-between gap-3">
@@ -76,7 +76,7 @@ export function PwaUpdatePrompt() {
         <Button
           ref={buttonRef}
           size="sm"
-          className="min-h-11 bg-[var(--pwa-brand-primary)] text-white hover:bg-[var(--pwa-brand-primary)]/90"
+          className="min-h-11 bg-[var(--eds-color-brand-primary)] text-white hover:bg-[var(--eds-color-brand-primary)]/90"
           onClick={() => applyRef.current?.()}
         >
           <RefreshCw className="mr-1.5 h-4 w-4" aria-hidden />

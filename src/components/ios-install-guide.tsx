@@ -81,7 +81,7 @@ export function IosInstallGuide() {
             className="w-full max-w-md rounded-t-[16px] bg-background p-5 shadow-xl"
             style={{
               animation:
-                "eduos-pwa-slide-up var(--pwa-slide-up-duration) var(--pwa-slide-up-easing)",
+                "eduos-pwa-slide-up var(--eds-duration-base) var(--eds-easing-decelerate)",
             }}
           >
             <div className="flex items-start justify-between gap-3">

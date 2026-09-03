@@ -117,6 +117,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       ...(SHOULD_NOINDEX ? [{ name: "robots", content: "noindex, nofollow" }] : []),
     ],
     links: [
+      // Approved design package v1.0.0 font stack: Outfit (display),
+      // Inter (body), Playfair Display (marketing hero), DM Mono (data).
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=DM+Mono:wght@400;500&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,

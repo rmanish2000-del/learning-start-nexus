@@ -1,0 +1,148 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$metadata": {
+    "tokenSetOrder": ["global", "semantic"],
+    "generatedBy": "EduOS Foundation Design System",
+    "generatedAt": "2026-09-03",
+    "scope": "CBSE Class 10 · Mathematics and Science · English-only",
+    "version": "1.0.0"
+  },
+  "global": {
+    "orange": {
+      "500": { "$value": "#F97316", "$type": "color", "$description": "Brand orange — primary CTA" }
+    },
+    "blue": {
+      "50":  { "$value": "#EFF6FF", "$type": "color", "$description": "Blue tint — trust surfaces" },
+      "100": { "$value": "#DBEAFE", "$type": "color" },
+      "200": { "$value": "#BFDBFE", "$type": "color" },
+      "300": { "$value": "#93C5FD", "$type": "color", "$description": "Pilot badge text on dark nav" },
+      "600": { "$value": "#2563EB", "$type": "color", "$description": "Trust accent — Google SSO, progress rings, pilot status" },
+      "700": { "$value": "#1D4ED8", "$type": "color", "$description": "Dark blue — focus ring pressed state" }
+    },
+    "green": {
+      "50":  { "$value": "#ECFDF5", "$type": "color" },
+      "200": { "$value": "#6EE7B7", "$type": "color" },
+      "500": { "$value": "#059669", "$type": "color", "$description": "Success — gap closed, onboarding complete" },
+      "600": { "$value": "#047857", "$type": "color" }
+    },
+    "red": {
+      "50":  { "$value": "#FEF2F2", "$type": "color" },
+      "200": { "$value": "#FECACA", "$type": "color" },
+      "600": { "$value": "#DC2626", "$type": "color", "$description": "Error — wrong PIN, high-severity gap, revoked access" }
+    },
+    "amber": {
+      "50":  { "$value": "#FFFBEB", "$type": "color" },
+      "200": { "$value": "#FDE68A", "$type": "color" },
+      "500": { "$value": "#D97706", "$type": "color", "$description": "Warning — medium gap, pilot expiring ≤14 days" }
+    },
+    "neutral": {
+      "50":  { "$value": "#F8F9FB", "$type": "color", "$description": "Page background" },
+      "100": { "$value": "#F2F3F7", "$type": "color", "$description": "Section / input background / tab bar" },
+      "200": { "$value": "#E3E5EE", "$type": "color", "$description": "Default border, dividers" },
+      "400": { "$value": "#9CA3AF", "$type": "color", "$description": "Tertiary text — timestamps, helper text" },
+      "500": { "$value": "#6B7280", "$type": "color", "$description": "Secondary text — labels, descriptions" },
+      "600": { "$value": "#4B5563", "$type": "color" },
+      "700": { "$value": "#374151", "$type": "color", "$description": "Body text — table cells, card content" },
+      "900": { "$value": "#111827", "$type": "color", "$description": "Primary text — headings, emphasis" }
+    },
+    "dark": {
+      "nav":    { "$value": "#0C1628", "$type": "color", "$description": "Navigation bar background" },
+      "footer": { "$value": "#080F1C", "$type": "color", "$description": "Footer background" }
+    }
+  },
+  "semantic": {
+    "color": {
+      "brand-primary":       { "$value": "{global.orange.500}", "$type": "color", "$description": "Primary CTA — buttons, key highlights" },
+      "brand-dark":          { "$value": "{global.dark.nav}",   "$type": "color", "$description": "App shell — nav + footer" },
+      "blue-trust":          { "$value": "{global.blue.600}",   "$type": "color", "$description": "SSO, pilot status, progress indicators" },
+      "surface-page":        { "$value": "{global.neutral.50}", "$type": "color" },
+      "surface-section":     { "$value": "{global.neutral.100}", "$type": "color" },
+      "surface-card":        { "$value": "#FFFFFF",              "$type": "color" },
+      "border-default":      { "$value": "{global.neutral.200}", "$type": "color" },
+      "border-focus":        { "$value": "{global.blue.600}",   "$type": "color" },
+      "text-primary":        { "$value": "{global.neutral.900}", "$type": "color" },
+      "text-secondary":      { "$value": "{global.neutral.500}", "$type": "color" },
+      "text-tertiary":       { "$value": "{global.neutral.400}", "$type": "color" },
+      "text-on-brand":       { "$value": "#FFFFFF",              "$type": "color" },
+      "focus-ring":          { "$value": "{global.blue.600}",   "$type": "color" },
+      "state-success":       { "$value": "{global.green.500}",  "$type": "color" },
+      "state-error":         { "$value": "{global.red.600}",    "$type": "color" },
+      "state-warning":       { "$value": "{global.amber.500}",  "$type": "color" },
+      "state-info":          { "$value": "{global.blue.600}",   "$type": "color" }
+    },
+    "typography": {
+      "font-display":        { "$value": "Outfit, sans-serif",        "$type": "fontFamily", "$description": "Headings, buttons, badges, nav — weight 600/700" },
+      "font-body":           { "$value": "Inter, sans-serif",         "$type": "fontFamily", "$description": "Body copy, inputs, labels — weight 400/500/600" },
+      "font-editorial":      { "$value": "Playfair Display, serif",   "$type": "fontFamily", "$description": "Marketing hero headings only — weight 400/600" },
+      "font-mono":           { "$value": "DM Mono, monospace",        "$type": "fontFamily", "$description": "Code, token labels, diagnostic data — weight 400/500" },
+      "google-fonts-import": { "$value": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&family=DM+Mono:wght@400;500&display=swap", "$type": "string", "$description": "Single @import URL for all four families" },
+      "size-xs":    { "$value": "10px", "$type": "fontSize" },
+      "size-sm":    { "$value": "12px", "$type": "fontSize" },
+      "size-base":  { "$value": "14px", "$type": "fontSize" },
+      "size-lg":    { "$value": "16px", "$type": "fontSize" },
+      "size-xl":    { "$value": "18px", "$type": "fontSize" },
+      "size-2xl":   { "$value": "20px", "$type": "fontSize" },
+      "size-3xl":   { "$value": "24px", "$type": "fontSize" },
+      "size-4xl":   { "$value": "30px", "$type": "fontSize" },
+      "size-5xl":   { "$value": "36px", "$type": "fontSize" },
+      "weight-regular": { "$value": "400", "$type": "fontWeight" },
+      "weight-medium":  { "$value": "500", "$type": "fontWeight" },
+      "weight-semibold":{ "$value": "600", "$type": "fontWeight" },
+      "weight-bold":    { "$value": "700", "$type": "fontWeight" },
+      "leading-tight":  { "$value": "1.25", "$type": "lineHeight" },
+      "leading-normal": { "$value": "1.5",  "$type": "lineHeight" },
+      "leading-relaxed":{ "$value": "1.65", "$type": "lineHeight" }
+    },
+    "spacing": {
+      "0.5": { "$value": "2px",  "$type": "spacing" },
+      "1":   { "$value": "4px",  "$type": "spacing" },
+      "2":   { "$value": "8px",  "$type": "spacing" },
+      "3":   { "$value": "12px", "$type": "spacing" },
+      "4":   { "$value": "16px", "$type": "spacing" },
+      "5":   { "$value": "20px", "$type": "spacing" },
+      "6":   { "$value": "24px", "$type": "spacing" },
+      "8":   { "$value": "32px", "$type": "spacing" },
+      "10":  { "$value": "40px", "$type": "spacing" },
+      "12":  { "$value": "48px", "$type": "spacing" },
+      "16":  { "$value": "64px", "$type": "spacing" },
+      "20":  { "$value": "80px", "$type": "spacing" }
+    },
+    "radius": {
+      "sm":   { "$value": "8px",    "$type": "borderRadius", "$description": "Chips, small badges" },
+      "md":   { "$value": "12px",   "$type": "borderRadius", "$description": "Inputs, small cards" },
+      "lg":   { "$value": "16px",   "$type": "borderRadius", "$description": "Cards, panels" },
+      "xl":   { "$value": "20px",   "$type": "borderRadius", "$description": "Modals, large cards" },
+      "2xl":  { "$value": "24px",   "$type": "borderRadius", "$description": "Hero sections" },
+      "full": { "$value": "9999px", "$type": "borderRadius", "$description": "Pills, avatars, progress bars" }
+    },
+    "shadow": {
+      "sm":    { "$value": "0 1px 2px rgba(0,0,0,0.05)",  "$type": "shadow", "$description": "Subtle lift — active tabs" },
+      "card":  { "$value": "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)", "$type": "shadow", "$description": "Standard card elevation" },
+      "modal": { "$value": "0 4px 24px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08)", "$type": "shadow", "$description": "Dialogs, drawers" },
+      "nav":   { "$value": "0 1px 0 rgba(255,255,255,0.06)", "$type": "shadow", "$description": "Dark nav bottom edge" }
+    },
+    "motion": {
+      "duration-fast":    { "$value": "150ms", "$type": "duration", "$description": "Hover states, small transitions" },
+      "duration-base":    { "$value": "250ms", "$type": "duration", "$description": "Most UI transitions" },
+      "duration-slow":    { "$value": "400ms", "$type": "duration", "$description": "Modal open/close, drawer slide" },
+      "easing-standard":  { "$value": "cubic-bezier(0.4, 0, 0.2, 1)", "$type": "cubicBezier", "$description": "Material standard easing" },
+      "easing-decelerate":{ "$value": "cubic-bezier(0.0, 0.0, 0.2, 1)", "$type": "cubicBezier", "$description": "Elements entering screen" },
+      "easing-accelerate":{ "$value": "cubic-bezier(0.4, 0.0, 1, 1)", "$type": "cubicBezier", "$description": "Elements leaving screen" }
+    },
+    "breakpoints": {
+      "mobile":  { "$value": "375px",  "$type": "dimension", "$description": "Base — iPhone SE. Single column, stacked nav, bottom-sheet drawers." },
+      "tablet":  { "$value": "768px",  "$type": "dimension", "$description": "iPad Mini. 2-column cards, side panels replace bottom sheets." },
+      "desktop": { "$value": "1280px", "$type": "dimension", "$description": "13-inch laptop. 3-column dashboard, sticky sidebar, full data tables." },
+      "wide":    { "$value": "1440px", "$type": "dimension", "$description": "Wide desktop. Max-width 1200px centred." }
+    },
+    "z-index": {
+      "base":    { "$value": "0",    "$type": "number" },
+      "raised":  { "$value": "10",   "$type": "number" },
+      "dropdown":{ "$value": "100",  "$type": "number" },
+      "sticky":  { "$value": "200",  "$type": "number", "$description": "Nav bar" },
+      "overlay": { "$value": "300",  "$type": "number", "$description": "Modal backdrop" },
+      "modal":   { "$value": "400",  "$type": "number" },
+      "toast":   { "$value": "500",  "$type": "number" }
+    }
+  }
+}
