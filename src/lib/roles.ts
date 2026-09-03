@@ -63,7 +63,11 @@ export const STUDENT_ALLOWED_PATHS = [
   "/diagnostic/complete",
   "/session",
   "/assessment",
+  // Learner home links straight to gap detail ("Open gap detail"); the server
+  // function scopes the payload to the caller, so the route is learner-safe.
+  "/gaps",
   "/tutor",
+
   "/settings",
   "/quick-start",
   "/help",
