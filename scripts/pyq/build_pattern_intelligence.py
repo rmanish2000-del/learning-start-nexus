@@ -97,6 +97,41 @@ QUESTION_RE = re.compile(r"(?:^|\s)(\d{1,2})\s*[\.\)]\s+")
 
 
 CACHE = "/tmp/pyq-text-cache"
+# Below this many characters a PDF is treated as image-only (scanned) and sent
+# through OCR. Digital CBSE papers extract tens of thousands of characters.
+OCR_THRESHOLD = 2000
+OCR_ENABLED = os.environ.get("PYQ_OCR", "1") != "0"
+
+
+def ocr_text(path: str) -> str:
+    """OCR a scanned paper. English only: the Hindi half of a bilingual paper is
+    discarded by segment() anyway, and mis-OCRed Devanagari would only add noise.
+    Returns '' on any failure so the paper stays unattributed rather than guessed."""
+    import subprocess
+    import tempfile
+
+    try:
+        import pytesseract
+        from PIL import Image
+    except Exception:
+        return ""
+    out: list[str] = []
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            subprocess.run(
+                ["pdftoppm", "-r", "200", "-gray", "-jpeg", path, os.path.join(tmp, "p")],
+                check=True,
+                capture_output=True,
+                timeout=600,
+            )
+        except Exception:
+            return ""
+        for img in sorted(glob.glob(os.path.join(tmp, "p-*.jpg"))):
+            try:
+                out.append(pytesseract.image_to_string(Image.open(img), lang="eng"))
+            except Exception:
+                continue
+    return "\n".join(out)
 
 
 def paper_text(path: str) -> str:
@@ -104,15 +139,22 @@ def paper_text(path: str) -> str:
     key = os.path.join(CACHE, path.replace("/", "_") + ".txt")
     if os.path.exists(key):
         with open(key) as fh:
-            return fh.read()
+            cached = fh.read()
+        if len(cached) >= OCR_THRESHOLD or not OCR_ENABLED:
+            return cached
     try:
         reader = PdfReader(path)
         text = "\n".join((page.extract_text() or "") for page in reader.pages)
     except Exception:
         text = ""
+    if len(text) < OCR_THRESHOLD and OCR_ENABLED:
+        ocred = ocr_text(path)
+        if len(ocred) > len(text):
+            text = ocred
     with open(key, "w") as fh:
         fh.write(text)
     return text
+
 
 
 def normalise_text(text: str) -> str:
