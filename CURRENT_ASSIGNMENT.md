@@ -23,6 +23,13 @@ This file holds **only** the active assignment. When it is complete, replace the
 - All assignments are written entirely in English. Normal EduOS responses are very short, relevant and in
   Devanagari Hindi, with technical and standard terms in English. Product copy stays English-only.
 - Avoid duplicate work unless it is intentional independent verification.
+- **Business-Value-First rule (mandatory).** Prioritise work in this order: (1) security and serious
+  production risks, (2) revenue/payment/conversion impact, (3) core parent and learner journeys,
+  (4) compliance and commercial-release blockers, (5) production defects, (6) necessary UX improvements,
+  (7) optional polish. Every assignment must state expected business value and priority; defer or bundle
+  low-value polish, duplicate audits and unnecessary documentation; do not repeat completed verification
+  without new evidence; do not implement optional features while a higher-value blocker is open; prefer
+  one bundled, independently verifiable assignment over multiple small ones.
 
 Full text: `EDUOS_PROJECT_OPERATING_SYSTEM.md` §11, `PRODUCT_DECISIONS.md` D10–D16,
 `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` §G1–G6.

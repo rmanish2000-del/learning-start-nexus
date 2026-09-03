@@ -355,3 +355,33 @@ Copilot.
 
 Section 9 ("Standing Lovable commit and publish requirements") stays in force and is read subject to
 11.1: the AI performs every listed step itself.
+
+---
+
+## 12. Business-Value-First rule (2026-09-03, permanent)
+
+Purpose: reduce usage-credit waste and ensure every future AI agent prioritises revenue, conversion,
+security, compliance, core journeys and production defects over low-value work.
+
+Work is prioritised in this order:
+
+1. Security and serious production risks
+2. Revenue, payment and conversion impact
+3. Core parent and learner journeys
+4. Compliance and commercial-release blockers
+5. Production defects
+6. Necessary UX improvements
+7. Optional polish and nonessential features
+
+Credit-efficiency rules:
+
+- Every assignment must state expected business value and priority.
+- Defer or bundle low-value polish, duplicate audits and unnecessary documentation.
+- Avoid repeating completed verification without new evidence or risk.
+- Do not implement optional features while a higher-value blocker is open.
+- Prefer one bundled, independently verifiable assignment over multiple small assignments.
+- Do not assign avoidable execution work to the founder (Section 11.1).
+- Continue proactively through appropriate AI/tool assignments until completion.
+
+This rule overrides any earlier wording in this or any other continuity file that implies a different
+work-ordering priority.

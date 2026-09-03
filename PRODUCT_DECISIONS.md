@@ -153,4 +153,19 @@ Durable governance decisions. Permanent unless the founder explicitly revokes th
   product copy) is unchanged: this is a communication rule, not a product-language change.
 - **D16.** Avoid duplicate work unless it is intentional independent verification.
 
+---
+
+## 2026-09-03 — D17: Business-Value-First rule (permanent governance)
+
+- **D17 Business-Value-First (mandatory).** Work is prioritised in this order: (1) security and serious
+  production risks; (2) revenue, payment and conversion impact; (3) core parent and learner journeys;
+  (4) compliance and commercial-release blockers; (5) production defects; (6) necessary UX improvements;
+  (7) optional polish and nonessential features.
+- Credit-efficiency rules: every assignment must state expected business value and priority; defer or
+  bundle low-value polish, duplicate audits and unnecessary documentation; avoid repeating completed
+  verification without new evidence or risk; never implement optional features while a higher-value
+  blocker is open; prefer one bundled, independently verifiable assignment over multiple small
+  assignments; no avoidable founder execution work (D10); continue proactively through appropriate
+  AI/tool assignments until completion.
+
 No product, pricing, scope, schema or runtime decision is changed by this entry.
