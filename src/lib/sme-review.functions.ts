@@ -3,14 +3,17 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+import { SME_DECISIONS } from "./sme-review-shared";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { callerOrgId, requireAnyRole } from "./admin.server";
 import { fetchSmeReview, recordSmeDecision } from "./sme-review.server";
 
 export const smeDecisionSchema = z.object({
   questionId: z.string().uuid(),
-  action: z.enum(["verified", "rejected"]),
+  action: z.enum(SME_DECISIONS),
   reviewerName: z.string().trim().min(2).max(120),
+  reviewerQualification: z.string().trim().min(2).max(200),
+  decisionBasis: z.string().trim().min(10).max(1000),
   note: z.string().trim().max(1000).nullable().optional(),
 });
 
@@ -35,7 +38,13 @@ export const recordSmeDecisionFn = createServerFn({ method: "POST" })
     await recordSmeDecision(
       context.supabase,
       { orgId, userId: context.userId },
-      { questionId: data.questionId, action: data.action, note },
+      {
+        questionId: data.questionId,
+        action: data.action,
+        note,
+        reviewerQualification: data.reviewerQualification,
+        decisionBasis: data.decisionBasis,
+      },
     );
     return { ok: true };
   });

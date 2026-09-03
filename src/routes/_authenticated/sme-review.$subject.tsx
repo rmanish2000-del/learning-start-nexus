@@ -31,7 +31,7 @@ import {
   type SmeSubject,
 } from "@/lib/sme-review-shared";
 
-export const Route = createFileRoute("/_authenticated/sme-review")({
+export const Route = createFileRoute("/_authenticated/sme-review/$subject")({
   component: SmeReviewPage,
   head: () => ({
     meta: [

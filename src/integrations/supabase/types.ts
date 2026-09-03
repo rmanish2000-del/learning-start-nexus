@@ -3130,29 +3130,35 @@ export type Database = {
         Row: {
           action: string
           created_at: string
+          decision_basis: string
           id: string
           note: string | null
           org_id: string
           question_id: string
           reviewer_id: string
+          reviewer_qualification: string
         }
         Insert: {
           action: string
           created_at?: string
+          decision_basis?: string
           id?: string
           note?: string | null
           org_id: string
           question_id: string
           reviewer_id: string
+          reviewer_qualification?: string
         }
         Update: {
           action?: string
           created_at?: string
+          decision_basis?: string
           id?: string
           note?: string | null
           org_id?: string
           question_id?: string
           reviewer_id?: string
+          reviewer_qualification?: string
         }
         Relationships: [
           {

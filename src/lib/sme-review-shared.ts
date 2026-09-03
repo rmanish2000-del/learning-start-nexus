@@ -15,12 +15,32 @@ export const SME_EXPECTED_QUEUE: Record<SmeSubject, number> = {
 
 export const SME_EXPECTED_TOTAL = 326;
 
-export type SmeDecision = "verified" | "rejected";
+export const SME_DECISIONS = [
+  "verified",
+  "rejected",
+  "remediation_required",
+  "cannot_assess",
+] as const;
+export type SmeDecision = (typeof SME_DECISIONS)[number];
+
+// Only "verified" is an approval. Every other outcome leaves the item a draft.
+export const SME_APPROVAL_DECISION: SmeDecision = "verified";
 
 export const SME_DECISION_LABELS: Record<SmeDecision, string> = {
   verified: "Approve",
   rejected: "Reject",
+  remediation_required: "Remediation required",
+  cannot_assess: "Cannot assess",
 };
+
+export function smeDecisionPromotes(action: SmeDecision): boolean {
+  return action === SME_APPROVAL_DECISION;
+}
+
+export function smeSubjectFromSlug(slug: string): SmeSubject | null {
+  const found = SME_SUBJECTS.find((s) => s.toLowerCase() === slug.toLowerCase());
+  return found ?? null;
+}
 
 // Advisory candidates carried over from the draft validation run
 // (content/compliance/class-10-2026-27.draft-validation.json). They are
@@ -75,6 +95,8 @@ export const SME_WORKFLOW_RULES = [
   "One decision at a time. There is no bulk approve, no select-all and no automatic promotion; the database rejects multi-row decision writes.",
   "Only an explicit APPROVE decision promotes a question into the approved, verified pool.",
   "A REJECT decision marks the item rejected and keeps it out of every paid diagnostic.",
+  "REMEDIATION REQUIRED and CANNOT ASSESS record the reviewer's ruling and leave the item a draft.",
+  "Reviewer name, qualification and decision basis are mandatory on every decision.",
   "The decision trail is append-only: recorded decisions cannot be edited or deleted, by anyone.",
   "Candidate flags (NCERT verbatim overlap, near-duplicate pairs) are advisory only and change nothing on their own.",
   "Both Class 10 subjects stay NOT_CERTIFIED, and the Science book stays unapproved, until named SME decisions land.",
@@ -106,6 +128,8 @@ export type SmeAuditEvent = {
   action: SmeDecision;
   note: string | null;
   reviewerName: string;
+  reviewerQualification: string;
+  decisionBasis: string;
   createdAt: string;
 };
 

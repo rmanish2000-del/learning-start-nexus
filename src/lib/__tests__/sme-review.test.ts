@@ -56,7 +56,7 @@ describe("advisory candidates", () => {
 
 describe("workflow guarantees", () => {
   const source = readFileSync("src/lib/sme-review.functions.ts", "utf8");
-  const route = readFileSync("src/routes/_authenticated/sme-review.tsx", "utf8");
+  const route = readFileSync("src/routes/_authenticated/sme-review.$subject.tsx", "utf8");
   const server = readFileSync("src/lib/sme-review.server.ts", "utf8");
 
   it("gates every server function on reviewer or admin role", () => {
@@ -76,9 +76,17 @@ describe("workflow guarantees", () => {
     expect(route).not.toMatch(/Approve all|approveAll|selectAll|bulkApprove/);
   });
 
-  it("requires a named reviewer for every decision", () => {
+  it("requires a named, qualified reviewer and a decision basis for every decision", () => {
     expect(source).toContain("reviewerName: z.string().trim().min(2).max(120)");
+    expect(source).toContain("reviewerQualification: z.string().trim().min(2).max(200)");
+    expect(source).toContain("decisionBasis: z.string().trim().min(10).max(1000)");
     expect(source).toContain("Named SME:");
+  });
+
+  it("offers all four review outcomes on subject-specific routes", () => {
+    expect(source).toContain("z.enum(SME_DECISIONS)");
+    expect(route).toContain('createFileRoute("/_authenticated/sme-review/$subject")');
+    expect(route).toContain("SME_DECISIONS.map");
   });
 
   it("never writes question_bank directly — promotion goes through the audit trail", () => {
@@ -130,5 +138,27 @@ describe("append-only migration", () => {
     expect(migrations).toContain(
       "status = CASE WHEN NEW.action = 'verified' THEN 'approved' ELSE status END",
     );
+  });
+});
+
+describe("four-outcome attribution migration", () => {
+  const sql = readFileSync(
+    "supabase/migrations/20260903142636_c52a8157-ad18-4f80-8e7b-bfc823a84a28.sql",
+    "utf8",
+  );
+
+  it("accepts exactly the four review outcomes", () => {
+    for (const action of ["verified", "rejected", "remediation_required", "cannot_assess"])
+      expect(sql).toContain(action);
+  });
+
+  it("makes reviewer qualification and decision basis mandatory", () => {
+    expect(sql).toContain("reviewer_qualification");
+    expect(sql).toContain("decision_basis");
+    expect(sql).toContain("question_verifications_attribution_chk");
+  });
+
+  it("keeps non-approval outcomes as drafts", () => {
+    expect(sql).toContain("WHEN NEW.action = 'verified' THEN 'approved'");
   });
 });

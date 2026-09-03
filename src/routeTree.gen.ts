@@ -52,7 +52,6 @@ import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_au
 import { Route as AuthenticatedQuickStartRouteImport } from './routes/_authenticated/quick-start'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
-import { Route as AuthenticatedSmeReviewRouteImport } from './routes/_authenticated/sme-review'
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
 import { Route as AuthenticatedSprint4AuditRouteImport } from './routes/_authenticated/sprint-4-audit'
 import { Route as AuthenticatedSprint5AuditRouteImport } from './routes/_authenticated/sprint-5-audit'
@@ -67,6 +66,8 @@ import { Route as AuthenticatedAssessmentAssessmentIdRouteImport } from './route
 import { Route as AuthenticatedGapsGapIdRouteImport } from './routes/_authenticated/gaps.$gapId'
 import { Route as AuthenticatedLearnersLearnerIdRouteImport } from './routes/_authenticated/learners.$learnerId'
 import { Route as AuthenticatedSessionSessionIdRouteImport } from './routes/_authenticated/session.$sessionId'
+import { Route as AuthenticatedSmeReviewIndexRouteImport } from './routes/_authenticated/sme-review.index'
+import { Route as AuthenticatedSmeReviewSubjectRouteImport } from './routes/_authenticated/sme-review.$subject'
 import { Route as AuthenticatedTutorSessionIdRouteImport } from './routes/_authenticated/tutor.$sessionId'
 import { Route as ApiPublicHealthRouteImport } from './routes/api/public/health'
 import { Route as ApiPublicRazorpayWebhookRouteImport } from './routes/api/public/razorpay-webhook'
@@ -315,11 +316,6 @@ const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedSmeReviewRoute = AuthenticatedSmeReviewRouteImport.update({
-  id: '/sme-review',
-  path: '/sme-review',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedSprint3AuditRoute =
   AuthenticatedSprint3AuditRouteImport.update({
     id: '/sprint-3-audit',
@@ -397,6 +393,18 @@ const AuthenticatedSessionSessionIdRoute =
   AuthenticatedSessionSessionIdRouteImport.update({
     id: '/session/$sessionId',
     path: '/session/$sessionId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSmeReviewIndexRoute =
+  AuthenticatedSmeReviewIndexRouteImport.update({
+    id: '/sme-review/',
+    path: '/sme-review/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSmeReviewSubjectRoute =
+  AuthenticatedSmeReviewSubjectRouteImport.update({
+    id: '/sme-review/$subject',
+    path: '/sme-review/$subject',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedTutorSessionIdRoute =
@@ -486,7 +494,6 @@ export interface FileRoutesByFullPath {
   '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
-  '/sme-review': typeof AuthenticatedSmeReviewRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
@@ -501,6 +508,7 @@ export interface FileRoutesByFullPath {
   '/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
+  '/sme-review/$subject': typeof AuthenticatedSmeReviewSubjectRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/api/public/health': typeof ApiPublicHealthRoute
   '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
@@ -509,6 +517,7 @@ export interface FileRoutesByFullPath {
   '/diagnostic/handoff/$token': typeof DiagnosticHandoffTokenRoute
   '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
+  '/sme-review/': typeof AuthenticatedSmeReviewIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -553,7 +562,6 @@ export interface FileRoutesByTo {
   '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/settings': typeof AuthenticatedSettingsRoute
-  '/sme-review': typeof AuthenticatedSmeReviewRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
@@ -568,6 +576,7 @@ export interface FileRoutesByTo {
   '/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
+  '/sme-review/$subject': typeof AuthenticatedSmeReviewSubjectRoute
   '/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/api/public/health': typeof ApiPublicHealthRoute
   '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
@@ -576,6 +585,7 @@ export interface FileRoutesByTo {
   '/diagnostic/handoff/$token': typeof DiagnosticHandoffTokenRoute
   '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
+  '/sme-review': typeof AuthenticatedSmeReviewIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -622,7 +632,6 @@ export interface FileRoutesById {
   '/_authenticated/quick-start': typeof AuthenticatedQuickStartRoute
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
-  '/_authenticated/sme-review': typeof AuthenticatedSmeReviewRoute
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/_authenticated/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
   '/_authenticated/sprint-5-audit': typeof AuthenticatedSprint5AuditRoute
@@ -637,6 +646,7 @@ export interface FileRoutesById {
   '/_authenticated/gaps/$gapId': typeof AuthenticatedGapsGapIdRoute
   '/_authenticated/learners/$learnerId': typeof AuthenticatedLearnersLearnerIdRoute
   '/_authenticated/session/$sessionId': typeof AuthenticatedSessionSessionIdRoute
+  '/_authenticated/sme-review/$subject': typeof AuthenticatedSmeReviewSubjectRoute
   '/_authenticated/tutor/$sessionId': typeof AuthenticatedTutorSessionIdRoute
   '/api/public/health': typeof ApiPublicHealthRoute
   '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
@@ -645,6 +655,7 @@ export interface FileRoutesById {
   '/diagnostic/handoff/$token': typeof DiagnosticHandoffTokenRoute
   '/diagnostic/report/$token': typeof DiagnosticReportTokenRoute
   '/diagnostic/session/$token': typeof DiagnosticSessionTokenRoute
+  '/_authenticated/sme-review/': typeof AuthenticatedSmeReviewIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -691,7 +702,6 @@ export interface FileRouteTypes {
     | '/quick-start'
     | '/rls-verification'
     | '/settings'
-    | '/sme-review'
     | '/sprint-3-audit'
     | '/sprint-4-audit'
     | '/sprint-5-audit'
@@ -706,6 +716,7 @@ export interface FileRouteTypes {
     | '/gaps/$gapId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
+    | '/sme-review/$subject'
     | '/tutor/$sessionId'
     | '/api/public/health'
     | '/api/public/razorpay-webhook'
@@ -714,6 +725,7 @@ export interface FileRouteTypes {
     | '/diagnostic/handoff/$token'
     | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
+    | '/sme-review/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -758,7 +770,6 @@ export interface FileRouteTypes {
     | '/quick-start'
     | '/rls-verification'
     | '/settings'
-    | '/sme-review'
     | '/sprint-3-audit'
     | '/sprint-4-audit'
     | '/sprint-5-audit'
@@ -773,6 +784,7 @@ export interface FileRouteTypes {
     | '/gaps/$gapId'
     | '/learners/$learnerId'
     | '/session/$sessionId'
+    | '/sme-review/$subject'
     | '/tutor/$sessionId'
     | '/api/public/health'
     | '/api/public/razorpay-webhook'
@@ -781,6 +793,7 @@ export interface FileRouteTypes {
     | '/diagnostic/handoff/$token'
     | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
+    | '/sme-review'
   id:
     | '__root__'
     | '/'
@@ -826,7 +839,6 @@ export interface FileRouteTypes {
     | '/_authenticated/quick-start'
     | '/_authenticated/rls-verification'
     | '/_authenticated/settings'
-    | '/_authenticated/sme-review'
     | '/_authenticated/sprint-3-audit'
     | '/_authenticated/sprint-4-audit'
     | '/_authenticated/sprint-5-audit'
@@ -841,6 +853,7 @@ export interface FileRouteTypes {
     | '/_authenticated/gaps/$gapId'
     | '/_authenticated/learners/$learnerId'
     | '/_authenticated/session/$sessionId'
+    | '/_authenticated/sme-review/$subject'
     | '/_authenticated/tutor/$sessionId'
     | '/api/public/health'
     | '/api/public/razorpay-webhook'
@@ -849,6 +862,7 @@ export interface FileRouteTypes {
     | '/diagnostic/handoff/$token'
     | '/diagnostic/report/$token'
     | '/diagnostic/session/$token'
+    | '/_authenticated/sme-review/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1180,13 +1194,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/sme-review': {
-      id: '/_authenticated/sme-review'
-      path: '/sme-review'
-      fullPath: '/sme-review'
-      preLoaderRoute: typeof AuthenticatedSmeReviewRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/sprint-3-audit': {
       id: '/_authenticated/sprint-3-audit'
       path: '/sprint-3-audit'
@@ -1283,6 +1290,20 @@ declare module '@tanstack/react-router' {
       path: '/session/$sessionId'
       fullPath: '/session/$sessionId'
       preLoaderRoute: typeof AuthenticatedSessionSessionIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sme-review/': {
+      id: '/_authenticated/sme-review/'
+      path: '/sme-review'
+      fullPath: '/sme-review/'
+      preLoaderRoute: typeof AuthenticatedSmeReviewIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sme-review/$subject': {
+      id: '/_authenticated/sme-review/$subject'
+      path: '/sme-review/$subject'
+      fullPath: '/sme-review/$subject'
+      preLoaderRoute: typeof AuthenticatedSmeReviewSubjectRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/tutor/$sessionId': {
@@ -1390,7 +1411,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedQuickStartRoute: typeof AuthenticatedQuickStartRoute
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
-  AuthenticatedSmeReviewRoute: typeof AuthenticatedSmeReviewRoute
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
   AuthenticatedSprint4AuditRoute: typeof AuthenticatedSprint4AuditRoute
   AuthenticatedSprint5AuditRoute: typeof AuthenticatedSprint5AuditRoute
@@ -1399,7 +1419,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAssessmentAssessmentIdRoute: typeof AuthenticatedAssessmentAssessmentIdRoute
   AuthenticatedGapsGapIdRoute: typeof AuthenticatedGapsGapIdRoute
   AuthenticatedSessionSessionIdRoute: typeof AuthenticatedSessionSessionIdRoute
+  AuthenticatedSmeReviewSubjectRoute: typeof AuthenticatedSmeReviewSubjectRoute
   AuthenticatedTutorSessionIdRoute: typeof AuthenticatedTutorSessionIdRoute
+  AuthenticatedSmeReviewIndexRoute: typeof AuthenticatedSmeReviewIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -1439,7 +1461,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedQuickStartRoute: AuthenticatedQuickStartRoute,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
-  AuthenticatedSmeReviewRoute: AuthenticatedSmeReviewRoute,
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,
   AuthenticatedSprint4AuditRoute: AuthenticatedSprint4AuditRoute,
   AuthenticatedSprint5AuditRoute: AuthenticatedSprint5AuditRoute,
@@ -1449,7 +1470,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedAssessmentAssessmentIdRoute,
   AuthenticatedGapsGapIdRoute: AuthenticatedGapsGapIdRoute,
   AuthenticatedSessionSessionIdRoute: AuthenticatedSessionSessionIdRoute,
+  AuthenticatedSmeReviewSubjectRoute: AuthenticatedSmeReviewSubjectRoute,
   AuthenticatedTutorSessionIdRoute: AuthenticatedTutorSessionIdRoute,
+  AuthenticatedSmeReviewIndexRoute: AuthenticatedSmeReviewIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
