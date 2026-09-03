@@ -50,7 +50,9 @@ async function loadDrafts(supabase: Client): Promise<AutoVerificationItem[]> {
       "id, book_id, outcome_id, external_ref, kind, difficulty, prompt, stimulus, options, correct_answer, explanation",
     )
     .in("book_id", ids)
-    .eq("status", "draft")
+    // The unverified corpus is defined by verification state, not by status:
+    // part of it sits at status 'approved' but was never verified.
+    .in("status", ["draft", "approved"])
     .eq("verification_state", "unverified")
     .order("external_ref", { ascending: true });
   if (error) throw new Error(error.message);
