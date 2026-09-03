@@ -38,7 +38,9 @@ export async function fetchDiagnosticWorkspace(
       .from("question_bank")
       .select("id, outcome_id, kind, difficulty, prompt")
       .eq("book_id", bookId)
-      .eq("status", "approved"),
+      .eq("status", "approved")
+      // Pilot safety: only SME-verified items are eligible for learner-facing papers.
+      .eq("verification_state", "verified"),
     supabase
       .from("assessments")
       .select("id, title, kind, status, unit_id, created_at")
@@ -159,7 +161,9 @@ export async function generateDiagnostic(
       .from("question_bank")
       .select("id, outcome_id, kind, difficulty, prompt")
       .eq("book_id", input.bookId)
-      .eq("status", "approved"),
+      .eq("status", "approved")
+      // Pilot safety: only SME-verified items are eligible for learner-facing papers.
+      .eq("verification_state", "verified"),
   ]);
   if (bookRes.error) throw new Error(bookRes.error.message);
   if (!bookRes.data) throw new Error("Book not found in your organization.");
