@@ -67,11 +67,21 @@ type BankRow = {
 const BANK_SELECT =
   "id, kind, difficulty, prompt, stimulus, options, correct_answer, explanation, verification_tier, assessment_outcomes!inner(code, title)";
 
-// Only approved + verified items are ever practised, whichever tier verified them.
-async function loadApproved(supabase: Client, subject: PyqSubject): Promise<BankRow[]> {
+// The question bank is staff-only under RLS, so learner practice reads it through
+// the privileged client — but only ever for the learner's own organisation and
+// only for items that are both approved and verified. Quarantined or unverified
+// items can never be selected here.
+async function bankClient(): Promise<Client> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  return supabaseAdmin as unknown as Client;
+}
+
+async function loadApproved(orgId: string, subject: PyqSubject): Promise<BankRow[]> {
+  const supabase = await bankClient();
   const { data: books, error: bookError } = await supabase
     .from("books")
     .select("id, title")
+    .eq("org_id", orgId)
     .ilike("title", `%${subject}%`);
   if (bookError) throw new Error(bookError.message);
   const bookIds = (books ?? []).map((b) => b.id);
@@ -81,6 +91,7 @@ async function loadApproved(supabase: Client, subject: PyqSubject): Promise<Bank
     .from("question_bank")
     .select(BANK_SELECT)
     .in("book_id", bookIds)
+    .eq("org_id", orgId)
     .eq("status", "approved")
     .eq("verification_state", "verified");
   if (error) throw new Error(error.message);
@@ -142,7 +153,7 @@ export async function loadPyqWorkspace(
   const learner = await resolvePyqLearner(supabase, userId);
   const subject = subjectOverride ?? normaliseSubject(learner.subject);
   const [approved, sessions] = await Promise.all([
-    loadApproved(supabase, subject),
+    loadApproved(learner.org_id!, subject),
     supabase
       .from("pyq_practice_sessions")
       .select("id, subject, chapter, mode, status, score_pct, correct_count, total_count, started_at, submitted_at")
@@ -296,7 +307,7 @@ export async function startPyqSession(
     : input.mode === "timed_paper"
       ? PYQ_TIMED_SIZE
       : PYQ_PRACTICE_SIZE;
-  const approved = await loadApproved(supabase, subject);
+  const approved = await loadApproved(learner.org_id!, subject);
   const selected = found
     ? selectPaperItems(approved, found.paper, size)
     : selectBlueprintItems(approved, subject, size, input.chapter ?? null);
@@ -356,10 +367,14 @@ export async function submitPyqSession(
   }
 
   const ids = (session.items as unknown as string[]) ?? [];
-  const { data: rows, error: rowError } = await supabase
+  const admin = await bankClient();
+  const { data: rows, error: rowError } = await admin
     .from("question_bank")
     .select(BANK_SELECT)
-    .in("id", ids);
+    .in("id", ids)
+    .eq("org_id", learner.org_id!)
+    .eq("status", "approved")
+    .eq("verification_state", "verified");
   if (rowError) throw new Error(rowError.message);
 
   const bank = (rows ?? []) as unknown as BankRow[];
