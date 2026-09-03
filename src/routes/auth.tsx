@@ -559,6 +559,7 @@ function AuthPage() {
                     : "New here? Create a parent account"}
                 </button>
               </form>
+              {googleBlock}
             </TabsContent>
           </Tabs>
 
