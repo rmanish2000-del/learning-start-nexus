@@ -213,6 +213,7 @@ def main() -> None:
             concept_hits: Counter[str] = Counter()
             unattributed = 0
             papers = 0
+            paper_blueprints: list[dict] = []
             for row in rows:
                 if row["subject"] != subject:
                     continue
@@ -223,23 +224,56 @@ def main() -> None:
                     continue
                 papers += 1
                 analysed += 1
+                paper_chapters: Counter[str] = Counter()
+                numbers: list[int] = []
                 for number, body in segment(text):
+                    numbers.append(number)
                     chapter, hits = attribute(subject_key, body)
                     competency[competency_for(number)] += 1
                     if chapter is None:
                         unattributed += 1
                         continue
                     marks = marks_for(number) if cohort == "recent_2023_2026" else 1
+                    paper_chapters[chapter] += marks
                     chapter_questions[chapter] += 1
                     chapter_marks[chapter] += marks
                     chapter_by_year[row["year"]][chapter] += 1
                     for hit in hits:
                         concept_hits[hit.strip()] += 1
 
+                paper_total = sum(paper_chapters.values()) or 1
+                paper_blueprints.append(
+                    {
+                        "paperId": f"{row['year']}-{subject_key}-{(row['set_series'] or os.path.basename(row['pdf_entry'])[:18]).replace(' ', '')}",
+                        "year": row["year"],
+                        "setSeries": row["set_series"] or "unlabelled set",
+                        "language": row["language"],
+                        "maxMarks": int(row["max_marks"]) if row["max_marks"].isdigit() else (80 if cohort == "recent_2023_2026" else 40),
+                        "questionsDetected": len(numbers),
+                        "sections": [
+                            {"section": name, "questions": count, "marksEach": each}
+                            for name, count, each in (
+                                ("A - objective", sum(1 for n in numbers if 1 <= n <= 20), 1),
+                                ("B - very short answer", sum(1 for n in numbers if 21 <= n <= 25), 2),
+                                ("C - short answer", sum(1 for n in numbers if 26 <= n <= 31), 3),
+                                ("D - long answer", sum(1 for n in numbers if 32 <= n <= 35), 5),
+                                ("E - case study", sum(1 for n in numbers if 36 <= n <= 38), 4),
+                            )
+                            if count
+                        ],
+                        "chapterMix": [
+                            {"chapter": c, "marks": m, "markShare": round(m / paper_total, 4)}
+                            for c, m in paper_chapters.most_common()
+                        ],
+                        "attributedQuestions": sum(paper_chapters.values()),
+                    }
+                )
+
             total_marks = sum(chapter_marks.values()) or 1
             total_q = sum(chapter_questions.values()) or 1
             per_subject[subject_key] = {
                 "papersAnalysed": papers,
+                "papers": sorted(paper_blueprints, key=lambda b: (b["year"], b["setSeries"])),
                 "attributedQuestions": sum(chapter_questions.values()),
                 "unattributedQuestions": unattributed,
                 "chapters": [

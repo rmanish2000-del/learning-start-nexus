@@ -1,0 +1,2 @@
+ALTER TABLE public.pyq_practice_sessions DROP CONSTRAINT IF EXISTS pyq_practice_sessions_mode_check;
+ALTER TABLE public.pyq_practice_sessions ADD CONSTRAINT pyq_practice_sessions_mode_check CHECK (mode = ANY (ARRAY['practice'::text, 'timed_paper'::text, 'full_paper'::text]));

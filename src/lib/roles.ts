@@ -46,6 +46,8 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/outcome-proof",
   "/pilot-evidence",
   "/ux-phase1-plan",
+  "/sme-review",
+  "/auto-verification",
 ] as const;
 
 export function isReviewerAllowedPath(pathname: string): boolean {
@@ -65,6 +67,7 @@ export const STUDENT_ALLOWED_PATHS = [
   "/settings",
   "/quick-start",
   "/help",
+  "/exam-pattern",
 ] as const;
 
 export function isStudentAllowedPath(pathname: string): boolean {
