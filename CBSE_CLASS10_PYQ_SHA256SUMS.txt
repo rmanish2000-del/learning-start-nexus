@@ -1,0 +1,10 @@
+fcff786cf9c8a8dfe4db014ede7dc7de5d6a22768394be7dc69d21d6a3c9c544  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2022/041_Mathematics_Standard_2022.zip
+9afec2f6804fe26c3288ea4a8eda061355a093bdbbcf2644210a0ae3da6d194f  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2022/086_Science_2022.zip
+fd1162dd270564f21f9217be1f9e8abccb72b4b2661fd8e15704f2f961a9edd0  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2023/041_Mathematics_Standard_2023.zip
+e1b0053ea7c128fe4bc3af834951df8cbf9f1664288f0afb4c586e79476e4e55  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2023/086_Science_2023.zip
+15df8df502a3fd6732e9c8a65b266cd6b0319b5cfae9436992fb57ff6f240a35  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2024/041_Mathematics_Standard_2024.zip
+9223cdcf7ae29d03d482cb1f3851d61aaee815012d900cb65e7c622936842861  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2024/086_Science_2024.zip
+438fc0ef5e02bbf513d0da090c7846e64bd631d595f48eb919e1ba3dcfd69ebf  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2025/041_Mathematics_Standard_2025.zip
+5e288459ad2558db9b6ee2fa652c123e1842047daaa0452133d6d365d2dc426d  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2025/086_Science_2025.zip
+3bb5243ff680b71837b5040d1670d42dcdd6ab1f5425cfc5589ee996fdf196ca  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2026/041_Mathematics_Standard_2026.zip
+be55f4196a20444a35948d9b3324ad097001438844afc521df42879bbbb258db  /mnt/documents/eduos-private-evidence/cbse-class10-pyq/2026/086_Science_2026.zip
