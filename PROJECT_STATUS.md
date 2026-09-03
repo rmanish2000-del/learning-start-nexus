@@ -9,7 +9,7 @@
 
 The Class 10 pilot product is built, imported and deployed; the parent ₹199 diagnostic journey works end-to-end in the database, and the payment gateway now holds **live-mode** credentials. No live acceptance purchase has been verified yet.
 
-## 1a. Class 10 compliance and launch gate (revalidated 2026-09-02, VERIFIED)
+## 1a. Class 10 compliance and launch gate (revalidated 2026-09-03, VERIFIED)
 
 | Item | Result |
 |---|---|
@@ -19,7 +19,7 @@ The Class 10 pilot product is built, imported and deployed; the parent ₹199 di
 | Derived compliance status | `SOURCE_PENDING` |
 | Journey · pricing · security | PASS · PASS · PASS |
 | Launch gate | **CONTROLLED PILOT ONLY** — external launch withheld |
-| Tests | **293 passing / 26 files** |
+| Tests | **308 passing / 27 files** |
 
 Verified question depth is 45 items (Mathematics) and 165 (Science); the 326
 rebuilt items are loaded but held as `draft`/`unverified` and cannot reach a
@@ -28,6 +28,31 @@ Eleven of twelve units hold a zero fresh-reassessment reserve. Full evidence:
 `EDUOS_CLASS10_COMPLIANCE_BASELINE.md` (+ `EDUOS_CLASS10_COMPLIANCE_MATRIX.json`),
 `EDUOS_CLASS10_2026_27_COMPLIANCE_CERTIFICATION.md` and
 `EDUOS_CLASS10_LAUNCH_READINESS_REPORT.md`.
+
+### 1a-i. Official source registry (completed 2026-09-03)
+
+Four of the six required 2026-27 source categories are now `final`/`applicable`
+with recorded SHA-256 checksums: the CBSE secondary curriculum document, both
+subject syllabi, all 27 NCERT Class X chapter PDFs (edition pinned by a composite
+checksum) and the NCERT rationalised-content booklet. The SOURCE gate therefore
+fails on **two** types instead of five: `sample_paper` and `marking_scheme`, which
+CBSE has not yet published for 2026-27 (index URL returns HTTP 404). Six
+prior-session 2025-26 sample papers and marking schemes are recorded as
+`not_applicable` reference only. Evidence:
+`EDUOS_CLASS10_MISSING_OFFICIAL_SOURCES_REPORT.md`,
+`content/compliance/class-10-2026-27.sha256-manifest.json`.
+
+### 1a-ii. Draft corpus prepared for SME review (2026-09-03)
+
+All 326 drafts reconcile exactly once between the register and the live database
+(sorted `external_ref` MD5 identical). Automated validation returns **0 blockers**
+and 242 warnings; 0 exact duplicates, 1 cross-pool near-duplicate pair, 4 NCERT
+verbatim-overlap flags. Pools are disjoint (125 diagnostic / 201 fresh
+reassessment). Named-SME queues are `EDUOS_CLASS10_MATHS_SME_REVIEW_QUEUE.csv`
+(235) and `EDUOS_CLASS10_SCIENCE_SME_REVIEW_QUEUE.csv` (91). **Nothing was
+promoted**; every item remains `draft`/`unverified`, and the Science source book
+remains unapproved pending a named Science SME signature. Evidence:
+`EDUOS_CLASS10_DRAFT_VALIDATION_REPORT.md`.
 
 ## 1b. Product language
 
