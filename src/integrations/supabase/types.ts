@@ -2766,6 +2766,168 @@ export type Database = {
           },
         ]
       }
+      pilot_diagnostic_runs: {
+        Row: {
+          access_token: string
+          assessment_id: string | null
+          board: string | null
+          book_id: string | null
+          child_first_name: string | null
+          created_at: string
+          grade: number | null
+          grant_id: string
+          id: string
+          learner_id: string | null
+          org_id: string | null
+          parent_user_id: string
+          run_ref: string
+          session_id: string | null
+          subject: string | null
+          submitted_at: string | null
+          unit_id: string | null
+        }
+        Insert: {
+          access_token: string
+          assessment_id?: string | null
+          board?: string | null
+          book_id?: string | null
+          child_first_name?: string | null
+          created_at?: string
+          grade?: number | null
+          grant_id: string
+          id?: string
+          learner_id?: string | null
+          org_id?: string | null
+          parent_user_id: string
+          run_ref: string
+          session_id?: string | null
+          subject?: string | null
+          submitted_at?: string | null
+          unit_id?: string | null
+        }
+        Update: {
+          access_token?: string
+          assessment_id?: string | null
+          board?: string | null
+          book_id?: string | null
+          child_first_name?: string | null
+          created_at?: string
+          grade?: number | null
+          grant_id?: string
+          id?: string
+          learner_id?: string | null
+          org_id?: string | null
+          parent_user_id?: string
+          run_ref?: string
+          session_id?: string | null
+          subject?: string | null
+          submitted_at?: string | null
+          unit_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pilot_diagnostic_runs_grant_id_fkey"
+            columns: ["grant_id"]
+            isOneToOne: false
+            referencedRelation: "pilot_grants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pilot_grant_events: {
+        Row: {
+          action: string
+          actor_user_id: string
+          created_at: string
+          detail: string | null
+          grant_id: string
+          id: string
+        }
+        Insert: {
+          action: string
+          actor_user_id: string
+          created_at?: string
+          detail?: string | null
+          grant_id: string
+          id?: string
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string
+          created_at?: string
+          detail?: string | null
+          grant_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pilot_grant_events_grant_id_fkey"
+            columns: ["grant_id"]
+            isOneToOne: false
+            referencedRelation: "pilot_grants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pilot_grants: {
+        Row: {
+          created_at: string
+          expires_at: string
+          grant_reason: string
+          granted_at: string
+          granted_by: string
+          id: string
+          learner_id: string | null
+          org_id: string | null
+          parent_user_id: string
+          revoke_reason: string | null
+          revoked_at: string | null
+          revoked_by: string | null
+          subject: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at: string
+          grant_reason: string
+          granted_at?: string
+          granted_by: string
+          id?: string
+          learner_id?: string | null
+          org_id?: string | null
+          parent_user_id: string
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          revoked_by?: string | null
+          subject?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          grant_reason?: string
+          granted_at?: string
+          granted_by?: string
+          id?: string
+          learner_id?: string | null
+          org_id?: string | null
+          parent_user_id?: string
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          revoked_by?: string | null
+          subject?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pilot_grants_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pilot_leads: {
         Row: {
           approved_at: string | null
@@ -3436,6 +3598,10 @@ export type Database = {
       expire_stale_parent_orders: {
         Args: { older_than?: string }
         Returns: number
+      }
+      has_active_pilot_access: {
+        Args: { _learner_id: string; _subject?: string }
+        Returns: boolean
       }
       tutor_evidence_by_gap: {
         Args: never

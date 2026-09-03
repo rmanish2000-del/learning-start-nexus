@@ -187,7 +187,76 @@ type OrderRow = {
   session_id: string | null;
   parent_order_id: string | null;
   paid_at: string | null;
+  /**
+   * Where this journey record lives. `order` is a real commercial
+   * parent_orders row. `pilot` is a pilot_diagnostic_runs row: no amount, no
+   * payment, no revenue — it only reuses the run/report pipeline.
+   */
+  source: "order" | "pilot";
 };
+
+const PILOT_RUN_COLUMNS =
+  "id, run_ref, access_token, board, grade, subject, book_id, unit_id, child_first_name, org_id, parent_user_id, learner_id, assessment_id, session_id, submitted_at, created_at";
+
+type PilotRunRow = {
+  id: string;
+  run_ref: string;
+  access_token: string;
+  board: string | null;
+  grade: number | null;
+  subject: string | null;
+  book_id: string | null;
+  unit_id: string | null;
+  child_first_name: string | null;
+  org_id: string | null;
+  parent_user_id: string;
+  learner_id: string | null;
+  assessment_id: string | null;
+  session_id: string | null;
+  submitted_at: string | null;
+  created_at: string;
+};
+
+/**
+ * Presents a pilot run through the same shape the run/report pipeline reads.
+ * `amount_paise` is 0 and `purpose` is `pilot_diagnostic` precisely so this
+ * record can never be mistaken for — or aggregated with — a paid order: it is
+ * not stored in parent_orders and no revenue query ever sees it.
+ */
+function pilotRunAsRow(run: PilotRunRow): OrderRow {
+  return {
+    id: run.id,
+    order_ref: run.run_ref,
+    access_token: run.access_token,
+    purpose: "pilot_diagnostic",
+    status: "paid",
+    amount_paise: 0,
+    board: run.board,
+    grade: run.grade,
+    subject: run.subject,
+    book_id: run.book_id,
+    unit_id: run.unit_id,
+    child_first_name: run.child_first_name,
+    contact_email: null,
+    contact_name: null,
+    contact_phone: null,
+    org_id: run.org_id,
+    parent_user_id: run.parent_user_id,
+    learner_id: run.learner_id,
+    assessment_id: run.assessment_id,
+    session_id: run.session_id,
+    parent_order_id: null,
+    paid_at: null,
+    source: "pilot",
+  };
+}
+
+/** Pilot journeys are non-commercial: no checkout, no upgrade, no invoice. */
+function assertCommercial(row: OrderRow): void {
+  if (row.source === "pilot") {
+    throw new Error("Pilot access is free — there is nothing to pay for here.");
+  }
+}
 
 async function loadOrderByRef(ref: string): Promise<OrderRow> {
   const { data, error } = await supabaseAdmin
@@ -198,8 +267,15 @@ async function loadOrderByRef(ref: string): Promise<OrderRow> {
     .eq("order_ref", ref)
     .maybeSingle();
   if (error) throw new Error(error.message);
-  if (!data) throw new Error("Order not found.");
-  return data as OrderRow;
+  if (data) return { ...(data as Omit<OrderRow, "source">), source: "order" };
+
+  const { data: run } = await supabaseAdmin
+    .from("pilot_diagnostic_runs")
+    .select(PILOT_RUN_COLUMNS)
+    .eq("run_ref", ref)
+    .maybeSingle();
+  if (!run) throw new Error("Order not found.");
+  return pilotRunAsRow(run as PilotRunRow);
 }
 
 async function loadOrderByToken(accessToken: string): Promise<OrderRow> {
@@ -211,9 +287,22 @@ async function loadOrderByToken(accessToken: string): Promise<OrderRow> {
     .eq("access_token", accessToken)
     .maybeSingle();
   if (error) throw new Error(error.message);
-  if (!data) throw new Error("This diagnostic link is not valid.");
-  return data as OrderRow;
+  if (data) return { ...(data as Omit<OrderRow, "source">), source: "order" };
+
+  const { data: run } = await supabaseAdmin
+    .from("pilot_diagnostic_runs")
+    .select(PILOT_RUN_COLUMNS)
+    .eq("access_token", accessToken)
+    .maybeSingle();
+  if (!run) throw new Error("This diagnostic link is not valid.");
+
+  // A pilot link only works while the grant behind it is live: expiry or
+  // revocation removes access immediately, while the history stays.
+  const { assertPilotRunActive } = await import("./pilot-access.server");
+  await assertPilotRunActive(run.id);
+  return pilotRunAsRow(run as PilotRunRow);
 }
+
 
 /**
  * Purchase ownership. Orders created by the identity-first flow always carry
@@ -362,7 +451,7 @@ export async function createDiagnosticOrder(input: {
     .select(ORDER_COLUMNS)
     .single();
   if (error) throw new Error(error.message);
-  return toPublicOrder(data as OrderRow);
+  return toPublicOrder({ ...(data as Omit<OrderRow, "source">), source: "order" });
 }
 
 export async function getOrder(ref: string, userId: string | null = null): Promise<PublicOrder> {
@@ -449,7 +538,7 @@ async function loadOrderByProviderOrderId(providerOrderId: string): Promise<Orde
     .eq("provider_order_id", providerOrderId)
     .maybeSingle();
   if (error) throw new Error(error.message);
-  return (data as OrderRow | null) ?? null;
+  return data ? { ...(data as Omit<OrderRow, "source">), source: "order" as const } : null;
 }
 
 export type CheckoutIntent = {
@@ -468,6 +557,7 @@ export async function startRazorpayCheckout(ref: string, userId: string | null =
   const { createRazorpayOrder, razorpayKeyId, razorpayMode } = await import("./razorpay.server");
   const row = await loadOrderByRef(ref);
   assertOrderOwner(row, userId);
+  assertCommercial(row);
   if (row.parent_user_id == null || row.learner_id == null) {
     throw new Error("This order is not linked to an account and a student.");
   }
@@ -536,6 +626,7 @@ export async function verifyRazorpayCheckout(input: {
   const { verifyCheckoutSignature } = await import("./razorpay.server");
   const row = await loadOrderByRef(input.orderRef);
   assertOrderOwner(row, input.userId ?? null);
+  assertCommercial(row);
 
   const matched = await loadOrderByProviderOrderId(input.razorpayOrderId);
   if (!matched || matched.id !== row.id) throw new Error("This payment does not belong to that order.");
@@ -557,6 +648,7 @@ export async function recordRazorpayFailure(input: {
 }): Promise<PublicOrder> {
   const row = await loadOrderByRef(input.orderRef);
   assertOrderOwner(row, input.userId ?? null);
+  assertCommercial(row);
   await markOrderFailed(row, input.reason);
   return toPublicOrder(await loadOrderByRef(input.orderRef));
 }
@@ -588,7 +680,7 @@ export async function failFromWebhook(input: {
 // Provisioning: learner + curriculum-mapped diagnostic + session
 // ---------------------------------------------------------------------------
 
-async function generateParentDiagnostic(row: OrderRow, _learnerName: string): Promise<{
+export async function generateParentDiagnostic(row: OrderRow, _learnerName: string): Promise<{
   assessmentId: string;
   questionCount: number;
 }> {
@@ -976,14 +1068,23 @@ export async function submitRun(accessToken: string, userId: string | null = nul
     );
   }
 
-  // The credit is consumed at submission, never at start — an abandoned
-  // attempt stays resumable.
-  await supabaseAdmin
-    .from("parent_entitlements")
-    .update({ consumed_at: submittedAt })
-    .eq("order_id", row.id)
-    .eq("kind", "diagnostic_credit")
-    .is("consumed_at", null);
+  if (row.source === "pilot") {
+    // Pilot runs have no entitlement to consume and no credit to burn.
+    await supabaseAdmin
+      .from("pilot_diagnostic_runs")
+      .update({ submitted_at: submittedAt })
+      .eq("id", row.id)
+      .is("submitted_at", null);
+  } else {
+    // The credit is consumed at submission, never at start — an abandoned
+    // attempt stays resumable.
+    await supabaseAdmin
+      .from("parent_entitlements")
+      .update({ consumed_at: submittedAt })
+      .eq("order_id", row.id)
+      .eq("kind", "diagnostic_credit")
+      .is("consumed_at", null);
+  }
 
   await supabaseAdmin
     .from("learners")
@@ -1099,7 +1200,7 @@ export async function createUpgradeOrder(accessToken: string, userId: string | n
     )
     .single();
   if (error) throw new Error(error.message);
-  return toPublicOrder(data as OrderRow);
+  return toPublicOrder({ ...(data as Omit<OrderRow, "source">), source: "order" });
 }
 
 export async function loadUpgradeView(
@@ -1234,7 +1335,26 @@ export async function listLearnerDiagnostics(learnerId: string): Promise<
     .order("created_at");
   if (error) throw new Error(error.message);
 
-  const rows = (data ?? []) as OrderRow[];
+  const rows: OrderRow[] = ((data ?? []) as Omit<OrderRow, "source">[]).map((r) => ({
+    ...r,
+    source: "order" as const,
+  }));
+
+  // Pilot families run the same journey; their runs live in their own table
+  // and only appear while the grant behind them is still live.
+  const { data: pilotRuns } = await supabaseAdmin
+    .from("pilot_diagnostic_runs")
+    .select(PILOT_RUN_COLUMNS)
+    .eq("learner_id", learnerId)
+    .not("session_id", "is", null)
+    .order("created_at");
+  if (pilotRuns?.length) {
+    const { activePilotRunIds } = await import("./pilot-access.server");
+    const live = await activePilotRunIds(pilotRuns.map((r) => r.id));
+    for (const run of pilotRuns) {
+      if (live.has(run.id)) rows.push(pilotRunAsRow(run as PilotRunRow));
+    }
+  }
   const out: {
     accessToken: string;
     subject: string;
@@ -1264,4 +1384,62 @@ export async function listLearnerDiagnostics(learnerId: string): Promise<
     });
   }
   return out;
+}
+
+
+// ---------------------------------------------------------------------------
+// Pilot runs — free access, zero commercial footprint
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds the assessment and session behind a pilot run. Identical content
+ * pipeline as the paid diagnostic (approved + verified questions only); the
+ * only difference is where the journey record lives.
+ */
+export async function setupPilotDiagnosticRun(runId: string): Promise<{ accessToken: string }> {
+  const { data: run, error } = await supabaseAdmin
+    .from("pilot_diagnostic_runs")
+    .select(PILOT_RUN_COLUMNS)
+    .eq("id", runId)
+    .single();
+  if (error) throw new Error(error.message);
+  const row = pilotRunAsRow(run as PilotRunRow);
+  if (row.session_id) return { accessToken: row.access_token };
+  if (!row.book_id || !row.unit_id || !row.org_id || !row.learner_id) {
+    throw new Error("This pilot run is missing its curriculum selection.");
+  }
+
+  const generated = await generateParentDiagnostic(row, row.child_first_name ?? "");
+  const { data: session, error: sError } = await supabaseAdmin
+    .from("assessment_sessions")
+    .insert({
+      org_id: row.org_id,
+      assessment_id: generated.assessmentId,
+      learner_id: row.learner_id,
+      status: "in_progress",
+      answers: {},
+      current_position: 0,
+      started_at: new Date().toISOString(),
+      last_activity_at: new Date().toISOString(),
+    })
+    .select("id")
+    .single();
+  if (sError) throw new Error(sError.message);
+
+  const { error: uError } = await supabaseAdmin
+    .from("pilot_diagnostic_runs")
+    .update({ assessment_id: generated.assessmentId, session_id: session.id })
+    .eq("id", row.id);
+  if (uError) throw new Error(uError.message);
+
+  return { accessToken: row.access_token };
+}
+
+/** Reference/token generators reused by the pilot layer. */
+export function newRunRef(): string {
+  return `PILOT${Date.now().toString(36).toUpperCase()}${token().slice(0, 6).toUpperCase()}`;
+}
+
+export function newAccessToken(): string {
+  return token();
 }
