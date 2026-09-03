@@ -1,7 +1,7 @@
 // Named-SME review of the 326 existing Class 10 (2026-27) drafts.
 // Reviewer/admin only. One explicit decision at a time — no bulk approval.
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useParams } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { AlertTriangle, BadgeCheck, Copy, ShieldCheck, XCircle } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -19,19 +19,25 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { friendlyErrorMessage } from "@/lib/user-errors";
 import { getSmeReviewFn, recordSmeDecisionFn } from "@/lib/sme-review.functions";
 import {
   NCERT_OVERLAP_CANDIDATES,
   NEAR_DUPLICATE_PAIRS,
+  SME_DECISIONS,
+  SME_DECISION_LABELS,
   SME_SUBJECTS,
   SME_WORKFLOW_RULES,
+  smeSubjectFromSlug,
+  type SmeDecision,
   type SmeSubject,
 } from "@/lib/sme-review-shared";
 
-export const Route = createFileRoute("/_authenticated/sme-review")({
+export const Route = createFileRoute("/_authenticated/sme-review/$subject")({
+  beforeLoad: ({ params }) => {
+    if (!smeSubjectFromSlug(params.subject)) throw notFound();
+  },
   component: SmeReviewPage,
   head: () => ({
     meta: [
@@ -61,24 +67,29 @@ function SmeReviewPage() {
   const queryClient = useQueryClient();
   const load = useServerFn(getSmeReviewFn);
   const decide = useServerFn(recordSmeDecisionFn);
+  const { subject: subjectSlug } = useParams({ from: "/_authenticated/sme-review/$subject" });
+  const subject: SmeSubject = smeSubjectFromSlug(subjectSlug) ?? "Mathematics";
   const [reviewerName, setReviewerName] = useState("");
+  const [reviewerQualification, setReviewerQualification] = useState("");
+  const [basis, setBasis] = useState<Record<string, string>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [subject, setSubject] = useState<SmeSubject>("Mathematics");
 
   const query = useQuery({ queryKey: ["sme-review"], queryFn: () => load() });
 
   const mutation = useMutation({
-    mutationFn: (vars: { questionId: string; action: "verified" | "rejected" }) =>
+    mutationFn: (vars: { questionId: string; action: SmeDecision }) =>
       decide({
         data: {
           questionId: vars.questionId,
           action: vars.action,
           reviewerName: reviewerName.trim(),
+          reviewerQualification: reviewerQualification.trim(),
+          decisionBasis: basis[vars.questionId]?.trim() ?? "",
           note: notes[vars.questionId]?.trim() || null,
         },
       }),
     onSuccess: (_r, vars) => {
-      toast.success(vars.action === "verified" ? "Question approved" : "Question rejected");
+      toast.success(`Decision recorded: ${SME_DECISION_LABELS[vars.action]}`);
       void queryClient.invalidateQueries({ queryKey: ["sme-review"] });
     },
     onError: (error) => toast.error(friendlyErrorMessage(error)),
@@ -93,7 +104,11 @@ function SmeReviewPage() {
   if (query.isLoading) return <Skeleton className="h-96 w-full" />;
   if (query.isError) return <QueryError error={query.error} onRetry={() => query.refetch()} />;
 
-  const nameReady = reviewerName.trim().length >= 2;
+  const identityReady =
+    reviewerName.trim().length >= 2 && reviewerQualification.trim().length >= 2;
+  const decisionReady = (id: string) =>
+    identityReady && (basis[id]?.trim().length ?? 0) >= 10;
+
 
   return (
     <div className="space-y-6">
@@ -203,20 +218,22 @@ function SmeReviewPage() {
         </CardContent>
       </Card>
 
-      <Tabs value={subject} onValueChange={(v) => setSubject(v as SmeSubject)}>
-        <TabsList>
-          {SME_SUBJECTS.map((s) => (
-            <TabsTrigger key={s} value={s}>
-              {s}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+      <nav className="flex flex-wrap gap-2" aria-label="Subject queues">
         {SME_SUBJECTS.map((s) => (
-          <TabsContent key={s} value={s} className="space-y-4">
-            {visible.length === 0 ? (
-              <p className="text-muted-foreground text-sm">No draft items awaiting review.</p>
-            ) : null}
-            {visible.map((item) => (
+          <Button key={s} asChild size="sm" variant={s === subject ? "default" : "outline"}>
+            <Link to="/sme-review/$subject" params={{ subject: s.toLowerCase() }}>
+              {s}
+            </Link>
+          </Button>
+        ))}
+      </nav>
+
+      <div className="space-y-4">
+        {visible.length === 0 ? (
+          <p className="text-muted-foreground text-sm">No draft items awaiting review.</p>
+        ) : null}
+        {visible.map((item) => (
+
               <Card key={item.id}>
                 <CardHeader className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
@@ -255,38 +272,47 @@ function SmeReviewPage() {
                     placeholder="Reviewer comment or required correction (optional)"
                     aria-label={`Reviewer comment for ${item.externalRef ?? item.id}`}
                   />
+                  <Textarea
+                    value={basis[item.id] ?? ""}
+                    onChange={(e) => setBasis((b) => ({ ...b, [item.id]: e.target.value }))}
+                    placeholder="Decision basis — required. Cite the syllabus point or academic reasoning."
+                    aria-label={`Decision basis for ${item.externalRef ?? item.id}`}
+                  />
                   <div className="flex flex-wrap gap-2">
-                    <Button
-                      size="sm"
-                      disabled={!nameReady || mutation.isPending}
-                      onClick={() =>
-                        mutation.mutate({ questionId: item.id, action: "verified" })
-                      }
-                    >
-                      <BadgeCheck className="mr-1 size-4" /> Approve this question
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      disabled={!nameReady || mutation.isPending}
-                      onClick={() =>
-                        mutation.mutate({ questionId: item.id, action: "rejected" })
-                      }
-                    >
-                      <XCircle className="mr-1 size-4" /> Reject
-                    </Button>
+                    {SME_DECISIONS.map((action) => (
+                      <Button
+                        key={action}
+                        size="sm"
+                        variant={
+                          action === "verified"
+                            ? "default"
+                            : action === "rejected"
+                              ? "destructive"
+                              : "outline"
+                        }
+                        disabled={!decisionReady(item.id) || mutation.isPending}
+                        onClick={() => mutation.mutate({ questionId: item.id, action })}
+                      >
+                        {action === "verified" ? (
+                          <BadgeCheck className="mr-1 size-4" />
+                        ) : action === "rejected" ? (
+                          <XCircle className="mr-1 size-4" />
+                        ) : null}
+                        {SME_DECISION_LABELS[action]}
+                      </Button>
+                    ))}
                   </div>
-                  {!nameReady ? (
+                  {!decisionReady(item.id) ? (
                     <p className="text-muted-foreground text-xs">
-                      Enter the reviewing expert&apos;s name above to enable decisions.
+                      Reviewer name, qualification and a decision basis of at least 10 characters
+                      are required before a decision can be recorded.
                     </p>
                   ) : null}
                 </CardContent>
               </Card>
             ))}
-          </TabsContent>
-        ))}
-      </Tabs>
+      </div>
+
 
       <Card>
         <CardHeader>

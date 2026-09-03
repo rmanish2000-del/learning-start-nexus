@@ -11,6 +11,7 @@ import {
   SME_EXPECTED_QUEUE,
   SME_SUBJECTS,
   type SmeAuditEvent,
+  type SmeDecision,
   type SmeQueueItem,
   type SmeQueueSummary,
   type SmeSubject,
@@ -134,7 +135,9 @@ export async function fetchSmeReview(supabase: Client): Promise<{
   const { data: events } = questionIds.length
     ? await supabase
         .from("question_verifications")
-        .select("id, question_id, action, note, reviewer_id, created_at")
+        .select(
+          "id, question_id, action, note, reviewer_id, reviewer_qualification, decision_basis, created_at",
+        )
         .in("question_id", questionIds)
         .order("created_at", { ascending: false })
         .limit(100)
@@ -154,6 +157,8 @@ export async function fetchSmeReview(supabase: Client): Promise<{
     action: e.action as SmeAuditEvent["action"],
     note: e.note,
     reviewerName: nameById.get(e.reviewer_id) ?? "Reviewer",
+    reviewerQualification: e.reviewer_qualification ?? "",
+    decisionBasis: e.decision_basis ?? "",
     createdAt: e.created_at,
   }));
 
@@ -171,7 +176,13 @@ export async function fetchSmeReview(supabase: Client): Promise<{
 export async function recordSmeDecision(
   supabase: Client,
   ctx: { orgId: string; userId: string },
-  input: { questionId: string; action: "verified" | "rejected"; note: string | null },
+  input: {
+    questionId: string;
+    action: SmeDecision;
+    note: string | null;
+    reviewerQualification: string;
+    decisionBasis: string;
+  },
 ): Promise<void> {
   const { error } = await supabase.from("question_verifications").insert({
     org_id: ctx.orgId,
@@ -179,6 +190,8 @@ export async function recordSmeDecision(
     reviewer_id: ctx.userId,
     action: input.action,
     note: input.note?.trim() || null,
+    reviewer_qualification: input.reviewerQualification.trim(),
+    decision_basis: input.decisionBasis.trim(),
   });
   if (error) throw new Error(error.message);
 }

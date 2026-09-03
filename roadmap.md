@@ -56,3 +56,11 @@ rollback and official curriculum correctness.
 - [x] Staging user seeder + reset: `scripts/staging/seed-staging-users.ts` (staging-only guard, `@staging.eduos.test` scope, git-ignored credential file).
 - [x] Runbook, test-user inventory, Razorpay test-mode checklist and promotion flow: `STAGING_ENVIRONMENT.md`.
 - [ ] Founder action: remix this project as `eduos-staging`, set `VITE_APP_ENV=staging`, add Razorpay test keys + test webhook, run the seeder, then execute staging UAT.
+
+## CBSE Class 10 PYQ acquisition (added 2026-09-03)
+- [ ] Parse https://www.cbse.gov.in/cbsenew/question-paper.html and follow real file links only (no guessed URLs)
+- [ ] Download Mathematics Standard 041 + Science 086 main-exam papers 2022-2026; validate status/MIME/bytes/signature
+- [ ] Double SHA-256 per binary; test ZIPs; inventory contained PDFs; verify year/subject/code/set/type
+- [ ] Exclude Maths Basic 241, sample papers, marking schemes, compartment/Second Board
+- [ ] Store binaries privately (never in public bundle); no question text imported
+- [ ] Deliver source register (JSON/CSV), SHA256SUMS, extraction inventory, missing-files CSV, contamination + pattern alignment reports
