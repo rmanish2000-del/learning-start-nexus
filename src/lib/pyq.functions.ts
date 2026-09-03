@@ -24,6 +24,7 @@ export const startPyqSessionFn = createServerFn({ method: "POST" })
         subject: subjectSchema,
         chapter: z.string().min(1).max(120).nullable().optional(),
         mode: z.enum(PYQ_MODES),
+        paperId: z.string().min(1).max(120).nullable().optional(),
       })
       .parse(input),
   )
@@ -32,6 +33,7 @@ export const startPyqSessionFn = createServerFn({ method: "POST" })
       subject: data.subject,
       chapter: data.chapter ?? null,
       mode: data.mode,
+      paperId: data.paperId ?? null,
     }),
   );
 

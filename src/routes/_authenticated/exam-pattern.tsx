@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { BarChart3, Clock, ShieldCheck, Target } from "lucide-react";
+import { BarChart3, Clock, FileText, ShieldCheck, Target } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -26,7 +26,13 @@ import {
   startPyqSessionFn,
   submitPyqSessionFn,
 } from "@/lib/pyq.functions";
-import { PYQ_TIMED_MINUTES, type PyqMode, type PyqPracticeItem } from "@/lib/pyq-shared";
+import {
+  PYQ_SUBJECTS,
+  PYQ_TIMED_MINUTES,
+  type PyqMode,
+  type PyqPracticeItem,
+  type PyqSubject,
+} from "@/lib/pyq-shared";
 
 export const Route = createFileRoute("/_authenticated/exam-pattern")({
   component: ExamPatternPage,
@@ -54,6 +60,7 @@ type SessionState = {
   sessionId: string;
   items: PyqPracticeItem[];
   durationMinutes: number | null;
+  paperLabel: string | null;
 };
 
 function pct(value: number): string {
@@ -66,15 +73,28 @@ function ExamPatternPage() {
   const start = useServerFn(startPyqSessionFn);
   const submit = useServerFn(submitPyqSessionFn);
 
+  const [subject, setSubject] = useState<PyqSubject | null>(null);
+  const [year, setYear] = useState<string | null>(null);
+  const [paperId, setPaperId] = useState<string | null>(null);
   const [session, setSession] = useState<SessionState | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [result, setResult] = useState<Awaited<ReturnType<typeof submitPyqSessionFn>> | null>(null);
 
-  const query = useQuery({ queryKey: ["pyq-workspace"], queryFn: () => load({ data: {} }) });
+  const query = useQuery({
+    queryKey: ["pyq-workspace", subject],
+    queryFn: () => load({ data: subject ? { subject } : {} }),
+  });
 
   const startMutation = useMutation({
-    mutationFn: (vars: { mode: PyqMode; chapter: string | null }) =>
-      start({ data: { mode: vars.mode, chapter: vars.chapter } }),
+    mutationFn: (vars: { mode: PyqMode; chapter: string | null; paperId?: string | null }) =>
+      start({
+        data: {
+          mode: vars.mode,
+          chapter: vars.chapter,
+          paperId: vars.paperId ?? null,
+          ...(subject ? { subject } : {}),
+        },
+      }),
     onSuccess: (data) => {
       setSession(data);
       setAnswers({});
@@ -99,6 +119,8 @@ function ExamPatternPage() {
   const data = query.data!;
 
   const available = new Map(data.availableByChapter.map((c) => [c.chapter, c.available]));
+  const selectedPaper =
+    [...data.papers, ...data.termPapers].find((p) => p.paperId === paperId) ?? null;
 
   return (
     <div className="space-y-6">
@@ -110,6 +132,22 @@ function ExamPatternPage() {
           questions only — no past-paper text is reproduced here.
         </p>
         <p className="text-muted-foreground text-xs">{data.termCohortNote}</p>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Subject">
+          {PYQ_SUBJECTS.map((s) => (
+            <Button
+              key={s}
+              size="sm"
+              variant={data.subject === s ? "default" : "outline"}
+              onClick={() => {
+                setSubject(s);
+                setYear(null);
+                setPaperId(null);
+              }}
+            >
+              {s}
+            </Button>
+          ))}
+        </div>
       </header>
 
       {!session && !result && (
@@ -151,6 +189,80 @@ function ExamPatternPage() {
                   </div>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <FileText className="h-4 w-4" aria-hidden /> Real CBSE paper attempt
+              </CardTitle>
+              <CardDescription>
+                Pick a year and set. EduOS assembles a full-length attempt matching that paper's
+                section structure and chapter mark mix, using EduOS-verified questions — the
+                original paper text is not reproduced.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex flex-wrap gap-2" aria-label="Paper year">
+                {[...new Set([...data.papers, ...data.termPapers].map((p) => p.year))]
+                  .sort((a, b) => b.localeCompare(a))
+                  .map((y) => (
+                    <Button
+                      key={y}
+                      size="sm"
+                      variant={year === y ? "default" : "outline"}
+                      onClick={() => {
+                        setYear(y);
+                        setPaperId(null);
+                      }}
+                    >
+                      {y}
+                    </Button>
+                  ))}
+              </div>
+              {year && (
+                <div className="flex flex-wrap gap-2" aria-label="Paper set">
+                  {[...data.papers, ...data.termPapers]
+                    .filter((p) => p.year === year)
+                    .map((p) => (
+                      <Button
+                        key={p.paperId}
+                        size="sm"
+                        variant={paperId === p.paperId ? "secondary" : "ghost"}
+                        className="border"
+                        onClick={() => setPaperId(p.paperId)}
+                      >
+                        Set {p.setSeries} · {p.maxMarks} marks
+                      </Button>
+                    ))}
+                </div>
+              )}
+              {selectedPaper && (
+                <div className="space-y-1 text-sm">
+                  <p className="text-muted-foreground">
+                    {selectedPaper.questionsDetected} questions ·{" "}
+                    {selectedPaper.sections
+                      .map((sec) => `${sec.section} (${sec.questions}×${sec.marksEach})`)
+                      .join(" · ")}
+                  </p>
+                  <p className="text-muted-foreground text-xs">
+                    Top chapters:{" "}
+                    {selectedPaper.chapterMix
+                      .slice(0, 4)
+                      .map((c) => `${c.chapter} ${pct(c.markShare)}`)
+                      .join(", ")}
+                  </p>
+                </div>
+              )}
+              <Button
+                disabled={!paperId || startMutation.isPending}
+                onClick={() =>
+                  startMutation.mutate({ mode: "full_paper", chapter: null, paperId })
+                }
+              >
+                Start full paper attempt
+              </Button>
             </CardContent>
           </Card>
 
@@ -203,7 +315,12 @@ function ExamPatternPage() {
                 {data.history.map((h) => (
                   <div key={h.id} className="flex items-center justify-between gap-3">
                     <span>
-                      {h.chapter ?? "Blueprint set"} · {h.mode === "timed_paper" ? "Timed" : "Practice"}
+                      {h.chapter ?? "Blueprint set"} ·{" "}
+                      {h.mode === "full_paper"
+                        ? "Full paper"
+                        : h.mode === "timed_paper"
+                          ? "Timed"
+                          : "Practice"}
                     </span>
                     <span className="text-muted-foreground">
                       {h.status === "submitted" ? `${h.scorePct}%` : "In progress"} ·{" "}
@@ -221,7 +338,11 @@ function ExamPatternPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base">
-              {session.durationMinutes ? `Timed paper · ${session.durationMinutes} minutes` : "Practice set"}
+              {session.paperLabel
+                ? `CBSE paper ${session.paperLabel} · ${session.durationMinutes} minutes`
+                : session.durationMinutes
+                  ? `Timed paper · ${session.durationMinutes} minutes`
+                  : "Practice set"}
             </CardTitle>
             <CardDescription>{session.items.length} verified questions</CardDescription>
           </CardHeader>

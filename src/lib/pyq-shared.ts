@@ -26,8 +26,21 @@ export type PyqChapterPattern = {
   byYear: Record<string, number>;
 };
 
+export type PyqPaperBlueprint = {
+  paperId: string;
+  year: string;
+  setSeries: string;
+  language: string;
+  maxMarks: number;
+  questionsDetected: number;
+  sections: Array<{ section: string; questions: number; marksEach: number }>;
+  chapterMix: Array<{ chapter: string; marks: number; markShare: number }>;
+  attributedQuestions: number;
+};
+
 export type PyqSubjectPattern = {
   papersAnalysed: number;
+  papers: PyqPaperBlueprint[];
   attributedQuestions: number;
   unattributedQuestions: number;
   chapters: PyqChapterPattern[];
@@ -80,6 +93,27 @@ export function pyqChapterWeight(
     (c) => c.chapter.toLowerCase() === chapter.toLowerCase(),
   );
   return match?.markShare ?? 0;
+}
+
+/** Every analysed real paper of a cohort, newest year first. */
+export function pyqPapers(
+  subject: PyqSubject,
+  cohort: PyqCohort = PYQ_BLUEPRINT_COHORT,
+): PyqPaperBlueprint[] {
+  const papers = pyqCohort(cohort)?.subjects[subject]?.papers ?? [];
+  return [...papers].sort(
+    (a, b) => b.year.localeCompare(a.year) || a.setSeries.localeCompare(b.setSeries),
+  );
+}
+
+export function pyqPaper(paperId: string): { paper: PyqPaperBlueprint; cohort: PyqCohort } | null {
+  for (const cohort of PYQ_COHORTS) {
+    for (const subject of PYQ_SUBJECTS) {
+      const paper = pyqPapers(subject, cohort).find((p) => p.paperId === paperId);
+      if (paper) return { paper, cohort };
+    }
+  }
+  return null;
 }
 
 /** Highest-yield chapters first — used for study-plan and tutor prioritisation. */
@@ -137,10 +171,13 @@ export function chapterForOutcomeCode(code: string): string | null {
   return null;
 }
 
-export const PYQ_MODES = ["practice", "timed_paper"] as const;
+export const PYQ_MODES = ["practice", "timed_paper", "full_paper"] as const;
 export type PyqMode = (typeof PYQ_MODES)[number];
 
 export const PYQ_TIMED_MINUTES = 45;
+/** Real CBSE Class 10 papers run three hours; the 2022 term papers ran 90 min. */
+export const PYQ_FULL_PAPER_MINUTES = 180;
+export const PYQ_TERM_PAPER_MINUTES = 90;
 export const PYQ_PRACTICE_SIZE = 10;
 export const PYQ_TIMED_SIZE = 20;
 
@@ -184,6 +221,9 @@ export type PyqWorkspace = {
   availableByChapter: Array<{ chapter: string; available: number }>;
   history: PyqSessionSummary[];
   weakChapters: string[];
+  /** Real 2023-2026 papers, and the separately reported 2022 term papers. */
+  papers: PyqPaperBlueprint[];
+  termPapers: PyqPaperBlueprint[];
 };
 
 export const PYQ_TERM_2022_NOTE =

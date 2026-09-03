@@ -143,32 +143,39 @@ export async function applyAutoVerification(
   const verdicts = verifyCorpus(items, contaminatedRefs);
   const runId = crypto.randomUUID();
 
-  for (const verdict of verdicts) {
-    if (verdict.outcome === "auto_approved") {
-      const { error } = await supabase
-        .from("question_bank")
-        .update({
-          status: "approved",
-          verification_state: "verified",
-          verification_tier: "eduos_automated",
-          verification_note: `${AUTO_VERIFIED_LABEL} — automated deterministic verification v${AUTO_VERIFICATION_ENGINE_VERSION}. Not a named-SME certification.`,
-          verified_at: new Date().toISOString(),
-        })
-        .eq("id", verdict.questionId)
-        .eq("verification_state", "unverified");
-      if (error) throw new Error(error.message);
-    }
+  // Batched: a per-item round trip over a 300+ item corpus is slow enough that
+  // a page navigation can abandon the run half applied.
+  const approvedIds = verdicts.filter((v) => v.outcome === "auto_approved").map((v) => v.questionId);
+  for (let i = 0; i < approvedIds.length; i += 50) {
+    const { error } = await supabase
+      .from("question_bank")
+      .update({
+        status: "approved",
+        verification_state: "verified",
+        verification_tier: "eduos_automated",
+        verification_note: `${AUTO_VERIFIED_LABEL} — automated deterministic verification v${AUTO_VERIFICATION_ENGINE_VERSION}. Not a named-SME certification.`,
+        verified_at: new Date().toISOString(),
+      })
+      .in("id", approvedIds.slice(i, i + 50))
+      // Never overwrite a decision recorded since the dry run.
+      .eq("verification_state", "unverified");
+    if (error) throw new Error(error.message);
+  }
 
-    const { error: logError } = await supabase.from("question_auto_verifications").insert({
-      org_id: ctx.orgId,
-      question_id: verdict.questionId,
-      run_id: runId,
-      engine_version: AUTO_VERIFICATION_ENGINE_VERSION,
-      outcome: verdict.outcome,
-      confidence: verdict.confidence,
-      checks: JSON.parse(JSON.stringify(verdict.checks)) as Database["public"]["Tables"]["question_auto_verifications"]["Row"]["checks"],
-      created_by: ctx.userId,
-    });
+  const logRows = verdicts.map((verdict) => ({
+    org_id: ctx.orgId,
+    question_id: verdict.questionId,
+    run_id: runId,
+    engine_version: AUTO_VERIFICATION_ENGINE_VERSION,
+    outcome: verdict.outcome,
+    confidence: verdict.confidence,
+    checks: JSON.parse(JSON.stringify(verdict.checks)) as Database["public"]["Tables"]["question_auto_verifications"]["Row"]["checks"],
+    created_by: ctx.userId,
+  }));
+  for (let i = 0; i < logRows.length; i += 100) {
+    const { error: logError } = await supabase
+      .from("question_auto_verifications")
+      .insert(logRows.slice(i, i + 100));
     if (logError) throw new Error(logError.message);
   }
 
@@ -225,9 +232,9 @@ export async function fetchAutoVerificationEvidence(supabase: Client): Promise<{
     tiers: {
       namedSme: tiersSource.filter((q) => q.verification_tier === "named_sme").length,
       eduosAutomated: tiersSource.filter((q) => q.verification_tier === "eduos_automated").length,
-      unverifiedDrafts: tiersSource.filter(
-        (q) => q.status === "draft" && q.verification_state === "unverified",
-      ).length,
+      // The unverified corpus is defined by verification state alone: some of it
+      // sits at status 'approved' but was never verified.
+      unverifiedDrafts: tiersSource.filter((q) => q.verification_state === "unverified").length,
     },
   };
 }

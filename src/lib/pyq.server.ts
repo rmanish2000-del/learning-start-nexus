@@ -14,7 +14,11 @@ import {
   PYQ_TERM_2022_NOTE,
   PYQ_TIMED_MINUTES,
   PYQ_TIMED_SIZE,
+  PYQ_FULL_PAPER_MINUTES,
+  PYQ_TERM_PAPER_MINUTES,
   chapterForOutcomeCode,
+  pyqPaper,
+  pyqPapers,
   pyqChapters,
   pyqCohort,
   PYQ_INTELLIGENCE,
@@ -22,6 +26,7 @@ import {
   type PyqMode,
   type PyqPracticeItem,
   type PyqSessionSummary,
+  type PyqPaperBlueprint,
   type PyqSubject,
   type PyqWorkspace,
 } from "./pyq-shared";
@@ -178,6 +183,8 @@ export async function loadPyqWorkspace(
       .sort((a, b) => b.available - a.available),
     history,
     weakChapters: [...new Set(weak)],
+    papers: pyqPapers(subject),
+    termPapers: pyqPapers(subject, "term_2022"),
   };
 }
 
@@ -222,6 +229,38 @@ export function selectBlueprintItems(
   return shuffle(picked).slice(0, size);
 }
 
+/** Assembles a set shaped like one real paper: same chapter mark mix and size. */
+export function selectPaperItems(
+  rows: BankRow[],
+  paper: PyqPaperBlueprint,
+  size: number,
+): BankRow[] {
+  const byChapter = new Map<string, BankRow[]>();
+  for (const row of rows) {
+    const ch = chapterForOutcomeCode(row.assessment_outcomes?.code ?? "") ?? "Unmapped";
+    byChapter.set(ch, [...(byChapter.get(ch) ?? []), row]);
+  }
+  const picked: BankRow[] = [];
+  const chosen = new Set<string>();
+  for (const entry of paper.chapterMix) {
+    const pool = shuffle(byChapter.get(entry.chapter) ?? []);
+    const quota = Math.max(1, Math.round(entry.markShare * size));
+    for (const row of pool.slice(0, quota)) {
+      if (chosen.has(row.id)) continue;
+      picked.push(row);
+      chosen.add(row.id);
+    }
+  }
+  for (const row of shuffle(rows)) {
+    if (picked.length >= size) break;
+    if (!chosen.has(row.id)) {
+      picked.push(row);
+      chosen.add(row.id);
+    }
+  }
+  return picked.slice(0, size);
+}
+
 function shuffle<T>(items: T[]): T[] {
   const copy = [...items];
   for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -234,17 +273,43 @@ function shuffle<T>(items: T[]): T[] {
 export async function startPyqSession(
   supabase: Client,
   userId: string,
-  input: { subject?: PyqSubject | undefined; chapter?: string | null; mode: PyqMode },
-): Promise<{ sessionId: string; items: PyqPracticeItem[]; durationMinutes: number | null }> {
+  input: {
+    subject?: PyqSubject | undefined;
+    chapter?: string | null;
+    mode: PyqMode;
+    paperId?: string | null;
+  },
+): Promise<{
+  sessionId: string;
+  items: PyqPracticeItem[];
+  durationMinutes: number | null;
+  paperLabel: string | null;
+}> {
   const learner = await resolvePyqLearner(supabase, userId);
   const subject = input.subject ?? normaliseSubject(learner.subject);
-  const size = input.mode === "timed_paper" ? PYQ_TIMED_SIZE : PYQ_PRACTICE_SIZE;
+  const found = input.mode === "full_paper" && input.paperId ? pyqPaper(input.paperId) : null;
+  if (input.mode === "full_paper" && !found) {
+    throw new Error("Pick a paper year and set to attempt.");
+  }
+  const size = found
+    ? found.paper.questionsDetected || PYQ_TIMED_SIZE
+    : input.mode === "timed_paper"
+      ? PYQ_TIMED_SIZE
+      : PYQ_PRACTICE_SIZE;
   const approved = await loadApproved(supabase, subject);
-  const selected = selectBlueprintItems(approved, subject, size, input.chapter ?? null);
+  const selected = found
+    ? selectPaperItems(approved, found.paper, size)
+    : selectBlueprintItems(approved, subject, size, input.chapter ?? null);
   if (selected.length === 0) {
     throw new Error("No verified questions are available for this selection yet.");
   }
-  const durationMinutes = input.mode === "timed_paper" ? PYQ_TIMED_MINUTES : null;
+  const durationMinutes = found
+    ? found.cohort === "term_2022"
+      ? PYQ_TERM_PAPER_MINUTES
+      : PYQ_FULL_PAPER_MINUTES
+    : input.mode === "timed_paper"
+      ? PYQ_TIMED_MINUTES
+      : null;
 
   const { data, error } = await supabase
     .from("pyq_practice_sessions")
@@ -252,8 +317,8 @@ export async function startPyqSession(
       org_id: learner.org_id!,
       learner_id: learner.id,
       subject,
-      chapter: input.chapter ?? null,
-      cohort: PYQ_BLUEPRINT_COHORT,
+      chapter: found ? null : (input.chapter ?? null),
+      cohort: found ? found.cohort : PYQ_BLUEPRINT_COHORT,
       mode: input.mode,
       duration_minutes: durationMinutes,
       items: selected.map((row) => row.id),
@@ -267,6 +332,7 @@ export async function startPyqSession(
     sessionId: data.id,
     items: selected.map((row) => toItem(row, false)),
     durationMinutes,
+    paperLabel: found ? `${found.paper.year} · set ${found.paper.setSeries}` : null,
   };
 }
 
