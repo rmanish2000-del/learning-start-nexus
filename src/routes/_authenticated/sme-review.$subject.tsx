@@ -218,20 +218,22 @@ function SmeReviewPage() {
         </CardContent>
       </Card>
 
-      <Tabs value={subject} onValueChange={(v) => setSubject(v as SmeSubject)}>
-        <TabsList>
-          {SME_SUBJECTS.map((s) => (
-            <TabsTrigger key={s} value={s}>
-              {s}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+      <nav className="flex flex-wrap gap-2" aria-label="Subject queues">
         {SME_SUBJECTS.map((s) => (
-          <TabsContent key={s} value={s} className="space-y-4">
-            {visible.length === 0 ? (
-              <p className="text-muted-foreground text-sm">No draft items awaiting review.</p>
-            ) : null}
-            {visible.map((item) => (
+          <Button key={s} asChild size="sm" variant={s === subject ? "default" : "outline"}>
+            <Link to="/sme-review/$subject" params={{ subject: s.toLowerCase() }}>
+              {s}
+            </Link>
+          </Button>
+        ))}
+      </nav>
+
+      <div className="space-y-4">
+        {visible.length === 0 ? (
+          <p className="text-muted-foreground text-sm">No draft items awaiting review.</p>
+        ) : null}
+        {visible.map((item) => (
+
               <Card key={item.id}>
                 <CardHeader className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
