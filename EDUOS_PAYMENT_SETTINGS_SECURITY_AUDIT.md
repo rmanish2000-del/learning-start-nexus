@@ -86,3 +86,41 @@ If the founder still wants precautionary rotation, that is the single unavoidabl
 external dependency (Razorpay Dashboard → Settings → API Keys / Webhooks); all
 technical readiness is complete — new keys can be pasted into `/payment-settings`
 with zero code change, and the change is recorded in the immutable audit log.
+
+---
+
+## Production deployment verification — 2026-09-03
+
+**Migration.** `20260903045542_c9575a2f-747a-40b2-9f0e-2c94e1f15e2c` is recorded
+exactly once in the migration ledger (count = 1).
+
+**Live database state** (queried against production):
+
+| Check | Result |
+| --- | --- |
+| Policies on `payment_credentials` / `payment_credential_audit` | 0 |
+| `anon` / `authenticated` table privileges | none (absent from `relacl`) |
+| `relacl` | `postgres=arwdDxtm, service_role=arwdDxtm` only |
+| Row-level security enabled | true on both tables |
+| Append-only audit trigger present | yes (`payment_credential_audit_no_update`) |
+| Stored credential rows | 0 (env secrets only) |
+
+**Audit immutability, executed live.** A self-rolling-back `DO` block inserted a
+probe audit row, attempted `UPDATE` and `DELETE`, and confirmed both were
+rejected by the trigger before aborting the transaction. No data persisted.
+
+**Signature paths.** Checkout-signature and webhook-signature verification are
+covered by `razorpay-signature.test.ts` and `razorpay-webhook-route.test.ts`
+(unsigned rejected, wrong-secret rejected, captured/failed events handled,
+unrelated events ignored, 500 on capture failure). No real payment was made.
+
+**Secret scans.** Repository scan matched only prefix constants, test fixtures
+(`rzp_test_abc123`) and the UI placeholder `rzp_live_XXXXXXXXXXXX`. Client build
+output (`dist/client`) contains no reference to `payment_credentials`,
+`key_secret`, `webhook_secret`, or service-role material.
+
+**Gates.** Tests 320/320 across 28 files, typecheck clean, production build
+clean, security scan reports no issues.
+
+**Production.** `https://www.eduos.global` health 200 (`{"status":"ok",
+"environment":"production"}`), landing 200.

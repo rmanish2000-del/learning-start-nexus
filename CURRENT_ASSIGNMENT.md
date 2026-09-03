@@ -150,3 +150,14 @@ production build clean, security scan zero critical/high.
 Razorpay key rotation: **not required** (credential table empty; live keys live
 only in platform environment secrets and were never exposed). Optional
 precautionary rotation is the only external-credential dependency.
+
+### Production verification (2026-09-03)
+
+Independent post-deployment verification of the payment-credentials lockdown:
+migration applied exactly once; zero policies and zero `anon`/`authenticated`
+privileges on both credential tables; RLS on; service-role path intact; audit
+immutability proven live via a rolled-back probe; credential APIs return masked
+status only; checkout and webhook signature verification green; secret scans of
+repository and client bundle clean; 320/320 tests, typecheck, build and security
+scan pass; production health 200. Details in
+`EDUOS_PAYMENT_SETTINGS_SECURITY_AUDIT.md`.
