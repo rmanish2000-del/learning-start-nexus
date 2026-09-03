@@ -105,3 +105,20 @@ migration or permission was touched in this convergence.
 Revert the design-system commit (`src/styles.css`, `src/routes/__root.tsx`, the five PWA
 components, `src/routes/auth.tsx`, `public/offline.html`, `package.json`) and redeploy. No
 database migration is involved, so rollback is presentation-only and carries no data risk.
+
+## 8. Production closeout (2026-09-03)
+
+- Canonical commit: `470e4d13a4521e67dafeef4ccd1ffbc72aef702e`; worktree clean.
+- Production republished from this SHA; `https://www.eduos.global` health `{"status":"ok","environment":"production"}`.
+- Live evidence: served CSS `--eds-orange-500:#f97316`, zero `--pwa-*` occurrences, body `Inter`,
+  page ground `rgb(248,249,251)`, `--primary` `#f97316`, Outfit/Inter/Playfair/DM Mono font links present.
+- Package reconciles: 104 token definitions, 20 routes, 67 component headings (SHA256SUMS verified OK).
+- Route probes: `/`, `/diagnostic`, `/about`, `/contact`, `/api/public/health`, `/robots.txt`,
+  `/sitemap.xml` → 200; `/auth` → 307; `/home`, `/parent`, `/sme-review/mathematics` → 302 to `/auth`.
+- Desktop 1280 / tablet 768 / mobile 375 walkthrough of 8 routes: 0 console errors at every viewport.
+- Gates: Vitest 339/339, `tsgo --noEmit` clean, build clean, security scan 0 critical / 0 error
+  (3 pre-existing advisory warnings), no secret exposure.
+- No scoring, auth, entitlement, payment, RLS or learner-ownership change in this release.
+- Pilot-invite routes 4 and 5 remain FUNCTIONAL_CONFLICT and are reserved for the incoming
+  pilot-access + Google-login promotion.
+- Rollback: revert the design-system commits (presentation-only, no migration) and republish.
