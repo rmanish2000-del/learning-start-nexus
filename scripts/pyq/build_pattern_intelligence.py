@@ -61,39 +61,39 @@ def competency_for(q: int) -> str:
 
 CHAPTER_KEYWORDS: dict[str, dict[str, list[str]]] = {
     "Mathematics": {
-        "Real Numbers": ["hcf", "lcm", "prime factorisation", "prime factorization", "irrational", "euclid", "terminating decimal"],
-        "Polynomials": ["polynomial", "zeroes", "zeros", "quadratic polynomial"],
-        "Pair of Linear Equations in Two Variables": ["pair of linear equations", "linear equations in two variables", "consistent", "inconsistent", "substitution method", "elimination method"],
-        "Quadratic Equations": ["quadratic equation", "discriminant", "real roots", "equal roots", "roots of the equation"],
-        "Arithmetic Progressions": ["arithmetic progression", "common difference", "nth term", "sum of the first", "sum of first"],
-        "Triangles": ["similar triangles", "basic proportionality", "thales", "similarity", "corresponding sides"],
-        "Coordinate Geometry": ["section formula", "mid-point", "midpoint", "distance formula", "trisection", "collinear"],
-        "Introduction to Trigonometry": ["trigonometric", "trigonometry", "cosec", "cot", "identity"],
-        "Some Applications of Trigonometry": ["angle of elevation", "angle of depression", "line of sight", "shadow"],
-        "Circles": ["tangent", "tangents", "chord", "concentric", "circumscrib"],
-        "Areas Related to Circles": ["sector", "minor segment", "major segment", "area swept", "arc"],
-        "Surface Areas and Volumes": ["surface area", "volume", "cylinder", "cone", "hemisphere", "frustum"],
-        "Statistics": ["median", "modal class", "frequency distribution", "class interval", "ogive", "cumulative frequency"],
-        "Probability": ["probability", "die is thrown", "drawn at random", "well shuffled"],
+        'Real Numbers': ['hcf', 'lcm', 'prime factor', 'irrational', 'euclid', 'terminating', 'composite number', 'rational number'],
+        'Polynomials': ['polynomial', 'zeroes', 'zeros', 'sum of the zeroes', 'product of the zeroes'],
+        'Pair of Linear Equations in Two Variables': ['pair of linear equations', 'two variables', 'consistent', 'inconsistent', 'substitution method', 'elimination method', 'coincident lines'],
+        'Quadratic Equations': ['quadratic equation', 'discriminant', 'real and equal roots', 'nature of the roots', 'roots of the quadratic'],
+        'Arithmetic Progressions': ['arithmetic progression', 'common difference', 'nth term', 'first n terms', 'a.p.'],
+        'Triangles': ['similar triangles', 'basic proportionality', 'thales', 'similarity', 'triangle abc', 'corresponding sides', 'similar', 'congruent', 'triangle'],
+        'Coordinate Geometry': ['section formula', 'mid-point', 'midpoint', 'distance formula', 'trisection', 'collinear', 'coordinates of the point'],
+        'Introduction to Trigonometry': ['sin', 'cos', 'tan', 'cosec', 'cot', 'trigonometric', 'trigonometry'],
+        'Some Applications of Trigonometry': ['angle of elevation', 'angle of depression', 'line of sight', 'tower', 'shadow', 'height of the tower'],
+        'Circles': ['tangent', 'tangents', 'chord', 'concentric', 'circumscrib', 'touching the circle'],
+        'Areas Related to Circles': ['sector', 'segment of a circle', 'area swept', 'arc', 'circumference'],
+        'Surface Areas and Volumes': ['surface area', 'volume', 'cylinder', 'cone', 'hemisphere', 'frustum', 'solid sphere'],
+        'Statistics': ['median', 'modal class', 'frequency distribution', 'class interval', 'ogive', 'cumulative frequency', 'mean of the following'],
+        'Probability': ['probability', 'die is thrown', 'drawn at random', 'well shuffled', 'pack of 52'],
     },
     "Science": {
-        "Chemical Reactions and Equations": ["balanced chemical equation", "skeletal equation", "decomposition reaction", "displacement reaction", "rancidity", "corrosion", "exothermic"],
-        "Acids, Bases and Salts": ["ph value", "ph scale", "litmus", "bleaching powder", "baking soda", "washing soda", "neutralisation", "neutralization", "water of crystallisation"],
-        "Metals and Non-metals": ["reactivity series", "alloy", "roasting", "calcination", "ionic compound", "malleable", "ductile", "amphoteric"],
-        "Carbon and its Compounds": ["hydrocarbon", "ethanol", "ethanoic acid", "covalent bond", "homologous series", "micelle", "saponification", "catenation"],
-        "Life Processes": ["autotrophic", "photosynthesis", "digestion", "excretion", "nephron", "stomata", "xylem", "phloem", "alveoli"],
-        "Control and Coordination": ["neuron", "reflex arc", "hormone", "cerebellum", "phototropism", "endocrine", "thyroxine"],
-        "How do Organisms Reproduce?": ["fertilisation", "fertilization", "pollination", "gamete", "placenta", "budding", "contraceptive", "vegetative propagation"],
-        "Heredity": ["mendel", "dominant trait", "recessive", "genotype", "phenotype", "f1 generation", "sex determination", "chromosome"],
-        "Light – Reflection and Refraction": ["concave mirror", "convex mirror", "focal length", "refractive index", "mirror formula", "lens formula", "power of a lens"],
-        "The Human Eye and the Colourful World": ["human eye", "myopia", "hypermetropia", "dispersion", "prism", "scattering", "tyndall", "presbyopia"],
-        "Electricity": ["resistance", "resistivity", "ohm", "ammeter", "voltmeter", "electric power", "series combination", "parallel combination"],
-        "Magnetic Effects of Electric Current": ["magnetic field", "solenoid", "electromagnetic induction", "right hand thumb", "fleming", "electric motor"],
-        "Our Environment": ["food chain", "trophic level", "ecosystem", "biodegradable", "ozone", "biomagnification"],
+        'Chemical Reactions and Equations': ['balanced chemical equation', 'skeletal equation', 'decomposition reaction', 'displacement reaction', 'rancidity', 'corrosion', 'exothermic', 'endothermic', 'oxidation', 'reduction'],
+        'Acids, Bases and Salts': ['ph value', 'ph scale', 'litmus', 'bleaching powder', 'baking soda', 'washing soda', 'neutralisation', 'neutralization', 'water of crystallisation', 'plaster of paris'],
+        'Metals and Non-metals': ['reactivity series', 'alloy', 'roasting', 'calcination', 'ionic compound', 'malleable', 'ductile', 'amphoteric', 'ore', 'electrolytic refining'],
+        'Carbon and its Compounds': ['hydrocarbon', 'ethanol', 'ethanoic acid', 'covalent bond', 'homologous series', 'micelle', 'saponification', 'catenation', 'soap', 'detergent'],
+        'Life Processes': ['autotrophic', 'photosynthesis', 'digestion', 'excretion', 'nephron', 'stomata', 'xylem', 'phloem', 'alveoli', 'respiration', 'transpiration'],
+        'Control and Coordination': ['neuron', 'reflex arc', 'hormone', 'cerebellum', 'phototropism', 'endocrine', 'thyroxine', 'spinal cord', 'insulin'],
+        'How do Organisms Reproduce?': ['fertilisation', 'fertilization', 'pollination', 'gamete', 'placenta', 'budding', 'contraceptive', 'vegetative propagation', 'reproduction'],
+        'Heredity': ['mendel', 'dominant trait', 'recessive', 'genotype', 'phenotype', 'f1 generation', 'sex determination', 'chromosome', 'inherited'],
+        'Light – Reflection and Refraction': ['concave mirror', 'convex mirror', 'focal length', 'refractive index', 'mirror formula', 'lens formula', 'power of a lens', 'real and inverted', 'magnification'],
+        'The Human Eye and the Colourful World': ['human eye', 'myopia', 'hypermetropia', 'dispersion', 'prism', 'scattering', 'tyndall', 'presbyopia', 'spectrum'],
+        'Electricity': ['resistance', 'resistivity', 'ohm', 'ammeter', 'voltmeter', 'electric power', 'series combination', 'parallel combination', 'potential difference', 'electric current'],
+        'Magnetic Effects of Electric Current': ['magnetic field', 'solenoid', 'electromagnetic induction', 'right hand thumb', 'fleming', 'electric motor', 'magnetic field lines', 'galvanometer'],
+        'Our Environment': ['food chain', 'trophic level', 'ecosystem', 'biodegradable', 'ozone', 'biomagnification', 'food web'],
     },
 }
 
-QUESTION_RE = re.compile(r"(?:^|\n)\s*(\d{1,2})\s*[\.\)]\s+")
+QUESTION_RE = re.compile(r"(?:^|\s)(\d{1,2})\s*[\.\)]\s+")
 
 
 CACHE = "/tmp/pyq-text-cache"
@@ -115,18 +115,36 @@ def paper_text(path: str) -> str:
     return text
 
 
+def normalise_text(text: str) -> str:
+    """CBSE PDFs extract with newlines inside words and sentences, which stops
+    multi-word concept matching. Collapse whitespace and repair split words."""
+    text = text.replace("\u00ad", "")
+    text = re.sub(r"-\s*\n\s*", "", text)
+    text = re.sub(r"[ \t]*\n[ \t]*", " ", text)
+    text = re.sub(r"\s{2,}", " ", text)
+    return text
+
+
 def segment(text: str) -> list[tuple[int, str]]:
+    """Split a paper into numbered questions.
+
+    CBSE papers are bilingual: every question number appears twice, Hindi first
+    and English second. The Hindi rendering extracts as mojibake, so for each
+    number we keep the variant with the most Latin text -- the English one.
+    """
+    text = normalise_text(text)
     matches = list(QUESTION_RE.finditer(text))
-    blocks: list[tuple[int, str]] = []
-    seen: set[int] = set()
+    best: dict[int, tuple[int, str]] = {}
     for i, m in enumerate(matches):
         number = int(m.group(1))
-        if number < 1 or number > 38 or number in seen:
+        if number < 1 or number > 38:
             continue
-        seen.add(number)
         end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
-        blocks.append((number, text[m.end() : end].lower()))
-    return blocks
+        body = text[m.end() : end]
+        latin = sum(1 for ch in body if ch.isascii() and ch.isalpha())
+        if number not in best or latin > best[number][0]:
+            best[number] = (latin, body.lower())
+    return [(number, body) for number, (_latin, body) in sorted(best.items())]
 
 
 KEYWORD_RE: dict[str, dict[str, list[tuple[str, re.Pattern[str]]]]] = {
@@ -149,7 +167,11 @@ def attribute(subject: str, body: str) -> tuple[str | None, list[str]]:
     if not scores:
         return None, []
     scores.sort(key=lambda s: (-s[0], s[1]))
-    if len(scores) > 1 and scores[0][0] == scores[1][0]:
+    # Precision over recall: attribute only when one chapter clearly dominates.
+    # Everything else is reported as unattributed rather than guessed.
+    top = scores[0]
+    runner = scores[1][0] if len(scores) > 1 else 0
+    if top[0] < 2 or top[0] <= runner:
         return None, []
     return scores[0][1], scores[0][2]
 
