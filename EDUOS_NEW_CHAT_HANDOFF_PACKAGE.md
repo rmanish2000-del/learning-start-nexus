@@ -830,3 +830,25 @@ complete downloadable implementation package.
 ### G6. Duplication
 
 Avoid duplicate work unless it is intentional independent verification, and say so explicitly when it is.
+
+### G7. Business-Value-First prioritisation (MANDATORY, permanent)
+
+Prioritise work in this order:
+
+1. Security and serious production risks
+2. Revenue, payment and conversion impact
+3. Core parent and learner journeys
+4. Compliance and commercial-release blockers
+5. Production defects
+6. Necessary UX improvements
+7. Optional polish and nonessential features
+
+Credit-efficiency rules:
+
+- Every assignment must state expected business value and priority.
+- Defer or bundle low-value polish, duplicate audits and unnecessary documentation.
+- Avoid repeating completed verification without new evidence or risk.
+- Do not implement optional features while a higher-value blocker is open.
+- Prefer one bundled, independently verifiable assignment over multiple small assignments.
+- Do not assign avoidable execution work to the founder (see G1).
+- Continue proactively through appropriate AI/tool assignments until completion.
