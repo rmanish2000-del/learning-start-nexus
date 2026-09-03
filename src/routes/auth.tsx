@@ -283,9 +283,9 @@ function AuthPage() {
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
       {/* Brand panel */}
-      <div className="relative hidden flex-col justify-between bg-primary p-12 text-primary-foreground lg:flex">
+      <div className="relative hidden flex-col justify-between bg-ink p-12 text-ink-foreground lg:flex">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/15">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink-accent/15 text-ink-accent">
             <GraduationCap className="h-5 w-5" />
           </div>
           <span className="text-lg font-semibold tracking-tight">EduOS</span>
@@ -294,23 +294,24 @@ function AuthPage() {
           <h1 className="max-w-md text-4xl font-semibold leading-tight tracking-tight">
             See every learner clearly.
           </h1>
-          <ul className="max-w-md space-y-4 text-sm text-primary-foreground/85">
+          <ul className="max-w-md space-y-4 text-sm text-ink-foreground/85">
             <li className="flex gap-3">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-foreground/70" />
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-accent" />
               Role-based workspaces for admins, educators, and students
             </li>
             <li className="flex gap-3">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-foreground/70" />
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-accent" />
               Live learner profiles with mastery history and evidence
             </li>
             <li className="flex gap-3">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-foreground/70" />
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-accent" />
               Built for tutoring centers that act on insight
             </li>
           </ul>
         </div>
-        <p className="text-xs text-primary-foreground/60">Learning intelligence for tutoring centers</p>
+        <p className="text-xs text-ink-muted">Learning intelligence for tutoring centers</p>
       </div>
+
 
       {/* Sign-in panel */}
       <div className="flex items-center justify-center bg-background px-4 py-12">
