@@ -8,6 +8,7 @@ import {
   SME_EXPECTED_TOTAL,
   SME_WORKFLOW_RULES,
 } from "../sme-review-shared";
+import { isProtectedPath } from "../protected-routes";
 
 const validation = JSON.parse(
   readFileSync("content/compliance/class-10-2026-27.draft-validation.json", "utf8"),
