@@ -162,3 +162,11 @@ describe("four-outcome attribution migration", () => {
     expect(sql).toContain("WHEN NEW.action = 'verified' THEN 'approved'");
   });
 });
+
+describe("sme review route protection", () => {
+  it("gates both subject queues behind the server-side auth gate", () => {
+    expect(isProtectedPath("/sme-review")).toBe(true);
+    expect(isProtectedPath("/sme-review/mathematics")).toBe(true);
+    expect(isProtectedPath("/sme-review/science")).toBe(true);
+  });
+});
