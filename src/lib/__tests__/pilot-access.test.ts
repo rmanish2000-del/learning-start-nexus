@@ -61,15 +61,15 @@ describe("pilot access — lifecycle status", () => {
   const past = new Date(Date.now() - 86_400_000).toISOString();
 
   it("is active while unexpired and unrevoked", () => {
-    expect(grantStatus({ expiresAt: future, revokedAt: null })).toBe("active");
+    expect(grantStatus({ expires_at: future, revoked_at: null })).toBe("active");
   });
 
   it("expires on time", () => {
-    expect(grantStatus({ expiresAt: past, revokedAt: null })).toBe("expired");
+    expect(grantStatus({ expires_at: past, revoked_at: null })).toBe("expired");
   });
 
   it("revocation wins over an unexpired window", () => {
-    expect(grantStatus({ expiresAt: future, revokedAt: past })).toBe("revoked");
+    expect(grantStatus({ expires_at: future, revoked_at: past })).toBe("revoked");
   });
 });
 
