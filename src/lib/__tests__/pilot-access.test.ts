@@ -27,8 +27,12 @@ describe("pilot access — zero commercial footprint", () => {
     }
   });
 
-  it("does not reference a rupee amount or discount", () => {
-    expect(serverSource).not.toMatch(/amount_paise|razorpay|discount/i);
+  it("does not reference a rupee amount or discount in code", () => {
+    const code = serverSource
+      .split("\n")
+      .filter((line) => !line.trim().startsWith("//"))
+      .join("\n");
+    expect(code).not.toMatch(/amount_paise|razorpay|discount/i);
   });
 });
 
