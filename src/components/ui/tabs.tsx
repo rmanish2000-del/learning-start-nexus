@@ -12,9 +12,12 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
+      // Narrow screens: keep every tab reachable by scrolling rather than
+      // clipping or wrapping them out of view.
+      "inline-flex h-9 max-w-full items-center justify-start overflow-x-auto overscroll-x-contain rounded-lg bg-muted p-1 text-muted-foreground [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:justify-center",
       className,
     )}
+
     {...props}
   />
 ));

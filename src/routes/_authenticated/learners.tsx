@@ -189,7 +189,7 @@ function LearnersPage() {
                 <Label htmlFor="fullName">Full name</Label>
                 <Input id="fullName" name="fullName" placeholder="Aarav Sharma" required />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="handle">Handle</Label>
                   <Input id="handle" name="handle" placeholder="aarav" autoCapitalize="none" required />
@@ -199,10 +199,10 @@ function LearnersPage() {
                   <Input id="pin" name="pin" inputMode="numeric" maxLength={6} placeholder="123456" required />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="grade">Grade</Label>
-                  <Input id="grade" name="grade" type="number" min={1} max={12} defaultValue={6} required />
+                  <Input id="grade" name="grade" type="number" min={1} max={12} defaultValue={10} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="subject">Subject</Label>
@@ -211,7 +211,7 @@ function LearnersPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {["Mathematics", "English", "Science"].map((s) => (
+                      {["Mathematics", "Science"].map((s) => (
                         <SelectItem key={s} value={s}>{s}</SelectItem>
                       ))}
                     </SelectContent>
