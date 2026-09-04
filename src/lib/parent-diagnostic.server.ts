@@ -13,6 +13,7 @@
 
 import { isSubjectPurchasable } from "./catalogue.server";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { regenerateRecommendations } from "./interventions.server";
 import { buildDiagnosticPlan, type EngineOutcome } from "./diagnostic-shared";
 import {
   DIAGNOSTIC_QUESTION_MINIMUM,
@@ -1066,6 +1067,9 @@ export async function submitRun(accessToken: string, userId: string | null = nul
         first_detected_at: submittedAt,
       })),
     );
+    // Without deterministic recommendations the learner's study plan never
+    // materialises ("Study plan is being prepared" forever). Idempotent.
+    await regenerateRecommendations(supabaseAdmin, row.learner_id);
   }
 
   if (row.source === "pilot") {
