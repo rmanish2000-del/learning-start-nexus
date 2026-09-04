@@ -183,3 +183,23 @@ scan pass; production health 200. Details in
 - Tests 339/339, typecheck clean, clean worktree.
 - Rollback: republish the previous artifact and
   `UPDATE public.assessments SET status='published' WHERE id IN (...)` for the archived papers.
+
+## 2026-09-04 — Pilot invitation production closeout (COMPLETE)
+
+- Canonical SHA: `01099a65c00f8620292121eebc481a673fab2496`; worktree clean.
+- Migration `20260904191218_8acf9525-ce6b-4731-90b0-fa8207ef1782.sql` (`public.pilot_invitations`)
+  applied and present in the repository; no pending migrations.
+- Production https://www.eduos.global — landing 200, `/api/public/health` `{"status":"ok","environment":"production"}`.
+- Invitation states re-verified live on production: valid (masked email, scope, Google + alternate
+  sign-in), accepted, expired, withdrawn, invalid — each renders its own message and no valid link
+  is served for a consumed/expired/withdrawn token.
+- Single-use + expiry are enforced server-side in `acceptInvitation` (conditional claim on
+  `accepted_at IS NULL`, expiry and revocation re-checked against the row, email-bound).
+- Internal parent `797af203-…` after acceptance: 1 profile, 1 role, 2 learner links (pre-existing),
+  2 pilot grants (1 pre-existing + 1 from the invitation, expires 2026-10-19), 0 orders,
+  0 entitlements. No order/payment/invoice/discount/credit/Razorpay record written.
+- Invitations in the database are internal-only (`internal.pilot+*@eduos.local`,
+  `pilot.parent.*@internal.eduos.test`). External-user mode remains INTERNAL_ONLY.
+- Tests 405/405 (35 files), typecheck clean, production build clean, security scan: 3 pre-existing
+  warnings, no criticals, none from this work.
+- Rollback: republish the previous artifact; invitation rows are additive and inert if unused.
