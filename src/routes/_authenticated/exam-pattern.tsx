@@ -1,6 +1,7 @@
 // Learner exam-pattern practice: EduOS-verified questions sequenced by the mark
 // weights observed in the official 2023-2026 CBSE Class 10 papers.
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ContextHelp } from "@/components/context-help";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { BarChart3, Clock, FileText, ShieldCheck, Target } from "lucide-react";
@@ -125,7 +126,10 @@ function ExamPatternPage() {
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight">Exam pattern practice</h1>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h1 className="text-2xl font-semibold tracking-tight">Exam pattern practice</h1>
+          <ContextHelp page="/exam-pattern" />
+        </div>
         <p className="text-muted-foreground max-w-3xl text-sm">
           {data.subject} · chapter weights derived from {data.cohortMeta.papersAnalysed} official
           CBSE Class 10 papers ({data.cohortMeta.years.join(", ")}). You practise EduOS-verified
