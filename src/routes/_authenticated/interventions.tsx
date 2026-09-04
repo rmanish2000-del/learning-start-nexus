@@ -295,19 +295,19 @@ function InterventionsPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {queue.map((rec) => (
-            <div key={rec.id} className="flex flex-wrap items-start gap-3 rounded-lg border p-4">
+            <div key={rec.id} className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-start">
               <div className="min-w-0 flex-1 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{rec.title}</p>
                   {severityBadge(rec.learning_gaps?.severity ?? "medium")}
                   <Badge variant="outline" className="font-mono text-[10px]">{rec.rule_id}</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground">{rec.activity}</p>
+                <p className="text-sm break-words text-muted-foreground">{rec.activity}</p>
                 <p className="text-xs text-muted-foreground">
                   {rec.learners?.full_name ?? "—"} · {rec.learning_gaps?.subtopic ?? "—"} · {rec.rationale}
                 </p>
               </div>
-              <div className="flex shrink-0 gap-2">
+              <div className="flex shrink-0 flex-wrap gap-2">
                 <Button
                   size="sm"
                   onClick={() => acceptMutation.mutate(rec.id)}
@@ -337,8 +337,8 @@ function InterventionsPage() {
                 Actioned
               </p>
               {actioned.map((rec) => (
-                <div key={rec.id} className="flex items-center gap-3 text-sm">
-                  <span className="min-w-0 flex-1 truncate text-muted-foreground">
+                <div key={rec.id} className="flex flex-wrap items-center gap-2 text-sm">
+                  <span className="min-w-0 flex-1 break-words text-muted-foreground">
                     {rec.title} — {rec.learners?.full_name ?? "—"}
                   </span>
                   {statusBadge(rec.status)}
@@ -357,20 +357,20 @@ function InterventionsPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {active.map((i) => (
-            <div key={i.id} className="flex flex-wrap items-start gap-3 rounded-lg border p-4">
+            <div key={i.id} className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-start">
               <div className="min-w-0 flex-1 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{i.title}</p>
                   {statusBadge(i.status)}
                 </div>
-                <p className="text-sm text-muted-foreground">{i.activity}</p>
+                <p className="text-sm break-words text-muted-foreground">{i.activity}</p>
                 <p className="text-xs text-muted-foreground">
                   {i.learners?.full_name ?? "—"}
                   {i.target_date ? ` · target ${i.target_date}` : ""}
                   {i.started_at ? ` · started ${i.started_at.slice(0, 10)}` : ""}
                 </p>
               </div>
-              <div className="flex shrink-0 gap-2">
+              <div className="flex shrink-0 flex-wrap gap-2">
                 {i.status === "planned" && (
                   <Button
                     size="sm"
@@ -409,8 +409,8 @@ function InterventionsPage() {
                 Completed / cancelled
               </p>
               {finished.map((i) => (
-                <div key={i.id} className="flex items-center gap-3 text-sm">
-                  <span className="min-w-0 flex-1 truncate text-muted-foreground">
+                <div key={i.id} className="flex flex-wrap items-center gap-2 text-sm">
+                  <span className="min-w-0 flex-1 break-words text-muted-foreground">
                     {i.title} — {i.learners?.full_name ?? "—"}
                   </span>
                   {statusBadge(i.status)}
@@ -432,7 +432,7 @@ function InterventionsPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {openGaps.map((gap) => (
-            <div key={gap.id} className="flex flex-wrap items-center gap-3 rounded-lg border p-4">
+            <div key={gap.id} className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{gap.subtopic}</p>
@@ -462,8 +462,8 @@ function InterventionsPage() {
                 Closed
               </p>
               {closedGaps.map((gap) => (
-                <div key={gap.id} className="flex items-center gap-3 text-sm">
-                  <span className="min-w-0 flex-1 truncate text-muted-foreground">
+                <div key={gap.id} className="flex flex-wrap items-center gap-2 text-sm">
+                  <span className="min-w-0 flex-1 break-words text-muted-foreground">
                     {gap.subtopic} — {gap.learners?.full_name ?? "—"} ({gap.gap_score_pct}%)
                   </span>
                   {statusBadge(gap.status)}
