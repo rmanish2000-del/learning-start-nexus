@@ -90,6 +90,8 @@ function DiagnosticEnginePage() {
   const canGenerate = role === "admin" || role === "educator";
   const queryClient = useQueryClient();
   const generate = useServerFn(generateDiagnosticFn);
+  const publish = useServerFn(publishAssessment);
+
 
   const [board, setBoard] = useState<string | null>(null);
   const [grade, setGrade] = useState<number | null>(null);
