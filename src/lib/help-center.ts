@@ -501,6 +501,61 @@ export const HELP_ARTICLES: HelpArticle[] = [
       "Each engine — blueprint, question bank, assessment builder, diagnostic engine, gap analysis — has its own audit center under System in the sidebar. The Launch Audit summarizes everything.",
     ],
   },
+  {
+    id: "role-academy",
+    title: "Role Academy: learn EduOS for your role",
+    category: "Getting started",
+    roles: "all",
+    summary:
+      "A screen-by-screen walkthrough of your own journey — purpose, actions, outputs, permissions and what comes next.",
+    keywords: ["academy", "role", "training", "walkthrough", "journey", "tester", "try it"],
+    body: [
+      "Role Academy (sidebar → Support) explains every screen your role actually uses: what it is for, what you can do there, what it produces, what you are permitted to do, and how it connects to the screens before and after it.",
+      "Each step has a Try it suggestion and a direct link to the real route — no separate practice environment and no simulated screens.",
+      "It also lists representative internal tester scenarios for your role. It never contains credentials or anyone's personal data.",
+    ],
+  },
+  {
+    id: "pyq-practice",
+    title: "CBSE paper-pattern practice (Exam Pattern)",
+    category: "Assessments",
+    roles: ["student"],
+    summary:
+      "Practise Mathematics and Science on real CBSE Class 10 paper patterns — full timed papers or single chapters.",
+    keywords: ["pyq", "exam pattern", "paper", "past", "timed", "chapter", "practice", "history"],
+    body: [
+      "Exam Pattern lets you choose a subject, then practise by chapter or take a full timed paper. Chapter weights are derived from official CBSE Class 10 papers.",
+      "Only EduOS-verified questions are used. No past-paper text is reproduced — the practice follows the pattern, not the copyrighted paper.",
+      "After submitting you can review every answer, and each attempt is saved to your own history. Practice never changes your diagnostic or reassessment scores.",
+    ],
+  },
+  {
+    id: "pilot-access-help",
+    title: "Granting free pilot access",
+    category: "Account & privacy",
+    roles: ["admin"],
+    summary: "Pilot access gives a family the full journey free. It is never a ₹0 purchase.",
+    keywords: ["pilot", "grant", "free", "revoke", "extend", "access"],
+    body: [
+      "Pilot Access (admin only) grants, extends and revokes free journeys. Nothing here writes an order, payment, invoice or discount, so pilot families never appear in revenue or conversion reporting.",
+      "The family must already have an EduOS parent account. Leave the subject blank to cover both subjects.",
+      "Revoking removes access immediately while preserving all of the family's history.",
+    ],
+  },
+  {
+    id: "automated-verification-help",
+    title: "Automated verification and quarantine",
+    category: "Audits & verification",
+    roles: ["admin", "reviewer"],
+    summary:
+      "Drafts are machine-checked; only strongly supported items become EduOS verified. Everything else is held for SME review.",
+    keywords: ["verification", "quarantine", "verified", "approve", "duplicate", "alignment", "sme"],
+    body: [
+      "Automated verification checks answer correctness, curriculum alignment, distractor and explanation quality, ambiguity, copyright contamination, duplication and diagnostic/reassessment pool separation.",
+      "Items passing every machine-checkable test with strong evidence are marked EduOS verified. Automated decisions are recorded as automated — a human reviewer identity is never invented.",
+      "Held items go to SME Review for Mathematics or Science. Held and quarantined items are never shown to learners.",
+    ],
+  },
 ];
 
 /**

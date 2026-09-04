@@ -1,5 +1,5 @@
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
-import { ArrowRight, Compass, LifeBuoy, Play, Sparkles } from "lucide-react";
+import { ArrowRight, Compass, GraduationCap, LifeBuoy, Play, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -79,6 +79,11 @@ function QuickStartPage() {
           )}
           <Button variant="outline" size="sm" className="gap-1.5" onClick={requestIntro}>
             <Sparkles className="h-3.5 w-3.5" /> How EduOS Works
+          </Button>
+          <Button asChild variant="outline" size="sm" className="gap-1.5">
+            <Link to="/role-academy">
+              <GraduationCap className="h-3.5 w-3.5" /> Role Academy
+            </Link>
           </Button>
           <Button asChild variant="outline" size="sm" className="gap-1.5">
             <Link to="/help">
