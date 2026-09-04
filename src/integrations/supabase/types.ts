@@ -2928,6 +2928,74 @@ export type Database = {
           },
         ]
       }
+      pilot_invitations: {
+        Row: {
+          accepted_at: string | null
+          accepted_by: string | null
+          created_at: string
+          created_by: string
+          days: number
+          expires_at: string
+          grant_id: string | null
+          id: string
+          learner_id: string | null
+          org_id: string | null
+          parent_email: string
+          reason: string
+          revoke_reason: string | null
+          revoked_at: string | null
+          revoked_by: string | null
+          subject: string | null
+          token_hash: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          accepted_by?: string | null
+          created_at?: string
+          created_by: string
+          days: number
+          expires_at: string
+          grant_id?: string | null
+          id?: string
+          learner_id?: string | null
+          org_id?: string | null
+          parent_email: string
+          reason: string
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          revoked_by?: string | null
+          subject?: string | null
+          token_hash: string
+        }
+        Update: {
+          accepted_at?: string | null
+          accepted_by?: string | null
+          created_at?: string
+          created_by?: string
+          days?: number
+          expires_at?: string
+          grant_id?: string | null
+          id?: string
+          learner_id?: string | null
+          org_id?: string | null
+          parent_email?: string
+          reason?: string
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          revoked_by?: string | null
+          subject?: string | null
+          token_hash?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pilot_invitations_grant_id_fkey"
+            columns: ["grant_id"]
+            isOneToOne: false
+            referencedRelation: "pilot_grants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pilot_leads: {
         Row: {
           approved_at: string | null
