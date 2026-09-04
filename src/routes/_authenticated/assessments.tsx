@@ -187,14 +187,23 @@ function AssessmentsPage() {
     },
   });
 
+  // Questions reach an assessment through two authoritative tables: the manual
+  // builder writes assessment_item_map, the diagnostic engine writes
+  // assessment_question_map. Counting only one showed "0 questions" for every
+  // engine-generated diagnostic and reassessment.
   const { data: maps } = useQuery({
     queryKey: ["assessment-maps"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("assessment_item_map").select("assessment_id, item_id");
-      if (error) throw error;
-      return data;
+      const [itemMap, questionMap] = await Promise.all([
+        supabase.from("assessment_item_map").select("assessment_id"),
+        supabase.from("assessment_question_map").select("assessment_id"),
+      ]);
+      if (itemMap.error) throw itemMap.error;
+      if (questionMap.error) throw questionMap.error;
+      return [...(itemMap.data ?? []), ...(questionMap.data ?? [])];
     },
   });
+
 
   const { data: sessions } = useQuery({
     queryKey: ["assessment-sessions"],
