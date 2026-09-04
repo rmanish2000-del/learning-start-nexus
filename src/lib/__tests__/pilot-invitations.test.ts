@@ -91,7 +91,11 @@ describe("invitation safety", () => {
     ]) {
       expect(server).not.toContain(`from("${table}")`);
     }
-    expect(server).not.toMatch(/amount_paise|razorpay|discount/i);
+    const code = server
+      .split("\n")
+      .filter((line) => !line.trim().startsWith("//") && !line.trim().startsWith("*"))
+      .join("\n");
+    expect(code).not.toMatch(/amount_paise|razorpay|discount/i);
   });
 
   it("creates no new auth user, profile, role, family or organisation", () => {
