@@ -129,9 +129,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "manifest", href: "/manifest.webmanifest" },
-      { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png" },
+      // ?v=2 busts caches holding the legacy green mark (orange/navy identity).
+      { rel: "icon", type: "image/png", sizes: "64x64", href: "/favicon.png?v=2" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/icons/icon-192.png?v=2" },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: "/icons/icon-512.png?v=2" },
+      { rel: "manifest", href: "/manifest.webmanifest?v=2" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/icons/apple-touch-icon.png?v=2" },
     ],
     scripts: [
       {

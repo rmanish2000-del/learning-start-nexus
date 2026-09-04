@@ -13,7 +13,7 @@
 const SW_URL = "/sw.js";
 
 // Bumped when the update lifecycle is exercised end to end (AC-13/AC-14).
-export const PWA_CLIENT_BUILD = "2026-09-02";
+export const PWA_CLIENT_BUILD = "2026-09-04-brand-v2";
 
 export function shouldRegisterServiceWorker(): boolean {
   if (typeof window === "undefined" || typeof navigator === "undefined") return false;
