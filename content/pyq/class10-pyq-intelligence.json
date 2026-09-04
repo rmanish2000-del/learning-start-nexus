@@ -17,11 +17,11 @@
       "format": "two-term, 40 marks",
       "usedForBlueprintWeights": false,
       "pdfsInCohort": 38,
-      "pdfsAnalysed": 20,
-      "pdfsWithoutTextLayer": 18,
+      "pdfsAnalysed": 38,
+      "pdfsWithoutTextLayer": 0,
       "subjects": {
         "Mathematics": {
-          "papersAnalysed": 9,
+          "papersAnalysed": 18,
           "papers": [
             {
               "paperId": "2022-Mathematics-30/1/1",
@@ -168,6 +168,110 @@
               "attributedQuestions": 7
             },
             {
+              "paperId": "2022-Mathematics-30/2/1",
+              "year": "2022",
+              "setSeries": "30/2/1",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 16,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 2,
+                  "marksEach": 2
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Circles",
+                  "marks": 2,
+                  "markShare": 0.6667
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.3333
+                }
+              ],
+              "attributedQuestions": 3
+            },
+            {
+              "paperId": "2022-Mathematics-30/2/2",
+              "year": "2022",
+              "setSeries": "30/2/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 16,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 1,
+                  "marksEach": 2
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 1,
+                  "marksEach": 5
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.5
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.5
+                }
+              ],
+              "attributedQuestions": 2
+            },
+            {
+              "paperId": "2022-Mathematics-30/2/3",
+              "year": "2022",
+              "setSeries": "30/2/3",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 16,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 2,
+                  "marksEach": 2
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.5
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.5
+                }
+              ],
+              "attributedQuestions": 2
+            },
+            {
               "paperId": "2022-Mathematics-30/3/1",
               "year": "2022",
               "setSeries": "30/3/1",
@@ -246,6 +350,150 @@
               "attributedQuestions": 2
             },
             {
+              "paperId": "2022-Mathematics-30/4/1",
+              "year": "2022",
+              "setSeries": "30/4/1",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 15,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 1,
+                  "marksEach": 2
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Statistics",
+                  "marks": 2,
+                  "markShare": 0.2857
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 2,
+                  "markShare": 0.2857
+                },
+                {
+                  "chapter": "Quadratic Equations",
+                  "marks": 1,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 1,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.1429
+                }
+              ],
+              "attributedQuestions": 7
+            },
+            {
+              "paperId": "2022-Mathematics-30/4/2",
+              "year": "2022",
+              "setSeries": "30/4/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 15,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 1,
+                  "marksEach": 2
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 2,
+                  "markShare": 0.5
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 1,
+                  "markShare": 0.25
+                }
+              ],
+              "attributedQuestions": 4
+            },
+            {
+              "paperId": "2022-Mathematics-30/4/3",
+              "year": "2022",
+              "setSeries": "30/4/3",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 17,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 1,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 1,
+                  "marksEach": 5
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Quadratic Equations",
+                  "marks": 2,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 2,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 1,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.125
+                }
+              ],
+              "attributedQuestions": 8
+            },
+            {
               "paperId": "2022-Mathematics-30/B/5",
               "year": "2022",
               "setSeries": "30/B/5",
@@ -316,79 +564,130 @@
               ],
               "chapterMix": [],
               "attributedQuestions": 0
+            },
+            {
+              "paperId": "2022-Mathematics-46/2/1",
+              "year": "2022",
+              "setSeries": "46/2/1",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 1,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 1,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [],
+              "attributedQuestions": 0
+            },
+            {
+              "paperId": "2022-Mathematics-46/2/2",
+              "year": "2022",
+              "setSeries": "46/2/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 1,
+              "sections": [
+                {
+                  "section": "C - short answer",
+                  "questions": 1,
+                  "marksEach": 3
+                }
+              ],
+              "chapterMix": [],
+              "attributedQuestions": 0
+            },
+            {
+              "paperId": "2022-Mathematics-46/2/3",
+              "year": "2022",
+              "setSeries": "46/2/3",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 1,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 1,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [],
+              "attributedQuestions": 0
             }
           ],
-          "attributedQuestions": 26,
-          "unattributedQuestions": 102,
+          "attributedQuestions": 52,
+          "unattributedQuestions": 174,
           "chapters": [
             {
               "chapter": "Statistics",
-              "questions": 6,
-              "marks": 6,
+              "questions": 12,
+              "marks": 12,
               "markShare": 0.2308,
               "questionShare": 0.2308,
+              "byYear": {
+                "2022": 12
+              }
+            },
+            {
+              "chapter": "Surface Areas and Volumes",
+              "questions": 10,
+              "marks": 10,
+              "markShare": 0.1923,
+              "questionShare": 0.1923,
+              "byYear": {
+                "2022": 10
+              }
+            },
+            {
+              "chapter": "Circles",
+              "questions": 9,
+              "marks": 9,
+              "markShare": 0.1731,
+              "questionShare": 0.1731,
+              "byYear": {
+                "2022": 9
+              }
+            },
+            {
+              "chapter": "Quadratic Equations",
+              "questions": 7,
+              "marks": 7,
+              "markShare": 0.1346,
+              "questionShare": 0.1346,
+              "byYear": {
+                "2022": 7
+              }
+            },
+            {
+              "chapter": "Triangles",
+              "questions": 6,
+              "marks": 6,
+              "markShare": 0.1154,
+              "questionShare": 0.1154,
               "byYear": {
                 "2022": 6
               }
             },
             {
-              "chapter": "Circles",
-              "questions": 4,
-              "marks": 4,
-              "markShare": 0.1538,
-              "questionShare": 0.1538,
+              "chapter": "Some Applications of Trigonometry",
+              "questions": 5,
+              "marks": 5,
+              "markShare": 0.0962,
+              "questionShare": 0.0962,
               "byYear": {
-                "2022": 4
-              }
-            },
-            {
-              "chapter": "Quadratic Equations",
-              "questions": 4,
-              "marks": 4,
-              "markShare": 0.1538,
-              "questionShare": 0.1538,
-              "byYear": {
-                "2022": 4
-              }
-            },
-            {
-              "chapter": "Surface Areas and Volumes",
-              "questions": 4,
-              "marks": 4,
-              "markShare": 0.1538,
-              "questionShare": 0.1538,
-              "byYear": {
-                "2022": 4
+                "2022": 5
               }
             },
             {
               "chapter": "Arithmetic Progressions",
               "questions": 3,
               "marks": 3,
-              "markShare": 0.1154,
-              "questionShare": 0.1154,
+              "markShare": 0.0577,
+              "questionShare": 0.0577,
               "byYear": {
                 "2022": 3
-              }
-            },
-            {
-              "chapter": "Triangles",
-              "questions": 3,
-              "marks": 3,
-              "markShare": 0.1154,
-              "questionShare": 0.1154,
-              "byYear": {
-                "2022": 3
-              }
-            },
-            {
-              "chapter": "Some Applications of Trigonometry",
-              "questions": 2,
-              "marks": 2,
-              "markShare": 0.0769,
-              "questionShare": 0.0769,
-              "byYear": {
-                "2022": 2
               }
             },
             {
@@ -449,62 +748,64 @@
             }
           ],
           "competencyMix": {
-            "objective": 126,
-            "short_answer": 2
+            "long_answer": 2,
+            "objective": 213,
+            "short_answer": 4,
+            "very_short_answer": 7
           },
           "repeatedConcepts": [
             {
               "concept": "frequency distribution",
+              "occurrences": 12
+            },
+            {
+              "concept": "cylinder",
+              "occurrences": 10
+            },
+            {
+              "concept": "quadratic equation",
+              "occurrences": 7
+            },
+            {
+              "concept": "chord",
+              "occurrences": 7
+            },
+            {
+              "concept": "concentric",
               "occurrences": 6
+            },
+            {
+              "concept": "surface area",
+              "occurrences": 6
+            },
+            {
+              "concept": "triangle abc",
+              "occurrences": 6
+            },
+            {
+              "concept": "triangle",
+              "occurrences": 6
+            },
+            {
+              "concept": "real and equal roots",
+              "occurrences": 5
             },
             {
               "concept": "median",
               "occurrences": 5
             },
             {
-              "concept": "quadratic equation",
-              "occurrences": 4
+              "concept": "tower",
+              "occurrences": 5
             },
             {
-              "concept": "chord",
-              "occurrences": 4
-            },
-            {
-              "concept": "concentric",
-              "occurrences": 4
-            },
-            {
-              "concept": "cylinder",
-              "occurrences": 4
-            },
-            {
-              "concept": "real and equal roots",
-              "occurrences": 3
-            },
-            {
-              "concept": "surface area",
-              "occurrences": 3
-            },
-            {
-              "concept": "triangle abc",
-              "occurrences": 3
-            },
-            {
-              "concept": "triangle",
-              "occurrences": 3
-            },
-            {
-              "concept": "arithmetic progression",
-              "occurrences": 3
-            },
-            {
-              "concept": "nth term",
-              "occurrences": 3
+              "concept": "mean of the following",
+              "occurrences": 5
             }
           ]
         },
         "Science": {
-          "papersAnalysed": 11,
+          "papersAnalysed": 20,
           "papers": [
             {
               "paperId": "2022-Science-31/1/1",
@@ -611,6 +912,105 @@
               "attributedQuestions": 5
             },
             {
+              "paperId": "2022-Science-31/2/1",
+              "year": "2022",
+              "setSeries": "31/2/1",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 15,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 2,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 2,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 1,
+                  "markShare": 0.1667
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 1,
+                  "markShare": 0.1667
+                }
+              ],
+              "attributedQuestions": 6
+            },
+            {
+              "paperId": "2022-Science-31/2/2",
+              "year": "2022",
+              "setSeries": "31/2/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 14,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Electricity",
+                  "marks": 2,
+                  "markShare": 0.6667
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 1,
+                  "markShare": 0.3333
+                }
+              ],
+              "attributedQuestions": 3
+            },
+            {
+              "paperId": "2022-Science-31/2/3",
+              "year": "2022",
+              "setSeries": "31/2/3",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 15,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 2,
+                  "markShare": 0.5
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 1,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 1,
+                  "markShare": 0.25
+                }
+              ],
+              "attributedQuestions": 4
+            },
+            {
               "paperId": "2022-Science-31/3/1",
               "year": "2022",
               "setSeries": "31/3/1",
@@ -708,6 +1108,85 @@
                 }
               ],
               "attributedQuestions": 3
+            },
+            {
+              "paperId": "2022-Science-31/4/1",
+              "year": "2022",
+              "setSeries": "31/4/1",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 15,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Electricity",
+                  "marks": 1,
+                  "markShare": 1.0
+                }
+              ],
+              "attributedQuestions": 1
+            },
+            {
+              "paperId": "2022-Science-31/4/2",
+              "year": "2022",
+              "setSeries": "31/4/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 12,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 12,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 1,
+                  "markShare": 0.5
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 1,
+                  "markShare": 0.5
+                }
+              ],
+              "attributedQuestions": 2
+            },
+            {
+              "paperId": "2022-Science-31/4/3",
+              "year": "2022",
+              "setSeries": "31/4/3",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 16,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 1,
+                  "markShare": 0.5
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 1,
+                  "markShare": 0.5
+                }
+              ],
+              "attributedQuestions": 2
             },
             {
               "paperId": "2022-Science-31/B/5",
@@ -814,59 +1293,104 @@
               ],
               "chapterMix": [],
               "attributedQuestions": 0
+            },
+            {
+              "paperId": "2022-Science-47/2/2",
+              "year": "2022",
+              "setSeries": "47/2/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 2,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 2,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [],
+              "attributedQuestions": 0
+            },
+            {
+              "paperId": "2022-Science-47/2/2",
+              "year": "2022",
+              "setSeries": "47/2/2",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 0,
+              "sections": [],
+              "chapterMix": [],
+              "attributedQuestions": 0
+            },
+            {
+              "paperId": "2022-Science-47/2/3",
+              "year": "2022",
+              "setSeries": "47/2/3",
+              "language": "English/Hindi",
+              "maxMarks": 40,
+              "questionsDetected": 1,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 1,
+                  "marksEach": 1
+                }
+              ],
+              "chapterMix": [],
+              "attributedQuestions": 0
             }
           ],
-          "attributedQuestions": 31,
-          "unattributedQuestions": 136,
+          "attributedQuestions": 49,
+          "unattributedQuestions": 208,
           "chapters": [
             {
               "chapter": "Magnetic Effects of Electric Current",
-              "questions": 11,
-              "marks": 11,
-              "markShare": 0.3548,
-              "questionShare": 0.3548,
+              "questions": 17,
+              "marks": 17,
+              "markShare": 0.3469,
+              "questionShare": 0.3469,
               "byYear": {
-                "2022": 11
+                "2022": 17
               }
             },
             {
               "chapter": "Electricity",
-              "questions": 7,
-              "marks": 7,
-              "markShare": 0.2258,
-              "questionShare": 0.2258,
+              "questions": 15,
+              "marks": 15,
+              "markShare": 0.3061,
+              "questionShare": 0.3061,
               "byYear": {
-                "2022": 7
+                "2022": 15
               }
             },
             {
               "chapter": "Our Environment",
               "questions": 7,
               "marks": 7,
-              "markShare": 0.2258,
-              "questionShare": 0.2258,
+              "markShare": 0.1429,
+              "questionShare": 0.1429,
               "byYear": {
                 "2022": 7
               }
             },
             {
-              "chapter": "How do Organisms Reproduce?",
-              "questions": 4,
-              "marks": 4,
-              "markShare": 0.129,
-              "questionShare": 0.129,
+              "chapter": "Heredity",
+              "questions": 5,
+              "marks": 5,
+              "markShare": 0.102,
+              "questionShare": 0.102,
               "byYear": {
-                "2022": 4
+                "2022": 5
               }
             },
             {
-              "chapter": "Heredity",
-              "questions": 2,
-              "marks": 2,
-              "markShare": 0.0645,
-              "questionShare": 0.0645,
+              "chapter": "How do Organisms Reproduce?",
+              "questions": 5,
+              "marks": 5,
+              "markShare": 0.102,
+              "questionShare": 0.102,
               "byYear": {
-                "2022": 2
+                "2022": 5
               }
             },
             {
@@ -935,21 +1459,29 @@
             }
           ],
           "competencyMix": {
-            "objective": 166,
+            "objective": 256,
             "very_short_answer": 1
           },
           "repeatedConcepts": [
             {
               "concept": "magnetic field",
-              "occurrences": 11
+              "occurrences": 17
             },
             {
               "concept": "magnetic field lines",
-              "occurrences": 8
+              "occurrences": 14
             },
             {
               "concept": "resistance",
-              "occurrences": 7
+              "occurrences": 14
+            },
+            {
+              "concept": "electric power",
+              "occurrences": 6
+            },
+            {
+              "concept": "ammeter",
+              "occurrences": 5
             },
             {
               "concept": "trophic level",
@@ -960,32 +1492,24 @@
               "occurrences": 5
             },
             {
+              "concept": "resistivity",
+              "occurrences": 5
+            },
+            {
               "concept": "solenoid",
               "occurrences": 4
             },
             {
-              "concept": "electric motor",
+              "concept": "recessive",
               "occurrences": 4
             },
             {
-              "concept": "ammeter",
-              "occurrences": 3
+              "concept": "potential difference",
+              "occurrences": 4
             },
             {
-              "concept": "electric power",
-              "occurrences": 3
-            },
-            {
-              "concept": "budding",
-              "occurrences": 3
-            },
-            {
-              "concept": "reproduction",
-              "occurrences": 3
-            },
-            {
-              "concept": "voltmeter",
-              "occurrences": 2
+              "concept": "mendel",
+              "occurrences": 4
             }
           ]
         }
@@ -1001,11 +1525,11 @@
       "format": "single examination, 80 marks",
       "usedForBlueprintWeights": true,
       "pdfsInCohort": 150,
-      "pdfsAnalysed": 94,
-      "pdfsWithoutTextLayer": 56,
+      "pdfsAnalysed": 150,
+      "pdfsWithoutTextLayer": 0,
       "subjects": {
         "Mathematics": {
-          "papersAnalysed": 47,
+          "papersAnalysed": 75,
           "papers": [
             {
               "paperId": "2023-Mathematics-30/2/1",
@@ -1943,6 +2467,409 @@
               "attributedQuestions": 4
             },
             {
+              "paperId": "2023-Mathematics-30_1_1_MathsStand",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.2632
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.2632
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 4,
+                  "markShare": 0.2105
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 3,
+                  "markShare": 0.1579
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 2,
+                  "markShare": 0.1053
+                }
+              ],
+              "attributedQuestions": 19
+            },
+            {
+              "paperId": "2023-Mathematics-30_1_2_MathsStand",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 30,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 2,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.3571
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 4,
+                  "markShare": 0.2857
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 3,
+                  "markShare": 0.2143
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 2,
+                  "markShare": 0.1429
+                }
+              ],
+              "attributedQuestions": 14
+            },
+            {
+              "paperId": "2023-Mathematics-30_1_3_MathsStand",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.3571
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 4,
+                  "markShare": 0.2857
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 2,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 2,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 1,
+                  "markShare": 0.0714
+                }
+              ],
+              "attributedQuestions": 14
+            },
+            {
+              "paperId": "2023-Mathematics-30_6_1_MathsStand",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 29,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 3,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 6,
+                  "markShare": 0.375
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 2,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 2,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 1,
+                  "markShare": 0.0625
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.0625
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2023-Mathematics-30_6_2_MathsStand",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 30,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 13,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 6,
+                  "markShare": 0.2308
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 6,
+                  "markShare": 0.2308
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.1923
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 4,
+                  "markShare": 0.1538
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 3,
+                  "markShare": 0.1154
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.0385
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 1,
+                  "markShare": 0.0385
+                }
+              ],
+              "attributedQuestions": 26
+            },
+            {
+              "paperId": "2023-Mathematics-30_6_3_MathsStand",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 35,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 7,
+                  "markShare": 0.1892
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 6,
+                  "markShare": 0.1622
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 6,
+                  "markShare": 0.1622
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 6,
+                  "markShare": 0.1622
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 5,
+                  "markShare": 0.1351
+                },
+                {
+                  "chapter": "Areas Related to Circles",
+                  "marks": 3,
+                  "markShare": 0.0811
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 3,
+                  "markShare": 0.0811
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.027
+                }
+              ],
+              "attributedQuestions": 37
+            },
+            {
               "paperId": "2023-Mathematics-30_B_5_MathsStd.",
               "year": "2023",
               "setSeries": "unlabelled set",
@@ -2084,6 +3011,225 @@
               ],
               "chapterMix": [],
               "attributedQuestions": 0
+            },
+            {
+              "paperId": "2024-Mathematics-30/1/1",
+              "year": "2024",
+              "setSeries": "30/1/1",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.2174
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.2174
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 2,
+                  "markShare": 0.087
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 2,
+                  "markShare": 0.087
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 2,
+                  "markShare": 0.087
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 1,
+                  "markShare": 0.0435
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0435
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.0435
+                }
+              ],
+              "attributedQuestions": 23
+            },
+            {
+              "paperId": "2024-Mathematics-30/1/2",
+              "year": "2024",
+              "setSeries": "30/1/2",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 29,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 12,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Triangles",
+                  "marks": 4,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 3,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 2,
+                  "markShare": 0.1667
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 2,
+                  "markShare": 0.1667
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0833
+                }
+              ],
+              "attributedQuestions": 12
+            },
+            {
+              "paperId": "2024-Mathematics-30/1/3",
+              "year": "2024",
+              "setSeries": "30/1/3",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 33,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 18,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.2941
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 4,
+                  "markShare": 0.2353
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 2,
+                  "markShare": 0.1176
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 2,
+                  "markShare": 0.1176
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 2,
+                  "markShare": 0.1176
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0588
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.0588
+                }
+              ],
+              "attributedQuestions": 17
             },
             {
               "paperId": "2024-Mathematics-30/2/1",
@@ -3482,6 +4628,651 @@
               "attributedQuestions": 23
             },
             {
+              "paperId": "2025-Mathematics-30B_MathsStdfor",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 9,
+                  "markShare": 0.375
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 6,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 3,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 3,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.0417
+                },
+                {
+                  "chapter": "Areas Related to Circles",
+                  "marks": 1,
+                  "markShare": 0.0417
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 1,
+                  "markShare": 0.0417
+                }
+              ],
+              "attributedQuestions": 24
+            },
+            {
+              "paperId": "2025-Mathematics-30-4-1_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 25,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 13,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 4,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 2,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 3,
+                  "markShare": 0.2
+                }
+              ],
+              "attributedQuestions": 15
+            },
+            {
+              "paperId": "2025-Mathematics-30-4-2_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 18,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 4,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 6,
+                  "markShare": 0.375
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.0625
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.0625
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2025-Mathematics-30-4-3_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 33,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 2,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 7,
+                  "markShare": 0.4118
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 4,
+                  "markShare": 0.2353
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 3,
+                  "markShare": 0.1765
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 3,
+                  "markShare": 0.1765
+                }
+              ],
+              "attributedQuestions": 17
+            },
+            {
+              "paperId": "2025-Mathematics-30-5-1_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 36,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 7,
+                  "markShare": 0.4375
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 6,
+                  "markShare": 0.375
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 1,
+                  "markShare": 0.0625
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 1,
+                  "markShare": 0.0625
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.0625
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2025-Mathematics-30-5-2_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 6,
+                  "markShare": 0.2143
+                },
+                {
+                  "chapter": "Quadratic Equations",
+                  "marks": 5,
+                  "markShare": 0.1786
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.1786
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 4,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 4,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 3,
+                  "markShare": 0.1071
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 1,
+                  "markShare": 0.0357
+                }
+              ],
+              "attributedQuestions": 28
+            },
+            {
+              "paperId": "2025-Mathematics-30-5-3_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 6,
+                  "markShare": 0.24
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 5,
+                  "markShare": 0.2
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 4,
+                  "markShare": 0.16
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 4,
+                  "markShare": 0.16
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 3,
+                  "markShare": 0.12
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 3,
+                  "markShare": 0.12
+                }
+              ],
+              "attributedQuestions": 25
+            },
+            {
+              "paperId": "2025-Mathematics-30-6-1_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 6,
+                  "markShare": 0.3
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 4,
+                  "markShare": 0.2
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 4,
+                  "markShare": 0.2
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.05
+                }
+              ],
+              "attributedQuestions": 20
+            },
+            {
+              "paperId": "2025-Mathematics-30-6-2_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 35,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.3125
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.3125
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 2,
+                  "markShare": 0.125
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2025-Mathematics-30-6-3_Mathematics",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.2381
+                },
+                {
+                  "chapter": "Real Numbers",
+                  "marks": 5,
+                  "markShare": 0.2381
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.2381
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 4,
+                  "markShare": 0.1905
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 1,
+                  "markShare": 0.0476
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 1,
+                  "markShare": 0.0476
+                }
+              ],
+              "attributedQuestions": 21
+            },
+            {
               "paperId": "2026-Mathematics-30/4/1",
               "year": "2026",
               "setSeries": "30/4/1",
@@ -4046,247 +5837,887 @@
                 }
               ],
               "attributedQuestions": 27
+            },
+            {
+              "paperId": "2026-Mathematics-30-1-1P-Maths(Std",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 35,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.1923
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.1923
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 5,
+                  "markShare": 0.1923
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 3,
+                  "markShare": 0.1154
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 3,
+                  "markShare": 0.1154
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 2,
+                  "markShare": 0.0769
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0385
+                },
+                {
+                  "chapter": "Areas Related to Circles",
+                  "marks": 1,
+                  "markShare": 0.0385
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 1,
+                  "markShare": 0.0385
+                }
+              ],
+              "attributedQuestions": 26
+            },
+            {
+              "paperId": "2026-Mathematics-30-1-2P-Maths(Std",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 34,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 7,
+                  "markShare": 0.3684
+                },
+                {
+                  "chapter": "Areas Related to Circles",
+                  "marks": 6,
+                  "markShare": 0.3158
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 4,
+                  "markShare": 0.2105
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.0526
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.0526
+                }
+              ],
+              "attributedQuestions": 19
+            },
+            {
+              "paperId": "2026-Mathematics-30-1-3P-Maths(Std",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 33,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 2,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Areas Related to Circles",
+                  "marks": 4,
+                  "markShare": 0.1818
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 4,
+                  "markShare": 0.1818
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 3,
+                  "markShare": 0.1364
+                },
+                {
+                  "chapter": "Triangles",
+                  "marks": 3,
+                  "markShare": 0.1364
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 3,
+                  "markShare": 0.1364
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 2,
+                  "markShare": 0.0909
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0455
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 1,
+                  "markShare": 0.0455
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.0455
+                }
+              ],
+              "attributedQuestions": 22
+            },
+            {
+              "paperId": "2026-Mathematics-30_2_1_Mathematics",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 4,
+                  "markShare": 0.3077
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 3,
+                  "markShare": 0.2308
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 3,
+                  "markShare": 0.2308
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0769
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.0769
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.0769
+                }
+              ],
+              "attributedQuestions": 13
+            },
+            {
+              "paperId": "2026-Mathematics-30_2_2_Mathematics",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 3,
+                  "markShare": 0.4286
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.1429
+                }
+              ],
+              "attributedQuestions": 7
+            },
+            {
+              "paperId": "2026-Mathematics-30_2_3_Mathematics",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 4,
+                  "markShare": 0.3077
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 3,
+                  "markShare": 0.2308
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 3,
+                  "markShare": 0.2308
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.0769
+                },
+                {
+                  "chapter": "Pair of Linear Equations in Two Variables",
+                  "marks": 1,
+                  "markShare": 0.0769
+                },
+                {
+                  "chapter": "Statistics",
+                  "marks": 1,
+                  "markShare": 0.0769
+                }
+              ],
+              "attributedQuestions": 13
+            },
+            {
+              "paperId": "2026-Mathematics-30_3_1_Mathematics",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 7,
+                  "markShare": 0.3043
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 5,
+                  "markShare": 0.2174
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 3,
+                  "markShare": 0.1304
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 2,
+                  "markShare": 0.087
+                },
+                {
+                  "chapter": "Quadratic Equations",
+                  "marks": 1,
+                  "markShare": 0.0435
+                },
+                {
+                  "chapter": "Arithmetic Progressions",
+                  "marks": 1,
+                  "markShare": 0.0435
+                }
+              ],
+              "attributedQuestions": 23
+            },
+            {
+              "paperId": "2026-Mathematics-30_3_2_Mathematics",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 6,
+                  "markShare": 0.3529
+                },
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 5,
+                  "markShare": 0.2941
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 4,
+                  "markShare": 0.2353
+                },
+                {
+                  "chapter": "Quadratic Equations",
+                  "marks": 1,
+                  "markShare": 0.0588
+                },
+                {
+                  "chapter": "Arithmetic Progressions",
+                  "marks": 1,
+                  "markShare": 0.0588
+                }
+              ],
+              "attributedQuestions": 17
+            },
+            {
+              "paperId": "2026-Mathematics-30_3_3_Mathematics",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Surface Areas and Volumes",
+                  "marks": 7,
+                  "markShare": 0.28
+                },
+                {
+                  "chapter": "Some Applications of Trigonometry",
+                  "marks": 6,
+                  "markShare": 0.24
+                },
+                {
+                  "chapter": "Circles",
+                  "marks": 4,
+                  "markShare": 0.16
+                },
+                {
+                  "chapter": "Probability",
+                  "marks": 4,
+                  "markShare": 0.16
+                },
+                {
+                  "chapter": "Quadratic Equations",
+                  "marks": 2,
+                  "markShare": 0.08
+                },
+                {
+                  "chapter": "Polynomials",
+                  "marks": 1,
+                  "markShare": 0.04
+                },
+                {
+                  "chapter": "Introduction to Trigonometry",
+                  "marks": 1,
+                  "markShare": 0.04
+                }
+              ],
+              "attributedQuestions": 25
             }
           ],
-          "attributedQuestions": 359,
-          "unattributedQuestions": 1349,
+          "attributedQuestions": 626,
+          "unattributedQuestions": 2040,
           "chapters": [
             {
               "chapter": "Introduction to Trigonometry",
-              "questions": 109,
-              "marks": 214,
-              "markShare": 0.2672,
-              "questionShare": 0.3036,
+              "questions": 180,
+              "marks": 334,
+              "markShare": 0.2489,
+              "questionShare": 0.2875,
               "byYear": {
-                "2023": 34,
-                "2024": 37,
-                "2025": 13,
-                "2026": 25
+                "2023": 50,
+                "2024": 40,
+                "2025": 46,
+                "2026": 44
               }
             },
             {
               "chapter": "Surface Areas and Volumes",
-              "questions": 31,
-              "marks": 111,
-              "markShare": 0.1386,
-              "questionShare": 0.0864,
+              "questions": 72,
+              "marks": 214,
+              "markShare": 0.1595,
+              "questionShare": 0.115,
               "byYear": {
-                "2023": 8,
-                "2024": 9,
-                "2025": 7,
-                "2026": 7
+                "2023": 20,
+                "2024": 13,
+                "2025": 17,
+                "2026": 22
               }
             },
             {
               "chapter": "Polynomials",
-              "questions": 58,
-              "marks": 104,
-              "markShare": 0.1298,
-              "questionShare": 0.1616,
+              "questions": 96,
+              "marks": 160,
+              "markShare": 0.1192,
+              "questionShare": 0.1534,
               "byYear": {
-                "2023": 17,
-                "2024": 18,
-                "2025": 11,
-                "2026": 12
+                "2023": 26,
+                "2024": 22,
+                "2025": 24,
+                "2026": 24
+              }
+            },
+            {
+              "chapter": "Some Applications of Trigonometry",
+              "questions": 34,
+              "marks": 108,
+              "markShare": 0.0805,
+              "questionShare": 0.0543,
+              "byYear": {
+                "2023": 14,
+                "2024": 5,
+                "2025": 1,
+                "2026": 14
               }
             },
             {
               "chapter": "Circles",
-              "questions": 28,
-              "marks": 68,
-              "markShare": 0.0849,
-              "questionShare": 0.078,
+              "questions": 47,
+              "marks": 107,
+              "markShare": 0.0797,
+              "questionShare": 0.0751,
               "byYear": {
-                "2023": 9,
-                "2024": 11,
-                "2025": 4,
+                "2023": 10,
+                "2024": 13,
+                "2025": 15,
+                "2026": 9
+              }
+            },
+            {
+              "chapter": "Real Numbers",
+              "questions": 50,
+              "marks": 98,
+              "markShare": 0.073,
+              "questionShare": 0.0799,
+              "byYear": {
+                "2023": 22,
+                "2024": 5,
+                "2025": 19,
                 "2026": 4
               }
             },
             {
               "chapter": "Triangles",
-              "questions": 19,
-              "marks": 59,
-              "markShare": 0.0737,
-              "questionShare": 0.0529,
+              "questions": 30,
+              "marks": 96,
+              "markShare": 0.0715,
+              "questionShare": 0.0479,
               "byYear": {
-                "2023": 7,
-                "2025": 9,
-                "2026": 3
-              }
-            },
-            {
-              "chapter": "Some Applications of Trigonometry",
-              "questions": 15,
-              "marks": 49,
-              "markShare": 0.0612,
-              "questionShare": 0.0418,
-              "byYear": {
-                "2023": 8,
+                "2023": 9,
                 "2024": 3,
-                "2025": 1,
-                "2026": 3
-              }
-            },
-            {
-              "chapter": "Real Numbers",
-              "questions": 26,
-              "marks": 48,
-              "markShare": 0.0599,
-              "questionShare": 0.0724,
-              "byYear": {
-                "2023": 17,
-                "2024": 4,
-                "2025": 1,
-                "2026": 4
-              }
-            },
-            {
-              "chapter": "Statistics",
-              "questions": 15,
-              "marks": 46,
-              "markShare": 0.0574,
-              "questionShare": 0.0418,
-              "byYear": {
-                "2023": 4,
-                "2024": 1,
-                "2025": 3,
-                "2026": 7
+                "2025": 13,
+                "2026": 5
               }
             },
             {
               "chapter": "Probability",
-              "questions": 20,
-              "marks": 35,
-              "markShare": 0.0437,
-              "questionShare": 0.0557,
+              "questions": 36,
+              "marks": 62,
+              "markShare": 0.0462,
+              "questionShare": 0.0575,
               "byYear": {
-                "2023": 6,
-                "2024": 2,
+                "2023": 10,
+                "2024": 5,
+                "2025": 9,
+                "2026": 12
+              }
+            },
+            {
+              "chapter": "Statistics",
+              "questions": 22,
+              "marks": 62,
+              "markShare": 0.0462,
+              "questionShare": 0.0351,
+              "byYear": {
+                "2023": 7,
+                "2024": 1,
                 "2025": 4,
-                "2026": 8
-              }
-            },
-            {
-              "chapter": "Areas Related to Circles",
-              "questions": 14,
-              "marks": 32,
-              "markShare": 0.04,
-              "questionShare": 0.039,
-              "byYear": {
-                "2023": 2,
-                "2024": 3,
-                "2025": 6,
-                "2026": 3
-              }
-            },
-            {
-              "chapter": "Quadratic Equations",
-              "questions": 15,
-              "marks": 22,
-              "markShare": 0.0275,
-              "questionShare": 0.0418,
-              "byYear": {
-                "2023": 1,
-                "2024": 3,
-                "2025": 1,
                 "2026": 10
               }
             },
             {
+              "chapter": "Areas Related to Circles",
+              "questions": 20,
+              "marks": 47,
+              "markShare": 0.035,
+              "questionShare": 0.0319,
+              "byYear": {
+                "2023": 3,
+                "2024": 3,
+                "2025": 7,
+                "2026": 7
+              }
+            },
+            {
+              "chapter": "Quadratic Equations",
+              "questions": 20,
+              "marks": 31,
+              "markShare": 0.0231,
+              "questionShare": 0.0319,
+              "byYear": {
+                "2023": 1,
+                "2024": 3,
+                "2025": 2,
+                "2026": 14
+              }
+            },
+            {
+              "chapter": "Pair of Linear Equations in Two Variables",
+              "questions": 10,
+              "marks": 11,
+              "markShare": 0.0082,
+              "questionShare": 0.016,
+              "byYear": {
+                "2023": 1,
+                "2024": 3,
+                "2025": 1,
+                "2026": 5
+              }
+            },
+            {
               "chapter": "Arithmetic Progressions",
-              "questions": 4,
-              "marks": 7,
-              "markShare": 0.0087,
-              "questionShare": 0.0111,
+              "questions": 6,
+              "marks": 9,
+              "markShare": 0.0067,
+              "questionShare": 0.0096,
               "byYear": {
                 "2024": 1,
-                "2026": 3
+                "2026": 5
               }
             },
             {
               "chapter": "Coordinate Geometry",
               "questions": 3,
               "marks": 3,
-              "markShare": 0.0037,
-              "questionShare": 0.0084,
+              "markShare": 0.0022,
+              "questionShare": 0.0048,
               "byYear": {
                 "2026": 3
-              }
-            },
-            {
-              "chapter": "Pair of Linear Equations in Two Variables",
-              "questions": 2,
-              "marks": 3,
-              "markShare": 0.0037,
-              "questionShare": 0.0056,
-              "byYear": {
-                "2023": 1,
-                "2025": 1
               }
             }
           ],
           "competencyMix": {
-            "assertion_reason": 89,
-            "case_study": 136,
-            "long_answer": 183,
-            "objective": 800,
-            "short_answer": 274,
-            "very_short_answer": 226
+            "assertion_reason": 141,
+            "case_study": 216,
+            "long_answer": 290,
+            "objective": 1241,
+            "short_answer": 428,
+            "very_short_answer": 350
           },
           "repeatedConcepts": [
             {
               "concept": "sin",
-              "occurrences": 85
+              "occurrences": 141
             },
             {
               "concept": "cos",
-              "occurrences": 74
+              "occurrences": 125
             },
             {
               "concept": "tan",
-              "occurrences": 72
+              "occurrences": 105
             },
             {
               "concept": "polynomial",
-              "occurrences": 58
+              "occurrences": 96
             },
             {
               "concept": "zeroes",
-              "occurrences": 58
+              "occurrences": 96
             },
             {
               "concept": "cot",
-              "occurrences": 30
-            },
-            {
-              "concept": "cosec",
-              "occurrences": 27
-            },
-            {
-              "concept": "hcf",
-              "occurrences": 25
+              "occurrences": 49
             },
             {
               "concept": "surface area",
-              "occurrences": 23
+              "occurrences": 45
+            },
+            {
+              "concept": "cosec",
+              "occurrences": 45
+            },
+            {
+              "concept": "volume",
+              "occurrences": 42
+            },
+            {
+              "concept": "hcf",
+              "occurrences": 39
             },
             {
               "concept": "probability",
-              "occurrences": 20
-            },
-            {
-              "concept": "tangent",
-              "occurrences": 20
+              "occurrences": 36
             },
             {
               "concept": "lcm",
-              "occurrences": 20
+              "occurrences": 35
             }
           ]
         },
         "Science": {
-          "papersAnalysed": 47,
+          "papersAnalysed": 75,
           "papers": [
             {
               "paperId": "2023-Science-31/2/1",
@@ -5155,6 +7586,409 @@
               "attributedQuestions": 0
             },
             {
+              "paperId": "2023-Science-31_1_1_Science.pdf",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 36,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 18,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Our Environment",
+                  "marks": 8,
+                  "markShare": 0.2353
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 6,
+                  "markShare": 0.1765
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.1471
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 5,
+                  "markShare": 0.1471
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 5,
+                  "markShare": 0.1471
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 5,
+                  "markShare": 0.1471
+                }
+              ],
+              "attributedQuestions": 34
+            },
+            {
+              "paperId": "2023-Science-31_1_2_Science.pdf",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 35,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 18,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Electricity",
+                  "marks": 6,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 5,
+                  "markShare": 0.2083
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 4,
+                  "markShare": 0.1667
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 3,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 3,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 3,
+                  "markShare": 0.125
+                }
+              ],
+              "attributedQuestions": 24
+            },
+            {
+              "paperId": "2023-Science-31_1_3_Science.pdf",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 31,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Heredity",
+                  "marks": 6,
+                  "markShare": 0.3158
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.2632
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 4,
+                  "markShare": 0.2105
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 3,
+                  "markShare": 0.1579
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.0526
+                }
+              ],
+              "attributedQuestions": 19
+            },
+            {
+              "paperId": "2023-Science-31_6_1_Science.pdf",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 31,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 2,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 6,
+                  "markShare": 0.3
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 5,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Metals and Non-metals",
+                  "marks": 4,
+                  "markShare": 0.2
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 2,
+                  "markShare": 0.1
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 1,
+                  "markShare": 0.05
+                },
+                {
+                  "chapter": "Chemical Reactions and Equations",
+                  "marks": 1,
+                  "markShare": 0.05
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 1,
+                  "markShare": 0.05
+                }
+              ],
+              "attributedQuestions": 20
+            },
+            {
+              "paperId": "2023-Science-31_6_2_Science.pdf",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 34,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Metals and Non-metals",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 1,
+                  "markShare": 0.0667
+                },
+                {
+                  "chapter": "Chemical Reactions and Equations",
+                  "marks": 1,
+                  "markShare": 0.0667
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 1,
+                  "markShare": 0.0667
+                }
+              ],
+              "attributedQuestions": 15
+            },
+            {
+              "paperId": "2023-Science-31_6_3_Science.pdf",
+              "year": "2023",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 7,
+                  "markShare": 0.4118
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 5,
+                  "markShare": 0.2941
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 3,
+                  "markShare": 0.1765
+                },
+                {
+                  "chapter": "Chemical Reactions and Equations",
+                  "marks": 1,
+                  "markShare": 0.0588
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 1,
+                  "markShare": 0.0588
+                }
+              ],
+              "attributedQuestions": 17
+            },
+            {
               "paperId": "2023-Science-31_B_5_Sciencefor",
               "year": "2023",
               "setSeries": "unlabelled set",
@@ -5682,6 +8516,608 @@
                 }
               ],
               "attributedQuestions": 27
+            },
+            {
+              "paperId": "2024-Science-31_1_1_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 4,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Our Environment",
+                  "marks": 7,
+                  "markShare": 0.3043
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 3,
+                  "markShare": 0.1304
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 1,
+                  "markShare": 0.0435
+                }
+              ],
+              "attributedQuestions": 23
+            },
+            {
+              "paperId": "2024-Science-31_1_2_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 30,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 3,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 5,
+                  "markShare": 0.2941
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 4,
+                  "markShare": 0.2353
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 4,
+                  "markShare": 0.2353
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 4,
+                  "markShare": 0.2353
+                }
+              ],
+              "attributedQuestions": 17
+            },
+            {
+              "paperId": "2024-Science-31_1_3_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 33,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 2,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 2,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Our Environment",
+                  "marks": 5,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 1,
+                  "markShare": 0.0667
+                }
+              ],
+              "attributedQuestions": 15
+            },
+            {
+              "paperId": "2024-Science-31_2_1_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 31,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 5,
+                  "markShare": 0.2778
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 4,
+                  "markShare": 0.2222
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 4,
+                  "markShare": 0.2222
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 3,
+                  "markShare": 0.1667
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 1,
+                  "markShare": 0.0556
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 1,
+                  "markShare": 0.0556
+                }
+              ],
+              "attributedQuestions": 18
+            },
+            {
+              "paperId": "2024-Science-31_2_2_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 30,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 2,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 5,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 1,
+                  "markShare": 0.0667
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 1,
+                  "markShare": 0.0667
+                }
+              ],
+              "attributedQuestions": 15
+            },
+            {
+              "paperId": "2024-Science-31_2_3_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 2,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Electricity",
+                  "marks": 6,
+                  "markShare": 0.2143
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 5,
+                  "markShare": 0.1786
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 5,
+                  "markShare": 0.1786
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 4,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 3,
+                  "markShare": 0.1071
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 3,
+                  "markShare": 0.1071
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 2,
+                  "markShare": 0.0714
+                }
+              ],
+              "attributedQuestions": 28
+            },
+            {
+              "paperId": "2024-Science-31_3_1_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 36,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 8,
+                  "markShare": 0.4
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 3,
+                  "markShare": 0.15
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 2,
+                  "markShare": 0.1
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.05
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 1,
+                  "markShare": 0.05
+                }
+              ],
+              "attributedQuestions": 20
+            },
+            {
+              "paperId": "2024-Science-31_3_2_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 31,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 5,
+                  "markShare": 0.3571
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 4,
+                  "markShare": 0.2857
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 2,
+                  "markShare": 0.1429
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.0714
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 1,
+                  "markShare": 0.0714
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 1,
+                  "markShare": 0.0714
+                }
+              ],
+              "attributedQuestions": 14
+            },
+            {
+              "paperId": "2024-Science-31_3_3_Science.pdf",
+              "year": "2024",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 5,
+                  "markShare": 0.2174
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 3,
+                  "markShare": 0.1304
+                },
+                {
+                  "chapter": "Chemical Reactions and Equations",
+                  "marks": 3,
+                  "markShare": 0.1304
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 3,
+                  "markShare": 0.1304
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 2,
+                  "markShare": 0.087
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 2,
+                  "markShare": 0.087
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.0435
+                }
+              ],
+              "attributedQuestions": 23
             },
             {
               "paperId": "2024-Science-31_B_Science_VI.pd",
@@ -6307,6 +9743,616 @@
                 }
               ],
               "attributedQuestions": 19
+            },
+            {
+              "paperId": "2025-Science-31(B)_Sciencefor",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 14,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Control and Coordination",
+                  "marks": 3,
+                  "markShare": 1.0
+                }
+              ],
+              "attributedQuestions": 3
+            },
+            {
+              "paperId": "2025-Science-31-4-1_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 30,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 15,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 4,
+                  "markShare": 0.25
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2025-Science-31-4-2_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 36,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 18,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 5,
+                  "markShare": 0.3125
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 4,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 3,
+                  "markShare": 0.1875
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2025-Science-31-4-3_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 33,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 3,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 6,
+                  "markShare": 0.4286
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 4,
+                  "markShare": 0.2857
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 4,
+                  "markShare": 0.2857
+                }
+              ],
+              "attributedQuestions": 14
+            },
+            {
+              "paperId": "2025-Science-31-5-1_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Electricity",
+                  "marks": 7,
+                  "markShare": 0.35
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 5,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 3,
+                  "markShare": 0.15
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 3,
+                  "markShare": 0.15
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 1,
+                  "markShare": 0.05
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 1,
+                  "markShare": 0.05
+                }
+              ],
+              "attributedQuestions": 20
+            },
+            {
+              "paperId": "2025-Science-31-5-2_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 19,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 6,
+                  "markShare": 0.3
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 5,
+                  "markShare": 0.25
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 4,
+                  "markShare": 0.2
+                }
+              ],
+              "attributedQuestions": 20
+            },
+            {
+              "paperId": "2025-Science-31-5-3_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 9,
+                  "markShare": 0.375
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.2083
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 5,
+                  "markShare": 0.2083
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 2,
+                  "markShare": 0.0833
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 2,
+                  "markShare": 0.0833
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 1,
+                  "markShare": 0.0417
+                }
+              ],
+              "attributedQuestions": 24
+            },
+            {
+              "paperId": "2025-Science-31-6-1_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 4,
+                  "markShare": 0.4
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 3,
+                  "markShare": 0.3
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 1,
+                  "markShare": 0.1
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.1
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 1,
+                  "markShare": 0.1
+                }
+              ],
+              "attributedQuestions": 10
+            },
+            {
+              "paperId": "2025-Science-31-6-2_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 38,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Our Environment",
+                  "marks": 5,
+                  "markShare": 0.2174
+                },
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 5,
+                  "markShare": 0.2174
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 4,
+                  "markShare": 0.1739
+                },
+                {
+                  "chapter": "Light \u2013 Reflection and Refraction",
+                  "marks": 3,
+                  "markShare": 0.1304
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 1,
+                  "markShare": 0.0435
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.0435
+                }
+              ],
+              "attributedQuestions": 23
+            },
+            {
+              "paperId": "2025-Science-31-6-3_Science.pdf",
+              "year": "2025",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 37,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 20,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "Magnetic Effects of Electric Current",
+                  "marks": 5,
+                  "markShare": 0.3333
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 4,
+                  "markShare": 0.2667
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 3,
+                  "markShare": 0.2
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 1,
+                  "markShare": 0.0667
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 1,
+                  "markShare": 0.0667
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 1,
+                  "markShare": 0.0667
+                }
+              ],
+              "attributedQuestions": 15
             },
             {
               "paperId": "2026-Science-31/2/1",
@@ -7231,229 +11277,449 @@
                 }
               ],
               "attributedQuestions": 16
+            },
+            {
+              "paperId": "2026-Science-31_1_1_Science.pdf",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 33,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 18,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 1,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 5,
+                  "markShare": 0.2273
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 4,
+                  "markShare": 0.1818
+                },
+                {
+                  "chapter": "Acids, Bases and Salts",
+                  "marks": 3,
+                  "markShare": 0.1364
+                },
+                {
+                  "chapter": "Metals and Non-metals",
+                  "marks": 3,
+                  "markShare": 0.1364
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 3,
+                  "markShare": 0.1364
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 1,
+                  "markShare": 0.0455
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 1,
+                  "markShare": 0.0455
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 1,
+                  "markShare": 0.0455
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 1,
+                  "markShare": 0.0455
+                }
+              ],
+              "attributedQuestions": 22
+            },
+            {
+              "paperId": "2026-Science-31_1_2_Science.pdf",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 32,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 16,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 4,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 6,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 3,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 5,
+                  "markShare": 0.3125
+                },
+                {
+                  "chapter": "Metals and Non-metals",
+                  "marks": 3,
+                  "markShare": 0.1875
+                },
+                {
+                  "chapter": "Carbon and its Compounds",
+                  "marks": 3,
+                  "markShare": 0.1875
+                },
+                {
+                  "chapter": "How do Organisms Reproduce?",
+                  "marks": 2,
+                  "markShare": 0.125
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 1,
+                  "markShare": 0.0625
+                },
+                {
+                  "chapter": "Our Environment",
+                  "marks": 1,
+                  "markShare": 0.0625
+                },
+                {
+                  "chapter": "Heredity",
+                  "marks": 1,
+                  "markShare": 0.0625
+                }
+              ],
+              "attributedQuestions": 16
+            },
+            {
+              "paperId": "2026-Science-31_1_3_Science.pdf",
+              "year": "2026",
+              "setSeries": "unlabelled set",
+              "language": "English/Hindi",
+              "maxMarks": 80,
+              "questionsDetected": 34,
+              "sections": [
+                {
+                  "section": "A - objective",
+                  "questions": 17,
+                  "marksEach": 1
+                },
+                {
+                  "section": "B - very short answer",
+                  "questions": 5,
+                  "marksEach": 2
+                },
+                {
+                  "section": "C - short answer",
+                  "questions": 5,
+                  "marksEach": 3
+                },
+                {
+                  "section": "D - long answer",
+                  "questions": 4,
+                  "marksEach": 5
+                },
+                {
+                  "section": "E - case study",
+                  "questions": 3,
+                  "marksEach": 4
+                }
+              ],
+              "chapterMix": [
+                {
+                  "chapter": "The Human Eye and the Colourful World",
+                  "marks": 5,
+                  "markShare": 0.3571
+                },
+                {
+                  "chapter": "Electricity",
+                  "marks": 5,
+                  "markShare": 0.3571
+                },
+                {
+                  "chapter": "Metals and Non-metals",
+                  "marks": 3,
+                  "markShare": 0.2143
+                },
+                {
+                  "chapter": "Life Processes",
+                  "marks": 1,
+                  "markShare": 0.0714
+                }
+              ],
+              "attributedQuestions": 14
             }
           ],
-          "attributedQuestions": 312,
-          "unattributedQuestions": 1434,
+          "attributedQuestions": 501,
+          "unattributedQuestions": 2192,
           "chapters": [
             {
-              "chapter": "Light \u2013 Reflection and Refraction",
-              "questions": 48,
-              "marks": 156,
-              "markShare": 0.1857,
-              "questionShare": 0.1538,
+              "chapter": "Electricity",
+              "questions": 69,
+              "marks": 230,
+              "markShare": 0.1697,
+              "questionShare": 0.1377,
               "byYear": {
-                "2023": 16,
-                "2024": 5,
-                "2025": 16,
+                "2023": 14,
+                "2024": 17,
+                "2025": 18,
+                "2026": 20
+              }
+            },
+            {
+              "chapter": "Light \u2013 Reflection and Refraction",
+              "questions": 70,
+              "marks": 227,
+              "markShare": 0.1675,
+              "questionShare": 0.1397,
+              "byYear": {
+                "2023": 19,
+                "2024": 14,
+                "2025": 26,
                 "2026": 11
               }
             },
             {
-              "chapter": "Electricity",
-              "questions": 45,
-              "marks": 155,
-              "markShare": 0.1845,
-              "questionShare": 0.1442,
-              "byYear": {
-                "2023": 7,
-                "2024": 8,
-                "2025": 12,
-                "2026": 18
-              }
-            },
-            {
               "chapter": "Magnetic Effects of Electric Current",
-              "questions": 50,
-              "marks": 124,
-              "markShare": 0.1476,
-              "questionShare": 0.1603,
+              "questions": 74,
+              "marks": 188,
+              "markShare": 0.1387,
+              "questionShare": 0.1477,
               "byYear": {
-                "2023": 19,
-                "2024": 9,
-                "2025": 18,
+                "2023": 28,
+                "2024": 16,
+                "2025": 26,
                 "2026": 4
               }
             },
             {
               "chapter": "Carbon and its Compounds",
-              "questions": 26,
-              "marks": 93,
-              "markShare": 0.1107,
-              "questionShare": 0.0833,
+              "questions": 42,
+              "marks": 151,
+              "markShare": 0.1114,
+              "questionShare": 0.0838,
               "byYear": {
-                "2023": 6,
-                "2024": 6,
-                "2025": 2,
-                "2026": 12
+                "2023": 9,
+                "2024": 11,
+                "2025": 8,
+                "2026": 14
               }
             },
             {
               "chapter": "How do Organisms Reproduce?",
-              "questions": 24,
-              "marks": 61,
-              "markShare": 0.0726,
-              "questionShare": 0.0769,
+              "questions": 40,
+              "marks": 106,
+              "markShare": 0.0782,
+              "questionShare": 0.0798,
               "byYear": {
-                "2023": 10,
-                "2024": 2,
-                "2025": 5,
-                "2026": 7
+                "2023": 14,
+                "2024": 5,
+                "2025": 11,
+                "2026": 10
               }
             },
             {
               "chapter": "The Human Eye and the Colourful World",
-              "questions": 18,
-              "marks": 49,
-              "markShare": 0.0583,
-              "questionShare": 0.0577,
+              "questions": 32,
+              "marks": 90,
+              "markShare": 0.0664,
+              "questionShare": 0.0639,
               "byYear": {
-                "2023": 2,
-                "2024": 6,
-                "2025": 3,
-                "2026": 7
+                "2023": 5,
+                "2024": 10,
+                "2025": 7,
+                "2026": 10
+              }
+            },
+            {
+              "chapter": "Our Environment",
+              "questions": 36,
+              "marks": 71,
+              "markShare": 0.0524,
+              "questionShare": 0.0719,
+              "byYear": {
+                "2023": 4,
+                "2024": 13,
+                "2025": 7,
+                "2026": 12
               }
             },
             {
               "chapter": "Life Processes",
-              "questions": 28,
-              "marks": 48,
-              "markShare": 0.0571,
-              "questionShare": 0.0897,
+              "questions": 36,
+              "marks": 62,
+              "markShare": 0.0458,
+              "questionShare": 0.0719,
               "byYear": {
-                "2023": 14,
-                "2024": 6,
+                "2023": 15,
+                "2024": 10,
                 "2025": 1,
-                "2026": 7
+                "2026": 10
+              }
+            },
+            {
+              "chapter": "Heredity",
+              "questions": 28,
+              "marks": 59,
+              "markShare": 0.0435,
+              "questionShare": 0.0559,
+              "byYear": {
+                "2023": 15,
+                "2024": 6,
+                "2025": 4,
+                "2026": 3
+              }
+            },
+            {
+              "chapter": "Acids, Bases and Salts",
+              "questions": 24,
+              "marks": 55,
+              "markShare": 0.0406,
+              "questionShare": 0.0479,
+              "byYear": {
+                "2023": 2,
+                "2024": 5,
+                "2025": 6,
+                "2026": 11
               }
             },
             {
               "chapter": "Chemical Reactions and Equations",
-              "questions": 23,
-              "marks": 44,
-              "markShare": 0.0524,
-              "questionShare": 0.0737,
+              "questions": 27,
+              "marks": 50,
+              "markShare": 0.0369,
+              "questionShare": 0.0539,
               "byYear": {
-                "2023": 1,
-                "2024": 5,
+                "2023": 4,
+                "2024": 6,
                 "2025": 7,
                 "2026": 10
               }
             },
             {
               "chapter": "Metals and Non-metals",
-              "questions": 12,
-              "marks": 32,
-              "markShare": 0.0381,
-              "questionShare": 0.0385,
+              "questions": 17,
+              "marks": 49,
+              "markShare": 0.0362,
+              "questionShare": 0.0339,
               "byYear": {
-                "2023": 2,
+                "2023": 4,
                 "2024": 3,
                 "2025": 3,
-                "2026": 4
-              }
-            },
-            {
-              "chapter": "Acids, Bases and Salts",
-              "questions": 11,
-              "marks": 26,
-              "markShare": 0.031,
-              "questionShare": 0.0353,
-              "byYear": {
-                "2023": 1,
-                "2026": 10
-              }
-            },
-            {
-              "chapter": "Our Environment",
-              "questions": 13,
-              "marks": 23,
-              "markShare": 0.0274,
-              "questionShare": 0.0417,
-              "byYear": {
-                "2024": 3,
-                "2026": 10
-              }
-            },
-            {
-              "chapter": "Heredity",
-              "questions": 9,
-              "marks": 15,
-              "markShare": 0.0179,
-              "questionShare": 0.0288,
-              "byYear": {
-                "2023": 7,
-                "2024": 1,
-                "2026": 1
+                "2026": 7
               }
             },
             {
               "chapter": "Control and Coordination",
-              "questions": 5,
-              "marks": 14,
-              "markShare": 0.0167,
-              "questionShare": 0.016,
+              "questions": 6,
+              "marks": 17,
+              "markShare": 0.0125,
+              "questionShare": 0.012,
               "byYear": {
-                "2023": 5
+                "2023": 5,
+                "2025": 1
               }
             }
           ],
           "competencyMix": {
-            "assertion_reason": 92,
-            "case_study": 137,
-            "long_answer": 184,
-            "objective": 828,
-            "short_answer": 275,
-            "very_short_answer": 230
+            "assertion_reason": 145,
+            "case_study": 217,
+            "long_answer": 290,
+            "objective": 1266,
+            "short_answer": 429,
+            "very_short_answer": 346
           },
           "repeatedConcepts": [
             {
               "concept": "magnetic field",
-              "occurrences": 50
+              "occurrences": 74
             },
             {
               "concept": "focal length",
-              "occurrences": 43
+              "occurrences": 64
             },
             {
               "concept": "magnetic field lines",
-              "occurrences": 40
+              "occurrences": 56
             },
             {
               "concept": "resistance",
-              "occurrences": 35
-            },
-            {
-              "concept": "potential difference",
-              "occurrences": 25
-            },
-            {
-              "concept": "magnification",
-              "occurrences": 22
-            },
-            {
-              "concept": "ethanol",
-              "occurrences": 22
-            },
-            {
-              "concept": "photosynthesis",
-              "occurrences": 21
+              "occurrences": 55
             },
             {
               "concept": "solenoid",
-              "occurrences": 20
+              "occurrences": 39
+            },
+            {
+              "concept": "potential difference",
+              "occurrences": 35
+            },
+            {
+              "concept": "food chain",
+              "occurrences": 33
+            },
+            {
+              "concept": "magnification",
+              "occurrences": 33
+            },
+            {
+              "concept": "ethanol",
+              "occurrences": 30
             },
             {
               "concept": "concave mirror",
-              "occurrences": 18
+              "occurrences": 28
             },
             {
-              "concept": "exothermic",
-              "occurrences": 18
+              "concept": "reproduction",
+              "occurrences": 26
             },
             {
-              "concept": "electric current",
-              "occurrences": 16
+              "concept": "trophic level",
+              "occurrences": 24
             }
           ]
         }

@@ -2,7 +2,7 @@
 
 Fills /tmp/pyq-text-cache with OCR text for every accepted PDF whose embedded
 text layer is missing or too small, so build_pattern_intelligence.py can attribute
-scanned 2025/2026 papers. English-only OCR; failures leave the paper unattributed.
+scanned 2025/2026 papers. Bilingual eng+hin OCR; failures leave the paper unattributed.
 
     python3 scripts/pyq/ocr_precache.py [workers]
 """
@@ -50,7 +50,7 @@ def ocr(path: str) -> tuple[str, int]:
             return path, -1
         for img in sorted(glob.glob(os.path.join(tmp, "p-*.jpg"))):
             try:
-                out.append(pytesseract.image_to_string(Image.open(img), lang="eng"))
+                out.append(pytesseract.image_to_string(Image.open(img), lang="eng+hin"))
             except Exception:
                 continue
     joined = "\n".join(out)

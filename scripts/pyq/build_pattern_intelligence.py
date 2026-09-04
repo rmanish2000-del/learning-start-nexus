@@ -104,8 +104,9 @@ OCR_ENABLED = os.environ.get("PYQ_OCR", "1") != "0"
 
 
 def ocr_text(path: str) -> str:
-    """OCR a scanned paper. English only: the Hindi half of a bilingual paper is
-    discarded by segment() anyway, and mis-OCRed Devanagari would only add noise.
+    """OCR a scanned paper bilingually (eng+hin) so the Devanagari half of a CBSE
+    paper is recognised as Hindi instead of being mis-read as broken Latin; segment()
+    then keeps the English rendering of each question.
     Returns '' on any failure so the paper stays unattributed rather than guessed."""
     import subprocess
     import tempfile
@@ -128,7 +129,7 @@ def ocr_text(path: str) -> str:
             return ""
         for img in sorted(glob.glob(os.path.join(tmp, "p-*.jpg"))):
             try:
-                out.append(pytesseract.image_to_string(Image.open(img), lang="eng"))
+                out.append(pytesseract.image_to_string(Image.open(img), lang="eng+hin"))
             except Exception:
                 continue
     return "\n".join(out)

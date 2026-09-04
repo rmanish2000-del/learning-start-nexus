@@ -3259,6 +3259,54 @@ export type Database = {
           },
         ]
       }
+      question_auto_verification_archive: {
+        Row: {
+          archive_id: string
+          archive_reason: string
+          archived_at: string
+          checks: Json
+          confidence: number
+          created_at: string
+          created_by: string | null
+          engine_version: string
+          id: string
+          org_id: string
+          outcome: string
+          question_id: string
+          run_id: string
+        }
+        Insert: {
+          archive_id?: string
+          archive_reason: string
+          archived_at?: string
+          checks: Json
+          confidence: number
+          created_at: string
+          created_by?: string | null
+          engine_version: string
+          id: string
+          org_id: string
+          outcome: string
+          question_id: string
+          run_id: string
+        }
+        Update: {
+          archive_id?: string
+          archive_reason?: string
+          archived_at?: string
+          checks?: Json
+          confidence?: number
+          created_at?: string
+          created_by?: string | null
+          engine_version?: string
+          id?: string
+          org_id?: string
+          outcome?: string
+          question_id?: string
+          run_id?: string
+        }
+        Relationships: []
+      }
       question_auto_verifications: {
         Row: {
           checks: Json
