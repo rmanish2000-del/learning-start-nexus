@@ -67,10 +67,12 @@ const SYSTEM_ITEMS: NavItem[] = [
 const SUPPORT_ITEMS: NavItem[] = [
   { to: "/quick-start", label: "Quick Start", icon: Compass, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
   { to: "/help", label: "Help Center", icon: LifeBuoy, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
+  { to: "/role-academy", label: "Role Academy", icon: GraduationCap, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
 ];
 
 const TITLES: [RegExp, string][] = [
   [/^\/ux-phase1-plan/, "UX Phase 1 implementation plan"],
+  [/^\/role-academy/, "Role academy"],
   [/^\/quick-start/, "Quick start"],
   [/^\/help/, "Help center"],
   [/^\/diagnostic-engine-audit/, "Diagnostic engine audit center"],

@@ -45,6 +45,8 @@ export const PROTECTED_ROUTES = [
   "/sme-review",
   "/exam-pattern",
   "/auto-verification",
+  "/pilot-evidence",
+  "/role-academy",
 ] as const;
 
 export function isProtectedPath(pathname: string): boolean {
