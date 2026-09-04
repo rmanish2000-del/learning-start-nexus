@@ -6,10 +6,7 @@
 // profile, role, family or organisation is created — the invitation resolves
 // the parent's EXISTING verified account and nothing else.
 
-import type { SupabaseClient } from "@supabase/supabase-js";
-
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import type { Database } from "@/integrations/supabase/types";
 import {
   invitationState,
   maskEmail,
@@ -17,10 +14,8 @@ import {
   type PilotInvitationView,
 } from "./pilot-invitations-shared";
 
-type Client = SupabaseClient<Database>;
-
 const SELECT =
-  "id, parent_email, learner_id, subject, days, reason, expires_at, accepted_at, accepted_by, revoked_at, created_at, grant_id";
+  "id, parent_email, learner_id, subject, days, reason, expires_at, accepted_at, accepted_by, revoked_at, created_at, created_by, grant_id";
 
 function toBase64Url(bytes: Uint8Array): string {
   let s = "";
@@ -158,7 +153,7 @@ export async function acceptInvitation(input: {
       learner_id: row.learner_id,
       subject: row.subject,
       grant_reason: row.reason,
-      granted_by: row.id ? await createdBy(row.id) : input.userId,
+      granted_by: row.created_by,
       expires_at: new Date(Date.now() + row.days * 86_400_000).toISOString(),
     })
     .select("id")
@@ -177,16 +172,6 @@ export async function acceptInvitation(input: {
   await supabaseAdmin.from("pilot_invitations").update({ grant_id: grant.id }).eq("id", row.id);
 
   return { state: "accepted", grantId: grant.id };
-}
-
-/** The admin who issued the invitation stays the granting authority. */
-async function createdBy(invitationId: string): Promise<string> {
-  const { data } = await supabaseAdmin
-    .from("pilot_invitations")
-    .select("created_by")
-    .eq("id", invitationId)
-    .single();
-  return data!.created_by;
 }
 
 export async function revokeInvitation(input: {
@@ -228,6 +213,3 @@ export async function listInvitations(): Promise<PilotInvitationView[]> {
     state: invitationState(r),
   }));
 }
-
-/** Unused: kept for symmetry with other pilot readers. */
-export type { Client };
