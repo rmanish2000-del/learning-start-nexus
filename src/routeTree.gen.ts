@@ -54,6 +54,7 @@ import { Route as AuthenticatedQuestionBankRouteImport } from './routes/_authent
 import { Route as AuthenticatedQuestionBankAuditRouteImport } from './routes/_authenticated/question-bank-audit'
 import { Route as AuthenticatedQuickStartRouteImport } from './routes/_authenticated/quick-start'
 import { Route as AuthenticatedRlsVerificationRouteImport } from './routes/_authenticated/rls-verification'
+import { Route as AuthenticatedRoleAcademyRouteImport } from './routes/_authenticated/role-academy'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedSprint3AuditRouteImport } from './routes/_authenticated/sprint-3-audit'
 import { Route as AuthenticatedSprint4AuditRouteImport } from './routes/_authenticated/sprint-4-audit'
@@ -332,6 +333,12 @@ const AuthenticatedRlsVerificationRoute =
     path: '/rls-verification',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedRoleAcademyRoute =
+  AuthenticatedRoleAcademyRouteImport.update({
+    id: '/role-academy',
+    path: '/role-academy',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -517,6 +524,7 @@ export interface FileRoutesByFullPath {
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
   '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
+  '/role-academy': typeof AuthenticatedRoleAcademyRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
@@ -588,6 +596,7 @@ export interface FileRoutesByTo {
   '/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
   '/quick-start': typeof AuthenticatedQuickStartRoute
   '/rls-verification': typeof AuthenticatedRlsVerificationRoute
+  '/role-academy': typeof AuthenticatedRoleAcademyRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
@@ -661,6 +670,7 @@ export interface FileRoutesById {
   '/_authenticated/question-bank-audit': typeof AuthenticatedQuestionBankAuditRoute
   '/_authenticated/quick-start': typeof AuthenticatedQuickStartRoute
   '/_authenticated/rls-verification': typeof AuthenticatedRlsVerificationRoute
+  '/_authenticated/role-academy': typeof AuthenticatedRoleAcademyRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/sprint-3-audit': typeof AuthenticatedSprint3AuditRoute
   '/_authenticated/sprint-4-audit': typeof AuthenticatedSprint4AuditRoute
@@ -734,6 +744,7 @@ export interface FileRouteTypes {
     | '/question-bank-audit'
     | '/quick-start'
     | '/rls-verification'
+    | '/role-academy'
     | '/settings'
     | '/sprint-3-audit'
     | '/sprint-4-audit'
@@ -805,6 +816,7 @@ export interface FileRouteTypes {
     | '/question-bank-audit'
     | '/quick-start'
     | '/rls-verification'
+    | '/role-academy'
     | '/settings'
     | '/sprint-3-audit'
     | '/sprint-4-audit'
@@ -877,6 +889,7 @@ export interface FileRouteTypes {
     | '/_authenticated/question-bank-audit'
     | '/_authenticated/quick-start'
     | '/_authenticated/rls-verification'
+    | '/_authenticated/role-academy'
     | '/_authenticated/settings'
     | '/_authenticated/sprint-3-audit'
     | '/_authenticated/sprint-4-audit'
@@ -1247,6 +1260,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRlsVerificationRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/role-academy': {
+      id: '/_authenticated/role-academy'
+      path: '/role-academy'
+      fullPath: '/role-academy'
+      preLoaderRoute: typeof AuthenticatedRoleAcademyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
@@ -1473,6 +1493,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedQuestionBankAuditRoute: typeof AuthenticatedQuestionBankAuditRoute
   AuthenticatedQuickStartRoute: typeof AuthenticatedQuickStartRoute
   AuthenticatedRlsVerificationRoute: typeof AuthenticatedRlsVerificationRoute
+  AuthenticatedRoleAcademyRoute: typeof AuthenticatedRoleAcademyRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedSprint3AuditRoute: typeof AuthenticatedSprint3AuditRoute
   AuthenticatedSprint4AuditRoute: typeof AuthenticatedSprint4AuditRoute
@@ -1526,6 +1547,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedQuestionBankAuditRoute: AuthenticatedQuestionBankAuditRoute,
   AuthenticatedQuickStartRoute: AuthenticatedQuickStartRoute,
   AuthenticatedRlsVerificationRoute: AuthenticatedRlsVerificationRoute,
+  AuthenticatedRoleAcademyRoute: AuthenticatedRoleAcademyRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedSprint3AuditRoute: AuthenticatedSprint3AuditRoute,
   AuthenticatedSprint4AuditRoute: AuthenticatedSprint4AuditRoute,
