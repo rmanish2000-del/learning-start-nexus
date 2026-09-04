@@ -173,9 +173,14 @@ export async function applyAutoVerification(
     created_by: ctx.userId,
   }));
   for (let i = 0; i < logRows.length; i += 100) {
+    // Idempotent: (question_id, engine_version, outcome) is unique, so re-running
+    // the same engine over the same corpus never writes duplicate evidence.
     const { error: logError } = await supabase
       .from("question_auto_verifications")
-      .insert(logRows.slice(i, i + 100));
+      .upsert(logRows.slice(i, i + 100), {
+        onConflict: "question_id,engine_version,outcome",
+        ignoreDuplicates: true,
+      });
     if (logError) throw new Error(logError.message);
   }
 
