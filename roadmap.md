@@ -64,3 +64,12 @@ rollback and official curriculum correctness.
 - [ ] Exclude Maths Basic 241, sample papers, marking schemes, compartment/Second Board
 - [ ] Store binaries privately (never in public bundle); no question text imported
 - [ ] Deliver source register (JSON/CSV), SHA256SUMS, extraction inventory, missing-files CSV, contamination + pattern alignment reports
+
+## Role Academy (2026-09-04) — complete
+
+- [x] `/role-academy` (authenticated, all five roles) — screen-by-screen purpose, actions, outputs, permissions, before/after and "Try it" per stage, plus internal tester scenarios.
+- [x] Content lives in `src/lib/role-academy.ts`; reuses the existing tour/intro/quick-start/help engine — no parallel portal, no second onboarding framework.
+- [x] Newer production surfaces documented and given contextual help: `/pilot-access`, `/exam-pattern`, `/auto-verification`, `/sme-review`.
+- [x] Credit stated as ₹199 (repository was already correct; the ₹200 figure existed only in the Figma package). No `[VERIFY]` markers remain in shipped guidance.
+- [x] Guard test `src/lib/__tests__/role-academy.test.ts`: every link resolves to a real route and passes that role's own gate.
+- [x] Full suite 34 files / 389 tests, typecheck clean, security scan unchanged (two pre-existing warnings).
