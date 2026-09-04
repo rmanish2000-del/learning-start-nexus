@@ -2,6 +2,7 @@
 // explicit action that promotes high-confidence drafts to "EduOS verified".
 // Admin (write) / reviewer (read) only. Named-SME certification is unaffected.
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ContextHelp } from "@/components/context-help";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { BadgeCheck, PlayCircle, ShieldAlert } from "lucide-react";
@@ -71,7 +72,10 @@ function AutoVerificationPage() {
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-2xl font-semibold tracking-tight">Automated verification</h1>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h1 className="text-2xl font-semibold tracking-tight">Automated verification</h1>
+          <ContextHelp page="/auto-verification" />
+        </div>
         <p className="text-muted-foreground max-w-3xl text-sm">
           Engine v{AUTO_VERIFICATION_ENGINE_VERSION}. Every draft is checked for answer
           correctness, curriculum alignment, distractor and explanation quality, ambiguity,

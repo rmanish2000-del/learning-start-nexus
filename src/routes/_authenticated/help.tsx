@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
-import { ChevronDown, Compass, LifeBuoy, Search, SearchX, Sparkles } from "lucide-react";
+import { ChevronDown, Compass, GraduationCap, LifeBuoy, Search, SearchX, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -151,6 +151,11 @@ function HelpCenterPage() {
           <Button asChild variant="outline" size="sm" className="gap-1.5">
             <Link to="/quick-start">
               <Compass className="h-3.5 w-3.5" /> My quick start
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="sm" className="gap-1.5">
+            <Link to="/role-academy">
+              <GraduationCap className="h-3.5 w-3.5" /> Role Academy
             </Link>
           </Button>
           <Button variant="outline" size="sm" className="gap-1.5" onClick={requestIntro}>

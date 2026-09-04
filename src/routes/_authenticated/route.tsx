@@ -14,7 +14,13 @@ import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { AppShell } from "@/components/app-shell";
 
 /** Parents are portal-only, but support pages stay open to them. */
-const PARENT_ALLOWED_PATHS = ["/parent", "/quick-start", "/help", "/outcome-proof"] as const;
+const PARENT_ALLOWED_PATHS = [
+  "/parent",
+  "/quick-start",
+  "/help",
+  "/role-academy",
+  "/outcome-proof",
+] as const;
 
 export const Route = createFileRoute("/_authenticated")({
   ssr: false,

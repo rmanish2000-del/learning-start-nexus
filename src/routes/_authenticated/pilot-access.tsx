@@ -10,6 +10,7 @@ import { CalendarClock, ShieldCheck, Ticket } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { ContextHelp } from "@/components/context-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -117,7 +118,10 @@ function PilotAccessPage() {
   return (
     <div className="space-y-6">
       <header className="space-y-1">
-        <h1 className="text-2xl font-semibold tracking-tight">Pilot access</h1>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h1 className="text-2xl font-semibold tracking-tight">Pilot access</h1>
+          <ContextHelp page="/pilot-access" />
+        </div>
         <p className="text-sm text-muted-foreground">
           Selected families get the complete journey — diagnostic, report, gaps, Study Plan, AI Tutor and
           reassessment — free. No order, payment or invoice is ever created.
