@@ -333,6 +333,9 @@ export const generateDiagnosticSchema = z.object({
   unitId: z.string().uuid(),
   template: z.enum(["diagnostic", "reassessment"]),
   totalQuestions: z.number().int().min(3).max(30),
+  // Publishing requires a duration (assessment-lifecycle publish gate), so the
+  // engine always stamps one; the caller may override it.
+  timeLimitMinutes: z.number().int().min(5).max(180).optional(),
   baselineAssessmentId: z.string().uuid().optional(),
   title: z.string().trim().min(3).max(120).optional(),
   publishNow: z.boolean(),

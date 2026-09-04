@@ -76,11 +76,14 @@ export async function openOutcomeForIntervention(
     .select("id, baseline_score, reassessment_session_id")
     .eq("intervention_id", interventionId)
     .maybeSingle();
-  if (existing) {
+  // An outcome opened before a reassessment existed for the unit would stay
+  // stranded forever, so only short-circuit once a reassessment is attached;
+  // otherwise fall through and retry the assignment (idempotent).
+  if (existing?.reassessment_session_id) {
     return {
       outcomeId: existing.id as string,
       created: false,
-      reassessmentSessionId: (existing.reassessment_session_id as string | null) ?? null,
+      reassessmentSessionId: existing.reassessment_session_id as string,
       reassessmentAssigned: false,
       baselineScore: existing.baseline_score as number,
     };
@@ -126,7 +129,9 @@ export async function openOutcomeForIntervention(
     }
   }
 
-  const { data: outcome, error: insError } = await outcomesTable(admin)
+  const { data: inserted, error: insError } = existing
+    ? { data: { id: existing.id as string }, error: null }
+    : await outcomesTable(admin)
     .insert({
       org_id: intervention.org_id,
       learner_id: intervention.learner_id,
@@ -142,6 +147,7 @@ export async function openOutcomeForIntervention(
     .select("id")
     .single();
   if (insError) throw new Error(insError.message);
+  const outcome = inserted as { id: string };
 
   // Assign the published reassessment for this org, linked to the
   // intervention. Curriculum baselines match on book + unit first; the
@@ -222,7 +228,7 @@ export async function openOutcomeForIntervention(
 
   return {
     outcomeId: outcome.id as string,
-    created: true,
+    created: !existing,
     reassessmentSessionId,
     reassessmentAssigned,
     baselineScore,

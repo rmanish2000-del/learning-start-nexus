@@ -36,6 +36,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { publishAssessment } from "@/lib/assessments.functions";
 import {
   generateDiagnosticFn,
   getDiagnosticBooksFn,
@@ -89,6 +90,8 @@ function DiagnosticEnginePage() {
   const canGenerate = role === "admin" || role === "educator";
   const queryClient = useQueryClient();
   const generate = useServerFn(generateDiagnosticFn);
+  const publish = useServerFn(publishAssessment);
+
 
   const [board, setBoard] = useState<string | null>(null);
   const [grade, setGrade] = useState<number | null>(null);
@@ -176,9 +179,23 @@ function DiagnosticEnginePage() {
           publishNow,
         },
       });
-      toast.success(
-        `${DIAGNOSTIC_TEMPLATE_LABELS[template]} generated — ${result.questionCount} questions mapped. Nothing was assigned.`,
-      );
+      if (publishNow) {
+        // Publication runs through the shared server-gated lifecycle.
+        const published = await publish({ data: { assessmentId: result.assessmentId } });
+        if (published.ok) {
+          toast.success(
+            `${DIAGNOSTIC_TEMPLATE_LABELS[template]} published — ${result.questionCount} questions mapped. Nothing was assigned.`,
+          );
+        } else {
+          toast.error(
+            `Saved as draft — publish blocked: ${published.blockers.map((b) => b.message).join(" ")}`,
+          );
+        }
+      } else {
+        toast.success(
+          `${DIAGNOSTIC_TEMPLATE_LABELS[template]} saved as draft — ${result.questionCount} questions mapped. Nothing was assigned.`,
+        );
+      }
       await queryClient.invalidateQueries({ queryKey: ["diagnostic-workspace"] });
     } catch (error) {
       toast.error(friendlyErrorMessage(error, "Generation failed."));
