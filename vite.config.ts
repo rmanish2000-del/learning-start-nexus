@@ -71,7 +71,7 @@ export default defineConfig({
                 ["style", "script", "font", "image"].includes(request.destination),
               handler: "CacheFirst",
               options: {
-                cacheName: "eduos-static-v1",
+                cacheName: "eduos-static-v2",
                 expiration: { maxEntries: 120, maxAgeSeconds: 60 * 60 * 24 * 30 },
               },
             },
