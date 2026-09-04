@@ -306,4 +306,55 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
     ],
     tourId: "parent-portal",
   },
+  "/exam-pattern": {
+    title: "Exam pattern practice",
+    tips: [
+      "Choose a subject, then a chapter or a full paper. Chapter weights come from official CBSE Class 10 papers.",
+      "Only EduOS-verified questions appear here — quarantined drafts can never reach practice.",
+      "Full papers are timed; chapter practice is not. Both save to your attempt history for review.",
+    ],
+    next: [
+      "Pick the subject you want to practise.",
+      "Start a chapter practice, or a full timed paper if you have the time.",
+      "Review your answers afterwards and go back to your focus plan.",
+    ],
+  },
+  "/pilot-access": {
+    title: "Pilot access",
+    tips: [
+      "Pilot access grants a complete free journey. No order, payment or invoice is created, so pilot families stay out of revenue reporting.",
+      "The family must already have an EduOS parent account before you can grant access.",
+      "Revoking stops access immediately; the family's history is preserved.",
+    ],
+    next: [
+      "Grant access by parent email, with a clear reason.",
+      "Leave the subject blank to cover both subjects.",
+      "Extend or revoke existing grants from the list below.",
+    ],
+  },
+  "/auto-verification": {
+    title: "Automated verification",
+    tips: [
+      "Every draft is machine-checked for answer correctness, curriculum alignment, quality, duplication and pool separation.",
+      "Only items passing every machine-checkable test with strong evidence become EduOS verified.",
+      "Everything else is held for named SME review — no automated decision is ever attributed to a person.",
+    ],
+    next: [
+      "Read the approved and held counts for the current run.",
+      "Open SME review for the items that need a subject expert.",
+      "Cross-check a verified item in the Question Bank.",
+    ],
+  },
+  "/sme-review": {
+    title: "SME review",
+    tips: [
+      "Subject-matter review covers exactly the items automated verification could not approve on its own.",
+      "Each item is shown with its curriculum mapping so the decision is traceable.",
+    ],
+    next: [
+      "Pick Mathematics or Science.",
+      "Work through held items in order.",
+      "Return to Automated verification to see the effect on approved counts.",
+    ],
+  },
 };
