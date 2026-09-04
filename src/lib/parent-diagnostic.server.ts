@@ -13,6 +13,7 @@
 
 import { isSubjectPurchasable } from "./catalogue.server";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { regenerateRecommendations } from "./interventions.server";
 import { buildDiagnosticPlan, type EngineOutcome } from "./diagnostic-shared";
 import {
   DIAGNOSTIC_QUESTION_MINIMUM,
