@@ -232,7 +232,7 @@ function DiagnosticEnginePage() {
           </CardTitle>
           <CardDescription>Board → Grade → Subject → Book, then pick the unit.</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 [&>div]:min-w-0">
           <div className="space-y-1.5">
             <Label>Board</Label>
             <Select
@@ -346,7 +346,7 @@ function DiagnosticEnginePage() {
               </CardTitle>
               <CardDescription>{DIAGNOSTIC_TEMPLATE_DESCRIPTIONS[template]}</CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6 lg:grid-cols-3">
+            <CardContent className="grid gap-6 lg:grid-cols-3 [&>div]:min-w-0">
               <div className="space-y-3">
                 <Label>Template</Label>
                 <RadioGroup
@@ -540,13 +540,13 @@ function DiagnosticEnginePage() {
                 {plan.risks.map((r) => (
                   <div
                     key={r.outcomeId}
-                    className="flex items-center justify-between gap-2 rounded-lg border p-2.5"
+                    className="flex flex-col gap-2 rounded-lg border p-2.5 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="min-w-0">
                       <p className="font-mono text-xs">{r.code}</p>
-                      <p className="truncate text-xs text-muted-foreground">{r.title}</p>
+                      <p className="text-xs break-words text-muted-foreground">{r.title}</p>
                     </div>
-                    <div className="flex shrink-0 items-center gap-2">
+                    <div className="flex shrink-0 flex-wrap items-center gap-2">
                       <span className="text-xs tabular-nums text-muted-foreground">
                         {r.weight}% × D{r.difficulty} = {r.riskScore}
                       </span>
