@@ -3854,6 +3854,7 @@ export type Database = {
         Args: { _learner_id: string; _subject?: string }
         Returns: boolean
       }
+      profile_phone: { Args: { _user_id: string }; Returns: string }
       tutor_evidence_by_gap: {
         Args: never
         Returns: {
