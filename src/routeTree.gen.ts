@@ -63,6 +63,7 @@ import { Route as AuthenticatedUxPhase1PlanRouteImport } from './routes/_authent
 import { Route as AuthenticatedVerificationRouteImport } from './routes/_authenticated/verification'
 import { Route as DiagnosticIndexRouteImport } from './routes/diagnostic.index'
 import { Route as FreeCheckCheckIdRouteImport } from './routes/free-check.$checkId'
+import { Route as PilotInviteTokenRouteImport } from './routes/pilot-invite.$token'
 import { Route as UpgradeTokenRouteImport } from './routes/upgrade.$token'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
@@ -384,6 +385,11 @@ const FreeCheckCheckIdRoute = FreeCheckCheckIdRouteImport.update({
   path: '/free-check/$checkId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PilotInviteTokenRoute = PilotInviteTokenRouteImport.update({
+  id: '/pilot-invite/$token',
+  path: '/pilot-invite/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UpgradeTokenRoute = UpgradeTokenRouteImport.update({
   id: '/upgrade/$token',
   path: '/upgrade/$token',
@@ -532,6 +538,7 @@ export interface FileRoutesByFullPath {
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
   '/free-check/$checkId': typeof FreeCheckCheckIdRoute
+  '/pilot-invite/$token': typeof PilotInviteTokenRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
@@ -604,6 +611,7 @@ export interface FileRoutesByTo {
   '/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/verification': typeof AuthenticatedVerificationRoute
   '/free-check/$checkId': typeof FreeCheckCheckIdRoute
+  '/pilot-invite/$token': typeof PilotInviteTokenRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic': typeof DiagnosticIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
@@ -678,6 +686,7 @@ export interface FileRoutesById {
   '/_authenticated/ux-phase1-plan': typeof AuthenticatedUxPhase1PlanRoute
   '/_authenticated/verification': typeof AuthenticatedVerificationRoute
   '/free-check/$checkId': typeof FreeCheckCheckIdRoute
+  '/pilot-invite/$token': typeof PilotInviteTokenRoute
   '/upgrade/$token': typeof UpgradeTokenRoute
   '/diagnostic/': typeof DiagnosticIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
@@ -752,6 +761,7 @@ export interface FileRouteTypes {
     | '/ux-phase1-plan'
     | '/verification'
     | '/free-check/$checkId'
+    | '/pilot-invite/$token'
     | '/upgrade/$token'
     | '/diagnostic/'
     | '/.lovable/oauth/consent'
@@ -824,6 +834,7 @@ export interface FileRouteTypes {
     | '/ux-phase1-plan'
     | '/verification'
     | '/free-check/$checkId'
+    | '/pilot-invite/$token'
     | '/upgrade/$token'
     | '/diagnostic'
     | '/.lovable/oauth/consent'
@@ -897,6 +908,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ux-phase1-plan'
     | '/_authenticated/verification'
     | '/free-check/$checkId'
+    | '/pilot-invite/$token'
     | '/upgrade/$token'
     | '/diagnostic/'
     | '/.lovable/oauth/consent'
@@ -930,6 +942,7 @@ export interface RootRouteChildren {
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   FreeCheckCheckIdRoute: typeof FreeCheckCheckIdRoute
+  PilotInviteTokenRoute: typeof PilotInviteTokenRoute
   UpgradeTokenRoute: typeof UpgradeTokenRoute
   DiagnosticIndexRoute: typeof DiagnosticIndexRoute
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
@@ -1323,6 +1336,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FreeCheckCheckIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pilot-invite/$token': {
+      id: '/pilot-invite/$token'
+      path: '/pilot-invite/$token'
+      fullPath: '/pilot-invite/$token'
+      preLoaderRoute: typeof PilotInviteTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upgrade/$token': {
       id: '/upgrade/$token'
       path: '/upgrade/$token'
@@ -1580,6 +1600,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
   FreeCheckCheckIdRoute: FreeCheckCheckIdRoute,
+  PilotInviteTokenRoute: PilotInviteTokenRoute,
   UpgradeTokenRoute: UpgradeTokenRoute,
   DiagnosticIndexRoute: DiagnosticIndexRoute,
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
