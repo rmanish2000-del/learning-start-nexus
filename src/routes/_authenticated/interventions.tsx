@@ -193,8 +193,8 @@ function InterventionsPage() {
       {/* UX-04 · Prioritised intervention queue */}
       <Card data-testid="intervention-queue">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-base">
-            <Clock className="h-4 w-4 text-primary" /> Priority queue
+          <CardTitle className="flex flex-wrap items-center gap-2 text-base">
+            <Clock className="h-4 w-4 shrink-0 text-primary" /> Priority queue
             <Badge variant={workQueue && workQueue.needAction > 0 ? "destructive" : "secondary"}>
               {workQueue?.needAction ?? 0} need action today
             </Badge>
@@ -207,32 +207,35 @@ function InterventionsPage() {
             (workQueue?.rows ?? []).map((row, index) => (
               <div
                 key={row.interventionId}
-                className="flex flex-wrap items-start gap-3 rounded-lg border p-3"
+                className="flex flex-col gap-3 rounded-lg border p-3 sm:flex-row sm:items-start"
               >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold tabular-nums">
-                  {index + 1}
-                </span>
-                <div className="min-w-0 flex-1 space-y-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Link
-                      to="/learners/$learnerId"
-                      params={{ learnerId: row.learnerId }}
-                      className="text-sm font-medium hover:underline"
-                    >
-                      {row.learnerName}
-                    </Link>
-                    {statusBadge(row.status)}
-                    {row.severity ? severityBadge(row.severity) : null}
-                    {row.needsActionToday && <Badge variant="destructive">Stalled</Badge>}
+                <div className="flex min-w-0 flex-1 items-start gap-3">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold tabular-nums">
+                    {index + 1}
+                  </span>
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Link
+                        to="/learners/$learnerId"
+                        params={{ learnerId: row.learnerId }}
+                        className="text-sm font-medium hover:underline"
+                      >
+                        {row.learnerName}
+                      </Link>
+                      {statusBadge(row.status)}
+                      {row.severity ? severityBadge(row.severity) : null}
+                      {row.needsActionToday && <Badge variant="destructive">Stalled</Badge>}
+                    </div>
+                    <p className="text-sm break-words text-muted-foreground">{row.title}</p>
+                    <p className="text-xs break-words text-muted-foreground tabular-nums">
+                      {row.subtopic ?? "—"}
+                      {row.subject ? ` · ${row.subject}` : ""} · {row.daysInPhase}d in phase · mastery{" "}
+                      {row.mastery}% · urgency {row.urgency}
+                    </p>
                   </div>
-                  <p className="text-sm text-muted-foreground">{row.title}</p>
-                  <p className="text-xs text-muted-foreground tabular-nums">
-                    {row.subtopic ?? "—"}
-                    {row.subject ? ` · ${row.subject}` : ""} · {row.daysInPhase}d in phase · mastery{" "}
-                    {row.mastery}% · urgency {row.urgency}
-                  </p>
                 </div>
-                <div className="flex shrink-0 gap-2">
+                <div className="flex shrink-0 flex-wrap gap-2 sm:justify-end">
+
                   {row.status === "planned" && (
                     <Button
                       size="sm"
