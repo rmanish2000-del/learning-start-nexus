@@ -250,7 +250,12 @@ export async function generateDiagnostic(
       topic: unitRes.data.title,
       grade: bookRes.data.grade,
       kind: input.template,
-      status: input.publishNow ? "published" : "draft",
+      // Generation always produces a draft. Publication runs through the
+      // server-gated publishAssessment lifecycle so the same blockers
+      // (verified questions, duplicates, duration, title) always apply.
+      status: "draft",
+      time_limit_minutes:
+        input.timeLimitMinutes ?? Math.max(15, plan.plannedQuestionIds.length * 2),
       book_id: input.bookId,
       unit_id: input.unitId,
     })
