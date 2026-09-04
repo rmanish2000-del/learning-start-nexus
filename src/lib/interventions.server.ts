@@ -199,7 +199,9 @@ export async function regenerateRecommendations(
     const content = mapped
       ? {
           rule_id: `imap:${mapped.outcomeId}`,
-          priority: mapped.priority,
+          // recommendations.priority is constrained to 1|2; the intervention
+          // map uses a wider 1..n ordering, so clamp instead of failing.
+          priority: mapped.priority <= 1 ? 1 : 2,
           title: `Intervention: ${mapped.outcomeTitle}`,
           activity: mapped.intervention,
           rationale: `${mapped.failurePattern} — ${rationaleFor(gap)}`,
