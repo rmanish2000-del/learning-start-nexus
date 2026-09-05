@@ -13,9 +13,16 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CbseClass10LearningGapDiagnosticRouteImport } from './routes/cbse-class-10-learning-gap-diagnostic'
+import { Route as CbsePaperPracticeRouteImport } from './routes/cbse-paper-practice'
+import { Route as Class10MathsDiagnosticRouteImport } from './routes/class-10-maths-diagnostic'
+import { Route as Class10ScienceDiagnosticRouteImport } from './routes/class-10-science-diagnostic'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FreeLearningCheckRouteImport } from './routes/free-learning-check'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as ParentGuideLearningGapsRouteImport } from './routes/parent-guide-learning-gaps'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ReassessmentAndEvidenceRouteImport } from './routes/reassessment-and-evidence'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
@@ -102,9 +109,36 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CbseClass10LearningGapDiagnosticRoute =
+  CbseClass10LearningGapDiagnosticRouteImport.update({
+    id: '/cbse-class-10-learning-gap-diagnostic',
+    path: '/cbse-class-10-learning-gap-diagnostic',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CbsePaperPracticeRoute = CbsePaperPracticeRouteImport.update({
+  id: '/cbse-paper-practice',
+  path: '/cbse-paper-practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Class10MathsDiagnosticRoute = Class10MathsDiagnosticRouteImport.update({
+  id: '/class-10-maths-diagnostic',
+  path: '/class-10-maths-diagnostic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Class10ScienceDiagnosticRoute =
+  Class10ScienceDiagnosticRouteImport.update({
+    id: '/class-10-science-diagnostic',
+    path: '/class-10-science-diagnostic',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeLearningCheckRoute = FreeLearningCheckRouteImport.update({
+  id: '/free-learning-check',
+  path: '/free-learning-check',
   getParentRoute: () => rootRouteImport,
 } as any)
 const McpRoute = McpRouteImport.update({
@@ -112,9 +146,19 @@ const McpRoute = McpRouteImport.update({
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParentGuideLearningGapsRoute = ParentGuideLearningGapsRouteImport.update({
+  id: '/parent-guide-learning-gaps',
+  path: '/parent-guide-learning-gaps',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReassessmentAndEvidenceRoute = ReassessmentAndEvidenceRouteImport.update({
+  id: '/reassessment-and-evidence',
+  path: '/reassessment-and-evidence',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -496,9 +540,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/cbse-class-10-learning-gap-diagnostic': typeof CbseClass10LearningGapDiagnosticRoute
+  '/cbse-paper-practice': typeof CbsePaperPracticeRoute
+  '/class-10-maths-diagnostic': typeof Class10MathsDiagnosticRoute
+  '/class-10-science-diagnostic': typeof Class10ScienceDiagnosticRoute
   '/contact': typeof ContactRoute
+  '/free-learning-check': typeof FreeLearningCheckRoute
   '/mcp': typeof McpRoute
+  '/parent-guide-learning-gaps': typeof ParentGuideLearningGapsRoute
   '/privacy': typeof PrivacyRoute
+  '/reassessment-and-evidence': typeof ReassessmentAndEvidenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -570,9 +621,16 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/cbse-class-10-learning-gap-diagnostic': typeof CbseClass10LearningGapDiagnosticRoute
+  '/cbse-paper-practice': typeof CbsePaperPracticeRoute
+  '/class-10-maths-diagnostic': typeof Class10MathsDiagnosticRoute
+  '/class-10-science-diagnostic': typeof Class10ScienceDiagnosticRoute
   '/contact': typeof ContactRoute
+  '/free-learning-check': typeof FreeLearningCheckRoute
   '/mcp': typeof McpRoute
+  '/parent-guide-learning-gaps': typeof ParentGuideLearningGapsRoute
   '/privacy': typeof PrivacyRoute
+  '/reassessment-and-evidence': typeof ReassessmentAndEvidenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -646,9 +704,16 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/cbse-class-10-learning-gap-diagnostic': typeof CbseClass10LearningGapDiagnosticRoute
+  '/cbse-paper-practice': typeof CbsePaperPracticeRoute
+  '/class-10-maths-diagnostic': typeof Class10MathsDiagnosticRoute
+  '/class-10-science-diagnostic': typeof Class10ScienceDiagnosticRoute
   '/contact': typeof ContactRoute
+  '/free-learning-check': typeof FreeLearningCheckRoute
   '/mcp': typeof McpRoute
+  '/parent-guide-learning-gaps': typeof ParentGuideLearningGapsRoute
   '/privacy': typeof PrivacyRoute
+  '/reassessment-and-evidence': typeof ReassessmentAndEvidenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -722,9 +787,16 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/cbse-class-10-learning-gap-diagnostic'
+    | '/cbse-paper-practice'
+    | '/class-10-maths-diagnostic'
+    | '/class-10-science-diagnostic'
     | '/contact'
+    | '/free-learning-check'
     | '/mcp'
+    | '/parent-guide-learning-gaps'
     | '/privacy'
+    | '/reassessment-and-evidence'
     | '/sitemap.xml'
     | '/terms'
     | '/.mcp/list-tools'
@@ -796,9 +868,16 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/cbse-class-10-learning-gap-diagnostic'
+    | '/cbse-paper-practice'
+    | '/class-10-maths-diagnostic'
+    | '/class-10-science-diagnostic'
     | '/contact'
+    | '/free-learning-check'
     | '/mcp'
+    | '/parent-guide-learning-gaps'
     | '/privacy'
+    | '/reassessment-and-evidence'
     | '/sitemap.xml'
     | '/terms'
     | '/.mcp/list-tools'
@@ -871,9 +950,16 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/about'
     | '/auth'
+    | '/cbse-class-10-learning-gap-diagnostic'
+    | '/cbse-paper-practice'
+    | '/class-10-maths-diagnostic'
+    | '/class-10-science-diagnostic'
     | '/contact'
+    | '/free-learning-check'
     | '/mcp'
+    | '/parent-guide-learning-gaps'
     | '/privacy'
+    | '/reassessment-and-evidence'
     | '/sitemap.xml'
     | '/terms'
     | '/.mcp/list-tools'
@@ -947,9 +1033,16 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  CbseClass10LearningGapDiagnosticRoute: typeof CbseClass10LearningGapDiagnosticRoute
+  CbsePaperPracticeRoute: typeof CbsePaperPracticeRoute
+  Class10MathsDiagnosticRoute: typeof Class10MathsDiagnosticRoute
+  Class10ScienceDiagnosticRoute: typeof Class10ScienceDiagnosticRoute
   ContactRoute: typeof ContactRoute
+  FreeLearningCheckRoute: typeof FreeLearningCheckRoute
   McpRoute: typeof McpRoute
+  ParentGuideLearningGapsRoute: typeof ParentGuideLearningGapsRoute
   PrivacyRoute: typeof PrivacyRoute
+  ReassessmentAndEvidenceRoute: typeof ReassessmentAndEvidenceRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
@@ -999,11 +1092,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cbse-class-10-learning-gap-diagnostic': {
+      id: '/cbse-class-10-learning-gap-diagnostic'
+      path: '/cbse-class-10-learning-gap-diagnostic'
+      fullPath: '/cbse-class-10-learning-gap-diagnostic'
+      preLoaderRoute: typeof CbseClass10LearningGapDiagnosticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cbse-paper-practice': {
+      id: '/cbse-paper-practice'
+      path: '/cbse-paper-practice'
+      fullPath: '/cbse-paper-practice'
+      preLoaderRoute: typeof CbsePaperPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/class-10-maths-diagnostic': {
+      id: '/class-10-maths-diagnostic'
+      path: '/class-10-maths-diagnostic'
+      fullPath: '/class-10-maths-diagnostic'
+      preLoaderRoute: typeof Class10MathsDiagnosticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/class-10-science-diagnostic': {
+      id: '/class-10-science-diagnostic'
+      path: '/class-10-science-diagnostic'
+      fullPath: '/class-10-science-diagnostic'
+      preLoaderRoute: typeof Class10ScienceDiagnosticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-learning-check': {
+      id: '/free-learning-check'
+      path: '/free-learning-check'
+      fullPath: '/free-learning-check'
+      preLoaderRoute: typeof FreeLearningCheckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mcp': {
@@ -1013,11 +1141,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parent-guide-learning-gaps': {
+      id: '/parent-guide-learning-gaps'
+      path: '/parent-guide-learning-gaps'
+      fullPath: '/parent-guide-learning-gaps'
+      preLoaderRoute: typeof ParentGuideLearningGapsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reassessment-and-evidence': {
+      id: '/reassessment-and-evidence'
+      path: '/reassessment-and-evidence'
+      fullPath: '/reassessment-and-evidence'
+      preLoaderRoute: typeof ReassessmentAndEvidenceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -1613,9 +1755,16 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  CbseClass10LearningGapDiagnosticRoute: CbseClass10LearningGapDiagnosticRoute,
+  CbsePaperPracticeRoute: CbsePaperPracticeRoute,
+  Class10MathsDiagnosticRoute: Class10MathsDiagnosticRoute,
+  Class10ScienceDiagnosticRoute: Class10ScienceDiagnosticRoute,
   ContactRoute: ContactRoute,
+  FreeLearningCheckRoute: FreeLearningCheckRoute,
   McpRoute: McpRoute,
+  ParentGuideLearningGapsRoute: ParentGuideLearningGapsRoute,
   PrivacyRoute: PrivacyRoute,
+  ReassessmentAndEvidenceRoute: ReassessmentAndEvidenceRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,

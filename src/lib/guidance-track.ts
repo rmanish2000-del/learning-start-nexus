@@ -4,6 +4,7 @@
 import { clientContext, sessionHash } from "@/lib/client-context";
 import { recordGuidanceEventFn } from "@/lib/feedback.functions";
 import type { GuidanceCta, GuidanceEventName } from "@/lib/guidance-analytics";
+import { currentAttribution } from "@/lib/utm";
 
 export function trackGuidance(
   name: GuidanceEventName,
@@ -11,6 +12,7 @@ export function trackGuidance(
 ): void {
   if (typeof window === "undefined") return;
   const ctx = clientContext();
+  const attribution = currentAttribution();
   const payload = {
     name,
     route: options.route ?? window.location.pathname,
@@ -21,9 +23,11 @@ export function trackGuidance(
     appVersion: ctx.appVersion,
     sessionHash: sessionHash(),
     isAuthenticated: isSignedIn(),
+    ...attribution,
   };
   void recordGuidanceEventFn({ data: payload }).catch(() => undefined);
 }
+
 
 /** Coarse anonymous/signed-in flag from the non-sensitive session marker cookie. */
 function isSignedIn(): boolean {

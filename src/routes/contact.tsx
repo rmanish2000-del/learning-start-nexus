@@ -3,6 +3,8 @@ import { Mail, MapPin, Phone, ShieldQuestion } from "lucide-react";
 import { useState } from "react";
 
 import { PublicPageLayout } from "@/components/public-layout";
+import { breadcrumbLd, organizationLd, pageHead } from "@/lib/seo";
+
 import { Button } from "@/components/ui/button";
 
 /** Enquiry types are presentation only — every route still lands in the same inbox. */
@@ -24,42 +26,17 @@ export const Route = createFileRoute("/contact")({
     const topic = ENQUIRY_TYPES.find((t) => t.id === search["topic"])?.id;
     return topic ? { topic } : {};
   },
-  head: () => ({
-    meta: [
-      { title: "Contact — EduOS" },
-      {
-        name: "description",
-        content:
-          "Reach the EduOS team — parent, learning centre, school, partnership and support enquiries. Email support@eduos.global or call 9850820909.",
-      },
-      { property: "og:title", content: "Contact — EduOS" },
-      {
-        property: "og:description",
-        content:
-          "Reach the EduOS team — parent, learning centre, school, partnership and support enquiries. Email support@eduos.global or call 9850820909.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.eduos.global/contact" },
-    ],
-    links: [{ rel: "canonical", href: "https://www.eduos.global/contact" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "EduOS",
-          url: "https://www.eduos.global",
-          email: "support@eduos.global",
-          telephone: "+91-9850820909",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Tilak Ward, Deori",
-            addressLocality: "Sagar",
-            addressRegion: "Madhya Pradesh",
-            postalCode: "470226",
-            addressCountry: "IN",
-          },
+  head: () =>
+    pageHead({
+      path: "/contact",
+      title: "Contact — EduOS",
+      description:
+        "Reach the EduOS team — parent, learning centre, school, partnership and support enquiries. Email support@eduos.global or call 9850820909.",
+      twitterCard: "summary",
+      jsonLd: [
+        breadcrumbLd([{ name: "Contact", path: "/contact" }]),
+        {
+          ...organizationLd,
           contactPoint: [
             {
               "@type": "ContactPoint",
@@ -69,10 +46,10 @@ export const Route = createFileRoute("/contact")({
               areaServed: "IN",
             },
           ],
-        }),
-      },
-    ],
-  }),
+        },
+      ],
+    }),
+
 
   component: ContactPage,
 });

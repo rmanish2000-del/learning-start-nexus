@@ -1,25 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LegalSection, PublicPageLayout } from "@/components/public-layout";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy — EduOS" },
-      {
-        name: "description",
-        content:
-          "How EduOS collects, uses, and protects learner, educator, and guardian data in the EduOS deployment.",
-      },
-      { property: "og:title", content: "Privacy Policy — EduOS" },
-      {
-        property: "og:description",
-        content:
-          "How EduOS collects, uses, and protects learner, educator, and guardian data in the EduOS deployment.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      path: "/privacy",
+      title: "Privacy Policy — EduOS",
+      description:
+        "How EduOS collects, uses, and protects learner, educator, and guardian data in the EduOS deployment.",
+      twitterCard: "summary",
+      jsonLd: [breadcrumbLd([{ name: "Privacy Policy", path: "/privacy" }])],
+    }),
+
   component: PrivacyPage,
 });
 

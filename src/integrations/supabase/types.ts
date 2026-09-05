@@ -1649,6 +1649,9 @@ export type Database = {
           occurred_at: string
           route: string
           session_hash: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
           viewport: string | null
         }
         Insert: {
@@ -1662,6 +1665,9 @@ export type Database = {
           occurred_at?: string
           route: string
           session_hash?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           viewport?: string | null
         }
         Update: {
@@ -1675,6 +1681,9 @@ export type Database = {
           occurred_at?: string
           route?: string
           session_hash?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           viewport?: string | null
         }
         Relationships: []

@@ -142,7 +142,64 @@ export const PUBLIC_GUIDANCE: RouteGuidance[] = [
     explain: ["The terms that apply to parents, centres and schools using EduOS."],
     next: [CREATE_PARENT_ACCOUNT],
   },
+  {
+    match: "/cbse-class-10-learning-gap-diagnostic",
+    title: "The CBSE Class 10 gap diagnostic",
+    explain: [
+      "This page explains the ₹199 diagnostic: up to twenty curriculum-mapped questions, an outcome-by-outcome report and the ranked gaps with a recommended next step for each.",
+    ],
+    next: [START_DIAGNOSTIC, CREATE_PARENT_ACCOUNT],
+  },
+  {
+    match: "/class-10-maths-diagnostic",
+    title: "Class 10 Mathematics diagnostic",
+    explain: [
+      "How the diagnostic works for CBSE Class 10 Mathematics, and what the report names once it is finished.",
+    ],
+    next: [START_DIAGNOSTIC, CREATE_PARENT_ACCOUNT],
+  },
+  {
+    match: "/class-10-science-diagnostic",
+    title: "Class 10 Science diagnostic",
+    explain: [
+      "How the diagnostic works for CBSE Class 10 Science, and what the report names once it is finished.",
+    ],
+    next: [START_DIAGNOSTIC, CREATE_PARENT_ACCOUNT],
+  },
+  {
+    match: "/free-learning-check",
+    title: "The free learning check",
+    explain: [
+      "Five questions per subject, ₹0 and no card. It shows the direction of the gaps; the ₹199 diagnostic produces the full outcome-level plan.",
+    ],
+    next: [CREATE_PARENT_ACCOUNT, START_DIAGNOSTIC],
+  },
+  {
+    match: "/cbse-paper-practice",
+    title: "CBSE paper practice",
+    explain: [
+      "Timed full-paper attempts and chapter practice on CBSE Class 10 Mathematics and Science papers, inside the learner workspace.",
+    ],
+    next: [CREATE_PARENT_ACCOUNT, START_DIAGNOSTIC],
+  },
+  {
+    match: "/parent-guide-learning-gaps",
+    title: "Parent guide to learning gaps",
+    explain: [
+      "What a learning gap is, how EduOS names one, and what a parent can do about it without a teaching background.",
+    ],
+    next: [CREATE_PARENT_ACCOUNT, START_DIAGNOSTIC],
+  },
+  {
+    match: "/reassessment-and-evidence",
+    title: "Reassessment and evidence",
+    explain: [
+      "A gap is only closed by a fresh reassessment on unseen questions. The diagnostic, the intervention and the reassessment stay linked as one record.",
+    ],
+    next: [START_DIAGNOSTIC, CREATE_PARENT_ACCOUNT],
+  },
 ];
+
 
 export function guidanceForRoute(pathname: string): RouteGuidance | null {
   const exact = PUBLIC_GUIDANCE.find((g) => g.match === pathname);

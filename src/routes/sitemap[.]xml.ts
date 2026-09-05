@@ -1,29 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-function renderUrl(origin: string, path: string, lastmod?: string) {
-  return `<url><loc>${origin}${path}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}</url>`;
-}
+import { SITE_URL } from "@/lib/seo";
+
+/**
+ * Public, indexable routes only. Authenticated, admin, transactional and
+ * token-bearing routes are deliberately absent and carry noindex in their own
+ * head(). No <lastmod> is emitted: there is no authoritative per-page
+ * modification timestamp to report.
+ */
+const PATHS = [
+  "/",
+  "/cbse-class-10-learning-gap-diagnostic",
+  "/class-10-maths-diagnostic",
+  "/class-10-science-diagnostic",
+  "/free-learning-check",
+  "/cbse-paper-practice",
+  "/parent-guide-learning-gaps",
+  "/reassessment-and-evidence",
+  "/diagnostic",
+  "/about",
+  "/contact",
+  "/privacy",
+  "/terms",
+] as const;
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: ({ request }) => {
-        const url = new URL(request.url);
-        const origin = url.origin;
-        const lastmod = new Date().toISOString().split("T")[0];
-        const paths: [string, boolean][] = [
-          ["/", true],
-          ["/about", true],
-          ["/privacy", true],
-          ["/terms", true],
-          ["/contact", true],
-          ["/diagnostic", true],
-        ];
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths
-          .map(([p, dated]) => renderUrl(origin, p, dated ? lastmod : undefined))
-          .join("\n")}\n</urlset>`;
+      GET: () => {
+        const xml = [
+          `<?xml version="1.0" encoding="UTF-8"?>`,
+          `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+          ...PATHS.map((path) => `  <url><loc>${SITE_URL}${path}</loc></url>`),
+          `</urlset>`,
+        ].join("\n");
 
-        return new Response(xml, { headers: { "Content-Type": "application/xml" } });
+        return new Response(xml, {
+          headers: {
+            "Content-Type": "application/xml",
+            "Cache-Control": "public, max-age=3600",
+          },
+        });
       },
     },
   },

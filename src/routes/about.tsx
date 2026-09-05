@@ -2,23 +2,22 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bot, Crosshair, GraduationCap, RefreshCcw, ShieldCheck } from "lucide-react";
 
 import { PublicPageLayout } from "@/components/public-layout";
+import { breadcrumbLd, organizationLd, pageHead } from "@/lib/seo";
+
 
 const TITLE = "About EduOS — Learning Intelligence and Intervention";
 const DESCRIPTION =
   "EduOS is a Learning Intelligence and Intervention System: it names the specific learning gaps behind the marks, tracks the intervention, and reassesses on fresh items to evidence progress.";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.eduos.global/about" },
-    ],
-    links: [{ rel: "canonical", href: "https://www.eduos.global/about" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/about",
+      title: TITLE,
+      description: DESCRIPTION,
+      jsonLd: [breadcrumbLd([{ name: "About", path: "/about" }]), organizationLd],
+    }),
+
   component: AboutPage,
 });
 

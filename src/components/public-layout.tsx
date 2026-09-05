@@ -204,7 +204,47 @@ export function PublicSiteFooter() {
             <li><a href="/#centres" className="hover:text-foreground">Learning Centres</a></li>
             <li><a href="/#schools" className="hover:text-foreground">Schools</a></li>
           </ul>
+
+          <h2 className="mt-6 text-sm font-semibold">Explore</h2>
+          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <li>
+              <Link to="/cbse-class-10-learning-gap-diagnostic" className="hover:text-foreground">
+                CBSE Class 10 gap diagnostic
+              </Link>
+            </li>
+            <li>
+              <Link to="/class-10-maths-diagnostic" className="hover:text-foreground">
+                Class 10 Maths diagnostic
+              </Link>
+            </li>
+            <li>
+              <Link to="/class-10-science-diagnostic" className="hover:text-foreground">
+                Class 10 Science diagnostic
+              </Link>
+            </li>
+            <li>
+              <Link to="/free-learning-check" className="hover:text-foreground">
+                Free learning check
+              </Link>
+            </li>
+            <li>
+              <Link to="/cbse-paper-practice" className="hover:text-foreground">
+                CBSE paper practice
+              </Link>
+            </li>
+            <li>
+              <Link to="/parent-guide-learning-gaps" className="hover:text-foreground">
+                Parent guide to learning gaps
+              </Link>
+            </li>
+            <li>
+              <Link to="/reassessment-and-evidence" className="hover:text-foreground">
+                Reassessment &amp; evidence
+              </Link>
+            </li>
+          </ul>
         </div>
+
 
         <div>
           <h2 className="text-sm font-semibold">Company</h2>
