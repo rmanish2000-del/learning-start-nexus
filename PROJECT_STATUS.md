@@ -280,3 +280,18 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - No schema changes, no migrations, no translations.
 - Rollback: previous production commit `e6e34008bd264b1533707180428d860dda76a6f9`; no data rollback required.
 - Next gate: subject-expert approval of the 326 rebuilt Class 10 items (content governance, not software).
+
+## 2026-09-05 08:40 UTC — Public Guidance, Contextual Help & Feedback production closeout
+
+- Canonical HEAD: **`c67e52657ab27d2872a1ce03842059c8cce8c410`** — worktree clean, no pending migrations.
+- Production: https://www.eduos.global — HTTP 200; Help launcher live and serving the guidance build.
+- Public routes with Help verified: `/`, `/about`, `/contact`, `/privacy`, `/terms`, `/diagnostic`, `/auth`, `/free-check`, `/upgrade` (Help renders only after a cookie choice).
+- Help sections verified live: Explain this page, What happens next (with walkthrough stepper), FAQ + search, Feedback, Contact; Escape closes and returns focus.
+- Feedback: anonymous submission (production) and signed-in submission (`/about`) both persisted server-side with only approved fields; sensitive content (phone number) rejected before storage; repeat submission deduplicated (no second row); email stored only on consent; screenshots private/validated.
+- Admin-only review: parent test account redirected away from `/feedback-review`.
+- Analytics: 13-event contract writing `public.guidance_events` — name, route, cta, device class, viewport, browser family, random session hash, auth flag only. No free text, screenshots, learner answers, phone numbers, credentials, payments or tokens.
+- Responsive: 320/360/375/390/430/768/1024/1280 across all public routes — zero horizontal overflow, no console errors.
+- Tests 431/431 across 37 files · typecheck clean · security scan: 0 critical (3 informational warnings, all pre-existing/intentional).
+- Test feedback rows and verification analytics rows deleted after verification.
+- Rollback: revert to `5efc9a384a337617f5eb55ead129b444fd06f565` and republish; no data rollback required.
+- EduOS-staging untouched.
