@@ -1,0 +1,1 @@
+GRANT EXECUTE ON FUNCTION private.book_org_id(uuid) TO authenticated;
