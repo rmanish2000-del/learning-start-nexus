@@ -295,3 +295,15 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - Test feedback rows and verification analytics rows deleted after verification.
 - Rollback: revert to `5efc9a384a337617f5eb55ead129b444fd06f565` and republish; no data rollback required.
 - EduOS-staging untouched.
+
+## 2026-09-05 09:50 UTC — Cross-organisation catalogue privacy fix (P0)
+
+- Root cause: `public.catalogue_subject_sources` allowed **any** staff/reviewer to read, and **any** admin to manage, every organisation's internal source records (`internal_reference`, `notes`, `copyright_cleared`, linked `book_id`) regardless of `org_id`. Separately, the public `catalogue_subjects` read policy exposed reviewer identity (`reviewer_id`, `reviewer_name`, `reviewed_at`) and internal review/threshold metadata to anonymous and non-staff signed-in callers.
+- Fix (three migrations, no application-code change):
+  - `private.book_org_id(uuid)` SECURITY DEFINER helper (EXECUTE: authenticated only, private schema, not API-exposed).
+  - `catalogue_subject_sources` SELECT and ALL policies now additionally require `book_id IS NULL OR private.book_org_id(book_id) = private.current_org_id()`.
+  - `catalogue_subjects`: public purchasable-row policy retained; table-level SELECT revoked from `anon`/`authenticated` and re-granted **column-wise** on public fields only (`id, code, subject_key, display_name, version, board_id, academic_year_id, class_id, stream_id, commercial_status, is_active, archived_at, created_at, updated_at`). Reviewer identity and internal thresholds are service-role only.
+- Access matrix (live, RLS-enforced): sources visible — same-org admin 3/4, same-org educator 3/4, same-org reviewer 3/4, rival-org admin 1/4 (own row only), parent 0, learner 0, anonymous 0. Public catalogue rows readable by all (2/2). `reviewer_name` denied for anonymous and parent; rival-org admin UPDATE on another org's source notes affects 0 rows.
+- Tests 431/431 across 37 files · typecheck clean · linter: 0 new findings (5 intentional policy-less server-only tables + `profile_phone` warning, all pre-existing).
+- Rollback: restore the previous policies — `Staff can read subject sources` (USING `private.is_staff() OR private.is_reviewer()`), `Admins manage subject sources` (USING `private.has_role(auth.uid(),'admin')`), and `GRANT SELECT ON public.catalogue_subjects TO anon, authenticated`; then drop `private.book_org_id`.
+- EduOS-staging untouched.
