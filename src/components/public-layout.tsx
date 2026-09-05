@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IosInstallGuide } from "@/components/ios-install-guide";
+import { openPublicHelp } from "@/components/public-help";
 
 /**
  * Public marketing navigation. Audience sections live on the home page, so
@@ -210,6 +211,11 @@ export function PublicSiteFooter() {
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li><Link to="/about" className="hover:text-foreground">About EduOS</Link></li>
             <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+            <li>
+              <button type="button" onClick={openPublicHelp} className="hover:text-foreground">
+                Help &amp; guidance
+              </button>
+            </li>
             <li>
               <Link to="/contact" search={CENTRE_DEMO_SEARCH} className="hover:text-foreground">
                 Book a Demo
