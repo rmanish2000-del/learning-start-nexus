@@ -1390,6 +1390,98 @@ export type Database = {
           },
         ]
       }
+      feedback_submissions: {
+        Row: {
+          app_version: string | null
+          browser_family: string | null
+          business_impact: string | null
+          category: string
+          client_hash: string
+          contact_email: string | null
+          created_at: string
+          cta_context: string | null
+          dedupe_hash: string
+          device_class: string
+          duplicate_of: string | null
+          guidance_context: string | null
+          id: string
+          is_authenticated: boolean
+          message: string
+          priority: string
+          product_area: string
+          reproduction: string
+          resolution_notes: string | null
+          route: string
+          screenshot_path: string | null
+          status: string
+          submitter_user_id: string | null
+          updated_at: string
+          viewport: string | null
+        }
+        Insert: {
+          app_version?: string | null
+          browser_family?: string | null
+          business_impact?: string | null
+          category: string
+          client_hash: string
+          contact_email?: string | null
+          created_at?: string
+          cta_context?: string | null
+          dedupe_hash: string
+          device_class: string
+          duplicate_of?: string | null
+          guidance_context?: string | null
+          id?: string
+          is_authenticated?: boolean
+          message: string
+          priority?: string
+          product_area?: string
+          reproduction?: string
+          resolution_notes?: string | null
+          route: string
+          screenshot_path?: string | null
+          status?: string
+          submitter_user_id?: string | null
+          updated_at?: string
+          viewport?: string | null
+        }
+        Update: {
+          app_version?: string | null
+          browser_family?: string | null
+          business_impact?: string | null
+          category?: string
+          client_hash?: string
+          contact_email?: string | null
+          created_at?: string
+          cta_context?: string | null
+          dedupe_hash?: string
+          device_class?: string
+          duplicate_of?: string | null
+          guidance_context?: string | null
+          id?: string
+          is_authenticated?: boolean
+          message?: string
+          priority?: string
+          product_area?: string
+          reproduction?: string
+          resolution_notes?: string | null
+          route?: string
+          screenshot_path?: string | null
+          status?: string
+          submitter_user_id?: string | null
+          updated_at?: string
+          viewport?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "feedback_submissions_duplicate_of_fkey"
+            columns: ["duplicate_of"]
+            isOneToOne: false
+            referencedRelation: "feedback_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       free_learning_checks: {
         Row: {
           answers: Json
@@ -1544,6 +1636,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      guidance_events: {
+        Row: {
+          app_version: string | null
+          browser_family: string | null
+          cta: string | null
+          device_class: string | null
+          id: string
+          is_authenticated: boolean
+          name: string
+          occurred_at: string
+          route: string
+          session_hash: string | null
+          viewport: string | null
+        }
+        Insert: {
+          app_version?: string | null
+          browser_family?: string | null
+          cta?: string | null
+          device_class?: string | null
+          id?: string
+          is_authenticated?: boolean
+          name: string
+          occurred_at?: string
+          route: string
+          session_hash?: string | null
+          viewport?: string | null
+        }
+        Update: {
+          app_version?: string | null
+          browser_family?: string | null
+          cta?: string | null
+          device_class?: string | null
+          id?: string
+          is_authenticated?: boolean
+          name?: string
+          occurred_at?: string
+          route?: string
+          session_hash?: string | null
+          viewport?: string | null
+        }
+        Relationships: []
       }
       intervention_map: {
         Row: {

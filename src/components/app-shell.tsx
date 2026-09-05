@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
-import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, CreditCard, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, PieChart, Rocket, Settings, ShieldCheck, Sparkles, Target, Ticket, TrendingUp, UserCog, Users } from "lucide-react";
+import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, CreditCard, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, MessageSquare, PieChart, Rocket, Settings, ShieldCheck, Sparkles, Target, Ticket, TrendingUp, UserCog, Users } from "lucide-react";
 import { HowItWorksDialog } from "@/components/how-it-works";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
@@ -49,6 +49,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
   { to: "/payment-settings", label: "Payment Settings", icon: CreditCard, roles: ["admin"], exact: true },
   { to: "/pilot-access", label: "Pilot Access", icon: Ticket, roles: ["admin"], exact: true },
+  { to: "/feedback-review", label: "Feedback", icon: MessageSquare, roles: ["admin"], exact: true },
   { to: "/auto-verification", label: "Auto Verification", icon: BadgeCheck, roles: ["admin", "reviewer"], exact: true },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
   { to: "/exam-pattern", label: "Exam Pattern", icon: Target, roles: ["student"], exact: true },
@@ -81,6 +82,7 @@ const TITLES: [RegExp, string][] = [
   [/^\/payment-audit/, "Payment audit dashboard"],
   [/^\/payment-settings/, "Payment settings"],
   [/^\/pilot-access/, "Pilot access"],
+  [/^\/feedback-review/, "Feedback review"],
   [/^\/auto-verification/, "Automated verification"],
   [/^\/exam-pattern/, "Exam pattern practice"],
   [/^\/gap-analysis/, "Gap analysis"],

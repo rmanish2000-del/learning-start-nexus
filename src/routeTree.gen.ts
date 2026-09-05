@@ -37,6 +37,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedDiagnosticEngineRouteImport } from './routes/_authenticated/diagnostic-engine'
 import { Route as AuthenticatedDiagnosticEngineAuditRouteImport } from './routes/_authenticated/diagnostic-engine-audit'
 import { Route as AuthenticatedExamPatternRouteImport } from './routes/_authenticated/exam-pattern'
+import { Route as AuthenticatedFeedbackReviewRouteImport } from './routes/_authenticated/feedback-review'
 import { Route as AuthenticatedGapAnalysisRouteImport } from './routes/_authenticated/gap-analysis'
 import { Route as AuthenticatedGapAnalysisAuditRouteImport } from './routes/_authenticated/gap-analysis-audit'
 import { Route as AuthenticatedHelpRouteImport } from './routes/_authenticated/help'
@@ -235,6 +236,12 @@ const AuthenticatedExamPatternRoute =
   AuthenticatedExamPatternRouteImport.update({
     id: '/exam-pattern',
     path: '/exam-pattern',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFeedbackReviewRoute =
+  AuthenticatedFeedbackReviewRouteImport.update({
+    id: '/feedback-review',
+    path: '/feedback-review',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedGapAnalysisRoute =
@@ -513,6 +520,7 @@ export interface FileRoutesByFullPath {
   '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/exam-pattern': typeof AuthenticatedExamPatternRoute
+  '/feedback-review': typeof AuthenticatedFeedbackReviewRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/help': typeof AuthenticatedHelpRoute
@@ -586,6 +594,7 @@ export interface FileRoutesByTo {
   '/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/exam-pattern': typeof AuthenticatedExamPatternRoute
+  '/feedback-review': typeof AuthenticatedFeedbackReviewRoute
   '/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/help': typeof AuthenticatedHelpRoute
@@ -661,6 +670,7 @@ export interface FileRoutesById {
   '/_authenticated/diagnostic-engine': typeof AuthenticatedDiagnosticEngineRoute
   '/_authenticated/diagnostic-engine-audit': typeof AuthenticatedDiagnosticEngineAuditRoute
   '/_authenticated/exam-pattern': typeof AuthenticatedExamPatternRoute
+  '/_authenticated/feedback-review': typeof AuthenticatedFeedbackReviewRoute
   '/_authenticated/gap-analysis': typeof AuthenticatedGapAnalysisRoute
   '/_authenticated/gap-analysis-audit': typeof AuthenticatedGapAnalysisAuditRoute
   '/_authenticated/help': typeof AuthenticatedHelpRoute
@@ -736,6 +746,7 @@ export interface FileRouteTypes {
     | '/diagnostic-engine'
     | '/diagnostic-engine-audit'
     | '/exam-pattern'
+    | '/feedback-review'
     | '/gap-analysis'
     | '/gap-analysis-audit'
     | '/help'
@@ -809,6 +820,7 @@ export interface FileRouteTypes {
     | '/diagnostic-engine'
     | '/diagnostic-engine-audit'
     | '/exam-pattern'
+    | '/feedback-review'
     | '/gap-analysis'
     | '/gap-analysis-audit'
     | '/help'
@@ -883,6 +895,7 @@ export interface FileRouteTypes {
     | '/_authenticated/diagnostic-engine'
     | '/_authenticated/diagnostic-engine-audit'
     | '/_authenticated/exam-pattern'
+    | '/_authenticated/feedback-review'
     | '/_authenticated/gap-analysis'
     | '/_authenticated/gap-analysis-audit'
     | '/_authenticated/help'
@@ -1152,6 +1165,13 @@ declare module '@tanstack/react-router' {
       path: '/exam-pattern'
       fullPath: '/exam-pattern'
       preLoaderRoute: typeof AuthenticatedExamPatternRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/feedback-review': {
+      id: '/_authenticated/feedback-review'
+      path: '/feedback-review'
+      fullPath: '/feedback-review'
+      preLoaderRoute: typeof AuthenticatedFeedbackReviewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/gap-analysis': {
@@ -1496,6 +1516,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDiagnosticEngineRoute: typeof AuthenticatedDiagnosticEngineRoute
   AuthenticatedDiagnosticEngineAuditRoute: typeof AuthenticatedDiagnosticEngineAuditRoute
   AuthenticatedExamPatternRoute: typeof AuthenticatedExamPatternRoute
+  AuthenticatedFeedbackReviewRoute: typeof AuthenticatedFeedbackReviewRoute
   AuthenticatedGapAnalysisRoute: typeof AuthenticatedGapAnalysisRoute
   AuthenticatedGapAnalysisAuditRoute: typeof AuthenticatedGapAnalysisAuditRoute
   AuthenticatedHelpRoute: typeof AuthenticatedHelpRoute
@@ -1550,6 +1571,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDiagnosticEngineAuditRoute:
     AuthenticatedDiagnosticEngineAuditRoute,
   AuthenticatedExamPatternRoute: AuthenticatedExamPatternRoute,
+  AuthenticatedFeedbackReviewRoute: AuthenticatedFeedbackReviewRoute,
   AuthenticatedGapAnalysisRoute: AuthenticatedGapAnalysisRoute,
   AuthenticatedGapAnalysisAuditRoute: AuthenticatedGapAnalysisAuditRoute,
   AuthenticatedHelpRoute: AuthenticatedHelpRoute,

@@ -16,6 +16,7 @@ import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieConsentBanner } from "@/components/cookie-consent";
+import { PublicHelpLauncher } from "@/components/public-help";
 import { InstallBanner } from "@/components/install-banner";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { StagingBanner } from "@/components/staging-banner";
@@ -190,6 +191,7 @@ function RootComponent() {
           <Outlet />
           <Toaster />
           <CookieConsentBanner />
+          <PublicHelpLauncher />
           <InstallBanner />
           <PwaUpdatePrompt />
         </QueryClientProvider>
