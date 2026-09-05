@@ -307,3 +307,19 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - Tests 431/431 across 37 files · typecheck clean · linter: 0 new findings (5 intentional policy-less server-only tables + `profile_phone` warning, all pre-existing).
 - Rollback: restore the previous policies — `Staff can read subject sources` (USING `private.is_staff() OR private.is_reviewer()`), `Admins manage subject sources` (USING `private.has_role(auth.uid(),'admin')`), and `GRANT SELECT ON public.catalogue_subjects TO anon, authenticated`; then drop `private.book_org_id`.
 - EduOS-staging untouched.
+
+## 2026-09-05 11:15 UTC — SEO & Social Growth production release (P1)
+
+- Released canonical/deployed SHA `52b3d9fd6bb0045c77568ca9d70bb45ae4b6d87a` (first publish `3cea5b8b999df4f8702904a2586bf97ba34681cc`, republished with the robots.txt correction). Worktree clean; all migrations applied.
+- Seven discovery pages live and 200: `/cbse-class-10-learning-gap-diagnostic`, `/class-10-maths-diagnostic`, `/class-10-science-diagnostic`, `/free-learning-check`, `/cbse-paper-practice`, `/parent-guide-learning-gaps`, `/reassessment-and-evidence`.
+- Sitemap: 13 URLs, all 200, all on `https://www.eduos.global`; no authenticated, admin, token, transactional or private routes. Bare `/free-check` correctly 404 (requires a check id); `/auth` 307 → `?mode=signin` with `noindex, nofollow`.
+- Metadata verified in rendered production HTML: unique title, description, self-referencing canonical, OG (title/description/type/url/site_name/locale) and Twitter summary_large_image on every public page; hosting injects the share image.
+- Structured data matches visible content: BreadcrumbList on all public pages, visible FAQ + FAQPage on the seven landing pages, Product/Offer at ₹199 on the diagnostic pages (Annual Plan ₹2,999, ₹199 credited within 30 days).
+- Release blocker fixed during verification: `public/robots.txt` had per-bot `Googlebot`/`Bingbot` groups with `Allow: /` only, so those crawlers ignored the wildcard disallow list. Collapsed into a single `User-agent: *` group; private/auth/token/session/api paths now blocked for all crawlers, `Sitemap:` directive retained.
+- Sharing: WhatsApp, native share and copy link present on all seven pages; share emits the existing `cta_clicked` event with `cta: "share"`.
+- Attribution: first-touch UTM (closed allow-list) persists across navigation — live check recorded `whatsapp/social/paper_practice` on `/cbse-paper-practice` and again on `/diagnostic` after the CTA. `guidance_events` columns are name, route, cta, device_class, viewport, browser_family, session_hash, is_authenticated, occurred_at, utm_source/medium/campaign — no personal data, answers, feedback text, payment data, credentials or tokens.
+- Responsive/accessibility: 320/360/375/390/430/768/1024/1280 on all seven pages — zero horizontal overflow, exactly one H1, no console errors, skip link present, Help & feedback launcher reachable and not obstructing CTAs.
+- Tests 431/431 across 37 files · typecheck clean · production build clean · security scan 0 critical (5 warnings, all pre-existing/intentional) · internal links all resolve to live routes.
+- Limitations: no organic baseline yet (pages indexed from today); Search Console/analytics baseline to be read after crawling; verification page views from this release remain in `guidance_events`.
+- Rollback: republish `d882177dfeb8b830bc6f6d81947aec6d26da40c2`; database rollback (optional) `alter table public.guidance_events drop column utm_source, drop column utm_medium, drop column utm_campaign;` and drop `guidance_events_utm_campaign_idx`.
+- EduOS-staging untouched.
