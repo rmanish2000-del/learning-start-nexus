@@ -518,13 +518,6 @@ export type Database = {
             foreignKeyName: "books_catalogue_subject_id_fkey"
             columns: ["catalogue_subject_id"]
             isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "books_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
             referencedRelation: "catalogue_subjects"
             referencedColumns: ["id"]
           },
@@ -716,13 +709,6 @@ export type Database = {
             foreignKeyName: "catalogue_subject_sources_catalogue_subject_id_fkey"
             columns: ["catalogue_subject_id"]
             isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "catalogue_subject_sources_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
             referencedRelation: "catalogue_subjects"
             referencedColumns: ["id"]
           },
@@ -843,13 +829,6 @@ export type Database = {
             columns: ["stream_id"]
             isOneToOne: false
             referencedRelation: "catalogue_streams"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "catalogue_subjects_supersedes_id_fkey"
-            columns: ["supersedes_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
             referencedColumns: ["id"]
           },
           {
@@ -1372,13 +1351,6 @@ export type Database = {
             columns: ["bundle_id"]
             isOneToOne: false
             referencedRelation: "price_bundles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "entitlements_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
             referencedColumns: ["id"]
           },
           {
@@ -2126,13 +2098,6 @@ export type Database = {
             foreignKeyName: "learner_subject_selections_catalogue_subject_id_fkey"
             columns: ["catalogue_subject_id"]
             isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "learner_subject_selections_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
             referencedRelation: "catalogue_subjects"
             referencedColumns: ["id"]
           },
@@ -2602,13 +2567,6 @@ export type Database = {
             foreignKeyName: "parent_entitlements_catalogue_subject_id_fkey"
             columns: ["catalogue_subject_id"]
             isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "parent_entitlements_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
             referencedRelation: "catalogue_subjects"
             referencedColumns: ["id"]
           },
@@ -2783,13 +2741,6 @@ export type Database = {
             columns: ["book_id"]
             isOneToOne: false
             referencedRelation: "books"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "parent_orders_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
             referencedColumns: ["id"]
           },
           {
@@ -3372,13 +3323,6 @@ export type Database = {
             columns: ["bundle_id"]
             isOneToOne: false
             referencedRelation: "price_bundles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "price_plans_catalogue_subject_id_fkey"
-            columns: ["catalogue_subject_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_public_subjects"
             referencedColumns: ["id"]
           },
           {
@@ -4023,77 +3967,6 @@ export type Database = {
       }
     }
     Views: {
-      catalogue_public_subjects: {
-        Row: {
-          academic_year_id: string | null
-          board_id: string | null
-          class_id: string | null
-          code: string | null
-          commercial_status: string | null
-          display_name: string | null
-          id: string | null
-          is_active: boolean | null
-          stream_id: string | null
-          subject_key: string | null
-          version: number | null
-        }
-        Insert: {
-          academic_year_id?: string | null
-          board_id?: string | null
-          class_id?: string | null
-          code?: string | null
-          commercial_status?: string | null
-          display_name?: string | null
-          id?: string | null
-          is_active?: boolean | null
-          stream_id?: string | null
-          subject_key?: string | null
-          version?: number | null
-        }
-        Update: {
-          academic_year_id?: string | null
-          board_id?: string | null
-          class_id?: string | null
-          code?: string | null
-          commercial_status?: string | null
-          display_name?: string | null
-          id?: string | null
-          is_active?: boolean | null
-          stream_id?: string | null
-          subject_key?: string | null
-          version?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "catalogue_subjects_academic_year_id_fkey"
-            columns: ["academic_year_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_academic_years"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "catalogue_subjects_board_id_fkey"
-            columns: ["board_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_boards"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "catalogue_subjects_class_id_fkey"
-            columns: ["class_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_classes"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "catalogue_subjects_stream_id_fkey"
-            columns: ["stream_id"]
-            isOneToOne: false
-            referencedRelation: "catalogue_streams"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       rls_policy_audit: {
         Row: {
           cmd: string | null
