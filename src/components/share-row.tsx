@@ -57,14 +57,28 @@ export function ShareRow({
     <div className="flex flex-wrap items-center gap-2 rounded-lg border bg-muted/30 p-3">
       <span className="mr-1 text-sm font-medium text-foreground">{label}</span>
       <Button asChild variant="outline" size="sm" className="min-h-9">
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackGuidance("cta_clicked", { cta: "share" })}
+        >
           <MessageCircle className="mr-2 h-4 w-4" aria-hidden /> WhatsApp
         </a>
       </Button>
-      <Button variant="outline" size="sm" className="min-h-9" onClick={() => void nativeShare()}>
+      <Button
+        variant="outline"
+        size="sm"
+        className="min-h-9"
+        onClick={() => {
+          trackGuidance("cta_clicked", { cta: "share" });
+          void nativeShare();
+        }}
+      >
         <Share2 className="mr-2 h-4 w-4" aria-hidden /> Share
       </Button>
       <Button variant="ghost" size="sm" className="min-h-9" onClick={() => void copy()}>
+
         {copied ? (
           <>
             <Check className="mr-2 h-4 w-4" aria-hidden /> Link copied
