@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { friendlyErrorMessage } from "@/lib/user-errors";
+import { pageHead } from "@/lib/seo";
+
 
 /** Explicit account-type picker — the first decision on the sign-in screen. */
 const ROLE_OPTIONS = [
@@ -56,22 +58,16 @@ export const Route = createFileRoute("/auth")({
   }),
 
 
-  head: () => ({
-    meta: [
-      { title: "Sign in or create a parent account — EduOS" },
-      {
-        name: "description",
-        content:
-          "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress. Staff and students sign in here too.",
-      },
-      { property: "og:title", content: "Sign in or create a parent account — EduOS" },
-      {
-        property: "og:description",
-        content:
-          "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      path: "/auth",
+      title: "Sign in or create a parent account — EduOS",
+      description:
+        "Create your EduOS parent account or sign in to buy a diagnostic, read the gap report and track progress. Staff and students sign in here too.",
+      twitterCard: "summary",
+      noindex: true,
+    }),
+
 
   component: AuthPage,
 });

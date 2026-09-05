@@ -1,25 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LegalSection, PublicPageLayout } from "@/components/public-layout";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service — EduOS" },
-      {
-        name: "description",
-        content:
-          "The terms that govern use of the EduOS learning intelligence platform by tutoring centers, educators, students, and reviewers.",
-      },
-      { property: "og:title", content: "Terms of Service — EduOS" },
-      {
-        property: "og:description",
-        content:
-          "The terms that govern use of the EduOS learning intelligence platform by tutoring centers, educators, students, and reviewers.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      path: "/terms",
+      title: "Terms of Service — EduOS",
+      description:
+        "The terms that govern use of the EduOS learning intelligence platform by tutoring centers, educators, students, and reviewers.",
+      twitterCard: "summary",
+      jsonLd: [breadcrumbLd([{ name: "Terms of Service", path: "/terms" }])],
+    }),
+
   component: TermsPage,
 });
 

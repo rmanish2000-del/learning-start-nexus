@@ -8,6 +8,9 @@
 
 import { z } from "zod";
 
+import { UTM_CAMPAIGNS, UTM_MEDIUMS, UTM_SOURCES } from "@/lib/utm";
+
+
 export const GUIDANCE_EVENTS = [
   "public_page_view",
   "help_opened",
@@ -33,6 +36,7 @@ export const GUIDANCE_FUNNEL: { step: string; events: GuidanceEventName[] }[] = 
   { step: "Free check", events: ["cta_clicked"] },
   { step: "Signup", events: ["cta_clicked"] },
   { step: "Pilot or diagnostic start", events: ["cta_clicked"] },
+  { step: "Purchase or upgrade", events: ["cta_clicked"] },
 ];
 
 /** Allowed CTA identifiers — free text is never accepted. */
@@ -41,10 +45,13 @@ export const GUIDANCE_CTAS = [
   "signup",
   "signin",
   "diagnostic_start",
+  "diagnostic_purchase",
+  "annual_upgrade",
   "pilot_accept",
   "book_demo",
   "contact",
   "help",
+  "share",
 ] as const;
 export type GuidanceCta = (typeof GUIDANCE_CTAS)[number];
 
@@ -58,6 +65,11 @@ export const guidanceEventSchema = z.object({
   appVersion: z.string().trim().max(60).optional(),
   sessionHash: z.string().trim().min(8).max(64).optional(),
   isAuthenticated: z.boolean().default(false),
+  // Acquisition attribution — allow-listed values only.
+  utmSource: z.enum(UTM_SOURCES).optional(),
+  utmMedium: z.enum(UTM_MEDIUMS).optional(),
+  utmCampaign: z.enum(UTM_CAMPAIGNS).optional(),
 });
+
 
 export type GuidanceEventInput = z.infer<typeof guidanceEventSchema>;

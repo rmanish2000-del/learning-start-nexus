@@ -237,6 +237,9 @@ export async function recordGuidanceEvent(input: {
   appVersion?: string | undefined;
   sessionHash?: string | undefined;
   isAuthenticated: boolean;
+  utmSource?: string | undefined;
+  utmMedium?: string | undefined;
+  utmCampaign?: string | undefined;
 }): Promise<void> {
   const { error } = await supabaseAdmin.from("guidance_events").insert({
     name: input.name,
@@ -248,7 +251,11 @@ export async function recordGuidanceEvent(input: {
     app_version: input.appVersion ?? null,
     session_hash: input.sessionHash ?? null,
     is_authenticated: input.isAuthenticated,
+    utm_source: input.utmSource ?? null,
+    utm_medium: input.utmMedium ?? null,
+    utm_campaign: input.utmCampaign ?? null,
   });
+
   // Analytics must never break a user journey.
   if (error) console.warn("guidance event dropped", error.code);
 }

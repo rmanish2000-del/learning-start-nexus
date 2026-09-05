@@ -12,3 +12,23 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /settings
+Disallow: /parent
+Disallow: /home
+Disallow: /feedback-review
+Disallow: /pilot-invite/
+Disallow: /pilot-access
+Disallow: /pilot-evidence
+Disallow: /free-check/
+Disallow: /upgrade/
+Disallow: /diagnostic/session/
+Disallow: /diagnostic/report/
+Disallow: /diagnostic/complete/
+Disallow: /diagnostic/handoff/
+Disallow: /diagnostic/checkout/
+Disallow: /api/
+
+Sitemap: https://www.eduos.global/sitemap.xml

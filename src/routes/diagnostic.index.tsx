@@ -28,6 +28,8 @@ import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnos
 import { myPilotAccessFn, startPilotRunFn } from "@/lib/pilot-access.functions";
 import { createStudentProfile, getParentAccount } from "@/lib/parent-account.functions";
 import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
+import { breadcrumbLd, offerLd, pageHead } from "@/lib/seo";
+
 
 import { BOARDS, CLASSES, addStudentSchema } from "@/lib/parent-account-shared";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
@@ -42,16 +44,23 @@ const DESCRIPTION =
   "A CBSE Class 10 diagnostic of up to 20 questions, mapped to every learning outcome in the chapter group. See exactly where your child is losing marks, with the report in the same session.";
 
 export const Route = createFileRoute("/diagnostic/")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "product" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      path: "/diagnostic",
+      title: TITLE,
+      description: DESCRIPTION,
+      ogType: "product",
+      jsonLd: [
+        breadcrumbLd([{ name: "Class 10 Diagnostic", path: "/diagnostic" }]),
+        offerLd({
+          name: "EduOS Class 10 Diagnostic",
+          description: DESCRIPTION,
+          price: "199",
+          path: "/diagnostic",
+        }),
+      ],
+    }),
+
   component: DiagnosticPurchasePage,
 });
 
