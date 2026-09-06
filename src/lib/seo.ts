@@ -50,6 +50,15 @@ export function pageHead(options: PageHeadOptions) {
     { name: "twitter:title", content: options.title },
     { name: "twitter:description", content: options.description },
   ];
+  if (options.image) {
+    const imageUrl = absoluteUrl(options.image.url);
+    meta.push(
+      { property: "og:image", content: imageUrl },
+      { property: "og:image:alt", content: options.image.alt },
+      { name: "twitter:image", content: imageUrl },
+      { name: "twitter:image:alt", content: options.image.alt },
+    );
+  }
   if (options.noindex) meta.push({ name: "robots", content: "noindex, nofollow" });
 
   const head: {
