@@ -5,8 +5,7 @@ Disallow: /auth
 Disallow: /dashboard
 Disallow: /admin
 Disallow: /settings
-Disallow: /parent/
-Disallow: /parent$
+Disallow: /parent
 Disallow: /home
 Disallow: /feedback-review
 Disallow: /pilot-invite/
