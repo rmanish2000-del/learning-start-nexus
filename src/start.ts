@@ -50,6 +50,10 @@ const csrfMiddleware = createCsrfMiddleware({
 // marker cookie is only a hint for this document-level gate — the real data
 // boundary is RLS plus bearer-validated server functions.
 const authGateMiddleware = createMiddleware().server(({ next, request }) => {
+  // Platform email routes authenticate themselves (signed webhook / API key)
+  // and must never be redirected to /auth.
+  if (new URL(request.url).pathname.startsWith("/lovable/")) return next();
+
   if (request.method !== "GET" && request.method !== "HEAD") return next();
 
   const accept = request.headers.get("accept") ?? "";
