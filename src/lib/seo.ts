@@ -26,9 +26,12 @@ export interface PageHeadOptions {
   twitterCard?: "summary" | "summary_large_image";
   /** Mark the route non-indexable in every environment. */
   noindex?: boolean;
+  /** Share image actually rendered on the page (site-relative or absolute). */
+  image?: { url: string; alt: string };
   /** Extra JSON-LD graph nodes rendered on this page. */
   jsonLd?: Record<string, unknown>[];
 }
+
 
 type MetaTag = Record<string, string>;
 
