@@ -583,6 +583,17 @@ function AuthPage() {
 
 
 
+          <p className="text-center text-xs text-muted-foreground">
+            Trouble signing in? Email{" "}
+            <a
+              href="mailto:support@eduos.global?subject=EduOS%20%E2%80%94%20Account%20support"
+              className="font-medium text-primary hover:underline"
+            >
+              support@eduos.global
+            </a>
+            .
+          </p>
+
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             <Link to="/about" className="hover:text-foreground">About</Link>
             <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
