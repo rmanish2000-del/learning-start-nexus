@@ -6,6 +6,7 @@ import {
   Head,
   Heading,
   Html,
+  Link,
   Preview,
   Text,
 } from '@react-email/components'
@@ -27,6 +28,13 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
           This code will expire shortly. If you didn't request this, you can
           safely ignore this email.
         </Text>
+        <Text style={footer}>
+          Need help? Email{' '}
+          <Link href="mailto:support@eduos.global" style={link}>
+            support@eduos.global
+          </Link>
+          . This message was sent from an unmonitored address.
+        </Text>
       </Container>
     </Body>
   </Html>
@@ -39,7 +47,7 @@ const container = { padding: '20px 25px' }
 const h1 = {
   fontSize: '22px',
   fontWeight: 'bold' as const,
-  color: '#000000',
+  color: '#0F172A',
   margin: '0 0 20px',
 }
 const text = {
