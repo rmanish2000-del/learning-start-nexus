@@ -323,3 +323,14 @@ Updated by the Lovable agent at the end of any turn that changes deployed behavi
 - Limitations: no organic baseline yet (pages indexed from today); Search Console/analytics baseline to be read after crawling; verification page views from this release remain in `guidance_events`.
 - Rollback: republish `d882177dfeb8b830bc6f6d81947aec6d26da40c2`; database rollback (optional) `alter table public.guidance_events drop column utm_source, drop column utm_medium, drop column utm_campaign;` and drop `guidance_events_utm_campaign_idx`.
 - EduOS-staging untouched.
+
+## Support-email integration (2026-09-06)
+
+- Deployed SHA `6aef3be2c7179c2a4968d636c94b6416b63506a6`; worktree clean; no new migrations (schema unchanged).
+- Customer-facing address standardised as `support@eduos.global`. Surfaces: contact page (all channels + enquiry-type mailto), public footer, Help panel Contact tab, public guidance copy, home page, privacy, terms, diagnostic trust strip, pilot form error state, and organisation JSON-LD contactPoint. New this release: feedback success state, diagnostic checkout payment-support line (pre-fills the order reference), sign-in/account-support line on `/auth`.
+- System email: auth templates scaffolded on the verified sender domain `notify.eduos.global`, sending as `EduOS Foundation <noreply@eduos.global>`; all six templates (signup, invite, magic link, recovery, email change, reauthentication) carry a brand-styled "Need help? support@eduos.global — this message was sent from an unmonitored address" line. Preview route renders 200 with the support address present.
+- No mailbox credentials in code or logs; the webhook/preview routes read `LOVABLE_API_KEY` from the server environment only. `/lovable/*` bypasses the auth-gate middleware.
+- Tests 431/431 across 37 files · typecheck clean · production build clean. Live checks: `/contact`, `/`, `/privacy`, `/terms` 200; `/auth` 307 → `?mode=signin` and carries the support line.
+- Limitations: the Lovable email SDK's auth handler exposes no Reply-To field, so replies to system emails are directed by in-body copy to `support@eduos.global` rather than an SMTP Reply-To header. A live auth email send was not triggered (would require creating a real account); test sends can be issued from Cloud → Emails.
+- Rollback: republish `52b3d9fd6bb0045c77568ca9d70bb45ae4b6d87a`.
+- EduOS-staging untouched.
