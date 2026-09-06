@@ -1,0 +1,131 @@
+{
+  "name": "EduOS Social Launch Kit v1",
+  "audience_priority": ["parents", "learners", "learning centres"],
+  "language": "en",
+  "scope": "CBSE Class 10 Mathematics and Science",
+  "pricing": {
+    "free_learning_check_inr": 0,
+    "diagnostic_inr": 199,
+    "annual_plan_inr": 2999,
+    "eligible_credit_inr": 199,
+    "upgrade_payable_inr": 2800,
+    "credit_window_days": 30
+  },
+  "support_email": "support@eduos.global",
+  "site": "https://www.eduos.global",
+  "utm_taxonomy": {
+    "sources": ["instagram", "facebook", "linkedin", "youtube", "whatsapp"],
+    "medium": "social",
+    "campaigns": [
+      "class10_diagnostic",
+      "free_learning_check",
+      "paper_practice",
+      "parent_guide",
+      "reassessment_evidence",
+      "maths_diagnostic",
+      "science_diagnostic"
+    ]
+  },
+  "posts": [
+    {
+      "id": "edu-01",
+      "type": "educational",
+      "platform": "Instagram",
+      "asset": "public/social/edu-01-mark-vs-cause.jpg",
+      "dimensions": "1080x1080",
+      "alt": "Illustration of an answer sheet with a magnifying glass highlighting one small section.",
+      "destination": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=instagram&utm_medium=social&utm_campaign=parent_guide",
+      "cta": "Read the parent guide"
+    },
+    {
+      "id": "edu-02",
+      "type": "educational",
+      "platform": "LinkedIn",
+      "asset": "public/social/edu-02-mastery-bands.jpg",
+      "dimensions": "1200x628",
+      "alt": "Illustration of four rising bars representing mastery bands.",
+      "destination": "https://www.eduos.global/cbse-class-10-learning-gap-diagnostic?utm_source=linkedin&utm_medium=social&utm_campaign=class10_diagnostic",
+      "cta": "See how outcomes are reported"
+    },
+    {
+      "id": "edu-03",
+      "type": "educational",
+      "platform": "YouTube",
+      "asset": "public/social/edu-03-learning-loop.jpg",
+      "dimensions": "1280x720",
+      "alt": "Illustration of connected circles forming a loop with arrows.",
+      "destination": "https://www.eduos.global/reassessment-and-evidence?utm_source=youtube&utm_medium=social&utm_campaign=reassessment_evidence",
+      "cta": "See the full learning loop"
+    },
+    {
+      "id": "parent-01",
+      "type": "parent_guidance",
+      "platform": "Facebook",
+      "asset": "public/social/parent-01-read-report.jpg",
+      "dimensions": "1200x630",
+      "alt": "Illustration of a parent and a teenager reading a report together at a table.",
+      "destination": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=facebook&utm_medium=social&utm_campaign=parent_guide",
+      "cta": "Read the parent guide"
+    },
+    {
+      "id": "parent-02",
+      "type": "parent_guidance",
+      "platform": "Instagram",
+      "asset": "public/social/parent-02-priority.jpg",
+      "dimensions": "1080x1080",
+      "alt": "Illustration of three stacked cards with the top card highlighted.",
+      "destination": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=instagram&utm_medium=social&utm_campaign=parent_guide",
+      "cta": "Learn what to fix first"
+    },
+    {
+      "id": "product-01",
+      "type": "product_explanation",
+      "platform": "LinkedIn",
+      "asset": "public/social/product-01-outcome-mapping.jpg",
+      "dimensions": "1200x628",
+      "alt": "Illustration of a question card linked by a line to a target, showing outcome mapping.",
+      "destination": "https://www.eduos.global/class-10-maths-diagnostic?utm_source=linkedin&utm_medium=social&utm_campaign=maths_diagnostic",
+      "cta": "See the Mathematics diagnostic"
+    },
+    {
+      "id": "product-02",
+      "type": "product_explanation",
+      "platform": "Instagram",
+      "asset": "public/social/product-02-tutor-boundary.jpg",
+      "dimensions": "1080x1080",
+      "alt": "Illustration of a chat bubble inside a bounded frame beside a padlock.",
+      "destination": "https://www.eduos.global/class-10-science-diagnostic?utm_source=instagram&utm_medium=social&utm_campaign=science_diagnostic",
+      "cta": "See the Science diagnostic"
+    },
+    {
+      "id": "offer-01",
+      "type": "free_learning_check",
+      "platform": "WhatsApp",
+      "asset": "public/social/offer-01-free-check.jpg",
+      "dimensions": "1080x1080",
+      "alt": "Illustration of three open doors, representing free access to the EduOS learning check.",
+      "destination": "https://www.eduos.global/free-learning-check?utm_source=whatsapp&utm_medium=social&utm_campaign=free_learning_check",
+      "cta": "Start the free learning check"
+    },
+    {
+      "id": "offer-02",
+      "type": "diagnostic",
+      "platform": "Facebook",
+      "asset": "public/social/offer-02-diagnostic.jpg",
+      "dimensions": "1200x630",
+      "alt": "Illustration of a ranked diagnostic report with the highest-priority gap highlighted.",
+      "destination": "https://www.eduos.global/cbse-class-10-learning-gap-diagnostic?utm_source=facebook&utm_medium=social&utm_campaign=class10_diagnostic",
+      "cta": "Start the ₹199 diagnostic"
+    },
+    {
+      "id": "proof-01",
+      "type": "reassessment_evidence",
+      "platform": "LinkedIn",
+      "asset": "public/social/proof-01-reassessment.jpg",
+      "dimensions": "1200x628",
+      "alt": "Illustration of three linked record cards ending in a verified shield with a tick.",
+      "destination": "https://www.eduos.global/reassessment-and-evidence?utm_source=linkedin&utm_medium=social&utm_campaign=reassessment_evidence",
+      "cta": "See what counts as proof"
+    }
+  ]
+}
