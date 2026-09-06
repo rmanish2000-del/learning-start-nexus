@@ -85,3 +85,5 @@ const darkModeCss = `
   [data-ogsc] .dm-btn { background-color: #F97316 !important; color: #ffffff !important; }
   [data-ogsb] .dm-btn { background-color: #F97316 !important; color: #ffffff !important; }
 `
+
+const link = { color: 'inherit', textDecoration: 'underline' }
