@@ -33,7 +33,10 @@ export const Route = createFileRoute("/free-learning-check")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
-      image: { url: "/social/offer-01-free-check.jpg", alt: "Illustration of three open doors, representing free access to the EduOS learning check." },
+      image: {
+        url: "/social/offer-01-free-check.jpg",
+        alt: "Illustration of three open doors, representing free access to the EduOS learning check.",
+      },
       jsonLd: [breadcrumbLd([{ name: "Free learning check", path: PATH }]), faqLd(FAQS)],
     }),
   component: Page,

@@ -37,7 +37,10 @@ export const Route = createFileRoute("/cbse-class-10-learning-gap-diagnostic")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
-      image: { url: "/social/offer-02-diagnostic.jpg", alt: "Illustration of a ranked EduOS diagnostic report with the highest-priority learning gap highlighted." },
+      image: {
+        url: "/social/offer-02-diagnostic.jpg",
+        alt: "Illustration of a ranked EduOS diagnostic report with the highest-priority learning gap highlighted.",
+      },
       ogType: "product",
       jsonLd: [
         breadcrumbLd([{ name: "CBSE Class 10 Learning Gap Diagnostic", path: PATH }]),

@@ -84,7 +84,6 @@ export function MarketingPage({
           />
         ) : null}
 
-
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button asChild size="lg" className="min-h-11">
             <a

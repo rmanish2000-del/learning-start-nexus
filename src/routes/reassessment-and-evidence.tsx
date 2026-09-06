@@ -33,7 +33,10 @@ export const Route = createFileRoute("/reassessment-and-evidence")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
-      image: { url: "/social/proof-01-reassessment.jpg", alt: "Illustration of three linked record cards ending in a verified shield with a tick." },
+      image: {
+        url: "/social/proof-01-reassessment.jpg",
+        alt: "Illustration of three linked record cards ending in a verified shield with a tick.",
+      },
       ogType: "article",
       jsonLd: [breadcrumbLd([{ name: "Reassessment and evidence", path: PATH }]), faqLd(FAQS)],
     }),
@@ -111,8 +114,8 @@ function Page() {
 
       <MarketingSection heading="Who can read it">
         <p>
-          The parent who owns the account, the learning centre running the programme, and a
-          reviewer where one is involved. Learner answers stay inside the learner's own workspace.
+          The parent who owns the account, the learning centre running the programme, and a reviewer
+          where one is involved. Learner answers stay inside the learner's own workspace.
         </p>
       </MarketingSection>
     </MarketingPage>

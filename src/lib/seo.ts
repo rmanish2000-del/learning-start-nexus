@@ -32,7 +32,6 @@ export interface PageHeadOptions {
   jsonLd?: Record<string, unknown>[];
 }
 
-
 type MetaTag = Record<string, string>;
 
 export function pageHead(options: PageHeadOptions) {
@@ -124,12 +123,7 @@ export const organizationLd = {
 } as const;
 
 /** Product/Offer — only where the price is visibly on the page. */
-export function offerLd(input: {
-  name: string;
-  description: string;
-  price: string;
-  path: string;
-}) {
+export function offerLd(input: { name: string; description: string; price: string; path: string }) {
   return {
     "@type": "Product",
     name: input.name,
