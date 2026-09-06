@@ -133,6 +133,13 @@ export function FeedbackForm({
         <p className="text-xs text-muted-foreground">
           {consent && email ? "We'll reply to you if we need more detail." : "You told us anonymously."}
         </p>
+        <p className="text-xs text-muted-foreground">
+          Need a reply sooner? Email{" "}
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+            support@eduos.global
+          </a>
+          .
+        </p>
         <Button
           variant="outline"
           size="sm"

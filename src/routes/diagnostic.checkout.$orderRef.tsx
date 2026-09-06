@@ -221,6 +221,17 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
                   </p>
                 ))}
               </div>
+
+              <p className="border-t pt-3 text-xs text-muted-foreground">
+                {t("checkout.support", "Payment trouble? Email")}{" "}
+                <a
+                  href={`mailto:support@eduos.global?subject=${encodeURIComponent(`EduOS — Payment support (order ${orderRef})`)}`}
+                  className="font-medium text-primary hover:underline"
+                >
+                  support@eduos.global
+                </a>{" "}
+                {t("checkout.support.ref", "with your order reference")} — {orderRef}.
+              </p>
             </CardContent>
           </Card>
         </div>
