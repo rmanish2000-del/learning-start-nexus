@@ -33,6 +33,7 @@ export const Route = createFileRoute("/parent-guide-learning-gaps")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
+      image: { url: "/social/parent-01-read-report.jpg", alt: "Illustration of a parent and a teenager reading a report together at a table." },
       ogType: "article",
       jsonLd: [breadcrumbLd([{ name: "Parent guide to learning gaps", path: PATH }]), faqLd(FAQS)],
     }),
@@ -44,6 +45,12 @@ function Page() {
     <MarketingPage
       eyebrow="For parents"
       title="A parent's guide to learning gaps"
+      cover={{
+        src: "/social/parent-01-read-report.jpg",
+        alt: "Illustration of a parent and a teenager reading a report together at a table.",
+        width: 1200,
+        height: 630,
+      }}
       intro="Two children can lose the same ten marks for completely different reasons. This guide explains what a learning gap is, how EduOS names one, and what a parent can reasonably do about it."
       primary={{
         label: "Start with the free learning check",

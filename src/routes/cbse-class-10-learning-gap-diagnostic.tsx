@@ -37,6 +37,7 @@ export const Route = createFileRoute("/cbse-class-10-learning-gap-diagnostic")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
+      image: { url: "/social/offer-02-diagnostic.jpg", alt: "Illustration of a ranked EduOS diagnostic report with the highest-priority learning gap highlighted." },
       ogType: "product",
       jsonLd: [
         breadcrumbLd([{ name: "CBSE Class 10 Learning Gap Diagnostic", path: PATH }]),
@@ -57,6 +58,12 @@ function Page() {
     <MarketingPage
       eyebrow="CBSE Class 10 · Mathematics & Science"
       title="Find the exact learning gaps behind your child's Class 10 marks"
+      cover={{
+        src: "/social/offer-02-diagnostic.jpg",
+        alt: "Illustration of a ranked EduOS diagnostic report with the highest-priority learning gap highlighted.",
+        width: 1200,
+        height: 630,
+      }}
       intro="A score tells you there is a problem. The EduOS diagnostic tells you which learning outcome caused it — outcome by outcome, ranked by how much it matters in the CBSE Class 10 paper."
       primary={{ label: "Start the ₹199 Diagnostic", href: "/diagnostic", cta: "diagnostic_start" }}
       secondary={{

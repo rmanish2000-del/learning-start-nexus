@@ -33,6 +33,7 @@ export const Route = createFileRoute("/free-learning-check")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
+      image: { url: "/social/offer-01-free-check.jpg", alt: "Illustration of three open doors, representing free access to the EduOS learning check." },
       jsonLd: [breadcrumbLd([{ name: "Free learning check", path: PATH }]), faqLd(FAQS)],
     }),
   component: Page,
@@ -43,6 +44,12 @@ function Page() {
     <MarketingPage
       eyebrow="₹0 · No card"
       title="Free learning check"
+      cover={{
+        src: "/social/offer-01-free-check.jpg",
+        alt: "Illustration of three open doors, representing free access to the EduOS learning check.",
+        width: 1080,
+        height: 1080,
+      }}
       intro="Start without paying anything. Five questions per subject in CBSE Class 10 Mathematics and Science, answered by your child in their own workspace, with a preview for you of the skills that were checked."
       primary={{
         label: "Create a free parent account",

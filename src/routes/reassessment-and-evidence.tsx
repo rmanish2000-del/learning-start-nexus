@@ -33,6 +33,7 @@ export const Route = createFileRoute("/reassessment-and-evidence")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
+      image: { url: "/social/proof-01-reassessment.jpg", alt: "Illustration of three linked record cards ending in a verified shield with a tick." },
       ogType: "article",
       jsonLd: [breadcrumbLd([{ name: "Reassessment and evidence", path: PATH }]), faqLd(FAQS)],
     }),
@@ -44,6 +45,12 @@ function Page() {
     <MarketingPage
       eyebrow="Proof, not promises"
       title="Fresh reassessment and evidence of progress"
+      cover={{
+        src: "/social/proof-01-reassessment.jpg",
+        alt: "Illustration of three linked record cards ending in a verified shield with a tick.",
+        width: 1200,
+        height: 628,
+      }}
       intro="Most tools claim improvement. EduOS makes closure a measurable event: a gap stays open until a reassessment on unseen questions says otherwise, and the whole chain stays readable."
       primary={{ label: "Start the ₹199 Diagnostic", href: "/diagnostic", cta: "diagnostic_start" }}
       secondary={{
