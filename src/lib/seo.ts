@@ -26,6 +26,8 @@ export interface PageHeadOptions {
   twitterCard?: "summary" | "summary_large_image";
   /** Mark the route non-indexable in every environment. */
   noindex?: boolean;
+  /** Share image actually rendered on the page (site-relative or absolute). */
+  image?: { url: string; alt: string };
   /** Extra JSON-LD graph nodes rendered on this page. */
   jsonLd?: Record<string, unknown>[];
 }
@@ -47,6 +49,15 @@ export function pageHead(options: PageHeadOptions) {
     { name: "twitter:title", content: options.title },
     { name: "twitter:description", content: options.description },
   ];
+  if (options.image) {
+    const imageUrl = absoluteUrl(options.image.url);
+    meta.push(
+      { property: "og:image", content: imageUrl },
+      { property: "og:image:alt", content: options.image.alt },
+      { name: "twitter:image", content: imageUrl },
+      { name: "twitter:image:alt", content: options.image.alt },
+    );
+  }
   if (options.noindex) meta.push({ name: "robots", content: "noindex, nofollow" });
 
   const head: {
@@ -112,12 +123,7 @@ export const organizationLd = {
 } as const;
 
 /** Product/Offer — only where the price is visibly on the page. */
-export function offerLd(input: {
-  name: string;
-  description: string;
-  price: string;
-  path: string;
-}) {
+export function offerLd(input: { name: string; description: string; price: string; path: string }) {
   return {
     "@type": "Product",
     name: input.name,

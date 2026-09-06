@@ -36,6 +36,7 @@ export function MarketingPage({
   eyebrow,
   title,
   intro,
+  cover,
   primary,
   secondary,
   whatNext,
@@ -48,6 +49,7 @@ export function MarketingPage({
   eyebrow: string;
   title: string;
   intro: string;
+  cover?: { src: string; alt: string; width: number; height: number };
   primary: MarketingCta;
   secondary: MarketingCta;
   whatNext: string[];
@@ -71,6 +73,16 @@ export function MarketingPage({
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">{eyebrow}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h1>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">{intro}</p>
+
+        {cover ? (
+          <img
+            src={cover.src}
+            alt={cover.alt}
+            width={cover.width}
+            height={cover.height}
+            className="mt-6 w-full rounded-xl border object-cover"
+          />
+        ) : null}
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button asChild size="lg" className="min-h-11">
