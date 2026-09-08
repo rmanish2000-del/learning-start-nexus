@@ -15,6 +15,10 @@ export const Route = createFileRoute("/about")({
       path: "/about",
       title: TITLE,
       description: DESCRIPTION,
+      image: {
+        url: "/social/product-01-outcome-mapping.jpg",
+        alt: "Illustration of EduOS mapping assessment results to specific learning outcomes.",
+      },
       jsonLd: [breadcrumbLd([{ name: "About", path: "/about" }]), organizationLd],
     }),
 

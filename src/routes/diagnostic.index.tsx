@@ -50,6 +50,10 @@ export const Route = createFileRoute("/diagnostic/")({
       title: TITLE,
       description: DESCRIPTION,
       ogType: "product",
+      image: {
+        url: "/social/offer-02-diagnostic.jpg",
+        alt: "Illustration of a ranked EduOS diagnostic report with the highest-priority learning gap highlighted.",
+      },
       jsonLd: [
         breadcrumbLd([{ name: "Class 10 Diagnostic", path: "/diagnostic" }]),
         offerLd({

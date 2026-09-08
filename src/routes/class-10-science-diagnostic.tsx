@@ -34,6 +34,10 @@ export const Route = createFileRoute("/class-10-science-diagnostic")({
       title: TITLE,
       description: DESCRIPTION,
       ogType: "product",
+      image: {
+        url: "/social/edu-03-learning-loop.jpg",
+        alt: "Illustration of the EduOS diagnose, intervene and reassess learning loop.",
+      },
       jsonLd: [
         breadcrumbLd([{ name: "Class 10 Science diagnostic", path: PATH }]),
         offerLd({

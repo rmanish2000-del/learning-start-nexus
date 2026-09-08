@@ -11,6 +11,10 @@ export const Route = createFileRoute("/privacy")({
       description:
         "How EduOS collects, uses, and protects learner, educator, and guardian data in the EduOS deployment.",
       twitterCard: "summary",
+      image: {
+        url: "/social/product-02-tutor-boundary.jpg",
+        alt: "Illustration representing EduOS data protection boundaries.",
+      },
       jsonLd: [breadcrumbLd([{ name: "Privacy Policy", path: "/privacy" }])],
     }),
 
