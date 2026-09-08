@@ -34,6 +34,10 @@ export const Route = createFileRoute("/class-10-maths-diagnostic")({
       title: TITLE,
       description: DESCRIPTION,
       ogType: "product",
+      image: {
+        url: "/social/edu-02-mastery-bands.jpg",
+        alt: "Illustration of EduOS mastery bands across Class 10 Mathematics outcomes.",
+      },
       jsonLd: [
         breadcrumbLd([{ name: "Class 10 Mathematics diagnostic", path: PATH }]),
         offerLd({

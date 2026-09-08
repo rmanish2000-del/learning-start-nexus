@@ -11,6 +11,10 @@ export const Route = createFileRoute("/terms")({
       description:
         "The terms that govern use of the EduOS learning intelligence platform by tutoring centers, educators, students, and reviewers.",
       twitterCard: "summary",
+      image: {
+        url: "/social/product-02-tutor-boundary.jpg",
+        alt: "Illustration representing the EduOS service boundary.",
+      },
       jsonLd: [breadcrumbLd([{ name: "Terms of Service", path: "/terms" }])],
     }),
 

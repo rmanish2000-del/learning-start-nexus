@@ -33,6 +33,10 @@ export const Route = createFileRoute("/contact")({
       description:
         "Reach the EduOS team — parent, learning centre, school, partnership and support enquiries. Email support@eduos.global or call 9850820909.",
       twitterCard: "summary",
+      image: {
+        url: "/social/product-02-tutor-boundary.jpg",
+        alt: "Illustration of the EduOS support and guidance boundary.",
+      },
       jsonLd: [
         breadcrumbLd([{ name: "Contact", path: "/contact" }]),
         {

@@ -33,6 +33,10 @@ export const Route = createFileRoute("/cbse-paper-practice")({
       path: PATH,
       title: TITLE,
       description: DESCRIPTION,
+      image: {
+        url: "/social/edu-01-mark-vs-cause.jpg",
+        alt: "Illustration contrasting a mark with the underlying cause of a learning gap.",
+      },
       jsonLd: [breadcrumbLd([{ name: "CBSE paper practice", path: PATH }]), faqLd(FAQS)],
     }),
   component: Page,
