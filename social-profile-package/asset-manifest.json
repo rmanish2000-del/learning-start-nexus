@@ -1,0 +1,842 @@
+{
+  "package": "EduOS Social Profile Launch Package",
+  "version": "1.0.0",
+  "source_kit": "EduOS Social Launch Kit v1",
+  "generated_by": "scripts/social/build-profile-package.py",
+  "fonts": {
+    "display": "/home/user/learning-start-nexus/scripts/social/fonts/Outfit.ttf",
+    "body": "/home/user/learning-start-nexus/scripts/social/fonts/Inter.ttf",
+    "approved_stack": "Outfit (display) / Inter (body) per src/routes/__root.tsx",
+    "note": "DejaVu Sans is the fallback used by scripts/branding/generate-icons.py"
+  },
+  "counts": {
+    "canonical_assets": 28,
+    "jpg_variants": 12,
+    "files": 40,
+    "previews": 5
+  },
+  "assets": [
+    {
+      "file": "assets/avatar-master-1024.png",
+      "kind": "avatar",
+      "platform": "Master",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 7196,
+      "sha256": "0df6dc4161ec6233fe5c625cd64b592f620a67a4b16144405a12edc5adba45b4"
+    },
+    {
+      "file": "assets/avatar-instagram-320.png",
+      "kind": "avatar",
+      "platform": "Instagram",
+      "width": 320,
+      "height": 320,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 1984,
+      "sha256": "238ff6941afb4a2c3fa6ece6ef27b3c5198be473a3baae1502092287ce2de71b"
+    },
+    {
+      "file": "assets/avatar-facebook-320.png",
+      "kind": "avatar",
+      "platform": "Facebook",
+      "width": 320,
+      "height": 320,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 1984,
+      "sha256": "238ff6941afb4a2c3fa6ece6ef27b3c5198be473a3baae1502092287ce2de71b"
+    },
+    {
+      "file": "assets/avatar-linkedin-400.png",
+      "kind": "avatar",
+      "platform": "LinkedIn",
+      "width": 400,
+      "height": 400,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 2546,
+      "sha256": "533e3ab8d6cf7e1604766a96718ade3352104737d816338b68722d56499b046c"
+    },
+    {
+      "file": "assets/avatar-youtube-800.png",
+      "kind": "avatar",
+      "platform": "YouTube",
+      "width": 800,
+      "height": 800,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 5227,
+      "sha256": "85073d0aba36f4c8e908c8091bbe3b7a33290db80a37476735f95d141605875b"
+    },
+    {
+      "file": "assets/avatar-whatsapp-640.png",
+      "kind": "avatar",
+      "platform": "WhatsApp Business",
+      "width": 640,
+      "height": 640,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 3921,
+      "sha256": "5a9dd1c1816a2fa1258a180e1e40464d34bebb8414f80d997cf542af4261cd12"
+    },
+    {
+      "file": "assets/avatar-x-400.png",
+      "kind": "avatar",
+      "platform": "X",
+      "width": 400,
+      "height": 400,
+      "format": "png",
+      "purpose": "Profile picture (square upload; platforms apply circular crop)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Circle-safe: mark occupies the central 42% so nothing is clipped.",
+      "bytes": 2546,
+      "sha256": "533e3ab8d6cf7e1604766a96718ade3352104737d816338b68722d56499b046c"
+    },
+    {
+      "file": "assets/avatar-master.svg",
+      "kind": "avatar",
+      "platform": "Master",
+      "width": 1024,
+      "height": 1024,
+      "format": "svg",
+      "purpose": "Vector master of the profile mark (maskable geometry)",
+      "alt": "EduOS logo: an orange letter E with an orange underline on a navy square.",
+      "notes": "Text-based SVG; renderer uses the named font stack. PNG masters are the pixel-exact reference.",
+      "bytes": 465,
+      "sha256": "6b01e6dcab40223b2c85c733a270fedd42c8ce801894f81fb1a90a63270ed4c4"
+    },
+    {
+      "file": "assets/banner-linkedin-1128x191.png",
+      "kind": "banner",
+      "platform": "LinkedIn",
+      "width": 1128,
+      "height": 191,
+      "format": "png",
+      "purpose": "Company page banner",
+      "alt": "EduOS banner on navy: EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "Left 400px reserved for the avatar overlap on desktop.",
+      "safe_area": {
+        "x0": 400,
+        "y0": 20,
+        "x1": 1104,
+        "y1": 171
+      },
+      "bytes": 14835,
+      "sha256": "b769dba9cb0d72d9fb3b949e27ac4c869720df2b114a940d15a7dd2be7530efc"
+    },
+    {
+      "file": "assets/cover-facebook-820x312.png",
+      "kind": "cover",
+      "platform": "Facebook",
+      "width": 820,
+      "height": 312,
+      "format": "png",
+      "purpose": "Page cover (desktop)",
+      "alt": "EduOS cover on navy: logo, EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "Content held inside the 560px band that survives the mobile crop.",
+      "safe_area": {
+        "x0": 130,
+        "y0": 30,
+        "x1": 690,
+        "y1": 282
+      },
+      "bytes": 18026,
+      "sha256": "b4a183bff57dcd167f716773ec8c2fbc7e8229536e32e197e28f19df273e82d3"
+    },
+    {
+      "file": "assets/cover-facebook-mobile-640x360.png",
+      "kind": "cover",
+      "platform": "Facebook",
+      "width": 640,
+      "height": 360,
+      "format": "png",
+      "purpose": "Page cover (mobile-optimised alternative)",
+      "alt": "EduOS cover on navy: logo, EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 40,
+        "y0": 40,
+        "x1": 600,
+        "y1": 320
+      },
+      "bytes": 16256,
+      "sha256": "9ed905e91d75a2fa86b3bdd2d38ceb9a15f45b4123e9d138af4c1de1860d05b6"
+    },
+    {
+      "file": "assets/banner-youtube-2560x1440.png",
+      "kind": "banner",
+      "platform": "YouTube",
+      "width": 2560,
+      "height": 1440,
+      "format": "png",
+      "purpose": "Channel art",
+      "alt": "EduOS channel art on navy: logo, EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "All content inside the 1546x423 universal safe area; TV/desktop show more navy field.",
+      "safe_area": {
+        "x0": 507,
+        "y0": 508,
+        "x1": 2053,
+        "y1": 931
+      },
+      "bytes": 48612,
+      "sha256": "f8fc271a5c430d34b2a6a4bb88e9ee7c33a7bc8bbc9caabfb4c2b245246cd083"
+    },
+    {
+      "file": "assets/header-x-1500x500.png",
+      "kind": "banner",
+      "platform": "X",
+      "width": 1500,
+      "height": 500,
+      "format": "png",
+      "purpose": "Profile header",
+      "alt": "EduOS header on navy: EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global, logo.",
+      "notes": "Bottom-left 460px reserved for the avatar overlap.",
+      "safe_area": {
+        "x0": 460,
+        "y0": 60,
+        "x1": 1440,
+        "y1": 440
+      },
+      "bytes": 29480,
+      "sha256": "b01dbff222b9ee2f8ee7f9c7163c641c87f3536ee70a0f59421b27c9da95f6ab"
+    },
+    {
+      "file": "assets/watermark-light.png",
+      "kind": "watermark",
+      "platform": "All",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "purpose": "White mark for use over dark images/video",
+      "alt": "EduOS mark with eduos.global, transparent background.",
+      "notes": "Transparent PNG; scale to 8–12% of the target's short edge, 60–80% opacity.",
+      "bytes": 17286,
+      "sha256": "812ac284bde00a6a5f2b8d8444fadd51f003fc96689ac008ec7148646c6e6541"
+    },
+    {
+      "file": "assets/watermark-dark.png",
+      "kind": "watermark",
+      "platform": "All",
+      "width": 1024,
+      "height": 1024,
+      "format": "png",
+      "purpose": "Navy mark for use over light images/video",
+      "alt": "EduOS mark with eduos.global, transparent background.",
+      "notes": "Transparent PNG; scale to 8–12% of the target's short edge, 60–80% opacity.",
+      "bytes": 17995,
+      "sha256": "2b2678903c1e02859504b1119c0802632a5ada086c3f612831498d32642a3620"
+    },
+    {
+      "file": "assets/watermark.svg",
+      "kind": "watermark",
+      "platform": "All",
+      "width": 1024,
+      "height": 1024,
+      "format": "svg",
+      "purpose": "Vector watermark (currentColor — set fill per background)",
+      "alt": "EduOS mark with eduos.global.",
+      "notes": "Uses currentColor so one file serves light and dark placements.",
+      "bytes": 606,
+      "sha256": "da472055e0c1b0cc48698a7d2e31fc1bdb381b87b0eb47dc7d03a9c88fc849f2"
+    },
+    {
+      "file": "assets/pinned-linkedin-1200x628.png",
+      "kind": "pinned_post",
+      "platform": "LinkedIn",
+      "width": 1200,
+      "height": 628,
+      "format": "png",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "Pair with proof-01 copy and destination https://www.eduos.global/reassessment-and-evidence (see utm-manifest.json).",
+      "safe_area": {
+        "x0": 72,
+        "y0": 72,
+        "x1": 1128,
+        "y1": 556
+      },
+      "bytes": 58264,
+      "sha256": "2739d3cceb14db348be870ad26a0e9079408898f98fede66c508258deab0a4be"
+    },
+    {
+      "file": "assets/pinned-facebook-1200x630.png",
+      "kind": "pinned_post",
+      "platform": "Facebook",
+      "width": 1200,
+      "height": 630,
+      "format": "png",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "Pair with proof-01 copy and destination https://www.eduos.global/reassessment-and-evidence (see utm-manifest.json).",
+      "safe_area": {
+        "x0": 72,
+        "y0": 72,
+        "x1": 1128,
+        "y1": 558
+      },
+      "bytes": 58281,
+      "sha256": "6864135d47d4c442b7681f539e95828f33cfd48903a19be186fa41ad3feba329"
+    },
+    {
+      "file": "assets/pinned-instagram-1080x1080.png",
+      "kind": "pinned_post",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "png",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "Pair with proof-01 copy and destination https://www.eduos.global/reassessment-and-evidence (see utm-manifest.json).",
+      "safe_area": {
+        "x0": 88,
+        "y0": 88,
+        "x1": 992,
+        "y1": 992
+      },
+      "bytes": 81449,
+      "sha256": "574fae4a6e0603da15151e2c2c4c5072524dafc41d8bfbf0e93699a21504e0a1"
+    },
+    {
+      "file": "assets/pinned-x-1600x900.png",
+      "kind": "pinned_post",
+      "platform": "X",
+      "width": 1600,
+      "height": 900,
+      "format": "png",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "Pair with proof-01 copy and destination https://www.eduos.global/reassessment-and-evidence (see utm-manifest.json).",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 1504,
+        "y1": 804
+      },
+      "bytes": 83730,
+      "sha256": "30e9f79304eeb02a297253cd84d60aafd77151cf0cac359dab6dcb30934c4b45"
+    },
+    {
+      "file": "assets/highlight-free-check.png",
+      "kind": "highlight_cover",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1920,
+      "format": "png",
+      "purpose": "Story Highlight cover — “Free Check”",
+      "alt": "EduOS logo with the word Free Check on navy.",
+      "notes": "Highlight groups posts tagged utm_campaign=free_learning_check. Content sits inside the circular crop.",
+      "safe_area": {
+        "x0": 160,
+        "y0": 580,
+        "x1": 920,
+        "y1": 1340
+      },
+      "bytes": 24700,
+      "sha256": "ce8b258224ef48ebaa17778fd4f308d53b44e459aefbb771de0bf82f438edb8a"
+    },
+    {
+      "file": "assets/highlight-diagnostic.png",
+      "kind": "highlight_cover",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1920,
+      "format": "png",
+      "purpose": "Story Highlight cover — “Diagnostic”",
+      "alt": "EduOS logo with the word Diagnostic on navy.",
+      "notes": "Highlight groups posts tagged utm_campaign=class10_diagnostic. Content sits inside the circular crop.",
+      "safe_area": {
+        "x0": 160,
+        "y0": 580,
+        "x1": 920,
+        "y1": 1340
+      },
+      "bytes": 26308,
+      "sha256": "eebf09f9577eb53236f4aaa6f4b8db79d0dc26fcc0db5a3295da6aec33bd7198"
+    },
+    {
+      "file": "assets/highlight-parent-guide.png",
+      "kind": "highlight_cover",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1920,
+      "format": "png",
+      "purpose": "Story Highlight cover — “Parent Guide”",
+      "alt": "EduOS logo with the word Parent Guide on navy.",
+      "notes": "Highlight groups posts tagged utm_campaign=parent_guide. Content sits inside the circular crop.",
+      "safe_area": {
+        "x0": 160,
+        "y0": 580,
+        "x1": 920,
+        "y1": 1340
+      },
+      "bytes": 26133,
+      "sha256": "bfd1b1d7dc24bde885f894decd29ababb277b6040cdf43a2308bc9539e8f6a07"
+    },
+    {
+      "file": "assets/highlight-learning-loop.png",
+      "kind": "highlight_cover",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1920,
+      "format": "png",
+      "purpose": "Story Highlight cover — “Learning Loop”",
+      "alt": "EduOS logo with the word Learning Loop on navy.",
+      "notes": "Highlight groups posts tagged utm_campaign=reassessment_evidence. Content sits inside the circular crop.",
+      "safe_area": {
+        "x0": 160,
+        "y0": 580,
+        "x1": 920,
+        "y1": 1340
+      },
+      "bytes": 26225,
+      "sha256": "a4a2bc8d99ff8e770b502477547eaca76ad27a46dee3f580b25934628394d403"
+    },
+    {
+      "file": "assets/highlight-proof.png",
+      "kind": "highlight_cover",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1920,
+      "format": "png",
+      "purpose": "Story Highlight cover — “Proof”",
+      "alt": "EduOS logo with the word Proof on navy.",
+      "notes": "Highlight groups posts tagged utm_campaign=reassessment_evidence. Content sits inside the circular crop.",
+      "safe_area": {
+        "x0": 160,
+        "y0": 580,
+        "x1": 920,
+        "y1": 1340
+      },
+      "bytes": 18997,
+      "sha256": "9c52ea1659f2de3d8804033daeaee774deb2539c680948902773c2753ea645c5"
+    },
+    {
+      "file": "assets/grid-01-mark-symptom.png",
+      "kind": "instagram_grid",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "png",
+      "purpose": "Grid tile 1/3 — first line of edu-01 (verbatim)",
+      "alt": "Text card: A mark is a symptom, not a diagnosis. eduos.global.",
+      "notes": "Post as a row of three; each links to the matching kit post’s destination.",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 984,
+        "y1": 984
+      },
+      "bytes": 43952,
+      "sha256": "421e8affcfe5942b1d1ea47d26199d570267bcda1b1afdb4fef35ba19a2207ff"
+    },
+    {
+      "file": "assets/grid-02-mastery-bands.png",
+      "kind": "instagram_grid",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "png",
+      "purpose": "Grid tile 2/3 — first line of edu-02 (verbatim)",
+      "alt": "Text card: Weak. Developing. Secure. Strong. eduos.global.",
+      "notes": "Post as a row of three; each links to the matching kit post’s destination.",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 984,
+        "y1": 984
+      },
+      "bytes": 42271,
+      "sha256": "1404e69f3b6ef229b5c7900414b3ef039b7891682545944a0aab69f13432e218"
+    },
+    {
+      "file": "assets/grid-03-not-a-plan.png",
+      "kind": "instagram_grid",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "png",
+      "purpose": "Grid tile 3/3 — first line of parent-02 (verbatim)",
+      "alt": "Text card: “Study everything again” is not a plan. eduos.global.",
+      "notes": "Post as a row of three; each links to the matching kit post’s destination.",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 984,
+        "y1": 984
+      },
+      "bytes": 42889,
+      "sha256": "c38c203f047f99b3ac0165d94ce8a2725784565b2bbd913f9cad27c595d25fce"
+    }
+  ],
+  "variants": [
+    {
+      "file": "assets/banner-linkedin-1128x191.jpg",
+      "kind": "banner",
+      "platform": "LinkedIn",
+      "width": 1128,
+      "height": 191,
+      "format": "jpg",
+      "purpose": "Company page banner (JPEG variant)",
+      "alt": "EduOS banner on navy: EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 400,
+        "y0": 20,
+        "x1": 1104,
+        "y1": 171
+      },
+      "variant_of": "assets/banner-linkedin-1128x191.png",
+      "bytes": 8024,
+      "sha256": "00c1b7c8f7d7226f9f99db81d616bcff01c5470c8663623ef1c392d39d1dc30d"
+    },
+    {
+      "file": "assets/cover-facebook-820x312.jpg",
+      "kind": "cover",
+      "platform": "Facebook",
+      "width": 820,
+      "height": 312,
+      "format": "jpg",
+      "purpose": "Page cover (desktop) (JPEG variant)",
+      "alt": "EduOS cover on navy: logo, EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 130,
+        "y0": 30,
+        "x1": 690,
+        "y1": 282
+      },
+      "variant_of": "assets/cover-facebook-820x312.png",
+      "bytes": 10611,
+      "sha256": "743fc5aa6b73cd100823f5d9641ea22e005c1b165c06f0cd2a58478982d32a63"
+    },
+    {
+      "file": "assets/cover-facebook-mobile-640x360.jpg",
+      "kind": "cover",
+      "platform": "Facebook",
+      "width": 640,
+      "height": 360,
+      "format": "jpg",
+      "purpose": "Page cover (mobile-optimised alternative) (JPEG variant)",
+      "alt": "EduOS cover on navy: logo, EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 40,
+        "y0": 40,
+        "x1": 600,
+        "y1": 320
+      },
+      "variant_of": "assets/cover-facebook-mobile-640x360.png",
+      "bytes": 9755,
+      "sha256": "e57f775a9e1e43625b21d242e62da3ac563d0accb5f92aa3d62f0c1d30435154"
+    },
+    {
+      "file": "assets/banner-youtube-2560x1440.jpg",
+      "kind": "banner",
+      "platform": "YouTube",
+      "width": 2560,
+      "height": 1440,
+      "format": "jpg",
+      "purpose": "Channel art (JPEG variant)",
+      "alt": "EduOS channel art on navy: logo, EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 507,
+        "y0": 508,
+        "x1": 2053,
+        "y1": 931
+      },
+      "variant_of": "assets/banner-youtube-2560x1440.png",
+      "bytes": 39538,
+      "sha256": "668fe1845865e11f46198390bf03c486b5a42d4d04e3aaf1b219da2e87711646"
+    },
+    {
+      "file": "assets/header-x-1500x500.jpg",
+      "kind": "banner",
+      "platform": "X",
+      "width": 1500,
+      "height": 500,
+      "format": "jpg",
+      "purpose": "Profile header (JPEG variant)",
+      "alt": "EduOS header on navy: EduOS wordmark, CBSE Class 10 Mathematics and Science, eduos.global, logo.",
+      "notes": "",
+      "safe_area": {
+        "x0": 460,
+        "y0": 60,
+        "x1": 1440,
+        "y1": 440
+      },
+      "variant_of": "assets/header-x-1500x500.png",
+      "bytes": 18040,
+      "sha256": "442cc3cc83aceb865b0628c344010597e7675c51e3c30d226ebf812d65619db9"
+    },
+    {
+      "file": "assets/pinned-linkedin-1200x628.jpg",
+      "kind": "pinned_post",
+      "platform": "LinkedIn",
+      "width": 1200,
+      "height": 628,
+      "format": "jpg",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT) (JPEG variant)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 72,
+        "y0": 72,
+        "x1": 1128,
+        "y1": 556
+      },
+      "variant_of": "assets/pinned-linkedin-1200x628.png",
+      "bytes": 41002,
+      "sha256": "18b21f4d58d35385399cfc7306b773bfea4f2c033c3638b14155e5e2dc5ee3a4"
+    },
+    {
+      "file": "assets/pinned-facebook-1200x630.jpg",
+      "kind": "pinned_post",
+      "platform": "Facebook",
+      "width": 1200,
+      "height": 630,
+      "format": "jpg",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT) (JPEG variant)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 72,
+        "y0": 72,
+        "x1": 1128,
+        "y1": 558
+      },
+      "variant_of": "assets/pinned-facebook-1200x630.png",
+      "bytes": 40240,
+      "sha256": "6129271469115beadd30ed4b0aa37170e3d821dc0e995d30ec72d2ca7f20b4c7"
+    },
+    {
+      "file": "assets/pinned-instagram-1080x1080.jpg",
+      "kind": "pinned_post",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "jpg",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT) (JPEG variant)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 88,
+        "y0": 88,
+        "x1": 992,
+        "y1": 992
+      },
+      "variant_of": "assets/pinned-instagram-1080x1080.png",
+      "bytes": 57443,
+      "sha256": "bf29058ddf3c8d7b4edd6bc67f9bbb491b255a28c09b8880351e844af341b399"
+    },
+    {
+      "file": "assets/pinned-x-1600x900.jpg",
+      "kind": "pinned_post",
+      "platform": "X",
+      "width": 1600,
+      "height": 900,
+      "format": "jpg",
+      "purpose": "Pinned-post image (proof-01 copy, verbatim from LAUNCH_KIT) (JPEG variant)",
+      "alt": "Text card on navy: Practice does not close a learning gap. Time spent does not close it. An AI conversation does not close it. In EduOS, a gap stays open until a fresh reassessment says otherwise. See what counts as proof, eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 1504,
+        "y1": 804
+      },
+      "variant_of": "assets/pinned-x-1600x900.png",
+      "bytes": 60353,
+      "sha256": "f72a6146afafeb8244ad88d5e896e1f6ad36b9b0441a33f423840e2cd28968c3"
+    },
+    {
+      "file": "assets/grid-01-mark-symptom.jpg",
+      "kind": "instagram_grid",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "jpg",
+      "purpose": "Grid tile 1/3 — first line of edu-01 (verbatim) (JPEG variant)",
+      "alt": "Text card: A mark is a symptom, not a diagnosis. eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 984,
+        "y1": 984
+      },
+      "variant_of": "assets/grid-01-mark-symptom.png",
+      "bytes": 29176,
+      "sha256": "bd58349e705922ba83fa6e44bc707c92d6f98e9a49c811df6f516a403328ce67"
+    },
+    {
+      "file": "assets/grid-02-mastery-bands.jpg",
+      "kind": "instagram_grid",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "jpg",
+      "purpose": "Grid tile 2/3 — first line of edu-02 (verbatim) (JPEG variant)",
+      "alt": "Text card: Weak. Developing. Secure. Strong. eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 984,
+        "y1": 984
+      },
+      "variant_of": "assets/grid-02-mastery-bands.png",
+      "bytes": 33660,
+      "sha256": "b8ecfec4ed20f2cab93a78c97ffb5e3b6b1146987871c873837caf49bf42f0df"
+    },
+    {
+      "file": "assets/grid-03-not-a-plan.jpg",
+      "kind": "instagram_grid",
+      "platform": "Instagram",
+      "width": 1080,
+      "height": 1080,
+      "format": "jpg",
+      "purpose": "Grid tile 3/3 — first line of parent-02 (verbatim) (JPEG variant)",
+      "alt": "Text card: “Study everything again” is not a plan. eduos.global.",
+      "notes": "",
+      "safe_area": {
+        "x0": 96,
+        "y0": 96,
+        "x1": 984,
+        "y1": 984
+      },
+      "variant_of": "assets/grid-03-not-a-plan.png",
+      "bytes": 29939,
+      "sha256": "f565ef75f31c5f228bd5487216dbf571e24f44165cfec36a3443f51c21f1b9d3"
+    }
+  ],
+  "previews": [
+    "previews/avatars-circle-crop.png",
+    "previews/banners-desktop.png",
+    "previews/banners-youtube.png",
+    "previews/mobile-facebook.png",
+    "previews/instagram-highlights-grid.png"
+  ],
+  "validation": {
+    "safe_area_checks": [
+      {
+        "file": "assets/banner-linkedin-1128x191.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/cover-facebook-820x312.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/cover-facebook-mobile-640x360.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/banner-youtube-2560x1440.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/header-x-1500x500.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/pinned-linkedin-1200x628.png",
+        "text_boxes": 5,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/pinned-facebook-1200x630.png",
+        "text_boxes": 5,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/pinned-instagram-1080x1080.png",
+        "text_boxes": 5,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/pinned-x-1600x900.png",
+        "text_boxes": 5,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/highlight-free-check.png",
+        "text_boxes": 1,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/highlight-diagnostic.png",
+        "text_boxes": 1,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/highlight-parent-guide.png",
+        "text_boxes": 1,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/highlight-learning-loop.png",
+        "text_boxes": 1,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/highlight-proof.png",
+        "text_boxes": 1,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/grid-01-mark-symptom.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/grid-02-mastery-bands.png",
+        "text_boxes": 2,
+        "outside_safe_area": 0,
+        "ok": true
+      },
+      {
+        "file": "assets/grid-03-not-a-plan.png",
+        "text_boxes": 3,
+        "outside_safe_area": 0,
+        "ok": true
+      }
+    ],
+    "all_text_inside_safe_areas": true
+  }
+}
