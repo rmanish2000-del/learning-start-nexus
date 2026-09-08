@@ -73,3 +73,9 @@ rollback and official curriculum correctness.
 - [x] Credit stated as ₹199 (repository was already correct; the ₹200 figure existed only in the Figma package). No `[VERIFY]` markers remain in shipped guidance.
 - [x] Guard test `src/lib/__tests__/role-academy.test.ts`: every link resolves to a real route and passes that role's own gate.
 - [x] Full suite 34 files / 389 tests, typecheck clean, security scan unchanged (two pre-existing warnings).
+
+## White-label branding (2026-09-08)
+- [x] EduOS-owned `og:image` on all 13 public pages (removes platform preview-domain screenshot from shared links).
+- [x] Guard test `src/lib/__tests__/no-platform-branding.test.ts` fails on any user-facing platform branding.
+- [x] Permanent rule recorded in AGENTS.md.
+- [ ] Founder action: create EduOS-owned Google Cloud OAuth client and enter it in Cloud → Users → Auth Settings → Google, so the consent screen reads "EduOS".
