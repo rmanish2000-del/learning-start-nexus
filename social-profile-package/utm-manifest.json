@@ -1,0 +1,71 @@
+{
+  "taxonomy": {
+    "sources": [
+      "instagram",
+      "facebook",
+      "linkedin",
+      "youtube",
+      "whatsapp"
+    ],
+    "medium": "social",
+    "campaigns": [
+      "class10_diagnostic",
+      "free_learning_check",
+      "paper_practice",
+      "parent_guide",
+      "reassessment_evidence",
+      "maths_diagnostic",
+      "science_diagnostic"
+    ]
+  },
+  "medium": "social",
+  "profile_links": {
+    "instagram": "https://www.eduos.global/?utm_source=instagram&utm_medium=social&utm_campaign=free_learning_check",
+    "facebook": "https://www.eduos.global/?utm_source=facebook&utm_medium=social&utm_campaign=free_learning_check",
+    "linkedin": "https://www.eduos.global/?utm_source=linkedin&utm_medium=social&utm_campaign=free_learning_check",
+    "youtube": "https://www.eduos.global/?utm_source=youtube&utm_medium=social&utm_campaign=free_learning_check",
+    "whatsapp": "https://www.eduos.global/?utm_source=whatsapp&utm_medium=social&utm_campaign=free_learning_check",
+    "x": "https://www.eduos.global/?utm_source=x&utm_medium=social&utm_campaign=free_learning_check"
+  },
+  "pinned_post": {
+    "instagram": "https://www.eduos.global/reassessment-and-evidence?utm_source=instagram&utm_medium=social&utm_campaign=reassessment_evidence",
+    "facebook": "https://www.eduos.global/reassessment-and-evidence?utm_source=facebook&utm_medium=social&utm_campaign=reassessment_evidence",
+    "linkedin": "https://www.eduos.global/reassessment-and-evidence?utm_source=linkedin&utm_medium=social&utm_campaign=reassessment_evidence",
+    "x": "https://www.eduos.global/reassessment-and-evidence?utm_source=x&utm_medium=social&utm_campaign=reassessment_evidence"
+  },
+  "highlights": {
+    "Free Check": {
+      "campaign": "free_learning_check"
+    },
+    "Diagnostic": {
+      "campaign": "class10_diagnostic"
+    },
+    "Parent Guide": {
+      "campaign": "parent_guide"
+    },
+    "Learning Loop": {
+      "campaign": "reassessment_evidence"
+    },
+    "Proof": {
+      "campaign": "reassessment_evidence"
+    }
+  },
+  "grid": {
+    "grid-01-mark-symptom.png": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=instagram&utm_medium=social&utm_campaign=parent_guide",
+    "grid-02-mastery-bands.png": "https://www.eduos.global/cbse-class-10-learning-gap-diagnostic?utm_source=linkedin&utm_medium=social&utm_campaign=class10_diagnostic",
+    "grid-03-not-a-plan.png": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=instagram&utm_medium=social&utm_campaign=parent_guide"
+  },
+  "kit_posts": {
+    "edu-01": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=instagram&utm_medium=social&utm_campaign=parent_guide",
+    "edu-02": "https://www.eduos.global/cbse-class-10-learning-gap-diagnostic?utm_source=linkedin&utm_medium=social&utm_campaign=class10_diagnostic",
+    "edu-03": "https://www.eduos.global/reassessment-and-evidence?utm_source=youtube&utm_medium=social&utm_campaign=reassessment_evidence",
+    "parent-01": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=facebook&utm_medium=social&utm_campaign=parent_guide",
+    "parent-02": "https://www.eduos.global/parent-guide-learning-gaps?utm_source=instagram&utm_medium=social&utm_campaign=parent_guide",
+    "product-01": "https://www.eduos.global/class-10-maths-diagnostic?utm_source=linkedin&utm_medium=social&utm_campaign=maths_diagnostic",
+    "product-02": "https://www.eduos.global/class-10-science-diagnostic?utm_source=instagram&utm_medium=social&utm_campaign=science_diagnostic",
+    "offer-01": "https://www.eduos.global/free-learning-check?utm_source=whatsapp&utm_medium=social&utm_campaign=free_learning_check",
+    "offer-02": "https://www.eduos.global/cbse-class-10-learning-gap-diagnostic?utm_source=facebook&utm_medium=social&utm_campaign=class10_diagnostic",
+    "proof-01": "https://www.eduos.global/reassessment-and-evidence?utm_source=linkedin&utm_medium=social&utm_campaign=reassessment_evidence"
+  },
+  "note": "utm_source values are the approved closed list in src/lib/utm.ts; 'x' is approved there and used only for the X header/pinned post."
+}
