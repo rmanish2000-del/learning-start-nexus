@@ -37,6 +37,24 @@ const TECHNICAL_ALLOWANCES = [
   "lovable/email/auth",
 ];
 
+/**
+ * Infrastructure files that must reference platform hosts to work at all:
+ * preview-session isolation, CSP frame-ancestors, preview-host detection and
+ * the Cloud email preview endpoint. None of these render user-facing copy.
+ */
+const TECHNICAL_FILES = [
+  "src/integrations/supabase/previewAuthStorage.ts",
+  "src/integrations/supabase/client.ts",
+  "src/lib/security-headers.ts",
+  "src/lib/pwa/register-sw.ts",
+  "src/lib/environment.ts",
+  "src/routes/lovable/email/auth/preview.ts",
+  "src/routes/lovable/email/auth/webhook.ts",
+  "src/lib/__tests__/security-headers.test.ts",
+  "src/lib/__tests__/pwa-safety.test.ts",
+  "src/lib/__tests__/no-platform-branding.test.ts",
+];
+
 function walk(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
     if (entry === "node_modules" || entry.startsWith(".")) continue;
@@ -48,6 +66,7 @@ function walk(dir: string, out: string[] = []): string[] {
 }
 
 function offendingLines(file: string): string[] {
+  if (TECHNICAL_FILES.some((t) => file.split("\\").join("/").endsWith(t))) return [];
   let text: string;
   try {
     text = readFileSync(file, "utf8");
