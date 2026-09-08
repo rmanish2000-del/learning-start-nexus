@@ -81,6 +81,24 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.eduos.global/" },
       { name: "twitter:card", content: "summary_large_image" },
+      // An EduOS-owned share image: without one, the platform substitutes a
+      // generated screenshot served from a third-party preview domain.
+      {
+        property: "og:image",
+        content: "https://www.eduos.global/social/edu-03-learning-loop.jpg",
+      },
+      {
+        property: "og:image:alt",
+        content: "Illustration of the EduOS diagnose, intervene and reassess learning loop.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://www.eduos.global/social/edu-03-learning-loop.jpg",
+      },
+      {
+        name: "twitter:image:alt",
+        content: "Illustration of the EduOS diagnose, intervene and reassess learning loop.",
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.eduos.global/" }],
     scripts: [
