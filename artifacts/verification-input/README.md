@@ -96,3 +96,53 @@ Intended for Claude Code to perform paid-pool verification analysis. The
 package is evidence only. It must NOT be imported directly into the production
 database; any remediation output must re-enter through the normal reviewed
 verification workflow.
+
+
+---
+
+## Artifact delivery (repository copy)
+
+This directory is the canonical delivery location for the package described
+above. The copy of this README inside the ZIP is identical except for this
+final section.
+
+- Path: `artifacts/verification-input/EDUOS_GEMINI_INPUT_PACKAGE.zip`
+- Size: **153382 bytes**
+- SHA-256: **`4029077de1acbdd59dc07f04a8d4d71b72b7881cb3a9d9e76e0a669a20636fe5`**
+- Entries: 11 files (8 data JSON, `EXPORT_MANIFEST.json`, `README.md`, `SHA256SUMS.txt`)
+
+### Per-file checksums (inside the ZIP)
+
+| File | Bytes | SHA-256 |
+| --- | --- | --- |
+| `EDUOS_RAW_329_ITEM_EXPORT.json` | 1357717 | `518150d148854991f9719a6cf9cc872a1fac22aac0ddfb14d389d86344a4ffcb` |
+| `EDUOS_ENGINE_V1_SPEC.json` | 5400 | `31d6ed50e643cea4611d5e012148902c51b8a703ed5b53f7b84dc2117801bc66` |
+| `EDUOS_OFFICIAL_SOURCE_REGISTER.json` | 69608 | `617bb61c956134a42fb757c3b1ba3553f0fb4d5263cbb383c6a57fcd68f83437` |
+| `EDUOS_CURRICULUM_CROSSWALK.json` | 51158 | `52cd874db1c13ec7f5444e6dd3e68033ebf29738728ae21618569eb4087ea0ba` |
+| `EDUOS_POOL_METADATA.json` | 159809 | `6d137a582db450f9e8509608d07303118b85da0662e596d9878130c0d83fd14f` |
+| `EDUOS_VERIFICATION_EVIDENCE.json` | 907218 | `bcfab510f5a8e4fbc29775fb3c01d88a1b0d52e30d918cf588a6f97361fbc7ba` |
+| `EDUOS_EXISTING_QUALITY_REPORTS.json` | 6808 | `3798e3dcd1e472f030f84f37638e4dc4d058896c1e7f3bfa63b4b6f90550bd94` |
+| `EDUOS_EXPORT_COUNT_RECONCILIATION.json` | 6675 | `7b4c1f5937ffd19a5d3b24e552b500c5adb09322ca55813989825f49813a6c6c` |
+| `README.md` | 4978 | `efecaab44497082916f671bb8791a13688e7c5bb507ea5ce8bbaa2edded83a3e` |
+| `SHA256SUMS.txt` | 949 | `aa1d419cf15052c94acefdd1433b55f72672c490c7d295cc26bb3990ad86e929` |
+
+### Validation performed on these exact bytes
+
+- ZIP CRC test passed (`unzip -t`), no truncation.
+- Extracted files are byte-identical to the generated sources (`diff -r`).
+- Internal `SHA256SUMS.txt` verifies against every extracted file.
+- All 10 JSON documents parse; 329 records, 329 unique database ids.
+- Export id set equals the live production id set exactly (0 missing, 0 extra).
+- Secret / personal-data scan: no tokens, keys, credentials, emails, phone
+  numbers, learner, reviewer, account or payment data.
+
+### Read-only confirmation
+
+Regeneration used SELECT statements only. No production row, verification
+state, pool eligibility, migration, configuration or application file was
+changed, and no deployment to production or staging occurred.
+
+### Rollback
+
+Revert the commit that adds `artifacts/verification-input/`. Nothing else in
+the application depends on these files.
