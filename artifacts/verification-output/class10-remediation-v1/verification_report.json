@@ -1,0 +1,358 @@
+{
+ "verifier": "verify_remediation.py",
+ "package_zip": "/tmp/claude-0/-home-user-learning-start-nexus/aa67cd9e-a048-52e2-89c1-dcbc5e155702/scratchpad/remed/EDUOS_REMEDIATION_PACKAGE_V1_CORRECTED.zip",
+ "package_zip_bytes": 276657,
+ "package_zip_sha256": "cf6040fa83b9cbfdf437afe1b6031b5693d02fadf385d57df9fc72792e946e8c",
+ "checks_run": 66,
+ "checks_failed": 0,
+ "overall": "PASS",
+ "checks": [
+  {
+   "check": "input ZIP sha256 matches assignment",
+   "result": "PASS",
+   "detail": "4029077de1acbdd59dc07f04a8d4d71b72b7881cb3a9d9e76e0a669a20636fe5"
+  },
+  {
+   "check": "package ZIP CRC test",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "ZIP contains exactly the 15 expected files",
+   "result": "PASS",
+   "detail": "[]"
+  },
+  {
+   "check": "fresh extraction byte-identical to generator output directory",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "SHA256SUMS lists every packaged file except itself",
+   "result": "PASS",
+   "detail": "set()"
+  },
+  {
+   "check": "SHA256SUMS hashes match real bytes",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_ALL_329_ITEM_EXPORT_VALIDATED.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_210_LEGACY_VERIFICATION_REVIEW.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_206_HELD_ITEMS_REMEDIATED.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_REPLACEMENT_ITEMS.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_EXTERNAL_REF_CORRECTIONS.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_APPROVED_FLAG_CORRECTIONS.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_DUPLICATE_REPORT.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_CONTAMINATION_REPORT.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_POOL_SEPARATION_REPORT.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_COUNT_RECONCILIATION.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_IMPORT_MANIFEST.json parses as JSON",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_MATHS_SME_REVIEW_QUEUE.csv has required columns",
+   "result": "PASS",
+   "detail": "set()"
+  },
+  {
+   "check": "EDUOS_MATHS_SME_REVIEW_QUEUE.csv rows are rectangular",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_SCIENCE_SME_REVIEW_QUEUE.csv has required columns",
+   "result": "PASS",
+   "detail": "set()"
+  },
+  {
+   "check": "EDUOS_SCIENCE_SME_REVIEW_QUEUE.csv rows are rectangular",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "master has 329 records",
+   "result": "PASS",
+   "detail": "329"
+  },
+  {
+   "check": "329 unique database_ids",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "master id set equals input export id set",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "question content/answer/explanation/type/external_ref preserved verbatim for all 329",
+   "result": "PASS",
+   "detail": "329"
+  },
+  {
+   "check": "current flags preserved verbatim for all 329",
+   "result": "PASS",
+   "detail": "329"
+  },
+  {
+   "check": "stored engine evidence per item matches input evidence file",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "subject split 235 Maths / 94 Science",
+   "result": "PASS",
+   "detail": "Counter({'Mathematics': 235, 'Science': 94})"
+  },
+  {
+   "check": "no check with executed=false carries PASS/pass",
+   "result": "PASS",
+   "detail": "0 violations; first: []"
+  },
+  {
+   "check": "every independent check declares executed and status",
+   "result": "PASS",
+   "detail": "0"
+  },
+  {
+   "check": "206 held (non-auto-approved) items",
+   "result": "PASS",
+   "detail": "206"
+  },
+  {
+   "check": "123 auto-approved and all confirmed",
+   "result": "PASS",
+   "detail": "Counter({'SME_REVIEW_REQUIRED': 194, 'CONFIRMED_AUTO_APPROVED': 123, 'REPLACEMENT_CANDIDATE': 5, 'CONTENT_FIX_REQUIRED': 4, 'METADATA_CORRECTION': 3})"
+  },
+  {
+   "check": "no held item is CONFIRMED_AUTO_APPROVED",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "master summary counts equal per-record counts",
+   "result": "PASS",
+   "detail": "{'CONFIRMED_AUTO_APPROVED': 123, 'CONTENT_FIX_REQUIRED': 4, 'METADATA_CORRECTION': 3, 'REPLACEMENT_CANDIDATE': 5, 'SME_REVIEW_REQUIRED': 194}"
+  },
+  {
+   "check": "held file has 206 rows with the held ids",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_MATHS_SME_REVIEW_QUEUE.csv row set == non-confirmed Mathematics items (+ confirmed with actions), each once",
+   "result": "PASS",
+   "detail": "rows=149 expected=149"
+  },
+  {
+   "check": "EDUOS_MATHS_SME_REVIEW_QUEUE.csv confirmed rows all carry a non-empty action",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "EDUOS_SCIENCE_SME_REVIEW_QUEUE.csv row set == non-confirmed Science items (+ confirmed with actions), each once",
+   "result": "PASS",
+   "detail": "rows=59 expected=59"
+  },
+  {
+   "check": "EDUOS_SCIENCE_SME_REVIEW_QUEUE.csv confirmed rows all carry a non-empty action",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "approved-flag proposal has 150 rows == input items approved&&unverified",
+   "result": "PASS",
+   "detail": "150"
+  },
+  {
+   "check": "approved-flag rows are proposals only (not applied)",
+   "result": "PASS",
+   "detail": "Counter({'PROPOSAL_ONLY_NOT_APPLIED': 150})"
+  },
+  {
+   "check": "3 null-external_ref items identified == input",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "all 6 proposed/alternative refs unique, pattern-valid, absent from cohort+legacy refs",
+   "result": "PASS",
+   "detail": "['C10-2627-SCI-REQ001-DIAG-001', 'C10-2627-SCI-REQ001-REASS-002', 'C10-2627-SCI-REQ001-DIAG-003', 'C10-2627-SCI-REQ001-REASS-001', 'C10-2627-SCI-REQ001-DIAG-002', 'C10-2627-SCI-REQ001-REASS-003']"
+  },
+  {
+   "check": "proposals are not applied (write_status) and pool left to SME",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "requirement-token rule reproduces the token of every existing cohort external_ref (326/326)",
+   "result": "PASS",
+   "detail": "0 mismatches: []"
+  },
+  {
+   "check": "proposed token for the 3 items equals rule output",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "independent exact-duplicate scan agrees with report",
+   "result": "PASS",
+   "detail": "verifier=0 report=0"
+  },
+  {
+   "check": "every difflib>=0.90 pair is present in the duplicate report",
+   "result": "PASS",
+   "detail": "verifier pairs=7; missing from report=0"
+  },
+  {
+   "check": "engine-fail duplicate pairs (4 items) are in the report",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "report flagged refs == engine TS overlap list refs (ref-keyed, as the engine works)",
+   "result": "PASS",
+   "detail": "report=['C10-2627-MATH-REQ022-DIAG-009', 'C10-2627-MATH-REQ024-DIAG-004', 'C10-2627-MATH-REQ032-DIAG-001', 'C10-2627-MATH-REQ034-REASS-005'] ts=['C10-2627-MATH-REQ022-DIAG-009', 'C10-2627-MATH-REQ024-DIAG-004', 'C10-2627-MATH-REQ032-DIAG-001', 'C10-2627-MATH-REQ034-REASS-005']"
+  },
+  {
+   "check": "independent text scan of shingles equals report's shingle_present set",
+   "result": "PASS",
+   "detail": "verifier_present=3 report_present=3"
+  },
+  {
+   "check": "items whose shingle is absent from text are not REPLACEMENT_CANDIDATE on contamination grounds",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "contamination report states text-corpus check NOT_EVALUATED (no corpus)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "independent pool-usage conflict scan equals report",
+   "result": "PASS",
+   "detail": "verifier=3 report=3"
+  },
+  {
+   "check": "pool report lists engine POOL_SEPARATION fails (7)",
+   "result": "PASS",
+   "detail": "7"
+  },
+  {
+   "check": "intended_pool in master equals token-derived pool for all items with refs",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "legacy review has 210 rows, unique, equal to input legacy set",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "legacy rows do not overlap the 329 cohort",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "legacy rows are Maths/Science only (General Knowledge excluded)",
+   "result": "PASS",
+   "detail": "Counter({'Science': 165, 'Mathematics': 45})"
+  },
+  {
+   "check": "legacy rows carry no fabricated content (no question text exported in input)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "count reconciliation reports all expectations met",
+   "result": "PASS",
+   "detail": "True"
+  },
+  {
+   "check": "import manifest lists every packaged file with matching sha256",
+   "result": "PASS",
+   "detail": "set()"
+  },
+  {
+   "check": "import manifest declares no write / no approval",
+   "result": "PASS",
+   "detail": "NOT_EXECUTED \u2014 proposals only. Nothing in this package was imported, applied, ap"
+  },
+  {
+   "check": "no secrets / PII patterns in packaged files",
+   "result": "PASS",
+   "detail": "{'email': 0, 'jwt': 0, 'api_key': 0, 'supabase_key': 0, 'phone_in': 0, 'secret_word': 0, 'learner': 0, 'card_luhn': 0}"
+  },
+  {
+   "check": "README names every packaged file",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "README states no approval / no write",
+   "result": "PASS",
+   "detail": ""
+  }
+ ],
+ "per_file_sha256": {
+  "EDUOS_206_HELD_ITEMS_REMEDIATED.json": "395157909afb3d80e2abf5b4e092b97a21570e2866a7bd5a6117425f75b4b382",
+  "EDUOS_210_LEGACY_VERIFICATION_REVIEW.json": "75c5c30f13a4846672963bdd210501bc5c9986a5fd96f95ae47709db0881e35b",
+  "EDUOS_ALL_329_ITEM_EXPORT_VALIDATED.json": "71a4e404c5a0be4d92a5866a501f863e6ab459ccb30bb58a467fb75905e28b2b",
+  "EDUOS_APPROVED_FLAG_CORRECTIONS.json": "559d8a63ba366629d659e46e0f4bd4d678fa56c9c41bbfd85285579923ada1b4",
+  "EDUOS_CONTAMINATION_REPORT.json": "4ae86c6815419719cec8b7e7a07d893fd80aff03e89bf16539b2ee6ad876d071",
+  "EDUOS_COUNT_RECONCILIATION.json": "ed1ad10716a8ecc52c6e6e9cc96d35f54a23fc8901c6a30a394800cfbd866e4e",
+  "EDUOS_DUPLICATE_REPORT.json": "a5f314f63d0d26c91aed126979ac35a42e3cf53ab7d4a45e1f4b22a592bdeb94",
+  "EDUOS_EXTERNAL_REF_CORRECTIONS.json": "44acabb61d3504669338df1070fc252c28381151e45c0e50340bd7359813be21",
+  "EDUOS_IMPORT_MANIFEST.json": "e822369e3615e42b099ea7d03e001728a4ffbfdb3a924da322bd9e4c0875cc3c",
+  "EDUOS_MATHS_SME_REVIEW_QUEUE.csv": "87fcb324af47952156bd13c6ef292a6ae783d8aa2971d82636d3e42aa9a007c3",
+  "EDUOS_POOL_SEPARATION_REPORT.json": "be176149188e19e1af6ca33fc06bae3c3008344fea007015ea853cddce7510ca",
+  "EDUOS_REPLACEMENT_ITEMS.json": "277c062174c6e207a1cb3aa9fb1488f6b44bf11f0a99c046b2c6822c37947512",
+  "EDUOS_SCIENCE_SME_REVIEW_QUEUE.csv": "63b91c8ed9024661b9d6a33f769e77fae83e9c6c3c2b59560138714b26eb62db",
+  "README.md": "64a4bd3b39d601ced596f427b9ebb73753e7d12cec907e3cc68b4807c2a35719",
+  "SHA256SUMS.txt": "ad5728ef1ab18d6160d4f3ec3f5b961d47d43c6b852efe1659d3954c7759f375"
+ }
+}
