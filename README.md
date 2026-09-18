@@ -218,11 +218,19 @@ Continue developing this project in the [Lovable editor](https://lovable.dev/pro
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+This repository uses Bun 1.4.2, pinned in `package.json`, with `bun.lock` as the source of truth.
 
 ```sh
 git clone <this-repository-url>
 cd <repository-name>
-npm i
-npm run dev
+bun install --frozen-lockfile
+bun run dev
+```
+
+Run the same quality gates used by CI:
+
+```sh
+bun run lint
+bun run test
+bun run build
 ```
