@@ -407,6 +407,262 @@ export type Database = {
           },
         ]
       }
+      automated_provisional_outcomes: {
+        Row: {
+          advisory_note: string | null
+          automated_not_human: boolean
+          checks_executed: Json
+          checks_not_executed: Json
+          content_sha256: string
+          created_at: string
+          decision_class: string
+          engine_outcome: string | null
+          engine_version: string | null
+          external_ref: string | null
+          founder_authorized: boolean
+          generator_run_hash: string
+          human_signature: string | null
+          id: string
+          import_id: string
+          import_operation_id: string
+          imported_at: string
+          is_question_level_primary: boolean
+          item_version_updated_at: string
+          org_id: string
+          package_sha256: string
+          pass_a_evidence: Json
+          pass_b_evidence: Json
+          pass_c_evidence: Json
+          provisional_outcome: string
+          question_id: string
+          queue_routing_id: string | null
+          queue_routing_reason: string
+          queue_row_key: string
+          reviewer_identity: string | null
+          reviewer_qualification: string | null
+          subject: string
+          superseded_at: string | null
+          validator_passed: boolean
+        }
+        Insert: {
+          advisory_note?: string | null
+          automated_not_human?: boolean
+          checks_executed?: Json
+          checks_not_executed?: Json
+          content_sha256: string
+          created_at?: string
+          decision_class?: string
+          engine_outcome?: string | null
+          engine_version?: string | null
+          external_ref?: string | null
+          founder_authorized?: boolean
+          generator_run_hash: string
+          human_signature?: string | null
+          id?: string
+          import_id: string
+          import_operation_id: string
+          imported_at?: string
+          is_question_level_primary?: boolean
+          item_version_updated_at: string
+          org_id: string
+          package_sha256: string
+          pass_a_evidence?: Json
+          pass_b_evidence?: Json
+          pass_c_evidence?: Json
+          provisional_outcome: string
+          question_id: string
+          queue_routing_id?: string | null
+          queue_routing_reason: string
+          queue_row_key: string
+          reviewer_identity?: string | null
+          reviewer_qualification?: string | null
+          subject: string
+          superseded_at?: string | null
+          validator_passed: boolean
+        }
+        Update: {
+          advisory_note?: string | null
+          automated_not_human?: boolean
+          checks_executed?: Json
+          checks_not_executed?: Json
+          content_sha256?: string
+          created_at?: string
+          decision_class?: string
+          engine_outcome?: string | null
+          engine_version?: string | null
+          external_ref?: string | null
+          founder_authorized?: boolean
+          generator_run_hash?: string
+          human_signature?: string | null
+          id?: string
+          import_id?: string
+          import_operation_id?: string
+          imported_at?: string
+          is_question_level_primary?: boolean
+          item_version_updated_at?: string
+          org_id?: string
+          package_sha256?: string
+          pass_a_evidence?: Json
+          pass_b_evidence?: Json
+          pass_c_evidence?: Json
+          provisional_outcome?: string
+          question_id?: string
+          queue_routing_id?: string | null
+          queue_routing_reason?: string
+          queue_row_key?: string
+          reviewer_identity?: string | null
+          reviewer_qualification?: string | null
+          subject?: string
+          superseded_at?: string | null
+          validator_passed?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automated_provisional_outcomes_import_id_fkey"
+            columns: ["import_id"]
+            isOneToOne: false
+            referencedRelation: "automated_review_imports"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automated_provisional_outcomes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automated_provisional_outcomes_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automated_provisional_outcomes_queue_routing_id_fkey"
+            columns: ["queue_routing_id"]
+            isOneToOne: false
+            referencedRelation: "sme_review_queue"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      automated_review_imports: {
+        Row: {
+          counts: Json
+          created_at: string
+          decision_class: string
+          founder_authorized: boolean
+          generator_run_hash: string
+          id: string
+          imported_at: string
+          is_human_sme_decision: boolean
+          org_id: string
+          package_bytes: number
+          package_name: string
+          package_sha256: string
+          rolled_back_at: string | null
+          state: string
+          updated_at: string
+          validator_result: Json
+        }
+        Insert: {
+          counts?: Json
+          created_at?: string
+          decision_class?: string
+          founder_authorized?: boolean
+          generator_run_hash: string
+          id?: string
+          imported_at?: string
+          is_human_sme_decision?: boolean
+          org_id: string
+          package_bytes: number
+          package_name: string
+          package_sha256: string
+          rolled_back_at?: string | null
+          state?: string
+          updated_at?: string
+          validator_result?: Json
+        }
+        Update: {
+          counts?: Json
+          created_at?: string
+          decision_class?: string
+          founder_authorized?: boolean
+          generator_run_hash?: string
+          id?: string
+          imported_at?: string
+          is_human_sme_decision?: boolean
+          org_id?: string
+          package_bytes?: number
+          package_name?: string
+          package_sha256?: string
+          rolled_back_at?: string | null
+          state?: string
+          updated_at?: string
+          validator_result?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automated_review_imports_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      automated_review_rollback_events: {
+        Row: {
+          affected_rows: number
+          created_at: string
+          detail: Json
+          event_type: string
+          id: string
+          import_id: string | null
+          org_id: string
+          package_sha256: string
+          state_hash: string | null
+        }
+        Insert: {
+          affected_rows?: number
+          created_at?: string
+          detail?: Json
+          event_type: string
+          id?: string
+          import_id?: string | null
+          org_id: string
+          package_sha256: string
+          state_hash?: string | null
+        }
+        Update: {
+          affected_rows?: number
+          created_at?: string
+          detail?: Json
+          event_type?: string
+          id?: string
+          import_id?: string | null
+          org_id?: string
+          package_sha256?: string
+          state_hash?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automated_review_rollback_events_import_id_fkey"
+            columns: ["import_id"]
+            isOneToOne: false
+            referencedRelation: "automated_review_imports"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automated_review_rollback_events_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       book_events: {
         Row: {
           actor_id: string | null
@@ -1104,6 +1360,72 @@ export type Database = {
           },
         ]
       }
+      curriculum_source_register: {
+        Row: {
+          accessed_at: string | null
+          alignment_note: string | null
+          checksum_sha256: string | null
+          created_at: string
+          external_ref: string | null
+          id: string
+          licence_status: string
+          org_id: string
+          question_id: string
+          section_ref: string | null
+          source_title: string
+          source_url: string | null
+          subject: string
+          verbatim_copying: boolean
+        }
+        Insert: {
+          accessed_at?: string | null
+          alignment_note?: string | null
+          checksum_sha256?: string | null
+          created_at?: string
+          external_ref?: string | null
+          id?: string
+          licence_status?: string
+          org_id: string
+          question_id: string
+          section_ref?: string | null
+          source_title: string
+          source_url?: string | null
+          subject: string
+          verbatim_copying?: boolean
+        }
+        Update: {
+          accessed_at?: string | null
+          alignment_note?: string | null
+          checksum_sha256?: string | null
+          created_at?: string
+          external_ref?: string | null
+          id?: string
+          licence_status?: string
+          org_id?: string
+          question_id?: string
+          section_ref?: string | null
+          source_title?: string
+          source_url?: string | null
+          subject?: string
+          verbatim_copying?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "curriculum_source_register_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "curriculum_source_register_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       curriculum_topics: {
         Row: {
           book_id: string
@@ -1257,6 +1579,69 @@ export type Database = {
           value_percent?: number | null
         }
         Relationships: []
+      }
+      engine_rerun_results: {
+        Row: {
+          checks: Json
+          confidence: number
+          created_at: string
+          engine_version: string
+          external_ref: string | null
+          id: string
+          org_id: string
+          outcome: string
+          question_id: string
+          reasons: Json
+          run_id: string
+          strong_signals: number
+          subject: string
+        }
+        Insert: {
+          checks?: Json
+          confidence?: number
+          created_at?: string
+          engine_version: string
+          external_ref?: string | null
+          id?: string
+          org_id: string
+          outcome: string
+          question_id: string
+          reasons?: Json
+          run_id: string
+          strong_signals?: number
+          subject: string
+        }
+        Update: {
+          checks?: Json
+          confidence?: number
+          created_at?: string
+          engine_version?: string
+          external_ref?: string | null
+          id?: string
+          org_id?: string
+          outcome?: string
+          question_id?: string
+          reasons?: Json
+          run_id?: string
+          strong_signals?: number
+          subject?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "engine_rerun_results_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "engine_rerun_results_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       entitlements: {
         Row: {
@@ -2362,6 +2747,53 @@ export type Database = {
             columns: ["learner_id"]
             isOneToOne: false
             referencedRelation: "learners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      legacy_verification_quarantine: {
+        Row: {
+          evidence: Json
+          external_ref: string | null
+          id: string
+          legacy_database_id: string
+          legacy_status: string
+          legacy_verification_note: string | null
+          legacy_verified_at: string | null
+          org_id: string
+          quarantined_at: string
+          subject: string
+        }
+        Insert: {
+          evidence?: Json
+          external_ref?: string | null
+          id?: string
+          legacy_database_id: string
+          legacy_status: string
+          legacy_verification_note?: string | null
+          legacy_verified_at?: string | null
+          org_id: string
+          quarantined_at?: string
+          subject: string
+        }
+        Update: {
+          evidence?: Json
+          external_ref?: string | null
+          id?: string
+          legacy_database_id?: string
+          legacy_status?: string
+          legacy_verification_note?: string | null
+          legacy_verified_at?: string | null
+          org_id?: string
+          quarantined_at?: string
+          subject?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legacy_verification_quarantine_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
         ]
@@ -3682,6 +4114,283 @@ export type Database = {
           },
         ]
       }
+      question_content_revisions: {
+        Row: {
+          after_content: Json
+          after_sha256: string
+          applied: boolean
+          before_content: Json
+          before_sha256: string
+          created_at: string
+          external_ref: string | null
+          id: string
+          org_id: string
+          question_id: string
+          revision_kind: string
+          revision_reason: string
+          rolled_back_at: string | null
+          subject: string
+        }
+        Insert: {
+          after_content: Json
+          after_sha256: string
+          applied?: boolean
+          before_content: Json
+          before_sha256: string
+          created_at?: string
+          external_ref?: string | null
+          id?: string
+          org_id: string
+          question_id: string
+          revision_kind: string
+          revision_reason: string
+          rolled_back_at?: string | null
+          subject: string
+        }
+        Update: {
+          after_content?: Json
+          after_sha256?: string
+          applied?: boolean
+          before_content?: Json
+          before_sha256?: string
+          created_at?: string
+          external_ref?: string | null
+          id?: string
+          org_id?: string
+          question_id?: string
+          revision_kind?: string
+          revision_reason?: string
+          rolled_back_at?: string | null
+          subject?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_content_revisions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_content_revisions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_marking_specs: {
+        Row: {
+          acceptable_equivalents: Json
+          authored_by: string
+          common_mistakes: Json
+          content_sha256: string
+          created_at: string
+          expected_conclusion: string
+          external_ref: string | null
+          human_signature: string | null
+          id: string
+          minimum_passing_evidence: Json
+          org_id: string
+          question_id: string
+          required_reasoning: Json
+          spec_sha256: string
+          spec_version: number
+          subject: string
+          terminology: Json
+          tolerance: Json | null
+          units: string | null
+        }
+        Insert: {
+          acceptable_equivalents?: Json
+          authored_by?: string
+          common_mistakes?: Json
+          content_sha256: string
+          created_at?: string
+          expected_conclusion: string
+          external_ref?: string | null
+          human_signature?: string | null
+          id?: string
+          minimum_passing_evidence?: Json
+          org_id: string
+          question_id: string
+          required_reasoning?: Json
+          spec_sha256: string
+          spec_version?: number
+          subject: string
+          terminology?: Json
+          tolerance?: Json | null
+          units?: string | null
+        }
+        Update: {
+          acceptable_equivalents?: Json
+          authored_by?: string
+          common_mistakes?: Json
+          content_sha256?: string
+          created_at?: string
+          expected_conclusion?: string
+          external_ref?: string | null
+          human_signature?: string | null
+          id?: string
+          minimum_passing_evidence?: Json
+          org_id?: string
+          question_id?: string
+          required_reasoning?: Json
+          spec_sha256?: string
+          spec_version?: number
+          subject?: string
+          terminology?: Json
+          tolerance?: Json | null
+          units?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_marking_specs_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_marking_specs_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_originality_checks: {
+        Row: {
+          copyright_clearance_claimed: boolean
+          created_at: string
+          evidence: Json
+          exact_match: boolean
+          external_ref: string | null
+          id: string
+          matched_shingle: string | null
+          max_shingle_overlap: number
+          normalized_match: boolean
+          org_id: string
+          question_id: string
+          revision_id: string | null
+          semantic_similarity: number
+          subject: string
+          verdict: string
+        }
+        Insert: {
+          copyright_clearance_claimed?: boolean
+          created_at?: string
+          evidence?: Json
+          exact_match: boolean
+          external_ref?: string | null
+          id?: string
+          matched_shingle?: string | null
+          max_shingle_overlap: number
+          normalized_match: boolean
+          org_id: string
+          question_id: string
+          revision_id?: string | null
+          semantic_similarity: number
+          subject: string
+          verdict: string
+        }
+        Update: {
+          copyright_clearance_claimed?: boolean
+          created_at?: string
+          evidence?: Json
+          exact_match?: boolean
+          external_ref?: string | null
+          id?: string
+          matched_shingle?: string | null
+          max_shingle_overlap?: number
+          normalized_match?: boolean
+          org_id?: string
+          question_id?: string
+          revision_id?: string | null
+          semantic_similarity?: number
+          subject?: string
+          verdict?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_originality_checks_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_originality_checks_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_originality_checks_revision_id_fkey"
+            columns: ["revision_id"]
+            isOneToOne: false
+            referencedRelation: "question_content_revisions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_pool_exclusions: {
+        Row: {
+          active: boolean
+          created_at: string
+          external_ref: string | null
+          id: string
+          org_id: string
+          pool: string
+          question_id: string
+          reason: string
+          updated_at: string
+          work_item_ref: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          external_ref?: string | null
+          id?: string
+          org_id: string
+          pool: string
+          question_id: string
+          reason: string
+          updated_at?: string
+          work_item_ref?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          external_ref?: string | null
+          id?: string
+          org_id?: string
+          pool?: string
+          question_id?: string
+          reason?: string
+          updated_at?: string
+          work_item_ref?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_pool_exclusions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_pool_exclusions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       question_verifications: {
         Row: {
           action: string
@@ -3796,6 +4505,195 @@ export type Database = {
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      remediation_actions: {
+        Row: {
+          action_type: string
+          created_at: string
+          evidence: Json
+          external_ref: string | null
+          id: string
+          new_value: Json
+          org_id: string
+          prior_value: Json
+          question_id: string | null
+          reason: string
+          run_id: string
+          subject: string | null
+        }
+        Insert: {
+          action_type: string
+          created_at?: string
+          evidence?: Json
+          external_ref?: string | null
+          id?: string
+          new_value?: Json
+          org_id: string
+          prior_value?: Json
+          question_id?: string | null
+          reason: string
+          run_id: string
+          subject?: string | null
+        }
+        Update: {
+          action_type?: string
+          created_at?: string
+          evidence?: Json
+          external_ref?: string | null
+          id?: string
+          new_value?: Json
+          org_id?: string
+          prior_value?: Json
+          question_id?: string | null
+          reason?: string
+          run_id?: string
+          subject?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "remediation_actions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      remediation_snapshots: {
+        Row: {
+          checksum: string
+          created_at: string
+          id: string
+          label: string
+          location: string
+          org_id: string
+          payload: Json
+          scope: string
+        }
+        Insert: {
+          checksum: string
+          created_at?: string
+          id?: string
+          label: string
+          location: string
+          org_id: string
+          payload?: Json
+          scope: string
+        }
+        Update: {
+          checksum?: string
+          created_at?: string
+          id?: string
+          label?: string
+          location?: string
+          org_id?: string
+          payload?: Json
+          scope?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "remediation_snapshots_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      remediation_work_items: {
+        Row: {
+          created_at: string
+          details: Json
+          id: string
+          org_id: string
+          ref: string
+          severity: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          id?: string
+          org_id: string
+          ref: string
+          severity?: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          id?: string
+          org_id?: string
+          ref?: string
+          severity?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "remediation_work_items_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sme_review_queue: {
+        Row: {
+          evidence: Json
+          external_ref: string | null
+          id: string
+          org_id: string
+          priority: number
+          question_id: string
+          queued_at: string
+          routing_reason: string
+          subject: string
+        }
+        Insert: {
+          evidence?: Json
+          external_ref?: string | null
+          id?: string
+          org_id: string
+          priority?: number
+          question_id: string
+          queued_at?: string
+          routing_reason: string
+          subject: string
+        }
+        Update: {
+          evidence?: Json
+          external_ref?: string | null
+          id?: string
+          org_id?: string
+          priority?: number
+          question_id?: string
+          queued_at?: string
+          routing_reason?: string
+          subject?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sme_review_queue_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sme_review_queue_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
             referencedColumns: ["id"]
           },
         ]
@@ -3976,6 +4874,64 @@ export type Database = {
       }
     }
     Views: {
+      automated_provisional_question_outcomes: {
+        Row: {
+          automated_not_human: boolean | null
+          decision_class: string | null
+          external_ref: string | null
+          imported_at: string | null
+          org_id: string | null
+          package_sha256: string | null
+          provisional_outcome: string | null
+          question_id: string | null
+          queue_rows: number | null
+          subject: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automated_provisional_outcomes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automated_provisional_outcomes_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      internal_automated_provisional_pool: {
+        Row: {
+          external_ref: string | null
+          org_id: string | null
+          paid_selection_eligible: boolean | null
+          pool_label: string | null
+          production_export_eligible: boolean | null
+          provisional_outcome: string | null
+          question_id: string | null
+          subject: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "automated_provisional_outcomes_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "automated_provisional_outcomes_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       rls_policy_audit: {
         Row: {
           cmd: string | null
