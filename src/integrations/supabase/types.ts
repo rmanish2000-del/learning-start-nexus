@@ -4114,6 +4114,96 @@ export type Database = {
           },
         ]
       }
+      question_commercial_release: {
+        Row: {
+          activated_at: string
+          activation_run_id: string
+          automated_not_human: boolean
+          classification_basis: string
+          commercial_classification: string
+          content_sha256: string
+          copyright_permission_claimed: boolean
+          created_at: string
+          engine_version: string
+          evidence: Json
+          external_ref: string | null
+          human_sme_certified: boolean
+          id: string
+          official_cbse_ncert_certified: boolean
+          org_id: string
+          paid_selection_eligible: boolean
+          production_export_eligible: boolean
+          question_id: string
+          release_basis: string
+          revoked_at: string | null
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          activated_at?: string
+          activation_run_id: string
+          automated_not_human?: boolean
+          classification_basis: string
+          commercial_classification: string
+          content_sha256: string
+          copyright_permission_claimed?: boolean
+          created_at?: string
+          engine_version: string
+          evidence?: Json
+          external_ref?: string | null
+          human_sme_certified?: boolean
+          id?: string
+          official_cbse_ncert_certified?: boolean
+          org_id: string
+          paid_selection_eligible?: boolean
+          production_export_eligible?: boolean
+          question_id: string
+          release_basis?: string
+          revoked_at?: string | null
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          activated_at?: string
+          activation_run_id?: string
+          automated_not_human?: boolean
+          classification_basis?: string
+          commercial_classification?: string
+          content_sha256?: string
+          copyright_permission_claimed?: boolean
+          created_at?: string
+          engine_version?: string
+          evidence?: Json
+          external_ref?: string | null
+          human_sme_certified?: boolean
+          id?: string
+          official_cbse_ncert_certified?: boolean
+          org_id?: string
+          paid_selection_eligible?: boolean
+          production_export_eligible?: boolean
+          question_id?: string
+          release_basis?: string
+          revoked_at?: string | null
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_commercial_release_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_commercial_release_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       question_content_revisions: {
         Row: {
           after_content: Json
@@ -4925,6 +5015,57 @@ export type Database = {
           },
           {
             foreignKeyName: "automated_provisional_outcomes_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "question_bank"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      production_release_pool: {
+        Row: {
+          commercial_classification: string | null
+          content_sha256: string | null
+          external_ref: string | null
+          org_id: string | null
+          paid_selection_eligible: boolean | null
+          production_export_eligible: boolean | null
+          question_id: string | null
+          release_basis: string | null
+          subject: string | null
+        }
+        Insert: {
+          commercial_classification?: string | null
+          content_sha256?: string | null
+          external_ref?: string | null
+          org_id?: string | null
+          paid_selection_eligible?: boolean | null
+          production_export_eligible?: boolean | null
+          question_id?: string | null
+          release_basis?: string | null
+          subject?: string | null
+        }
+        Update: {
+          commercial_classification?: string | null
+          content_sha256?: string | null
+          external_ref?: string | null
+          org_id?: string | null
+          paid_selection_eligible?: boolean | null
+          production_export_eligible?: boolean | null
+          question_id?: string | null
+          release_basis?: string | null
+          subject?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_commercial_release_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_commercial_release_question_id_fkey"
             columns: ["question_id"]
             isOneToOne: false
             referencedRelation: "question_bank"
