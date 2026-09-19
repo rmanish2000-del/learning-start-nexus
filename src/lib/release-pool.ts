@@ -24,9 +24,16 @@ export const RELEASE_LABEL = "EduOS verified (automated)";
 
 type AnyClient = SupabaseClient<Database>;
 
-/** Question ids excluded from every learner-facing pool. */
-export async function fetchExcludedQuestionIds(supabase: AnyClient): Promise<Set<string>> {
-  const { data, error } = await supabase
+/**
+ * Question ids excluded from every learner-facing pool.
+ *
+ * Always read with the admin client: learners and parents cannot select from
+ * question_pool_exclusions under RLS, and an empty result there would silently
+ * disable the guard. The returned ids are never sent to the browser.
+ */
+export async function fetchExcludedQuestionIds(_client?: AnyClient): Promise<Set<string>> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data, error } = await supabaseAdmin
     .from("question_pool_exclusions")
     .select("question_id")
     .eq("active", true);

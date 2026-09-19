@@ -7,6 +7,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/integrations/supabase/types";
+import { fetchExcludedQuestionIds } from "./release-pool";
 import {
   PYQ_BLUEPRINT_COHORT,
   PYQ_PRACTICE_SIZE,
