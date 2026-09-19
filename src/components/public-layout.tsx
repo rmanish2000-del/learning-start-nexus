@@ -286,10 +286,16 @@ export function PublicSiteFooter() {
         </div>
       </div>
       <div className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 px-4 py-4 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} EduOS</span>
-          <span>Learning Intelligence &amp; Intervention</span>
-          <span className="sm:ml-auto">CBSE Class 10 · Mathematics &amp; Science · India</span>
+        <div className="mx-auto max-w-6xl space-y-2 px-4 py-4 text-xs text-muted-foreground">
+          <p>
+            EduOS original curriculum-aligned practice content, checked by automated multi-stage
+            quality verification. Not affiliated with or endorsed by CBSE or NCERT.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span>© {new Date().getFullYear()} EduOS</span>
+            <span>Learning Intelligence &amp; Intervention</span>
+            <span className="sm:ml-auto">CBSE Class 10 · Mathematics &amp; Science · India</span>
+          </div>
         </div>
       </div>
     </footer>
