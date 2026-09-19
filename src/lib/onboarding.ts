@@ -337,7 +337,7 @@ export const CONTEXT_HELP: Record<string, ContextHelpContent> = {
     tips: [
       "Every draft is machine-checked for answer correctness, curriculum alignment, quality, duplication and pool separation.",
       "Only items passing every machine-checkable test with strong evidence become EduOS verified.",
-      "Everything else is held for named SME review — no automated decision is ever attributed to a person.",
+      "Everything else is held back from release — no automated decision is ever attributed to a person, to CBSE or to NCERT.",
     ],
     next: [
       "Read the approved and held counts for the current run.",
