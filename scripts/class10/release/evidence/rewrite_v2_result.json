@@ -1,0 +1,14 @@
+{
+ "applied": [],
+ "already_applied": [
+  {
+   "external_ref": "C10-2627-MATH-REQ032-REASS-001",
+   "sha256": "be1f45d630e8c070b8f41b09c94df6510547c193ec4a6695b099b47324ff6100"
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ034-DIAG-005",
+   "sha256": "368475edb4db7477c39fbc5131a5155c8b17b4a2a4027e856baa8da25ae02000"
+  }
+ ],
+ "label": "FOUNDER_AUTHORIZED_AUTOMATED_PROVISIONAL"
+}

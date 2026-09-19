@@ -1,0 +1,223 @@
+{
+ "checks": [
+  {
+   "check": "corpus_total_329",
+   "status": "PASS",
+   "detail": "329"
+  },
+  {
+   "check": "corpus_subject_split_235_94",
+   "status": "PASS",
+   "detail": "235/91+3 null-ref quarantined"
+  },
+  {
+   "check": "corpus_refs_unique",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "no_general_knowledge",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "no_reviewed_item_promoted",
+   "status": "PASS",
+   "detail": "0"
+  },
+  {
+   "check": "engine_baseline_unchanged_123_206",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "advisory_active_196",
+   "status": "PASS",
+   "detail": "196"
+  },
+  {
+   "check": "advisory_all_pass",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "advisory_zero_unresolved",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "advisory_distinct_questions_195",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "req024_two_routing_rows_one_question",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "advisory_all_founder_authorized_automated",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "no_prohibited_claims",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "advisory_content_hashes_current",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "classification_covers_195",
+   "status": "PASS",
+   "detail": "195"
+  },
+  {
+   "check": "classification_no_unconfirmed",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "classification_no_unevidenced_licence_claim",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "classification_all_verified",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "classification_label",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "originality_checks_6",
+   "status": "PASS",
+   "detail": "6"
+  },
+  {
+   "check": "originality_all_verified",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "originality_no_copyright_claim",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "originality_below_thresholds",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "content_revisions_7",
+   "status": "PASS",
+   "detail": "7"
+  },
+  {
+   "check": "revisions_have_before_after",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "marking_specs_42",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "marking_specs_complete",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "source_register_covers_49",
+   "status": "PASS",
+   "detail": "49"
+  },
+  {
+   "check": "source_register_licence_not_assessed",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "source_register_no_verbatim",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "source_register_official_domains",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "c1_three_exclusions_active",
+   "status": "PASS",
+   "detail": "3"
+  },
+  {
+   "check": "c1_work_item_open",
+   "status": "PASS",
+   "detail": "[{\"id\": \"4c8a5284-ef71-4945-a2ac-a679d3699e7d\", \"org_id\": \"458d3caf-5dc4-486b-b499-02124d0da319\", \"ref\": \"REASSESSMENT-146ec7c8-POOL-BREACH\", \"title\": \"Published reassessment 146ec7c8 served diagnosti"
+  },
+  {
+   "check": "c2_frozen_list_unchanged",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "c2_contamination_evidence_present",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "pool_195",
+   "status": "PASS",
+   "detail": "195"
+  },
+  {
+   "check": "pool_paid_disabled",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "pool_production_export_disabled",
+   "status": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "v2_idempotent",
+   "status": "PASS",
+   "detail": "{\n \"idempotent\": true,\n \"package_sha256\": \"fc0643ff4624171f3ddab4d35cbbf1362a024fa39a9ce7a3739a11433988218f\"\n}\n"
+  },
+  {
+   "check": "rollback_restores_196",
+   "status": "PASS",
+   "detail": "196"
+  },
+  {
+   "check": "reapply_restores_exact_state",
+   "status": "PASS",
+   "detail": "196"
+  },
+  {
+   "check": "append_only_delete_blocked",
+   "status": "PASS",
+   "detail": ""
+  }
+ ],
+ "verdict": "PASS",
+ "failures": [],
+ "counts": {
+  "corpus": 329,
+  "advisory_active": 196,
+  "distinct_questions": 195,
+  "pool": 195,
+  "classified": 195
+ }
+}

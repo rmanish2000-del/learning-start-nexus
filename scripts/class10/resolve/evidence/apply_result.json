@@ -1,0 +1,84 @@
+{
+ "resolution_id": "CLASS10-2627-UNRESOLVED-RESOLUTION-V1",
+ "run_date": "2026-09-16",
+ "unresolved_rows_in": 36,
+ "content_changes": [
+  {
+   "external_ref": "C10-2627-MATH-REQ022-DIAG-009",
+   "question_id": "87a3fd7d-2c04-4cf7-83ca-84d575f8c974",
+   "kind": "ORIGINAL_EDUOS_REWRITE",
+   "before_sha256": "57b96b0164359653dd3f3b33d627568947e49bf7aa1aaf9b20b0f7927a62fa92",
+   "after_sha256": "11c71cee3da474bdbb2dd86e9d65064f0286fd43b9adaad8c614c909cb59bea2",
+   "no_op": false
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+   "question_id": "245cc1f9-ede8-4391-90ed-fcc3e2dcb729",
+   "kind": "ORIGINAL_EDUOS_REWRITE",
+   "before_sha256": "aa21d9695624d1ecba3771e3e58afd13c9c6a0ef22ea7bfbbf98c3e94bb1cde8",
+   "after_sha256": "8e48930dde34ef6d176f54e36a71a0adfcd88c0db0e8ffb7c92f2c832ee50fa1",
+   "no_op": false
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ032-DIAG-001",
+   "question_id": "1ffdc6fa-4e02-47d6-84dc-f29f8b00a9ce",
+   "kind": "ORIGINAL_EDUOS_REWRITE",
+   "before_sha256": "499255f8a04b52ae54b00b5c5031dcfbefb3fa52142852cde8e05e900ed3c6d0",
+   "after_sha256": "01ec9407b26d2e49933687675bbb42b43831a43ef5e428baec729fae588062ea",
+   "no_op": false
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ034-REASS-005",
+   "question_id": "45784f10-c75f-43d7-a6e9-cb4ec101affe",
+   "kind": "ORIGINAL_EDUOS_REWRITE",
+   "before_sha256": "dd4130851c8cd79343c057e04cd8d74cd90cbb34aa561dc7be6e369a74f521d7",
+   "after_sha256": "3a931fe458c9f7cbf4f65016e21817b544055dc4e6ed45975d8c6a359279fbef",
+   "no_op": false
+  },
+  {
+   "external_ref": "C10-2627-SCI-REQ043-REASS-002",
+   "question_id": "27d2e107-4dae-4f4f-96f5-20ca75d6f63a",
+   "kind": "EXPLANATION_FIX",
+   "before_sha256": "9f3d615b6bea7d0679cc8b69ff5dd5a1eda43e76e9ba5874e5f4c91ca95b3c6f",
+   "after_sha256": "66717be4a27911e1137162a75ab97eeb4ed7e3d71b78f7dcadbd83cab91dc347",
+   "no_op": false
+  }
+ ],
+ "marking_specs_authored": 42,
+ "marking_specs_inserted_this_run": 0,
+ "originality_checks": [
+  {
+   "external_ref": "C10-2627-MATH-REQ022-DIAG-009",
+   "exact_match": false,
+   "normalized_match": false,
+   "max_shingle_overlap": 0.0,
+   "semantic_similarity": 0.5086,
+   "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED"
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+   "exact_match": false,
+   "normalized_match": false,
+   "max_shingle_overlap": 0.0,
+   "semantic_similarity": 0.5571,
+   "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED"
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ032-DIAG-001",
+   "exact_match": false,
+   "normalized_match": false,
+   "max_shingle_overlap": 0.0,
+   "semantic_similarity": 0.4817,
+   "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED"
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ034-REASS-005",
+   "exact_match": false,
+   "normalized_match": false,
+   "max_shingle_overlap": 0.0,
+   "semantic_similarity": 0.3912,
+   "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED"
+  }
+ ],
+ "source_rows_inserted_this_run": 0
+}

@@ -10,5 +10,9 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["src/**/*.test.ts"],
+    // Sandboxed CI runs are slow under parallel load; the default 5s timeout
+    // produced false failures in webhook and bundle tests.
+    testTimeout: 20000,
+    hookTimeout: 20000,
   },
 });

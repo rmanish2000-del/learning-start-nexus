@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { clientContext, clientId } from "@/lib/client-context";
+import { SUPPORT_EMAIL, supportMailto } from "@/lib/support";
 import {
   ALLOWED_SCREENSHOT_TYPES,
   FEEDBACK_CATEGORIES,
@@ -134,9 +135,12 @@ export function FeedbackForm({
           {consent && email ? "We'll reply to you if we need more detail." : "You told us anonymously."}
         </p>
         <p className="text-xs text-muted-foreground">
-          Need a reply sooner? Email{" "}
-          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
-            support@eduos.global
+          Need a reply sooner? Write to{" "}
+          <a
+            href={supportMailto({ subject: "Feedback follow-up" })}
+            className="font-medium text-primary hover:underline"
+          >
+            {SUPPORT_EMAIL}
           </a>
           .
         </p>

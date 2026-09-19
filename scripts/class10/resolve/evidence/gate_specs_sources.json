@@ -1,0 +1,335 @@
+{
+ "marking_specs": {
+  "count": 42,
+  "all_complete": true,
+  "items": [
+   {
+    "external_ref": "C10-2627-MATH-REQ001-DIAG-008",
+    "reasoning_steps": 6,
+    "mistakes": 4,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-DIAG-013",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-DIAG-014",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-REASS-011",
+    "reasoning_steps": 5,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-REASS-016",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-REASS-017",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-REASS-018",
+    "reasoning_steps": 1,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-REASS-020",
+    "reasoning_steps": 5,
+    "mistakes": 2,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ024-DIAG-003",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ027-DIAG-003",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ022-REASS-001",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ037-REASS-004",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ037-REASS-009",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ039-DIAG-003",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ039-REASS-002",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ039-REASS-004",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ039-REASS-006",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ039-REASS-007",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ039-REASS-009",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ042-REASS-004",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-DIAG-001",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-DIAG-003",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-REASS-001",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-REASS-004",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-REASS-006",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-REASS-007",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ043-REASS-009",
+    "reasoning_steps": 2,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-002",
+    "reasoning_steps": 2,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-004",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-005",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-008",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-009",
+    "reasoning_steps": 2,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-011",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-DIAG-012",
+    "reasoning_steps": 2,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-002",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-004",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-006",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-011",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-012",
+    "reasoning_steps": 2,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-014",
+    "reasoning_steps": 2,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-015",
+    "reasoning_steps": 4,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   },
+   {
+    "external_ref": "C10-2627-SCI-REQ045-REASS-020",
+    "reasoning_steps": 3,
+    "mistakes": 3,
+    "in_source": true,
+    "complete": true
+   }
+  ]
+ },
+ "source_register": {
+  "items": 47,
+  "rows": 94,
+  "all_official": true,
+  "licence_not_assessed": true,
+  "verbatim_false": true,
+  "sample": [
+   {
+    "external_ref": "C10-2627-MATH-REQ001-DIAG-008",
+    "source_url": "https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Maths_Sec_2025-26.pdf",
+    "checksum_sha256": "2a2c03e9f66a24dd0980d5b07d2ea70bc00ca72fa95cf7c48d2eec224218921e",
+    "licence_status": "NOT_ASSESSED",
+    "verbatim_copying": false,
+    "accessed_at": "2026-09-02"
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-DIAG-008",
+    "source_url": "https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Curriculum_Sec_2025-26.pdf",
+    "checksum_sha256": "232d23fd23074305512972511feefd28cebe366944701778e24a576c392e3830",
+    "licence_status": "NOT_ASSESSED",
+    "verbatim_copying": false,
+    "accessed_at": "2026-09-02"
+   },
+   {
+    "external_ref": "C10-2627-MATH-REQ001-DIAG-013",
+    "source_url": "https://cbseacademic.nic.in/web_material/CurriculumMain26/Sec/Maths_Sec_2025-26.pdf",
+    "checksum_sha256": "2a2c03e9f66a24dd0980d5b07d2ea70bc00ca72fa95cf7c48d2eec224218921e",
+    "licence_status": "NOT_ASSESSED",
+    "verbatim_copying": false,
+    "accessed_at": "2026-09-02"
+   }
+  ]
+ }
+}

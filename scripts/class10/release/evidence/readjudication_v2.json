@@ -1,0 +1,18 @@
+{
+ "package_sha256": "fc0643ff4624171f3ddab4d35cbbf1362a024fa39a9ce7a3739a11433988218f",
+ "import_id": "32548281-9ee8-40e5-9042-067f3ac2626b",
+ "rows": [
+  {
+   "external_ref": "C10-2627-MATH-REQ032-REASS-001",
+   "superseded": "2fbe9362-a9eb-4f42-a507-304ab234838f",
+   "content_sha256": "be1f45d630e8c070b8f41b09c94df6510547c193ec4a6695b099b47324ff6100",
+   "outcome": "AUTOMATED_PROVISIONAL_PASS"
+  },
+  {
+   "external_ref": "C10-2627-MATH-REQ034-DIAG-005",
+   "superseded": "d1717f74-0351-4c04-9ffa-739d1d6f1a0e",
+   "content_sha256": "368475edb4db7477c39fbc5131a5155c8b17b4a2a4027e856baa8da25ae02000",
+   "outcome": "AUTOMATED_PROVISIONAL_PASS"
+  }
+ ]
+}

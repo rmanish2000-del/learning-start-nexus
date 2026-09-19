@@ -1,0 +1,24 @@
+{
+  "engine_version": "1.0.0",
+  "record_count": 329,
+  "unique_ids": 329,
+  "by_subject": {
+    "Science": 94,
+    "Mathematics": 235
+  },
+  "by_book": {
+    "9a9ee914-468e-4ef2-9269-eab8c9ba85a8": 94,
+    "1ab1e104-8ecb-465e-a5f0-d9bd94641623": 235
+  },
+  "null_external_ref": 3,
+  "schema_errors": [],
+  "engine_outcome_counts": {
+    "auto_approved": 123,
+    "quarantined": 206
+  },
+  "agrees_with_stored": 329,
+  "agrees_with_package_recomputed": 329,
+  "disagreements": [],
+  "open_response_auto_approved": 0,
+  "held_with_approved_true": 150
+}

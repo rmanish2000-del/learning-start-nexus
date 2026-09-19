@@ -1,0 +1,700 @@
+{
+  "queue_row_advisory_records_196": {
+    "status": "PASS",
+    "detail": "196 rows"
+  },
+  "outcome_counts": {
+    "status": "PASS",
+    "detail": "{\"AUTOMATED_PROVISIONAL_PASS\": 148, \"AUTOMATED_UNRESOLVED\": 47, \"AUTOMATED_PROVISIONAL_CONTENT_FIX\": 1}"
+  },
+  "distinct_questions_195": {
+    "status": "PASS",
+    "detail": "195 questions"
+  },
+  "distinct_question_outcome_counts": {
+    "status": "PASS",
+    "detail": "{\"AUTOMATED_PROVISIONAL_PASS\": 148, \"AUTOMATED_UNRESOLVED\": 46, \"AUTOMATED_PROVISIONAL_CONTENT_FIX\": 1}"
+  },
+  "zero_human_identities": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "decision_class_uniform": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "no_certification_language": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "C2": {
+    "queue_rows": 2,
+    "question_level_rows": 1,
+    "outcomes": [
+      "AUTOMATED_UNRESOLVED"
+    ],
+    "routing_reasons": [
+      "CONTAMINATION_HIT",
+      "ENGINE_QUARANTINED"
+    ],
+    "subjects": [
+      "Mathematics"
+    ]
+  },
+  "C2_two_routing_one_question": {
+    "status": "PASS",
+    "detail": "{\"queue_rows\": 2, \"question_level_rows\": 1, \"outcomes\": [\"AUTOMATED_UNRESOLVED\"], \"routing_reasons\": [\"CONTAMINATION_HIT\", \"ENGINE_QUARANTINED\"], \"subjects\": [\"Mathematics\"]}"
+  },
+  "C2_queue_evidence": [
+    {
+      "routing_reason": "CONTAMINATION_HIT",
+      "subject": "Mathematics",
+      "evidence_keys": [
+        "condition",
+        "frozen_overlap_list",
+        "normalized_whitespace_prompt",
+        "note",
+        "package_flag"
+      ]
+    },
+    {
+      "routing_reason": "ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "evidence_keys": [
+        "disposition",
+        "engine_run",
+        "engine_version",
+        "reasons"
+      ]
+    }
+  ],
+  "C2_contamination_routing_preserved": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "C1": {
+    "exclusions": [
+      {
+        "external_ref": "C10-2627-MATH-REQ001-DIAG-001",
+        "pool": "paid_diagnostic",
+        "active": true,
+        "work_item_ref": "REASSESSMENT-146ec7c8-POOL-BREACH"
+      },
+      {
+        "external_ref": "C10-2627-MATH-REQ001-DIAG-005",
+        "pool": "paid_diagnostic",
+        "active": true,
+        "work_item_ref": "REASSESSMENT-146ec7c8-POOL-BREACH"
+      },
+      {
+        "external_ref": "C10-2627-MATH-REQ001-DIAG-009",
+        "pool": "paid_diagnostic",
+        "active": true,
+        "work_item_ref": "REASSESSMENT-146ec7c8-POOL-BREACH"
+      }
+    ],
+    "work_item": [
+      {
+        "id": "4c8a5284-ef71-4945-a2ac-a679d3699e7d",
+        "org_id": "458d3caf-5dc4-486b-b499-02124d0da319",
+        "ref": "REASSESSMENT-146ec7c8-POOL-BREACH",
+        "title": "Published reassessment 146ec7c8 served diagnostic-pool items (REQ001-DIAG-001/005/009)",
+        "severity": "P0",
+        "status": "open",
+        "details": {
+          "not_done": [
+            "no deletion",
+            "no silent pool reclassification"
+          ],
+          "condition": "C1",
+          "action_taken": "excluded from paid diagnostic capacity in staging",
+          "question_ids": [
+            "e912a665-f25a-4c22-8946-f2ea8e1ed6bd",
+            "6cf4bd18-dad2-4075-b42e-ca5fb4cfddeb",
+            "59eab512-093a-49e2-9dd9-2742d8f12e74"
+          ],
+          "requirements": [
+            "REQ001-DIAG-001",
+            "REQ001-DIAG-005",
+            "REQ001-DIAG-009"
+          ],
+          "external_refs": [
+            "C10-2627-MATH-REQ001-DIAG-001",
+            "C10-2627-MATH-REQ001-DIAG-005",
+            "C10-2627-MATH-REQ001-DIAG-009"
+          ],
+          "reassessment_id": "146ec7c8",
+          "resolution_required_before": "paid diagnostic reuse"
+        },
+        "created_at": "2026-09-15T16:21:42.23833+00:00",
+        "updated_at": "2026-09-15T16:29:08.582833+00:00"
+      }
+    ]
+  },
+  "C1_preserved": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "REQ043_REASS_002": [
+    {
+      "external_ref": "C10-2627-SCI-REQ043-REASS-002",
+      "outcome": "AUTOMATED_PROVISIONAL_CONTENT_FIX",
+      "advisory_note": "Stored answer is independently confirmed. The explanation is incomplete because it does not derive 'five times as strong'. No content modification occurs in this import stage.",
+      "subject": "Science",
+      "content_sha256": "9f3d615b6bea7d0679cc8b69ff5dd5a1eda43e76e9ba5874e5f4c91ca95b3c6f"
+    }
+  ],
+  "content_fix_advisory_present": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "question_bank_unchanged": {
+    "status": "PASS",
+    "detail": "content/approval/version drift"
+  },
+  "queue_unchanged": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "engine_evidence_unchanged": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "pool_exclusions_unchanged": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "zero_human_sme_decisions": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "provisional_pass_not_paid_selectable": {
+    "status": "PASS",
+    "detail": "0 provisional-pass items missing a paid-pool exclusion"
+  },
+  "internal_pool_labelled": {
+    "status": "PASS",
+    "detail": "148 rows"
+  },
+  "subject_isolation": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "referential_integrity": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "state_hash_after_import": "b3e9c90aad2a2b59d371a9fa51b1bab85fa1ac08f95ce14384c1abb6cdb7a69b",
+  "idempotent_second_import": {
+    "status": "PASS",
+    "detail": "{\n  \"idempotent_skip\": true,\n  \"existing_active_rows\": 196,\n  \"package_sha256\": \"6b01f2b202647a5ab415a02353c8bb44c9de5c538ee9e032c80752d03dda7f16\"\n}"
+  },
+  "rollback_clears_active_state": {
+    "status": "PASS",
+    "detail": "0 active rows remain"
+  },
+  "rollback_preserves_append_only_evidence": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "reapply_deterministic": {
+    "status": "PASS",
+    "detail": "{\n  \"import_id\": \"9cecbb04-ac38-4703-94c7-6e447dd14794\",\n  \"import_operation_id\": \"b8290da8-3bc2-4aa7-aa41-f6d150bee7ef\",\n  \"package_sha256\": \"6b01f2b202647a5ab415a02353c8bb44c9de5c538ee9e032c80752d03"
+  },
+  "post_reapply_counts": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "no_count_inflation_from_C2": {
+    "status": "PASS",
+    "detail": ""
+  },
+  "delete_blocked": {
+    "status": "PASS",
+    "detail": "delete rejected"
+  },
+  "provisional_pass_ids": [
+    "C10-2627-MATH-REQ001-DIAG-002",
+    "C10-2627-MATH-REQ001-DIAG-003",
+    "C10-2627-MATH-REQ001-DIAG-004",
+    "C10-2627-MATH-REQ001-DIAG-006",
+    "C10-2627-MATH-REQ001-DIAG-007",
+    "C10-2627-MATH-REQ001-REASS-001",
+    "C10-2627-MATH-REQ001-REASS-003",
+    "C10-2627-MATH-REQ001-REASS-004",
+    "C10-2627-MATH-REQ001-REASS-006",
+    "C10-2627-MATH-REQ001-REASS-008",
+    "C10-2627-MATH-REQ001-REASS-009",
+    "C10-2627-MATH-REQ001-REASS-010",
+    "C10-2627-MATH-REQ005-DIAG-001",
+    "C10-2627-MATH-REQ005-REASS-001",
+    "C10-2627-MATH-REQ005-REASS-003",
+    "C10-2627-MATH-REQ005-REASS-005",
+    "C10-2627-MATH-REQ008-DIAG-001",
+    "C10-2627-MATH-REQ008-REASS-001",
+    "C10-2627-MATH-REQ008-REASS-003",
+    "C10-2627-MATH-REQ008-REASS-004",
+    "C10-2627-MATH-REQ013-DIAG-001",
+    "C10-2627-MATH-REQ013-REASS-001",
+    "C10-2627-MATH-REQ013-REASS-003",
+    "C10-2627-MATH-REQ013-REASS-004",
+    "C10-2627-MATH-REQ018-DIAG-001",
+    "C10-2627-MATH-REQ018-REASS-001",
+    "C10-2627-MATH-REQ018-REASS-003",
+    "C10-2627-MATH-REQ018-REASS-004",
+    "C10-2627-MATH-REQ022-DIAG-001",
+    "C10-2627-MATH-REQ022-DIAG-002",
+    "C10-2627-MATH-REQ022-DIAG-003",
+    "C10-2627-MATH-REQ022-DIAG-005",
+    "C10-2627-MATH-REQ022-DIAG-006",
+    "C10-2627-MATH-REQ022-DIAG-008",
+    "C10-2627-MATH-REQ022-DIAG-011",
+    "C10-2627-MATH-REQ022-DIAG-013",
+    "C10-2627-MATH-REQ022-DIAG-014",
+    "C10-2627-MATH-REQ022-DIAG-015",
+    "C10-2627-MATH-REQ022-DIAG-016",
+    "C10-2627-MATH-REQ022-REASS-001",
+    "C10-2627-MATH-REQ022-REASS-002",
+    "C10-2627-MATH-REQ022-REASS-003",
+    "C10-2627-MATH-REQ022-REASS-005",
+    "C10-2627-MATH-REQ022-REASS-006",
+    "C10-2627-MATH-REQ022-REASS-008",
+    "C10-2627-MATH-REQ022-REASS-009",
+    "C10-2627-MATH-REQ022-REASS-011",
+    "C10-2627-MATH-REQ022-REASS-013",
+    "C10-2627-MATH-REQ022-REASS-014",
+    "C10-2627-MATH-REQ022-REASS-015",
+    "C10-2627-MATH-REQ022-REASS-016",
+    "C10-2627-MATH-REQ022-REASS-018",
+    "C10-2627-MATH-REQ022-REASS-020",
+    "C10-2627-MATH-REQ024-DIAG-001",
+    "C10-2627-MATH-REQ024-DIAG-006",
+    "C10-2627-MATH-REQ024-REASS-001",
+    "C10-2627-MATH-REQ024-REASS-003",
+    "C10-2627-MATH-REQ024-REASS-004",
+    "C10-2627-MATH-REQ024-REASS-006",
+    "C10-2627-MATH-REQ024-REASS-008",
+    "C10-2627-MATH-REQ024-REASS-010",
+    "C10-2627-MATH-REQ027-DIAG-001",
+    "C10-2627-MATH-REQ027-DIAG-004",
+    "C10-2627-MATH-REQ027-DIAG-007",
+    "C10-2627-MATH-REQ027-REASS-001",
+    "C10-2627-MATH-REQ027-REASS-003",
+    "C10-2627-MATH-REQ027-REASS-004",
+    "C10-2627-MATH-REQ027-REASS-006",
+    "C10-2627-MATH-REQ027-REASS-008",
+    "C10-2627-MATH-REQ027-REASS-010",
+    "C10-2627-MATH-REQ029-DIAG-001",
+    "C10-2627-MATH-REQ029-DIAG-003",
+    "C10-2627-MATH-REQ029-DIAG-004",
+    "C10-2627-MATH-REQ029-DIAG-005",
+    "C10-2627-MATH-REQ029-REASS-001",
+    "C10-2627-MATH-REQ029-REASS-003",
+    "C10-2627-MATH-REQ029-REASS-004",
+    "C10-2627-MATH-REQ029-REASS-005",
+    "C10-2627-MATH-REQ029-REASS-007",
+    "C10-2627-MATH-REQ029-REASS-010",
+    "C10-2627-MATH-REQ032-DIAG-003",
+    "C10-2627-MATH-REQ032-DIAG-004",
+    "C10-2627-MATH-REQ032-DIAG-005",
+    "C10-2627-MATH-REQ032-REASS-001",
+    "C10-2627-MATH-REQ032-REASS-003",
+    "C10-2627-MATH-REQ032-REASS-004",
+    "C10-2627-MATH-REQ032-REASS-005",
+    "C10-2627-MATH-REQ032-REASS-006",
+    "C10-2627-MATH-REQ032-REASS-009",
+    "C10-2627-MATH-REQ034-DIAG-001",
+    "C10-2627-MATH-REQ034-DIAG-002",
+    "C10-2627-MATH-REQ034-DIAG-004",
+    "C10-2627-MATH-REQ034-DIAG-005",
+    "C10-2627-MATH-REQ034-REASS-001",
+    "C10-2627-MATH-REQ034-REASS-002",
+    "C10-2627-MATH-REQ034-REASS-004",
+    "C10-2627-MATH-REQ034-REASS-006",
+    "C10-2627-MATH-REQ034-REASS-007",
+    "C10-2627-MATH-REQ036-DIAG-001",
+    "C10-2627-MATH-REQ036-DIAG-002",
+    "C10-2627-MATH-REQ036-DIAG-004",
+    "C10-2627-MATH-REQ036-DIAG-005",
+    "C10-2627-MATH-REQ036-REASS-001",
+    "C10-2627-MATH-REQ036-REASS-002",
+    "C10-2627-MATH-REQ036-REASS-004",
+    "C10-2627-MATH-REQ036-REASS-005",
+    "C10-2627-MATH-REQ036-REASS-006",
+    "C10-2627-MATH-REQ036-REASS-007",
+    "C10-2627-MATH-REQ037-DIAG-001",
+    "C10-2627-MATH-REQ037-DIAG-002",
+    "C10-2627-MATH-REQ037-DIAG-004",
+    "C10-2627-MATH-REQ037-DIAG-005",
+    "C10-2627-MATH-REQ037-REASS-001",
+    "C10-2627-MATH-REQ037-REASS-002",
+    "C10-2627-MATH-REQ037-REASS-004",
+    "C10-2627-MATH-REQ037-REASS-005",
+    "C10-2627-MATH-REQ037-REASS-006",
+    "C10-2627-MATH-REQ037-REASS-010",
+    "C10-2627-MATH-REQ038-DIAG-001",
+    "C10-2627-MATH-REQ038-DIAG-002",
+    "C10-2627-MATH-REQ038-DIAG-004",
+    "C10-2627-MATH-REQ038-DIAG-005",
+    "C10-2627-MATH-REQ038-REASS-001",
+    "C10-2627-MATH-REQ038-REASS-002",
+    "C10-2627-MATH-REQ038-REASS-004",
+    "C10-2627-MATH-REQ038-REASS-005",
+    "C10-2627-MATH-REQ038-REASS-006",
+    "C10-2627-MATH-REQ038-REASS-007",
+    "C10-2627-SCI-REQ037-DIAG-001",
+    "C10-2627-SCI-REQ037-DIAG-003",
+    "C10-2627-SCI-REQ037-DIAG-004",
+    "C10-2627-SCI-REQ037-REASS-001",
+    "C10-2627-SCI-REQ037-REASS-002",
+    "C10-2627-SCI-REQ037-REASS-006",
+    "C10-2627-SCI-REQ037-REASS-007",
+    "C10-2627-SCI-REQ039-DIAG-001",
+    "C10-2627-SCI-REQ039-REASS-001",
+    "C10-2627-SCI-REQ041-DIAG-002",
+    "C10-2627-SCI-REQ041-REASS-001",
+    "C10-2627-SCI-REQ041-REASS-003",
+    "C10-2627-SCI-REQ042-REASS-001",
+    "C10-2627-SCI-REQ042-REASS-002",
+    "C10-2627-SCI-REQ042-REASS-003",
+    "C10-2627-SCI-REQ045-DIAG-001",
+    "C10-2627-SCI-REQ045-REASS-001",
+    "C10-2627-SCI-REQ045-REASS-005",
+    "C10-2627-SCI-REQ045-REASS-010",
+    "C10-2627-SCI-REQ045-REASS-019"
+  ],
+  "unresolved_rows": [
+    {
+      "external_ref": "C10-2627-MATH-REQ001-DIAG-008",
+      "queue_row_key": "540dcca9-b715-4590-8227-b282e4310535#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-DIAG-013",
+      "queue_row_key": "6c193a6b-99ca-4840-9a7a-d9e40b1a5b4d#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-DIAG-014",
+      "queue_row_key": "cb0fc44b-35bf-4356-b792-b84faeba8bb4#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-REASS-011",
+      "queue_row_key": "e7505509-bdbb-452f-9abf-f11b833a0974#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-REASS-016",
+      "queue_row_key": "fe3f8fc3-7837-4ac8-b893-6cef4e415897#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-REASS-017",
+      "queue_row_key": "8dd059f8-fd1e-4685-a118-19d7e5a7af59#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-REASS-018",
+      "queue_row_key": "4dd5d8e6-a74d-41db-8605-2e1331fb306e#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ001-REASS-020",
+      "queue_row_key": "0b812fb4-aefc-441d-a79b-4ec3e475d48d#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ022-DIAG-009",
+      "queue_row_key": "87a3fd7d-2c04-4cf7-83ca-84d575f8c974#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "Flagged against the frozen NCERT overlap list. Overlap status is a copyright question; no automated check in the evidence set can clear it, so no provisional pass is possible."
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ024-DIAG-003",
+      "queue_row_key": "15643fe3-ed6f-45d6-a643-36364ad66352#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+      "queue_row_key": "245cc1f9-ede8-4391-90ed-fcc3e2dcb729#CONTAMINATION_HIT",
+      "subject": "Mathematics",
+      "routing_reason": "CONTAMINATION_HIT",
+      "reason": "Flagged against the frozen NCERT overlap list. Overlap status is a copyright question; no automated check in the evidence set can clear it, so no provisional pass is possible."
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+      "queue_row_key": "245cc1f9-ede8-4391-90ed-fcc3e2dcb729#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "Flagged against the frozen NCERT overlap list. Overlap status is a copyright question; no automated check in the evidence set can clear it, so no provisional pass is possible."
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ027-DIAG-003",
+      "queue_row_key": "943fd82a-4c85-4bee-8deb-9fa3ad8924a6#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ032-DIAG-001",
+      "queue_row_key": "1ffdc6fa-4e02-47d6-84dc-f29f8b00a9ce#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "Flagged against the frozen NCERT overlap list. Overlap status is a copyright question; no automated check in the evidence set can clear it, so no provisional pass is possible."
+    },
+    {
+      "external_ref": "C10-2627-MATH-REQ034-REASS-005",
+      "queue_row_key": "45784f10-c75f-43d7-a6e9-cb4ec101affe#ENGINE_QUARANTINED",
+      "subject": "Mathematics",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "Flagged against the frozen NCERT overlap list. Overlap status is a copyright question; no automated check in the evidence set can clear it, so no provisional pass is possible."
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ022-REASS-001",
+      "queue_row_key": "d20de2a8-98d1-427f-854f-ac90240daab2#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ037-REASS-004",
+      "queue_row_key": "2ff9fecf-e1af-4cb4-b538-763959ddf0a2#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ037-REASS-009",
+      "queue_row_key": "756a61ad-4aac-4d10-a4c1-75ef7c609a48#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ039-DIAG-003",
+      "queue_row_key": "26c0d541-65ae-42eb-9f03-c268ae887c80#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ039-REASS-002",
+      "queue_row_key": "ed325ea7-574f-4e55-a44d-c7d43057d7aa#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ039-REASS-004",
+      "queue_row_key": "0f042751-e48a-4ef4-bd72-53341bbaec39#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ039-REASS-006",
+      "queue_row_key": "22ca756f-19f9-4003-ba15-f6ee0165bb2a#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ039-REASS-007",
+      "queue_row_key": "da9c006c-91d3-46e5-abeb-bdaa04299606#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ039-REASS-009",
+      "queue_row_key": "dfed8638-5bf0-4e5e-b469-f15aabc8088f#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ042-REASS-004",
+      "queue_row_key": "f3393b9f-dfe8-4962-b64b-7bad890fd42a#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-DIAG-001",
+      "queue_row_key": "078b4608-6857-4c99-8651-a1f6e020ecaf#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-DIAG-003",
+      "queue_row_key": "07ba96c5-e014-41bd-80a6-d61e9821f4c2#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-REASS-001",
+      "queue_row_key": "821c3403-5ba6-4cf2-aff7-5e1d58495cfe#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-REASS-004",
+      "queue_row_key": "861cf0c0-e38d-4bcc-87b7-08336d9eab47#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-REASS-006",
+      "queue_row_key": "fd4deb37-c638-4707-8e20-f49cf800868c#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-REASS-007",
+      "queue_row_key": "b531ab53-f292-43bd-a288-2f92d535eb53#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ043-REASS-009",
+      "queue_row_key": "b0b8fb59-2211-497c-81eb-7c1743a0bae5#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-002",
+      "queue_row_key": "cd924d24-6e8c-4dd2-aefb-ae80fb202b6a#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-004",
+      "queue_row_key": "f959d5d9-47f0-4cbf-b945-6214286082f4#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-005",
+      "queue_row_key": "937ae7a1-57de-45c5-bf4e-8791a3cdfac5#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-008",
+      "queue_row_key": "e2ae528a-3fec-43f7-a066-7ff7c490641c#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-009",
+      "queue_row_key": "7002426e-475d-4ace-b3e6-6e79e1b46aad#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-011",
+      "queue_row_key": "f896c25e-0997-41b5-8bbd-574d5e8e6d8b#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-DIAG-012",
+      "queue_row_key": "29849ed5-586b-4ad8-bf21-b8e39a31fd17#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-002",
+      "queue_row_key": "0e8c09c3-8a67-4366-99a4-c0b5360f848a#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-004",
+      "queue_row_key": "12f3be02-40f4-42e9-a2c9-9277504e148a#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-006",
+      "queue_row_key": "5f01048c-2020-4e09-bb63-5c256345e6c1#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-011",
+      "queue_row_key": "f33076f9-c38a-4e07-8675-3f1442b148f8#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-012",
+      "queue_row_key": "c33ce257-cd65-466c-b826-de036a7d9c71#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-014",
+      "queue_row_key": "b020eeec-0d97-4045-94ba-a03a294d88bd#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-015",
+      "queue_row_key": "bb480d4a-a5dd-4e7d-87a7-c870d5e09d81#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    },
+    {
+      "external_ref": "C10-2627-SCI-REQ045-REASS-020",
+      "queue_row_key": "3c3afec1-84c6-486c-b320-f5c74c35b9b4#ENGINE_QUARANTINED",
+      "subject": "Science",
+      "routing_reason": "ENGINE_QUARANTINED",
+      "reason": "no independent solution path exists for this wording in the deterministic solver set; the item is qualitative or its quantities are not machine-readable"
+    }
+  ],
+  "final_state_hash": "b3e9c90aad2a2b59d371a9fa51b1bab85fa1ac08f95ce14384c1abb6cdb7a69b",
+  "verdict": "PASS",
+  "failures": []
+}

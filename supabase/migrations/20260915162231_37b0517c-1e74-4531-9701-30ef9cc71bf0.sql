@@ -1,0 +1,2 @@
+DROP TRIGGER IF EXISTS engine_rerun_results_no_delete ON public.engine_rerun_results;
+DROP TRIGGER IF EXISTS legacy_quarantine_no_delete ON public.legacy_verification_quarantine;

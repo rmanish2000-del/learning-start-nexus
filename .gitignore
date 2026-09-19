@@ -33,3 +33,4 @@ dist-ssr
 
 # Staging credentials (generated, never commit)
 .staging-credentials.local.json
+__pycache__/

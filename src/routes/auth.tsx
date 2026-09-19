@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { friendlyErrorMessage } from "@/lib/user-errors";
 import { pageHead } from "@/lib/seo";
+import { SUPPORT_EMAIL, supportMailto } from "@/lib/support";
 
 
 /** Explicit account-type picker — the first decision on the sign-in screen. */
@@ -584,14 +585,14 @@ function AuthPage() {
 
 
           <p className="text-center text-xs text-muted-foreground">
-            Trouble signing in? Email{" "}
+            Still stuck? Email{" "}
             <a
-              href="mailto:support@eduos.global?subject=EduOS%20%E2%80%94%20Account%20support"
+              href={supportMailto({ subject: "Sign-in help" })}
               className="font-medium text-primary hover:underline"
             >
-              support@eduos.global
-            </a>
-            .
+              {SUPPORT_EMAIL}
+            </a>{" "}
+            and we'll help you back in.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">

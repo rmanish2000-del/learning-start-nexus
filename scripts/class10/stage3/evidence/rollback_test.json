@@ -1,0 +1,20 @@
+{
+  "item_level_rollback": {
+    "question_id": "d5b6c3b2-a825-4e82-8639-d48fbc37b57f",
+    "rolled_back": true,
+    "reapplied": true
+  },
+  "full_restore": {
+    "cleared_to": 0,
+    "restored_question_bank": 24,
+    "restored_assessment_question_map": 45,
+    "external_refs_match": true
+  },
+  "reestablished": {
+    "question_bank": 353,
+    "sme_queue": 207,
+    "engine_rerun": 329,
+    "legacy_quarantine": 210,
+    "paid_exclusions": 209
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "package_rows": 196,
+  "reconciled": 196,
+  "problems": [],
+  "queue_total_in_db": 207,
+  "by_subject": {
+    "Mathematics": 143,
+    "Science": 53
+  },
+  "queue_row_outcomes": {
+    "AUTOMATED_PROVISIONAL_PASS": 148,
+    "AUTOMATED_UNRESOLVED": 47,
+    "AUTOMATED_PROVISIONAL_CONTENT_FIX": 1
+  },
+  "distinct_questions": 195,
+  "distinct_question_outcomes": {
+    "AUTOMATED_PROVISIONAL_CONTENT_FIX": 1,
+    "AUTOMATED_PROVISIONAL_PASS": 148,
+    "AUTOMATED_UNRESOLVED": 46
+  },
+  "multi_outcome_questions": {}
+}

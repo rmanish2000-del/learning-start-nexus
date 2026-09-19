@@ -1,0 +1,146 @@
+{
+ "active_advisory_rows_196": {
+  "status": "PASS",
+  "detail": "196 rows"
+ },
+ "zero_unresolved_remaining": {
+  "status": "PASS",
+  "detail": "{\"AUTOMATED_PROVISIONAL_PASS\": 196}"
+ },
+ "distinct_questions_195": {
+  "status": "PASS",
+  "detail": "195 questions"
+ },
+ "C2_two_rows_one_question": {
+  "status": "PASS",
+  "detail": "2 rows / 1 question rows"
+ },
+ "C2_routing_preserved": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "C2_queue_evidence_intact": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "resolution_rows_48": {
+  "status": "PASS",
+  "detail": "48 rows"
+ },
+ "resolution_rows_automated_only": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "no_certification_language": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "excluded_checks_declared": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "historical_evidence_retained": {
+  "status": "PASS",
+  "detail": "576 superseded rows"
+ },
+ "marking_specs_42": {
+  "status": "PASS",
+  "detail": "42 specs"
+ },
+ "marking_specs_complete": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "marking_specs_match_source": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "originality_checks_6": {
+  "status": "PASS",
+  "detail": "6 checks"
+ },
+ "originality_verified": {
+  "status": "PASS",
+  "detail": "[[\"C10-2627-MATH-REQ022-DIAG-009\", \"0.0\", \"0.5086\"], [\"C10-2627-MATH-REQ024-DIAG-004\", \"0.0\", \"0.5571\"], [\"C10-2627-MATH-REQ032-DIAG-001\", \"0.0\", \"0.4817\"], [\"C10-2627-MATH-REQ032-REASS-001\", \"0.0\", \"0.1989\"], [\"C10-2627-MATH-REQ034-DIAG-005\", \"0.0\", \"0.3693\"], [\"C10-2627-MATH-REQ034-REASS-005\", \"0.0\", \"0.3912\"]]"
+ },
+ "content_revisions_7": {
+  "status": "PASS",
+  "detail": "7 revisions"
+ },
+ "revisions_carry_before_and_after": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "source_register_covers_resolved_items": {
+  "status": "PASS",
+  "detail": "49 items"
+ },
+ "sources_official_and_unlicensed": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "only_five_items_changed": {
+  "status": "PASS",
+  "detail": "5/5 changed, 0 unexpected"
+ },
+ "no_operational_field_change": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "req043_explanation_derives_factor": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "C1_preserved": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "frozen_overlap_list_unmodified": {
+  "status": "PASS",
+  "detail": "four entries retained"
+ },
+ "provisional_items_not_paid_selectable": {
+  "status": "PASS",
+  "detail": "195 pool rows"
+ },
+ "engine_rerun_all_329": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "engine_outcomes_stable": {
+  "status": "PASS",
+  "detail": "{\"autoApproved\": 123, \"quarantined\": 206}"
+ },
+ "no_pii_in_evidence": {
+  "status": "PASS",
+  "detail": "[]"
+ },
+ "state_hash_after_resolution": "00235e9ce359c14c9ebadbdfe6a14f48ace483e8c8290de66eae7ae370e787a1",
+ "marking_spec_delete_blocked": {
+  "status": "PASS",
+  "detail": "delete rejected"
+ },
+ "revision_delete_blocked": {
+  "status": "PASS",
+  "detail": "delete rejected"
+ },
+ "rollback_restores_previous_state": {
+  "status": "PASS",
+  "detail": "{\"AUTOMATED_PROVISIONAL_PASS\": 160, \"AUTOMATED_UNRESOLVED\": 36}"
+ },
+ "rollback_restores_content": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "reapply_deterministic": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "reapply_no_duplicate_evidence": {
+  "status": "PASS",
+  "detail": ""
+ },
+ "final_state_hash": "00235e9ce359c14c9ebadbdfe6a14f48ace483e8c8290de66eae7ae370e787a1",
+ "verdict": "PASS",
+ "failures": []
+}

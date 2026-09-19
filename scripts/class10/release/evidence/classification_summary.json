@@ -1,0 +1,20 @@
+{
+ "label": "FOUNDER_AUTHORIZED_AUTOMATED_PROVISIONAL",
+ "pool_rows": 195,
+ "advisory_active_rows": 196,
+ "all_provisional_pass": true,
+ "classification_counts": {
+  "FACT_OR_FORMULA_ONLY": 124,
+  "ORIGINAL_EDUOS_CONTENT": 71
+ },
+ "verified_items": 195,
+ "issues": [],
+ "marking_specs_in_db": 42,
+ "marking_specs_expected": 42,
+ "source_register_entries": 96,
+ "originality_checks": 6,
+ "content_revisions": 7,
+ "paid_eligible_items": 0,
+ "production_eligible_items": 0,
+ "licence_claims_without_evidence": 0
+}

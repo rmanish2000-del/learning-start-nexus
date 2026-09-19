@@ -25,6 +25,7 @@ import { openRazorpayCheckout } from "@/lib/razorpay-checkout";
 import { formatInr } from "@/lib/parent-diagnostic-shared";
 import { useI18n } from "@/lib/i18n/context";
 import { friendlyErrorMessage } from "@/lib/user-errors";
+import { SUPPORT_EMAIL, paymentSupportMailto } from "@/lib/support";
 
 const TITLE = "Checkout — Class 10 Diagnostic | EduOS";
 const DESCRIPTION =
@@ -209,6 +210,14 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
                 )}
               </p>
 
+              <p className="text-xs text-muted-foreground">
+                {t("checkout.support.ref", "Order reference")}:{" "}
+                <span className="font-mono">{orderRef}</span>. {t("checkout.support.lede", "Payment trouble?")}{" "}
+                <a href={paymentSupportMailto(orderRef)} className="font-medium text-primary hover:underline">
+                  {SUPPORT_EMAIL}
+                </a>
+              </p>
+
               <div className="space-y-2 pt-1 text-xs text-muted-foreground">
                 {[
                   "Outcome-mapped questions, allocated by board weight",
@@ -221,17 +230,6 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
                   </p>
                 ))}
               </div>
-
-              <p className="border-t pt-3 text-xs text-muted-foreground">
-                {t("checkout.support", "Payment trouble? Email")}{" "}
-                <a
-                  href={`mailto:support@eduos.global?subject=${encodeURIComponent(`EduOS — Payment support (order ${orderRef})`)}`}
-                  className="font-medium text-primary hover:underline"
-                >
-                  support@eduos.global
-                </a>{" "}
-                {t("checkout.support.ref", "with your order reference")} — {orderRef}.
-              </p>
             </CardContent>
           </Card>
         </div>

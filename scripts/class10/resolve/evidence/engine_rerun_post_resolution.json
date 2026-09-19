@@ -1,0 +1,46 @@
+{
+ "runId": "af2e8326-f3bc-4f6d-b989-b6da806bf79b",
+ "engineVersion": "1.0.0",
+ "itemsEvaluated": 329,
+ "autoApproved": 123,
+ "quarantined": 206,
+ "bySubject": [
+  {
+   "subject": "Mathematics",
+   "items": 235,
+   "autoApproved": 88
+  },
+  {
+   "subject": "Science",
+   "items": 94,
+   "autoApproved": 35
+  }
+ ],
+ "resolvedItems": [
+  {
+   "externalRef": "C10-2627-MATH-REQ022-DIAG-009",
+   "outcome": "quarantined",
+   "confidence": 0.5556
+  },
+  {
+   "externalRef": "C10-2627-MATH-REQ024-DIAG-004",
+   "outcome": "quarantined",
+   "confidence": 0.5556
+  },
+  {
+   "externalRef": "C10-2627-MATH-REQ032-DIAG-001",
+   "outcome": "quarantined",
+   "confidence": 0.5556
+  },
+  {
+   "externalRef": "C10-2627-MATH-REQ034-REASS-005",
+   "outcome": "quarantined",
+   "confidence": 0.5556
+  },
+  {
+   "externalRef": "C10-2627-SCI-REQ043-REASS-002",
+   "outcome": "quarantined",
+   "confidence": 0.6667
+  }
+ ]
+}

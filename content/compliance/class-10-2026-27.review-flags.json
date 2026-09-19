@@ -1,0 +1,71 @@
+{
+  "generator": "scripts/class10/build-review-flags.ts",
+  "source": "EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json",
+  "itemsScanned": 326,
+  "flags": [
+    {
+      "code": "NCERT_OVERLAP_CANDIDATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-001",
+      "detail": "Stem fingerprint matches NCERT Mathematics Ex 1.2 (HCF/LCM of 96 and 404). A named subject expert must confirm originality or require remediation."
+    },
+    {
+      "code": "NCERT_OVERLAP_CANDIDATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ001-DIAG-012",
+      "detail": "Stem fingerprint matches NCERT Mathematics Ex 1.3 (irrationality of a simple surd). A named subject expert must confirm originality or require remediation."
+    },
+    {
+      "code": "NCERT_OVERLAP_CANDIDATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ001-REASS-013",
+      "detail": "Stem fingerprint matches NCERT Mathematics Ex 1.3 (irrationality of a simple surd). A named subject expert must confirm originality or require remediation."
+    },
+    {
+      "code": "NCERT_OVERLAP_CANDIDATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ001-REASS-020",
+      "detail": "Stem fingerprint matches NCERT Mathematics Ex 1.3 (irrationality of a simple surd). A named subject expert must confirm originality or require remediation."
+    },
+    {
+      "code": "NCERT_OVERLAP_CANDIDATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-003",
+      "detail": "Stem fingerprint matches NCERT Mathematics Ex 13 (sphere/hemisphere of radius 7 cm with pi = 22/7). A named subject expert must confirm originality or require remediation."
+    },
+    {
+      "code": "NEAR_DUPLICATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ036-DIAG-003",
+      "pairedWith": "C10-2627-MATH-REQ036-REASS-003",
+      "detail": "40% four-word overlap with C10-2627-MATH-REQ036-REASS-003; the items sit in different pools (DIAGNOSTIC / FRESH_REASSESSMENT)."
+    },
+    {
+      "code": "NCERT_OVERLAP_CANDIDATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ036-REASS-003",
+      "detail": "Stem fingerprint matches NCERT Mathematics Ex 13 (sphere/hemisphere of radius 7 cm with pi = 22/7). A named subject expert must confirm originality or require remediation."
+    },
+    {
+      "code": "NEAR_DUPLICATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ036-REASS-003",
+      "pairedWith": "C10-2627-MATH-REQ036-DIAG-003",
+      "detail": "40% four-word overlap with C10-2627-MATH-REQ036-DIAG-003; the items sit in different pools (DIAGNOSTIC / FRESH_REASSESSMENT)."
+    },
+    {
+      "code": "NEAR_DUPLICATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ038-DIAG-005",
+      "pairedWith": "C10-2627-MATH-REQ038-REASS-005",
+      "detail": "44% four-word overlap with C10-2627-MATH-REQ038-REASS-005; the items sit in different pools (DIAGNOSTIC / FRESH_REASSESSMENT)."
+    },
+    {
+      "code": "NEAR_DUPLICATE",
+      "severity": "warning",
+      "externalRef": "C10-2627-MATH-REQ038-REASS-005",
+      "pairedWith": "C10-2627-MATH-REQ038-DIAG-005",
+      "detail": "44% four-word overlap with C10-2627-MATH-REQ038-DIAG-005; the items sit in different pools (DIAGNOSTIC / FRESH_REASSESSMENT)."
+    }
+  ]
+}

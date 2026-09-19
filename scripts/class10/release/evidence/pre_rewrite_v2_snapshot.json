@@ -1,0 +1,24 @@
+{
+ "C10-2627-MATH-REQ032-REASS-001": {
+  "question_id": "3bf11c95-7384-440e-9065-16375e0b9270",
+  "content": {
+   "prompt": "From a point 25 m away from the foot of a tower on level ground, the angle of elevation of the top is 45 degrees. Find the height of the tower.",
+   "stimulus": null,
+   "options": null,
+   "correct_answer": "25 m",
+   "explanation": "tan 45 degrees = h / 25 and tan 45 degrees = 1, so h = 25 m."
+  },
+  "sha256": "d949c1a41fbc2f234846e2bf5b1f81ae9721bd3f15540a9e1865266a0d66abc9"
+ },
+ "C10-2627-MATH-REQ034-DIAG-005": {
+  "question_id": "0ac9e860-5aa5-4949-81d7-411dc5f28790",
+  "content": {
+   "prompt": "A chord subtends a right angle at the centre of a circle of radius 10 cm. Find the area of the corresponding minor segment. Take pi as 3.14.",
+   "stimulus": null,
+   "options": null,
+   "correct_answer": "28.5 cm^2",
+   "explanation": "The quadrant area is 78.5 cm^2 and the right triangle formed by the two radii has area (1/2) x 10 x 10 = 50 cm^2, so the segment area is 28.5 cm^2."
+  },
+  "sha256": "16425bfe70f07c78526549e4b7dce941fcdd58866efdc4371ef54ac08418fca2"
+ }
+}
