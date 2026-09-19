@@ -7,6 +7,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/integrations/supabase/types";
+import { fetchExcludedQuestionIds } from "./release-pool";
 import {
   PYQ_BLUEPRINT_COHORT,
   PYQ_PRACTICE_SIZE,
@@ -95,7 +96,8 @@ async function loadApproved(orgId: string, subject: PyqSubject): Promise<BankRow
     .eq("status", "approved")
     .eq("verification_state", "verified");
   if (error) throw new Error(error.message);
-  return (data ?? []) as unknown as BankRow[];
+  const excluded = await fetchExcludedQuestionIds(supabase);
+  return ((data ?? []) as unknown as BankRow[]).filter((r) => !excluded.has(r.id));
 }
 
 function toItem(row: BankRow, reveal: boolean): PyqPracticeItem {

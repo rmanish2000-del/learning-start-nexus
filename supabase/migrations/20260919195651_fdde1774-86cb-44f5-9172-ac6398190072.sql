@@ -1,0 +1,1 @@
+ALTER VIEW public.production_release_pool SET (security_invoker = on);

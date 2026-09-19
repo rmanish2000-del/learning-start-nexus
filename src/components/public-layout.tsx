@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { IosInstallGuide } from "@/components/ios-install-guide";
 import { openPublicHelp } from "@/components/public-help";
+import { PUBLIC_CONTENT_DISCLAIMER } from "@/lib/landing-content";
 
 /**
  * Public marketing navigation. Audience sections live on the home page, so
@@ -286,10 +287,13 @@ export function PublicSiteFooter() {
         </div>
       </div>
       <div className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-1 px-4 py-4 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} EduOS</span>
-          <span>Learning Intelligence &amp; Intervention</span>
-          <span className="sm:ml-auto">CBSE Class 10 · Mathematics &amp; Science · India</span>
+        <div className="mx-auto max-w-6xl space-y-2 px-4 py-4 text-xs text-muted-foreground">
+          <p>{PUBLIC_CONTENT_DISCLAIMER}</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span>© {new Date().getFullYear()} EduOS</span>
+            <span>Learning Intelligence &amp; Intervention</span>
+            <span className="sm:ml-auto">CBSE Class 10 · Mathematics &amp; Science · India</span>
+          </div>
         </div>
       </div>
     </footer>

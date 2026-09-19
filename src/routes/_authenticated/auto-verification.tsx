@@ -58,7 +58,7 @@ function AutoVerificationPage() {
     mutationFn: () => run(),
     onSuccess: (summary) => {
       toast.success(
-        `${summary.autoApproved} auto-approved, ${summary.quarantined} held for named SME review.`,
+        `${summary.autoApproved} auto-approved, ${summary.quarantined} held back from release.`,
       );
       void queryClient.invalidateQueries({ queryKey: ["auto-verification"] });
     },
@@ -81,7 +81,8 @@ function AutoVerificationPage() {
           correctness, curriculum alignment, distractor and explanation quality, ambiguity,
           copyright contamination, duplication and diagnostic/reassessment pool separation. Only
           items passing every machine-checkable test with strong evidence are marked{" "}
-          <strong>EduOS verified</strong>; everything else is held for named SME review.
+          <strong>EduOS verified (automated)</strong>; everything else is held back from release. This is
+          an automated check, not certification by a named subject expert, CBSE or NCERT.
         </p>
       </header>
 

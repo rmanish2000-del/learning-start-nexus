@@ -5,12 +5,22 @@
 
 export const SAMPLE_LABEL = "Anonymised pilot sample — not live tenant data";
 
+/**
+ * Standing content provenance notice for every public page.
+ *
+ * Practice content is authored by EduOS and released on automated multi-stage
+ * verification. It is not certified by a named subject expert, and EduOS has no
+ * affiliation with or endorsement from CBSE or NCERT.
+ */
+export const PUBLIC_CONTENT_DISCLAIMER =
+  "EduOS original curriculum-aligned practice content. Automated multi-stage quality verification. Not affiliated with or endorsed by CBSE or NCERT.";
+
 export type ProofStat = { label: string; value: string; note: string };
 
 export const PROOF_STRIP: ProofStat[] = [
   { label: "Gap closure rate", value: "72%", note: "Gaps closed after intervention, pilot cohort" },
   { label: "Average mastery lift", value: "+43 pts", note: "Baseline vs fresh-item reassessment" },
-  { label: "Verified evidence rows", value: "128", note: "Each signed by a named reviewer" },
+  { label: "Verified evidence rows", value: "128", note: "Each backed by stored, replayable evidence" },
 ];
 
 export type RoleLane = {

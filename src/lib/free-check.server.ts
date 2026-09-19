@@ -15,6 +15,7 @@ import {
 } from "./free-check-shared";
 import { GAP_THRESHOLD_PCT } from "./parent-diagnostic-shared";
 import { normalizeQuestionOptions } from "./assessment-shared";
+import { fetchExcludedQuestionIds } from "./release-pool";
 
 type CheckRow = {
   id: string;
@@ -101,7 +102,8 @@ async function pickPool(subject: FreeCheckSubject): Promise<{
 
   const outcomes = (outcomesRes.data ?? []) as OutcomeRow[];
   const byOutcome = new Map<string, string[]>();
-  for (const q of questionsRes.data ?? []) {
+  const excluded = await fetchExcludedQuestionIds(supabaseAdmin);
+  for (const q of (questionsRes.data ?? []).filter((q) => !excluded.has(q.id))) {
     const list = byOutcome.get(q.outcome_id) ?? [];
     list.push(q.id);
     byOutcome.set(q.outcome_id, list);

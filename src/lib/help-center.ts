@@ -548,7 +548,7 @@ export const HELP_ARTICLES: HelpArticle[] = [
     category: "Audits & verification",
     roles: ["admin", "reviewer"],
     summary:
-      "Drafts are machine-checked; only strongly supported items become EduOS verified. Everything else is held for SME review.",
+      "Drafts are machine-checked; only strongly supported items are released as EduOS verified (automated). Everything else is held back. Released content is EduOS original, curriculum-aligned practice material checked by automated multi-stage verification — not certified by a named subject expert, CBSE or NCERT.",
     keywords: ["verification", "quarantine", "verified", "approve", "duplicate", "alignment", "sme"],
     body: [
       "Automated verification checks answer correctness, curriculum alignment, distractor and explanation quality, ambiguity, copyright contamination, duplication and diagnostic/reassessment pool separation.",

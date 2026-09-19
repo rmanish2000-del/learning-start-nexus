@@ -8,6 +8,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import type { DiagnosticWorkspace, EngineOutcome, generateDiagnosticSchema } from "./diagnostic-shared";
 import { buildDiagnosticPlan } from "./diagnostic-shared";
+import { fetchExcludedQuestionIds } from "./release-pool";
 import type { z } from "zod";
 
 type Client = SupabaseClient<Database>;
@@ -39,7 +40,8 @@ export async function fetchDiagnosticWorkspace(
       .select("id, outcome_id, kind, difficulty, prompt")
       .eq("book_id", bookId)
       .eq("status", "approved")
-      // Pilot safety: only SME-verified items are eligible for learner-facing papers.
+      // Release gate: only items released on the automated production basis are
+      // eligible for learner-facing papers; excluded items are dropped below.
       .eq("verification_state", "verified"),
     supabase
       .from("assessments")
@@ -77,7 +79,8 @@ export async function fetchDiagnosticWorkspace(
   }
 
   const approvedByOutcome = new Map<string, EngineOutcome["questions"]>();
-  for (const q of questionsRes.data ?? []) {
+  const excluded = await fetchExcludedQuestionIds(supabase);
+  for (const q of (questionsRes.data ?? []).filter((q) => !excluded.has(q.id))) {
     const list = approvedByOutcome.get(q.outcome_id) ?? [];
     list.push({ id: q.id, kind: q.kind, difficulty: q.difficulty, prompt: q.prompt });
     approvedByOutcome.set(q.outcome_id, list);
@@ -162,7 +165,8 @@ export async function generateDiagnostic(
       .select("id, outcome_id, kind, difficulty, prompt")
       .eq("book_id", input.bookId)
       .eq("status", "approved")
-      // Pilot safety: only SME-verified items are eligible for learner-facing papers.
+      // Release gate: only items released on the automated production basis are
+      // eligible for learner-facing papers; excluded items are dropped below.
       .eq("verification_state", "verified"),
   ]);
   if (bookRes.error) throw new Error(bookRes.error.message);
@@ -204,7 +208,8 @@ export async function generateDiagnostic(
   }
 
   const approvedByOutcome = new Map<string, EngineOutcome["questions"]>();
-  for (const q of questionsRes.data ?? []) {
+  const excluded = await fetchExcludedQuestionIds(supabase);
+  for (const q of (questionsRes.data ?? []).filter((q) => !excluded.has(q.id))) {
     const list = approvedByOutcome.get(q.outcome_id) ?? [];
     list.push({ id: q.id, kind: q.kind, difficulty: q.difficulty, prompt: q.prompt });
     approvedByOutcome.set(q.outcome_id, list);
