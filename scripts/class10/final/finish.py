@@ -55,6 +55,13 @@ def sha(s: str) -> str:
     return hashlib.sha256(s.encode()).hexdigest()
 
 
+def norm_opt(s: str) -> str:
+    """Normalisation that preserves digits — option and answer matching must
+    distinguish 62 from 66."""
+    t = re.sub(r"[^a-z0-9\s]", " ", str(s).lower())
+    return re.sub(r"\s+", " ", t).strip()
+
+
 def canonical(q: dict) -> str:
     return json.dumps(
         {
@@ -124,14 +131,14 @@ def pass_a(ref: str, q: dict) -> dict:
     frag = spec["expected_answer_fragment"]
     ans = (q.get("correct_answer") or "").strip()
     expl = (q.get("explanation") or "").strip()
-    match = O.normalize(frag) in O.normalize(ans) or frag.lower() in ans.lower()
+    match = norm_opt(frag) in norm_opt(ans)
     return {
         "pass": "A_INDEPENDENT_DERIVATION",
         "method": "independent_recomputation_from_facts_and_formulas",
         "derived_result": derived,
         "expected_answer_fragment": frag,
         "stored_answer_matches_derivation": match,
-        "explanation_states_answer": O.normalize(frag) in O.normalize(expl) or frag.lower() in expl.lower(),
+        "explanation_states_answer": norm_opt(frag) in norm_opt(expl),
         "result": "pass" if match else "fail",
     }
 
@@ -168,7 +175,7 @@ def pass_c(ref: str, q: dict, a: dict, b: dict, spec_ok: bool, excluded: bool, e
         "has_explanation": len(expl) >= 20,
         "answer_in_options": b["answer_present_exactly_once"] if isinstance(q.get("options"), list) and q.get("options") else True,
         "explanation_reaches_answer": len(expl.split()) >= 12
-        and (O.normalize(frag) in O.normalize(expl) or frag.lower() in expl.lower()),
+        and norm_opt(frag) in norm_opt(expl),
         "curriculum_aligned": bool(q.get("outcome_id")) and bool(q.get("book_id")),
         "marking_spec_complete": spec_ok,
         "originality_ok": b["originality_measures"]["ok"],
