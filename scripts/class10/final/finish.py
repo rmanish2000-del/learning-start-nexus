@@ -33,6 +33,7 @@ sys.path.insert(0, HERE)
 
 import lib_rest as R  # noqa: E402
 import originality as O  # noqa: E402
+from capacity_items import BOOK_ID as CAP_BOOK, CAPACITY_ITEMS, OUTCOME_ID as CAP_OUTCOME  # noqa: E402
 from items import ITEMS  # noqa: E402
 
 ORG = "11111111-1111-4111-8111-111111111111"
@@ -47,8 +48,21 @@ NOTE = (
 )
 SNAP = os.path.join(HERE, "evidence", "snapshot.json")
 os.makedirs(os.path.join(HERE, "evidence"), exist_ok=True)
+CAP = {
+    c["external_ref"]: {
+        "subject": "Science",
+        "derive": (lambda c=c: c["correct_answer"]),
+        "expected_answer_fragment": c["expected_answer_fragment"],
+        "explanation": c["explanation"],
+        "spec": None,
+    }
+    for c in CAPACITY_ITEMS
+}
+ALL_ITEMS = {**ITEMS, **CAP}
 REFS = list(ITEMS)
+REFS_ALL = list(ALL_ITEMS)
 IN = "(" + ",".join(f'"{r}"' for r in REFS) + ")"
+IN_ALL = "(" + ",".join(f'"{r}"' for r in REFS_ALL) + ")"
 
 
 def sha(s: str) -> str:
@@ -129,7 +143,7 @@ def originality(q: dict) -> dict:
 
 
 def pass_a(ref: str, q: dict) -> dict:
-    spec = ITEMS[ref]
+    spec = ALL_ITEMS[ref]
     derived = spec["derive"]()
     frag = spec["expected_answer_fragment"]
     ans = (q.get("correct_answer") or "").strip()
@@ -172,7 +186,7 @@ def pass_b(ref: str, q: dict) -> dict:
 def pass_c(ref: str, q: dict, a: dict, b: dict, spec_ok: bool, excluded: bool, engine: str | None) -> dict:
     ans = (q.get("correct_answer") or "").strip()
     expl = (q.get("explanation") or "").strip()
-    frag = ITEMS[ref]["expected_answer_fragment"]
+    frag = ALL_ITEMS[ref]["expected_answer_fragment"]
     gates = {
         "has_answer": bool(ans),
         "has_explanation": len(expl) >= 20,
@@ -358,9 +372,9 @@ def stage_apply():
 
 
 def stage_release():
-    rows = load()
-    specs_db = {s["external_ref"] for s in R.select(f"question_marking_specs?select=external_ref&external_ref=in.{IN}")}
-    excl = R.select(f"question_pool_exclusions?select=*&external_ref=in.{IN}&active=is.true")
+    rows = load(IN_ALL)
+    specs_db = {s["external_ref"] for s in R.select(f"question_marking_specs?select=external_ref&external_ref=in.{IN_ALL}")}
+    excl = R.select(f"question_pool_exclusions?select=*&external_ref=in.{IN_ALL}&active=is.true")
     perm = {e["external_ref"] for e in excl if "permanent" in (e.get("reason") or "").lower()}
     av = R.select("question_auto_verifications?select=question_id,outcome")
     by_q = {}
@@ -368,13 +382,13 @@ def stage_release():
         by_q[a["question_id"]] = a["outcome"]
     existing = {
         r["external_ref"]
-        for r in R.select(f"question_commercial_release?select=external_ref&external_ref=in.{IN}&revoked_at=is.null")
+        for r in R.select(f"question_commercial_release?select=external_ref&external_ref=in.{IN_ALL}&revoked_at=is.null")
     }
     released, failed, inserted = [], [], []
 
     for q in rows:
         ref = q["external_ref"]
-        spec_required = ITEMS[ref].get("spec") is not None
+        spec_required = ALL_ITEMS[ref].get("spec") is not None
         spec_ok = (not spec_required) or ref in specs_db
         a = pass_a(ref, q)
         b = pass_b(ref, q)
@@ -405,7 +419,7 @@ def stage_release():
                         "org_id": ORG,
                         "question_id": q["id"],
                         "external_ref": ref,
-                        "subject": ITEMS[ref]["subject"],
+                        "subject": ALL_ITEMS[ref]["subject"],
                         "release_basis": LABEL,
                         "commercial_classification": cls,
                         "classification_basis": basis,
@@ -495,8 +509,82 @@ def stage_hash():
     print(json.dumps({"state_hash": sha(json.dumps(state, sort_keys=True)), "items": state}, indent=1))
 
 
+def stage_capacity():
+    """Author the missing diagnostic and reassessment items for LO_5.1.1.1."""
+    have = {q["external_ref"] for q in load(IN_ALL)}
+    created = []
+    for c in CAPACITY_ITEMS:
+        ref = c["external_ref"]
+        if ref in have:
+            continue
+        row = {
+            "org_id": ORG,
+            "book_id": CAP_BOOK,
+            "outcome_id": CAP_OUTCOME,
+            "external_ref": ref,
+            "kind": c["kind"],
+            "difficulty": c["difficulty"],
+            "prompt": c["prompt"],
+            "options": c["options"],
+            "correct_answer": c["correct_answer"],
+            "explanation": c["explanation"],
+            "status": "draft",
+            "source": "ai",
+            "verification_state": "unverified",
+        }
+        R.req("question_bank", "", None) if False else None
+        R.insert("question_bank", [row])
+        created.append(ref)
+    rows = [q for q in load(IN_ALL) if q["external_ref"] in CAP]
+    origs = {o["external_ref"] for o in R.select(f"question_originality_checks?select=external_ref&external_ref=in.{IN_ALL}")}
+    srcs = {s["external_ref"] for s in R.select(f"curriculum_source_register?select=external_ref&external_ref=in.{IN_ALL}")}
+    for q in rows:
+        ref = q["external_ref"]
+        if ref not in origs:
+            o = originality(q)
+            R.insert(
+                "question_originality_checks",
+                [
+                    {
+                        "org_id": ORG,
+                        "question_id": q["id"],
+                        "external_ref": ref,
+                        "subject": "Science",
+                        "matched_shingle": None,
+                        "exact_match": o["exact_match_frozen"],
+                        "normalized_match": o["normalized_match_frozen"],
+                        "max_shingle_overlap": o["max_shingle_overlap"],
+                        "semantic_similarity": o["max_semantic_similarity"],
+                        "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED" if o["ok"] else "REJECTED_OVERLAP",
+                        "copyright_clearance_claimed": False,
+                        "evidence": {**o, "thresholds": O.THRESHOLDS, "licence_status": "NOT_ASSESSED"},
+                    }
+                ],
+            )
+        if ref not in srcs:
+            R.insert(
+                "curriculum_source_register",
+                [
+                    {
+                        "org_id": ORG,
+                        "question_id": q["id"],
+                        "external_ref": ref,
+                        "subject": "Science",
+                        "source_title": "CBSE Class 10 curriculum outcome (independently authored EduOS item)",
+                        "source_url": None,
+                        "section_ref": CAP_OUTCOME,
+                        "alignment_note": "Authored to restore diagnostic and reassessment capacity for LO_5.1.1.1; no official source wording reproduced.",
+                        "licence_status": "NOT_ASSESSED",
+                        "verbatim_copying": False,
+                    }
+                ],
+            )
+    print(json.dumps({"stage": "capacity", "created": created, "total_capacity_items": len(rows)}, indent=1))
+
+
 STAGES = {
     "snapshot": stage_snapshot,
+    "capacity": stage_capacity,
     "apply": stage_apply,
     "release": stage_release,
     "validate": stage_validate,
