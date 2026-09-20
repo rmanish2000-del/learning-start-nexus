@@ -152,8 +152,8 @@ def pass_b(ref: str, q: dict) -> dict:
     if isinstance(opts, list) and opts:
         strs = [str(o).strip() for o in opts]
         checks["no_empty_option"] = all(strs)
-        checks["distinct_options"] = len({O.normalize(s) for s in strs}) == len(strs)
-        hits = sum(1 for s in strs if O.normalize(s) == O.normalize(ans))
+        checks["distinct_options"] = len({norm_opt(s) for s in strs}) == len(strs)
+        hits = sum(1 for s in strs if norm_opt(s) == norm_opt(ans))
         checks["answer_present_exactly_once"] = hits == 1
     ok = all(v is True for k, v in checks.items() if k != "originality_measures") and checks["originality_measures"]["ok"]
     return {"pass": "B_ADVERSARIAL_CHALLENGE", **checks, "result": "pass" if ok else "fail"}
