@@ -28,8 +28,8 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(os.path.dirname(HERE), "resolve"))
 sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(os.path.dirname(HERE), "resolve"))
 
 import lib_rest as R  # noqa: E402
 import originality as O  # noqa: E402
