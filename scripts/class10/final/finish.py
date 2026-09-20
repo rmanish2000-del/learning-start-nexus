@@ -56,9 +56,12 @@ def sha(s: str) -> str:
 
 
 def norm_opt(s: str) -> str:
-    """Normalisation that preserves digits — option and answer matching must
-    distinguish 62 from 66."""
-    t = re.sub(r"[^a-z0-9\s]", " ", str(s).lower())
+    """Normalisation for option and answer matching.
+
+    Digits and mathematical operators are preserved: 62 must not collapse onto
+    66, and root(a^2 - b^2) must not collapse onto root(a^2 + b^2).
+    """
+    t = re.sub(r"[^a-z0-9+\-*/^=<>.\s]", " ", str(s).lower())
     return re.sub(r"\s+", " ", t).strip()
 
 
