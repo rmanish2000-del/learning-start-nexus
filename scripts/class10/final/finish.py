@@ -382,7 +382,10 @@ def stage_release():
         by_q[a["question_id"]] = a["outcome"]
     existing = {
         r["external_ref"]
-        for r in R.select(f"question_commercial_release?select=external_ref&external_ref=in.{IN_ALL}&revoked_at=is.null")
+        for r in R.select(
+            f"question_commercial_release?select=external_ref&external_ref=in.{IN_ALL}"
+            f"&activation_run_id=eq.{RUN_ID}"
+        )
     }
     released, failed, inserted = [], [], []
 
@@ -445,6 +448,18 @@ def stage_release():
                 ],
             )
             inserted.append(ref)
+        else:
+            # Deterministic reapply: restore the row this run already owns.
+            R.patch(
+                "question_commercial_release",
+                f"question_id=eq.{q['id']}&activation_run_id=eq.{RUN_ID}",
+                {
+                    "revoked_at": None,
+                    "paid_selection_eligible": True,
+                    "production_export_eligible": True,
+                    "content_sha256": csha,
+                },
+            )
         # lift the superseded paid exclusion for a now-released item
         for e in excl:
             if e["external_ref"] == ref and e["pool"] in ("paid", "production_export") and ref not in perm:
