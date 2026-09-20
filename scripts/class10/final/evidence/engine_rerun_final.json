@@ -1,8 +1,8 @@
 {
  "runId": "b4d1f0e2-77a3-4c85-9e10-6c2f3a9d51bb",
  "engineVersion": "1.0.0",
- "itemsEvaluated": 326,
- "autoApproved": 124,
+ "itemsEvaluated": 330,
+ "autoApproved": 128,
  "quarantined": 202,
  "openResponseAutoApproved": 25,
  "bySubject": [
@@ -13,8 +13,8 @@
   },
   {
    "subject": "Science",
-   "items": 91,
-   "autoApproved": 35
+   "items": 95,
+   "autoApproved": 39
   }
  ]
 }
