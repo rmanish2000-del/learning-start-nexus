@@ -352,10 +352,6 @@ def stage_release():
     specs_db = {s["external_ref"] for s in R.select(f"question_marking_specs?select=external_ref&external_ref=in.{IN}")}
     excl = R.select(f"question_pool_exclusions?select=*&external_ref=in.{IN}&active=is.true")
     perm = {e["external_ref"] for e in excl if "permanent" in (e.get("reason") or "").lower()}
-    engine = {
-        e["external_ref"]: e["outcome"]
-        for e in R.select(f"question_auto_verifications?select=question_id,outcome&limit=1")
-    }
     av = R.select("question_auto_verifications?select=question_id,outcome")
     by_q = {}
     for a in av:
