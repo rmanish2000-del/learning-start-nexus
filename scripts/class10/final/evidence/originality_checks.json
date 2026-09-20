@@ -1,0 +1,200 @@
+[
+ {
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-012",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.026,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-R01",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0377,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-R02",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-R03",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ001-REASS-013",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-009",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.1007,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-012",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0288,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ022-REASS-012",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0228,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.2928,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ029-REASS-003",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-001",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.1833,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ032-REASS-001",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.1989,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-005",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.3693,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ034-REASS-005",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.2092,
+  "verdict": "ORIGINAL_EDUOS_REWRITE_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ037-REASS-003",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ022-DIAG-001",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ022-DIAG-002",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0912,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ022-REASS-002",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ022-REASS-003",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ041-DIAG-001",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0495,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ041-REASS-002",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0481,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ042-DIAG-001",
+  "exact_match": false,
+  "normalized_match": false,
+  "max_shingle_overlap": 0.0,
+  "semantic_similarity": 0.0445,
+  "verdict": "ORIGINAL_EDUOS_CONTENT_VERIFIED",
+  "copyright_clearance_claimed": false
+ }
+]
