@@ -532,7 +532,6 @@ def stage_capacity():
             "source": "ai",
             "verification_state": "unverified",
         }
-        R.req("question_bank", "", None) if False else None
         R.insert("question_bank", [row])
         created.append(ref)
     rows = [q for q in load(IN_ALL) if q["external_ref"] in CAP]
