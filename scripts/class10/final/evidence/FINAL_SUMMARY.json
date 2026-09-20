@@ -1,0 +1,13 @@
+{
+ "run_id": "b4d1f0e2-77a3-4c85-9e10-6c2f3a9d51bb",
+ "corpus_total": 333,
+ "retired": 3,
+ "active": 330,
+ "commercially_released": 330,
+ "withheld_active": 0,
+ "classification_counts": {
+  "FACT_OR_FORMULA_ONLY": 207,
+  "ORIGINAL_EDUOS_CONTENT": 123
+ },
+ "false_certification_rows": 0
+}

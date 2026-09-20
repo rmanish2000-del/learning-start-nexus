@@ -1,0 +1,274 @@
+{
+ "run_id": "b4d1f0e2-77a3-4c85-9e10-6c2f3a9d51bb",
+ "items": [
+  {
+   "id": "c56bbb9e-381c-4e0a-b401-074d1ca79b3f",
+   "external_ref": "C10-2627-MATH-REQ001-DIAG-012",
+   "content": {
+    "prompt": "Given that root 5 is irrational, show that 3 - 2 root 5 is irrational.",
+    "stimulus": null,
+    "options": null,
+    "correct_answer": "If 3 - 2 root 5 were rational and equal to r, then root 5 = (3 - r)/2 would be rational, contradicting the given. Hence 3 - 2 root 5 is irrational.",
+    "explanation": "The argument isolates root 5 using only rational operations, so a rational value for the expression would force a rational value for root 5."
+   },
+   "content_sha256": "e30a208be73884c0cd73b5e456ee25be54831929fbc4ab699ac5ee258e87eeb6",
+   "status": "approved",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-09-03T17:59:20.160993+00:00"
+  },
+  {
+   "id": "01111ce0-6e9c-4fdc-89a7-fb39ce3ca67f",
+   "external_ref": "C10-2627-MATH-REQ001-REASS-013",
+   "content": {
+    "prompt": "Given that root 3 is irrational, show that 5 - root 3 is irrational.",
+    "stimulus": null,
+    "options": null,
+    "correct_answer": "If 5 - root 3 = r were rational then root 3 = 5 - r would be rational, contradicting the given. So 5 - root 3 is irrational.",
+    "explanation": "Subtraction of rationals keeps a number rational, so a rational value would make root 3 rational."
+   },
+   "content_sha256": "282d9e0bf3f31b313756c99236c5c8c50da97c9017235854fa0887425f43d9cf",
+   "status": "approved",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-09-03T17:59:29.756906+00:00"
+  },
+  {
+   "id": "dca61afc-ec13-4f1e-8ca5-14cd18c1ab93",
+   "external_ref": "C10-2627-MATH-REQ022-DIAG-012",
+   "content": {
+    "prompt": "The distance between the points (a, 0) and (0, b) is",
+    "stimulus": null,
+    "options": [
+     "a + b",
+     "root(a^2 - b^2)",
+     "|a - b|",
+     "root(a^2 + b^2)"
+    ],
+    "correct_answer": "root(a^2 + b^2)",
+    "explanation": "The distance formula gives root((a - 0)^2 + (0 - b)^2) = root(a^2 + b^2)."
+   },
+   "content_sha256": "6718afa1d56c30fa7cacaf802c4a155b27e9fa10adb104d48e9a9c1a3b6dc4f8",
+   "status": "approved",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-09-03T18:04:11.685741+00:00"
+  },
+  {
+   "id": "8948f1d0-15c1-4b1a-bcd1-4e27688d5031",
+   "external_ref": "C10-2627-MATH-REQ022-REASS-012",
+   "content": {
+    "prompt": "The distance between the points (-a, -b) and (a, b) is",
+    "stimulus": null,
+    "options": [
+     "4(a^2 + b^2)",
+     "2 root(a^2 + b^2)",
+     "root(a^2 + b^2)",
+     "2(a + b)"
+    ],
+    "correct_answer": "2 root(a^2 + b^2)",
+    "explanation": "The differences are 2a and 2b, so the distance is root(4a^2 + 4b^2) = 2 root(a^2 + b^2)."
+   },
+   "content_sha256": "09dc9a19f3dc09ca1823c82a876c1308986ee16837cf27656a87ffd04556a42f",
+   "status": "approved",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-09-03T18:04:51.777066+00:00"
+  },
+  {
+   "id": "147bd61d-8cf0-48f2-baca-cb651b7eeff9",
+   "external_ref": "C10-2627-MATH-REQ029-REASS-003",
+   "content": {
+    "prompt": "Evaluate 2 x sin 30 degrees x cos 60 degrees.",
+    "stimulus": null,
+    "options": null,
+    "correct_answer": "0.5",
+    "explanation": "sin 30 degrees = 1/2 and cos 60 degrees = 1/2, so the product is 2 x 1/4 = 1/2."
+   },
+   "content_sha256": "e74a346ffdef845dd242a8d11a40bd14c1a9c0927df328700a63ce9c6f6661c3",
+   "status": "approved",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-09-03T18:05:44.918057+00:00"
+  },
+  {
+   "id": "a857b52a-9cab-407d-b9df-69b9a081b433",
+   "external_ref": "C10-2627-MATH-REQ037-REASS-003",
+   "content": {
+    "prompt": "The class mark of the interval 62-70 is",
+    "stimulus": null,
+    "options": [
+     "70",
+     "8",
+     "66",
+     "62"
+    ],
+    "correct_answer": "66",
+    "explanation": "The class mark is (62 + 70)/2 = 66."
+   },
+   "content_sha256": "649172e3f4b17c9dd4be2765e09751ab1cbdccbae8c3f9c0fa027f6595300d8b",
+   "status": "approved",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-09-03T18:11:29.097227+00:00"
+  },
+  {
+   "id": "886fd995-8b66-480e-82a6-3768a535533a",
+   "external_ref": "C10-2627-SCI-REQ041-DIAG-001",
+   "content": {
+    "prompt": "A potential difference of 12 V is applied across a resistor of 4 ohm. Find the current in the resistor.",
+    "stimulus": null,
+    "options": null,
+    "correct_answer": "3 A",
+    "explanation": "By Ohm's law I = V/R = 12/4 = 3 A."
+   },
+   "content_sha256": "22b0a1b2f147bd7144e886ff0df3d505400513a01723b5b0de6d71d174224ace",
+   "status": "draft",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-08-29T05:10:15.60403+00:00"
+  },
+  {
+   "id": "93e06cb4-014f-4fdd-bc99-71fd3b2d8f32",
+   "external_ref": "C10-2627-SCI-REQ041-REASS-002",
+   "content": {
+    "prompt": "A current of 0.5 A flows through a resistor of 24 ohm. Find the potential difference across it.",
+    "stimulus": null,
+    "options": null,
+    "correct_answer": "12 V",
+    "explanation": "By Ohm's law V = IR = 0.5 x 24 = 12 V."
+   },
+   "content_sha256": "3f2dce2847b6a39d3b386403a3bcf1f66e6168e5e16313b7c57740b483503403",
+   "status": "draft",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-08-29T05:10:15.60403+00:00"
+  },
+  {
+   "id": "8a1650cd-f2f3-41e3-a1c0-3597e6378969",
+   "external_ref": "C10-2627-SCI-REQ042-DIAG-001",
+   "content": {
+    "prompt": "A current of 2 A flows through a resistor of 5 ohm for 10 s. Using Joule's law, find the heat produced.",
+    "stimulus": null,
+    "options": null,
+    "correct_answer": "200 J",
+    "explanation": "H = I^2 R t = 4 x 5 x 10 = 200 joule."
+   },
+   "content_sha256": "fdda7a83426198ac1f72a6642b1facd2a4081b4c5e4c7d2a6bc636ade9a86249",
+   "status": "draft",
+   "verification_state": "unverified",
+   "verification_tier": null,
+   "updated_at": "2026-08-29T05:10:15.60403+00:00"
+  }
+ ],
+ "exclusions": [
+  {
+   "id": "80ea3fe0-88e5-4aaa-9027-7bb80728543f",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "c56bbb9e-381c-4e0a-b401-074d1ca79b3f",
+   "external_ref": "C10-2627-MATH-REQ001-DIAG-012",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "caeb0cf7-0b2b-4627-98d8-754b813f9af1",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "01111ce0-6e9c-4fdc-89a7-fb39ce3ca67f",
+   "external_ref": "C10-2627-MATH-REQ001-REASS-013",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "f9f59099-ef79-49af-9f8b-9b99fdd440b7",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "dca61afc-ec13-4f1e-8ca5-14cd18c1ab93",
+   "external_ref": "C10-2627-MATH-REQ022-DIAG-012",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "72f24b50-a9e1-42b7-913c-77e148a0079c",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "8948f1d0-15c1-4b1a-bcd1-4e27688d5031",
+   "external_ref": "C10-2627-MATH-REQ022-REASS-012",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "39c93938-520f-4599-a81b-b0f1cc6c9298",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "147bd61d-8cf0-48f2-baca-cb651b7eeff9",
+   "external_ref": "C10-2627-MATH-REQ029-REASS-003",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "9c0f6810-6da9-44e8-b898-83e3148d2c7d",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "a857b52a-9cab-407d-b9df-69b9a081b433",
+   "external_ref": "C10-2627-MATH-REQ037-REASS-003",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "e8f7a11e-7365-4336-a83c-5c104ef3344d",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "886fd995-8b66-480e-82a6-3768a535533a",
+   "external_ref": "C10-2627-SCI-REQ041-DIAG-001",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "928d73df-433d-4eda-a979-88db87c00c50",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "93e06cb4-014f-4fdd-bc99-71fd3b2d8f32",
+   "external_ref": "C10-2627-SCI-REQ041-REASS-002",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  },
+  {
+   "id": "c287e692-a302-4ab4-9fdc-a4a111f48c73",
+   "org_id": "11111111-1111-4111-8111-111111111111",
+   "question_id": "8a1650cd-f2f3-41e3-a1c0-3597e6378969",
+   "external_ref": "C10-2627-SCI-REQ042-DIAG-001",
+   "pool": "paid",
+   "reason": "Engine v1.0.0 quarantined; no named-SME approval. Not eligible for paid selection.",
+   "work_item_ref": null,
+   "active": true,
+   "created_at": "2026-09-19T17:59:07.924183+00:00",
+   "updated_at": "2026-09-19T17:59:07.924183+00:00"
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+[
+ {
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-012",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "e30a208be73884c0cd73b5e456ee25be54831929fbc4ab699ac5ee258e87eeb6",
+  "after_sha256": "4f4581756c286e39ecac6890d26a6939b0ae9f266845cbcdfe9f7634fd5e6fa3",
+  "applied": true,
+  "created_at": "2026-09-20T02:37:57.074999+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ001-REASS-013",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "282d9e0bf3f31b313756c99236c5c8c50da97c9017235854fa0887425f43d9cf",
+  "after_sha256": "cf682a827bbfd864a62378ef1a2fb9f6510179b11b753b54bdcd84f5706e25eb",
+  "applied": true,
+  "created_at": "2026-09-20T02:37:58.443194+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-009",
+  "revision_kind": "ORIGINAL_EDUOS_REWRITE",
+  "before_sha256": "57b96b0164359653dd3f3b33d627568947e49bf7aa1aaf9b20b0f7927a62fa92",
+  "after_sha256": "11c71cee3da474bdbb2dd86e9d65064f0286fd43b9adaad8c614c909cb59bea2",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:33.219544+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-012",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "6718afa1d56c30fa7cacaf802c4a155b27e9fa10adb104d48e9a9c1a3b6dc4f8",
+  "after_sha256": "1da14eda1780e31613caf39fd463de5d565d9ea86a43ac29e4ad6cbd87a5bff8",
+  "applied": true,
+  "created_at": "2026-09-20T02:37:59.461334+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ022-REASS-012",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "09dc9a19f3dc09ca1823c82a876c1308986ee16837cf27656a87ffd04556a42f",
+  "after_sha256": "60feb4e015ffd114e7d8d32385e173247215cecd0101e60186bbe08b7f308b2d",
+  "applied": true,
+  "created_at": "2026-09-20T02:38:00.266695+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+  "revision_kind": "ORIGINAL_EDUOS_REWRITE",
+  "before_sha256": "aa21d9695624d1ecba3771e3e58afd13c9c6a0ef22ea7bfbbf98c3e94bb1cde8",
+  "after_sha256": "8e48930dde34ef6d176f54e36a71a0adfcd88c0db0e8ffb7c92f2c832ee50fa1",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:34.282393+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ029-REASS-003",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "e74a346ffdef845dd242a8d11a40bd14c1a9c0927df328700a63ce9c6f6661c3",
+  "after_sha256": "c6a58a956f7024a81f3f5f3ea0b1e1a1b88507ef33faf1f32b774441c38a0de9",
+  "applied": true,
+  "created_at": "2026-09-20T02:38:01.071621+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-001",
+  "revision_kind": "ORIGINAL_EDUOS_REWRITE",
+  "before_sha256": "499255f8a04b52ae54b00b5c5031dcfbefb3fa52142852cde8e05e900ed3c6d0",
+  "after_sha256": "01ec9407b26d2e49933687675bbb42b43831a43ef5e428baec729fae588062ea",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:35.051727+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ032-REASS-001",
+  "revision_kind": "ORIGINAL_EDUOS_REWRITE",
+  "before_sha256": "d949c1a41fbc2f234846e2bf5b1f81ae9721bd3f15540a9e1865266a0d66abc9",
+  "after_sha256": "be1f45d630e8c070b8f41b09c94df6510547c193ec4a6695b099b47324ff6100",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:35.769791+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-005",
+  "revision_kind": "ORIGINAL_EDUOS_REWRITE",
+  "before_sha256": "16425bfe70f07c78526549e4b7dce941fcdd58866efdc4371ef54ac08418fca2",
+  "after_sha256": "368475edb4db7477c39fbc5131a5155c8b17b4a2a4027e856baa8da25ae02000",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:36.503101+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ034-REASS-005",
+  "revision_kind": "ORIGINAL_EDUOS_REWRITE",
+  "before_sha256": "dd4130851c8cd79343c057e04cd8d74cd90cbb34aa561dc7be6e369a74f521d7",
+  "after_sha256": "3a931fe458c9f7cbf4f65016e21817b544055dc4e6ed45975d8c6a359279fbef",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:37.195739+00:00"
+ },
+ {
+  "external_ref": "C10-2627-MATH-REQ037-REASS-003",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "649172e3f4b17c9dd4be2765e09751ab1cbdccbae8c3f9c0fa027f6595300d8b",
+  "after_sha256": "05c44d0e164c2c924dc6350eda674c0b9a37bada58e0f7ffb442481b77c1d183",
+  "applied": true,
+  "created_at": "2026-09-20T02:38:01.87502+00:00"
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ041-DIAG-001",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "22b0a1b2f147bd7144e886ff0df3d505400513a01723b5b0de6d71d174224ace",
+  "after_sha256": "20923a34ca60d10f8190cbeb74dee2bad5fee05efce39dbe878b8ca354190c45",
+  "applied": true,
+  "created_at": "2026-09-20T02:38:02.677252+00:00"
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ041-REASS-002",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "3f2dce2847b6a39d3b386403a3bcf1f66e6168e5e16313b7c57740b483503403",
+  "after_sha256": "04600475e54985929ccd07a3e602e2f48702ebd6466e664c6e7ba400b435a34f",
+  "applied": true,
+  "created_at": "2026-09-20T02:38:03.485169+00:00"
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ042-DIAG-001",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "fdda7a83426198ac1f72a6642b1facd2a4081b4c5e4c7d2a6bc636ade9a86249",
+  "after_sha256": "bf7d1ee0975b7e969cc48d879d0c146e9201c07a50bd56c3f568c6ffa11e9a58",
+  "applied": true,
+  "created_at": "2026-09-20T02:38:04.289803+00:00"
+ },
+ {
+  "external_ref": "C10-2627-SCI-REQ043-REASS-002",
+  "revision_kind": "EXPLANATION_FIX",
+  "before_sha256": "9f3d615b6bea7d0679cc8b69ff5dd5a1eda43e76e9ba5874e5f4c91ca95b3c6f",
+  "after_sha256": "66717be4a27911e1137162a75ab97eeb4ed7e3d71b78f7dcadbd83cab91dc347",
+  "applied": true,
+  "created_at": "2026-09-19T18:42:37.905078+00:00"
+ }
+]

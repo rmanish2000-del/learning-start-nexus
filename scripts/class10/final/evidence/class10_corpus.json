@@ -1,0 +1,2666 @@
+[
+ {
+  "id": "e912a665-f25a-4c22-8946-f2ea8e1ed6bd",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-001",
+  "status": "retired",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "d5b6c3b2-a825-4e82-8639-d48fbc37b57f",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "783ed18e-ee82-4485-8e64-0928d2d4a21f",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "87d83fd6-2be0-4e52-9aba-188686c858ab",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "6cf4bd18-dad2-4075-b42e-ca5fb4cfddeb",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-005",
+  "status": "retired",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "a97739ef-bcda-429f-83dd-a589007568c0",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "c081475d-f216-46ee-a598-b8d1c012bbbc",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "540dcca9-b715-4590-8227-b282e4310535",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "59eab512-093a-49e2-9dd9-2742d8f12e74",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-009",
+  "status": "retired",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "788846fd-a05d-41cb-aa18-bd0f269a8f88",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "d1f3ffca-6077-448b-97cc-8048e895ff42",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-011",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "c56bbb9e-381c-4e0a-b401-074d1ca79b3f",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-012",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "6c193a6b-99ca-4840-9a7a-d9e40b1a5b4d",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-013",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "cb0fc44b-35bf-4356-b792-b84faeba8bb4",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-014",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "55ec1bdd-d0e4-49ca-a3bd-294a1682f351",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-R01",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "15d72c0c-a083-41e7-a558-0313ded04105",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-R02",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "48ffb6bb-7f39-4b39-a7d3-d517e1028223",
+  "external_ref": "C10-2627-MATH-REQ001-DIAG-R03",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "cc537ac2-4b3e-495d-973f-3514808de3c3",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "67bf6efd-aca5-4f80-8c82-118b8d357ecc",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "910e5e6d-a275-4e61-b619-cbb6b11d2640",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "7a22eb6c-63e8-4a45-9dd5-ba4c54aa09cc",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "821e7516-9544-4c01-8f26-70f4546b9837",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "85bc3c69-2e2e-42b2-94f8-3e2d8a0ca578",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "bb415264-6993-423f-9afc-5e07711f9280",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "15edf945-605d-4e24-9069-5f72a4a9afa7",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "943f3b82-c460-4bb3-9402-be47656443ce",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "4e340c4b-61a8-4c0a-8398-4154f1dec311",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "6810a065-c2af-4e4f-b115-9aca39a6c78e"
+ },
+ {
+  "id": "e7505509-bdbb-452f-9abf-f11b833a0974",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-011",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "7c3d104b-f3f4-43c7-85fd-2fe7f30fdb6f",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-012",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "01111ce0-6e9c-4fdc-89a7-fb39ce3ca67f",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-013",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "faeded62-4b24-425f-be3f-f5f9929ad34c",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-014",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "6517ace4-4343-465b-a57f-9296f68baa83",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-015",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "fe3f8fc3-7837-4ac8-b893-6cef4e415897",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-016",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "8dd059f8-fd1e-4685-a118-19d7e5a7af59",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-017",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "4dd5d8e6-a74d-41db-8605-2e1331fb306e",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-018",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "0a9809c5-6e46-447a-989c-a581437022c4",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-019",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "0b812fb4-aefc-441d-a79b-4ec3e475d48d",
+  "external_ref": "C10-2627-MATH-REQ001-REASS-020",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "93635c82-1de9-4b6b-a824-3c1d0351c9d1"
+ },
+ {
+  "id": "2a9fe974-4459-4ef9-bc34-dd252f7e95b8",
+  "external_ref": "C10-2627-MATH-REQ005-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "c2f6d649-cc90-4d25-a353-28bf5a34f473",
+  "external_ref": "C10-2627-MATH-REQ005-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "df1c5c5c-9b42-486f-9c8d-e30e159e0973",
+  "external_ref": "C10-2627-MATH-REQ005-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "dce88fb3-8f01-4fae-b6cb-752ab6c7d8bd",
+  "external_ref": "C10-2627-MATH-REQ005-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "87a8c1e4-06b9-49c3-bc6a-6d399648a057",
+  "external_ref": "C10-2627-MATH-REQ005-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "ca4fe334-d9d0-457a-9c33-53fd7b1c0ccb",
+  "external_ref": "C10-2627-MATH-REQ005-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "51841657-7da1-47d6-a246-84f212218a93",
+  "external_ref": "C10-2627-MATH-REQ005-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "c2e4cfc1-af4f-4f7b-81b3-1b21d3d02a11"
+ },
+ {
+  "id": "ef73df26-03cd-4858-a9cd-8caaf7c20f1c",
+  "external_ref": "C10-2627-MATH-REQ008-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "dcac339a-3422-4f86-bdf1-bed22932acff",
+  "external_ref": "C10-2627-MATH-REQ008-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "2ed15cc2-57da-4584-9ff0-5527670a7d8b",
+  "external_ref": "C10-2627-MATH-REQ008-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "6fed4447-6b9a-41a6-88ec-726f3832a6cc",
+  "external_ref": "C10-2627-MATH-REQ008-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "1adb1d71-91e4-41b7-a571-f7e5734cd88a",
+  "external_ref": "C10-2627-MATH-REQ008-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "80481dae-9a53-41f9-8a14-0835c2f8e8ac",
+  "external_ref": "C10-2627-MATH-REQ008-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "ed657a02-5075-4c37-b21b-222e6f786bde",
+  "external_ref": "C10-2627-MATH-REQ008-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b42bea6d-0f2e-4f60-8394-d144f443ad22"
+ },
+ {
+  "id": "7ec49062-80d6-4bef-9001-8fde6735a0cd",
+  "external_ref": "C10-2627-MATH-REQ013-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "ce2895bd-5684-41f3-aed8-1cf3cebd499d",
+  "external_ref": "C10-2627-MATH-REQ013-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "1513d570-514c-449d-9d75-f2d49223e270",
+  "external_ref": "C10-2627-MATH-REQ013-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "671a234a-305d-4af2-aed6-a5dcbffbd0bc",
+  "external_ref": "C10-2627-MATH-REQ013-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "a50dc67b-a6fa-40dd-8e4b-71c617513f9e",
+  "external_ref": "C10-2627-MATH-REQ013-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "52d9b336-485b-4a6e-9c9b-199ea3c178ba",
+  "external_ref": "C10-2627-MATH-REQ013-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "265a3ecc-277f-4dec-9668-40c1201a2328",
+  "external_ref": "C10-2627-MATH-REQ013-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e0bcebf5-b160-4676-b78e-e08f4df220b0"
+ },
+ {
+  "id": "3e6a495f-7a0f-44b4-af24-d045d4e6302d",
+  "external_ref": "C10-2627-MATH-REQ018-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "da160b5a-2272-402a-ba4f-5313046c66b8",
+  "external_ref": "C10-2627-MATH-REQ018-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "38171c46-ac56-43bd-81fe-56d7104cb39d",
+  "external_ref": "C10-2627-MATH-REQ018-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "27b49c45-de44-47cd-8a90-9e4eee23a06b",
+  "external_ref": "C10-2627-MATH-REQ018-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "9ee458fd-45e2-4c79-8b9e-c10aef5c5d30",
+  "external_ref": "C10-2627-MATH-REQ018-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "3cab9c90-8a75-416e-a63c-4d56ee45d923",
+  "external_ref": "C10-2627-MATH-REQ018-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "f6e13a13-c01d-41b1-90ef-7e4b9cda0763",
+  "external_ref": "C10-2627-MATH-REQ018-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "8d050f31-cbce-4bea-a751-b889027a0254"
+ },
+ {
+  "id": "0e93d92b-ade5-473e-a0ff-ca2e076b335b",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "c3e8b54b-a4c2-4a03-8771-b985f56ae9af",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "7062b4fe-6f13-4739-bb20-5a4468577cf8",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "d6c737c0-1f18-4c9e-a6c3-87e619ae5c31",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "5382590b-672d-482c-8a00-e9fe12ab1eae",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "2d744c81-64ff-4dc7-bfc3-2f5ed722eecb",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "1044eddb-529a-46ad-ae4a-8b82414a1fa5",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "c5298b22-c2af-480c-b8fd-c8d56c458d33",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "87a3fd7d-2c04-4cf7-83ca-84d575f8c974",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "7e18945a-2a33-49c2-ad40-9b55d988f160",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "daba9327-3b44-4f98-94c3-cb3309077737",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-011",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "dca61afc-ec13-4f1e-8ca5-14cd18c1ab93",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-012",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "d1a3962d-9801-4779-b6c2-08632e0609c0",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-013",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "7a79d75e-76d4-43eb-a2ce-3cb53d6c7f1d",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-014",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "03988c50-d95b-4fd2-846d-4392550d63ef",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-015",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "a4d4fde5-3eb7-46ec-a327-66f80a3f23b1",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-016",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "56df13bf-f19e-4294-bfd0-e68698b48333",
+  "external_ref": "C10-2627-MATH-REQ022-DIAG-017",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "90422717-2bf8-4515-b709-af140574172c",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "255ea1ba-504e-45b6-a9b0-9bab17f54a2b",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "91c04340-ad5e-462e-86d6-2326408ee1f6",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "302f6140-bba4-4eda-a626-40815f0672ce",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "2ef4c852-5be9-44f3-8974-3b9bf63280f5",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "122f20e9-bc2c-4404-ad52-4942f9fe31bb",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "78af1586-2d1d-483a-bbfa-077a7f589849",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "2358ef40-79e8-440f-85c0-f6a99267a61d",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "1b087a56-df2c-4e0a-8e96-3d912469add3",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "62eb20dc-397c-486e-8097-c8fce7924677",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "d8847419-e006-45e3-b0d5-1e018f4ab72c",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-011",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "8948f1d0-15c1-4b1a-bcd1-4e27688d5031",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-012",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "67fba5b1-90b5-4375-9bc0-7e0a1be92e6c",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-013",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "1ffd3ad9-6d6e-4122-a70c-5dc5113f58fe",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-014",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "3c26ecff-d5c0-4cff-b2ec-df623f06db35",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-015",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "0e74947f-9fb2-4c45-b2d0-6727bcddae15",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-016",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "70419b91-c2e5-475e-9e7c-30f75fb377df",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-017",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "2b84548b-5906-4059-8239-acadccb24c68",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-018",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "8c449ccd-9eb5-40a3-ac2f-fc3cd925abc5",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-019",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "75ba1b95-540e-447b-96c3-f5e1e559e2b8",
+  "external_ref": "C10-2627-MATH-REQ022-REASS-020",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a0dac4d4-04fc-4e78-b094-1eef5c255fdd"
+ },
+ {
+  "id": "b325a912-b874-4637-93d4-3f42bf17cb8d",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "7abfda83-7167-4bcd-a63f-2e3dc070b8ec",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "15643fe3-ed6f-45d6-a643-36364ad66352",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "245cc1f9-ede8-4391-90ed-fcc3e2dcb729",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "d078152b-5ec7-43ac-a486-b85e4c78e6f8",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "9c0ba26f-53e8-4169-8cae-c0171471fdf4",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "d4d588d3-54ee-4859-a72e-4acaa829f37c",
+  "external_ref": "C10-2627-MATH-REQ024-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "b6c68cd3-d9db-4f79-8b98-6518887a4ea9",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "aa3cfa21-e2eb-40a6-80d5-c50193c731df",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "381bb849-3f41-421d-bde4-67247487ee22",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "d1bb2df3-0f75-4f71-9b62-73f15149974b",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "8ec663cb-c5a6-46a6-9453-0bcb6a1bc26a",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "7e84b771-b99e-4c5b-8842-52cdd784f75b",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "c43cb1e5-1f57-47ed-880e-2f565131d972",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "a9a4756b-a49b-409f-b85f-c88ca1f30c44",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "d76e754a-ad16-4100-9443-91565584a070",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "142d9283-103f-4346-a203-60ca2e809ec8",
+  "external_ref": "C10-2627-MATH-REQ024-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a83eeff7-b944-4850-9d32-447617627acc"
+ },
+ {
+  "id": "330e9b37-d678-4c65-bd2f-bc17e16dae03",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "011fea72-cb42-4e21-94d8-1fc285037b04",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "943fd82a-4c85-4bee-8deb-9fa3ad8924a6",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "e64a0e77-f189-4b85-a332-474290af85f7",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "3557b985-3f13-4ef3-8413-8bff318fc723",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "d6a39bfd-0297-4b4a-b999-de7fea22c651",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "c5fa5085-e01a-4bcb-be45-b0194864af58",
+  "external_ref": "C10-2627-MATH-REQ027-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "e92bce14-737f-440c-bee8-190fbad34d7d",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "7af45b01-45ec-45a0-aab6-9aa0326d4a71",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "add24d92-2180-49d9-a1ec-c5a96fb9fd2d",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "b9c5089a-fa03-4b16-b283-da3fbbf7c0ed",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "c3ccf8a5-b0fe-46c7-9780-1f0b31b56bf9",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "42d4417e-5139-48ae-8705-4220c6156604",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "e05fa3fb-262e-4d4a-a087-964c0b5cd03d",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "6c554db5-3dde-4524-88fc-cf30355d6194",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "c81319a9-9016-4c5f-9fd3-49c07994ce25",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "72d1cdc7-de6f-497c-8b3b-a96527caa60f",
+  "external_ref": "C10-2627-MATH-REQ027-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7faf0623-1326-4adf-af09-755f81784d24"
+ },
+ {
+  "id": "ef4729a9-4a0a-4f0c-b4c6-533140df947c",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "77555f1a-baee-4a32-ae03-84db9699e587",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "f7068b73-3ede-4880-b8d9-e89bfcf60584",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "8a77dffc-9468-4e18-b9b2-ab68a514a47d",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "6449eeeb-c22f-470f-9f7b-98f01a39202c",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "0b83bbbf-527d-4acc-b4ea-fb9352c02ec0",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "6d592b99-7f00-403f-b661-3e9fbe5d76ef",
+  "external_ref": "C10-2627-MATH-REQ029-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "51ca6079-a4ab-4a1d-b9bc-bf123d399e3d",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "4c65d187-b7f2-4ade-84d4-285ebb50294f",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "147bd61d-8cf0-48f2-baca-cb651b7eeff9",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "ff567592-594e-40ef-9700-a28c01f60ba4",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "747d6eb4-5a8e-433c-89ab-6d66d15218f1",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "60a5c6fe-bbcb-48e5-b8c8-b8740f153078",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "d9d0473c-1e2f-41e5-a577-30c55c06c5da",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "5981649d-d0f0-4065-ac5f-161569aa6413",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "8c3e844a-7a1a-48a0-aef6-9d607cdec736",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "417b27d7-b8c1-4323-8a3e-4977ed58b6de",
+  "external_ref": "C10-2627-MATH-REQ029-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "ea1338d1-cd16-4e98-ac3c-0b9b5d90e32a"
+ },
+ {
+  "id": "1ffdc6fa-4e02-47d6-84dc-f29f8b00a9ce",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "b85f3aa8-bc96-46fc-866f-5cf40c29e502",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "4462cb0e-99c5-48dc-b814-7b5a6a3f37c6",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "a9bbb3a0-4d59-448a-9e67-0e66a222ebc8",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "ee6bd264-35e8-4234-9236-99415682f338",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "b1920e97-d3cb-4e65-b600-cafd580007cc",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "436af3ee-3485-4581-b449-059c96c77675",
+  "external_ref": "C10-2627-MATH-REQ032-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "3bf11c95-7384-440e-9065-16375e0b9270",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "6f41197b-9649-4a5d-84ce-e9fc04a79747",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "b84d1032-0024-4dbd-b048-f3c0c33c0400",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "ae9dbe61-f83b-4c73-abf9-85be510e0bb2",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "7888b8f6-a097-45d8-b5ae-ae4fc5a83ded",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "e23dced3-b06f-4493-b9d2-40ff50e608f9",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "4d9930ea-4f0f-45de-82c9-88d0dae0a38e",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "b30a595e-5028-46eb-bfbf-8291345a13a2",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "c60dc549-bd1f-4209-aba1-4b2518a8316b",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "703d064b-9670-434d-9044-73090874ae7f",
+  "external_ref": "C10-2627-MATH-REQ032-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "12cd0743-df5f-45ee-b771-03dfadaa392d"
+ },
+ {
+  "id": "9b8e9ba0-5fad-4b89-9439-f4ecaa1421a2",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "074bbf8b-da69-4f87-9a46-ba41a31140f0",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "68ed6405-c483-4ff1-a85d-369252f3ef76",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "c38faa08-27b0-4ec7-a019-9e551a63b751",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "0ac9e860-5aa5-4949-81d7-411dc5f28790",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "edde5b73-8a59-407f-a8de-925c1728f2c9",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "9439905b-ead1-422a-b8d2-d0636dddb296",
+  "external_ref": "C10-2627-MATH-REQ034-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "3ac89817-4094-408c-acda-07186b3faa8f",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "cbe04f3f-537c-495a-b115-8d9d0fa4f79e",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "e5d119dc-7b12-4ba1-99db-dcb7028b1d04",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "1e3a52e1-300b-476d-8a25-ae021f3193fe",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "45784f10-c75f-43d7-a6e9-cb4ec101affe",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "03ca5651-95f4-4972-85ac-04c08190032f",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "897c7b82-7306-4e06-ad22-03043c80148c",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "a9436894-fade-40b6-94f2-b6a05c3cbfb0",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "5b18ba9d-6b5f-451c-a6ac-016d4ccaecd1",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "c69e8d23-2dd6-4790-9f2a-0a15031cba87",
+  "external_ref": "C10-2627-MATH-REQ034-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5dc9c499-dd5a-4bec-acdb-ff94cba8191b"
+ },
+ {
+  "id": "2b915d6c-7ad3-43fa-a3ee-2c6696230440",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "a4a712fb-0d04-4039-8e34-6a8456157686",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "815ec277-89ae-4619-8da5-a6940b014d9f",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "3150ce0f-ec3e-4c3b-a2df-c8074af0a823",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "aad75fd4-e351-4e74-9405-2b8cfa016a69",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "5caa2376-f993-44d1-9dd7-369a229be6d6",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "5b54f80d-60d5-4db6-a93f-8b85570f2f41",
+  "external_ref": "C10-2627-MATH-REQ036-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "f210ad90-53cf-475c-87cc-fa7d577111b8",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "608a0f5f-0d6b-47e6-8c80-08b65923c308",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "e8ca320f-3c1a-4842-aa17-9f1cb9d9664e",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "f437a543-7ddd-40ed-bd6b-c5ab68ff36f7",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "bfac4dd3-54f1-4908-92ee-f662281829d4",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "b01b6409-3591-43ae-bf30-456c1ed11ae9",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "efa57977-adbb-4367-a4c4-6c1a04e866a0",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "0933542c-083d-4308-a577-51541cdba565",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "619d5fea-095b-40be-b826-5e02a5dfd651",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "0da73bd5-da80-4645-8753-aec51e99e9ef",
+  "external_ref": "C10-2627-MATH-REQ036-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "e5500b35-cb38-4e79-8006-7a3867749440"
+ },
+ {
+  "id": "bb2fadad-c5b7-40a3-b332-8fc9a852b18b",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "ca30e1a3-4128-4fae-ba72-e07389647e13",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "936d0420-c02c-4560-ae0e-98d15d9cfa53",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "d2b27baf-ea1d-4984-a12e-d76beeb35ade",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "e8903a56-a442-4eea-a8d1-30dc92cedc65",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "21554b56-0ff6-4a90-8241-0ad4c587da54",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "01f633ee-2697-4ef7-a3dd-f2815b3e2faf",
+  "external_ref": "C10-2627-MATH-REQ037-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "22930128-9cdf-4361-9ed0-71029eeafbb5",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "c4e2b17a-7397-4f32-8e63-fda48ab7b756",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "a857b52a-9cab-407d-b9df-69b9a081b433",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "f927f158-a19b-425b-9c3f-4df9895ba068",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "2d53f703-be1e-4ad4-bfd2-6ac00c4c68f5",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "b98c2f02-a364-4e15-81eb-ac5935ff9753",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "c644dbf4-2f7a-45d1-b7f0-a62d7655005a",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "051dbb5d-8df8-4158-8b71-aed8ff692462",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "59fcb677-7eca-4396-a595-da6cc7d902b4",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "029bfd7d-7dfc-4807-8619-9e1f4feb29d6",
+  "external_ref": "C10-2627-MATH-REQ037-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "7290fbf4-edd2-45de-b1ad-4a05780e93ee"
+ },
+ {
+  "id": "b06d3c64-4994-4b07-840f-725be3757eb4",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "99b3a2d3-d2b7-44e4-a9d1-d3fd1b9eabcf",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "f2fd952a-7e12-4524-9e46-165dda28f6c8",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "6d9362d9-ed29-424e-82be-358d766edf2f",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "e8bba0ce-1c2d-45aa-a5fc-17d36dab7fa8",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "e027a297-7b4c-4e9c-a99d-8305718505c9",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "16ae62b1-7073-4f15-90c2-b39d6addcc06",
+  "external_ref": "C10-2627-MATH-REQ038-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "d0c68e0a-3a24-4b80-a589-0dfcfb501d4b",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "19fedee6-7eb6-4492-beef-04ca6d2031c6",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "6b2a9eb9-cbf0-4e7a-8526-d538e077b3fe",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "9f94e97d-fc2c-4025-9f16-a76a7eb6d9cd",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "66e97e83-a1c5-4757-91bf-c21f0ee0a0fd",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "75f0774b-0bc9-40fa-9794-008673801b91",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "43f6739f-a077-463d-820e-6afac60282c2",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "d730b23d-18c1-41ac-a9c6-f969caa134ec",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "9db15b3e-9a70-401b-8f3e-5d310295e540",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "3c446024-9692-4503-a256-f0aa7bdbc46b",
+  "external_ref": "C10-2627-MATH-REQ038-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "5514e23f-ef3d-4526-8aee-f7a70171d8d4"
+ },
+ {
+  "id": "5938e3cc-927c-463e-aa5b-bb8bae501436",
+  "external_ref": "C10-2627-SCI-REQ022-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b076ee43-f955-4415-a98f-d9a19f33d0df"
+ },
+ {
+  "id": "2b0794ef-59be-4cfd-8201-f014c68c7aad",
+  "external_ref": "C10-2627-SCI-REQ022-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b076ee43-f955-4415-a98f-d9a19f33d0df"
+ },
+ {
+  "id": "d20de2a8-98d1-427f-854f-ac90240daab2",
+  "external_ref": "C10-2627-SCI-REQ022-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b076ee43-f955-4415-a98f-d9a19f33d0df"
+ },
+ {
+  "id": "df478b42-1cdf-4d03-be8a-ead5ff7c5bf5",
+  "external_ref": "C10-2627-SCI-REQ022-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b076ee43-f955-4415-a98f-d9a19f33d0df"
+ },
+ {
+  "id": "51ba7b5d-0c14-465e-9bb5-d8817446ecec",
+  "external_ref": "C10-2627-SCI-REQ022-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "b076ee43-f955-4415-a98f-d9a19f33d0df"
+ },
+ {
+  "id": "bd18e24d-ec28-4b77-b4ac-3bf6d534f3be",
+  "external_ref": "C10-2627-SCI-REQ037-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "2621403d-795b-4401-a735-b7e57078184f",
+  "external_ref": "C10-2627-SCI-REQ037-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "8c935165-793e-428c-a8ab-6d4db2b9f535",
+  "external_ref": "C10-2627-SCI-REQ037-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "5df0529b-cc46-49d6-8ccd-ca5d2dd84d82",
+  "external_ref": "C10-2627-SCI-REQ037-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "e81b0f7b-e7aa-4299-a7fa-0088c14c26b9",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "751d7869-f888-4da7-a509-55fe1c1b76c7",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "85042413-3b31-4431-8d2e-8295a8cf2cbf",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "2ff9fecf-e1af-4cb4-b538-763959ddf0a2",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "21387068-55ee-4017-bc61-5b739c940a67",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f9d71c13-b5d2-4ac2-9030-aa9b3aadf7e4"
+ },
+ {
+  "id": "1be772f9-f219-4d1c-a8ca-b085c7323eef",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "ea1a8c8e-3b1c-4b2b-a0cc-f3057514b308",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "0525a4c4-faa3-4e71-ab88-2da5f585dde8",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "756a61ad-4aac-4d10-a4c1-75ef7c609a48",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "d95e5d6c-a077-4d9f-b448-69ba5d2256f6",
+  "external_ref": "C10-2627-SCI-REQ037-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "00c969e0-e024-48cd-89b0-f62a09b9a33a"
+ },
+ {
+  "id": "1417a782-f39e-4e32-9501-08429cb886df",
+  "external_ref": "C10-2627-SCI-REQ039-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "04c5d272-f6c9-4488-b024-80f6362c09c0",
+  "external_ref": "C10-2627-SCI-REQ039-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "26c0d541-65ae-42eb-9f03-c268ae887c80",
+  "external_ref": "C10-2627-SCI-REQ039-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "5a88b3cc-89fd-4e87-aaaf-901ebb23b5a0",
+  "external_ref": "C10-2627-SCI-REQ039-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "58ef8c15-80b3-4db0-8c0b-e8fd12425bba",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "ed325ea7-574f-4e55-a44d-c7d43057d7aa",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "4d01cf3d-0e5c-4bc2-b834-0825b764c2e5",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "0f042751-e48a-4ef4-bd72-53341bbaec39",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "53dc5fb8-aa88-4beb-ac6f-536bdd08cc69",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "95f23b55-eed6-469f-b295-f85d1554f5fb"
+ },
+ {
+  "id": "22ca756f-19f9-4003-ba15-f6ee0165bb2a",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "da9c006c-91d3-46e5-abeb-bdaa04299606",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "44eb498e-43e6-4331-9864-3d4d38841c6f",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "dfed8638-5bf0-4e5e-b469-f15aabc8088f",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "007a6a01-2a51-4b0c-9c77-f52b9e07625b",
+  "external_ref": "C10-2627-SCI-REQ039-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "cd07b7e9-aebd-4871-86b8-a1b366799fce"
+ },
+ {
+  "id": "886fd995-8b66-480e-82a6-3768a535533a",
+  "external_ref": "C10-2627-SCI-REQ041-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "bdf1e6c4-03a1-44bb-880a-a6132cbb9f74",
+  "external_ref": "C10-2627-SCI-REQ041-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "d07b4eaa-b4bc-4ddf-9212-b57091811dad",
+  "external_ref": "C10-2627-SCI-REQ041-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "93e06cb4-014f-4fdd-bc99-71fd3b2d8f32",
+  "external_ref": "C10-2627-SCI-REQ041-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "bddeb75a-0ba7-48b7-92cc-fc6efa852f2d",
+  "external_ref": "C10-2627-SCI-REQ041-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "bf8355aa-0711-48f3-a7ab-1ba5d794fb43",
+  "external_ref": "C10-2627-SCI-REQ041-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "83f92f1e-c757-47bb-a4e1-288a0dc2e650",
+  "external_ref": "C10-2627-SCI-REQ041-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "47b3b487-b73e-4e20-b24a-3365f2695a1b"
+ },
+ {
+  "id": "8a1650cd-f2f3-41e3-a1c0-3597e6378969",
+  "external_ref": "C10-2627-SCI-REQ042-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "d9ae490b-0977-4eca-8d8f-6fb5f3c7e0db",
+  "external_ref": "C10-2627-SCI-REQ042-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "2fec29f8-735b-4338-ba2e-b6b2c8166df1",
+  "external_ref": "C10-2627-SCI-REQ042-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "5afac2e2-1f1c-493e-93ca-92cc9906fe67",
+  "external_ref": "C10-2627-SCI-REQ042-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "89fc7691-83e9-441b-8b3b-9cab0ab84b5c",
+  "external_ref": "C10-2627-SCI-REQ042-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "f3393b9f-dfe8-4962-b64b-7bad890fd42a",
+  "external_ref": "C10-2627-SCI-REQ042-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "0556b04d-5b1c-4750-ac09-ef975fc28b2b",
+  "external_ref": "C10-2627-SCI-REQ042-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "48cea350-651c-4314-a694-b55a4e901191"
+ },
+ {
+  "id": "078b4608-6857-4c99-8651-a1f6e020ecaf",
+  "external_ref": "C10-2627-SCI-REQ043-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "7c40728a-efae-4448-82e4-75e665e747ba",
+  "external_ref": "C10-2627-SCI-REQ043-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "07ba96c5-e014-41bd-80a6-d61e9821f4c2",
+  "external_ref": "C10-2627-SCI-REQ043-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "93226c6a-7b3f-4711-9de9-09093f86b3d6",
+  "external_ref": "C10-2627-SCI-REQ043-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "821c3403-5ba6-4cf2-aff7-5e1d58495cfe",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "27d2e107-4dae-4f4f-96f5-20ca75d6f63a",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "c2bfb970-988c-4c6d-9f40-73b818647d49",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "861cf0c0-e38d-4bcc-87b7-08336d9eab47",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "d094b5f9-43da-40b3-a014-a2654a6fea47",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "916e28d1-e41a-4a89-98b4-673683204179"
+ },
+ {
+  "id": "fd4deb37-c638-4707-8e20-f49cf800868c",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "b531ab53-f292-43bd-a288-2f92d535eb53",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "73690e63-21db-450d-bd94-9a6d7f30ef2d",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "b0b8fb59-2211-497c-81eb-7c1743a0bae5",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "8f7078d0-cdc6-4f01-81b6-67ff6b17c6f7",
+  "external_ref": "C10-2627-SCI-REQ043-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "f4dce651-899c-4581-add5-4cffc05786a7"
+ },
+ {
+  "id": "028a4e87-e5da-4bdd-a071-85c78624cdd5",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "cd924d24-6e8c-4dd2-aefb-ae80fb202b6a",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "1352ad2d-c535-4d70-947e-90dfca0d3516",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "f959d5d9-47f0-4cbf-b945-6214286082f4",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "937ae7a1-57de-45c5-bf4e-8791a3cdfac5",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "06ea2f3b-ba23-4380-a129-8d9751385a37",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "bc77f73f-c295-4f25-b671-cacd274a08aa",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "e2ae528a-3fec-43f7-a066-7ff7c490641c",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "7002426e-475d-4ace-b3e6-6e79e1b46aad",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "e2db9a1c-a55a-4ec2-88ea-7dfd822e51f6",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "f896c25e-0997-41b5-8bbd-574d5e8e6d8b",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-011",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "29849ed5-586b-4ad8-bf21-b8e39a31fd17",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-012",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "28edae50-c0c8-42f4-a8ba-2493119af3b8",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-013",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "ae32e127-636d-4e26-8b96-7cce92dcdc53",
+  "external_ref": "C10-2627-SCI-REQ045-DIAG-014",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "167fc8a8-f3fd-45fe-b3ee-4a7aa6ee0cf5",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-001",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "0e8c09c3-8a67-4366-99a4-c0b5360f848a",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-002",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "49521b4b-d881-4839-98bf-b26fe7f4517a",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-003",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "12f3be02-40f4-42e9-a2c9-9277504e148a",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-004",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "33789ef9-5b6e-429e-b622-fb8a285a49f2",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-005",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "5f01048c-2020-4e09-bb63-5c256345e6c1",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-006",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "e864d4c7-7199-4cc8-9fed-8590c0b0a28d",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-007",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "f2f72ccb-2241-4f49-8063-a2ae71d67435",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-008",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "310d3277-3241-45cf-a302-51d6ab7d0ef9",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-009",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "e9dfe152-4cae-41e3-ba37-bf6f0dfa5575",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-010",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "3562d84b-cfd5-4f05-815a-4de87bcf1553"
+ },
+ {
+  "id": "f33076f9-c38a-4e07-8675-3f1442b148f8",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-011",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "c33ce257-cd65-466c-b826-de036a7d9c71",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-012",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "21f05b1c-52d5-455d-8770-65278b367e62",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-013",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "b020eeec-0d97-4045-94ba-a03a294d88bd",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-014",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "bb480d4a-a5dd-4e7d-87a7-c870d5e09d81",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-015",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "d7e6926f-341a-47d0-8811-343f68b43697",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-016",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "97392399-eb83-4b2b-9e5f-32832ebd8056",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-017",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "d287e4f8-7aa4-45c9-88b0-413311d3ca46",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-018",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "4b3f6dd9-b9bb-4166-8337-2885c09dc4ed",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-019",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ },
+ {
+  "id": "3c3afec1-84c6-486c-b320-f5c74c35b9b4",
+  "external_ref": "C10-2627-SCI-REQ045-REASS-020",
+  "status": "approved",
+  "verification_state": "verified",
+  "verification_tier": "eduos_automated",
+  "outcome_id": "a502f5d5-b310-439f-a0c8-99083514dfaa"
+ }
+]
