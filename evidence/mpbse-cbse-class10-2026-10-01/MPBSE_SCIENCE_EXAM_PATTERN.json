@@ -1,0 +1,99 @@
+{
+  "board": "MPBSE",
+  "class": 10,
+  "subject": "Science",
+  "session": "2026-27",
+  "max_marks": 75,
+  "time_hours": 3,
+  "total_questions": 23,
+  "chapter_marks": [
+    {
+      "chapter": "1 रासायनिक अभिक्रियाएं एवं समीकरण",
+      "marks": 7
+    },
+    {
+      "chapter": "2 अम्ल क्षार एवं लवण",
+      "marks": 6
+    },
+    {
+      "chapter": "3 धातु एवं अधातु",
+      "marks": 5
+    },
+    {
+      "chapter": "4 कार्बन एवं उसके यौगिक",
+      "marks": 6
+    },
+    {
+      "chapter": "5 जैव प्रक्रम",
+      "marks": 8
+    },
+    {
+      "chapter": "6 नियंत्रण एवं समन्वय",
+      "marks": 6
+    },
+    {
+      "chapter": "7 जीव जनन कैसे करते हैं?",
+      "marks": 6
+    },
+    {
+      "chapter": "8 अनुवांशिकता",
+      "marks": 4
+    },
+    {
+      "chapter": "9 प्रकाश परावर्तन एवं अपवर्तन",
+      "marks": 8
+    },
+    {
+      "chapter": "10 मानव नेत्र एवं रंग बिरंगा संसार",
+      "marks": 5
+    },
+    {
+      "chapter": "11 विद्युत",
+      "marks": 5
+    },
+    {
+      "chapter": "12 विद्युत धारा के चुंबकीय प्रभाव",
+      "marks": 6
+    },
+    {
+      "chapter": "13 हमारा पर्यावरण",
+      "marks": 3
+    }
+  ],
+  "question_structure": {
+    "objective_q1_to_q5": {
+      "questions": 5,
+      "items": 30,
+      "marks_each": 1,
+      "breakdown": {
+        "Q1 correct option": 6,
+        "Q2 fill in blanks": 6,
+        "Q3 true/false": 6,
+        "Q4 match pairs": 6,
+        "Q5 one-sentence answer": 6
+      }
+    },
+    "q6_to_q17": {
+      "questions": 12,
+      "marks_each": 2
+    },
+    "q18_to_q20": {
+      "questions": 3,
+      "marks_each": 3
+    },
+    "q21_to_q23": {
+      "questions": 3,
+      "marks_each": 4
+    }
+  },
+  "evidence": {
+    "file": "MPBSE_MarksScheme_2026_27.pdf",
+    "pdf_page": 32,
+    "printed_page": 31
+  },
+  "model_paper_check": {
+    "file": "MPBSE_ModelPaper_2025_26_Class10_Science.pdf",
+    "page": 1,
+    "stated": "23 questions, 10 printed pages, 3.00 Hrs, 75 marks; Q1-5 = 30 objective items @1; Q6-17 ~30 words; Q18-20 ~75 words; Q21-23 ~120 words"
+  }
+}
