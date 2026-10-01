@@ -18,7 +18,9 @@
       "language": "English",
       "doc_type": "Curriculum/Syllabus + Question Paper Design",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_Curriculum_2026_27_ClassX_Mathematics.pdf"
     },
     {
       "file": "CBSE_Curriculum_2026_27_SecPart1_Intro.pdf",
@@ -36,7 +38,9 @@
       "language": "English",
       "doc_type": "Curriculum introduction",
       "verification_status": "DOWNLOADED_NOT_PAGE_VERIFIED",
-      "notes": "No claims drawn"
+      "notes": "No claims drawn",
+      "storage_location": "EXTERNAL_DRIVE_ONLY",
+      "storage_reference": "Google Drive AGENT-REPORTS/evidence-parts (folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S) :: MPBSE_CBSE_Evidence_PART6.zip + MPBSE_CBSE_Evidence_PART6.z01 (split zip; join before extracting)"
     },
     {
       "file": "CBSE_Curriculum_2026_27_Secondary_Science.pdf",
@@ -54,7 +58,9 @@
       "language": "English",
       "doc_type": "Curriculum/Syllabus + QP design",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_Curriculum_2026_27_Secondary_Science.pdf"
     },
     {
       "file": "CBSE_MS_2026_27_ClassX_MathsBasic.pdf",
@@ -72,7 +78,9 @@
       "language": "English",
       "doc_type": "Marking Scheme for SQP",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_MS_2026_27_ClassX_MathsBasic.pdf"
     },
     {
       "file": "CBSE_MS_2026_27_ClassX_MathsStandard.pdf",
@@ -90,7 +98,9 @@
       "language": "English",
       "doc_type": "Marking Scheme for SQP",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_MS_2026_27_ClassX_MathsStandard.pdf"
     },
     {
       "file": "CBSE_MS_2026_27_ClassX_Science.pdf",
@@ -108,7 +118,9 @@
       "language": "English",
       "doc_type": "Marking Scheme for SQP",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_MS_2026_27_ClassX_Science.pdf"
     },
     {
       "file": "CBSE_SQP_2026_27_ClassX_MathsBasic.pdf",
@@ -126,7 +138,9 @@
       "language": "English",
       "doc_type": "Sample Question Paper",
       "verification_status": "VERIFIED",
-      "notes": "First attempt connection reset; second attempt 200"
+      "notes": "First attempt connection reset; second attempt 200",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_SQP_2026_27_ClassX_MathsBasic.pdf"
     },
     {
       "file": "CBSE_SQP_2026_27_ClassX_MathsStandard.pdf",
@@ -144,7 +158,9 @@
       "language": "English",
       "doc_type": "Sample Question Paper",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_SQP_2026_27_ClassX_MathsStandard.pdf"
     },
     {
       "file": "CBSE_SQP_2026_27_ClassX_Science.pdf",
@@ -162,7 +178,9 @@
       "language": "English",
       "doc_type": "Sample Question Paper",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/CBSE_SQP_2026_27_ClassX_Science.pdf"
     },
     {
       "file": "MPBSE_Bse_53_54_Maths_Basic_Standard.pdf",
@@ -180,7 +198,9 @@
       "language": "Hindi (scanned)",
       "doc_type": "Circular (Basic/Standard second-exam rule)",
       "verification_status": "DOWNLOADED_NOT_PAGE_VERIFIED",
-      "notes": "OCR too poor to extract exact rule text; no claim drawn"
+      "notes": "OCR too poor to extract exact rule text; no claim drawn",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/MPBSE_Bse_53_54_Maths_Basic_Standard.pdf"
     },
     {
       "file": "MPBSE_MarkingScheme_2025_26.pdf",
@@ -198,7 +218,9 @@
       "language": "Hindi (scanned)",
       "doc_type": "Marking scheme (prior session)",
       "verification_status": "DOWNLOADED_NOT_PAGE_VERIFIED",
-      "notes": "No claims drawn"
+      "notes": "No claims drawn",
+      "storage_location": "EXTERNAL_DRIVE_ONLY",
+      "storage_reference": "Google Drive AGENT-REPORTS/evidence-parts (folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S) :: MPBSE_CBSE_Evidence_PART5.zip"
     },
     {
       "file": "MPBSE_MarksScheme_2026_27.pdf",
@@ -216,7 +238,9 @@
       "language": "Hindi (scanned image PDF)",
       "doc_type": "Blueprint / Marking scheme (chapter-wise marks + question pattern)",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "EXTERNAL_DRIVE_ONLY",
+      "storage_reference": "Google Drive AGENT-REPORTS/evidence-parts (folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S) :: MPBSE_CBSE_Evidence_PART3.zip"
     },
     {
       "file": "MPBSE_ModelPaper_2025_26_Class10_Maths_Basic.pdf",
@@ -234,7 +258,9 @@
       "language": "Hindi + English",
       "doc_type": "Model/Sample question paper",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/MPBSE_ModelPaper_2025_26_Class10_Maths_Basic.pdf"
     },
     {
       "file": "MPBSE_ModelPaper_2025_26_Class10_Maths_Standard.pdf",
@@ -252,7 +278,9 @@
       "language": "Hindi + English",
       "doc_type": "Model/Sample question paper",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/MPBSE_ModelPaper_2025_26_Class10_Maths_Standard.pdf"
     },
     {
       "file": "MPBSE_ModelPaper_2025_26_Class10_Science.pdf",
@@ -270,7 +298,9 @@
       "language": "Hindi + English",
       "doc_type": "Model/Sample question paper",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/MPBSE_ModelPaper_2025_26_Class10_Science.pdf"
     },
     {
       "file": "MPBSE_Notice_SamplePaper_2025_26.pdf",
@@ -288,7 +318,9 @@
       "language": "Hindi (scanned)",
       "doc_type": "Notice re sample papers",
       "verification_status": "DOWNLOADED_NOT_PAGE_VERIFIED",
-      "notes": "Content not relied on"
+      "notes": "Content not relied on",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/MPBSE_Notice_SamplePaper_2025_26.pdf"
     },
     {
       "file": "MPBSE_Syllabus_2025_26.pdf",
@@ -306,7 +338,9 @@
       "language": "Hindi (scanned)",
       "doc_type": "Syllabus (prior session)",
       "verification_status": "DOWNLOADED_NOT_PAGE_VERIFIED",
-      "notes": "Retained for continuity; no claims drawn"
+      "notes": "Retained for continuity; no claims drawn",
+      "storage_location": "EXTERNAL_DRIVE_ONLY",
+      "storage_reference": "Google Drive AGENT-REPORTS/evidence-parts (folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S) :: MPBSE_CBSE_Evidence_PART4.zip"
     },
     {
       "file": "MPBSE_Syllabus_2026_27.pdf",
@@ -324,7 +358,9 @@
       "language": "Hindi (scanned image PDF, no text layer)",
       "doc_type": "Syllabus",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "EXTERNAL_DRIVE_ONLY",
+      "storage_reference": "Google Drive AGENT-REPORTS/evidence-parts (folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S) :: MPBSE_CBSE_Evidence_PART2.zip"
     },
     {
       "file": "NCERT_Class10_Mathematics_Prelims_jemh1ps.pdf",
@@ -342,7 +378,9 @@
       "language": "English",
       "doc_type": "Textbook front matter (copyright page)",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/NCERT_Class10_Mathematics_Prelims_jemh1ps.pdf"
     },
     {
       "file": "NCERT_Class10_Science_Prelims_jesc1ps.pdf",
@@ -360,7 +398,17 @@
       "language": "English",
       "doc_type": "Textbook front matter (copyright page)",
       "verification_status": "VERIFIED",
-      "notes": ""
+      "notes": "",
+      "storage_location": "REPOSITORY",
+      "storage_reference": "source_documents/NCERT_Class10_Science_Prelims_jesc1ps.pdf"
     }
-  ]
+  ],
+  "storage": {
+    "repository_checksums": "sha256sums-repository.txt",
+    "external_checksums": "sha256sums-external-drive.txt",
+    "repository_file_count": 15,
+    "external_drive_file_count": 5,
+    "external_drive_folder": "Google Drive AGENT-REPORTS/evidence-parts (folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S)",
+    "reason": "Git LFS endpoint unreachable from committing environment; files >5 MB kept out of git per assignment size rule."
+  }
 }

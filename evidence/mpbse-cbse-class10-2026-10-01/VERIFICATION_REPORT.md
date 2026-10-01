@@ -29,6 +29,29 @@ Prior Gemini packages: NOT consulted. No URL, date or hash reused.
 - Circular Bse_53_54 content (OCR unreadable).
 
 ## Integrity
-- sha256sums.txt generated with `sha256sum` over source_documents/ bytes; re-verify with `sha256sum -c sha256sums.txt`.
+- SHA-256 generated with `sha256sum` over source_documents/ bytes (originally one 20-line sha256sums.txt; split on repository commit, hashes unchanged — see Repository storage section).
 - url_verification_log.csv records every request (URL, final URL, HTTP status, MIME, bytes, UTC time), including one failed first attempt (connection reset) that was retried.
 - No repository, production, staging, application or database change. Nothing designed, implemented, committed or deployed.
+
+## Repository storage (added on repository commit, 2026-10-01)
+Date check: execution date 2026-10-01 confirmed against container clock and the GitHub API / npm registry HTTP `Date` headers (2026-10-01 ~19:38 UTC). No dates in this package are future-dated; none were changed.
+
+Committed files (in `source_documents/`, 15 PDFs) — checksums in `sha256sums-repository.txt`:
+verify with `cd source_documents && sha256sum -c ../sha256sums-repository.txt` (repository files only).
+
+Drive-only files (5 PDFs, not in git) — checksums in `sha256sums-external-drive.txt`:
+- CBSE_Curriculum_2026_27_SecPart1_Intro.pdf — MPBSE_CBSE_Evidence_PART6.zip + PART6.z01 (split zip)
+- MPBSE_MarksScheme_2026_27.pdf — MPBSE_CBSE_Evidence_PART3.zip
+- MPBSE_Syllabus_2025_26.pdf — MPBSE_CBSE_Evidence_PART4.zip
+- MPBSE_MarkingScheme_2025_26.pdf — MPBSE_CBSE_Evidence_PART5.zip
+- MPBSE_Syllabus_2026_27.pdf — MPBSE_CBSE_Evidence_PART2.zip
+Drive folder: AGENT-REPORTS/evidence-parts (Google Drive folder id 1y97K7N4IY1atm-AbxoYRg7K9nJBrsv8S). To verify: download the part(s), extract into `source_documents/`, run `sha256sum -c ../sha256sums-external-drive.txt`.
+
+Per-file location is recorded in `source_manifest.csv` / `source_manifest.json` (`storage_location` = REPOSITORY | EXTERNAL_DRIVE_ONLY, `storage_reference`).
+
+Verification limitations:
+- The repository alone cannot prove the 5 Drive-only files; their integrity depends on the Drive copies, which are outside git history and access control.
+- All 20 hashes matched (20/20 OK) on the extracted package before the first commit; the 5 external files were re-verified from the zip parts on 2026-10-01.
+- Reason for exclusion: Git LFS endpoint (lfs.github.com) was unreachable from the committing environment; files >5 MB kept out of plain git per size rule.
+- The "Nothing ... committed" line under Integrity describes the Cowork build run; this package was later committed to the repository by Claude Code without editing any evidence content.
+
