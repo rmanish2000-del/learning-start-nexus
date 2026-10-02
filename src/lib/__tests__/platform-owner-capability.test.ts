@@ -166,9 +166,10 @@ describe("client route gate and navigation", () => {
   it("owner-only nav items are flagged, so they are absent from the DOM for centre admins", () => {
     const src = read("src/components/app-shell.tsx");
     for (const to of ["/payment-settings", "/pilot-access", "/feedback-review"]) {
-      const line = src.split("\n").find((l) => l.includes(`to: "${to}"`));
-      expect(line, to).toBeDefined();
-      expect(line, to).toContain("ownerOnly: true");
+      const start = src.indexOf(`to: "${to}"`);
+      expect(start, to).toBeGreaterThan(-1);
+      const block = src.slice(start, src.indexOf("}", start));
+      expect(block, to).toContain("ownerOnly: true");
     }
     expect(src).toContain("if (item.ownerOnly && !platformOwner) return false;");
     expect(src).toContain("canSeeNavItem(item, role, platformOwner)");
