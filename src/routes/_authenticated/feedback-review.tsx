@@ -1,5 +1,6 @@
+import { useWorkspaceContext } from "@/lib/workspace-context";
 import { useState } from "react";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BarChart3, Image as ImageIcon, Inbox, Loader2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
@@ -34,10 +35,9 @@ export const Route = createFileRoute("/_authenticated/feedback-review")({
   component: FeedbackReviewPage,
 });
 
-const authRoute = getRouteApi("/_authenticated");
 
 function FeedbackReviewPage() {
-  const { role } = authRoute.useRouteContext();
+  const { platformOwner } = useWorkspaceContext();
   const queryClient = useQueryClient();
   const [status, setStatus] = useState<string>("all");
 
@@ -45,13 +45,13 @@ function FeedbackReviewPage() {
     queryKey: ["feedback-review", status],
     queryFn: () =>
       listFeedbackFn({ data: { limit: 100, ...(status === "all" ? {} : { status: status as never }) } }),
-    enabled: role === "admin",
+    enabled: platformOwner,
   });
 
   const counts = useQuery({
     queryKey: ["guidance-counts"],
     queryFn: () => guidanceCountsFn({ data: { days: 30 } }),
-    enabled: role === "admin",
+    enabled: platformOwner,
   });
 
   const update = useMutation({
@@ -63,7 +63,7 @@ function FeedbackReviewPage() {
     onError: () => toast.error("We couldn't save that change."),
   });
 
-  if (role !== "admin") {
+  if (!platformOwner) {
     return (
       <Card className="mx-auto max-w-md">
         <CardContent className="flex flex-col items-center gap-2 py-10 text-center">

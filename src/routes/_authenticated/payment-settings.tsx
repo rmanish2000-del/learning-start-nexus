@@ -1,5 +1,6 @@
+import { useWorkspaceContext } from "@/lib/workspace-context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { History, KeyRound, Radio, ShieldCheck, Webhook } from "lucide-react";
 import { useState } from "react";
@@ -42,7 +43,6 @@ export const Route = createFileRoute("/_authenticated/payment-settings")({
   component: PaymentSettingsPage,
 });
 
-const authRoute = getRouteApi("/_authenticated");
 
 const SOURCE_LABEL: Record<string, string> = {
   database: "Stored in EduOS (admin-managed)",
@@ -51,7 +51,7 @@ const SOURCE_LABEL: Record<string, string> = {
 };
 
 function PaymentSettingsPage() {
-  const { role } = authRoute.useRouteContext();
+  const { platformOwner } = useWorkspaceContext();
   const queryClient = useQueryClient();
 
   const load = useServerFn(getPaymentSettingsFn);
@@ -66,21 +66,21 @@ function PaymentSettingsPage() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["payment-settings"],
     queryFn: () => load({}),
-    enabled: role === "admin",
+    enabled: platformOwner,
   });
 
   const auditLoad = useServerFn(listPaymentAuditFn);
   const { data: auditEntries } = useQuery({
     queryKey: ["payment-settings-audit"],
     queryFn: () => auditLoad({}),
-    enabled: role === "admin",
+    enabled: platformOwner,
   });
 
   const webhookLoad = useServerFn(getWebhookStatusFn);
   const { data: webhook, isLoading: webhookLoading } = useQuery({
     queryKey: ["payment-webhook-status"],
     queryFn: () => webhookLoad({}),
-    enabled: role === "admin",
+    enabled: platformOwner,
     refetchInterval: 30_000,
   });
 
@@ -120,11 +120,11 @@ function PaymentSettingsPage() {
     onError: (err: Error) => toast.error(err.message),
   });
 
-  if (role !== "admin") {
+  if (!platformOwner) {
     return (
       <Card>
         <CardContent className="pt-6 text-sm text-muted-foreground">
-          Payment settings are available to administrators only.
+          Payment settings are not available for this account.
         </CardContent>
       </Card>
     );
