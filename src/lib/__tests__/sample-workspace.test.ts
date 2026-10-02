@@ -8,7 +8,7 @@ import { describe, expect, it } from "vitest";
 
 const root = process.cwd();
 const read = (p: string) => readFileSync(join(root, p), "utf8");
-const sql = read("supabase/migrations/20261002050000_centre_admin_first_login.sql");
+const sql = read("supabase/migrations/20261002050123_4b519290-29d6-4d7b-a837-c369974aa40e.sql");
 
 describe("schema", () => {
   it("flags sample rows on every table the workspace writes to", () => {
