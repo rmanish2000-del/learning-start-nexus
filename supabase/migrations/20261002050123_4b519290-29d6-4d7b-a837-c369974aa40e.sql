@@ -1,11 +1,4 @@
-
-DROP POLICY IF EXISTS "Founder reads pilot applications" ON public.pilot_leads;
-DROP POLICY IF EXISTS "Founder updates pilot applications" ON public.pilot_leads;
-DROP POLICY IF EXISTS "Founder reads denials" ON public.founder_access_denials;
-DROP FUNCTION IF EXISTS public.create_sample_workspace(uuid, uuid);
-DROP FUNCTION IF EXISTS public.remove_sample_workspace(uuid, uuid);
-DROP TABLE IF EXISTS public.sample_records;
-DROP TABLE IF EXISTS public.sample_workspaces;
-DROP TABLE IF EXISTS public.sample_workspace_events;
-DROP TABLE IF EXISTS public.centre_onboarding;
-DROP FUNCTION IF EXISTS private.is_founder();
+-- Superseded draft (centre onboarding / sample workspace) that was applied and then
+-- fully removed on 2026-10-02 before PR #5 (20261002050000) was applied.
+-- Kept as a no-op so a fresh replay ends in the same state as the live database.
+SELECT 1;
