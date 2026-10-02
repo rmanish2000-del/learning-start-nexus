@@ -4,6 +4,7 @@
 //     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { execSync } from "node:child_process";
 import path from "node:path";
 
 import { loadEnv } from "vite";
@@ -24,6 +25,18 @@ const PRIVATE_PATHS =
 // request time; load them into process.env without exposing them to the client.
 Object.assign(process.env, loadEnv(process.env["NODE_ENV"] ?? "development", process.cwd(), ""));
 
+// Commit SHA baked into the build for /api/public/version. Only the SHA is exposed.
+function buildSha(): string {
+  try {
+    const sha = execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] })
+      .toString()
+      .trim();
+    return /^[0-9a-f]{40}$/.test(sha) ? sha : "unknown";
+  } catch {
+    return "unknown";
+  }
+}
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
@@ -31,6 +44,7 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    define: { __BUILD_SHA__: JSON.stringify(buildSha()) },
     resolve: {
       alias: {
         // React Email pulls htmlparser2 -> entities; pin every import to the
