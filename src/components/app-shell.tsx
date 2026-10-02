@@ -55,28 +55,15 @@ import {
 } from "@/components/ui/sidebar";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
-import { ROLE_LABELS, type AppRole } from "@/lib/roles";
+import { ROLE_LABELS } from "@/lib/roles";
+import { canSeeNavItem, type NavVisibility } from "@/lib/nav-visibility";
 
-type NavItem = {
+type NavItem = NavVisibility & {
   to: string;
   label: string;
   icon: typeof LayoutDashboard;
-  roles: AppRole[];
   exact?: boolean;
-  /** Platform-owner exclusive: not rendered for anyone else, whatever their role. */
-  ownerOnly?: boolean;
-  /** Also visible to the platform owner even if their role is not listed. */
-  ownerAlso?: boolean;
 };
-
-/** Capability check for navigation: role membership plus platform-owner flags. */
-export function canSeeNavItem(item: NavItem, role: AppRole, platformOwner: boolean): boolean {
-  // Owner-only links depend on identity alone: the confirmed platform owner
-  // sees them whatever their workspace role (e.g. parent); nobody else does.
-  if (item.ownerOnly) return platformOwner;
-  if (item.roles.includes(role)) return true;
-  return Boolean(item.ownerAlso && platformOwner);
-}
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
