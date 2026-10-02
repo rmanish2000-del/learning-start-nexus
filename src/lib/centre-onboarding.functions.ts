@@ -10,7 +10,7 @@ export const approveCentreLead = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => approveCentreLeadSchema.parse(input))
   .handler(async ({ data, context }) => {
     // Centre approval provisions a new organization: founder only.
-    await requireFounder(context.supabase);
+    await requireFounder(context.supabase, "centre:approve");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { approveCentreLeadImpl } = await import("./centre-onboarding.server");
     return approveCentreLeadImpl(supabaseAdmin, context.userId, data);
