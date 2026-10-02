@@ -211,3 +211,15 @@ describe("database: pilot applications and sign-up roles", () => {
     expect(fn).not.toMatch(/v_signup_role IN \('parent'/);
   });
 });
+
+describe("owner navigation is identity-based", () => {
+  it("owner-only links ignore role and depend only on platformOwner", () => {
+    const src = readFileSync("src/components/app-shell.tsx", "utf8");
+    expect(src).toContain("if (item.ownerOnly) return platformOwner;");
+    expect(src).toContain('to: "/payment-audit"');
+  });
+  it("dashboard no longer links centre admins to the sprint 5 audit", () => {
+    const src = readFileSync("src/routes/_authenticated/dashboard.tsx", "utf8");
+    expect(src).not.toContain('to="/sprint-5-audit"');
+  });
+});
