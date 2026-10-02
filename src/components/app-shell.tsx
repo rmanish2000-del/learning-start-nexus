@@ -140,7 +140,6 @@ const TITLES: [RegExp, string][] = [
   [/^\/pilot-evidence/, "Pilot evidence"],
 ];
 
-const authRoute = getRouteApi("/_authenticated");
 
 function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
   const { role, platformOwner } = useWorkspaceContext();
