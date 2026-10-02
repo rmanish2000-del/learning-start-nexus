@@ -79,4 +79,4 @@ rollback and official curriculum correctness.
 - [x] Guard test `src/lib/__tests__/no-platform-branding.test.ts` fails on any user-facing platform branding.
 - [x] Permanent rule recorded in AGENTS.md.
 - [ ] Founder action: create EduOS-owned Google Cloud OAuth client and enter it in Cloud → Users → Auth Settings → Google, so the consent screen reads "EduOS".
-- [ ] Report GitHub connection details: repo URL, default branch, SHA containing handoff/EDUOS_PART_A_PAYMENT_SECURITY.zip, no-deployment confirmation. Parts B-F and deployment explicitly on hold.
+- [x] Report GitHub connection details: repo URL, default branch, SHA containing handoff/EDUOS_PART_A_PAYMENT_SECURITY.zip (NOT FOUND in any commit — reported to founder), no-deployment confirmation. Parts B-F and deployment explicitly on hold.
