@@ -118,10 +118,12 @@ describe("secret values are write-only", () => {
     for (const fn of ["getPaymentSettingsFn", "savePaymentSettingsFn", "clearPaymentSettingsFn"]) {
       expect(settingsFunctions).toContain(fn);
     }
-    // every handler is admin-gated server-side
-    const gates = settingsFunctions.match(/requireAnyRole\(/g) ?? [];
+    // every handler is platform-owner-gated server-side (the shared `admin`
+    // role is held by every centre admin and is never enough here)
+    const gates = settingsFunctions.match(/await requirePlatformOwner\(context\)/g) ?? [];
     const handlers = settingsFunctions.match(/\.handler\(/g) ?? [];
     expect(gates.length).toBe(handlers.length);
+    expect(settingsFunctions).not.toContain("requireAnyRole");
   });
 
   it("the credential audit record stores only masked identifiers", () => {

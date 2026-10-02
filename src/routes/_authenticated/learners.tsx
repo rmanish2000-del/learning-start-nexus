@@ -16,6 +16,7 @@ import { createLearner } from "@/lib/learners.functions";
 import { listStaffUsers } from "@/lib/admin.functions";
 import { createLearnerSchema } from "@/lib/schemas";
 import { statusBadge, liftText } from "./dashboard";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -314,6 +315,14 @@ function LearnersPage() {
         </Select>
       </div>
 
+      {(learners ?? []).some((l) => l.is_sample) && (
+        <p className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-800 dark:text-amber-300">
+          <span className="font-semibold">SAMPLE workspace active</span> — learners marked SAMPLE are
+          generated for exploring EduOS. They never appear in reports, billing or evidence, and can
+          be removed in one step from Settings.
+        </p>
+      )}
+
       <div className="rounded-lg border bg-card">
         <Table>
           <TableHeader>
@@ -353,6 +362,11 @@ function LearnersPage() {
                   >
                     {learner.full_name}
                   </Link>
+                  {learner.is_sample && (
+                    <Badge variant="outline" className="ml-2 border-amber-500/60 text-amber-700 dark:text-amber-300">
+                      SAMPLE
+                    </Badge>
+                  )}
                   <p className="text-xs text-muted-foreground">@{learner.handle}</p>
                 </TableCell>
                 <TableCell>{learner.grade}</TableCell>

@@ -103,8 +103,9 @@ describe("invitation safety", () => {
     expect(server).not.toMatch(/from\("(profiles|user_roles|organizations|orgs)"\)\s*\n?\s*\.insert/);
   });
 
-  it("keeps create and revoke admin-only and accept authenticated", () => {
-    expect(functions.match(/requireAnyRole\(context\.supabase, context\.userId, \["admin"\]\)/g)?.length).toBe(3);
+  it("keeps create, list and revoke platform-owner-only and accept authenticated", () => {
+    expect(functions.match(/await requirePlatformOwner\(context\)/g)?.length).toBe(3);
+    expect(functions).not.toContain("requireAnyRole");
     expect(functions).toContain("acceptPilotInvitationFn");
     expect(functions).toMatch(/acceptPilotInvitationFn[\s\S]*requireSupabaseAuth/);
   });

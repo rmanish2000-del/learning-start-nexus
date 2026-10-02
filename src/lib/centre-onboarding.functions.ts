@@ -2,15 +2,16 @@ import { createServerFn } from "@tanstack/react-start";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { callerOrgId, requireAnyRole } from "./admin.server";
-import { requireFounder } from "./founder.server";
 import { approveCentreLeadSchema, learnerImportSchema } from "./centre-onboarding-shared";
+import { requirePlatformOwner } from "./platform-owner.server";
 
+// Approving an application creates a new organization and its first admin —
+// a platform-level act, so only the platform owner may do it.
 export const approveCentreLead = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => approveCentreLeadSchema.parse(input))
   .handler(async ({ data, context }) => {
-    // Centre approval provisions a new organization: founder only.
-    await requireFounder(context.supabase, "centre:approve");
+    await requirePlatformOwner(context);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { approveCentreLeadImpl } = await import("./centre-onboarding.server");
     return approveCentreLeadImpl(supabaseAdmin, context.userId, data);

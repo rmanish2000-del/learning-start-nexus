@@ -3,6 +3,8 @@ import { createFileRoute, getRouteApi, Link, useNavigate } from "@tanstack/react
 import { Building2, CheckCircle2, Compass, LifeBuoy, Palette, RotateCcw, Sparkles, UserRound } from "lucide-react";
 import { toast } from "sonner";
 
+import { CentreProfileForm } from "@/components/centre-profile-form";
+import { SampleWorkspaceCard } from "@/components/sample-workspace-card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -48,7 +50,7 @@ function SettingsPage() {
 
   const { data: org } = useQuery({
     queryKey: ["settings-org", profile?.org_id],
-    enabled: !!profile?.org_id,
+    enabled: !!profile?.org_id && role !== "admin",
     queryFn: async () => {
       const { data, error } = await supabase
         .from("organizations")
@@ -92,16 +94,18 @@ function SettingsPage() {
         </CardContent>
       </Card>
 
+      {role === "admin" && profile?.org_id ? (
+        <>
+          <CentreProfileForm orgId={profile.org_id} />
+          <SampleWorkspaceCard />
+        </>
+      ) : (
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
             <Building2 className="h-4 w-4" /> Organization
           </CardTitle>
-          <CardDescription>
-            {role === "admin"
-              ? "Your organization's profile. Editing arrives with org management."
-              : "The organization you belong to."}
-          </CardDescription>
+          <CardDescription>The organization you belong to.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2 text-sm">
           <div className="flex justify-between gap-4">
@@ -126,6 +130,7 @@ function SettingsPage() {
           </div>
         </CardContent>
       </Card>
+      )}
 
       <Card>
         <CardHeader className="pb-3">

@@ -53,7 +53,7 @@ export async function fetchTutorEvidence(
           .select("id, learner_id, subject, topic, subtopic, severity, status")
           .in("id", gapIds)
       : Promise.resolve({ data: [] as never[] }),
-    supabase.from("learners").select("id, full_name"),
+    supabase.from("learners").select("id, full_name").eq("is_sample", false),
   ]);
 
   const gapById = new Map((gaps ?? []).map((g) => [g.id, g]));
@@ -221,11 +221,13 @@ export async function recordQuestionVerification(
 // ---------------------------------------------------------------------------
 
 export async function fetchCohortMetrics(supabase: Client): Promise<CohortMetrics> {
+  // Evidence never includes the SAMPLE workspace: excluded at the data layer.
   const [{ data: learners }, { data: sessions }, { data: outcomes }] = await Promise.all([
-    supabase.from("learners").select("id"),
+    supabase.from("learners").select("id").eq("is_sample", false),
     supabase
       .from("assessment_sessions")
-      .select("id, learner_id, status, score_pct, due, started_at, last_activity_at, submitted_at"),
+      .select("id, learner_id, status, score_pct, due, started_at, last_activity_at, submitted_at")
+      .eq("is_sample", false),
     supabase.from("learner_outcomes").select("baseline_score, post_score"),
   ]);
 
