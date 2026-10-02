@@ -1146,47 +1146,6 @@ export type Database = {
           },
         ]
       }
-      centre_onboarding: {
-        Row: {
-          approved_at: string
-          catalogue: Json
-          catalogue_confirmed_at: string | null
-          created_at: string
-          org_id: string
-          profile_completed_at: string | null
-          report_reviewed_at: string | null
-          updated_at: string
-        }
-        Insert: {
-          approved_at?: string
-          catalogue?: Json
-          catalogue_confirmed_at?: string | null
-          created_at?: string
-          org_id: string
-          profile_completed_at?: string | null
-          report_reviewed_at?: string | null
-          updated_at?: string
-        }
-        Update: {
-          approved_at?: string
-          catalogue?: Json
-          catalogue_confirmed_at?: string | null
-          created_at?: string
-          org_id?: string
-          profile_completed_at?: string | null
-          report_reviewed_at?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "centre_onboarding_org_id_fkey"
-            columns: ["org_id"]
-            isOneToOne: true
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       concept_edges: {
         Row: {
           book_id: string
@@ -4805,124 +4764,6 @@ export type Database = {
           },
         ]
       }
-      sample_records: {
-        Row: {
-          created_at: string
-          id: string
-          kind: string
-          label: string
-          org_id: string
-          payload: Json
-          sample_key: string
-          sample_label: string
-          workspace_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          kind: string
-          label: string
-          org_id: string
-          payload?: Json
-          sample_key: string
-          sample_label?: string
-          workspace_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          kind?: string
-          label?: string
-          org_id?: string
-          payload?: Json
-          sample_key?: string
-          sample_label?: string
-          workspace_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sample_records_org_id_fkey"
-            columns: ["org_id"]
-            isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "sample_records_workspace_id_fkey"
-            columns: ["workspace_id"]
-            isOneToOne: false
-            referencedRelation: "sample_workspaces"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      sample_workspace_events: {
-        Row: {
-          action: string
-          actor_id: string
-          created_at: string
-          id: string
-          org_id: string
-          record_count: number
-        }
-        Insert: {
-          action: string
-          actor_id: string
-          created_at?: string
-          id?: string
-          org_id: string
-          record_count?: number
-        }
-        Update: {
-          action?: string
-          actor_id?: string
-          created_at?: string
-          id?: string
-          org_id?: string
-          record_count?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sample_workspace_events_org_id_fkey"
-            columns: ["org_id"]
-            isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      sample_workspaces: {
-        Row: {
-          created_at: string
-          created_by: string
-          id: string
-          org_id: string
-          sample_label: string
-        }
-        Insert: {
-          created_at?: string
-          created_by: string
-          id?: string
-          org_id: string
-          sample_label?: string
-        }
-        Update: {
-          created_at?: string
-          created_by?: string
-          id?: string
-          org_id?: string
-          sample_label?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sample_workspaces_org_id_fkey"
-            columns: ["org_id"]
-            isOneToOne: true
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       sme_review_queue: {
         Row: {
           evidence: Json
@@ -5272,10 +5113,6 @@ export type Database = {
       }
     }
     Functions: {
-      create_sample_workspace: {
-        Args: { _actor: string; _org: string }
-        Returns: number
-      }
       expire_stale_parent_orders: {
         Args: { older_than?: string }
         Returns: number
@@ -5285,10 +5122,6 @@ export type Database = {
         Returns: boolean
       }
       profile_phone: { Args: { _user_id: string }; Returns: string }
-      remove_sample_workspace: {
-        Args: { _actor: string; _org: string }
-        Returns: number
-      }
       tutor_evidence_by_gap: {
         Args: never
         Returns: {
