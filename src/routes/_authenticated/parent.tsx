@@ -57,7 +57,10 @@ export const Route = createFileRoute("/_authenticated/parent")({
   head: () => ({
     meta: [
       { title: "Parent Portal — EduOS" },
-      { name: "description", content: "Follow your child's learning progress and manage guardian consent." },
+      {
+        name: "description",
+        content: "Follow your child's learning progress and manage guardian consent.",
+      },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -162,7 +165,10 @@ function ParentPortal() {
       title: t("portal.step.consent.title", "Review & record consent"),
       description: consent?.hasConsent
         ? t("portal.step.consent.done", "Consent is active — the AI Tutor is unlocked.")
-        : t("portal.step.consent.todo", "Consent unlocks the AI Tutor. Assessments and plans work either way."),
+        : t(
+            "portal.step.consent.todo",
+            "Consent unlocks the AI Tutor. Assessments and plans work either way.",
+          ),
       done: !!consent?.hasConsent,
       action: "scroll-consent",
       ctaLabel: t("portal.step.consent.cta", "Review consent"),
@@ -182,7 +188,8 @@ function ParentPortal() {
 
   const [, forceRender] = useState(0);
   const handleAction = (action: string) => {
-    if (action === "scroll-consent") consentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (action === "scroll-consent")
+      consentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     if (action === "scroll-progress") {
       setOnboardingFlag(stepFlagKey("parent", "progress"));
       forceRender((n) => n + 1);
@@ -215,7 +222,9 @@ function ParentPortal() {
       <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">{t("portal.title", "Parent portal")}</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              {t("portal.title", "Parent portal")}
+            </h1>
             <p className="mt-1 text-sm text-muted-foreground">
               {t(
                 "portal.welcome",
@@ -242,7 +251,10 @@ function ParentPortal() {
           <OnboardingChecklist
             role="parent"
             title={t("portal.checklist.title", "Getting started as a parent")}
-            description={t("portal.checklist.body", "Two quick steps to set up your family's experience.")}
+            description={t(
+              "portal.checklist.body",
+              "Two quick steps to set up your family's experience.",
+            )}
             steps={steps}
             tourId="parent-portal"
             onAction={handleAction}
@@ -265,7 +277,10 @@ function ParentPortal() {
               "portal.children.empty.body",
               "Add your child in “Your children” above to see progress and consent controls here.",
             )}
-            hint={t("portal.children.empty.hint", "Once linked, progress and consent controls appear here automatically.")}
+            hint={t(
+              "portal.children.empty.hint",
+              "Once linked, progress and consent controls appear here automatically.",
+            )}
           />
         ) : (
           <>
@@ -295,12 +310,18 @@ function ParentPortal() {
                     defaultName={profile?.full_name ?? ""}
                     defaultEmail={user?.email ?? ""}
                     onRecorded={() => {
-                      void queryClient.invalidateQueries({ queryKey: ["parent-consent", learner.id] });
+                      void queryClient.invalidateQueries({
+                        queryKey: ["parent-consent", learner.id],
+                      });
                     }}
                   />
                 </div>
 
-                <div ref={progressRef} data-tour="parent-progress" className="scroll-mt-20 space-y-6">
+                <div
+                  ref={progressRef}
+                  data-tour="parent-progress"
+                  className="scroll-mt-20 space-y-6"
+                >
                   <div className="grid gap-4 md:grid-cols-3">
                     <Card>
                       <CardHeader className="pb-2">
@@ -339,7 +360,9 @@ function ParentPortal() {
                       </CardHeader>
                       <CardContent>
                         <p className="text-3xl font-semibold">
-                          {progress?.interventions.filter((i) => i.status === "active" || i.status === "approved").length ?? 0}
+                          {progress?.interventions.filter(
+                            (i) => i.status === "active" || i.status === "approved",
+                          ).length ?? 0}
                         </p>
                         <p className="mt-1 text-xs text-muted-foreground">active</p>
                       </CardContent>
@@ -360,15 +383,23 @@ function ParentPortal() {
                       ) : (
                         <div className="h-56">
                           <ResponsiveContainer width="100%" height="100%">
-                            <LineChart data={progress.mastery.map((m) => ({
-                              date: format(new Date(m.recorded_on), "MMM d"),
-                              mastery: m.score,
-                            }))}>
+                            <LineChart
+                              data={progress.mastery.map((m) => ({
+                                date: format(new Date(m.recorded_on), "MMM d"),
+                                mastery: m.score,
+                              }))}
+                            >
                               <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
                               <XAxis dataKey="date" tick={{ fontSize: 11 }} />
                               <YAxis domain={[0, 100]} tick={{ fontSize: 11 }} />
                               <Tooltip />
-                              <Line type="monotone" dataKey="mastery" stroke="var(--primary)" strokeWidth={2} dot />
+                              <Line
+                                type="monotone"
+                                dataKey="mastery"
+                                stroke="var(--primary)"
+                                strokeWidth={2}
+                                dot
+                              />
                             </LineChart>
                           </ResponsiveContainer>
                         </div>
@@ -383,20 +414,29 @@ function ParentPortal() {
                       </CardHeader>
                       <CardContent className="space-y-2">
                         {!progress || progress.sessions.length === 0 ? (
-                          <p className="text-sm text-muted-foreground">No assessments assigned yet.</p>
+                          <p className="text-sm text-muted-foreground">
+                            No assessments assigned yet.
+                          </p>
                         ) : (
                           progress.sessions.map((s) => (
-                            <div key={s.id} className="flex items-center justify-between rounded-lg border p-3">
+                            <div
+                              key={s.id}
+                              className="flex items-center justify-between rounded-lg border p-3"
+                            >
                               <div>
                                 <p className="text-sm font-medium">
-                                  {s.status === "submitted" ? "Assessment submitted" : "Assessment in progress"}
+                                  {s.status === "submitted"
+                                    ? "Assessment submitted"
+                                    : "Assessment in progress"}
                                 </p>
                                 <p className="text-xs text-muted-foreground">
                                   {format(new Date(s.submitted_at ?? s.created_at), "MMM d, yyyy")}
                                 </p>
                               </div>
                               {s.score_pct !== null && (
-                                <Badge variant={s.score_pct >= 70 ? "default" : "secondary"}>{s.score_pct}%</Badge>
+                                <Badge variant={s.score_pct >= 70 ? "default" : "secondary"}>
+                                  {s.score_pct}%
+                                </Badge>
                               )}
                             </div>
                           ))
@@ -408,14 +448,19 @@ function ParentPortal() {
                         <CardTitle className="text-base">Interventions & outcomes</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-2">
-                        {!progress || (progress.interventions.length === 0 && progress.outcomes.length === 0) ? (
+                        {!progress ||
+                        (progress.interventions.length === 0 && progress.outcomes.length === 0) ? (
                           <p className="text-sm text-muted-foreground">
-                            No interventions yet — they appear when gap detection finds an area to strengthen.
+                            No interventions yet — they appear when gap detection finds an area to
+                            strengthen.
                           </p>
                         ) : (
                           <>
                             {progress.interventions.map((i) => (
-                              <div key={i.id} className="flex items-center justify-between rounded-lg border p-3">
+                              <div
+                                key={i.id}
+                                className="flex items-center justify-between rounded-lg border p-3"
+                              >
                                 <div>
                                   <p className="text-sm font-medium">{i.title}</p>
                                   {i.target_date && (
@@ -425,11 +470,16 @@ function ParentPortal() {
                                     </p>
                                   )}
                                 </div>
-                                <Badge variant="outline" className="capitalize">{i.status}</Badge>
+                                <Badge variant="outline" className="capitalize">
+                                  {i.status}
+                                </Badge>
                               </div>
                             ))}
                             {progress.outcomes.map((o) => (
-                              <div key={o.id} className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/[0.03] p-3">
+                              <div
+                                key={o.id}
+                                className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/[0.03] p-3"
+                              >
                                 <p className="text-sm font-medium">
                                   Outcome: {o.baseline_score ?? "—"}% →{" "}
                                   {o.post_score !== null ? `${o.post_score}%` : "pending"}
@@ -536,7 +586,8 @@ function ConsentCard({
           )}
         </div>
         <p className="text-sm text-muted-foreground">
-          Consent unlocks the AI Tutor. Assessments and learning plans are available regardless. Consent history is append-only and never deleted.
+          Consent unlocks the AI Tutor. Assessments and learning plans are available regardless.
+          Consent history is append-only and never deleted.
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -582,9 +633,14 @@ function ConsentCard({
             )}
             {consent && consent.history.length > 0 && (
               <div className="space-y-1.5">
-                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Consent history</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Consent history
+                </p>
                 {consent.history.map((h) => (
-                  <div key={h.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5 text-xs">
+                  <div
+                    key={h.id}
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5 text-xs"
+                  >
                     <span className="flex items-center gap-2">
                       <Badge variant={h.action === "withdrawn" ? "secondary" : "outline"}>
                         {h.action === "withdrawn" ? "Withdrawn" : "Granted"}

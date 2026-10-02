@@ -33,16 +33,66 @@ type SeedUser = {
 
 /** The staging test-user inventory. Keep in sync with STAGING_ENVIRONMENT.md. */
 export const STAGING_USERS: SeedUser[] = [
-  { key: "admin", role: "admin", fullName: "STAGING Admin", journey: "Org settings, payment settings, audit centres" },
-  { key: "reviewer", role: "reviewer", fullName: "STAGING Reviewer", journey: "Question verification queues" },
-  { key: "educator", role: "educator", fullName: "STAGING Educator", journey: "Assignments, gap board, interventions" },
-  { key: "parent", role: "parent", fullName: "STAGING Parent", journey: "Signup, add learner, free check, ₹199 diagnostic" },
-  { key: "student", role: "student", fullName: "STAGING Student", journey: "Handle + PIN login, diagnostic, tutor, reassessment" },
-  { key: "parent-direct", role: "parent", fullName: "STAGING Direct Parent", journey: "Direct-parent learner (no centre)" },
-  { key: "parent-centre", role: "parent", fullName: "STAGING Centre Parent", journey: "Centre-managed learner" },
-  { key: "norole", role: null, fullName: "STAGING No Role", journey: "Unassigned account — role-claim redirect" },
-  { key: "expired", role: "parent", fullName: "STAGING Expired Entitlement", journey: "Expired entitlement paywall" },
-  { key: "paid", role: "parent", fullName: "STAGING Paid Diagnostic", journey: "₹199 paid, ₹2,800 upgrade path" },
+  {
+    key: "admin",
+    role: "admin",
+    fullName: "STAGING Admin",
+    journey: "Org settings, payment settings, audit centres",
+  },
+  {
+    key: "reviewer",
+    role: "reviewer",
+    fullName: "STAGING Reviewer",
+    journey: "Question verification queues",
+  },
+  {
+    key: "educator",
+    role: "educator",
+    fullName: "STAGING Educator",
+    journey: "Assignments, gap board, interventions",
+  },
+  {
+    key: "parent",
+    role: "parent",
+    fullName: "STAGING Parent",
+    journey: "Signup, add learner, free check, ₹199 diagnostic",
+  },
+  {
+    key: "student",
+    role: "student",
+    fullName: "STAGING Student",
+    journey: "Handle + PIN login, diagnostic, tutor, reassessment",
+  },
+  {
+    key: "parent-direct",
+    role: "parent",
+    fullName: "STAGING Direct Parent",
+    journey: "Direct-parent learner (no centre)",
+  },
+  {
+    key: "parent-centre",
+    role: "parent",
+    fullName: "STAGING Centre Parent",
+    journey: "Centre-managed learner",
+  },
+  {
+    key: "norole",
+    role: null,
+    fullName: "STAGING No Role",
+    journey: "Unassigned account — role-claim redirect",
+  },
+  {
+    key: "expired",
+    role: "parent",
+    fullName: "STAGING Expired Entitlement",
+    journey: "Expired entitlement paywall",
+  },
+  {
+    key: "paid",
+    role: "parent",
+    fullName: "STAGING Paid Diagnostic",
+    journey: "₹199 paid, ₹2,800 upgrade path",
+  },
 ];
 
 function assertStaging(): void {
@@ -66,7 +116,8 @@ async function main() {
   assertStaging();
   const url = process.env["SUPABASE_URL"];
   const serviceKey = process.env["SUPABASE_SERVICE_ROLE_KEY"];
-  if (!url || !serviceKey) throw new Error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required.");
+  if (!url || !serviceKey)
+    throw new Error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required.");
 
   const admin = createClient(url, serviceKey, { auth: { persistSession: false } });
   const reset = process.argv.includes("--reset");
@@ -111,12 +162,20 @@ async function main() {
     }
 
     if (seed.role) {
-      await admin.from("user_roles").upsert({ user_id: userId, role: seed.role }, { onConflict: "user_id,role" });
+      await admin
+        .from("user_roles")
+        .upsert({ user_id: userId, role: seed.role }, { onConflict: "user_id,role" });
     } else {
       await admin.from("user_roles").delete().eq("user_id", userId);
     }
 
-    inventory.push({ key: seed.key, email, password: pass, role: seed.role ?? "none", journey: seed.journey });
+    inventory.push({
+      key: seed.key,
+      email,
+      password: pass,
+      role: seed.role ?? "none",
+      journey: seed.journey,
+    });
   }
 
   // A learner PIN for the student journey; rotate with --reset.
@@ -128,7 +187,9 @@ async function main() {
   );
 
   console.log(`Seeded ${inventory.length} staging users.`);
-  console.log(`Credentials written to ${CREDENTIALS_FILE} (git-ignored). Do not commit or paste them.`);
+  console.log(
+    `Credentials written to ${CREDENTIALS_FILE} (git-ignored). Do not commit or paste them.`,
+  );
 }
 
 main().catch((error) => {

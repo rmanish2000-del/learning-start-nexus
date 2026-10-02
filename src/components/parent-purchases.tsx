@@ -1,12 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import {
-  ArrowUpRight,
-  FileText,
-  LogIn,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowUpRight, FileText, LogIn, ShieldCheck } from "lucide-react";
 
 import { getParentAccount } from "@/lib/parent-account.functions";
 import { formatInr } from "@/lib/parent-diagnostic-shared";
@@ -28,7 +23,11 @@ export function ParentPurchases() {
   if (query.isLoading) return <Skeleton className="h-48 w-full" />;
   if (query.isError) {
     return (
-      <QueryError title="Your account could not be loaded" error={query.error} onRetry={() => void query.refetch()} />
+      <QueryError
+        title="Your account could not be loaded"
+        error={query.error}
+        onRetry={() => void query.refetch()}
+      />
     );
   }
 
@@ -48,14 +47,18 @@ export function ParentPurchases() {
           </CardHeader>
           <CardContent className="grid gap-3 text-sm md:grid-cols-3">
             <div className="rounded-lg border bg-background p-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">1 · Diagnostic</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                1 · Diagnostic
+              </p>
               <p className="mt-1 text-sm">
                 Your child signs in with their own handle and PIN and answers the diagnostic — no
                 educator required. Your report is instant when they finish.
               </p>
             </div>
             <div className="rounded-lg border bg-background p-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">2 · Educator</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                2 · Educator
+              </p>
               <p className="mt-1 text-sm">
                 {awaiting > 0
                   ? "An educator is only assigned when you take the Annual Plan. Our centre admin does it within 1 working day — you never have to pick one."
@@ -63,13 +66,15 @@ export function ParentPurchases() {
               </p>
             </div>
             <div className="rounded-lg border bg-background p-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">3 · Plan</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                3 · Plan
+              </p>
               <p className="mt-1 text-sm">
-                The educator approves interventions; progress and consent controls appear on this page.
+                The educator approves interventions; progress and consent controls appear on this
+                page.
               </p>
             </div>
           </CardContent>
-
         </Card>
       ) : null}
 
@@ -97,7 +102,8 @@ export function ParentPurchases() {
                   </p>
                   <p className="truncate text-xs text-muted-foreground">
                     {p.studentName ?? "—"}
-                    {p.unitTitle ? ` · ${p.unitTitle}` : ""} · {formatInr(p.amountPaise)} · {p.orderRef}
+                    {p.unitTitle ? ` · ${p.unitTitle}` : ""} · {formatInr(p.amountPaise)} ·{" "}
+                    {p.orderRef}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

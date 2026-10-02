@@ -11,22 +11,12 @@ import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { friendlyErrorMessage } from "@/lib/user-errors";
-import {
-  getPyqWorkspaceFn,
-  startPyqSessionFn,
-  submitPyqSessionFn,
-} from "@/lib/pyq.functions";
+import { getPyqWorkspaceFn, startPyqSessionFn, submitPyqSessionFn } from "@/lib/pyq.functions";
 import {
   PYQ_SUBJECTS,
   PYQ_TIMED_MINUTES,
@@ -183,7 +173,9 @@ function ExamPatternPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      disabled={(available.get(chapter.chapter) ?? 0) === 0 || startMutation.isPending}
+                      disabled={
+                        (available.get(chapter.chapter) ?? 0) === 0 || startMutation.isPending
+                      }
                       onClick={() =>
                         startMutation.mutate({ mode: "practice", chapter: chapter.chapter })
                       }
@@ -261,9 +253,7 @@ function ExamPatternPage() {
               )}
               <Button
                 disabled={!paperId || startMutation.isPending}
-                onClick={() =>
-                  startMutation.mutate({ mode: "full_paper", chapter: null, paperId })
-                }
+                onClick={() => startMutation.mutate({ mode: "full_paper", chapter: null, paperId })}
               >
                 Start full paper attempt
               </Button>
@@ -385,10 +375,7 @@ function ExamPatternPage() {
               </div>
             ))}
             <div className="flex gap-2">
-              <Button
-                disabled={submitMutation.isPending}
-                onClick={() => submitMutation.mutate()}
-              >
+              <Button disabled={submitMutation.isPending} onClick={() => submitMutation.mutate()}>
                 Submit for feedback
               </Button>
               <Button variant="ghost" onClick={() => setSession(null)}>
@@ -435,9 +422,7 @@ function ExamPatternPage() {
                   <p className="text-muted-foreground text-sm">
                     Your answer: {row.given || "—"} · Correct: {row.item.correctAnswer}
                   </p>
-                  {row.item.explanation && (
-                    <p className="text-sm">{row.item.explanation}</p>
-                  )}
+                  {row.item.explanation && <p className="text-sm">{row.item.explanation}</p>}
                 </div>
               ))}
             </div>

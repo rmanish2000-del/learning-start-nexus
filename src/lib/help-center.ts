@@ -197,7 +197,8 @@ export const QUICK_START: Record<AppRole, QuickStartContent> = {
   },
   educator: {
     heading: "Educator quick start",
-    intro: "Five steps to your first proven outcome. The checklist on your dashboard tracks them live.",
+    intro:
+      "Five steps to your first proven outcome. The checklist on your dashboard tracks them live.",
     steps: [
       {
         title: "Add your learners",
@@ -290,7 +291,8 @@ export const QUICK_START: Record<AppRole, QuickStartContent> = {
   },
   reviewer: {
     heading: "Reviewer quick start",
-    intro: "Your access is read-only and audit-focused. These four pages verify the platform end to end.",
+    intro:
+      "Your access is read-only and audit-focused. These four pages verify the platform end to end.",
     steps: [
       {
         title: "Launch readiness audit",
@@ -350,7 +352,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Signing in and your role home",
     category: "Getting started",
     roles: "all",
-    summary: "Staff sign in with email; students use a handle and 6-digit PIN. Each role lands on its own home page.",
+    summary:
+      "Staff sign in with email; students use a handle and 6-digit PIN. Each role lands on its own home page.",
     keywords: ["login", "password", "pin", "handle", "access"],
     body: [
       "Staff (admins, educators, reviewers, parents) sign in with their email address and password. Students sign in with the handle and 6-digit PIN their educator gives them.",
@@ -363,10 +366,11 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Guided tours, checklists, and the intro",
     category: "Getting started",
     roles: "all",
-    summary: "On your first login EduOS shows a short intro, a guided tour, and a live checklist. Replay any of them any time.",
+    summary:
+      "On your first login EduOS shows a short intro, a guided tour, and a live checklist. Replay any of them any time.",
     keywords: ["tour", "checklist", "intro", "welcome", "first login", "restart"],
     body: [
-      "The first time you sign in, a \"How EduOS Works\" intro explains the learning loop for your role, followed by an optional guided tour of your home page.",
+      'The first time you sign in, a "How EduOS Works" intro explains the learning loop for your role, followed by an optional guided tour of your home page.',
       "The getting-started checklist tracks real progress — steps complete themselves as you do the work, on any device.",
       "To replay anything: use the Help button on your home page for the tour, Settings → Onboarding to restart the tour or replay the intro, or the buttons at the bottom of your Quick Start page.",
     ],
@@ -376,7 +380,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Assign a diagnostic to a learner",
     category: "Assessments",
     roles: ["admin", "educator"],
-    summary: "Published diagnostics are assigned from the Assessments page and appear on the student's home immediately.",
+    summary:
+      "Published diagnostics are assigned from the Assessments page and appear on the student's home immediately.",
     keywords: ["assign", "diagnostic", "assessment", "publish", "student"],
     body: [
       "Open Assessments, pick a published diagnostic, and assign it to one or more learners. Only published assessments can be assigned.",
@@ -389,7 +394,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Taking an assessment",
     category: "Assessments",
     roles: ["student"],
-    summary: "Assessments appear on your home page. Answers save as you go, so you can stop and resume any time.",
+    summary:
+      "Assessments appear on your home page. Answers save as you go, so you can stop and resume any time.",
     keywords: ["take", "answer", "resume", "submit", "test", "exam"],
     body: [
       "Assigned assessments appear at the top of My Learning. Click one to start — one question at a time.",
@@ -415,7 +421,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Approve an intervention and unlock the AI Tutor",
     category: "Interventions & AI Tutor",
     roles: ["admin", "educator"],
-    summary: "Gap detection produces recommendations; your approval turns them into interventions and unlocks tutoring.",
+    summary:
+      "Gap detection produces recommendations; your approval turns them into interventions and unlocks tutoring.",
     keywords: ["approve", "intervention", "recommendation", "unlock", "tutor"],
     body: [
       "Open Interventions to see recommendations produced by gap detection. Each one lists the outcomes it targets and the approach.",
@@ -428,7 +435,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Practicing with the AI Tutor",
     category: "Interventions & AI Tutor",
     roles: ["student"],
-    summary: "A Socratic companion: Explain, Hint, Example, Practice — only inside your approved focus areas.",
+    summary:
+      "A Socratic companion: Explain, Hint, Example, Practice — only inside your approved focus areas.",
     keywords: ["tutor", "ai", "practice", "hint", "explain", "example", "socratic"],
     body: [
       "The AI Tutor opens from your focus plan once an educator has approved an intervention and a parent has given consent.",
@@ -441,7 +449,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Guardian consent for the AI Tutor",
     category: "Interventions & AI Tutor",
     roles: ["parent", "student"],
-    summary: "A parent or guardian records consent once; it unlocks the AI Tutor. Everything else works without it.",
+    summary:
+      "A parent or guardian records consent once; it unlocks the AI Tutor. Everything else works without it.",
     keywords: ["consent", "guardian", "parent", "approve", "permission", "locked"],
     body: [
       "The AI Tutor stays locked until a parent or guardian records consent in the parent portal. This is deliberate — AI features require explicit guardian approval.",
@@ -454,7 +463,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Mastery lift and reassessments",
     category: "Progress & reports",
     roles: ["admin", "educator", "student", "parent"],
-    summary: "Reassessments re-measure the same outcomes; mastery lift is the difference between then and now.",
+    summary:
+      "Reassessments re-measure the same outcomes; mastery lift is the difference between then and now.",
     keywords: ["mastery", "lift", "reassessment", "progress", "report", "outcome"],
     body: [
       "After an intervention has had time to work, assign the reassessment. Reassessment templates guarantee zero question overlap with the original diagnostic.",
@@ -467,7 +477,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "The parent portal",
     category: "Progress & reports",
     roles: ["parent"],
-    summary: "Live, read-only visibility into your child's mastery, scores, and active interventions.",
+    summary:
+      "Live, read-only visibility into your child's mastery, scores, and active interventions.",
     keywords: ["parent", "child", "progress", "read-only", "portal"],
     body: [
       "The portal shows your child's live mastery, recent assessment scores, and any active interventions — updated as work happens.",
@@ -480,7 +491,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Restart the tour or replay the intro",
     category: "Account & privacy",
     roles: "all",
-    summary: "All onboarding can be replayed safely — nothing auto-starts twice unless you ask it to.",
+    summary:
+      "All onboarding can be replayed safely — nothing auto-starts twice unless you ask it to.",
     keywords: ["restart", "replay", "tour", "intro", "reset", "onboarding"],
     body: [
       "Settings → Onboarding has two controls: Restart Tour replays your role's guided tour once, and Mark Tour Complete stops anything from auto-starting.",
@@ -493,7 +505,8 @@ export const HELP_ARTICLES: HelpArticle[] = [
     title: "Audit and verification centers",
     category: "Audits & verification",
     roles: ["admin", "educator", "reviewer"],
-    summary: "Every engine ships with a live audit page running deterministic probes against real data.",
+    summary:
+      "Every engine ships with a live audit page running deterministic probes against real data.",
     keywords: ["audit", "verification", "rls", "probe", "security", "proof", "launch"],
     body: [
       "The Verification Center proves auth, role enforcement, and organization isolation with live session data.",
@@ -549,7 +562,15 @@ export const HELP_ARTICLES: HelpArticle[] = [
     roles: ["admin", "reviewer"],
     summary:
       "Drafts are machine-checked; only strongly supported items are released as EduOS verified (automated). Everything else is held back. Released content is EduOS original, curriculum-aligned practice material checked by automated multi-stage verification — not certified by a named subject expert, CBSE or NCERT.",
-    keywords: ["verification", "quarantine", "verified", "approve", "duplicate", "alignment", "sme"],
+    keywords: [
+      "verification",
+      "quarantine",
+      "verified",
+      "approve",
+      "duplicate",
+      "alignment",
+      "sme",
+    ],
     body: [
       "Automated verification checks answer correctness, curriculum alignment, distractor and explanation quality, ambiguity, copyright contamination, duplication and diagnostic/reassessment pool separation.",
       "Items passing every machine-checkable test with strong evidence are marked EduOS verified. Automated decisions are recorded as automated — a human reviewer identity is never invented.",

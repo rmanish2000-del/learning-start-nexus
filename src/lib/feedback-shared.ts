@@ -33,7 +33,12 @@ export type FeedbackStatus = (typeof FEEDBACK_STATUSES)[number];
 export const FEEDBACK_PRIORITIES = ["low", "normal", "high", "urgent"] as const;
 export type FeedbackPriority = (typeof FEEDBACK_PRIORITIES)[number];
 
-export const FEEDBACK_REPRODUCTION = ["unknown", "not_reproduced", "reproduced", "not_a_defect"] as const;
+export const FEEDBACK_REPRODUCTION = [
+  "unknown",
+  "not_reproduced",
+  "reproduced",
+  "not_a_defect",
+] as const;
 export type FeedbackReproduction = (typeof FEEDBACK_REPRODUCTION)[number];
 
 export const FEEDBACK_AREAS = [
@@ -68,7 +73,10 @@ const SENSITIVE_PATTERNS: { test: RegExp; reason: string }[] = [
   { test: /\b(?:\d[ -]?){13,19}\b/, reason: "what looks like a card number" },
   { test: /\b(?:password|passwd|otp)\b|\bpin\s*(?:is\b|:)/i, reason: "a password, PIN or OTP" },
   { test: /\beyJ[A-Za-z0-9_-]{10,}\b/, reason: "an access token" },
-  { test: /\b(?:sb_(?:secret|publishable)_|rzp_(?:live|test)_)[A-Za-z0-9_-]{6,}/, reason: "an API key" },
+  {
+    test: /\b(?:sb_(?:secret|publishable)_|rzp_(?:live|test)_)[A-Za-z0-9_-]{6,}/,
+    reason: "an API key",
+  },
   { test: /\b(?:cvv|card\s*number|upi\s*pin)\b/i, reason: "payment details" },
 ];
 

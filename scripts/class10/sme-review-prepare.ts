@@ -84,7 +84,9 @@ function pair(args: number[]): [number, number] {
   return [args[0] ?? 0, args[1] ?? 0];
 }
 
-export function evaluateNumericCheck(check: NonNullable<RegisterItem["numericCheck"]>): boolean | null {
+export function evaluateNumericCheck(
+  check: NonNullable<RegisterItem["numericCheck"]>,
+): boolean | null {
   const [a, b] = pair(check.args);
   switch (check.fn) {
     case "gcd":
@@ -102,24 +104,52 @@ export function evaluateNumericCheck(check: NonNullable<RegisterItem["numericChe
 
 // Characters that indicate un-normalised mathematical notation in stored text.
 const NOTATION_FLAGS: Array<{ id: string; test: RegExp; description: string }> = [
-  { id: "UNICODE_SUPERSCRIPT", test: /[\u00b2\u00b3\u00b9\u2070-\u209f]/, description: "Unicode super/subscript instead of ^ or _" },
-  { id: "UNICODE_MULT_DIV", test: /[\u00d7\u00f7]/, description: "Unicode × or ÷ instead of x / /" },
-  { id: "UNICODE_MINUS", test: /[\u2212\u2013\u2014]/, description: "Unicode minus or dash instead of -" },
-  { id: "UNICODE_FRACTION", test: /[\u00bc-\u00be\u2150-\u215e]/, description: "Unicode vulgar fraction" },
-  { id: "SMART_QUOTES", test: /[\u2018\u2019\u201c\u201d]/, description: "Smart quotes in machine-scored text" },
+  {
+    id: "UNICODE_SUPERSCRIPT",
+    test: /[\u00b2\u00b3\u00b9\u2070-\u209f]/,
+    description: "Unicode super/subscript instead of ^ or _",
+  },
+  {
+    id: "UNICODE_MULT_DIV",
+    test: /[\u00d7\u00f7]/,
+    description: "Unicode × or ÷ instead of x / /",
+  },
+  {
+    id: "UNICODE_MINUS",
+    test: /[\u2212\u2013\u2014]/,
+    description: "Unicode minus or dash instead of -",
+  },
+  {
+    id: "UNICODE_FRACTION",
+    test: /[\u00bc-\u00be\u2150-\u215e]/,
+    description: "Unicode vulgar fraction",
+  },
+  {
+    id: "SMART_QUOTES",
+    test: /[\u2018\u2019\u201c\u201d]/,
+    description: "Smart quotes in machine-scored text",
+  },
   { id: "LATEX_MARKUP", test: /\\\(|\\\[|\$\$/, description: "Raw LaTeX delimiters" },
   { id: "DOUBLE_SPACE", test: / {2,}/, description: "Collapsed whitespace required" },
 ];
 
-export type Finding = { externalRef: string; subject: string; checkId: string; severity: "BLOCKER" | "WARNING"; detail: string };
+export type Finding = {
+  externalRef: string;
+  subject: string;
+  checkId: string;
+  severity: "BLOCKER" | "WARNING";
+  detail: string;
+};
 
 export function validateItem(item: RegisterItem): Finding[] {
   const f: Finding[] = [];
   const push = (checkId: string, severity: Finding["severity"], detail: string) =>
     f.push({ externalRef: item.externalRef, subject: item.subject, checkId, severity, detail });
 
-  if (!item.officialRequirementIds?.length) push("SYLLABUS_MAPPING", "BLOCKER", "no official requirement id");
-  if (!item.officialSourceReference) push("SYLLABUS_SOURCE_REF", "BLOCKER", "no official source reference");
+  if (!item.officialRequirementIds?.length)
+    push("SYLLABUS_MAPPING", "BLOCKER", "no official requirement id");
+  if (!item.officialSourceReference)
+    push("SYLLABUS_SOURCE_REF", "BLOCKER", "no official source reference");
 
   for (const [field, value] of [
     ["unitId", item.unitId],
@@ -130,23 +160,37 @@ export function validateItem(item: RegisterItem): Finding[] {
   ] as const) {
     if (!value) push("CURRICULUM_MAPPING", "BLOCKER", `${field} missing`);
   }
-  if (item.atomStatus && item.atomStatus !== "MAPPED") push("ATOM_STATUS", "WARNING", `atomStatus=${item.atomStatus}`);
+  if (item.atomStatus && item.atomStatus !== "MAPPED")
+    push("ATOM_STATUS", "WARNING", `atomStatus=${item.atomStatus}`);
 
   if (OPTION_KINDS.has(item.kind)) {
     const options = item.options ?? [];
-    if (options.length < 2) push("OPTION_COUNT", "BLOCKER", `${options.length} options for kind ${item.kind}`);
-    if (new Set(options.map((o) => o.trim())).size !== options.length) push("OPTION_DUPLICATE", "BLOCKER", "duplicate option text");
+    if (options.length < 2)
+      push("OPTION_COUNT", "BLOCKER", `${options.length} options for kind ${item.kind}`);
+    if (new Set(options.map((o) => o.trim())).size !== options.length)
+      push("OPTION_DUPLICATE", "BLOCKER", "duplicate option text");
     if (!options.some((o) => o.trim() === item.correctAnswer.trim()))
       push("ANSWER_NOT_IN_OPTIONS", "BLOCKER", "correctAnswer is not one of the options");
   }
   if (!item.correctAnswer?.trim()) push("ANSWER_EMPTY", "BLOCKER", "correctAnswer empty");
   if (!item.explanation?.trim()) push("EXPLANATION_EMPTY", "BLOCKER", "explanation empty");
-  else if (item.explanation.trim().length < 25) push("EXPLANATION_THIN", "WARNING", "explanation under 25 characters");
+  else if (item.explanation.trim().length < 25)
+    push("EXPLANATION_THIN", "WARNING", "explanation under 25 characters");
 
   if (item.numericCheck) {
     const ok = evaluateNumericCheck(item.numericCheck);
-    if (ok === false) push("NUMERIC_CHECK", "BLOCKER", `numericCheck ${item.numericCheck.fn} disagrees with answer`);
-    if (ok === null) push("NUMERIC_CHECK", "WARNING", `numericCheck fn '${item.numericCheck.fn}' not machine-checked`);
+    if (ok === false)
+      push(
+        "NUMERIC_CHECK",
+        "BLOCKER",
+        `numericCheck ${item.numericCheck.fn} disagrees with answer`,
+      );
+    if (ok === null)
+      push(
+        "NUMERIC_CHECK",
+        "WARNING",
+        `numericCheck fn '${item.numericCheck.fn}' not machine-checked`,
+      );
   }
 
   for (const text of [item.prompt, item.explanation, ...(item.options ?? [])]) {
@@ -156,18 +200,31 @@ export function validateItem(item: RegisterItem): Finding[] {
   }
 
   if (MULTI_PART_KINDS.has(item.kind)) {
-    if (!item.scoringRule?.trim()) push("RUBRIC_MISSING", "BLOCKER", `${item.kind} requires an explicit scoring rule`);
-    if ((item.marks ?? 1) < 2) push("RUBRIC_MARKS", "WARNING", `${item.kind} carries ${item.marks ?? 1} mark`);
+    if (!item.scoringRule?.trim())
+      push("RUBRIC_MISSING", "BLOCKER", `${item.kind} requires an explicit scoring rule`);
+    if ((item.marks ?? 1) < 2)
+      push("RUBRIC_MARKS", "WARNING", `${item.kind} carries ${item.marks ?? 1} mark`);
   }
   if (item.kind === "case_study" || item.kind === "data_interpretation") {
     // The corpus carries the case context inside the prompt (context paragraph,
     // blank line, question) rather than in a separate stimulus column.
     const embedded = item.prompt.includes("\n\n");
-    if (!item.stimulus?.trim() && !embedded) push("STIMULUS_MISSING", "BLOCKER", `${item.kind} has neither a stimulus nor an embedded context paragraph`);
-    else if (!item.stimulus?.trim()) push("STIMULUS_EMBEDDED", "WARNING", "context is embedded in the prompt, not a separate stimulus field");
+    if (!item.stimulus?.trim() && !embedded)
+      push(
+        "STIMULUS_MISSING",
+        "BLOCKER",
+        `${item.kind} has neither a stimulus nor an embedded context paragraph`,
+      );
+    else if (!item.stimulus?.trim())
+      push(
+        "STIMULUS_EMBEDDED",
+        "WARNING",
+        "context is embedded in the prompt, not a separate stimulus field",
+      );
   }
 
-  if (!(POOLS as readonly string[]).includes(item.pool)) push("POOL_INVALID", "BLOCKER", `pool=${item.pool}`);
+  if (!(POOLS as readonly string[]).includes(item.pool))
+    push("POOL_INVALID", "BLOCKER", `pool=${item.pool}`);
 
   return f;
 }
@@ -178,7 +235,9 @@ export function findDuplicates(items: RegisterItem[], threshold = 0.85) {
     const key = normalisePrompt(it.prompt);
     exact.set(key, [...(exact.get(key) ?? []), it.externalRef]);
   }
-  const exactGroups = [...exact.entries()].filter(([, refs]) => refs.length > 1).map(([key, refs]) => ({ key, refs }));
+  const exactGroups = [...exact.entries()]
+    .filter(([, refs]) => refs.length > 1)
+    .map(([key, refs]) => ({ key, refs }));
 
   const near: Array<{ a: string; b: string; similarity: number; subject: string }> = [];
   const bySubject = new Map<string, RegisterItem[]>();
@@ -189,7 +248,12 @@ export function findDuplicates(items: RegisterItem[], threshold = 0.85) {
       for (let j = i + 1; j < list.length; j += 1) {
         const s = jaccard(toks[i] ?? [], toks[j] ?? []);
         if (s >= threshold)
-          near.push({ a: list[i]!.externalRef, b: list[j]!.externalRef, similarity: Number(s.toFixed(3)), subject });
+          near.push({
+            a: list[i]!.externalRef,
+            b: list[j]!.externalRef,
+            similarity: Number(s.toFixed(3)),
+            subject,
+          });
       }
     }
   }
@@ -199,8 +263,14 @@ export function findDuplicates(items: RegisterItem[], threshold = 0.85) {
 async function ncertShingles(): Promise<Set<string>> {
   const { getDocument } = await import("pdfjs-dist/legacy/build/pdf.mjs");
   const urls = [
-    ...Array.from({ length: 14 }, (_, i) => `https://ncert.nic.in/textbook/pdf/jemh1${String(i + 1).padStart(2, "0")}.pdf`),
-    ...Array.from({ length: 13 }, (_, i) => `https://ncert.nic.in/textbook/pdf/jesc1${String(i + 1).padStart(2, "0")}.pdf`),
+    ...Array.from(
+      { length: 14 },
+      (_, i) => `https://ncert.nic.in/textbook/pdf/jemh1${String(i + 1).padStart(2, "0")}.pdf`,
+    ),
+    ...Array.from(
+      { length: 13 },
+      (_, i) => `https://ncert.nic.in/textbook/pdf/jesc1${String(i + 1).padStart(2, "0")}.pdf`,
+    ),
   ];
   const shingles = new Set<string>();
   for (const url of urls) {
@@ -232,10 +302,15 @@ async function ncertShingles(): Promise<Set<string>> {
 
 async function main() {
   const runContamination = process.argv.includes("--contamination");
-  const register = JSON.parse(readFileSync(resolve(ROOT, "EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json"), "utf8"));
+  const register = JSON.parse(
+    readFileSync(resolve(ROOT, "EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json"), "utf8"),
+  );
   const items: RegisterItem[] = register.items;
   const snapshot = JSON.parse(
-    readFileSync(resolve(ROOT, "content/compliance/class-10-2026-27.draft-db-snapshot.json"), "utf8"),
+    readFileSync(
+      resolve(ROOT, "content/compliance/class-10-2026-27.draft-db-snapshot.json"),
+      "utf8",
+    ),
   );
 
   const registerRefs = new Set(items.map((i) => i.externalRef));
@@ -272,7 +347,8 @@ async function main() {
     }
     contamination = {
       performed: true,
-      method: "12-token verbatim shingle overlap against 27 official NCERT Class X chapter PDFs (jemh1, jesc1)",
+      method:
+        "12-token verbatim shingle overlap against 27 official NCERT Class X chapter PDFs (jemh1, jesc1)",
       ncertShingleCount: shingles.size,
       itemsChecked: items.length,
       contaminatedItems: hits.length,
@@ -283,13 +359,30 @@ async function main() {
   const pools = [...POOLS];
   const poolAllocation = ["Mathematics", "Science"].map((subject) => {
     const subjectItems = items.filter((i) => i.subject === subject);
-    const byPool = Object.fromEntries(pools.map((p) => [p, subjectItems.filter((i) => i.pool === p).length]));
-    const refsByPool = new Map<string, string[]>(
-      pools.map((p) => [p as string, subjectItems.filter((i) => i.pool === p).map((i) => i.externalRef)]),
+    const byPool = Object.fromEntries(
+      pools.map((p) => [p, subjectItems.filter((i) => i.pool === p).length]),
     );
-    const reassessmentRefs = [...(refsByPool.get("REASSESSMENT") ?? []), ...(refsByPool.get("FRESH_REASSESSMENT") ?? [])];
-    const overlap = (refsByPool.get("DIAGNOSTIC") ?? []).filter((r) => reassessmentRefs.includes(r));
-    return { subject, total: subjectItems.length, ...byPool, reassessmentTotal: reassessmentRefs.length, poolsDisjoint: overlap.length === 0, overlappingRefs: overlap };
+    const refsByPool = new Map<string, string[]>(
+      pools.map((p) => [
+        p as string,
+        subjectItems.filter((i) => i.pool === p).map((i) => i.externalRef),
+      ]),
+    );
+    const reassessmentRefs = [
+      ...(refsByPool.get("REASSESSMENT") ?? []),
+      ...(refsByPool.get("FRESH_REASSESSMENT") ?? []),
+    ];
+    const overlap = (refsByPool.get("DIAGNOSTIC") ?? []).filter((r) =>
+      reassessmentRefs.includes(r),
+    );
+    return {
+      subject,
+      total: subjectItems.length,
+      ...byPool,
+      reassessmentTotal: reassessmentRefs.length,
+      poolsDisjoint: overlap.length === 0,
+      overlappingRefs: overlap,
+    };
   });
 
   // ---- CSV queues -------------------------------------------------------
@@ -323,7 +416,10 @@ async function main() {
     "sme_qualification",
     "sme_signature_date",
   ];
-  const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""').replace(/\r?\n/g, " ")}"`;
+  const esc = (v: unknown) =>
+    `"${String(v ?? "")
+      .replace(/"/g, '""')
+      .replace(/\r?\n/g, " ")}"`;
 
   const queueCounts: Record<string, number> = {};
   for (const subject of ["Mathematics", "Science"] as const) {
@@ -353,18 +449,29 @@ async function main() {
           i.explanation,
           i.scoringRule ?? "",
           "draft / unverified",
-          own.filter((f) => f.severity === "BLOCKER").map((f) => f.checkId).join(" ") || "none",
-          own.filter((f) => f.severity === "WARNING").map((f) => f.checkId).join(" ") || "none",
+          own
+            .filter((f) => f.severity === "BLOCKER")
+            .map((f) => f.checkId)
+            .join(" ") || "none",
+          own
+            .filter((f) => f.severity === "WARNING")
+            .map((f) => f.checkId)
+            .join(" ") || "none",
           "",
           "",
           "",
           "",
           "",
           "",
-        ].map(esc).join(",");
+        ]
+          .map(esc)
+          .join(",");
       });
     queueCounts[subject] = rows.length;
-    const file = subject === "Mathematics" ? "EDUOS_CLASS10_MATHS_SME_REVIEW_QUEUE.csv" : "EDUOS_CLASS10_SCIENCE_SME_REVIEW_QUEUE.csv";
+    const file =
+      subject === "Mathematics"
+        ? "EDUOS_CLASS10_MATHS_SME_REVIEW_QUEUE.csv"
+        : "EDUOS_CLASS10_SCIENCE_SME_REVIEW_QUEUE.csv";
     writeFileSync(resolve(ROOT, file), `${[csvHeader.join(","), ...rows].join("\n")}\n`);
     console.log(`wrote ${file} — ${rows.length} rows`);
   }
@@ -382,9 +489,13 @@ async function main() {
       WARNING: findings.filter((f) => f.severity === "WARNING").length,
     },
     findingsByCheck: Object.fromEntries(
-      [...new Set(findings.map((f) => f.checkId))].sort().map((c) => [c, findings.filter((f) => f.checkId === c).length]),
+      [...new Set(findings.map((f) => f.checkId))]
+        .sort()
+        .map((c) => [c, findings.filter((f) => f.checkId === c).length]),
     ),
-    itemsWithBlockers: new Set(findings.filter((f) => f.severity === "BLOCKER").map((f) => f.externalRef)).size,
+    itemsWithBlockers: new Set(
+      findings.filter((f) => f.severity === "BLOCKER").map((f) => f.externalRef),
+    ).size,
     duplicates: {
       exactDuplicateGroups: duplicates.exactGroups.length,
       nearDuplicatePairs: duplicates.near.length,
@@ -394,7 +505,8 @@ async function main() {
     },
     poolAllocation,
     copyrightContamination: contamination,
-    promotionPolicy: "No item is promoted. All 326 remain status=draft, verification_state=unverified pending named SME sign-off.",
+    promotionPolicy:
+      "No item is promoted. All 326 remain status=draft, verification_state=unverified pending named SME sign-off.",
     findings,
   };
 

@@ -30,7 +30,8 @@ async function rest(method: string, p: string, body?: unknown, prefer?: string) 
     },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`${method} ${p} -> ${res.status}: ${(await res.text()).slice(0, 500)}`);
+  if (!res.ok)
+    throw new Error(`${method} ${p} -> ${res.status}: ${(await res.text()).slice(0, 500)}`);
   const text = await res.text();
   return text.trim() ? JSON.parse(text) : [];
 }
@@ -61,7 +62,10 @@ const outcomeIds = [...new Set(scoped.map((r) => r.outcome_id))].filter(Boolean)
 const outcomes: any[] = [];
 for (let i = 0; i < outcomeIds.length; i += 50) {
   outcomes.push(
-    ...(await rest("GET", `assessment_outcomes?select=id,code,title,unit_id&id=in.(${outcomeIds.slice(i, i + 50).join(",")})`)),
+    ...(await rest(
+      "GET",
+      `assessment_outcomes?select=id,code,title,unit_id&id=in.(${outcomeIds.slice(i, i + 50).join(",")})`,
+    )),
   );
 }
 const outcomeById = new Map(outcomes.map((o) => [o.id, o]));
@@ -107,7 +111,13 @@ const summary = {
     autoApproved: verdicts.filter((v) => v.subject === s && v.outcome === "auto_approved").length,
   })),
   resolvedItems: verdicts
-    .filter((v) => v.externalRef && /REQ022-DIAG-009|REQ024-DIAG-004|REQ032-DIAG-001|REQ034-REASS-005|REQ043-REASS-002/.test(v.externalRef))
+    .filter(
+      (v) =>
+        v.externalRef &&
+        /REQ022-DIAG-009|REQ024-DIAG-004|REQ032-DIAG-001|REQ034-REASS-005|REQ043-REASS-002/.test(
+          v.externalRef,
+        ),
+    )
     .map((v) => ({ externalRef: v.externalRef, outcome: v.outcome, confidence: v.confidence })),
 };
 

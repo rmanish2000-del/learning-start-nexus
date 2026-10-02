@@ -32,9 +32,7 @@ export const recordSmeDecisionFn = createServerFn({ method: "POST" })
     const orgId = await callerOrgId(context.supabase, context.userId);
     // The reviewer's name is recorded inside the append-only note so the
     // decision is attributable to a named subject expert.
-    const note = [`Named SME: ${data.reviewerName}`, data.note?.trim()]
-      .filter(Boolean)
-      .join(" — ");
+    const note = [`Named SME: ${data.reviewerName}`, data.note?.trim()].filter(Boolean).join(" — ");
     await recordSmeDecision(
       context.supabase,
       { orgId, userId: context.userId },

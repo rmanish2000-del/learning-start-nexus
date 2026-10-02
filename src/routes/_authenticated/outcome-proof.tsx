@@ -76,7 +76,8 @@ function MetricCards({ metrics }: { metrics: OutcomeMetrics }) {
       label: "Mastery Lift",
       value: fmtLift(metrics.masteryLiftAvg),
       detail: `Average across ${metrics.masteryLiftLearners} learner${metrics.masteryLiftLearners === 1 ? "" : "s"} with a measured outcome`,
-      progress: metrics.masteryLiftAvg === null ? null : Math.max(0, Math.min(100, metrics.masteryLiftAvg)),
+      progress:
+        metrics.masteryLiftAvg === null ? null : Math.max(0, Math.min(100, metrics.masteryLiftAvg)),
     },
     {
       label: "Reassessment Success",
@@ -173,7 +174,13 @@ function SchoolView() {
   });
 
   if (query.isError) {
-    return <QueryError title="School view didn't load" error={query.error} onRetry={() => query.refetch()} />;
+    return (
+      <QueryError
+        title="School view didn't load"
+        error={query.error}
+        onRetry={() => query.refetch()}
+      />
+    );
   }
   if (!query.data) return <p className="text-sm text-muted-foreground">Loading school outcomes…</p>;
 
@@ -182,8 +189,8 @@ function SchoolView() {
       <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
         <Badge variant="secondary">{query.data.orgName}</Badge>
         <span>
-          {query.data.totals.learners} learner{query.data.totals.learners === 1 ? "" : "s"} · {query.data.totals.outcomesPending} outcomes awaiting
-          reassessment
+          {query.data.totals.learners} learner{query.data.totals.learners === 1 ? "" : "s"} ·{" "}
+          {query.data.totals.outcomesPending} outcomes awaiting reassessment
         </span>
       </div>
       <MetricCards metrics={query.data.totals} />
@@ -213,7 +220,13 @@ function CentreView() {
   });
 
   if (query.isError) {
-    return <QueryError title="Centre view didn't load" error={query.error} onRetry={() => query.refetch()} />;
+    return (
+      <QueryError
+        title="Centre view didn't load"
+        error={query.error}
+        onRetry={() => query.refetch()}
+      />
+    );
   }
   if (!query.data) return <p className="text-sm text-muted-foreground">Loading centre outcomes…</p>;
 
@@ -238,7 +251,8 @@ function CentreView() {
           </SelectContent>
         </Select>
         <span className="text-sm text-muted-foreground">
-          {data.totals.learners} learner{data.totals.learners === 1 ? "" : "s"} · {data.totals.outcomesPending} awaiting reassessment
+          {data.totals.learners} learner{data.totals.learners === 1 ? "" : "s"} ·{" "}
+          {data.totals.outcomesPending} awaiting reassessment
         </span>
       </div>
       <MetricCards metrics={data.totals} />
@@ -267,9 +281,16 @@ function ParentView() {
   });
 
   if (query.isError) {
-    return <QueryError title="Parent view didn't load" error={query.error} onRetry={() => query.refetch()} />;
+    return (
+      <QueryError
+        title="Parent view didn't load"
+        error={query.error}
+        onRetry={() => query.refetch()}
+      />
+    );
   }
-  if (!query.data) return <p className="text-sm text-muted-foreground">Loading your child's progress…</p>;
+  if (!query.data)
+    return <p className="text-sm text-muted-foreground">Loading your child's progress…</p>;
 
   if (query.data.children.length === 0) {
     return (

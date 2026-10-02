@@ -97,14 +97,19 @@ const TECHNICAL_PATTERNS: { test: RegExp; message: string }[] = [
  * Converts any thrown value into a sentence safe to show a user.
  * Never returns raw JSON, SQL text, or a stack trace.
  */
-export function friendlyErrorMessage(error: unknown, fallback = "Something went wrong. Please try again."): string {
+export function friendlyErrorMessage(
+  error: unknown,
+  fallback = "Something went wrong. Please try again.",
+): string {
   const raw =
     error instanceof Error
       ? error.message
       : typeof error === "string"
         ? error
-        : error && typeof error === "object" && typeof (error as { message?: unknown }).message === "string"
-          ? ((error as { message: string }).message)
+        : error &&
+            typeof error === "object" &&
+            typeof (error as { message?: unknown }).message === "string"
+          ? (error as { message: string }).message
           : "";
 
   const text = raw.trim();

@@ -12,7 +12,6 @@ import {
   runEngineProbes,
 } from "./diagnostic-audit.server";
 
-
 export const getDiagnosticAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {

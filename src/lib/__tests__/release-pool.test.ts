@@ -21,9 +21,7 @@ describe("Class 10 automated production release", () => {
   it("states EduOS authorship and non-affiliation without claiming endorsement", () => {
     expect(PUBLIC_CONTENT_DISCLAIMER).toContain("EduOS original curriculum-aligned practice");
     expect(PUBLIC_CONTENT_DISCLAIMER).toContain("Automated multi-stage quality verification");
-    expect(PUBLIC_CONTENT_DISCLAIMER).toContain(
-      "Not affiliated with or endorsed by CBSE or NCERT",
-    );
+    expect(PUBLIC_CONTENT_DISCLAIMER).toContain("Not affiliated with or endorsed by CBSE or NCERT");
     const lowered = PUBLIC_CONTENT_DISCLAIMER.toLowerCase();
     for (const claim of ["expert-certified", "ncert approved", "cbse approved", "official"]) {
       expect(lowered).not.toContain(claim);

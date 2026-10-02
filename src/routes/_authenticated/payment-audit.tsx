@@ -220,7 +220,9 @@ function PaymentAuditPage() {
               </CardHeader>
               <CardContent className="space-y-2">
                 {data.recentEvents.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No webhook deliveries recorded yet.</p>
+                  <p className="text-sm text-muted-foreground">
+                    No webhook deliveries recorded yet.
+                  </p>
                 ) : (
                   data.recentEvents.map((e) => (
                     <div

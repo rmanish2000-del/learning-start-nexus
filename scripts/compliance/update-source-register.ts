@@ -16,7 +16,11 @@ import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { sourceManifestSchema, validateSourceRegistry, type SourceRecord } from "../../src/lib/compliance-shared";
+import {
+  sourceManifestSchema,
+  validateSourceRegistry,
+  type SourceRecord,
+} from "../../src/lib/compliance-shared";
 
 const ROOT = resolve(import.meta.dirname, "../..");
 const read = (p: string) => JSON.parse(readFileSync(resolve(ROOT, p), "utf8"));
@@ -55,9 +59,12 @@ function main() {
   const missing = read(EVIDENCE_MISSING);
   const records: MissingRecord[] = missing.sources;
   const by = (id: string) => records.find((r) => r.sourceId === id)!;
-  const retrieved = (r: MissingRecord | undefined) => Boolean(r && r.retrievalStatus === "RETRIEVED" && r.sha256);
+  const retrieved = (r: MissingRecord | undefined) =>
+    Boolean(r && r.retrievalStatus === "RETRIEVED" && r.sha256);
 
-  const mathSyllabus = syllabus.sources.find((s: { subject: string }) => s.subject === "Mathematics");
+  const mathSyllabus = syllabus.sources.find(
+    (s: { subject: string }) => s.subject === "Mathematics",
+  );
   const sciSyllabus = syllabus.sources.find((s: { subject: string }) => s.subject === "Science");
 
   const mathChapters = records.filter((r) => r.sourceId.startsWith("SRC_NCERT_MATH_C10_CH"));
@@ -219,10 +226,30 @@ function main() {
 
   // Prior-session assessment artefacts: retrieved, recorded, not applicable to 2026-27.
   const prior: Array<[string, string, "sample_paper" | "marking_scheme", string]> = [
-    ["CBSE-2025-26-C10-MAT-SQP-STD", "SRC_CBSE_SQP_MATH_STD_2025_26", "sample_paper", "Mathematics"],
-    ["CBSE-2025-26-C10-MAT-MS-STD", "SRC_CBSE_MS_MATH_STD_2025_26", "marking_scheme", "Mathematics"],
-    ["CBSE-2025-26-C10-MAT-SQP-BAS", "SRC_CBSE_SQP_MATH_BASIC_2025_26", "sample_paper", "Mathematics"],
-    ["CBSE-2025-26-C10-MAT-MS-BAS", "SRC_CBSE_MS_MATH_BASIC_2025_26", "marking_scheme", "Mathematics"],
+    [
+      "CBSE-2025-26-C10-MAT-SQP-STD",
+      "SRC_CBSE_SQP_MATH_STD_2025_26",
+      "sample_paper",
+      "Mathematics",
+    ],
+    [
+      "CBSE-2025-26-C10-MAT-MS-STD",
+      "SRC_CBSE_MS_MATH_STD_2025_26",
+      "marking_scheme",
+      "Mathematics",
+    ],
+    [
+      "CBSE-2025-26-C10-MAT-SQP-BAS",
+      "SRC_CBSE_SQP_MATH_BASIC_2025_26",
+      "sample_paper",
+      "Mathematics",
+    ],
+    [
+      "CBSE-2025-26-C10-MAT-MS-BAS",
+      "SRC_CBSE_MS_MATH_BASIC_2025_26",
+      "marking_scheme",
+      "Mathematics",
+    ],
     ["CBSE-2025-26-C10-SCI-SQP", "SRC_CBSE_SQP_SCI_2025_26", "sample_paper", "Science"],
     ["CBSE-2025-26-C10-SCI-MS", "SRC_CBSE_MS_SCI_2025_26", "marking_scheme", "Science"],
   ];
@@ -271,7 +298,10 @@ function main() {
 
   sourceManifestSchema.parse(manifest);
   const validation = validateSourceRegistry(manifest);
-  writeFileSync(resolve(ROOT, "content/compliance/cbse-2026-27.sources.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+  writeFileSync(
+    resolve(ROOT, "content/compliance/cbse-2026-27.sources.json"),
+    `${JSON.stringify(manifest, null, 2)}\n`,
+  );
 
   const flat = {
     contractVersion: "1.0.0",
@@ -301,7 +331,10 @@ function main() {
       })),
     ],
   };
-  writeFileSync(resolve(ROOT, "content/compliance/class-10-2026-27.sha256-manifest.json"), `${JSON.stringify(flat, null, 2)}\n`);
+  writeFileSync(
+    resolve(ROOT, "content/compliance/class-10-2026-27.sha256-manifest.json"),
+    `${JSON.stringify(flat, null, 2)}\n`,
+  );
 
   const errors = validation.filter((i) => i.level === "error");
   const warnings = validation.filter((i) => i.level !== "error");

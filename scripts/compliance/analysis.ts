@@ -68,7 +68,13 @@ export type OfficialSubject = {
   subject: string;
   code: string;
   theoryMarks: number;
-  units: { ref: string; title: string; marks: number; chapters: { ref: string; title: string; assessable: boolean }[]; verifiedAgainstOfficial: boolean }[];
+  units: {
+    ref: string;
+    title: string;
+    marks: number;
+    chapters: { ref: string; title: string; assessable: boolean }[];
+    verifiedAgainstOfficial: boolean;
+  }[];
 };
 
 export const norm = (s: string) =>
@@ -84,7 +90,17 @@ export type SubjectAnalysis = {
   official: OfficialSubject;
   gates: VolumeGates;
   units: UnitCoverage[];
-  crosswalk: { officialRef: string; officialTitle: string; marks: number; mappedUnitId: string | null; mappedTitle: string | null; outcomes: number; verified: number; required: number; chapters: { ref: string; title: string; mapped: boolean }[] }[];
+  crosswalk: {
+    officialRef: string;
+    officialTitle: string;
+    marks: number;
+    mappedUnitId: string | null;
+    mappedTitle: string | null;
+    outcomes: number;
+    verified: number;
+    required: number;
+    chapters: { ref: string; title: string; mapped: boolean }[];
+  }[];
   unmappedOfficialTopics: string[];
   outOfSyllabusUnits: string[];
   gateResults: GateResult[];
@@ -102,7 +118,12 @@ export function loadInputs() {
   return { snapshot, official, manifest };
 }
 
-export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects: SubjectAnalysis[]; overall: ComplianceStatus } {
+export function analyse(): {
+  snapshot: Snapshot;
+  sourceIssues: Issue[];
+  subjects: SubjectAnalysis[];
+  overall: ComplianceStatus;
+} {
   const { snapshot, official, manifest } = loadInputs();
   const sourceIssues = validateSourceRegistry(manifest);
   const subjects: SubjectAnalysis[] = [];
@@ -114,13 +135,17 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
       diagnosticMinimum: cat?.diagnosticMinimum ?? 5,
       minQuestionsPerOutcome: cat?.minQuestionsPerOutcome ?? 1,
     };
-    const dbUnits = snapshot.units.filter((u) => u.subject === off.subject && u.bookStatus !== "archived");
+    const dbUnits = snapshot.units.filter(
+      (u) => u.subject === off.subject && u.bookStatus !== "archived",
+    );
     const usedUnitIds = new Set<string>();
     const unmappedOfficialTopics: string[] = [];
     const unapprovedSourceBooks = new Set<string>();
 
     const crosswalk = off.units.map((ou) => {
-      const candidates = dbUnits.filter((u) => norm(u.title) === norm(ou.title) && u.bookStatus !== "archived");
+      const candidates = dbUnits.filter(
+        (u) => norm(u.title) === norm(ou.title) && u.bookStatus !== "archived",
+      );
       const match = candidates.find((u) => u.bookStatus === "approved") ?? candidates[0];
       if (match) {
         usedUnitIds.add(match.unitId);
@@ -132,7 +157,11 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
       const outcomes = match?.outcomes ?? [];
       const verified = outcomes.reduce((s, o) => s + o.verified, 0);
       const chapterTitles = new Set((match?.chapters ?? []).map((c) => norm(c.title)));
-      const chapters = ou.chapters.map((c) => ({ ref: c.ref, title: c.title, mapped: chapterTitles.has(norm(c.title)) }));
+      const chapters = ou.chapters.map((c) => ({
+        ref: c.ref,
+        title: c.title,
+        mapped: chapterTitles.has(norm(c.title)),
+      }));
       if (!match) unmappedOfficialTopics.push(`${ou.ref} ${ou.title} (unit not present)`);
       for (const c of chapters) if (!c.mapped) unmappedOfficialTopics.push(`${c.ref} ${c.title}`);
       return {
@@ -185,11 +214,17 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
       gates,
       sourceIssues,
       applicableSourceCount: manifest.sources.filter(
-        (s) => s.applicability === "applicable" && s.classLevel === 10 && (s.subject === off.subject || s.subject === "All"),
+        (s) =>
+          s.applicability === "applicable" &&
+          s.classLevel === 10 &&
+          (s.subject === off.subject || s.subject === "All"),
       ).length,
       requiredSourceTypes: official.provenance.requiredSourceTypes,
       presentSourceTypes: manifest.sources
-        .filter((s) => s.applicability === "applicable" && (s.subject === off.subject || s.subject === "All"))
+        .filter(
+          (s) =>
+            s.applicability === "applicable" && (s.subject === off.subject || s.subject === "All"),
+        )
         .map((s) => s.sourceType),
       units,
       unmappedOfficialTopics,
@@ -200,12 +235,19 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
         gap_detection_active: true,
         intervention_generation_active: true,
         tutor_scope_bound_to_intervention: true,
-        reassessment_reserve_available: units.every((u) => u.verified >= requiredVerifiedPerUnit(gates, u.outcomes)),
+        reassessment_reserve_available: units.every(
+          (u) => u.verified >= requiredVerifiedPerUnit(gates, u.outcomes),
+        ),
         // The learner outcome report renders ACTIVE_ACADEMIC_YEAR in its header
         // badge and footer note (src/routes/diagnostic.report.$token.tsx).
         outcome_report_year_labelled: true,
       },
-      review: { reviewerName: null, reviewedAt: null, decision: null, unresolvedAmbiguities: unmappedOfficialTopics.length },
+      review: {
+        reviewerName: null,
+        reviewedAt: null,
+        decision: null,
+        unresolvedAmbiguities: unmappedOfficialTopics.length,
+      },
       commercial: {
         activeAcademicSession: snapshot.academicYear,
         purchasable: cat?.commercialStatus === "purchasable",
@@ -230,7 +272,15 @@ export function analyse(): { snapshot: Snapshot; sourceIssues: Issue[]; subjects
     });
   }
 
-  const order = ["COMPLIANT", "COMPLIANT_WITH_ACCEPTED_LIMITATIONS", "REVIEW_PENDING", "CONTENT_GAPS", "MAPPING_INCOMPLETE", "SOURCE_PENDING", "BLOCKED"];
+  const order = [
+    "COMPLIANT",
+    "COMPLIANT_WITH_ACCEPTED_LIMITATIONS",
+    "REVIEW_PENDING",
+    "CONTENT_GAPS",
+    "MAPPING_INCOMPLETE",
+    "SOURCE_PENDING",
+    "BLOCKED",
+  ];
   const overall = subjects
     .map((s) => s.status)
     .sort((a, b) => order.indexOf(b) - order.indexOf(a))[0] as ComplianceStatus;

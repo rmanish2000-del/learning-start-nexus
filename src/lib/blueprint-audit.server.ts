@@ -4,11 +4,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import {
-  fetchPolicyAudit,
-  type DbErrorShape,
-  type PolicyAuditRow,
-} from "./audit.server";
+import { fetchPolicyAudit, type DbErrorShape, type PolicyAuditRow } from "./audit.server";
 import { projectMastery, MASTERY_FORMULA } from "./blueprint-shared";
 import { PILOT_BOOK_ID } from "./curriculum-audit.server";
 
@@ -23,7 +19,12 @@ const BLUEPRINT_TABLES = [
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
+  const e = err as {
+    code?: string;
+    message?: string;
+    details?: string | null;
+    hint?: string | null;
+  };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -56,9 +57,21 @@ export type BlueprintCount = {
 };
 
 const COUNT_SPECS: { table: (typeof BLUEPRINT_TABLES)[number]; label: string; note: string }[] = [
-  { table: "assessment_outcomes", label: "Assessment outcomes", note: "The outcome catalog (LO_GK3_* codes)." },
-  { table: "outcome_map", label: "Outcome mappings", note: "Curriculum outcome → assessment outcome links." },
-  { table: "intervention_map", label: "Intervention mappings", note: "Failure pattern → recommended intervention." },
+  {
+    table: "assessment_outcomes",
+    label: "Assessment outcomes",
+    note: "The outcome catalog (LO_GK3_* codes).",
+  },
+  {
+    table: "outcome_map",
+    label: "Outcome mappings",
+    note: "Curriculum outcome → assessment outcome links.",
+  },
+  {
+    table: "intervention_map",
+    label: "Intervention mappings",
+    note: "Failure pattern → recommended intervention.",
+  },
   { table: "mastery_levels", label: "Mastery levels", note: "Org-configurable score bands." },
 ];
 
@@ -133,7 +146,11 @@ export async function fetchBlueprintSnapshot(supabase: Client): Promise<Blueprin
   };
   const [outcomesRes, unitsRes, mapsRes, interventionsRes, levelsRes] = await Promise.all([
     supabase.from("assessment_outcomes").select("*").eq("book_id", PILOT_BOOK_ID).order("code"),
-    supabase.from("curriculum_units").select("id, title, position").eq("book_id", PILOT_BOOK_ID).order("position"),
+    supabase
+      .from("curriculum_units")
+      .select("id, title, position")
+      .eq("book_id", PILOT_BOOK_ID)
+      .order("position"),
     supabase.from("outcome_map").select("assessment_outcome_id").eq("book_id", PILOT_BOOK_ID),
     supabase.from("intervention_map").select("assessment_outcome_id").eq("book_id", PILOT_BOOK_ID),
     supabase.from("mastery_levels").select("label, min_score, max_score").order("sort_order"),
@@ -253,7 +270,8 @@ export async function runBlueprintProbes(
       .select("label, min_score, max_score, sort_order")
       .order("sort_order");
     const bands = levels ?? [];
-    let contiguous = bands.length > 0 && bands[0]!.min_score === 0 && bands[bands.length - 1]!.max_score === 100;
+    let contiguous =
+      bands.length > 0 && bands[0]!.min_score === 0 && bands[bands.length - 1]!.max_score === 100;
     for (let i = 0; i < bands.length; i++) {
       const b = bands[i]!;
       if (b.min_score > b.max_score) contiguous = false;
@@ -262,7 +280,8 @@ export async function runBlueprintProbes(
     probes.push({
       key: "mastery-bands",
       name: "P3 — Mastery framework is contiguous",
-      expectation: "Four bands — Beginning (0–49), Developing (50–69), Proficient (70–84), Advanced (85–100) — contiguous, no gaps or overlaps, covering 0–100.",
+      expectation:
+        "Four bands — Beginning (0–49), Developing (50–69), Proficient (70–84), Advanced (85–100) — contiguous, no gaps or overlaps, covering 0–100.",
       detail:
         bands.length === 0
           ? "No mastery levels found."
@@ -276,7 +295,10 @@ export async function runBlueprintProbes(
   {
     const [{ data: los }, { data: maps }, { data: aos }, { data: topics }] = await Promise.all([
       admin.from("curriculum_outcomes").select("id, topic_id").eq("book_id", PILOT_BOOK_ID),
-      admin.from("outcome_map").select("curriculum_outcome_id, assessment_outcome_id").eq("book_id", PILOT_BOOK_ID),
+      admin
+        .from("outcome_map")
+        .select("curriculum_outcome_id, assessment_outcome_id")
+        .eq("book_id", PILOT_BOOK_ID),
       admin.from("assessment_outcomes").select("id").eq("book_id", PILOT_BOOK_ID),
       admin.from("curriculum_topics").select("id").eq("book_id", PILOT_BOOK_ID),
     ]);
@@ -313,7 +335,8 @@ export async function runBlueprintProbes(
     probes.push({
       key: "intervention-coverage",
       name: "P5 — Intervention mapping covers every outcome",
-      expectation: "Each assessment outcome has at least one Failure Pattern → Recommended Intervention row.",
+      expectation:
+        "Each assessment outcome has at least one Failure Pattern → Recommended Intervention row.",
       detail:
         uncovered.length === 0
           ? `All ${aos?.length ?? 0} outcomes covered by ${ims?.length ?? 0} intervention rows.`
@@ -331,10 +354,25 @@ export async function runBlueprintProbes(
     .maybeSingle();
   if (!otherOrg) {
     for (const [key, name, expectation] of [
-      ["cross-org-read", "P6 — Cross-organization read isolation", "Reading another org's outcomes returns 0 rows."],
-      ["cross-org-write", "P7 — Cross-organization write rejected", "Inserting into another org is rejected by RLS."],
+      [
+        "cross-org-read",
+        "P6 — Cross-organization read isolation",
+        "Reading another org's outcomes returns 0 rows.",
+      ],
+      [
+        "cross-org-write",
+        "P7 — Cross-organization write rejected",
+        "Inserting into another org is rejected by RLS.",
+      ],
     ] as const) {
-      probes.push({ key, name, expectation, detail: "No second organization exists to test against.", pass: true, skipped: true });
+      probes.push({
+        key,
+        name,
+        expectation,
+        detail: "No second organization exists to test against.",
+        pass: true,
+        skipped: true,
+      });
     }
   } else {
     const { data: otherBook } = await admin
@@ -374,7 +412,9 @@ export async function runBlueprintProbes(
       key: "cross-org-write",
       name: "P7 — Cross-organization write rejected",
       expectation: `Inserting an assessment outcome into "${otherOrg.name}" fails with a row-level security error.`,
-      detail: write.error ? `Rejected: ${write.error.message}` : "INSERT SUCCEEDED — tenant isolation breach.",
+      detail: write.error
+        ? `Rejected: ${write.error.message}`
+        : "INSERT SUCCEEDED — tenant isolation breach.",
       pass: !!write.error,
       dbError: shapeError(write.error),
     });
@@ -398,7 +438,9 @@ export async function runBlueprintProbes(
       key: "role-write-gate",
       name: "P8 — Reviewer is read-only",
       expectation: "A reviewer's INSERT into assessment_outcomes is rejected.",
-      detail: attempt.error ? `Rejected: ${attempt.error.message}` : "INSERT SUCCEEDED — reviewers must not write.",
+      detail: attempt.error
+        ? `Rejected: ${attempt.error.message}`
+        : "INSERT SUCCEEDED — reviewers must not write.",
       pass: !!attempt.error,
       dbError: shapeError(attempt.error),
     });
@@ -437,7 +479,9 @@ export async function runBlueprintProbes(
         key: "role-write-gate",
         name: "P8 — Staff write round-trip",
         expectation: "Staff can create and delete an outcome in their own org.",
-        detail: del.error ? `Created but delete failed: ${del.error.message}` : "Created and deleted a temporary outcome successfully.",
+        detail: del.error
+          ? `Created but delete failed: ${del.error.message}`
+          : "Created and deleted a temporary outcome successfully.",
         pass: !del.error,
         dbError: shapeError(del.error),
       });
@@ -451,14 +495,19 @@ export async function runBlueprintProbes(
       .select("code, diagnostic_weight, bloom_level, difficulty")
       .eq("book_id", PILOT_BOOK_ID);
     const BLOOMS = new Set(["remember", "understand", "apply", "analyze", "evaluate", "create"]);
-    const badWeight = (aos ?? []).filter((a) => a.diagnostic_weight < 5 || a.diagnostic_weight > 60);
+    const badWeight = (aos ?? []).filter(
+      (a) => a.diagnostic_weight < 5 || a.diagnostic_weight > 60,
+    );
     const badBloom = (aos ?? []).filter((a) => !BLOOMS.has(a.bloom_level as string));
-    const badDifficulty = (aos ?? []).filter((a) => (a.difficulty as number) < 1 || (a.difficulty as number) > 5);
+    const badDifficulty = (aos ?? []).filter(
+      (a) => (a.difficulty as number) < 1 || (a.difficulty as number) > 5,
+    );
     const bad = badWeight.length + badBloom.length + badDifficulty.length;
     probes.push({
       key: "weight-bounds",
       name: "P9 — Weights and vocabularies within bounds",
-      expectation: "Every diagnostic weight is 5–60 (DB CHECK), Bloom level is one of remember/understand/apply/analyze/evaluate/create, difficulty is 1–5.",
+      expectation:
+        "Every diagnostic weight is 5–60 (DB CHECK), Bloom level is one of remember/understand/apply/analyze/evaluate/create, difficulty is 1–5.",
       detail: `Checked ${aos?.length ?? 0} outcomes — out-of-range weights: ${badWeight.length}, unknown Bloom levels: ${badBloom.length}, bad difficulty: ${badDifficulty.length}.`,
       pass: (aos ?? []).length > 0 && bad === 0,
     });

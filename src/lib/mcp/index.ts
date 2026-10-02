@@ -3,7 +3,7 @@ import listLearnersTool from "./tools/list-learners";
 import getLearnerGapsTool from "./tools/get-learner-gaps";
 import listAssessmentsTool from "./tools/list-assessments";
 
-const projectRef = import.meta.env['VITE_SUPABASE_PROJECT_ID'] ?? "project-ref-unset";
+const projectRef = import.meta.env["VITE_SUPABASE_PROJECT_ID"] ?? "project-ref-unset";
 
 export default defineMcp({
   name: "eduos-foundation",

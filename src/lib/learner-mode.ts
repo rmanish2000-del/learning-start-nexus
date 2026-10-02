@@ -70,8 +70,7 @@ export function stageFor(input: {
 
 // Tutor unlock is a single deterministic decision, shared by server and UI.
 export type TutorGate =
-  | { unlocked: true; reason: null }
-  | { unlocked: false; reason: string; nextStep: string };
+  { unlocked: true; reason: null } | { unlocked: false; reason: string; nextStep: string };
 
 export function tutorGate(input: {
   authenticated: boolean;

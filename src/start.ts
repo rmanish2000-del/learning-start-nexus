@@ -15,7 +15,6 @@ const securityHeadersMiddleware = createMiddleware().server(async ({ next }) => 
   return result;
 });
 
-
 const errorMiddleware = createMiddleware().server(async ({ next, handlerType, request }) => {
   try {
     return await next();
@@ -76,5 +75,10 @@ const authGateMiddleware = createMiddleware().server(({ next, request }) => {
 
 export const startInstance = createStart(() => ({
   functionMiddleware: [attachSupabaseAuth],
-  requestMiddleware: [securityHeadersMiddleware, errorMiddleware, csrfMiddleware, authGateMiddleware],
+  requestMiddleware: [
+    securityHeadersMiddleware,
+    errorMiddleware,
+    csrfMiddleware,
+    authGateMiddleware,
+  ],
 }));

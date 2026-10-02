@@ -42,7 +42,9 @@ export function sessionHash(): string {
   return tabSession;
 }
 
-export function deviceClass(width = typeof window === "undefined" ? 1280 : window.innerWidth): DeviceClass {
+export function deviceClass(
+  width = typeof window === "undefined" ? 1280 : window.innerWidth,
+): DeviceClass {
   if (width < 768) return "mobile";
   if (width < 1024) return "tablet";
   return "desktop";
@@ -54,7 +56,9 @@ export function viewportLabel(): string | undefined {
 }
 
 /** Coarse browser family only — never the full user-agent string. */
-export function browserFamily(ua = typeof navigator === "undefined" ? "" : navigator.userAgent): string {
+export function browserFamily(
+  ua = typeof navigator === "undefined" ? "" : navigator.userAgent,
+): string {
   if (/Edg\//.test(ua)) return "edge";
   if (/OPR\//.test(ua)) return "opera";
   if (/Firefox\//.test(ua)) return "firefox";

@@ -72,15 +72,24 @@ export const Route = createFileRoute("/_authenticated/assessments")({
       { title: "Assessments — EduOS" },
       { name: "description", content: "Item bank, diagnostics, and learner assessment sessions." },
       { property: "og:title", content: "Assessments — EduOS" },
-      { property: "og:description", content: "Item bank, diagnostics, and learner assessment sessions." },
+      {
+        property: "og:description",
+        content: "Item bank, diagnostics, and learner assessment sessions.",
+      },
     ],
   }),
   component: AssessmentsPage,
 });
 
 function sessionStatusBadge(status: string) {
-  if (status === "submitted") return <Badge className="bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/10 dark:text-emerald-400">Submitted</Badge>;
-  if (status === "in_progress") return <Badge className="bg-primary/10 text-primary hover:bg-primary/10">In progress</Badge>;
+  if (status === "submitted")
+    return (
+      <Badge className="bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/10 dark:text-emerald-400">
+        Submitted
+      </Badge>
+    );
+  if (status === "in_progress")
+    return <Badge className="bg-primary/10 text-primary hover:bg-primary/10">In progress</Badge>;
   return <Badge variant="outline">Assigned</Badge>;
 }
 
@@ -204,7 +213,6 @@ function AssessmentsPage() {
     },
   });
 
-
   const { data: sessions } = useQuery({
     queryKey: ["assessment-sessions"],
     queryFn: async () => {
@@ -238,11 +246,15 @@ function AssessmentsPage() {
 
   const sessionCounts = useMemo(() => {
     const counts = new Map<string, number>();
-    for (const s of sessions ?? []) counts.set(s.assessment_id, (counts.get(s.assessment_id) ?? 0) + 1);
+    for (const s of sessions ?? [])
+      counts.set(s.assessment_id, (counts.get(s.assessment_id) ?? 0) + 1);
     return counts;
   }, [sessions]);
 
-  const subtopics = useMemo(() => [...new Set((items ?? []).map((i) => i.subtopic))].sort(), [items]);
+  const subtopics = useMemo(
+    () => [...new Set((items ?? []).map((i) => i.subtopic))].sort(),
+    [items],
+  );
 
   // Legacy pilot content (outside the active CBSE Class 10 scope) is never offered
   // in creation or assignment flows — it lives in a read-only archive tab.
@@ -254,7 +266,6 @@ function AssessmentsPage() {
     () => (assessments ?? []).filter((a) => isLegacyContent(a)),
     [assessments],
   );
-
 
   const filteredItems = useMemo(() => {
     return (items ?? []).filter((item) => {
@@ -290,7 +301,13 @@ function AssessmentsPage() {
 
   const assignMutation = useMutation({
     mutationFn: () =>
-      assignFn({ data: { assessmentId: assignFor!, learnerIds: [...pickedLearners], dueDate: dueDate || undefined } }),
+      assignFn({
+        data: {
+          assessmentId: assignFor!,
+          learnerIds: [...pickedLearners],
+          dueDate: dueDate || undefined,
+        },
+      }),
     onSuccess: (r) => {
       toast.success(`Assigned to ${r.assigned} learner${r.assigned === 1 ? "" : "s"}`);
       setAssignFor(null);
@@ -344,8 +361,8 @@ function AssessmentsPage() {
         <div>
           <h2 className="text-xl font-semibold tracking-tight">Assessments</h2>
           <p className="text-sm text-muted-foreground">
-            Create assessment → Save as draft → Review → Publish → Assign to learner. Active scope is
-            CBSE Class 10 Mathematics and Science.
+            Create assessment → Save as draft → Review → Publish → Assign to learner. Active scope
+            is CBSE Class 10 Mathematics and Science.
           </p>
         </div>
         <Dialog open={createOpen} onOpenChange={closeCreate}>
@@ -469,7 +486,9 @@ function AssessmentsPage() {
                           disabled={!bookId}
                         >
                           <SelectTrigger id="a-unit">
-                            <SelectValue placeholder={bookId ? "Select a unit" : "Select a book first"} />
+                            <SelectValue
+                              placeholder={bookId ? "Select a unit" : "Select a book first"}
+                            />
                           </SelectTrigger>
                           <SelectContent>
                             {(units ?? []).map((u) => (
@@ -530,8 +549,8 @@ function AssessmentsPage() {
                   </FormSection>
 
                   <InfoNote>
-                    New assessments always begin as <strong>Draft</strong>. Publishing happens on the
-                    review screen after every validation check passes.
+                    New assessments always begin as <strong>Draft</strong>. Publishing happens on
+                    the review screen after every validation check passes.
                   </InfoNote>
                 </ModalBody>
                 <ModalFooter>
@@ -570,7 +589,6 @@ function AssessmentsPage() {
           resetForm();
         }}
       />
-
 
       <Tabs defaultValue="assessments">
         <TabsList>
@@ -709,7 +727,6 @@ function AssessmentsPage() {
           </Card>
         </TabsContent>
 
-
         <TabsContent value="bank" className="mt-4 space-y-4">
           <div className="flex flex-wrap gap-2">
             <div className="relative min-w-56 flex-1">
@@ -771,7 +788,10 @@ function AssessmentsPage() {
                 ))}
                 {!itemsPending && filteredItems.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={4} className="py-8 text-center text-sm text-muted-foreground">
+                    <TableCell
+                      colSpan={4}
+                      className="py-8 text-center text-sm text-muted-foreground"
+                    >
                       No questions match your filters.
                     </TableCell>
                   </TableRow>
@@ -798,7 +818,11 @@ function AssessmentsPage() {
                 {(sessions ?? []).map((s) => (
                   <TableRow key={s.id}>
                     <TableCell>
-                      <Link to="/learners/$learnerId" params={{ learnerId: s.learner_id }} className="font-medium hover:underline">
+                      <Link
+                        to="/learners/$learnerId"
+                        params={{ learnerId: s.learner_id }}
+                        className="font-medium hover:underline"
+                      >
                         {s.learners?.full_name ?? "—"}
                       </Link>
                       <p className="text-xs text-muted-foreground">@{s.learners?.handle}</p>
@@ -816,7 +840,10 @@ function AssessmentsPage() {
                 ))}
                 {(sessions ?? []).length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={6} className="py-8 text-center text-sm text-muted-foreground">
+                    <TableCell
+                      colSpan={6}
+                      className="py-8 text-center text-sm text-muted-foreground"
+                    >
                       No sessions yet — assign an assessment to get started.
                     </TableCell>
                   </TableRow>
@@ -885,7 +912,6 @@ function AssessmentsPage() {
           </ModalFooter>
         </ModalShell>
       </Dialog>
-
     </div>
   );
 }

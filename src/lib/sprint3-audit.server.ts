@@ -91,7 +91,11 @@ export async function fetchSprint3Chain(supabase: Client) {
 
   const [{ data: rec }, { data: gap }] = await Promise.all([
     intervention.recommendation_id
-      ? supabase.from("recommendations").select("*").eq("id", intervention.recommendation_id).maybeSingle()
+      ? supabase
+          .from("recommendations")
+          .select("*")
+          .eq("id", intervention.recommendation_id)
+          .maybeSingle()
       : Promise.resolve({ data: null }),
     intervention.gap_id
       ? supabase.from("learning_gaps").select("*").eq("id", intervention.gap_id).maybeSingle()
@@ -152,8 +156,22 @@ export type DetectionProbe = {
   assessmentTitle: string;
   scorePct: number | null;
   subtopicStats: ReturnType<typeof computeSubtopicStats>;
-  firstRun: { detected: number; refreshed: number; reopened: number; addressed: number; recsCreated: number; recsUpdated: number };
-  secondRun: { detected: number; refreshed: number; reopened: number; addressed: number; recsCreated: number; recsUpdated: number };
+  firstRun: {
+    detected: number;
+    refreshed: number;
+    reopened: number;
+    addressed: number;
+    recsCreated: number;
+    recsUpdated: number;
+  };
+  secondRun: {
+    detected: number;
+    refreshed: number;
+    reopened: number;
+    addressed: number;
+    recsCreated: number;
+    recsUpdated: number;
+  };
   fingerprintBefore: string;
   fingerprintAfter: string;
   pass: boolean;
@@ -161,8 +179,14 @@ export type DetectionProbe = {
 
 async function engineFingerprint(admin: Client, orgId: string): Promise<string> {
   const [{ data: gaps }, { data: recs }] = await Promise.all([
-    admin.from("learning_gaps").select("learner_id, subtopic, gap_score_pct, severity, status").eq("org_id", orgId),
-    admin.from("recommendations").select("gap_id, rule_id, title, activity, status").eq("org_id", orgId),
+    admin
+      .from("learning_gaps")
+      .select("learner_id, subtopic, gap_score_pct, severity, status")
+      .eq("org_id", orgId),
+    admin
+      .from("recommendations")
+      .select("gap_id, rule_id, title, activity, status")
+      .eq("org_id", orgId),
   ]);
   const norm = (rows: Record<string, unknown>[] | null) =>
     (rows ?? [])
@@ -470,7 +494,11 @@ export async function runSprint3CrossOrgTests(
       targetId: null,
       pass: true,
       skipped: true,
-      dbResponse: { code: null, message: "Skipped — the other organization has no gap to target", rowsAffected: null },
+      dbResponse: {
+        code: null,
+        message: "Skipped — the other organization has no gap to target",
+        rowsAffected: null,
+      },
       postCheck: null,
     });
   } else {
@@ -507,7 +535,11 @@ export async function runSprint3CrossOrgTests(
       targetId: null,
       pass: true,
       skipped: true,
-      dbResponse: { code: null, message: "Skipped — no other-org gap to attach to", rowsAffected: null },
+      dbResponse: {
+        code: null,
+        message: "Skipped — no other-org gap to attach to",
+        rowsAffected: null,
+      },
       postCheck: null,
     });
   } else {
@@ -523,7 +555,11 @@ export async function runSprint3CrossOrgTests(
     });
     let postCheck: string | null = null;
     if (!ins.error) {
-      await admin.from("recommendations").delete().eq("gap_id", foreignGap.id).eq("rule_id", "XORG-PROBE");
+      await admin
+        .from("recommendations")
+        .delete()
+        .eq("gap_id", foreignGap.id)
+        .eq("rule_id", "XORG-PROBE");
       postCheck = "Inserted row was deleted via service role during cleanup.";
     }
     tests.push({
@@ -557,7 +593,11 @@ export async function runSprint3CrossOrgTests(
       targetId: null,
       pass: true,
       skipped: true,
-      dbResponse: { code: null, message: "Skipped — the other organization has no intervention to target", rowsAffected: null },
+      dbResponse: {
+        code: null,
+        message: "Skipped — the other organization has no intervention to target",
+        rowsAffected: null,
+      },
       postCheck: null,
     });
   } else {

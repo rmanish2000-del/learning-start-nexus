@@ -147,7 +147,11 @@ const SIMILARITY: OutcomeAuthor = {
       2,
       "In triangles ABC and DEF, AB/DE = BC/EF and angle B equals angle E. The triangles are similar by",
       "the SAS similarity criterion",
-      ["the AA similarity criterion", "the SSS similarity criterion", "the RHS congruence criterion"],
+      [
+        "the AA similarity criterion",
+        "the SSS similarity criterion",
+        "the RHS congruence criterion",
+      ],
       "Two pairs of sides are proportional and the included angles are equal, which is exactly SAS similarity.",
       3,
     ),
@@ -494,7 +498,12 @@ const COORDINATE: OutcomeAuthor = {
       `4 ${surd(2)} units`,
       "The distance is root((-5 + 1)^2 + (7 - 3)^2) = root 32 = 4 root 2 units, about 5.66 units.",
       2,
-      { fn: "distance", args: [-5, 7, -1, 3], expect: round(dist(-5, 7, -1, 3), 3), tolerance: 0.01 },
+      {
+        fn: "distance",
+        args: [-5, 7, -1, 3],
+        expect: round(dist(-5, 7, -1, 3), 3),
+        tolerance: 0.01,
+      },
     ),
     sa(
       "MAT-CG-R-DIST-ORIGIN",
@@ -625,7 +634,12 @@ const COORDINATE: OutcomeAuthor = {
       `Centre (1, 2) and radius 3 ${surd(2)} units`,
       "The centre is the midpoint (1, 2). The diameter is root(36 + 36) = 6 root 2, so the radius is 3 root 2, about 4.24 units.",
       4,
-      { fn: "distance", args: [4, -1, -2, 5], expect: round(dist(4, -1, -2, 5), 3), tolerance: 0.01 },
+      {
+        fn: "distance",
+        args: [4, -1, -2, 5],
+        expect: round(dist(4, -1, -2, 5), 3),
+        tolerance: 0.01,
+      },
     ),
     cs(
       "MAT-CG-R-WAREHOUSE-CASE",

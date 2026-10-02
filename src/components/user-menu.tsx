@@ -33,8 +33,11 @@ export function UserMenu() {
   const queryClient = useQueryClient();
   const { user, role, profile } = authRoute.useRouteContext();
 
-  const displayName = profile?.full_name || (user.user_metadata?.["full_name"] as string) || "Account";
-  const email = user.email?.endsWith(`@${STUDENT_EMAIL_DOMAIN}`) ? "Student account" : (user.email ?? "");
+  const displayName =
+    profile?.full_name || (user.user_metadata?.["full_name"] as string) || "Account";
+  const email = user.email?.endsWith(`@${STUDENT_EMAIL_DOMAIN}`)
+    ? "Student account"
+    : (user.email ?? "");
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
@@ -51,7 +54,9 @@ export function UserMenu() {
           <Avatar className="h-8 w-8">
             <AvatarFallback className="text-xs">{initials(displayName) || "?"}</AvatarFallback>
           </Avatar>
-          <span className="hidden max-w-32 truncate text-sm font-medium md:inline">{displayName}</span>
+          <span className="hidden max-w-32 truncate text-sm font-medium md:inline">
+            {displayName}
+          </span>
           <ChevronsUpDown className="hidden h-3.5 w-3.5 text-muted-foreground md:inline" />
         </Button>
       </DropdownMenuTrigger>

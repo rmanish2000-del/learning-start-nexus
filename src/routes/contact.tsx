@@ -54,7 +54,6 @@ export const Route = createFileRoute("/contact")({
       ],
     }),
 
-
   component: ContactPage,
 });
 
@@ -139,7 +138,10 @@ function ContactPage() {
             </span>
             <div className="min-w-0 flex-1">
               <h2 className="text-sm font-semibold">{c.title}</h2>
-              <a href={c.href} className="block break-words text-sm font-medium text-primary hover:underline">
+              <a
+                href={c.href}
+                className="block break-words text-sm font-medium text-primary hover:underline"
+              >
                 {c.value}
               </a>
               <p className="mt-0.5 text-xs text-muted-foreground">{c.note}</p>
@@ -169,7 +171,10 @@ function ContactPage() {
         <p className="text-muted-foreground">
           To update or withdraw consent for a student's AI tutor access, contact the centre directly
           or email{" "}
-          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+          <a
+            href="mailto:support@eduos.global"
+            className="font-medium text-primary hover:underline"
+          >
             support@eduos.global
           </a>{" "}
           — staff will record the change as a new consent entry so the history stays complete.

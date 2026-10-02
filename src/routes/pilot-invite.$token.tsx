@@ -11,13 +11,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { lovable } from "@/integrations/lovable";
 import { supabase } from "@/integrations/supabase/client";
@@ -115,8 +109,8 @@ function PilotInvitePage() {
             <Gift className="h-5 w-5 text-primary" /> Your EduOS pilot invitation
           </CardTitle>
           <CardDescription>
-            Free pilot access to the full journey — diagnostic, report, learning gaps, Study Plan, AI
-            Tutor and reassessment. No payment, ever.
+            Free pilot access to the full journey — diagnostic, report, learning gaps, Study Plan,
+            AI Tutor and reassessment. No payment, ever.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
@@ -133,8 +127,8 @@ function PilotInvitePage() {
                   Invited account: <span className="font-medium">{preview.data?.maskedEmail}</span>
                 </p>
                 <p className="text-muted-foreground">
-                  {preview.data?.subject ?? "Mathematics and Science"} ·{" "}
-                  {preview.data?.days} days of free access
+                  {preview.data?.subject ?? "Mathematics and Science"} · {preview.data?.days} days
+                  of free access
                 </p>
               </div>
 

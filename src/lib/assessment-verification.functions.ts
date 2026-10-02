@@ -377,10 +377,7 @@ export const getAssessmentVerification = createServerFn({ method: "GET" })
           });
           continue;
         }
-        const { data: leaked } = await supabase
-          .from(target.table)
-          .select("id")
-          .eq("id", foreignId);
+        const { data: leaked } = await supabase.from(target.table).select("id").eq("id", foreignId);
         const leakedCount = (leaked ?? []).length;
         probes.push({
           name: target.name,
@@ -430,7 +427,10 @@ export const getAssessmentVerification = createServerFn({ method: "GET" })
         status: "draft",
       });
       if (!assessmentWrite.error) {
-        await supabaseAdmin.from("assessments").delete().eq("title", "RLS probe — should never persist");
+        await supabaseAdmin
+          .from("assessments")
+          .delete()
+          .eq("title", "RLS probe — should never persist");
       }
       probes.push({
         name: "Student creates an assessment",

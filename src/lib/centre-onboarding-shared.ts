@@ -26,7 +26,8 @@ export const approveCentreLeadSchema = z.object({
   timezone: z.string().trim().max(60).optional(),
 });
 
-export const CSV_TEMPLATE = "full_name,handle,pin,grade,subject\nAarav Sharma,aarav10,123456,10,Mathematics\n";
+export const CSV_TEMPLATE =
+  "full_name,handle,pin,grade,subject\nAarav Sharma,aarav10,123456,10,Mathematics\n";
 
 export type ParsedImport = {
   rows: LearnerImportRow[];

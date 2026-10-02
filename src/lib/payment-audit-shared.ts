@@ -157,10 +157,13 @@ export function auditEntitlements(
       const grantedOnce = mine.length === 1;
 
       const issues: string[] = [];
-      if (!paymentExists) issues.push("No gateway payment reference recorded against a paid order.");
-      if (!orderExists) issues.push("No gateway order id recorded — order was never created at the gateway.");
+      if (!paymentExists)
+        issues.push("No gateway payment reference recorded against a paid order.");
+      if (!orderExists)
+        issues.push("No gateway order id recorded — order was never created at the gateway.");
       if (!entitlementExists) issues.push(`Paid order has no ${kind} entitlement.`);
-      if (mine.length > 1) issues.push(`Entitlement granted ${mine.length} times (must be exactly once).`);
+      if (mine.length > 1)
+        issues.push(`Entitlement granted ${mine.length} times (must be exactly once).`);
 
       let creditApplied: boolean | null = null;
       if (kind === "board_success_plan" && order.parentOrderId) {
@@ -199,14 +202,54 @@ export type AcceptanceScenario = {
 
 /** The ten acceptance scenarios the automated suite must cover. */
 export const ACCEPTANCE_SCENARIOS: AcceptanceScenario[] = [
-  { id: "A", title: "New user purchase", expectation: "Order is created as pending with a gateway order id and no entitlement." },
-  { id: "B", title: "Successful payment", expectation: "Verified signature captures the order and grants exactly one entitlement." },
-  { id: "C", title: "Failed payment", expectation: "Order is marked failed with the gateway reason; no entitlement." },
-  { id: "D", title: "Cancelled payment", expectation: "Abandoned checkout is recorded as failed and can be retried." },
-  { id: "E", title: "Duplicate webhook", expectation: "Replayed payment.captured grants nothing twice." },
-  { id: "F", title: "Delayed webhook", expectation: "Webhook arriving after browser verification is a no-op." },
-  { id: "G", title: "Refresh during checkout", expectation: "Re-opening checkout reuses the same gateway order, never a second one." },
-  { id: "H", title: "Logout and login after payment", expectation: "Access token still resolves the paid order and its entitlement." },
-  { id: "I", title: "Resume diagnostic", expectation: "Paid order keeps its session; capture never resets progress." },
-  { id: "J", title: "Upgrade with ₹199 credit", expectation: "Plan grant issued and the diagnostic credit is consumed once." },
+  {
+    id: "A",
+    title: "New user purchase",
+    expectation: "Order is created as pending with a gateway order id and no entitlement.",
+  },
+  {
+    id: "B",
+    title: "Successful payment",
+    expectation: "Verified signature captures the order and grants exactly one entitlement.",
+  },
+  {
+    id: "C",
+    title: "Failed payment",
+    expectation: "Order is marked failed with the gateway reason; no entitlement.",
+  },
+  {
+    id: "D",
+    title: "Cancelled payment",
+    expectation: "Abandoned checkout is recorded as failed and can be retried.",
+  },
+  {
+    id: "E",
+    title: "Duplicate webhook",
+    expectation: "Replayed payment.captured grants nothing twice.",
+  },
+  {
+    id: "F",
+    title: "Delayed webhook",
+    expectation: "Webhook arriving after browser verification is a no-op.",
+  },
+  {
+    id: "G",
+    title: "Refresh during checkout",
+    expectation: "Re-opening checkout reuses the same gateway order, never a second one.",
+  },
+  {
+    id: "H",
+    title: "Logout and login after payment",
+    expectation: "Access token still resolves the paid order and its entitlement.",
+  },
+  {
+    id: "I",
+    title: "Resume diagnostic",
+    expectation: "Paid order keeps its session; capture never resets progress.",
+  },
+  {
+    id: "J",
+    title: "Upgrade with ₹199 credit",
+    expectation: "Plan grant issued and the diagnostic credit is consumed once.",
+  },
 ];

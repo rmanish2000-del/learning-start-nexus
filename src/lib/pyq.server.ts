@@ -34,7 +34,12 @@ import {
 
 type Client = SupabaseClient<Database>;
 
-type LearnerRow = { id: string; org_id: string | null; subject: string | null; grade: number | string | null };
+type LearnerRow = {
+  id: string;
+  org_id: string | null;
+  subject: string | null;
+  grade: number | string | null;
+};
 
 export async function resolvePyqLearner(supabase: Client, userId: string): Promise<LearnerRow> {
   const { data, error } = await supabase
@@ -158,7 +163,9 @@ export async function loadPyqWorkspace(
     loadApproved(learner.org_id!, subject),
     supabase
       .from("pyq_practice_sessions")
-      .select("id, subject, chapter, mode, status, score_pct, correct_count, total_count, started_at, submitted_at")
+      .select(
+        "id, subject, chapter, mode, status, score_pct, correct_count, total_count, started_at, submitted_at",
+      )
       .eq("learner_id", learner.id)
       .order("created_at", { ascending: false })
       .limit(10),

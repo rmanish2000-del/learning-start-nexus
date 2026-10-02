@@ -86,17 +86,33 @@ export function validateSourceRegistry(manifest: SourceManifest): Issue[] {
   const issues: Issue[] = [];
   const byId = new Map(manifest.sources.map((s) => [s.id, s]));
   if (byId.size !== manifest.sources.length) {
-    issues.push({ level: "error", code: "DUPLICATE_SOURCE_ID", detail: "source ids must be unique" });
+    issues.push({
+      level: "error",
+      code: "DUPLICATE_SOURCE_ID",
+      detail: "source ids must be unique",
+    });
   }
   for (const s of [...manifest.sources].sort((a, b) => a.id.localeCompare(b.id))) {
     if (!SOURCE_AUTHORITIES.includes(s.authority)) {
-      issues.push({ level: "error", code: "NON_OFFICIAL_AUTHORITY", detail: `${s.id}: ${s.authority}` });
+      issues.push({
+        level: "error",
+        code: "NON_OFFICIAL_AUTHORITY",
+        detail: `${s.id}: ${s.authority}`,
+      });
     }
     if (s.status === "final" && s.applicability === "applicable" && !s.checksum) {
-      issues.push({ level: "error", code: "CHECKSUM_MISSING", detail: `${s.id} is applicable+final without a checksum` });
+      issues.push({
+        level: "error",
+        code: "CHECKSUM_MISSING",
+        detail: `${s.id} is applicable+final without a checksum`,
+      });
     }
     if (s.checksum && s.checksumAlgorithm !== "sha256") {
-      issues.push({ level: "error", code: "CHECKSUM_ALGORITHM", detail: `${s.id}: only sha256 is accepted` });
+      issues.push({
+        level: "error",
+        code: "CHECKSUM_ALGORITHM",
+        detail: `${s.id}: only sha256 is accepted`,
+      });
     }
     if (s.checksum && !/^[0-9a-f]{64}$/.test(s.checksum)) {
       issues.push({ level: "error", code: "CHECKSUM_MALFORMED", detail: `${s.id}` });
@@ -105,7 +121,11 @@ export function validateSourceRegistry(manifest: SourceManifest): Issue[] {
       issues.push({ level: "error", code: "RETRIEVAL_TIMESTAMP_MISSING", detail: `${s.id}` });
     }
     if (s.status === "draft" && s.applicability === "applicable") {
-      issues.push({ level: "error", code: "DRAFT_FINAL_CONFUSION", detail: `${s.id} is draft but marked applicable` });
+      issues.push({
+        level: "error",
+        code: "DRAFT_FINAL_CONFUSION",
+        detail: `${s.id} is draft but marked applicable`,
+      });
     }
     if (s.status === "recalled" && s.applicability !== "not_applicable") {
       issues.push({ level: "error", code: "RECALLED_STILL_APPLICABLE", detail: `${s.id}` });
@@ -114,11 +134,19 @@ export function validateSourceRegistry(manifest: SourceManifest): Issue[] {
       issues.push({ level: "warning", code: "SOURCE_PENDING_CONFIRMATION", detail: `${s.id}` });
     }
     if (s.supersedesId && !byId.has(s.supersedesId)) {
-      issues.push({ level: "error", code: "DANGLING_SUPERSEDES", detail: `${s.id} → ${s.supersedesId}` });
+      issues.push({
+        level: "error",
+        code: "DANGLING_SUPERSEDES",
+        detail: `${s.id} → ${s.supersedesId}`,
+      });
     }
     if (s.supersededById) {
       if (!byId.has(s.supersededById)) {
-        issues.push({ level: "error", code: "DANGLING_SUPERSEDED_BY", detail: `${s.id} → ${s.supersededById}` });
+        issues.push({
+          level: "error",
+          code: "DANGLING_SUPERSEDED_BY",
+          detail: `${s.id} → ${s.supersededById}`,
+        });
       }
       if (s.status !== "superseded") {
         issues.push({ level: "error", code: "SUPERSESSION_STATUS_MISMATCH", detail: `${s.id}` });
@@ -132,7 +160,12 @@ export function validateSourceRegistry(manifest: SourceManifest): Issue[] {
 }
 
 /** Sources that may be cited as curriculum authority for a subject-year. */
-export function applicableSources(manifest: SourceManifest, classLevel: number, subject: string, session: string) {
+export function applicableSources(
+  manifest: SourceManifest,
+  classLevel: number,
+  subject: string,
+  session: string,
+) {
   return manifest.sources
     .filter(
       (s) =>
@@ -202,25 +235,45 @@ export function validateVersionSet(versions: CurriculumVersion[]): Issue[] {
   for (const [k, list] of [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
     const active = list.filter((v) => v.state === "ACTIVE");
     if (active.length > 1) {
-      issues.push({ level: "error", code: "MULTIPLE_ACTIVE_VERSIONS", detail: `${k}: ${active.length} active` });
+      issues.push({
+        level: "error",
+        code: "MULTIPLE_ACTIVE_VERSIONS",
+        detail: `${k}: ${active.length} active`,
+      });
     }
     const seen = new Set<string>();
     for (const v of list) {
       const id = `${v.academicSession}#${v.curriculumVersion}`;
-      if (seen.has(id)) issues.push({ level: "error", code: "DUPLICATE_VERSION", detail: `${k}: ${id}` });
+      if (seen.has(id))
+        issues.push({ level: "error", code: "DUPLICATE_VERSION", detail: `${k}: ${id}` });
       seen.add(id);
       if (v.state === "ACTIVE" && !v.activatedAt) {
-        issues.push({ level: "error", code: "ACTIVATION_TIMESTAMP_MISSING", detail: `${k}: ${id}` });
+        issues.push({
+          level: "error",
+          code: "ACTIVATION_TIMESTAMP_MISSING",
+          detail: `${k}: ${id}`,
+        });
       }
       if (v.state === "SUPERSEDED" && v.supersededByVersion == null) {
-        issues.push({ level: "error", code: "SUPERSESSION_REFERENCE_MISSING", detail: `${k}: ${id}` });
+        issues.push({
+          level: "error",
+          code: "SUPERSESSION_REFERENCE_MISSING",
+          detail: `${k}: ${id}`,
+        });
       }
     }
     // Historical preservation: an older session may never be deleted, and a
     // superseding version must point back at what it replaced.
     for (const v of list) {
-      if (v.supersedesVersion != null && !list.some((o) => o.curriculumVersion === v.supersedesVersion)) {
-        issues.push({ level: "error", code: "HISTORY_LOST", detail: `${k}: v${v.curriculumVersion} supersedes a missing version` });
+      if (
+        v.supersedesVersion != null &&
+        !list.some((o) => o.curriculumVersion === v.supersedesVersion)
+      ) {
+        issues.push({
+          level: "error",
+          code: "HISTORY_LOST",
+          detail: `${k}: v${v.curriculumVersion} supersedes a missing version`,
+        });
       }
     }
   }
@@ -269,17 +322,23 @@ export type CurriculumSnapshot = z.infer<typeof curriculumSnapshotSchema>;
 export function validateSnapshot(s: CurriculumSnapshot): Issue[] {
   const issues: Issue[] = [];
   const byId = new Map(s.nodes.map((n) => [n.id, n]));
-  if (byId.size !== s.nodes.length) issues.push({ level: "error", code: "DUPLICATE_NODE_ID", detail: s.subject });
+  if (byId.size !== s.nodes.length)
+    issues.push({ level: "error", code: "DUPLICATE_NODE_ID", detail: s.subject });
   for (const n of [...s.nodes].sort((a, b) => a.id.localeCompare(b.id))) {
     if (n.parentId && !byId.has(n.parentId)) {
       issues.push({ level: "error", code: "ORPHAN_NODE", detail: `${n.id} → ${n.parentId}` });
     }
-    if (n.kind === "unit" && n.parentId) issues.push({ level: "error", code: "UNIT_HAS_PARENT", detail: n.id });
+    if (n.kind === "unit" && n.parentId)
+      issues.push({ level: "error", code: "UNIT_HAS_PARENT", detail: n.id });
     if (n.assessable && n.enrichment) {
       issues.push({ level: "error", code: "ASSESSABLE_AND_ENRICHMENT", detail: n.id });
     }
     if (n.academicSession !== s.academicSession) {
-      issues.push({ level: "error", code: "ACADEMIC_YEAR_LEAK", detail: `${n.id}: ${n.academicSession}` });
+      issues.push({
+        level: "error",
+        code: "ACADEMIC_YEAR_LEAK",
+        detail: `${n.id}: ${n.academicSession}`,
+      });
     }
     if (n.active && !n.assessable && !n.enrichment) {
       issues.push({ level: "warning", code: "ACTIVE_UNCLASSIFIED_NODE", detail: n.id });
@@ -325,7 +384,8 @@ export type ChangeRecord = {
  */
 export function diffCurriculum(prev: CurriculumSnapshot, next: CurriculumSnapshot): ChangeRecord[] {
   const out: ChangeRecord[] = [];
-  const key = (n: SnapshotNode) => n.sourceExternalRef ?? `~${n.kind}:${n.officialTitle.trim().toLowerCase()}`;
+  const key = (n: SnapshotNode) =>
+    n.sourceExternalRef ?? `~${n.kind}:${n.officialTitle.trim().toLowerCase()}`;
   const prevByKey = new Map(prev.nodes.map((n) => [key(n), n]));
   const nextByKey = new Map(next.nodes.map((n) => [key(n), n]));
 
@@ -366,26 +426,72 @@ export function diffCurriculum(prev: CurriculumSnapshot, next: CurriculumSnapsho
       changes.push("SOURCE_CORRECTED");
     }
     if (changes.length === 0) {
-      out.push({ nodeId: n.id, kind: n.kind, previousId: p.id, classification: "UNCHANGED", evidence: "identical source ref, title, parent and scope", humanReviewRequired: false });
+      out.push({
+        nodeId: n.id,
+        kind: n.kind,
+        previousId: p.id,
+        classification: "UNCHANGED",
+        evidence: "identical source ref, title, parent and scope",
+        humanReviewRequired: false,
+      });
     } else if (changes.length === 1) {
-      out.push({ nodeId: n.id, kind: n.kind, previousId: p.id, classification: changes[0]!, evidence: changes.join("+"), humanReviewRequired: changes[0] !== "SOURCE_CORRECTED" });
+      out.push({
+        nodeId: n.id,
+        kind: n.kind,
+        previousId: p.id,
+        classification: changes[0]!,
+        evidence: changes.join("+"),
+        humanReviewRequired: changes[0] !== "SOURCE_CORRECTED",
+      });
     } else {
-      out.push({ nodeId: n.id, kind: n.kind, previousId: p.id, classification: "AMBIGUOUS", evidence: `multiple simultaneous changes: ${changes.join("+")}`, humanReviewRequired: true });
+      out.push({
+        nodeId: n.id,
+        kind: n.kind,
+        previousId: p.id,
+        classification: "AMBIGUOUS",
+        evidence: `multiple simultaneous changes: ${changes.join("+")}`,
+        humanReviewRequired: true,
+      });
     }
   }
 
   for (const p of [...prev.nodes].sort((a, b) => a.id.localeCompare(b.id))) {
     if (nextByKey.has(key(p))) continue;
-    const mergedInto = next.nodes.filter((n) => n.supersedesNodeId === p.sourceExternalRef || n.supersedesNodeId === p.id);
+    const mergedInto = next.nodes.filter(
+      (n) => n.supersedesNodeId === p.sourceExternalRef || n.supersedesNodeId === p.id,
+    );
     if (mergedInto.length === 1) {
-      out.push({ nodeId: mergedInto[0]!.id, kind: p.kind, previousId: p.id, classification: "MERGED", evidence: `${p.id} folded into ${mergedInto[0]!.id}`, humanReviewRequired: true });
+      out.push({
+        nodeId: mergedInto[0]!.id,
+        kind: p.kind,
+        previousId: p.id,
+        classification: "MERGED",
+        evidence: `${p.id} folded into ${mergedInto[0]!.id}`,
+        humanReviewRequired: true,
+      });
     } else if (mergedInto.length > 1) {
-      out.push({ nodeId: mergedInto.map((n) => n.id).join("+"), kind: p.kind, previousId: p.id, classification: "SPLIT", evidence: `${p.id} split into ${mergedInto.length} nodes`, humanReviewRequired: true });
+      out.push({
+        nodeId: mergedInto.map((n) => n.id).join("+"),
+        kind: p.kind,
+        previousId: p.id,
+        classification: "SPLIT",
+        evidence: `${p.id} split into ${mergedInto.length} nodes`,
+        humanReviewRequired: true,
+      });
     } else {
-      out.push({ nodeId: p.id, kind: p.kind, previousId: p.id, classification: "REMOVED", evidence: "no node in the proposed version carries this source reference", humanReviewRequired: true });
+      out.push({
+        nodeId: p.id,
+        kind: p.kind,
+        previousId: p.id,
+        classification: "REMOVED",
+        evidence: "no node in the proposed version carries this source reference",
+        humanReviewRequired: true,
+      });
     }
   }
-  return out.sort((a, b) => a.nodeId.localeCompare(b.nodeId) || a.classification.localeCompare(b.classification));
+  return out.sort(
+    (a, b) => a.nodeId.localeCompare(b.nodeId) || a.classification.localeCompare(b.classification),
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -426,28 +532,92 @@ export const IMPACT_SURFACES = [
 ] as const;
 export type ImpactSurface = (typeof IMPACT_SURFACES)[number];
 
-export type ImpactRecord = { change: ChangeRecord; statuses: ImpactStatus[]; surfaces: ImpactSurface[] };
+export type ImpactRecord = {
+  change: ChangeRecord;
+  statuses: ImpactStatus[];
+  surfaces: ImpactSurface[];
+};
 
-const IMPACT_MAP: Record<ChangeClassification, { statuses: ImpactStatus[]; surfaces: ImpactSurface[] }> = {
+const IMPACT_MAP: Record<
+  ChangeClassification,
+  { statuses: ImpactStatus[]; surfaces: ImpactSurface[] }
+> = {
   UNCHANGED: { statuses: ["NO_ACTION"], surfaces: [] },
   ADDED: {
-    statuses: ["NEW_CONTENT_REQUIRED", "OUTCOME_UPDATE_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED", "REASSESSMENT_RESERVE_GAP", "ACTIVATION_BLOCKED"],
-    surfaces: ["outcomes", "atoms", "questions", "diagnostic_blueprints", "reassessment_reserves", "ai_tutor_scope"],
+    statuses: [
+      "NEW_CONTENT_REQUIRED",
+      "OUTCOME_UPDATE_REQUIRED",
+      "SUBJECT_EXPERT_REVIEW_REQUIRED",
+      "REASSESSMENT_RESERVE_GAP",
+      "ACTIVATION_BLOCKED",
+    ],
+    surfaces: [
+      "outcomes",
+      "atoms",
+      "questions",
+      "diagnostic_blueprints",
+      "reassessment_reserves",
+      "ai_tutor_scope",
+    ],
   },
   REMOVED: {
     statuses: ["RETIRE_CONTENT", "QUESTION_REVIEW_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"],
-    surfaces: ["outcomes", "atoms", "questions", "interventions", "ai_tutor_scope", "diagnostic_blueprints", "reports"],
+    surfaces: [
+      "outcomes",
+      "atoms",
+      "questions",
+      "interventions",
+      "ai_tutor_scope",
+      "diagnostic_blueprints",
+      "reports",
+    ],
   },
-  RENAMED: { statuses: ["METADATA_UPDATE", "SUBJECT_EXPERT_REVIEW_REQUIRED"], surfaces: ["outcomes", "reports", "source_provenance"] },
-  MOVED: { statuses: ["REMAP_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"], surfaces: ["outcomes", "atoms", "diagnostic_blueprints", "reports"] },
-  MERGED: { statuses: ["REMAP_REQUIRED", "QUESTION_REVIEW_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"], surfaces: ["outcomes", "atoms", "questions", "interventions"] },
-  SPLIT: { statuses: ["REMAP_REQUIRED", "NEW_CONTENT_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED", "REASSESSMENT_RESERVE_GAP"], surfaces: ["outcomes", "atoms", "questions", "reassessment_reserves"] },
-  SCOPE_EXPANDED: { statuses: ["NEW_CONTENT_REQUIRED", "QUESTION_REVIEW_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"], surfaces: ["outcomes", "questions", "diagnostic_blueprints", "ai_tutor_scope"] },
-  SCOPE_REDUCED: { statuses: ["RETIRE_CONTENT", "QUESTION_REVIEW_REQUIRED"], surfaces: ["questions", "diagnostic_blueprints", "ai_tutor_scope"] },
-  ASSESSMENT_CHANGED: { statuses: ["QUESTION_REVIEW_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"], surfaces: ["questions", "answers", "explanations", "diagnostic_blueprints"] },
+  RENAMED: {
+    statuses: ["METADATA_UPDATE", "SUBJECT_EXPERT_REVIEW_REQUIRED"],
+    surfaces: ["outcomes", "reports", "source_provenance"],
+  },
+  MOVED: {
+    statuses: ["REMAP_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"],
+    surfaces: ["outcomes", "atoms", "diagnostic_blueprints", "reports"],
+  },
+  MERGED: {
+    statuses: ["REMAP_REQUIRED", "QUESTION_REVIEW_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"],
+    surfaces: ["outcomes", "atoms", "questions", "interventions"],
+  },
+  SPLIT: {
+    statuses: [
+      "REMAP_REQUIRED",
+      "NEW_CONTENT_REQUIRED",
+      "SUBJECT_EXPERT_REVIEW_REQUIRED",
+      "REASSESSMENT_RESERVE_GAP",
+    ],
+    surfaces: ["outcomes", "atoms", "questions", "reassessment_reserves"],
+  },
+  SCOPE_EXPANDED: {
+    statuses: [
+      "NEW_CONTENT_REQUIRED",
+      "QUESTION_REVIEW_REQUIRED",
+      "SUBJECT_EXPERT_REVIEW_REQUIRED",
+    ],
+    surfaces: ["outcomes", "questions", "diagnostic_blueprints", "ai_tutor_scope"],
+  },
+  SCOPE_REDUCED: {
+    statuses: ["RETIRE_CONTENT", "QUESTION_REVIEW_REQUIRED"],
+    surfaces: ["questions", "diagnostic_blueprints", "ai_tutor_scope"],
+  },
+  ASSESSMENT_CHANGED: {
+    statuses: ["QUESTION_REVIEW_REQUIRED", "SUBJECT_EXPERT_REVIEW_REQUIRED"],
+    surfaces: ["questions", "answers", "explanations", "diagnostic_blueprints"],
+  },
   SOURCE_CORRECTED: { statuses: ["METADATA_UPDATE"], surfaces: ["source_provenance"] },
-  AMBIGUOUS: { statuses: ["SUBJECT_EXPERT_REVIEW_REQUIRED", "ACTIVATION_BLOCKED"], surfaces: ["outcomes", "atoms", "questions"] },
-  HUMAN_REVIEW_REQUIRED: { statuses: ["SUBJECT_EXPERT_REVIEW_REQUIRED", "ACTIVATION_BLOCKED"], surfaces: ["outcomes", "questions"] },
+  AMBIGUOUS: {
+    statuses: ["SUBJECT_EXPERT_REVIEW_REQUIRED", "ACTIVATION_BLOCKED"],
+    surfaces: ["outcomes", "atoms", "questions"],
+  },
+  HUMAN_REVIEW_REQUIRED: {
+    statuses: ["SUBJECT_EXPERT_REVIEW_REQUIRED", "ACTIVATION_BLOCKED"],
+    surfaces: ["outcomes", "questions"],
+  },
 };
 
 /** Historical learner evidence is never re-labelled: it is read-only here. */
@@ -490,15 +660,26 @@ export type QuestionProvenance = {
 
 export function questionProvenanceIssues(q: QuestionProvenance): Issue[] {
   const issues: Issue[] = [];
-  if (!q.academicSession) issues.push({ level: "error", code: "QUESTION_YEAR_MISSING", detail: q.questionId });
-  if (!q.outcomeId) issues.push({ level: "error", code: "QUESTION_OUTCOME_MISSING", detail: q.questionId });
-  if (!q.atomId) issues.push({ level: "warning", code: "QUESTION_ATOM_MISSING", detail: q.questionId });
-  if (!q.sourceRef) issues.push({ level: "warning", code: "QUESTION_SOURCE_PROVENANCE_MISSING", detail: q.questionId });
+  if (!q.academicSession)
+    issues.push({ level: "error", code: "QUESTION_YEAR_MISSING", detail: q.questionId });
+  if (!q.outcomeId)
+    issues.push({ level: "error", code: "QUESTION_OUTCOME_MISSING", detail: q.questionId });
+  if (!q.atomId)
+    issues.push({ level: "warning", code: "QUESTION_ATOM_MISSING", detail: q.questionId });
+  if (!q.sourceRef)
+    issues.push({
+      level: "warning",
+      code: "QUESTION_SOURCE_PROVENANCE_MISSING",
+      detail: q.questionId,
+    });
   return issues;
 }
 
 /** A question never rolls into a later year automatically. */
-export function classifyQuestionRollover(q: QuestionProvenance, nodeChange: ChangeClassification | undefined): QuestionRollover {
+export function classifyQuestionRollover(
+  q: QuestionProvenance,
+  nodeChange: ChangeClassification | undefined,
+): QuestionRollover {
   if (!nodeChange) return "REVIEW_REQUIRED";
   switch (nodeChange) {
     case "UNCHANGED":
@@ -538,13 +719,25 @@ export const GATE_NAMES = [
 ] as const;
 export type GateName = (typeof GATE_NAMES)[number];
 
-export type GateResult = { gate: GateName; pass: boolean; checks: { id: string; pass: boolean; detail: string }[] };
+export type GateResult = {
+  gate: GateName;
+  pass: boolean;
+  checks: { id: string; pass: boolean; detail: string }[];
+};
 
-export type VolumeGates = { diagnosticTarget: number; diagnosticMinimum: number; minQuestionsPerOutcome: number };
+export type VolumeGates = {
+  diagnosticTarget: number;
+  diagnosticMinimum: number;
+  minQuestionsPerOutcome: number;
+};
 
 /** Depth law: a unit must sustain one diagnostic AND one fresh reassessment. */
 export function requiredVerifiedPerUnit(gates: VolumeGates, outcomes: number): number {
-  return Math.max(2 * gates.diagnosticTarget, 2 * outcomes * gates.minQuestionsPerOutcome, 2 * gates.diagnosticMinimum);
+  return Math.max(
+    2 * gates.diagnosticTarget,
+    2 * outcomes * gates.minQuestionsPerOutcome,
+    2 * gates.diagnosticMinimum,
+  );
 }
 
 export type UnitCoverage = {
@@ -578,20 +771,51 @@ export type GateInput = {
   duplicateOfficialMappings: string[];
   unapprovedSourceBooks: string[];
   learningLoop: Record<string, boolean>;
-  review: { reviewerName: string | null; reviewedAt: string | null; decision: string | null; unresolvedAmbiguities: number };
-  commercial: { activeAcademicSession: string; purchasable: boolean; approvedVersion: boolean; selectorsCorrect: boolean; entitlementsScoped: boolean; pricingApproved: boolean };
+  review: {
+    reviewerName: string | null;
+    reviewedAt: string | null;
+    decision: string | null;
+    unresolvedAmbiguities: number;
+  };
+  commercial: {
+    activeAcademicSession: string;
+    purchasable: boolean;
+    approvedVersion: boolean;
+    selectorsCorrect: boolean;
+    entitlementsScoped: boolean;
+    pricingApproved: boolean;
+  };
 };
 
 export function runComplianceGates(input: GateInput): GateResult[] {
   const results: GateResult[] = [];
-  const missingTypes = input.requiredSourceTypes.filter((t) => !input.presentSourceTypes.includes(t));
+  const missingTypes = input.requiredSourceTypes.filter(
+    (t) => !input.presentSourceTypes.includes(t),
+  );
   results.push({
     gate: "SOURCE_GATE",
-    pass: input.sourceIssues.filter((i) => i.level === "error").length === 0 && input.applicableSourceCount > 0 && missingTypes.length === 0,
+    pass:
+      input.sourceIssues.filter((i) => i.level === "error").length === 0 &&
+      input.applicableSourceCount > 0 &&
+      missingTypes.length === 0,
     checks: [
-      { id: "sources_recorded", pass: input.applicableSourceCount > 0, detail: `${input.applicableSourceCount} applicable source(s)` },
-      { id: "required_types_present", pass: missingTypes.length === 0, detail: missingTypes.length ? `missing: ${missingTypes.join(", ")}` : "all required source types present" },
-      { id: "registry_valid", pass: input.sourceIssues.filter((i) => i.level === "error").length === 0, detail: `${input.sourceIssues.filter((i) => i.level === "error").length} registry error(s)` },
+      {
+        id: "sources_recorded",
+        pass: input.applicableSourceCount > 0,
+        detail: `${input.applicableSourceCount} applicable source(s)`,
+      },
+      {
+        id: "required_types_present",
+        pass: missingTypes.length === 0,
+        detail: missingTypes.length
+          ? `missing: ${missingTypes.join(", ")}`
+          : "all required source types present",
+      },
+      {
+        id: "registry_valid",
+        pass: input.sourceIssues.filter((i) => i.level === "error").length === 0,
+        detail: `${input.sourceIssues.filter((i) => i.level === "error").length} registry error(s)`,
+      },
     ],
   });
 
@@ -604,13 +828,28 @@ export function runComplianceGates(input: GateInput): GateResult[] {
       outOfSyllabus.length === 0 &&
       input.unapprovedSourceBooks.length === 0,
     checks: [
-      { id: "all_assessable_topics_mapped", pass: input.unmappedOfficialTopics.length === 0, detail: `${input.unmappedOfficialTopics.length} unmapped official topic(s)` },
-      { id: "no_duplicate_mapping", pass: input.duplicateOfficialMappings.length === 0, detail: `${input.duplicateOfficialMappings.length} duplicate mapping(s)` },
-      { id: "no_active_out_of_syllabus", pass: outOfSyllabus.length === 0, detail: outOfSyllabus.map((u) => u.unitId).join(", ") || "none" },
-      { id: "source_books_approved", pass: input.unapprovedSourceBooks.length === 0, detail: input.unapprovedSourceBooks.join(", ") || "all mapped source books approved" },
+      {
+        id: "all_assessable_topics_mapped",
+        pass: input.unmappedOfficialTopics.length === 0,
+        detail: `${input.unmappedOfficialTopics.length} unmapped official topic(s)`,
+      },
+      {
+        id: "no_duplicate_mapping",
+        pass: input.duplicateOfficialMappings.length === 0,
+        detail: `${input.duplicateOfficialMappings.length} duplicate mapping(s)`,
+      },
+      {
+        id: "no_active_out_of_syllabus",
+        pass: outOfSyllabus.length === 0,
+        detail: outOfSyllabus.map((u) => u.unitId).join(", ") || "none",
+      },
+      {
+        id: "source_books_approved",
+        pass: input.unapprovedSourceBooks.length === 0,
+        detail: input.unapprovedSourceBooks.join(", ") || "all mapped source books approved",
+      },
     ],
   });
-
 
   const orphans = input.units.reduce((s, u) => s + u.orphanOutcomes, 0);
   const atomGaps = input.units.reduce((s, u) => s + u.atomsWithoutQuestions, 0);
@@ -619,48 +858,139 @@ export function runComplianceGates(input: GateInput): GateResult[] {
     pass: orphans === 0 && input.units.every((u) => u.outcomes > 0 && u.atoms >= u.outcomes),
     checks: [
       { id: "no_orphan_outcomes", pass: orphans === 0, detail: `${orphans} orphan outcome(s)` },
-      { id: "outcomes_have_atoms", pass: input.units.every((u) => u.atoms >= u.outcomes), detail: input.units.filter((u) => u.atoms < u.outcomes).map((u) => u.unitId).join(", ") || "every outcome carries at least one atom" },
-      { id: "every_unit_has_outcomes", pass: input.units.every((u) => u.outcomes > 0), detail: input.units.filter((u) => u.outcomes === 0).map((u) => u.unitId).join(", ") || "none empty" },
+      {
+        id: "outcomes_have_atoms",
+        pass: input.units.every((u) => u.atoms >= u.outcomes),
+        detail:
+          input.units
+            .filter((u) => u.atoms < u.outcomes)
+            .map((u) => u.unitId)
+            .join(", ") || "every outcome carries at least one atom",
+      },
+      {
+        id: "every_unit_has_outcomes",
+        pass: input.units.every((u) => u.outcomes > 0),
+        detail:
+          input.units
+            .filter((u) => u.outcomes === 0)
+            .map((u) => u.unitId)
+            .join(", ") || "none empty",
+      },
     ],
   });
 
-  const shortUnits = input.units.filter((u) => u.verified < requiredVerifiedPerUnit(input.gates, u.outcomes));
+  const shortUnits = input.units.filter(
+    (u) => u.verified < requiredVerifiedPerUnit(input.gates, u.outcomes),
+  );
   const dupes = input.units.reduce((s, u) => s + u.duplicateQuestions, 0);
   results.push({
     gate: "QUESTION_GATE",
     pass: shortUnits.length === 0 && atomGaps === 0 && dupes === 0,
     checks: [
-      { id: "verified_depth", pass: shortUnits.length === 0, detail: shortUnits.map((u) => `${u.unitId}:${u.verified}/${requiredVerifiedPerUnit(input.gates, u.outcomes)}`).join(", ") || "all units meet the depth law" },
-      { id: "atom_coverage", pass: atomGaps === 0, detail: `${atomGaps} atom(s) without a question` },
-      { id: "difficulty_coverage", pass: input.units.every((u) => u.difficulties >= 2), detail: input.units.filter((u) => u.difficulties < 2).map((u) => u.unitId).join(", ") || "≥2 difficulty bands per unit" },
-      { id: "type_coverage", pass: input.units.every((u) => u.kinds >= 2), detail: input.units.filter((u) => u.kinds < 2).map((u) => u.unitId).join(", ") || "≥2 question types per unit" },
+      {
+        id: "verified_depth",
+        pass: shortUnits.length === 0,
+        detail:
+          shortUnits
+            .map(
+              (u) =>
+                `${u.unitId}:${u.verified}/${requiredVerifiedPerUnit(input.gates, u.outcomes)}`,
+            )
+            .join(", ") || "all units meet the depth law",
+      },
+      {
+        id: "atom_coverage",
+        pass: atomGaps === 0,
+        detail: `${atomGaps} atom(s) without a question`,
+      },
+      {
+        id: "difficulty_coverage",
+        pass: input.units.every((u) => u.difficulties >= 2),
+        detail:
+          input.units
+            .filter((u) => u.difficulties < 2)
+            .map((u) => u.unitId)
+            .join(", ") || "≥2 difficulty bands per unit",
+      },
+      {
+        id: "type_coverage",
+        pass: input.units.every((u) => u.kinds >= 2),
+        detail:
+          input.units
+            .filter((u) => u.kinds < 2)
+            .map((u) => u.unitId)
+            .join(", ") || "≥2 question types per unit",
+      },
       { id: "duplicate_free", pass: dupes === 0, detail: `${dupes} duplicate question(s)` },
     ],
   });
 
-  const loopChecks = Object.entries(input.learningLoop).map(([id, pass]) => ({ id, pass, detail: pass ? "verified" : "not verified" }));
-  results.push({ gate: "LEARNING_LOOP_GATE", pass: loopChecks.every((c) => c.pass), checks: loopChecks });
+  const loopChecks = Object.entries(input.learningLoop).map(([id, pass]) => ({
+    id,
+    pass,
+    detail: pass ? "verified" : "not verified",
+  }));
+  results.push({
+    gate: "LEARNING_LOOP_GATE",
+    pass: loopChecks.every((c) => c.pass),
+    checks: loopChecks,
+  });
 
   results.push({
     gate: "REVIEW_GATE",
-    pass: Boolean(input.review.reviewerName && input.review.reviewedAt && input.review.decision) && input.review.unresolvedAmbiguities === 0,
+    pass:
+      Boolean(input.review.reviewerName && input.review.reviewedAt && input.review.decision) &&
+      input.review.unresolvedAmbiguities === 0,
     checks: [
-      { id: "named_reviewer", pass: Boolean(input.review.reviewerName), detail: input.review.reviewerName ?? "none recorded" },
-      { id: "review_timestamp", pass: Boolean(input.review.reviewedAt), detail: input.review.reviewedAt ?? "none recorded" },
-      { id: "review_decision", pass: Boolean(input.review.decision), detail: input.review.decision ?? "none recorded" },
-      { id: "no_unresolved_ambiguity", pass: input.review.unresolvedAmbiguities === 0, detail: `${input.review.unresolvedAmbiguities} unresolved` },
+      {
+        id: "named_reviewer",
+        pass: Boolean(input.review.reviewerName),
+        detail: input.review.reviewerName ?? "none recorded",
+      },
+      {
+        id: "review_timestamp",
+        pass: Boolean(input.review.reviewedAt),
+        detail: input.review.reviewedAt ?? "none recorded",
+      },
+      {
+        id: "review_decision",
+        pass: Boolean(input.review.decision),
+        detail: input.review.decision ?? "none recorded",
+      },
+      {
+        id: "no_unresolved_ambiguity",
+        pass: input.review.unresolvedAmbiguities === 0,
+        detail: `${input.review.unresolvedAmbiguities} unresolved`,
+      },
     ],
   });
 
   const c = input.commercial;
   results.push({
     gate: "COMMERCIAL_GATE",
-    pass: c.activeAcademicSession === input.academicSession && c.approvedVersion && c.selectorsCorrect && c.entitlementsScoped && c.pricingApproved,
+    pass:
+      c.activeAcademicSession === input.academicSession &&
+      c.approvedVersion &&
+      c.selectorsCorrect &&
+      c.entitlementsScoped &&
+      c.pricingApproved,
     checks: [
-      { id: "academic_year_active", pass: c.activeAcademicSession === input.academicSession, detail: c.activeAcademicSession },
-      { id: "approved_version_only", pass: c.approvedVersion, detail: c.purchasable ? "purchasable" : "not purchasable" },
+      {
+        id: "academic_year_active",
+        pass: c.activeAcademicSession === input.academicSession,
+        detail: c.activeAcademicSession,
+      },
+      {
+        id: "approved_version_only",
+        pass: c.approvedVersion,
+        detail: c.purchasable ? "purchasable" : "not purchasable",
+      },
       { id: "selectors_correct", pass: c.selectorsCorrect, detail: String(c.selectorsCorrect) },
-      { id: "entitlements_scoped", pass: c.entitlementsScoped, detail: String(c.entitlementsScoped) },
+      {
+        id: "entitlements_scoped",
+        pass: c.entitlementsScoped,
+        detail: String(c.entitlementsScoped),
+      },
       { id: "pricing_approved", pass: c.pricingApproved, detail: String(c.pricingApproved) },
     ],
   });
@@ -700,12 +1030,17 @@ export type ComplianceRecord = {
   reportRef: string;
 };
 
-export function deriveComplianceStatus(gates: GateResult[], acceptedLimitations = 0): ComplianceStatus {
+export function deriveComplianceStatus(
+  gates: GateResult[],
+  acceptedLimitations = 0,
+): ComplianceStatus {
   const failed = new Set(gates.filter((g) => !g.pass).map((g) => g.gate));
-  if (failed.size === 0) return acceptedLimitations > 0 ? "COMPLIANT_WITH_ACCEPTED_LIMITATIONS" : "COMPLIANT";
+  if (failed.size === 0)
+    return acceptedLimitations > 0 ? "COMPLIANT_WITH_ACCEPTED_LIMITATIONS" : "COMPLIANT";
   if (failed.has("SOURCE_GATE")) return "SOURCE_PENDING";
   if (failed.has("CURRICULUM_GATE")) return "MAPPING_INCOMPLETE";
-  if (failed.has("OUTCOME_GATE") || failed.has("QUESTION_GATE") || failed.has("LEARNING_LOOP_GATE")) return "CONTENT_GAPS";
+  if (failed.has("OUTCOME_GATE") || failed.has("QUESTION_GATE") || failed.has("LEARNING_LOOP_GATE"))
+    return "CONTENT_GAPS";
   if (failed.has("REVIEW_GATE")) return "REVIEW_PENDING";
   return "BLOCKED";
 }

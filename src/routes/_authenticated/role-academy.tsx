@@ -38,7 +38,8 @@ export const Route = createFileRoute("/_authenticated/role-academy")({
       { property: "og:title", content: "Role Academy | EduOS" },
       {
         property: "og:description",
-        content: "Learn the EduOS workflow for your role — screen by screen, with real routes and real actions.",
+        content:
+          "Learn the EduOS workflow for your role — screen by screen, with real routes and real actions.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -63,8 +64,9 @@ function RoleAcademyPage() {
         </div>
         <p className="mt-1 text-sm text-muted-foreground">{journey.intro}</p>
         <p className="mt-1 text-xs text-muted-foreground">
-          Written for your role: <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>. Guidance
-          for other roles is not shown here.
+          Written for your role:{" "}
+          <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>. Guidance for
+          other roles is not shown here.
         </p>
       </header>
 
@@ -139,7 +141,10 @@ function RoleAcademyPage() {
                     <ul className="space-y-1">
                       {stage.actions.map((a) => (
                         <li key={a} className="flex gap-2">
-                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" aria-hidden />
+                          <span
+                            className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary"
+                            aria-hidden
+                          />
                           {a}
                         </li>
                       ))}
@@ -150,7 +155,10 @@ function RoleAcademyPage() {
                     <ul className="space-y-1">
                       {stage.outputs.map((o) => (
                         <li key={o} className="flex gap-2">
-                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" aria-hidden />
+                          <span
+                            className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary"
+                            aria-hidden
+                          />
                           {o}
                         </li>
                       ))}
@@ -178,7 +186,9 @@ function RoleAcademyPage() {
                   {stage.tryIt && (
                     <div className="rounded-lg border bg-muted/40 p-3">
                       <p className="text-xs font-semibold">Try it</p>
-                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{stage.tryIt}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        {stage.tryIt}
+                      </p>
                     </div>
                   )}
                 </CardContent>
@@ -194,8 +204,8 @@ function RoleAcademyPage() {
           <h3 className="text-sm font-semibold">Tester scenarios</h3>
         </div>
         <p className="text-xs text-muted-foreground">
-          Representative internal checks for your role. Use your own test account — never share credentials or a
-          learner's personal details.
+          Representative internal checks for your role. Use your own test account — never share
+          credentials or a learner's personal details.
         </p>
         {journey.scenarios.map((scenario) => (
           <Card key={scenario.title}>
@@ -206,7 +216,10 @@ function RoleAcademyPage() {
             <CardContent>
               <ol className="space-y-1.5">
                 {scenario.steps.map((step, i) => (
-                  <li key={step} className="flex gap-2 text-xs leading-relaxed text-muted-foreground">
+                  <li
+                    key={step}
+                    className="flex gap-2 text-xs leading-relaxed text-muted-foreground"
+                  >
                     <span className="shrink-0 font-medium text-primary">{i + 1}.</span>
                     {step}
                   </li>

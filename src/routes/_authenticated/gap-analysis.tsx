@@ -96,10 +96,7 @@ function RiskBadge({ level }: { level: RiskLevel }) {
 function BandBadge({ label, color }: { label: string | null; color: string | null }) {
   if (!label) return <span className="text-xs text-muted-foreground">—</span>;
   return (
-    <Badge
-      variant="outline"
-      style={color ? { borderColor: color, color } : undefined}
-    >
+    <Badge variant="outline" style={color ? { borderColor: color, color } : undefined}>
       {label}
     </Badge>
   );
@@ -243,8 +240,8 @@ function AnalysisDashboard({ analysis }: { analysis: GapAnalysis }) {
             Curriculum traceability
           </CardTitle>
           <CardDescription>
-            Every gap traces back through the curriculum: Gap → Outcome → Learning Outcome → Topic
-            → Chapter → Unit.
+            Every gap traces back through the curriculum: Gap → Outcome → Learning Outcome → Topic →
+            Chapter → Unit.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -317,7 +314,9 @@ function AnalysisDashboard({ analysis }: { analysis: GapAnalysis }) {
             <p className="mt-1 text-xs text-muted-foreground">{LEARNER_VIEW_COPY.growthHint}</p>
             <ul className="mt-2 space-y-1">
               {analysis.learnerView.growthAreas.length === 0 ? (
-                <li className="text-xs text-muted-foreground">No growth areas in this diagnostic.</li>
+                <li className="text-xs text-muted-foreground">
+                  No growth areas in this diagnostic.
+                </li>
               ) : (
                 analysis.learnerView.growthAreas.map((s) => (
                   <li key={s} className="text-xs">
@@ -423,8 +422,8 @@ function GapAnalysisPage() {
         <h1 className="text-2xl font-semibold tracking-tight">Gap Analysis</h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
           Curriculum-aware gap detection: pick a book, choose a submitted diagnostic, and see
-          outcome-level scoring, mastery bands, risk levels, and intervention recommendations —
-          with full curriculum traceability. Independent verification:{" "}
+          outcome-level scoring, mastery bands, risk levels, and intervention recommendations — with
+          full curriculum traceability. Independent verification:{" "}
           <Link to="/gap-analysis-audit" className="underline">
             Gap Analysis Audit Center
           </Link>

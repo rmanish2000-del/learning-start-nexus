@@ -66,7 +66,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "mcq",
                 difficulty: 2,
-                prompt: "The plane obtained by two number lines intersecting at right angles is called the",
+                prompt:
+                  "The plane obtained by two number lines intersecting at right angles is called the",
                 options: ["Cartesian plane", "number plane", "grid plane", "coordinate axis"],
                 answer: "Cartesian plane",
                 explanation:
@@ -106,7 +107,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "mcq",
                 difficulty: 2,
-                prompt: "Point P has a positive x-coordinate and a negative y-coordinate. In which quadrant does P lie?",
+                prompt:
+                  "Point P has a positive x-coordinate and a negative y-coordinate. In which quadrant does P lie?",
                 options: ["First", "Second", "Third", "Fourth"],
                 answer: "Fourth",
                 explanation:
@@ -118,13 +120,13 @@ export const EXT: UnitExtension = {
                 prompt: "Every point in the first quadrant has both its coordinates positive.",
                 options: ["True", "False"],
                 answer: "True",
-                explanation:
-                  "The first quadrant is defined as the region where x > 0 and y > 0.",
+                explanation: "The first quadrant is defined as the region where x > 0 and y > 0.",
               },
               {
                 kind: "assertion_reason",
                 difficulty: 3,
-                prompt: "Assertion (A): The point (-4, 6) lies in the second quadrant. Reason (R): In the second quadrant, the x-coordinate is negative and the y-coordinate is positive.",
+                prompt:
+                  "Assertion (A): The point (-4, 6) lies in the second quadrant. Reason (R): In the second quadrant, the x-coordinate is negative and the y-coordinate is positive.",
                 options: [
                   "Both A and R are true and R is the correct explanation of A",
                   "Both A and R are true but R is not the correct explanation of A",
@@ -152,7 +154,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "mcq",
                 difficulty: 2,
-                prompt: "Which quadrant contains all points where the x-coordinate is negative and the y-coordinate is positive?",
+                prompt:
+                  "Which quadrant contains all points where the x-coordinate is negative and the y-coordinate is positive?",
                 options: ["First", "Second", "Third", "Fourth"],
                 answer: "Second",
                 explanation:
@@ -183,7 +186,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "mcq",
                 difficulty: 2,
-                prompt: "To plot the point (4, -3), how many units should you move from the origin and in which directions?",
+                prompt:
+                  "To plot the point (4, -3), how many units should you move from the origin and in which directions?",
                 options: [
                   "4 units right, then 3 units down",
                   "4 units left, then 3 units up",
@@ -197,7 +201,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "applied_mcq",
                 difficulty: 3,
-                prompt: "Starting at the origin, a student moves 5 units left and then 2 units up to mark a point. What are the coordinates of this point?",
+                prompt:
+                  "Starting at the origin, a student moves 5 units left and then 2 units up to mark a point. What are the coordinates of this point?",
                 options: ["(-5, 2)", "(5, 2)", "(-5, -2)", "(2, -5)"],
                 answer: "(-5, 2)",
                 explanation:
@@ -206,7 +211,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "short_answer",
                 difficulty: 2,
-                prompt: "A point is reached by moving 6 units right and 6 units down from the origin. Write its coordinates.",
+                prompt:
+                  "A point is reached by moving 6 units right and 6 units down from the origin. Write its coordinates.",
                 answer: "(6, -6)",
                 explanation:
                   "Rightward movement gives x = 6 and downward movement gives y = -6, so the point is (6, -6).",
@@ -214,7 +220,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "mcq",
                 difficulty: 3,
-                prompt: "On a grid, point Q is located 2 units to the left and 7 units below the origin. Which ordered pair represents Q?",
+                prompt:
+                  "On a grid, point Q is located 2 units to the left and 7 units below the origin. Which ordered pair represents Q?",
                 options: ["(-2, -7)", "(2, -7)", "(-2, 7)", "(-7, -2)"],
                 answer: "(-2, -7)",
                 explanation:
@@ -223,7 +230,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "applied_mcq",
                 difficulty: 3,
-                prompt: "Two points A(3, 5) and B(3, -5) are plotted. What is true about their positions relative to the x-axis?",
+                prompt:
+                  "Two points A(3, 5) and B(3, -5) are plotted. What is true about their positions relative to the x-axis?",
                 options: [
                   "A and B are mirror images of each other across the x-axis",
                   "A and B are mirror images of each other across the y-axis",
@@ -237,7 +245,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "short_answer",
                 difficulty: 4,
-                prompt: "Point C is plotted and found to be exactly 8 units to the right of the y-axis and 1 unit below the x-axis. Write the coordinates of C.",
+                prompt:
+                  "Point C is plotted and found to be exactly 8 units to the right of the y-axis and 1 unit below the x-axis. Write the coordinates of C.",
                 answer: "(8, -1)",
                 explanation:
                   "Distance from the y-axis gives the x-coordinate as 8, and being below the x-axis gives the y-coordinate as -1.",
@@ -245,7 +254,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "mcq",
                 difficulty: 2,
-                prompt: "Which of these ordered pairs, when plotted, lies farthest to the right of the y-axis?",
+                prompt:
+                  "Which of these ordered pairs, when plotted, lies farthest to the right of the y-axis?",
                 options: ["(9, 1)", "(2, 8)", "(-9, 1)", "(0, 9)"],
                 answer: "(9, 1)",
                 explanation:
@@ -262,7 +272,8 @@ export const EXT: UnitExtension = {
         title: "Points on the axes and distances along an axis",
         outcomes: [
           {
-            title: "Identify points lying on the axes and compute distances between points sharing an axis value",
+            title:
+              "Identify points lying on the axes and compute distances between points sharing an axis value",
             category: "procedural",
             bloom: "apply",
             difficulty: 2,
@@ -320,7 +331,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "short_answer",
                 difficulty: 3,
-                prompt: "Points R(-3, 5) and S(4, 5) share the same y-coordinate. Find the distance RS.",
+                prompt:
+                  "Points R(-3, 5) and S(4, 5) share the same y-coordinate. Find the distance RS.",
                 answer: "7 units",
                 explanation:
                   "Since both points lie on the same horizontal line, the distance equals the difference of x-coordinates: 4 - (-3) = 7 units.",
@@ -328,7 +340,8 @@ export const EXT: UnitExtension = {
               {
                 kind: "short_answer",
                 difficulty: 2,
-                prompt: "Write the coordinates of the point that lies on the x-axis at a distance of 10 units to the left of the origin.",
+                prompt:
+                  "Write the coordinates of the point that lies on the x-axis at a distance of 10 units to the left of the origin.",
                 answer: "(-10, 0)",
                 explanation:
                   "A point on the x-axis has y-coordinate 0, and being 10 units to the left of the origin gives x = -10.",
@@ -337,7 +350,12 @@ export const EXT: UnitExtension = {
                 kind: "mcq",
                 difficulty: 3,
                 prompt: "Which pair of points both lie on the same axis?",
-                options: ["(0, 3) and (0, -8)", "(3, 0) and (0, 3)", "(2, 2) and (-2, -2)", "(1, 0) and (0, 1)"],
+                options: [
+                  "(0, 3) and (0, -8)",
+                  "(3, 0) and (0, 3)",
+                  "(2, 2) and (-2, -2)",
+                  "(1, 0) and (0, 1)",
+                ],
                 answer: "(0, 3) and (0, -8)",
                 explanation:
                   "Both points in this pair have x-coordinate 0, so both lie on the y-axis.",
@@ -353,7 +371,8 @@ export const EXT: UnitExtension = {
         title: "Graphs of linear equations of the form y = mx",
         outcomes: [
           {
-            title: "Draw and interpret the graph of a linear equation of the form y = mx passing through the origin",
+            title:
+              "Draw and interpret the graph of a linear equation of the form y = mx passing through the origin",
             category: "application",
             bloom: "apply",
             difficulty: 3,
@@ -396,8 +415,7 @@ export const EXT: UnitExtension = {
                 difficulty: 2,
                 prompt: "Find the value of y when x = 5 on the graph of y = 4x.",
                 answer: "20",
-                explanation:
-                  "Substituting x = 5 into y = 4x gives y = 4 x 5 = 20.",
+                explanation: "Substituting x = 5 into y = 4x gives y = 4 x 5 = 20.",
               },
               {
                 kind: "mcq",
@@ -405,17 +423,16 @@ export const EXT: UnitExtension = {
                 prompt: "If the point (k, 12) lies on the line y = 6x, what is the value of k?",
                 options: ["2", "6", "18", "72"],
                 answer: "2",
-                explanation:
-                  "Substituting y = 12 into 12 = 6k gives k = 12 / 6 = 2.",
+                explanation: "Substituting y = 12 into 12 = 6k gives k = 12 / 6 = 2.",
               },
               {
                 kind: "applied_mcq",
                 difficulty: 4,
-                prompt: "A car's fare in rupees is given by y = 10x, where x is the distance in kilometres. What is the fare for a 7 km ride?",
+                prompt:
+                  "A car's fare in rupees is given by y = 10x, where x is the distance in kilometres. What is the fare for a 7 km ride?",
                 options: ["70 rupees", "17 rupees", "7 rupees", "100 rupees"],
                 answer: "70 rupees",
-                explanation:
-                  "Substituting x = 7 into y = 10x gives y = 10 x 7 = 70 rupees.",
+                explanation: "Substituting x = 7 into y = 10x gives y = 10 x 7 = 70 rupees.",
               },
               {
                 kind: "mcq",
@@ -460,7 +477,8 @@ export const EXT: UnitExtension = {
       {
         kind: "short_answer",
         difficulty: 3,
-        prompt: "A point lies 5 units to the left of the y-axis and 9 units above the x-axis. Write its coordinates and name its quadrant.",
+        prompt:
+          "A point lies 5 units to the left of the y-axis and 9 units above the x-axis. Write its coordinates and name its quadrant.",
         answer: "(-5, 9), second quadrant",
         explanation:
           "Left of the y-axis gives a negative x-coordinate and above the x-axis gives a positive y-coordinate, placing (-5, 9) in the second quadrant.",
@@ -468,7 +486,8 @@ export const EXT: UnitExtension = {
       {
         kind: "applied_mcq",
         difficulty: 3,
-        prompt: "A survey marks a location with coordinates (0, -12) on a map grid. Where does this location lie?",
+        prompt:
+          "A survey marks a location with coordinates (0, -12) on a map grid. Where does this location lie?",
         options: [
           "On the y-axis, below the origin",
           "On the x-axis, to the left of the origin",

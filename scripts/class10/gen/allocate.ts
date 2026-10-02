@@ -53,7 +53,10 @@ type EvBook = { bookId: string; title: string; subject: string; status: string; 
 
 /** assessment outcome id -> the real chapter / topic / atom that carries it. */
 function locationIndex(book: EvBook) {
-  const index = new Map<string, { chapterId: string; chapterTitle: string; topicId: string; topicTitle: string; atomId: string }>();
+  const index = new Map<
+    string,
+    { chapterId: string; chapterTitle: string; topicId: string; topicTitle: string; atomId: string }
+  >();
   for (const unit of book.units) {
     for (const chapter of unit.chapters) {
       for (const topic of chapter.topics) {
@@ -84,7 +87,14 @@ export function outcomeRefs(): Map<string, OutcomeRef> {
     for (const unit of book.units) {
       for (const ao of unit.assessmentOutcomes) {
         const at = loc.get(ao.assessmentOutcomeId) ?? null;
-        const rows = (crosswalk.rows as { subject: string; official_requirement_id: string; official_source_reference: string | null; assessment_outcome_ids: string[] }[])
+        const rows = (
+          crosswalk.rows as {
+            subject: string;
+            official_requirement_id: string;
+            official_source_reference: string | null;
+            assessment_outcome_ids: string[];
+          }[]
+        )
           .filter((r) => r.assessment_outcome_ids.includes(ao.assessmentOutcomeId))
           .sort((a, b) => a.official_requirement_id.localeCompare(b.official_requirement_id));
         refs.set(ao.assessmentOutcomeId, {
@@ -158,7 +168,8 @@ export function allocate(): UnitAllocation[] {
 
     const perOutcome = outcomes.map((outcomeId) => ({ outcomeId, diagnostic: 0, reassessment: 0 }));
     for (let i = 0; i < newDiagnostic; i += 1) perOutcome[i % perOutcome.length]!.diagnostic += 1;
-    for (let i = 0; i < newReassessment; i += 1) perOutcome[i % perOutcome.length]!.reassessment += 1;
+    for (let i = 0; i < newReassessment; i += 1)
+      perOutcome[i % perOutcome.length]!.reassessment += 1;
 
     out.push({
       subject: unit.subject,

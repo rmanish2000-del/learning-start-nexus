@@ -117,7 +117,10 @@ async function isoCount(
     } else {
       const { count } = await (
         supabaseAdmin.from(table) as unknown as {
-          select: (c: string, o: { count: "exact"; head: boolean }) => {
+          select: (
+            c: string,
+            o: { count: "exact"; head: boolean },
+          ) => {
             eq: (col: string, val: string) => PromiseLike<{ count: number | null }>;
           };
         }
@@ -237,11 +240,41 @@ export async function getGapAudit(supabase: Client, userId: string): Promise<Gap
   const me = await getCallerIdentity(supabase, userId);
 
   const counts = await Promise.all([
-    isoCount(supabase, "assessment_sessions", "Assessment sessions", me.orgId, "Sprint 2 demo sessions + the two Sprint 6G submissions"),
-    isoCount(supabase, "assessment_question_map", "Assessment question map", me.orgId, "Builder demo + 6F generated pair"),
-    isoCount(supabase, "question_bank", "Question bank", me.orgId, "Seeded + AI-generated drafts for the pilot book"),
-    isoCount(supabase, "intervention_map", "Intervention map", me.orgId, "Failure patterns per blueprint outcome"),
-    isoCount(supabase, "mastery_levels", "Mastery levels", me.orgId, "Beginning / Developing / Proficient / Advanced"),
+    isoCount(
+      supabase,
+      "assessment_sessions",
+      "Assessment sessions",
+      me.orgId,
+      "Sprint 2 demo sessions + the two Sprint 6G submissions",
+    ),
+    isoCount(
+      supabase,
+      "assessment_question_map",
+      "Assessment question map",
+      me.orgId,
+      "Builder demo + 6F generated pair",
+    ),
+    isoCount(
+      supabase,
+      "question_bank",
+      "Question bank",
+      me.orgId,
+      "Seeded + AI-generated drafts for the pilot book",
+    ),
+    isoCount(
+      supabase,
+      "intervention_map",
+      "Intervention map",
+      me.orgId,
+      "Failure patterns per blueprint outcome",
+    ),
+    isoCount(
+      supabase,
+      "mastery_levels",
+      "Mastery levels",
+      me.orgId,
+      "Beginning / Developing / Proficient / Advanced",
+    ),
   ]);
 
   const policies = (await fetchPolicyAudit(supabase)).filter((p) =>
@@ -286,7 +319,11 @@ export async function runGapProbes(
   }[] = [];
   for (const expected of GAP_EXPECTED.sessions) {
     try {
-      assembled.push({ expected, a: await assembleAnalysisInput(supabase, expected.id), error: null });
+      assembled.push({
+        expected,
+        a: await assembleAnalysisInput(supabase, expected.id),
+        error: null,
+      });
     } catch (err) {
       assembled.push({
         expected,
@@ -315,7 +352,10 @@ export async function runGapProbes(
     detail:
       p1Fails.length === 0
         ? `Both sessions visible with matching stored totals: ${assembled
-            .map(({ a }) => `${a?.session.scorePct}% (${a?.session.correctCount}/${a?.session.totalCount})`)
+            .map(
+              ({ a }) =>
+                `${a?.session.scorePct}% (${a?.session.correctCount}/${a?.session.totalCount})`,
+            )
             .join(" · ")}.`
         : `Missing or mismatched: ${p1Fails.join(", ")}.`,
   });
@@ -334,11 +374,15 @@ export async function runGapProbes(
     for (const [code, exp] of Object.entries(expected.outcomes)) {
       const actual = perOutcome.get(code) ?? null;
       if (actual !== exp.pct) p2Pass = false;
-      p2Details.push(`${expected.learnerName.split(" ")[0]} ${code}: expected ${exp.pct}% got ${actual}%`);
+      p2Details.push(
+        `${expected.learnerName.split(" ")[0]} ${code}: expected ${exp.pct}% got ${actual}%`,
+      );
     }
     if (totals.correct !== expected.correctCount || totals.total !== expected.totalCount) {
       p2Pass = false;
-      p2Details.push(`${expected.learnerName}: overall recompute ${totals.correct}/${totals.total} ≠ stored ${expected.correctCount}/${expected.totalCount}`);
+      p2Details.push(
+        `${expected.learnerName}: overall recompute ${totals.correct}/${totals.total} ≠ stored ${expected.correctCount}/${expected.totalCount}`,
+      );
     }
   }
   probes.push({
@@ -420,9 +464,13 @@ export async function runGapProbes(
     p5Details.push(`learning_gaps check failed: ${gapsErr.message}`);
   } else if ((autoGaps ?? 0) !== 0) {
     p5Pass = false;
-    p5Details.push(`${autoGaps} learning_gaps rows reference the demo sessions — analysis must never write.`);
+    p5Details.push(
+      `${autoGaps} learning_gaps rows reference the demo sessions — analysis must never write.`,
+    );
   } else {
-    p5Details.push("intervention_map lookups resolve for every weak/medium outcome; zero learning_gaps rows reference these sessions (no auto-creation)");
+    p5Details.push(
+      "intervention_map lookups resolve for every weak/medium outcome; zero learning_gaps rows reference these sessions (no auto-creation)",
+    );
   }
   probes.push({
     key: "intervention_lookup",
@@ -451,7 +499,9 @@ export async function runGapProbes(
         p6Pass = false;
         p6Details.push(`${r.code}: chain broken`);
       } else {
-        p6Details.push(`${r.code}: ${good.unitTitle} › ${good.chapterTitle} › ${good.topicTitle} › LO`);
+        p6Details.push(
+          `${r.code}: ${good.unitTitle} › ${good.chapterTitle} › ${good.topicTitle} › LO`,
+        );
       }
     }
   }
@@ -459,7 +509,8 @@ export async function runGapProbes(
     key: "traceability",
     name: "P6 — Curriculum traceability resolves for every measured outcome",
     pass: p6Pass,
-    expectation: "Each measured outcome traces to at least one complete chain: Outcome → Learning Outcome → Topic → Chapter → Unit.",
+    expectation:
+      "Each measured outcome traces to at least one complete chain: Outcome → Learning Outcome → Topic → Chapter → Unit.",
     detail: p6Details.join(" · "),
   });
 
@@ -508,19 +559,34 @@ export async function runGapProbes(
     key: "determinism",
     name: "P8 — Analysis is deterministic (same inputs → byte-identical output)",
     pass: p8Pass,
-    expectation: "Re-assembling and re-analyzing the same session twice produces byte-identical results.",
+    expectation:
+      "Re-assembling and re-analyzing the same session twice produces byte-identical results.",
     detail: p8Detail,
   });
 
   // P9: read-only — analysis leaves learner/gap/intervention state untouched.
-  const demoLearnerIds = GAP_EXPECTED.sessions.map((s) => s.id.replace("dd00000", "ccccccc").replace("-000000000001", "-000000000001"));
-  const demoLearners = ["ccccccc1-0000-4000-8000-000000000001", "ccccccc1-0000-4000-8000-000000000002"];
+  const demoLearnerIds = GAP_EXPECTED.sessions.map((s) =>
+    s.id.replace("dd00000", "ccccccc").replace("-000000000001", "-000000000001"),
+  );
+  const demoLearners = [
+    "ccccccc1-0000-4000-8000-000000000001",
+    "ccccccc1-0000-4000-8000-000000000002",
+  ];
   const snapshotState = async () => {
     const [learners, gaps, recs, ints] = await Promise.all([
       supabase.from("learners").select("id, mastery_score, mastery_lift").in("id", demoLearners),
-      supabase.from("learning_gaps").select("*", { count: "exact", head: true }).in("learner_id", demoLearners),
-      supabase.from("recommendations").select("*", { count: "exact", head: true }).in("learner_id", demoLearners),
-      supabase.from("interventions").select("*", { count: "exact", head: true }).in("learner_id", demoLearners),
+      supabase
+        .from("learning_gaps")
+        .select("*", { count: "exact", head: true })
+        .in("learner_id", demoLearners),
+      supabase
+        .from("recommendations")
+        .select("*", { count: "exact", head: true })
+        .in("learner_id", demoLearners),
+      supabase
+        .from("interventions")
+        .select("*", { count: "exact", head: true })
+        .in("learner_id", demoLearners),
     ]);
     return JSON.stringify({
       learners: learners.data,

@@ -21,7 +21,9 @@ function readRaw(): string | undefined {
       ? (import.meta.env?.["VITE_APP_ENV"] as string | undefined)
       : undefined;
   const fromProcess =
-    typeof process !== "undefined" ? (process.env?.["APP_ENV"] ?? process.env?.["VITE_APP_ENV"]) : undefined;
+    typeof process !== "undefined"
+      ? (process.env?.["APP_ENV"] ?? process.env?.["VITE_APP_ENV"])
+      : undefined;
   return fromVite ?? fromProcess;
 }
 

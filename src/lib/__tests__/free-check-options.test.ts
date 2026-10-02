@@ -57,7 +57,11 @@ describe("free learning check unavailable links", () => {
 describe("free learning check ownership privacy", () => {
   it("names the child only for the parent who started the check", () => {
     const source = readFileSync("src/lib/free-check.server.ts", "utf8");
-    expect(source).toContain("const ownerViewing = row.parent_user_id != null && row.parent_user_id === userId");
-    expect(source).toContain("This learning check can only be answered by the student it was created for.");
+    expect(source).toContain(
+      "const ownerViewing = row.parent_user_id != null && row.parent_user_id === userId",
+    );
+    expect(source).toContain(
+      "This learning check can only be answered by the student it was created for.",
+    );
   });
 });

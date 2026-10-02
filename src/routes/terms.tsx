@@ -25,8 +25,7 @@ function TermsPage() {
   return (
     <PublicPageLayout title="Terms of Service" updated="August 23, 2026">
       <p className="text-muted-foreground">
-        These terms govern access to the EduOS deployment.
-        By signing in, you agree to them.
+        These terms govern access to the EduOS deployment. By signing in, you agree to them.
       </p>
 
       <LegalSection heading="1. The service">
@@ -92,15 +91,18 @@ function TermsPage() {
       <LegalSection heading="6. Availability and changes">
         <p>
           This is a demonstration deployment provided as-is. Features may change between sprints;
-          material changes to these terms or the privacy policy will be reflected with a new
-          "last updated" date.
+          material changes to these terms or the privacy policy will be reflected with a new "last
+          updated" date.
         </p>
       </LegalSection>
 
       <LegalSection heading="7. Contact">
         <p>
           Questions about these terms:{" "}
-          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
+          <a
+            href="mailto:support@eduos.global"
+            className="font-medium text-primary hover:underline"
+          >
             support@eduos.global
           </a>
           .

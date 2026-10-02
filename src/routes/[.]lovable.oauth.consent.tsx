@@ -32,7 +32,10 @@ export const Route = createFileRoute("/.lovable/oauth/consent")({
   head: () => ({
     meta: [
       { title: "Authorize app access | EduOS" },
-      { name: "description", content: "Approve or deny an AI assistant's request to access your EduOS account." },
+      {
+        name: "description",
+        content: "Approve or deny an AI assistant's request to access your EduOS account.",
+      },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -40,7 +43,9 @@ export const Route = createFileRoute("/.lovable/oauth/consent")({
   errorComponent: ({ error }) => (
     <main className="mx-auto max-w-md p-8">
       <h1 className="text-lg font-semibold">Could not load this authorization request</h1>
-      <p className="mt-2 text-sm text-muted-foreground">{String((error as Error)?.message ?? error)}</p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        {String((error as Error)?.message ?? error)}
+      </p>
     </main>
   ),
 });
@@ -77,8 +82,8 @@ function Consent() {
       <div>
         <h1 className="text-xl font-semibold">Connect {clientName} to EduOS</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          This lets {clientName} use EduOS as you. It can read the learners, gaps and assessments your account is
-          allowed to see.
+          This lets {clientName} use EduOS as you. It can read the learners, gaps and assessments
+          your account is allowed to see.
         </p>
       </div>
       {error && (

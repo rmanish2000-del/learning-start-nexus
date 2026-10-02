@@ -60,7 +60,10 @@ async function loadDrafts(supabase: Client): Promise<AutoVerificationItem[]> {
   const all = rows ?? [];
   const outcomeIds = [...new Set(all.map((q) => q.outcome_id))];
   const { data: outcomes } = outcomeIds.length
-    ? await supabase.from("assessment_outcomes").select("id, code, title, unit_id").in("id", outcomeIds)
+    ? await supabase
+        .from("assessment_outcomes")
+        .select("id, code, title, unit_id")
+        .in("id", outcomeIds)
     : { data: [] as never[] };
   const outcomeById = new Map((outcomes ?? []).map((o) => [o.id, o]));
 
@@ -74,7 +77,9 @@ async function loadDrafts(supabase: Client): Promise<AutoVerificationItem[]> {
     const outcome = outcomeById.get(q.outcome_id);
     const rawOptions = q.options;
     const options = Array.isArray(rawOptions)
-      ? rawOptions.map((o) => (typeof o === "string" ? o : String((o as { text?: string })?.text ?? o)))
+      ? rawOptions.map((o) =>
+          typeof o === "string" ? o : String((o as { text?: string })?.text ?? o),
+        )
       : null;
     return {
       id: q.id,
@@ -145,7 +150,9 @@ export async function applyAutoVerification(
 
   // Batched: a per-item round trip over a 300+ item corpus is slow enough that
   // a page navigation can abandon the run half applied.
-  const approvedIds = verdicts.filter((v) => v.outcome === "auto_approved").map((v) => v.questionId);
+  const approvedIds = verdicts
+    .filter((v) => v.outcome === "auto_approved")
+    .map((v) => v.questionId);
   for (let i = 0; i < approvedIds.length; i += 50) {
     const { error } = await supabase
       .from("question_bank")
@@ -169,7 +176,9 @@ export async function applyAutoVerification(
     engine_version: AUTO_VERIFICATION_ENGINE_VERSION,
     outcome: verdict.outcome,
     confidence: verdict.confidence,
-    checks: JSON.parse(JSON.stringify(verdict.checks)) as Database["public"]["Tables"]["question_auto_verifications"]["Row"]["checks"],
+    checks: JSON.parse(
+      JSON.stringify(verdict.checks),
+    ) as Database["public"]["Tables"]["question_auto_verifications"]["Row"]["checks"],
     created_by: ctx.userId,
   }));
   for (let i = 0; i < logRows.length; i += 100) {

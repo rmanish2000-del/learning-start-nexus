@@ -20,7 +20,9 @@ const migrations = readdirSync(migrationsDir)
 
 const lockMigration = [...migrations]
   .reverse()
-  .find((m) => m.sql.includes("REVOKE ALL ON public.payment_credentials FROM anon, authenticated;"));
+  .find((m) =>
+    m.sql.includes("REVOKE ALL ON public.payment_credentials FROM anon, authenticated;"),
+  );
 
 describe("payment credential table lockdown", () => {
   it("ships a migration that removes every authenticated policy", () => {
@@ -45,7 +47,9 @@ describe("payment credential table lockdown", () => {
   });
 
   it("keeps the service-role path working", () => {
-    expect(lockMigration!.sql).toContain("GRANT ALL ON public.payment_credentials TO service_role;");
+    expect(lockMigration!.sql).toContain(
+      "GRANT ALL ON public.payment_credentials TO service_role;",
+    );
     expect(lockMigration!.sql).toContain(
       "GRANT SELECT, INSERT ON public.payment_credential_audit TO service_role;",
     );
@@ -53,7 +57,9 @@ describe("payment credential table lockdown", () => {
 
   it("makes the audit trail immutable (append-only)", () => {
     expect(lockMigration!.sql).toContain("payment_credential_audit_immutable");
-    expect(lockMigration!.sql).toMatch(/BEFORE UPDATE OR DELETE ON public\.payment_credential_audit/);
+    expect(lockMigration!.sql).toMatch(
+      /BEFORE UPDATE OR DELETE ON public\.payment_credential_audit/,
+    );
   });
 
   it("no later migration re-grants credential access to anon or authenticated", () => {
@@ -61,7 +67,9 @@ describe("payment credential table lockdown", () => {
     const later = migrations.slice(lockIndex + 1);
     for (const m of later) {
       expect(
-        /GRANT[^;]*ON\s+public\.payment_credential[s_]*[^;]*TO[^;]*(anon|authenticated)/i.test(m.sql),
+        /GRANT[^;]*ON\s+public\.payment_credential[s_]*[^;]*TO[^;]*(anon|authenticated)/i.test(
+          m.sql,
+        ),
       ).toBe(false);
     }
   });
@@ -90,7 +98,10 @@ describe("credential reads never leave the service-role module", () => {
         if (entry.name.endsWith(".server.ts") || entry.name === "types.ts") continue;
         if (rel.includes("__tests__")) continue;
         const src = readFileSync(join(root, rel), "utf8");
-        if (src.includes('from("payment_credentials")') || src.includes('from("payment_credential_audit")')) {
+        if (
+          src.includes('from("payment_credentials")') ||
+          src.includes('from("payment_credential_audit")')
+        ) {
           offenders.push(rel);
         }
       }

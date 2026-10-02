@@ -8,7 +8,15 @@
 // machine-readable crosswalk / depth exports from committed evidence only.
 
 import { createHash } from "node:crypto";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import { resolve, dirname } from "node:path";
 import { execFileSync } from "node:child_process";
 import { analyse, norm, ROOT, type Snapshot, type SnapshotUnit } from "./analysis";
@@ -47,7 +55,8 @@ const EVIDENCE_PATHS = [
   "EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md",
   "EDUOS_OFFICIAL_SOURCE_REGISTRY_SPEC.md",
 ];
-const SOURCE_EVIDENCE_COMMIT = git(["log", "-1", "--format=%H", "--", ...EVIDENCE_PATHS]) || BASE_COMMIT;
+const SOURCE_EVIDENCE_COMMIT =
+  git(["log", "-1", "--format=%H", "--", ...EVIDENCE_PATHS]) || BASE_COMMIT;
 
 const SELF_REFERENCE_POLICY =
   "The final Git package commit SHA is NOT embedded in any bundle file: a file inside a commit cannot contain that commit's own SHA. package_commit is reported only in the Lovable final response and repository history (REPORTED_AFTER_COMMIT). GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256 intentionally excludes its own hash, and bundle_tree_hash is computed over all payload files excluding GEMINI_REVIEW_BUNDLE_MANIFEST.json and GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256. This bundle is therefore not self-authenticating.";
@@ -59,9 +68,11 @@ const PROVENANCE = {
   bundle_generation_base_commit: BASE_COMMIT,
   package_commit: "REPORTED_AFTER_COMMIT",
   self_reference_policy: SELF_REFERENCE_POLICY,
-  data_source: "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
+  data_source:
+    "committed repository evidence (content/compliance/class-10-2026-27.snapshot.json, audit-data/class10/2026-27/*, content/compliance/cbse-2026-27.*.json)",
   query_or_script: "scripts/compliance/gemini-bundle.ts",
-  evidence_basis: "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
+  evidence_basis:
+    "repository-only (the snapshot itself is a previously exported, frozen read-only database export; no live database access occurs during this export)",
   validator: VALIDATOR_VERSION,
   limitations: [
     "CLASS_10_COMPLIANCE_STATUS remains SOURCE_PENDING; no source record is upgraded by this packaging step.",
@@ -76,7 +87,6 @@ const PROVENANCE = {
     "Two Science ambiguities remain unresolved in the candidate baseline.",
   ],
 } as const;
-
 
 // ------------------------------------------------------------------ helpers
 const stripUnitPrefix = (s: string) => s.replace(/^unit\s+[ivxlc0-9]+\s*[:\-–—]\s*/i, "").trim();
@@ -143,7 +153,9 @@ export function buildBundle(): {
   const official = readJson("content/compliance/cbse-2026-27.official-curriculum.json");
 
   const baselines: Record<string, Baseline> = {
-    Mathematics: readJson("audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json"),
+    Mathematics: readJson(
+      "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json",
+    ),
     Science: readJson("audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json"),
   };
 
@@ -153,7 +165,13 @@ export function buildBundle(): {
 
   const written: string[] = [];
   const meta = new Map<string, { category: string; provenance: string; privacy: string }>();
-  const put = (rel: string, content: string, category: string, provenance: string, privacy = "PUBLIC_ACADEMIC_STRUCTURAL") => {
+  const put = (
+    rel: string,
+    content: string,
+    category: string,
+    provenance: string,
+    privacy = "PUBLIC_ACADEMIC_STRUCTURAL",
+  ) => {
     const target = resolve(outDir, rel);
     mkdirSync(dirname(target), { recursive: true });
     writeFileSync(target, content);
@@ -165,44 +183,96 @@ export function buildBundle(): {
     mkdirSync(dirname(target), { recursive: true });
     copyFileSync(abs(from), target);
     written.push(rel);
-    meta.set(rel, { category, provenance: `verbatim copy of committed ${from} @ source_evidence_commit ${SOURCE_EVIDENCE_COMMIT}`, privacy: "PUBLIC_ACADEMIC_STRUCTURAL" });
+    meta.set(rel, {
+      category,
+      provenance: `verbatim copy of committed ${from} @ source_evidence_commit ${SOURCE_EVIDENCE_COMMIT}`,
+      privacy: "PUBLIC_ACADEMIC_STRUCTURAL",
+    });
   };
 
   // 1 ------------------------------------------------ committed input files
   const baselineInputs: [string, string][] = [
-    ["baseline/cbse-class10-mathematics-2026-27-baseline.json", "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json"],
-    ["baseline/cbse-class10-mathematics-2026-27-baseline.schema.json", "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.schema.json"],
-    ["baseline/mathematics-baseline-file-validation.json", "audit-data/class10/2026-27/mathematics-baseline-file-validation.json"],
-    ["baseline/cbse-class10-science-2026-27-baseline.json", "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json"],
-    ["baseline/cbse-class10-science-2026-27-baseline.schema.json", "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.schema.json"],
-    ["baseline/science-baseline-file-validation.json", "audit-data/class10/2026-27/science-baseline-file-validation.json"],
-    ["baseline/EDUOS_CLASS_10_BASELINE_FILE_PACKAGE_REPORT.md", "EDUOS_CLASS_10_BASELINE_FILE_PACKAGE_REPORT.md"],
+    [
+      "baseline/cbse-class10-mathematics-2026-27-baseline.json",
+      "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json",
+    ],
+    [
+      "baseline/cbse-class10-mathematics-2026-27-baseline.schema.json",
+      "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.schema.json",
+    ],
+    [
+      "baseline/mathematics-baseline-file-validation.json",
+      "audit-data/class10/2026-27/mathematics-baseline-file-validation.json",
+    ],
+    [
+      "baseline/cbse-class10-science-2026-27-baseline.json",
+      "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json",
+    ],
+    [
+      "baseline/cbse-class10-science-2026-27-baseline.schema.json",
+      "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.schema.json",
+    ],
+    [
+      "baseline/science-baseline-file-validation.json",
+      "audit-data/class10/2026-27/science-baseline-file-validation.json",
+    ],
+    [
+      "baseline/EDUOS_CLASS_10_BASELINE_FILE_PACKAGE_REPORT.md",
+      "EDUOS_CLASS_10_BASELINE_FILE_PACKAGE_REPORT.md",
+    ],
   ];
   const missing: string[] = [];
   for (const [rel, src] of baselineInputs) {
-    if (!existsSync(abs(src))) { missing.push(src); continue; }
+    if (!existsSync(abs(src))) {
+      missing.push(src);
+      continue;
+    }
     copy(rel, src, "COMMITTED_BASELINE_PACKAGE");
   }
 
   // 2 ------------------------------------------------------ EduOS evidence
   const evidenceInputs: [string, string][] = [
-    ["evidence/EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md", "EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md"],
+    [
+      "evidence/EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md",
+      "EDUOS_CLASS_10_2026_27_COMPLETE_COVERAGE_AUDIT.md",
+    ],
     ["evidence/EDUOS_CLASS_10_MATHEMATICS_CROSSWALK.md", "EDUOS_CLASS_10_MATHEMATICS_CROSSWALK.md"],
     ["evidence/EDUOS_CLASS_10_SCIENCE_CROSSWALK.md", "EDUOS_CLASS_10_SCIENCE_CROSSWALK.md"],
     ["evidence/EDUOS_CLASS_10_OUTCOME_ATOM_MATRIX.md", "EDUOS_CLASS_10_OUTCOME_ATOM_MATRIX.md"],
-    ["evidence/EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md", "EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md"],
+    [
+      "evidence/EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md",
+      "EDUOS_CLASS_10_QUESTION_DEPTH_AND_REASSESSMENT_MATRIX.md",
+    ],
     ["evidence/EDUOS_CLASS_10_GAP_REGISTER.md", "EDUOS_CLASS_10_GAP_REGISTER.md"],
     ["evidence/EDUOS_SUBJECT_COMPLIANCE_GATE.md", "EDUOS_SUBJECT_COMPLIANCE_GATE.md"],
-    ["evidence/EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md", "EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md"],
+    [
+      "evidence/EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md",
+      "EDUOS_ANNUAL_CURRICULUM_COMPLIANCE_STANDARD.md",
+    ],
     ["evidence/EDUOS_OFFICIAL_SOURCE_REGISTRY_SPEC.md", "EDUOS_OFFICIAL_SOURCE_REGISTRY_SPEC.md"],
-    ["evidence/class-10-2026-27.crosswalk.json", "content/compliance/class-10-2026-27.crosswalk.json"],
-    ["evidence/class-10-2026-27.snapshot.json", "content/compliance/class-10-2026-27.snapshot.json"],
-    ["evidence/class-10-2026-27.validator-output.txt", "content/compliance/class-10-2026-27.validator-output.txt"],
+    [
+      "evidence/class-10-2026-27.crosswalk.json",
+      "content/compliance/class-10-2026-27.crosswalk.json",
+    ],
+    [
+      "evidence/class-10-2026-27.snapshot.json",
+      "content/compliance/class-10-2026-27.snapshot.json",
+    ],
+    [
+      "evidence/class-10-2026-27.validator-output.txt",
+      "content/compliance/class-10-2026-27.validator-output.txt",
+    ],
     ["evidence/cbse-2026-27.sources.json", "content/compliance/cbse-2026-27.sources.json"],
-    ["evidence/cbse-2026-27.official-curriculum.json", "content/compliance/cbse-2026-27.official-curriculum.json"],
+    [
+      "evidence/cbse-2026-27.official-curriculum.json",
+      "content/compliance/cbse-2026-27.official-curriculum.json",
+    ],
   ];
   for (const [rel, src] of evidenceInputs) {
-    if (!existsSync(abs(src))) { missing.push(src); continue; }
+    if (!existsSync(abs(src))) {
+      missing.push(src);
+      continue;
+    }
     copy(rel, src, "EDUOS_COMMITTED_EVIDENCE");
   }
 
@@ -214,16 +284,23 @@ export function buildBundle(): {
     const bl = baselines[subjectName]!;
     const sa = subjects.find((s) => s.subject === subjectName)!;
     const target = sa.gates.diagnosticTarget;
-    const dbUnits = snap.units.filter((u) => u.subject === subjectName && u.bookStatus !== "archived");
+    const dbUnits = snap.units.filter(
+      (u) => u.subject === subjectName && u.bookStatus !== "archived",
+    );
     const unmapped: string[] = [];
 
     for (const r of bl.requirements) {
       const unitCandidates = dbUnits.filter((u) => nrm(u.title) === nrm(r.official_unit));
-      const unit: SnapshotUnit | undefined = unitCandidates.find((u) => u.bookStatus === "approved") ?? unitCandidates[0];
+      const unit: SnapshotUnit | undefined =
+        unitCandidates.find((u) => u.bookStatus === "approved") ?? unitCandidates[0];
       const chapter = unit?.chapters?.find((c) => nrm(c.title) === nrm(r.official_chapter)) ?? null;
       const topic =
-        (chapter?.topics as { title: string }[] | null | undefined)?.find((t) => nrm(t.title) === nrm(r.official_topic)) ?? null;
-      const outcomes = (unit?.outcomes ?? []).filter((o) => !chapter || nrm(o.category ?? "") === nrm(chapter.title));
+        (chapter?.topics as { title: string }[] | null | undefined)?.find(
+          (t) => nrm(t.title) === nrm(r.official_topic),
+        ) ?? null;
+      const outcomes = (unit?.outcomes ?? []).filter(
+        (o) => !chapter || nrm(o.category ?? "") === nrm(chapter.title),
+      );
 
       const verified = outcomes.reduce((s, o) => s + o.verified, 0);
       const questions = outcomes.reduce((s, o) => s + o.questions, 0);
@@ -264,7 +341,9 @@ export function buildBundle(): {
         diagnostic_target: target,
         reassessment_reserve: unit ? Math.max(0, verified - Math.min(verified, target)) : null,
         source_mapping_status:
-          bl.source_records.find((s) => s.source_id === r.official_source_id)?.applicability_status?.toString() ?? "PENDING_CONFIRMATION",
+          bl.source_records
+            .find((s) => s.source_id === r.official_source_id)
+            ?.applicability_status?.toString() ?? "PENDING_CONFIRMATION",
         human_review_status: "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT",
         current_verdict: verdict,
         evidence_reference: `evidence/class-10-2026-27.snapshot.json#units[unitId=${unit?.unitId ?? "null"}]`,
@@ -283,7 +362,8 @@ export function buildBundle(): {
   // 4 ------------------------------------------------------- depth evidence
   const depth = {
     provenance: PROVENANCE,
-    depth_law: "verified items per unit >= max(2 x diagnostic target, 2 x outcomes x per-outcome minimum, 2 x diagnostic minimum)",
+    depth_law:
+      "verified items per unit >= max(2 x diagnostic target, 2 x outcomes x per-outcome minimum, 2 x diagnostic minimum)",
     subject_level: subjects.map((s) => ({
       subject: s.subject,
       diagnostic_target: s.gates.diagnosticTarget,
@@ -368,7 +448,12 @@ export function buildBundle(): {
         ),
     },
   };
-  put("exports/question-depth-and-reassessment-evidence.json", `${JSON.stringify(depth, null, 2)}\n`, "DERIVED_DEPTH_EVIDENCE", "derived from frozen snapshot");
+  put(
+    "exports/question-depth-and-reassessment-evidence.json",
+    `${JSON.stringify(depth, null, 2)}\n`,
+    "DERIVED_DEPTH_EVIDENCE",
+    "derived from frozen snapshot",
+  );
 
   // 5 ------------------------------------------------ gate + source exports
   put(
@@ -378,7 +463,12 @@ export function buildBundle(): {
         provenance: PROVENANCE,
         class_10_compliance_status: overall,
         source_registry_issues: sourceIssues,
-        subjects: subjects.map((s) => ({ subject: s.subject, status: s.status, failing_checks: s.gaps, gates: s.gateResults })),
+        subjects: subjects.map((s) => ({
+          subject: s.subject,
+          status: s.status,
+          failing_checks: s.gaps,
+          gates: s.gateResults,
+        })),
       },
       null,
       2,
@@ -395,7 +485,9 @@ export function buildBundle(): {
         class_10_compliance_status: overall,
         registry: sources,
         official_curriculum_provenance: official.provenance,
-        baseline_source_records: Object.fromEntries(Object.entries(baselines).map(([k, v]) => [k, v.source_records])),
+        baseline_source_records: Object.fromEntries(
+          Object.entries(baselines).map(([k, v]) => [k, v.source_records]),
+        ),
       },
       null,
       2,
@@ -416,7 +508,6 @@ export function buildBundle(): {
     science_exclusions: baselines.Science!.exclusions.length,
     science_ambiguities: baselines.Science!.ambiguities.length,
   };
-
 
   put(
     "exports/limitations-and-reconciliation.json",
@@ -507,7 +598,12 @@ export function buildBundle(): {
     "`GEMINI_REVIEW_BUNDLE_MANIFEST.json` lists every file with byte size, SHA-256, content category, source provenance, privacy classification and bundle generation timestamp. `bundle_tree_hash` is a deterministic hash over all payload files. `GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256` is a `sha256sum -c` compatible checklist covering the same files.",
     "",
   ].join("\n");
-  put("GEMINI_REVIEW_BUNDLE_README.md", readme, "BUNDLE_README", "generated by scripts/compliance/gemini-bundle.ts");
+  put(
+    "GEMINI_REVIEW_BUNDLE_README.md",
+    readme,
+    "BUNDLE_README",
+    "generated by scripts/compliance/gemini-bundle.ts",
+  );
 
   const entries = [...written].sort().map((rel) => {
     const bytes = readFileSync(resolve(outDir, rel));
@@ -532,10 +628,12 @@ export function buildBundle(): {
   const manifest = {
     bundle: "class10-2026-27-gemini",
     bundle_format_version: BUNDLE_FORMAT_VERSION,
-    purpose: "Independent Gemini row-by-row academic crosswalk review of CBSE Class 10 (2026-27) Mathematics and Science",
+    purpose:
+      "Independent Gemini row-by-row academic crosswalk review of CBSE Class 10 (2026-27) Mathematics and Science",
     provenance: PROVENANCE,
     bundle_tree_hash: bundleTreeHash,
-    bundle_tree_hash_algorithm: "sha256 over sorted `<path>\\0<file sha256>` lines of all payload files",
+    bundle_tree_hash_algorithm:
+      "sha256 over sorted `<path>\\0<file sha256>` lines of all payload files",
     self_reference_policy: SELF_REFERENCE_POLICY,
     self_referential_exclusions: [
       "GEMINI_REVIEW_BUNDLE_MANIFEST.json — contains the hashes of all other files; cannot contain its own hash.",
@@ -547,7 +645,10 @@ export function buildBundle(): {
     files_missing: missing,
     files: entries,
   };
-  writeFileSync(resolve(outDir, "GEMINI_REVIEW_BUNDLE_MANIFEST.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+  writeFileSync(
+    resolve(outDir, "GEMINI_REVIEW_BUNDLE_MANIFEST.json"),
+    `${JSON.stringify(manifest, null, 2)}\n`,
+  );
   writeFileSync(
     resolve(outDir, "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256"),
     `${entries.map((e) => `${e.sha256}  ${e.path}`).join("\n")}\n`,
@@ -555,7 +656,6 @@ export function buildBundle(): {
 
   return { files: entries.map((e) => e.path), crosswalkRows, counts, bundleTreeHash };
 }
-
 
 if (import.meta.main) {
   const { files, counts, bundleTreeHash } = buildBundle();

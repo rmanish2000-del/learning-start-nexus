@@ -17,7 +17,12 @@ import { toast } from "sonner";
 
 import { useI18n } from "@/lib/i18n/context";
 import { getParentAccount, createStudentProfile } from "@/lib/parent-account.functions";
-import { PILOT_BOARD, PILOT_CLASS, type ParentAccount, type ParentStudent } from "@/lib/parent-account-shared";
+import {
+  PILOT_BOARD,
+  PILOT_CLASS,
+  type ParentAccount,
+  type ParentStudent,
+} from "@/lib/parent-account-shared";
 import { FreeCheckPanel } from "@/components/free-check-panel";
 import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
 
@@ -96,7 +101,6 @@ export function ParentLearners({
         {students.length === 0 ? (
           <EmptyLearners />
         ) : (
-
           <>
             <div className="flex flex-wrap items-center gap-2">
               {students.map((s) => (
@@ -126,7 +130,9 @@ function EmptyLearners() {
       <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
         <UserPlus className="h-5 w-5" />
       </span>
-      <h3 className="mt-3 text-base font-semibold">{t("learners.empty.title", "Add your child to begin")}</h3>
+      <h3 className="mt-3 text-base font-semibold">
+        {t("learners.empty.title", "Add your child to begin")}
+      </h3>
       <p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">
         {t(
           "learners.empty.body",
@@ -172,8 +178,7 @@ function AddLearnerForm({ onDone }: { onDone?: () => void }) {
       void queryClient.invalidateQueries({ queryKey: ["parent-account"] });
       onDone?.();
     },
-    onError: (error) =>
-      toast.error(friendlyErrorMessage(error, "That child could not be added.")),
+    onError: (error) => toast.error(friendlyErrorMessage(error, "That child could not be added.")),
   });
 
   return (
@@ -205,7 +210,10 @@ function AddLearnerForm({ onDone }: { onDone?: () => void }) {
         {t("learners.add", "Add child")}
       </Button>
       <p className="w-full text-left text-xs text-muted-foreground">
-        {t("learners.add.scope", `The pilot covers ${PILOT_BOARD} Class ${PILOT_CLASS} — Mathematics and Science.`)}
+        {t(
+          "learners.add.scope",
+          `The pilot covers ${PILOT_BOARD} Class ${PILOT_CLASS} — Mathematics and Science.`,
+        )}
       </p>
     </form>
   );
@@ -271,11 +279,13 @@ function LearnerDetail({ student, account }: { student: ParentStudent; account: 
                       </>
                     ) : p.sessionStatus === "in_progress" ? (
                       <>
-                        <PlayCircle className="h-3.5 w-3.5 text-amber-600" /> {t("status.inProgress", "In progress")}
+                        <PlayCircle className="h-3.5 w-3.5 text-amber-600" />{" "}
+                        {t("status.inProgress", "In progress")}
                       </>
                     ) : (
                       <>
-                        <CircleDashed className="h-3.5 w-3.5" /> {t("status.notStarted", "Not started")}
+                        <CircleDashed className="h-3.5 w-3.5" />{" "}
+                        {t("status.notStarted", "Not started")}
                       </>
                     )}
                   </p>

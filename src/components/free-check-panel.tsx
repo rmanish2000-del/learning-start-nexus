@@ -35,7 +35,8 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
   });
 
   const mutation = useMutation({
-    mutationFn: (subject: FreeCheckSubject) => startFn({ data: { learnerId: student.id, subject } }),
+    mutationFn: (subject: FreeCheckSubject) =>
+      startFn({ data: { learnerId: student.id, subject } }),
     onSuccess: () => {
       toast.success(`Free learning check ready. Ask ${student.fullName} to sign in and answer it.`);
       void queryClient.invalidateQueries({ queryKey: ["free-check-status", student.id] });
@@ -49,7 +50,8 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="flex items-center gap-1.5 text-sm font-medium">
-            <Sparkles className="h-4 w-4 text-primary" /> {t("freeCheck.title", "Free learning check")}
+            <Sparkles className="h-4 w-4 text-primary" />{" "}
+            {t("freeCheck.title", "Free learning check")}
           </p>
           <p className="text-xs text-muted-foreground">
             {t(
@@ -82,7 +84,9 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
                     disabled={mutation.isPending}
                     onClick={() => mutation.mutate(row.subject)}
                   >
-                    {mutation.isPending ? <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" /> : null}
+                    {mutation.isPending ? (
+                      <Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" />
+                    ) : null}
                     {t("freeCheck.start", "Start free check")}
                   </Button>
                 </>
@@ -109,7 +113,13 @@ export function FreeCheckPanel({ student }: { student: ParentStudent }) {
   );
 }
 
-function FreeCheckSummary({ check, learnerName }: { check: FreeCheckPreview; learnerName: string }) {
+function FreeCheckSummary({
+  check,
+  learnerName,
+}: {
+  check: FreeCheckPreview;
+  learnerName: string;
+}) {
   const { t } = useI18n();
   if (check.status !== "submitted") {
     return (
@@ -123,7 +133,8 @@ function FreeCheckSummary({ check, learnerName }: { check: FreeCheckPreview; lea
   return (
     <div className="mt-1.5 space-y-2">
       <p className="text-xs text-muted-foreground">
-        {check.unitTitle} · {check.correctCount} of {check.totalQuestions} correct ({check.scorePct}%)
+        {check.unitTitle} · {check.correctCount} of {check.totalQuestions} correct ({check.scorePct}
+        %)
       </p>
       <div>
         <p className="text-xs font-medium">{t("freeCheck.skills", "Skills checked")}</p>
@@ -142,11 +153,15 @@ function FreeCheckSummary({ check, learnerName }: { check: FreeCheckPreview; lea
       </div>
       {check.possibleGaps.length > 0 ? (
         <p className="text-xs text-muted-foreground">
-          <span className="font-medium text-foreground">{t("freeCheck.gaps", "Possible gaps:")}</span>{" "}
+          <span className="font-medium text-foreground">
+            {t("freeCheck.gaps", "Possible gaps:")}
+          </span>{" "}
           {check.possibleGaps.map((g) => g.title).join(", ")}
         </p>
       ) : (
-        <p className="text-xs text-muted-foreground">{t("freeCheck.noGaps", "No gaps in this short check.")}</p>
+        <p className="text-xs text-muted-foreground">
+          {t("freeCheck.noGaps", "No gaps in this short check.")}
+        </p>
       )}
       {check.sampleRecommendation ? (
         <p className="rounded-md border bg-background p-2 text-xs">

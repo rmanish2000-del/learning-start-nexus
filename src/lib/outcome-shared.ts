@@ -4,11 +4,7 @@
 // determinism: same inputs always produce the same outcome.
 
 export type OutcomeStatus =
-  | "pending"
-  | "improvement"
-  | "no_improvement"
-  | "low_confidence"
-  | "requires_review";
+  "pending" | "improvement" | "no_improvement" | "low_confidence" | "requires_review";
 
 export const OUTCOME_STATUS_LABELS: Record<OutcomeStatus, string> = {
   pending: "Pending reassessment",
@@ -51,7 +47,13 @@ export function computeConfidence(input: ConfidenceInput): number {
       ? 15
       : Math.round(30 * (input.practiceCorrect / input.practiceAttempts));
   const consistency =
-    input.subtopicPct === null ? 10 : input.subtopicPct >= 70 ? 30 : input.subtopicPct >= 50 ? 20 : 10;
+    input.subtopicPct === null
+      ? 10
+      : input.subtopicPct >= 70
+        ? 30
+        : input.subtopicPct >= 50
+          ? 20
+          : 10;
   return coverage + practice + consistency;
 }
 
@@ -141,7 +143,10 @@ export function buildOutcomeTimeline(input: TimelineInput): TimelineEvent[] {
       key: "reassessment",
       label: "Reassessment",
       at: input.reassessmentAt,
-      detail: input.postScore !== null ? `Post-intervention score ${input.postScore}%` : "Awaiting submission",
+      detail:
+        input.postScore !== null
+          ? `Post-intervention score ${input.postScore}%`
+          : "Awaiting submission",
       state: input.reassessmentAt ? "done" : "current",
     },
     {

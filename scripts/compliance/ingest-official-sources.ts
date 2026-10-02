@@ -288,10 +288,15 @@ async function verify(spec: Spec, unconfirmed: boolean): Promise<SourceRecord> {
   record.pdfSignatureOk = head.startsWith("%PDF-");
   record.pdfTrailerOk = tail.includes("%%EOF");
 
-  if (!record.pdfSignatureOk) failures.push("Body is not a PDF (missing %PDF- signature) — likely an HTML error or redirect page");
+  if (!record.pdfSignatureOk)
+    failures.push(
+      "Body is not a PDF (missing %PDF- signature) — likely an HTML error or redirect page",
+    );
   if (!record.pdfTrailerOk) failures.push("PDF is truncated (no %%EOF trailer)");
-  if (!(record.mimeType ?? "").includes("application/pdf")) failures.push(`Unexpected MIME type ${record.mimeType}`);
-  if (bytes.byteLength < 20_000) failures.push(`Implausibly small payload (${bytes.byteLength} bytes)`);
+  if (!(record.mimeType ?? "").includes("application/pdf"))
+    failures.push(`Unexpected MIME type ${record.mimeType}`);
+  if (bytes.byteLength < 20_000)
+    failures.push(`Implausibly small payload (${bytes.byteLength} bytes)`);
 
   // Scratch copy: hashing input and pdfinfo target. Never inside the repo.
   mkdirSync(SCRATCH, { recursive: true });
@@ -306,13 +311,22 @@ async function verify(spec: Spec, unconfirmed: boolean): Promise<SourceRecord> {
   const pages = Number(/^Pages:\s+(\d+)$/m.exec(infoText)?.[1] ?? 0);
   record.pageCount = pages || null;
   if (record.pdfSignatureOk && pages < 1) {
-    failures.push(`PDF is not readable: pdfinfo reported no pages (${new TextDecoder().decode(info.stderr).trim()})`);
+    failures.push(
+      `PDF is not readable: pdfinfo reported no pages (${new TextDecoder().decode(info.stderr).trim()})`,
+    );
   }
 
   // Edition pinning: read the imprint line out of the front matter.
-  const text = new TextDecoder().decode(Bun.spawnSync(["pdftotext", "-f", "1", "-l", "4", scratchFile, "-"]).stdout);
-  record.edition = /(?:Reprint|Reprinted|Edition)\s+(20\d{2}(?:-\d{2})?)/i.exec(text)?.[0]?.trim() ?? null;
-  if (spec.authority === "NCERT" && spec.requirement !== "ncert_rationalised_booklet" && !record.edition) {
+  const text = new TextDecoder().decode(
+    Bun.spawnSync(["pdftotext", "-f", "1", "-l", "4", scratchFile, "-"]).stdout,
+  );
+  record.edition =
+    /(?:Reprint|Reprinted|Edition)\s+(20\d{2}(?:-\d{2})?)/i.exec(text)?.[0]?.trim() ?? null;
+  if (
+    spec.authority === "NCERT" &&
+    spec.requirement !== "ncert_rationalised_booklet" &&
+    !record.edition
+  ) {
     failures.push("NCERT edition could not be pinned from the imprint page");
   }
 
@@ -321,7 +335,8 @@ async function verify(spec: Spec, unconfirmed: boolean): Promise<SourceRecord> {
   record.hashStable = record.sha256 === record.sha256Repeat;
   if (!record.hashStable) failures.push("SHA-256 is unstable across repeated execution");
 
-  record.verdict = failures.length > 0 ? "FAILED" : unconfirmed ? "UNCONFIRMED_PUBLICATION" : "VERIFIED";
+  record.verdict =
+    failures.length > 0 ? "FAILED" : unconfirmed ? "UNCONFIRMED_PUBLICATION" : "VERIFIED";
   return record;
 }
 
@@ -346,7 +361,11 @@ function csvCell(value: unknown): string {
 function toCsv(rows: Record<string, unknown>[]): string {
   if (rows.length === 0) return "";
   const headers = Object.keys(rows[0]!);
-  return [headers.join(","), ...rows.map((row) => headers.map((h) => csvCell(row[h])).join(","))].join("\n") + "\n";
+  return (
+    [headers.join(","), ...rows.map((row) => headers.map((h) => csvCell(row[h])).join(","))].join(
+      "\n",
+    ) + "\n"
+  );
 }
 
 export async function run() {
@@ -370,7 +389,10 @@ export async function run() {
     generator: "scripts/compliance/ingest-official-sources.ts",
     officialDomains: OFFICIAL_DOMAINS,
     sourceStatus: sourceComplete ? "SOURCE_COMPLETE" : "SOURCE_INCOMPLETE",
-    missingRequirements: missing.map((req) => ({ requirement: req, label: REQUIREMENT_LABELS[req] })),
+    missingRequirements: missing.map((req) => ({
+      requirement: req,
+      label: REQUIREMENT_LABELS[req],
+    })),
     reviewerCertification: {
       gate: "NAMED_SUBJECT_EXPERT_REVIEW",
       status: "PENDING",
@@ -380,7 +402,10 @@ export async function run() {
   };
 
   mkdirSync(OUT_DATA, { recursive: true });
-  writeFileSync(join(OUT_DATA, "class-10.official-sources.json"), JSON.stringify(register, null, 2) + "\n");
+  writeFileSync(
+    join(OUT_DATA, "class-10.official-sources.json"),
+    JSON.stringify(register, null, 2) + "\n",
+  );
 
   writeFileSync(
     join(OUT_DATA, "class-10.official-sources.csv"),
@@ -440,7 +465,10 @@ export async function run() {
   };
 
   writeFileSync("EDUOS_CLASS10_COMPLIANCE_MATRIX.json", JSON.stringify(matrix, null, 2) + "\n");
-  writeFileSync("EDUOS_CLASS10_COMPLIANCE_MATRIX.csv", toCsv(matrix.rows as unknown as Record<string, unknown>[]));
+  writeFileSync(
+    "EDUOS_CLASS10_COMPLIANCE_MATRIX.csv",
+    toCsv(matrix.rows as unknown as Record<string, unknown>[]),
+  );
 
   console.log(`SOURCE STATUS: ${register.sourceStatus}`);
   for (const r of records) {

@@ -35,15 +35,19 @@ export async function fetchBlueprintWorkspace(
 ): Promise<BlueprintWorkspace> {
   const [bookRes, unitsRes, outcomesRes, mapsRes, interventionsRes, loRes, topicsRes, chaptersRes] =
     await Promise.all([
-      supabase.from("books").select("id, title, board, grade, subject, status").eq("id", bookId).maybeSingle(),
-      supabase.from("curriculum_units").select("id, title, position").eq("book_id", bookId).order("position"),
+      supabase
+        .from("books")
+        .select("id, title, board, grade, subject, status")
+        .eq("id", bookId)
+        .maybeSingle(),
+      supabase
+        .from("curriculum_units")
+        .select("id, title, position")
+        .eq("book_id", bookId)
+        .order("position"),
       supabase.from("assessment_outcomes").select("*").eq("book_id", bookId).order("code"),
       supabase.from("outcome_map").select("*").eq("book_id", bookId),
-      supabase
-        .from("intervention_map")
-        .select("*")
-        .eq("book_id", bookId)
-        .order("priority"),
+      supabase.from("intervention_map").select("*").eq("book_id", bookId).order("priority"),
       supabase
         .from("curriculum_outcomes")
         .select("id, topic_id, text, status")
@@ -54,7 +58,15 @@ export async function fetchBlueprintWorkspace(
 
   if (bookRes.error) throw new Error(bookRes.error.message);
   if (!bookRes.data) throw new Error("Book not found in your organization.");
-  for (const r of [unitsRes, outcomesRes, mapsRes, interventionsRes, loRes, topicsRes, chaptersRes]) {
+  for (const r of [
+    unitsRes,
+    outcomesRes,
+    mapsRes,
+    interventionsRes,
+    loRes,
+    topicsRes,
+    chaptersRes,
+  ]) {
     if (r.error) throw new Error(r.error.message);
   }
 
@@ -148,10 +160,7 @@ export async function fetchBlueprintWorkspace(
 // ---------------------------------------------------------------------------
 
 export async function fetchMasteryLevels(supabase: Client): Promise<MasteryLevelDto[]> {
-  const { data, error } = await supabase
-    .from("mastery_levels")
-    .select("*")
-    .order("sort_order");
+  const { data, error } = await supabase.from("mastery_levels").select("*").order("sort_order");
   if (error) throw new Error(error.message);
   return (data ?? []).map((l) => ({
     id: l.id,
@@ -280,7 +289,11 @@ export async function fetchMasteryPreview(
 const BLOOM_BY_INDEX = ["Remember", "Understand", "Apply", "Analyse"] as const;
 
 function slugCode(subject: string, grade: number, unitIdx: number, topicIdx: number): string {
-  const subj = subject.replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase() || "GEN";
+  const subj =
+    subject
+      .replace(/[^A-Za-z]/g, "")
+      .slice(0, 3)
+      .toUpperCase() || "GEN";
   return `LO_${subj}${grade}_U${unitIdx + 1}_${String(topicIdx + 1).padStart(2, "0")}`;
 }
 
@@ -302,9 +315,21 @@ export async function generateBlueprintOutcomes(
 ): Promise<{ created: number; mapped: number; skipped: number }> {
   const [bookRes, unitsRes, chaptersRes, topicsRes, loRes, existingRes] = await Promise.all([
     supabase.from("books").select("id, grade, subject").eq("id", bookId).maybeSingle(),
-    supabase.from("curriculum_units").select("id, title, position").eq("book_id", bookId).order("position"),
-    supabase.from("curriculum_chapters").select("id, unit_id, position").eq("book_id", bookId).order("position"),
-    supabase.from("curriculum_topics").select("id, chapter_id, title, position, learning_outcomes").eq("book_id", bookId).order("position"),
+    supabase
+      .from("curriculum_units")
+      .select("id, title, position")
+      .eq("book_id", bookId)
+      .order("position"),
+    supabase
+      .from("curriculum_chapters")
+      .select("id, unit_id, position")
+      .eq("book_id", bookId)
+      .order("position"),
+    supabase
+      .from("curriculum_topics")
+      .select("id, chapter_id, title, position, learning_outcomes")
+      .eq("book_id", bookId)
+      .order("position"),
     supabase.from("curriculum_outcomes").select("id, topic_id, text").eq("book_id", bookId),
     supabase.from("assessment_outcomes").select("id, code, unit_id").eq("book_id", bookId),
   ]);

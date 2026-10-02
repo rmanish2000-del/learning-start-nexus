@@ -89,7 +89,10 @@ describe("payment.captured handling", () => {
 
   it("ignores an unknown gateway order without writing anything", async () => {
     const { captureFromWebhook } = await api();
-    const result = await captureFromWebhook({ providerOrderId: "order_unknown", paymentId: "pay_x" });
+    const result = await captureFromWebhook({
+      providerOrderId: "order_unknown",
+      paymentId: "pay_x",
+    });
 
     expect(result).toBe("ignored");
     expect(orders()[0]!["status"]).toBe("created");
@@ -100,7 +103,10 @@ describe("payment.captured handling", () => {
 describe("payment.failed handling", () => {
   it("marks the order failed with the gateway reason and grants nothing", async () => {
     const { failFromWebhook } = await api();
-    const result = await failFromWebhook({ providerOrderId: "order_diag", reason: "Card declined" });
+    const result = await failFromWebhook({
+      providerOrderId: "order_diag",
+      reason: "Card declined",
+    });
 
     expect(result).toBe("failed");
     expect(orders()[0]!["status"]).toBe("failed");

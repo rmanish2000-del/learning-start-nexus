@@ -7,7 +7,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-
 const STEPS = [
   {
     icon: Target,
@@ -50,7 +49,9 @@ export function LoopSection() {
   return (
     <section id="how" className="scroll-mt-16 border-t bg-muted/40">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
-        <p className="text-xs font-medium tracking-widest text-primary uppercase">How EduOS works</p>
+        <p className="text-xs font-medium tracking-widest text-primary uppercase">
+          How EduOS works
+        </p>
         <h2 className="mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
           One loop, from first diagnostic to recorded evidence
         </h2>
@@ -108,7 +109,6 @@ export function LoopSection() {
             </li>
           ))}
         </ol>
-
       </div>
     </section>
   );

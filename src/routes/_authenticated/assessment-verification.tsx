@@ -83,14 +83,16 @@ function AssessmentVerificationPage() {
   const createFn = useServerFn(createAssessment);
   const assignFn = useServerFn(assignAssessment);
   const [busy, setBusy] = useState<string | null>(null);
-  const [lastProbe, setLastProbe] = useState<{ id: string; title: string; at: string } | null>(() => {
-    try {
-      const raw = window.localStorage.getItem(PROBE_KEY);
-      return raw ? (JSON.parse(raw) as { id: string; title: string; at: string }) : null;
-    } catch {
-      return null;
-    }
-  });
+  const [lastProbe, setLastProbe] = useState<{ id: string; title: string; at: string } | null>(
+    () => {
+      try {
+        const raw = window.localStorage.getItem(PROBE_KEY);
+        return raw ? (JSON.parse(raw) as { id: string; title: string; at: string }) : null;
+      } catch {
+        return null;
+      }
+    },
+  );
 
   const data = report.data;
   const refresh = () => queryClient.invalidateQueries({ queryKey: ["assessment-verification"] });
@@ -151,14 +153,17 @@ function AssessmentVerificationPage() {
             <FlaskConical className="h-5 w-5" />
           </span>
           <div>
-            <h2 className="text-xl font-semibold tracking-tight">Sprint 2 verification — assessment engine</h2>
+            <h2 className="text-xl font-semibold tracking-tight">
+              Sprint 2 verification — assessment engine
+            </h2>
             <p className="text-sm text-muted-foreground">
               Every figure below is queried live from the database as the signed-in user. Reload the
               page at any point — persisted rows reappear because they come from Postgres, not
               client state.
               {data && (
                 <>
-                  {" "}Generated {fmt(data.generatedAt)} as{" "}
+                  {" "}
+                  Generated {fmt(data.generatedAt)} as{" "}
                   <span className="font-medium text-foreground">{data.me.role}</span> of{" "}
                   <span className="font-medium text-foreground">{data.me.orgName ?? "—"}</span>.
                 </>
@@ -296,7 +301,10 @@ function AssessmentVerificationPage() {
                   <TableCell className="text-sm font-medium">
                     {a.title}
                     {lastProbe?.id === a.id && (
-                      <Badge variant="outline" className="ml-2 border-emerald-500/40 text-emerald-600 dark:text-emerald-400">
+                      <Badge
+                        variant="outline"
+                        className="ml-2 border-emerald-500/40 text-emerald-600 dark:text-emerald-400"
+                      >
                         probe — persisted
                       </Badge>
                     )}
@@ -329,9 +337,8 @@ function AssessmentVerificationPage() {
             <FileCheck2 className="h-4 w-4" /> 3. Assessment assignment — session rows persist
           </CardTitle>
           <CardDescription>
-            Assigning creates one <span className="font-mono text-xs">assessment_sessions</span>{" "}
-            row per learner. The table below is queried live — reload and the assignment is still
-            there.
+            Assigning creates one <span className="font-mono text-xs">assessment_sessions</span> row
+            per learner. The table below is queried live — reload and the assignment is still there.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -341,7 +348,9 @@ function AssessmentVerificationPage() {
                 size="sm"
                 variant="outline"
                 onClick={runAssignProbe}
-                disabled={busy !== null || !publishedAssessment || (data?.learners.length ?? 0) === 0}
+                disabled={
+                  busy !== null || !publishedAssessment || (data?.learners.length ?? 0) === 0
+                }
               >
                 <PlayCircle className="h-4 w-4" />
                 {busy === "assign" ? "Assigning…" : "Assign probe"}
@@ -381,7 +390,9 @@ function AssessmentVerificationPage() {
                       {s.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-sm">{s.scorePct === null ? "—" : `${s.scorePct}%`}</TableCell>
+                  <TableCell className="text-sm">
+                    {s.scorePct === null ? "—" : `${s.scorePct}%`}
+                  </TableCell>
                   <TableCell className="font-mono text-xs">{fmt(s.createdAt)}</TableCell>
                 </TableRow>
               ))}
@@ -401,7 +412,8 @@ function AssessmentVerificationPage() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <RefreshCw className="h-4 w-4" /> 4. Resume interrupted session — answers stored server-side
+            <RefreshCw className="h-4 w-4" /> 4. Resume interrupted session — answers stored
+            server-side
           </CardTitle>
           <CardDescription>
             These unfinished sessions have answers stored in the{" "}
@@ -433,7 +445,9 @@ function AssessmentVerificationPage() {
                 </span>
                 <span>
                   Saved position:{" "}
-                  <span className="font-medium text-foreground">question {r.currentPosition + 1}</span>
+                  <span className="font-medium text-foreground">
+                    question {r.currentPosition + 1}
+                  </span>
                 </span>
                 <span>
                   Last activity:{" "}
@@ -552,7 +566,9 @@ function AssessmentVerificationPage() {
                   <TableRow key={e.id}>
                     <TableCell className="text-sm font-medium">{e.learnerName}</TableCell>
                     <TableCell className="text-sm">{e.title}</TableCell>
-                    <TableCell className="max-w-96 text-xs text-muted-foreground">{e.note}</TableCell>
+                    <TableCell className="max-w-96 text-xs text-muted-foreground">
+                      {e.note}
+                    </TableCell>
                     <TableCell className="font-mono text-xs">{e.recordedOn}</TableCell>
                   </TableRow>
                 ))}
@@ -582,7 +598,9 @@ function AssessmentVerificationPage() {
                   <TableRow key={la.id}>
                     <TableCell className="text-sm font-medium">{la.learnerName}</TableCell>
                     <TableCell className="text-sm">{la.title}</TableCell>
-                    <TableCell className="text-sm">{la.score === null ? "—" : `${la.score}%`}</TableCell>
+                    <TableCell className="text-sm">
+                      {la.score === null ? "—" : `${la.score}%`}
+                    </TableCell>
                     <TableCell className="font-mono text-xs">{la.takenOn ?? "—"}</TableCell>
                   </TableRow>
                 ))}

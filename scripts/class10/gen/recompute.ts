@@ -70,7 +70,11 @@ export const RECOMPUTE: Record<string, (a: number[]) => number> = {
   axis_ratio_y: ([y1, y2]) => -y1! / y2!,
   fourth_vertex_x: ([a, b, c]) => a! + c! - b!,
   triangle_perimeter: ([x1, y1, x2, y2, x3, y3]) =>
-    r3(Math.hypot(x2! - x1!, y2! - y1!) + Math.hypot(x3! - x2!, y3! - y2!) + Math.hypot(x1! - x3!, y1! - y3!)),
+    r3(
+      Math.hypot(x2! - x1!, y2! - y1!) +
+        Math.hypot(x3! - x2!, y3! - y2!) +
+        Math.hypot(x1! - x3!, y1! - y3!),
+    ),
   path_two_legs: ([x1, y1, x2, y2, x3, y3]) =>
     r3(Math.hypot(x2! - x1!, y2! - y1!) + Math.hypot(x3! - x2!, y3! - y2!)),
 
@@ -103,7 +107,8 @@ export const RECOMPUTE: Record<string, (a: number[]) => number> = {
   sphere_area: ([r, pi]) => r2(4 * pi! * r! * r!),
   cone_volume: ([r, h, pi]) => r2((1 / 3) * pi! * r! * r! * h!),
   cone_csa: ([r, h, pi]) => r2(pi! * r! * Math.hypot(r!, h!)),
-  cone_plus_hemisphere_volume: ([r, h, pi]) => r2((1 / 3) * pi! * r! * r! * h! + (2 / 3) * pi! * r! ** 3),
+  cone_plus_hemisphere_volume: ([r, h, pi]) =>
+    r2((1 / 3) * pi! * r! * r! * h! + (2 / 3) * pi! * r! ** 3),
   cylinder_volume: ([r, h, pi]) => r2(pi! * r! * r! * h!),
   cylinder_csa: ([r, h, pi]) => r2(2 * pi! * r! * h!),
   capsule_volume: ([r, l, pi]) => r2(pi! * r! * r! * l! + (4 / 3) * pi! * r! ** 3),
@@ -132,7 +137,7 @@ export const RECOMPUTE: Record<string, (a: number[]) => number> = {
     return r2(a + fd / f);
   },
   grouped_mode: ([l, f1, f0, f2, h]) => r2(l! + ((f1! - f0!) / (2 * f1! - f0! - f2!)) * h!),
-  grouped_median: ([l, n, cf, f, h]) => r2(l! + (n! / 2 - cf!) / f! * h!),
+  grouped_median: ([l, n, cf, f, h]) => r2(l! + ((n! / 2 - cf!) / f!) * h!),
   median_class_cf: (freqs) => {
     const n = freqs.reduce((s, x) => s + x, 0);
     let cum = 0;
@@ -156,7 +161,8 @@ export const RECOMPUTE: Record<string, (a: number[]) => number> = {
   lens_v: ([u, f]) => r2(1 / (1 / f! + 1 / u!)),
   lens_power: ([fCm]) => r2(100 / fCm!),
   myopia_power: ([farPointCm]) => r2(-100 / farPointCm!),
-  hypermetropia_power: ([nearPointCm, targetCm]) => r2(100 / (1 / (-1 / nearPointCm! + 1 / targetCm!))),
+  hypermetropia_power: ([nearPointCm, targetCm]) =>
+    r2(100 / (1 / (-1 / nearPointCm! + 1 / targetCm!))),
 
   // science — electricity and magnetism
   ohm_current: ([v, r]) => v! / r!,
@@ -167,7 +173,8 @@ export const RECOMPUTE: Record<string, (a: number[]) => number> = {
   joule_heat: ([i, r, t]) => i! * i! * r! * t!,
   power_vi: ([v, i]) => v! * i!,
   energy_kwh: ([watts, hoursPerDay, days]) => r2((watts! * hoursPerDay! * days!) / 1000),
-  energy_cost: ([watts, hoursPerDay, days, rate]) => r2(((watts! * hoursPerDay! * days!) / 1000) * rate!),
+  energy_cost: ([watts, hoursPerDay, days, rate]) =>
+    r2(((watts! * hoursPerDay! * days!) / 1000) * rate!),
   turns_field: ([from, to]) => to! / from!,
 
   // science — ecology

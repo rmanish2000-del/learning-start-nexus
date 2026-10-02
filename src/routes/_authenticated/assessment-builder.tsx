@@ -95,7 +95,9 @@ const ALL_DIFFICULTIES = [1, 2, 3, 4, 5];
 function ChainChip({ children, last }: { children: React.ReactNode; last?: boolean }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="rounded-full border bg-card px-2.5 py-1 text-[11px] font-medium">{children}</span>
+      <span className="rounded-full border bg-card px-2.5 py-1 text-[11px] font-medium">
+        {children}
+      </span>
       {!last && <ArrowRight className="h-3 w-3 text-muted-foreground" />}
     </div>
   );
@@ -111,15 +113,17 @@ function AssessmentBuilderPage() {
   const booksQuery = useQuery({ queryKey: ["builder-books"], queryFn: () => getBuilderBooksFn() });
   const books = useMemo(() => booksQuery.data ?? [], [booksQuery.data]);
 
-  const boards = useMemo(
-    () => [...new Set(books.map((b) => b.board ?? "No board"))],
-    [books],
-  );
+  const boards = useMemo(() => [...new Set(books.map((b) => b.board ?? "No board"))], [books]);
   const [board, setBoard] = useState<string | null>(null);
   const activeBoard = board ?? boards[0] ?? null;
 
   const grades = useMemo(
-    () => [...new Set(books.filter((b) => (b.board ?? "No board") === activeBoard).map((b) => b.grade))].sort((a, b) => a - b),
+    () =>
+      [
+        ...new Set(
+          books.filter((b) => (b.board ?? "No board") === activeBoard).map((b) => b.grade),
+        ),
+      ].sort((a, b) => a - b),
     [books, activeBoard],
   );
   const [grade, setGrade] = useState<number | null>(null);
@@ -127,11 +131,13 @@ function AssessmentBuilderPage() {
 
   const subjects = useMemo(
     () =>
-      [...new Set(
-        books
-          .filter((b) => (b.board ?? "No board") === activeBoard && b.grade === activeGrade)
-          .map((b) => b.subject),
-      )].sort(),
+      [
+        ...new Set(
+          books
+            .filter((b) => (b.board ?? "No board") === activeBoard && b.grade === activeGrade)
+            .map((b) => b.subject),
+        ),
+      ].sort(),
     [books, activeBoard, activeGrade],
   );
   const [subject, setSubject] = useState<string | null>(null);
@@ -188,9 +194,7 @@ function AssessmentBuilderPage() {
   const outcomeById = useMemo(() => new Map(outcomes.map((o) => [o.id, o])), [outcomes]);
 
   const visibleQuestions = (o: BuilderOutcomeDto) =>
-    o.questions.filter(
-      (q) => difficultyMix.has(q.difficulty) && kindFilter.has(q.kind),
-    );
+    o.questions.filter((q) => difficultyMix.has(q.difficulty) && kindFilter.has(q.kind));
 
   const toggleOutcome = (o: BuilderOutcomeDto, on: boolean) => {
     const nextOutcomes = new Set(selectedOutcomes);
@@ -282,7 +286,9 @@ function AssessmentBuilderPage() {
       setTitle("");
       setDescription("");
       await workspaceQuery.refetch();
-      navigate({ search: { book: bookId, unit: workspace.selectedUnitId, built: result.assessmentId } });
+      navigate({
+        search: { book: bookId, unit: workspace.selectedUnitId, built: result.assessmentId },
+      });
     } catch (error) {
       toast.error(friendlyErrorMessage(error, "Build failed."));
     } finally {
@@ -348,10 +354,11 @@ function AssessmentBuilderPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <BookOpen className="h-4 w-4 text-primary" />
-            1 · Curriculum path
+            <BookOpen className="h-4 w-4 text-primary" />1 · Curriculum path
           </CardTitle>
-          <CardDescription>Board, grade, and subject resolve to a book; then pick a unit.</CardDescription>
+          <CardDescription>
+            Board, grade, and subject resolve to a book; then pick a unit.
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 md:grid-cols-4">
           <div className="space-y-1.5">
@@ -364,10 +371,14 @@ function AssessmentBuilderPage() {
                 setSubject(null);
               }}
             >
-              <SelectTrigger><SelectValue placeholder="Board" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Board" />
+              </SelectTrigger>
               <SelectContent>
                 {boards.map((b) => (
-                  <SelectItem key={b} value={b}>{b}</SelectItem>
+                  <SelectItem key={b} value={b}>
+                    {b}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -381,10 +392,14 @@ function AssessmentBuilderPage() {
                 setSubject(null);
               }}
             >
-              <SelectTrigger><SelectValue placeholder="Grade" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Grade" />
+              </SelectTrigger>
               <SelectContent>
                 {grades.map((g) => (
-                  <SelectItem key={g} value={String(g)}>Grade {g}</SelectItem>
+                  <SelectItem key={g} value={String(g)}>
+                    Grade {g}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -392,10 +407,14 @@ function AssessmentBuilderPage() {
           <div className="space-y-1.5">
             <Label>Subject</Label>
             <Select value={activeSubject ?? ""} onValueChange={setSubject}>
-              <SelectTrigger><SelectValue placeholder="Subject" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Subject" />
+              </SelectTrigger>
               <SelectContent>
                 {subjects.map((s) => (
-                  <SelectItem key={s} value={s}>{s}</SelectItem>
+                  <SelectItem key={s} value={s}>
+                    {s}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -407,7 +426,9 @@ function AssessmentBuilderPage() {
               onValueChange={(v) => bookId && navigate({ search: { book: bookId, unit: v } })}
               disabled={!workspace}
             >
-              <SelectTrigger><SelectValue placeholder="Unit" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Unit" />
+              </SelectTrigger>
               <SelectContent>
                 {(workspace?.units ?? []).map((u) => (
                   <SelectItem key={u.id} value={u.id}>
@@ -420,8 +441,8 @@ function AssessmentBuilderPage() {
           {workspace && (
             <p className="text-xs text-muted-foreground md:col-span-4">
               Book: <span className="font-medium text-foreground">{workspace.book.title}</span>
-              {workspace.book.board ? ` · ${workspace.book.board}` : ""} · Grade {workspace.book.grade} ·{" "}
-              {workspace.book.subject}
+              {workspace.book.board ? ` · ${workspace.book.board}` : ""} · Grade{" "}
+              {workspace.book.grade} · {workspace.book.subject}
             </p>
           )}
         </CardContent>
@@ -435,8 +456,7 @@ function AssessmentBuilderPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <Crosshair className="h-4 w-4 text-primary" />
-                2 · Choose outcomes
+                <Crosshair className="h-4 w-4 text-primary" />2 · Choose outcomes
               </CardTitle>
               <CardDescription>
                 {outcomes.length} outcomes in “{unitTitle}”. Checking an outcome pre-selects its
@@ -485,7 +505,9 @@ function AssessmentBuilderPage() {
                             ) : null,
                           )}
                           {o.counts.total === 0 && (
-                            <span className="text-[11px] text-muted-foreground">no questions yet</span>
+                            <span className="text-[11px] text-muted-foreground">
+                              no questions yet
+                            </span>
                           )}
                         </div>
                       </TableCell>
@@ -509,8 +531,7 @@ function AssessmentBuilderPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <Layers className="h-4 w-4 text-primary" />
-                3 · Difficulty mix & question types
+                <Layers className="h-4 w-4 text-primary" />3 · Difficulty mix & question types
               </CardTitle>
               <CardDescription>
                 These filters decide which bank questions an outcome check pre-selects and which
@@ -639,8 +660,7 @@ function AssessmentBuilderPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <ListChecks className="h-4 w-4 text-primary" />
-                5 · Assessment coverage
+                <ListChecks className="h-4 w-4 text-primary" />5 · Assessment coverage
               </CardTitle>
               <CardDescription>Live, computed from the checked questions.</CardDescription>
             </CardHeader>
@@ -649,7 +669,8 @@ function AssessmentBuilderPage() {
                 <div className="flex items-baseline justify-between text-sm">
                   <span className="text-muted-foreground">Outcome coverage</span>
                   <span className="font-medium tabular-nums">
-                    {coverage.outcomesMeasured}/{coverage.outcomesTotal} · {coverage.outcomeCoveragePct}%
+                    {coverage.outcomesMeasured}/{coverage.outcomesTotal} ·{" "}
+                    {coverage.outcomeCoveragePct}%
                   </span>
                 </div>
                 <Progress value={coverage.outcomeCoveragePct} className="h-2" />
@@ -658,7 +679,8 @@ function AssessmentBuilderPage() {
                 <div className="flex items-baseline justify-between text-sm">
                   <span className="text-muted-foreground">Blueprint alignment</span>
                   <span className="font-medium tabular-nums">
-                    {coverage.weightMeasured}/{coverage.weightTotal} weight · {coverage.blueprintAlignmentPct}%
+                    {coverage.weightMeasured}/{coverage.weightTotal} weight ·{" "}
+                    {coverage.blueprintAlignmentPct}%
                   </span>
                 </div>
                 <Progress value={coverage.blueprintAlignmentPct} className="h-2" />
@@ -688,8 +710,7 @@ function AssessmentBuilderPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <ShieldAlert className="h-4 w-4 text-primary" />
-                6 · Gap coverage preview
+                <ShieldAlert className="h-4 w-4 text-primary" />6 · Gap coverage preview
               </CardTitle>
               <CardDescription>
                 Assessment → outcomes measured → potential gap areas (from the intervention map). If
@@ -721,7 +742,9 @@ function AssessmentBuilderPage() {
                           </span>
                         </TableCell>
                         <TableCell className="max-w-64 text-xs">{g.failurePattern}</TableCell>
-                        <TableCell className="max-w-64 text-xs">{g.recommendedIntervention}</TableCell>
+                        <TableCell className="max-w-64 text-xs">
+                          {g.recommendedIntervention}
+                        </TableCell>
                         <TableCell className="text-xs tabular-nums">P{g.priority}</TableCell>
                       </TableRow>
                     ))}
@@ -735,8 +758,7 @@ function AssessmentBuilderPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <Sparkles className="h-4 w-4 text-primary" />
-                7 · Template & build
+                <Sparkles className="h-4 w-4 text-primary" />7 · Template & build
               </CardTitle>
               <CardDescription>
                 Saved assessments appear below and on the Assessments page. Nothing is assigned to
@@ -806,7 +828,11 @@ function AssessmentBuilderPage() {
               </div>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <label className="flex items-center gap-2 text-sm">
-                  <Switch checked={publishNow} onCheckedChange={setPublishNow} disabled={!isStaff} />
+                  <Switch
+                    checked={publishNow}
+                    onCheckedChange={setPublishNow}
+                    disabled={!isStaff}
+                  />
                   Publish immediately (otherwise saved as draft)
                 </label>
                 {isStaff ? (
@@ -847,10 +873,15 @@ function AssessmentBuilderPage() {
                     <Badge variant="outline" className="text-[10px]">
                       {TEMPLATE_LABELS[a.template] ?? a.template}
                     </Badge>
-                    <Badge variant={a.status === "published" ? "default" : "secondary"} className="text-[10px]">
+                    <Badge
+                      variant={a.status === "published" ? "default" : "secondary"}
+                      className="text-[10px]"
+                    >
                       {a.status}
                     </Badge>
-                    <span className="text-xs text-muted-foreground">{a.questionCount} questions</span>
+                    <span className="text-xs text-muted-foreground">
+                      {a.questionCount} questions
+                    </span>
                   </div>
                   <Button
                     size="sm"
@@ -944,12 +975,16 @@ function AssessmentBuilderPage() {
                           {built.questions.map((q) => (
                             <TableRow key={q.id}>
                               <TableCell className="text-xs tabular-nums">{q.sortOrder}</TableCell>
-                              <TableCell className="max-w-72 truncate text-xs">{q.prompt}</TableCell>
+                              <TableCell className="max-w-72 truncate text-xs">
+                                {q.prompt}
+                              </TableCell>
                               <TableCell className="font-mono text-xs">{q.outcomeCode}</TableCell>
                               <TableCell className="text-xs">
                                 {KIND_LABELS[q.kind as QuestionKind] ?? q.kind}
                               </TableCell>
-                              <TableCell className="text-xs tabular-nums">D{q.difficulty}</TableCell>
+                              <TableCell className="text-xs tabular-nums">
+                                D{q.difficulty}
+                              </TableCell>
                               <TableCell className="text-xs tabular-nums">{q.points}</TableCell>
                             </TableRow>
                           ))}
@@ -974,7 +1009,9 @@ function AssessmentBuilderPage() {
                             {built.gaps.map((g, i) => (
                               <TableRow key={`${g.outcomeCode}-${i}`}>
                                 <TableCell className="font-mono text-xs">{g.outcomeCode}</TableCell>
-                                <TableCell className="max-w-64 text-xs">{g.failurePattern}</TableCell>
+                                <TableCell className="max-w-64 text-xs">
+                                  {g.failurePattern}
+                                </TableCell>
                                 <TableCell className="max-w-64 text-xs">
                                   {g.recommendedIntervention}
                                 </TableCell>

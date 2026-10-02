@@ -81,7 +81,17 @@ const AMBIGUITY_MARKERS = [
   "in the previous question",
 ];
 
-const MARKUP_MARKERS = ["<div", "<span", "<p>", "```", "\\begin{", "undefined", "null", "TODO", "TBD"];
+const MARKUP_MARKERS = [
+  "<div",
+  "<span",
+  "<p>",
+  "```",
+  "\\begin{",
+  "undefined",
+  "null",
+  "TODO",
+  "TBD",
+];
 
 export function normalisePrompt(text: string): string {
   return text
@@ -149,14 +159,17 @@ export function runChecks(
   // 2. Answer correctness (closed-form only).
   if (hasOptions) {
     const matches = options.filter((o) => normalisePrompt(o) === normalisePrompt(answer)).length;
-    if (matches === 1) push("ANSWER_CORRECTNESS", "pass", "Recorded answer matches exactly one option.");
-    else if (matches === 0) push("ANSWER_CORRECTNESS", "fail", "Recorded answer is not among the options.");
+    if (matches === 1)
+      push("ANSWER_CORRECTNESS", "pass", "Recorded answer matches exactly one option.");
+    else if (matches === 0)
+      push("ANSWER_CORRECTNESS", "fail", "Recorded answer is not among the options.");
     else push("ANSWER_CORRECTNESS", "fail", `Recorded answer matches ${matches} options.`);
 
     // 3. Single best answer.
     const unique = new Set(options.map(normalisePrompt));
     const minimum = item.kind === "true_false" ? 2 : 4;
-    if (unique.size !== options.length) push("SINGLE_BEST_ANSWER", "fail", "Duplicate options present.");
+    if (unique.size !== options.length)
+      push("SINGLE_BEST_ANSWER", "fail", "Duplicate options present.");
     else if (options.length < minimum)
       push("SINGLE_BEST_ANSWER", "fail", `Only ${options.length} options (minimum ${minimum}).`);
     else push("SINGLE_BEST_ANSWER", "pass", `${options.length} distinct options, one correct.`);
@@ -164,7 +177,8 @@ export function runChecks(
     // 4. Distractor quality.
     const lazy = options.filter((o) => LAZY_DISTRACTORS.includes(normalisePrompt(o)));
     if (lazy.length) push("DISTRACTOR_QUALITY", "fail", `Non-discriminating option: ${lazy[0]}.`);
-    else if (options.some((o) => o.length < 1)) push("DISTRACTOR_QUALITY", "fail", "Empty distractor.");
+    else if (options.some((o) => o.length < 1))
+      push("DISTRACTOR_QUALITY", "fail", "Empty distractor.");
     else push("DISTRACTOR_QUALITY", "pass", "All distractors are concrete and discriminating.");
   } else {
     const na = "Open-response item: correctness needs a subject expert, not a machine.";
@@ -175,10 +189,16 @@ export function runChecks(
 
   // 5. Explanation quality.
   const explanation = (item.explanation ?? "").trim();
-  if (explanation.length < 40) push("EXPLANATION_QUALITY", "fail", "Explanation shorter than 40 characters.");
+  if (explanation.length < 40)
+    push("EXPLANATION_QUALITY", "fail", "Explanation shorter than 40 characters.");
   else if (normalisePrompt(explanation) === normalisePrompt(item.prompt))
     push("EXPLANATION_QUALITY", "fail", "Explanation restates the prompt.");
-  else push("EXPLANATION_QUALITY", "pass", `Explanation is ${explanation.length} characters of reasoning.`);
+  else
+    push(
+      "EXPLANATION_QUALITY",
+      "pass",
+      `Explanation is ${explanation.length} characters of reasoning.`,
+    );
 
   // 6. Ambiguity and markup contamination.
   const body = normalisePrompt(textOf(item));
@@ -186,15 +206,18 @@ export function runChecks(
   const markup = MARKUP_MARKERS.find((m) => textOf(item).includes(m));
   if (vague) push("AMBIGUITY", "fail", `Ambiguous phrasing: "${vague}".`);
   else if (markup) push("AMBIGUITY", "fail", `Authoring artefact present: "${markup}".`);
-  else if (item.prompt.trim().length < 20) push("AMBIGUITY", "fail", "Prompt is too short to be unambiguous.");
+  else if (item.prompt.trim().length < 20)
+    push("AMBIGUITY", "fail", "Prompt is too short to be unambiguous.");
   else push("AMBIGUITY", "pass", "No ambiguity markers or authoring artefacts.");
 
   // 7. Source contamination (verbatim NCERT overlap candidates).
-  if (corpus.contaminated) push("CONTAMINATION", "fail", "Flagged as a verbatim NCERT overlap candidate.");
+  if (corpus.contaminated)
+    push("CONTAMINATION", "fail", "Flagged as a verbatim NCERT overlap candidate.");
   else push("CONTAMINATION", "pass", "No verbatim overlap with official NCERT text.");
 
   // 8. Duplicates / near duplicates.
-  if (corpus.duplicateOf) push("DUPLICATE", "fail", `Duplicate or near-duplicate of ${corpus.duplicateOf}.`);
+  if (corpus.duplicateOf)
+    push("DUPLICATE", "fail", `Duplicate or near-duplicate of ${corpus.duplicateOf}.`);
   else push("DUPLICATE", "pass", "No duplicate or near-duplicate in the corpus.");
 
   // 9. Diagnostic / reassessment pool separation.
@@ -233,9 +256,7 @@ export function decide(
   const reasons: string[] = [];
   if (failures.length) reasons.push(...failures.map((f) => `${f.checkId}: ${f.detail}`));
   if (unresolved.length)
-    reasons.push(
-      `Needs a named subject expert: ${unresolved.map((u) => u.checkId).join(", ")}.`,
-    );
+    reasons.push(`Needs a named subject expert: ${unresolved.map((u) => u.checkId).join(", ")}.`);
   if (!failures.length && !unresolved.length && strongSignals < 3)
     reasons.push("Insufficient independent evidence for automated approval.");
 
@@ -255,10 +276,9 @@ export function decide(
 }
 
 /** Corpus-level duplicate detection across the whole draft set. */
-export function detectDuplicates(items: AutoVerificationItem[]): Map<
-  string,
-  { duplicateOf: string; crossPool: boolean }
-> {
+export function detectDuplicates(
+  items: AutoVerificationItem[],
+): Map<string, { duplicateOf: string; crossPool: boolean }> {
   const found = new Map<string, { duplicateOf: string; crossPool: boolean }>();
   const tokens = items.map((i) => ({ item: i, t: tokenise(`${i.stimulus ?? ""} ${i.prompt}`) }));
   for (let i = 0; i < tokens.length; i += 1) {
@@ -300,6 +320,11 @@ export type AutoVerificationRunSummary = {
   evaluated: number;
   autoApproved: number;
   quarantined: number;
-  bySubject: Array<{ subject: string; evaluated: number; autoApproved: number; quarantined: number }>;
+  bySubject: Array<{
+    subject: string;
+    evaluated: number;
+    autoApproved: number;
+    quarantined: number;
+  }>;
   byFailedCheck: Array<{ checkId: AutoCheckId; items: number }>;
 };

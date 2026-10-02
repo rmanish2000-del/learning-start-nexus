@@ -25,7 +25,15 @@ export const UTM_SOURCES = [
 ] as const;
 export type UtmSource = (typeof UTM_SOURCES)[number];
 
-export const UTM_MEDIUMS = ["social", "share", "email", "referral", "organic", "cpc", "qr"] as const;
+export const UTM_MEDIUMS = [
+  "social",
+  "share",
+  "email",
+  "referral",
+  "organic",
+  "cpc",
+  "qr",
+] as const;
 export type UtmMedium = (typeof UTM_MEDIUMS)[number];
 
 export const UTM_CAMPAIGNS = [

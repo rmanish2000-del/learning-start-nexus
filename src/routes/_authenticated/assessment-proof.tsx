@@ -66,8 +66,8 @@ function AssessmentProofPage() {
             <FileCheck2 className="h-5 w-5 text-primary" /> Assessment Build Proof
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Sprint 2 verification export. Every figure below is queried live from the database
-            when this page loads — print or save as PDF for independent review.
+            Sprint 2 verification export. Every figure below is queried live from the database when
+            this page loads — print or save as PDF for independent review.
           </p>
         </div>
         <Button className="print:hidden" size="sm" onClick={() => window.print()}>
@@ -111,8 +111,8 @@ function AssessmentProofPage() {
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Live row counts</CardTitle>
           <CardDescription>
-            “Visible to you” is queried as the signed-in reviewer (row-level security applies);
-            “All organizations” is the global total. A gap between the two is direct proof of
+            “Visible to you” is queried as the signed-in reviewer (row-level security applies); “All
+            organizations” is the global total. A gap between the two is direct proof of
             organization isolation.
           </CardDescription>
         </CardHeader>

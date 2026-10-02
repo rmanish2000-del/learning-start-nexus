@@ -12,7 +12,6 @@ import {
   runCurriculumProbes,
 } from "./curriculum-audit.server";
 
-
 export const getCurriculumAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {

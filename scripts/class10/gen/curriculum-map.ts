@@ -11,7 +11,17 @@ import { buildItems } from "./build";
 const ROOT = resolve(import.meta.dirname, "../../..");
 const items = buildItems();
 
-type Row = { subject: string; official_requirement_id: string; official_unit: string; official_chapter: string; official_topic: string; official_source_reference: string | null; assessability: string; eduos_unit_id: string; assessment_outcome_ids: string[] };
+type Row = {
+  subject: string;
+  official_requirement_id: string;
+  official_unit: string;
+  official_chapter: string;
+  official_topic: string;
+  official_source_reference: string | null;
+  assessability: string;
+  eduos_unit_id: string;
+  assessment_outcome_ids: string[];
+};
 const rows = crosswalk.rows as Row[];
 
 const ACTIVE_BOOK_IDS = new Set([
@@ -42,21 +52,48 @@ const map = {
       units: book.units.length,
       chapters: book.units.reduce((n: number, u: any) => n + u.chapters.length, 0),
       requirements: subjectRows.length,
-      unmapped_requirements: subjectRows.filter((r) => r.assessment_outcome_ids.length === 0).length,
+      unmapped_requirements: subjectRows.filter((r) => r.assessment_outcome_ids.length === 0)
+        .length,
       new_draft_questions: items.filter((i) => i.subject === book.subject).length,
       unit_detail: book.units.map((u: any) => ({
         unit_id: u.unitId,
         title: u.title,
         status: u.status,
-        chapters: u.chapters.map((c: any) => ({ chapter_id: c.chapterId, title: c.title, topics: c.topics.length })),
+        chapters: u.chapters.map((c: any) => ({
+          chapter_id: c.chapterId,
+          title: c.title,
+          topics: c.topics.length,
+        })),
         assessment_outcomes: u.assessmentOutcomes.length,
-        atoms: u.chapters.reduce((n: number, c: any) => n + c.topics.reduce((m: number, t: any) => m + t.curriculumOutcomes.length, 0), 0),
-        official_requirements: subjectRows.filter((r) => r.eduos_unit_id === u.unitId).map((r) => r.official_requirement_id),
+        atoms: u.chapters.reduce(
+          (n: number, c: any) =>
+            n + c.topics.reduce((m: number, t: any) => m + t.curriculumOutcomes.length, 0),
+          0,
+        ),
+        official_requirements: subjectRows
+          .filter((r) => r.eduos_unit_id === u.unitId)
+          .map((r) => r.official_requirement_id),
         new_draft_questions: items.filter((i) => i.unitId === u.unitId).length,
       })),
     };
   }),
 };
 
-writeFileSync(resolve(ROOT, "EDUOS_CLASS_10_FINAL_CURRICULUM_MAP.json"), `${JSON.stringify(map, null, 2)}\n`);
-console.log(JSON.stringify(map.subjects.map((s) => ({ subject: s.subject, units: s.units, chapters: s.chapters, requirements: s.requirements, unmapped: s.unmapped_requirements, drafts: s.new_draft_questions })), null, 2));
+writeFileSync(
+  resolve(ROOT, "EDUOS_CLASS_10_FINAL_CURRICULUM_MAP.json"),
+  `${JSON.stringify(map, null, 2)}\n`,
+);
+console.log(
+  JSON.stringify(
+    map.subjects.map((s) => ({
+      subject: s.subject,
+      units: s.units,
+      chapters: s.chapters,
+      requirements: s.requirements,
+      unmapped: s.unmapped_requirements,
+      drafts: s.new_draft_questions,
+    })),
+    null,
+    2,
+  ),
+);

@@ -41,9 +41,7 @@ function mapQuestion(row: QuestionRow): QuestionDto {
     source: row.source as "ai" | "manual",
     stimulus: row.stimulus,
     verificationState: (row.verification_state ?? "unverified") as
-      | "unverified"
-      | "verified"
-      | "rejected",
+      "unverified" | "verified" | "rejected",
     verifiedAt: row.verified_at,
     verificationNote: row.verification_note,
     createdAt: row.created_at,
@@ -84,11 +82,26 @@ export async function fetchBuilderWorkspace(
   unitId?: string,
 ): Promise<BuilderWorkspace> {
   const [bookRes, unitsRes, outcomesRes, questionsRes, mapsRes, builtRes] = await Promise.all([
-    supabase.from("books").select("id, title, board, grade, subject, status").eq("id", bookId).maybeSingle(),
-    supabase.from("curriculum_units").select("id, title, position").eq("book_id", bookId).order("position"),
+    supabase
+      .from("books")
+      .select("id, title, board, grade, subject, status")
+      .eq("id", bookId)
+      .maybeSingle(),
+    supabase
+      .from("curriculum_units")
+      .select("id, title, position")
+      .eq("book_id", bookId)
+      .order("position"),
     supabase.from("assessment_outcomes").select("*").eq("book_id", bookId).order("code"),
-    supabase.from("question_bank").select("*").eq("book_id", bookId).order("created_at", { ascending: true }),
-    supabase.from("intervention_map").select("assessment_outcome_id, failure_pattern, recommended_intervention, priority").eq("book_id", bookId),
+    supabase
+      .from("question_bank")
+      .select("*")
+      .eq("book_id", bookId)
+      .order("created_at", { ascending: true }),
+    supabase
+      .from("intervention_map")
+      .select("assessment_outcome_id, failure_pattern, recommended_intervention, priority")
+      .eq("book_id", bookId),
     supabase
       .from("assessments")
       .select("id, title, kind, status, created_at")
@@ -103,7 +116,8 @@ export async function fetchBuilderWorkspace(
   }
 
   const units = unitsRes.data ?? [];
-  const selectedUnitId = unitId && units.some((u) => u.id === unitId) ? unitId : (units[0]?.id ?? null);
+  const selectedUnitId =
+    unitId && units.some((u) => u.id === unitId) ? unitId : (units[0]?.id ?? null);
 
   const questionsByOutcome = new Map<string, QuestionDto[]>();
   for (const q of questionsRes.data ?? []) {
@@ -222,7 +236,8 @@ export async function buildAssessment(
     throw new Error("Some selected questions were not found in your organization.");
   }
   const wrongBook = questions.filter((q) => q.book_id !== input.bookId);
-  if (wrongBook.length > 0) throw new Error("Every question must come from the selected book's bank.");
+  if (wrongBook.length > 0)
+    throw new Error("Every question must come from the selected book's bank.");
   const notApproved = questions.filter((q) => q.status !== "approved");
   if (notApproved.length > 0) {
     throw new Error(
@@ -364,9 +379,7 @@ export async function fetchAssessmentCoverage(
     (unitOutcomesRes.data ?? []).map((o) => ({ id: o.id, diagnosticWeight: o.diagnostic_weight })),
   );
 
-  const measuredOutcomeIds = [
-    ...new Set((questionRows ?? []).map((q) => q.outcome_id)),
-  ];
+  const measuredOutcomeIds = [...new Set((questionRows ?? []).map((q) => q.outcome_id))];
   const { data: interventions, error: iError } = await supabase
     .from("intervention_map")
     .select("assessment_outcome_id, failure_pattern, recommended_intervention, priority")

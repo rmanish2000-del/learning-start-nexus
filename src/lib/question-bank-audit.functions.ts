@@ -11,7 +11,6 @@ import {
   runQuestionBankProbes,
 } from "./question-bank-audit.server";
 
-
 export const getQuestionBankAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {

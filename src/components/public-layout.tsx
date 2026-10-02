@@ -18,8 +18,6 @@ const AUDIENCE_LINKS = [
   { hash: "/about", label: "About", shortLabel: "About" },
 ] as const;
 
-
-
 /** Verified entry point for the free learning check: parent account → parent portal. */
 export const FREE_CHECK_SEARCH = {
   tab: "parent",
@@ -112,8 +110,6 @@ export function PublicSiteHeader() {
           </Button>
         </div>
 
-
-
         <div className="flex items-center gap-1.5 lg:hidden">
           <button
             ref={triggerRef}
@@ -124,7 +120,11 @@ export function PublicSiteHeader() {
             aria-label={open ? "Close menu" : "Open menu"}
             className="inline-flex h-11 w-11 items-center justify-center rounded-md border text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
-            {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
+            {open ? (
+              <X className="h-5 w-5" aria-hidden />
+            ) : (
+              <Menu className="h-5 w-5" aria-hidden />
+            )}
           </button>
         </div>
       </div>
@@ -174,8 +174,6 @@ export function PublicSiteHeader() {
                 </Link>
               </Button>
             </div>
-
-
           </div>
         </div>
       ) : null}
@@ -190,8 +188,8 @@ export function PublicSiteFooter() {
         <div>
           <BrandMark />
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            A Learning Intelligence and Intervention System. Find the gaps, close them with
-            purpose, prove the progress.
+            A Learning Intelligence and Intervention System. Find the gaps, close them with purpose,
+            prove the progress.
           </p>
           <div className="mt-3">
             <IosInstallGuide />
@@ -201,9 +199,21 @@ export function PublicSiteFooter() {
         <div>
           <h2 className="text-sm font-semibold">For</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><a href="/#parents" className="hover:text-foreground">Parents</a></li>
-            <li><a href="/#centres" className="hover:text-foreground">Learning Centres</a></li>
-            <li><a href="/#schools" className="hover:text-foreground">Schools</a></li>
+            <li>
+              <a href="/#parents" className="hover:text-foreground">
+                Parents
+              </a>
+            </li>
+            <li>
+              <a href="/#centres" className="hover:text-foreground">
+                Learning Centres
+              </a>
+            </li>
+            <li>
+              <a href="/#schools" className="hover:text-foreground">
+                Schools
+              </a>
+            </li>
           </ul>
 
           <h2 className="mt-6 text-sm font-semibold">Explore</h2>
@@ -246,12 +256,19 @@ export function PublicSiteFooter() {
           </ul>
         </div>
 
-
         <div>
           <h2 className="text-sm font-semibold">Company</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/about" className="hover:text-foreground">About EduOS</Link></li>
-            <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+            <li>
+              <Link to="/about" className="hover:text-foreground">
+                About EduOS
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-foreground">
+                Contact
+              </Link>
+            </li>
             <li>
               <button type="button" onClick={openPublicHelp} className="hover:text-foreground">
                 Help &amp; guidance
@@ -265,24 +282,33 @@ export function PublicSiteFooter() {
           </ul>
           <h2 className="mt-6 text-sm font-semibold">Legal</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
-            <li><Link to="/terms" className="hover:text-foreground">Terms of Use</Link></li>
+            <li>
+              <Link to="/privacy" className="hover:text-foreground">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="hover:text-foreground">
+                Terms of Use
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h2 className="text-sm font-semibold">Contact</h2>
           <address className="mt-3 space-y-2 text-sm not-italic text-muted-foreground">
-            <a href="mailto:support@eduos.global" className="block break-words hover:text-foreground">
+            <a
+              href="mailto:support@eduos.global"
+              className="block break-words hover:text-foreground"
+            >
               support@eduos.global
             </a>
             <a href="tel:+919850820909" className="block hover:text-foreground">
               +91 98508 20909
             </a>
 
-            <span className="block">
-              Tilak Ward, Deori, Sagar, Madhya Pradesh 470226, India
-            </span>
+            <span className="block">Tilak Ward, Deori, Sagar, Madhya Pradesh 470226, India</span>
           </address>
         </div>
       </div>
@@ -323,7 +349,9 @@ export function PublicPageLayout({
 
       <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-4 py-10">
         <h1 className="text-3xl font-semibold tracking-tight">{title}</h1>
-        {updated ? <p className="mt-1 text-sm text-muted-foreground">Last updated: {updated}</p> : null}
+        {updated ? (
+          <p className="mt-1 text-sm text-muted-foreground">Last updated: {updated}</p>
+        ) : null}
         <div className="mt-8 space-y-8 text-sm leading-relaxed text-foreground/90">{children}</div>
       </main>
 

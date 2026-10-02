@@ -94,19 +94,21 @@ export const curriculumPackSchema = z.object({
     diagnosticEligible: z.literal(false),
     reassessmentReady: z.literal(false),
   }),
-  sources: z.array(
-    z.object({
-      id: z.string().min(3),
-      title: z.string().min(6),
-      issuingAuthority: z.string().min(3),
-      edition: z.string().min(2),
-      officialReference: z.string().min(6),
-      retrievedOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-      licensing: z.string().min(6),
-      supersedes: z.string().nullable(),
-      provenanceStatus: z.enum(["official", "official-derived", "unverified"]),
-    }),
-  ).min(1),
+  sources: z
+    .array(
+      z.object({
+        id: z.string().min(3),
+        title: z.string().min(6),
+        issuingAuthority: z.string().min(3),
+        edition: z.string().min(2),
+        officialReference: z.string().min(6),
+        retrievedOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        licensing: z.string().min(6),
+        supersedes: z.string().nullable(),
+        provenanceStatus: z.enum(["official", "official-derived", "unverified"]),
+      }),
+    )
+    .min(1),
   ambiguities: z.array(z.string()).default([]),
   units: z.array(unitSchema).min(1),
 });
@@ -200,7 +202,10 @@ export function normaliseForDuplicateCheck(text: string): string {
 
 export type IntegrityIssue = { level: "error" | "warning"; code: string; detail: string };
 
-export function checkPackIntegrity(pack: CurriculumPack, questions: PreparedQuestion[]): IntegrityIssue[] {
+export function checkPackIntegrity(
+  pack: CurriculumPack,
+  questions: PreparedQuestion[],
+): IntegrityIssue[] {
   const issues: IntegrityIssue[] = [];
   const rows = flattenOutcomes(pack);
   const outcomeIds = new Set(rows.map((r) => r.outcome.id));
@@ -214,11 +219,19 @@ export function checkPackIntegrity(pack: CurriculumPack, questions: PreparedQues
       seenIds.add(id + "@node");
     }
     if (seenRefs.has(r.outcome.externalRef)) {
-      issues.push({ level: "error", code: "DUPLICATE_EXTERNAL_REF", detail: r.outcome.externalRef });
+      issues.push({
+        level: "error",
+        code: "DUPLICATE_EXTERNAL_REF",
+        detail: r.outcome.externalRef,
+      });
     }
     seenRefs.add(r.outcome.externalRef);
     if (!r.outcome.id.startsWith(r.topic.id)) {
-      issues.push({ level: "error", code: "HIERARCHY_BREAK", detail: `${r.outcome.id} not under ${r.topic.id}` });
+      issues.push({
+        level: "error",
+        code: "HIERARCHY_BREAK",
+        detail: `${r.outcome.id} not under ${r.topic.id}`,
+      });
     }
   }
 
@@ -226,9 +239,11 @@ export function checkPackIntegrity(pack: CurriculumPack, questions: PreparedQues
   const qRefs = new Set<string>();
   const signatures = new Map<string, string>();
   for (const q of questions) {
-    if (qIds.has(q.id)) issues.push({ level: "error", code: "DUPLICATE_QUESTION_ID", detail: q.id });
+    if (qIds.has(q.id))
+      issues.push({ level: "error", code: "DUPLICATE_QUESTION_ID", detail: q.id });
     qIds.add(q.id);
-    if (qRefs.has(q.externalRef)) issues.push({ level: "error", code: "DUPLICATE_QUESTION_REF", detail: q.externalRef });
+    if (qRefs.has(q.externalRef))
+      issues.push({ level: "error", code: "DUPLICATE_QUESTION_REF", detail: q.externalRef });
     qRefs.add(q.externalRef);
     if (!outcomeIds.has(q.outcomeId)) {
       issues.push({ level: "error", code: "ORPHAN_QUESTION", detail: `${q.id} → ${q.outcomeId}` });
@@ -250,7 +265,8 @@ export function checkPackIntegrity(pack: CurriculumPack, questions: PreparedQues
     }
     const sig = normaliseForDuplicateCheck(q.prompt);
     const clash = signatures.get(sig);
-    if (clash) issues.push({ level: "error", code: "NEAR_DUPLICATE_PROMPT", detail: `${clash} ≈ ${q.id}` });
+    if (clash)
+      issues.push({ level: "error", code: "NEAR_DUPLICATE_PROMPT", detail: `${clash} ≈ ${q.id}` });
     signatures.set(sig, q.id);
     if (q.status !== "draft" || q.verificationState !== "unverified") {
       issues.push({ level: "error", code: "PREMATURE_APPROVAL", detail: q.id });
@@ -306,7 +322,8 @@ export function buildReadinessMatrix(
       humanReviewed: 0,
       verified,
       approved: 0,
-      outcomeCoveragePct: outcomes.length === 0 ? 0 : Math.round((covered.size / outcomes.length) * 100),
+      outcomeCoveragePct:
+        outcomes.length === 0 ? 0 : Math.round((covered.size / outcomes.length) * 100),
       difficultyMix,
       allocationReady: verified >= gates.diagnosticTarget,
       reassessmentReady: verified >= gates.diagnosticTarget * 2,

@@ -55,9 +55,18 @@ export const PUBLIC_GUIDANCE: RouteGuidance[] = [
     ],
     next: [START_DIAGNOSTIC, CREATE_PARENT_ACCOUNT, BOOK_DEMO],
     walkthrough: [
-      { title: "Pick your audience", body: "Parents, Centres and Schools each have a section explaining what EduOS does for them." },
-      { title: "See the learning loop", body: "Diagnostic, gap plan, study plan, AI Tutor, guided intervention, fresh reassessment, evidence." },
-      { title: "Choose a first step", body: "A free learning check needs only a parent account. The ₹199 diagnostic gives the full report." },
+      {
+        title: "Pick your audience",
+        body: "Parents, Centres and Schools each have a section explaining what EduOS does for them.",
+      },
+      {
+        title: "See the learning loop",
+        body: "Diagnostic, gap plan, study plan, AI Tutor, guided intervention, fresh reassessment, evidence.",
+      },
+      {
+        title: "Choose a first step",
+        body: "A free learning check needs only a parent account. The ₹199 diagnostic gives the full report.",
+      },
     ],
   },
   {
@@ -84,13 +93,23 @@ export const PUBLIC_GUIDANCE: RouteGuidance[] = [
       "It costs ₹199 once. If you later take the Annual Plan (₹2,999), the ₹199 is credited, so you pay ₹2,800.",
     ],
     next: [
-      { label: "Continue on this page", to: "/diagnostic", detail: "Choose the subject and start. You can pause and return." },
+      {
+        label: "Continue on this page",
+        to: "/diagnostic",
+        detail: "Choose the subject and start. You can pause and return.",
+      },
       CREATE_PARENT_ACCOUNT,
     ],
     walkthrough: [
       { title: "Choose the subject", body: "Mathematics or Science, CBSE Class 10." },
-      { title: "Answer honestly", body: "Guessing hides real gaps — the plan is only as good as the diagnostic." },
-      { title: "Get the gap plan", body: "The report lists weak outcomes and the study plan that closes them." },
+      {
+        title: "Answer honestly",
+        body: "Guessing hides real gaps — the plan is only as good as the diagnostic.",
+      },
+      {
+        title: "Get the gap plan",
+        body: "The report lists weak outcomes and the study plan that closes them.",
+      },
     ],
   },
   {
@@ -109,7 +128,11 @@ export const PUBLIC_GUIDANCE: RouteGuidance[] = [
       "This invitation is single-use and tied to your email address. Accepting it creates or reuses your account and unlocks pilot access — nothing is charged.",
     ],
     next: [
-      { label: "Accept on this page", to: "/pilot-invite", detail: "Sign in with the invited email address, then accept." },
+      {
+        label: "Accept on this page",
+        to: "/pilot-invite",
+        detail: "Sign in with the invited email address, then accept.",
+      },
     ],
   },
   {
@@ -127,7 +150,11 @@ export const PUBLIC_GUIDANCE: RouteGuidance[] = [
       "The Annual Plan is ₹2,999 for the year. Your ₹199 diagnostic is credited, so the amount payable here is ₹2,800.",
     ],
     next: [
-      { label: "Continue on this page", to: "/upgrade", detail: "Review what's included, then confirm payment." },
+      {
+        label: "Continue on this page",
+        to: "/upgrade",
+        detail: "Review what's included, then confirm payment.",
+      },
     ],
   },
   {
@@ -200,13 +227,12 @@ export const PUBLIC_GUIDANCE: RouteGuidance[] = [
   },
 ];
 
-
 export function guidanceForRoute(pathname: string): RouteGuidance | null {
   const exact = PUBLIC_GUIDANCE.find((g) => g.match === pathname);
   if (exact) return exact;
-  const prefixed = PUBLIC_GUIDANCE.filter((g) => g.match !== "/" && pathname.startsWith(g.match)).sort(
-    (a, b) => b.match.length - a.match.length,
-  );
+  const prefixed = PUBLIC_GUIDANCE.filter(
+    (g) => g.match !== "/" && pathname.startsWith(g.match),
+  ).sort((a, b) => b.match.length - a.match.length);
   return prefixed[0] ?? null;
 }
 
@@ -328,7 +354,8 @@ export function searchFaq(query: string): FaqEntry[] {
   if (!q) return PUBLIC_FAQ;
   const words = q.split(/\s+/);
   return PUBLIC_FAQ.filter((entry) => {
-    const haystack = `${entry.question} ${entry.answer.join(" ")} ${entry.tags.join(" ")}`.toLowerCase();
+    const haystack =
+      `${entry.question} ${entry.answer.join(" ")} ${entry.tags.join(" ")}`.toLowerCase();
     return words.every((w) => haystack.includes(w));
   });
 }

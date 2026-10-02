@@ -37,7 +37,8 @@ function decodeBase64(base64: string): Uint8Array {
 /** Magic-byte check — the declared content type must match the real bytes. */
 function sniff(bytes: Uint8Array): "image/png" | "image/jpeg" | "image/webp" | null {
   if (bytes.length < 12) return null;
-  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) return "image/png";
+  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47)
+    return "image/png";
   if (bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return "image/jpeg";
   const ascii = String.fromCharCode(...bytes.slice(0, 12));
   if (ascii.startsWith("RIFF") && ascii.slice(8, 12) === "WEBP") return "image/webp";
@@ -144,7 +145,10 @@ export async function submitFeedback(
   return { ok: true, duplicate: false, id: data.id };
 }
 
-export async function listFeedback(status?: string | undefined, limit = 100): Promise<FeedbackRow[]> {
+export async function listFeedback(
+  status?: string | undefined,
+  limit = 100,
+): Promise<FeedbackRow[]> {
   let query = supabaseAdmin
     .from("feedback_submissions")
     .select(

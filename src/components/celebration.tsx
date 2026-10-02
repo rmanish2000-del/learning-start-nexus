@@ -47,7 +47,11 @@ export function Celebration({ show, title, message, onClose }: CelebrationProps)
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div
+      className="fixed inset-0 z-[90] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+    >
       <style>{`
         @keyframes eduos-confetti-fall {
           0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
@@ -58,7 +62,10 @@ export function Celebration({ show, title, message, onClose }: CelebrationProps)
           100% { transform: scale(1); opacity: 1; }
         }
       `}</style>
-      <div className="absolute inset-0 overflow-hidden bg-background/70 backdrop-blur-sm" onClick={onClose}>
+      <div
+        className="absolute inset-0 overflow-hidden bg-background/70 backdrop-blur-sm"
+        onClick={onClose}
+      >
         {pieces.map((p) => (
           <span
             key={p.id}

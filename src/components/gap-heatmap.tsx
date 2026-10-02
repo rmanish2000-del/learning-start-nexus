@@ -42,7 +42,9 @@ export function GapHeatmap({
       <CardContent className="space-y-3">
         {isPending && <Skeleton className="h-40 w-full" />}
         {!isPending && matrix && matrix.rows.length === 0 && (
-          <p className="py-6 text-center text-sm text-muted-foreground">No learners on the roster yet.</p>
+          <p className="py-6 text-center text-sm text-muted-foreground">
+            No learners on the roster yet.
+          </p>
         )}
         {!isPending && matrix && matrix.rows.length > 0 && (
           <>
@@ -98,7 +100,10 @@ export function GapHeatmap({
                   <tr className="text-xs text-muted-foreground">
                     <td className="px-2 pt-2 font-medium uppercase tracking-wide">Subject total</td>
                     {matrix.columnTotals.map((c) => (
-                      <td key={c.subject} className="px-2 pt-2 text-center font-semibold tabular-nums">
+                      <td
+                        key={c.subject}
+                        className="px-2 pt-2 text-center font-semibold tabular-nums"
+                      >
                         {c.openGaps}
                       </td>
                     ))}
@@ -120,7 +125,9 @@ export function GapHeatmap({
                   {HEAT_BAND_LABELS[band]}
                 </span>
               ))}
-              <span>· Risk: 5+ gaps or mastery under 50% is Critical; 2+ gaps or under 70% is At risk.</span>
+              <span>
+                · Risk: 5+ gaps or mastery under 50% is Critical; 2+ gaps or under 70% is At risk.
+              </span>
             </div>
           </>
         )}

@@ -29,7 +29,8 @@ export function StudentRunsCard() {
     <Card>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
-          <ClipboardList className="h-4 w-4 text-primary" /> {t("runs.title", "Assessments for you")}
+          <ClipboardList className="h-4 w-4 text-primary" />{" "}
+          {t("runs.title", "Assessments for you")}
         </CardTitle>
         <CardDescription>
           {t("runs.subtitle", "Your answers save as you go — you can stop and come back.")}
@@ -44,7 +45,8 @@ export function StudentRunsCard() {
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">
-                    {run.kind === "diagnostic" ? "Diagnostic" : "Free learning check"} · {run.subject}
+                    {run.kind === "diagnostic" ? "Diagnostic" : "Free learning check"} ·{" "}
+                    {run.subject}
                   </p>
                   <p className="truncate text-xs text-muted-foreground">{run.unitTitle}</p>
                 </div>
@@ -62,7 +64,8 @@ export function StudentRunsCard() {
                   run.status === "submitted" ? (
                     <Button asChild size="sm" variant="outline">
                       <Link to="/diagnostic/complete/$token" params={{ token: run.accessToken }}>
-                        <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> {t("runs.viewConfirmation", "View confirmation")}
+                        <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" />{" "}
+                        {t("runs.viewConfirmation", "View confirmation")}
                       </Link>
                     </Button>
                   ) : (
@@ -76,11 +79,16 @@ export function StudentRunsCard() {
                     </Button>
                   )
                 ) : (
-                  <Button asChild size="sm" variant={run.status === "submitted" ? "outline" : "default"}>
+                  <Button
+                    asChild
+                    size="sm"
+                    variant={run.status === "submitted" ? "outline" : "default"}
+                  >
                     <Link to="/free-check/$checkId" params={{ checkId: run.checkId }}>
                       {run.status === "submitted" ? (
                         <>
-                          <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" /> {t("runs.viewConfirmation", "View confirmation")}
+                          <CheckCircle2 className="mr-1.5 h-3.5 w-3.5" />{" "}
+                          {t("runs.viewConfirmation", "View confirmation")}
                         </>
                       ) : (
                         <>

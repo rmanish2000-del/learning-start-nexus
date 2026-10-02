@@ -44,7 +44,11 @@ const REFLECTION: OutcomeAuthor = {
       2,
       "The image formed by a convex mirror of an object placed in front of it is always",
       "virtual, erect and diminished",
-      ["real, inverted and magnified", "real, erect and diminished", "virtual, inverted and of the same size"],
+      [
+        "real, inverted and magnified",
+        "real, erect and diminished",
+        "virtual, inverted and of the same size",
+      ],
       "A convex mirror diverges the reflected rays, so the image is always formed behind the mirror, erect and smaller than the object.",
       1,
     ),

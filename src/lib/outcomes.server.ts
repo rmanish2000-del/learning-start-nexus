@@ -132,20 +132,20 @@ export async function openOutcomeForIntervention(
   const { data: inserted, error: insError } = existing
     ? { data: { id: existing.id as string }, error: null }
     : await outcomesTable(admin)
-    .insert({
-      org_id: intervention.org_id,
-      learner_id: intervention.learner_id,
-      intervention_id: intervention.id,
-      gap_id: intervention.gap_id,
-      subject,
-      topic,
-      subtopic,
-      baseline_session_id: baselineSessionId,
-      baseline_score: baselineScore,
-      status: "pending",
-    })
-    .select("id")
-    .single();
+        .insert({
+          org_id: intervention.org_id,
+          learner_id: intervention.learner_id,
+          intervention_id: intervention.id,
+          gap_id: intervention.gap_id,
+          subject,
+          topic,
+          subtopic,
+          baseline_session_id: baselineSessionId,
+          baseline_score: baselineScore,
+          status: "pending",
+        })
+        .select("id")
+        .single();
   if (insError) throw new Error(insError.message);
   const outcome = inserted as { id: string };
 
@@ -214,7 +214,11 @@ export async function openOutcomeForIntervention(
         .eq("assessment_id", reassessment.id)
         .eq("learner_id", intervention.learner_id)
         .maybeSingle();
-      if (existingSession && !existingSession.intervention_id && existingSession.status !== "submitted") {
+      if (
+        existingSession &&
+        !existingSession.intervention_id &&
+        existingSession.status !== "submitted"
+      ) {
         await sessionsTable(admin)
           .update({ intervention_id: intervention.id })
           .eq("id", existingSession.id);
@@ -400,7 +404,9 @@ export async function fetchOrgOutcomeSummary(supabase: Client): Promise<OutcomeS
     lowConfidence: rows.filter((r) => r.status === "low_confidence").length,
     requiresReview: rows.filter((r) => r.status === "requires_review").length,
     averageLift:
-      lifts.length === 0 ? null : Math.round((lifts.reduce((s, v) => s + v, 0) / lifts.length) * 10) / 10,
+      lifts.length === 0
+        ? null
+        : Math.round((lifts.reduce((s, v) => s + v, 0) / lifts.length) * 10) / 10,
   };
 }
 
@@ -411,7 +417,12 @@ export async function fetchOrgOutcomeSummary(supabase: Client): Promise<OutcomeS
 export type OutcomeReport = {
   outcome: OutcomeRow;
   learnerName: string;
-  baselineSession: { id: string; title: string; scorePct: number | null; submittedAt: string | null } | null;
+  baselineSession: {
+    id: string;
+    title: string;
+    scorePct: number | null;
+    submittedAt: string | null;
+  } | null;
   gap: {
     id: string;
     subtopic: string;

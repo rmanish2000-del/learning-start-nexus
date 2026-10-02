@@ -84,7 +84,10 @@ export type FreeCheckStatus = {
  * portal, the preview screen and the upgrade copy can never drift apart.
  */
 export const FREE_VS_PAID: { free: string; paid: string }[] = [
-  { free: "5 questions from one chapter group", paid: "20 questions across the whole chapter group" },
+  {
+    free: "5 questions from one chapter group",
+    paid: "20 questions across the whole chapter group",
+  },
   { free: "Skills checked, shown pass/fail", paid: "Outcome-by-outcome mastery bands" },
   { free: "One sample recommendation", paid: "Full prioritised intervention plan" },
   { free: "No marks estimate", paid: "Estimated board marks at risk" },

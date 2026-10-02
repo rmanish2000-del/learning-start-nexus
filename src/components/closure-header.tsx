@@ -30,7 +30,9 @@ function Tile({
 }) {
   return (
     <div className="min-w-0 flex-1 px-4 py-3">
-      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">{label}</p>
+      <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+        {label}
+      </p>
       <p className={cn("mt-1 text-2xl font-semibold tabular-nums", accent)}>{value}</p>
       <p className="mt-0.5 truncate text-xs text-muted-foreground">{hint}</p>
     </div>

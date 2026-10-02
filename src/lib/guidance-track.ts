@@ -28,7 +28,6 @@ export function trackGuidance(
   void recordGuidanceEventFn({ data: payload }).catch(() => undefined);
 }
 
-
 /** Coarse anonymous/signed-in flag from the non-sensitive session marker cookie. */
 function isSignedIn(): boolean {
   if (typeof document === "undefined") return false;

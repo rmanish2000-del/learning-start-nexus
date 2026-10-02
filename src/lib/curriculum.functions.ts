@@ -133,7 +133,11 @@ export const approveAllOutcomesFn = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     await requireAnyRole(context.supabase, context.userId, [...STAFF]);
     const orgId = await getMyOrgId(context.supabase, context.userId);
-    const approved = await approveAllOutcomes(context.supabase, { orgId, userId: context.userId }, data.bookId);
+    const approved = await approveAllOutcomes(
+      context.supabase,
+      { orgId, userId: context.userId },
+      data.bookId,
+    );
     return { ok: true, approved };
   });
 
@@ -177,5 +181,9 @@ export const extractCurriculumFn = createServerFn({ method: "POST" })
     await requireAnyRole(context.supabase, context.userId, [...STAFF]);
     const orgId = await getMyOrgId(context.supabase, context.userId);
     const { extractCurriculumFromBook } = await import("./book-upload.server");
-    return extractCurriculumFromBook(context.supabase, { orgId, userId: context.userId }, data.bookId);
+    return extractCurriculumFromBook(
+      context.supabase,
+      { orgId, userId: context.userId },
+      data.bookId,
+    );
   });

@@ -83,6 +83,5 @@ export function CookieConsentBanner() {
         </div>
       </div>
     </div>
-
   );
 }

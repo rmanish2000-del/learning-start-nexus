@@ -22,10 +22,16 @@ const read = (p: string) => readFileSync(join(root, p), "utf8");
 describe("isPlatformOwnerUser", () => {
   it("requires the exact owner email and a confirmed email", () => {
     const at = "2026-01-01T00:00:00Z";
-    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com", email_confirmed_at: at })).toBe(true);
-    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com", email_confirmed_at: null })).toBe(false);
+    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com", email_confirmed_at: at })).toBe(
+      true,
+    );
+    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com", email_confirmed_at: null })).toBe(
+      false,
+    );
     expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com" })).toBe(false);
-    expect(isPlatformOwnerUser({ email: "centre.admin@example.test", email_confirmed_at: at })).toBe(false);
+    expect(
+      isPlatformOwnerUser({ email: "centre.admin@example.test", email_confirmed_at: at }),
+    ).toBe(false);
     expect(isPlatformOwnerUser(null)).toBe(false);
   });
 });

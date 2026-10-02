@@ -17,7 +17,11 @@ export function parentDetailsComplete(profile: ParentProfile | undefined | null)
   return Boolean(profile?.fullName?.trim() && profile?.phone?.trim());
 }
 
-type FieldErrors = { fullName?: string | undefined; phone?: string | undefined; email?: string | undefined };
+type FieldErrors = {
+  fullName?: string | undefined;
+  phone?: string | undefined;
+  email?: string | undefined;
+};
 
 /**
  * Purchases are refused server-side until the parent profile carries a name
@@ -62,7 +66,10 @@ export function ParentDetailsCard({
       // The email comes from the signed-in account, so an email issue is not
       // something the parent can correct in this form.
       toast.error(
-        next.fullName ?? next.phone ?? next.email ?? t("parentDetails.check", "Please check your details."),
+        next.fullName ??
+          next.phone ??
+          next.email ??
+          t("parentDetails.check", "Please check your details."),
       );
       return;
     }

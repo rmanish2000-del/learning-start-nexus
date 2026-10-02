@@ -2,14 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
-import {
-  AlertTriangle,
-  Crosshair,
-  Gauge,
-  ListChecks,
-  Loader2,
-  Sparkles,
-} from "lucide-react";
+import { AlertTriangle, Crosshair, Gauge, ListChecks, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
@@ -92,7 +85,6 @@ function DiagnosticEnginePage() {
   const generate = useServerFn(generateDiagnosticFn);
   const publish = useServerFn(publishAssessment);
 
-
   const [board, setBoard] = useState<string | null>(null);
   const [grade, setGrade] = useState<number | null>(null);
   const [subject, setSubject] = useState<string | null>(null);
@@ -116,9 +108,11 @@ function DiagnosticEnginePage() {
   );
   const grades = useMemo(
     () =>
-      [...new Set((books ?? []).filter((b) => (b.board ?? "(no board)") === board).map((b) => b.grade))].sort(
-        (a, b) => a - b,
-      ),
+      [
+        ...new Set(
+          (books ?? []).filter((b) => (b.board ?? "(no board)") === board).map((b) => b.grade),
+        ),
+      ].sort((a, b) => a - b),
     [books, board],
   );
   const subjects = useMemo(
@@ -143,7 +137,8 @@ function DiagnosticEnginePage() {
   const { data: ws, isPending: wsPending } = useQuery({
     queryKey: ["diagnostic-workspace", bookId, unitId],
     enabled: !!bookId,
-    queryFn: () => getDiagnosticWorkspaceFn({ data: { bookId: bookId!, unitId: unitId ?? undefined } }),
+    queryFn: () =>
+      getDiagnosticWorkspaceFn({ data: { bookId: bookId!, unitId: unitId ?? undefined } }),
   });
 
   const selectedUnitId = ws?.selectedUnitId ?? null;
@@ -151,7 +146,8 @@ function DiagnosticEnginePage() {
     () => (ws?.diagnostics ?? []).filter((d) => d.unitId === selectedUnitId),
     [ws, selectedUnitId],
   );
-  const activeBaseline = unitDiagnostics.find((d) => d.id === baselineId) ?? unitDiagnostics[0] ?? null;
+  const activeBaseline =
+    unitDiagnostics.find((d) => d.id === baselineId) ?? unitDiagnostics[0] ?? null;
 
   const plan = useMemo(() => {
     if (!ws || !selectedUnitId) return null;
@@ -175,7 +171,8 @@ function DiagnosticEnginePage() {
           unitId: selectedUnitId,
           template,
           totalQuestions,
-          baselineAssessmentId: template === "reassessment" ? (activeBaseline?.id ?? undefined) : undefined,
+          baselineAssessmentId:
+            template === "reassessment" ? (activeBaseline?.id ?? undefined) : undefined,
           publishNow,
         },
       });
@@ -211,8 +208,8 @@ function DiagnosticEnginePage() {
           <h1 className="text-2xl font-semibold tracking-tight">Diagnostic Engine</h1>
           <p className="max-w-2xl text-sm text-muted-foreground">
             Generate diagnostics and reassessments straight from the curriculum blueprint —
-            questions are allocated across outcomes by diagnostic weight. Generation never
-            assigns learners, creates interventions, or changes mastery.
+            questions are allocated across outcomes by diagnostic weight. Generation never assigns
+            learners, creates interventions, or changes mastery.
           </p>
         </div>
         <Button variant="outline" asChild>
@@ -227,8 +224,7 @@ function DiagnosticEnginePage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <Gauge className="h-4 w-4 text-primary" />
-            1 · Curriculum path
+            <Gauge className="h-4 w-4 text-primary" />1 · Curriculum path
           </CardTitle>
           <CardDescription>Board → Grade → Subject → Book, then pick the unit.</CardDescription>
         </CardHeader>
@@ -245,10 +241,14 @@ function DiagnosticEnginePage() {
                 setUnitId(null);
               }}
             >
-              <SelectTrigger><SelectValue placeholder="Board" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Board" />
+              </SelectTrigger>
               <SelectContent>
                 {boards.map((b) => (
-                  <SelectItem key={b} value={b}>{b}</SelectItem>
+                  <SelectItem key={b} value={b}>
+                    {b}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -265,10 +265,14 @@ function DiagnosticEnginePage() {
                 setUnitId(null);
               }}
             >
-              <SelectTrigger><SelectValue placeholder="Grade" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Grade" />
+              </SelectTrigger>
               <SelectContent>
                 {grades.map((g) => (
-                  <SelectItem key={g} value={String(g)}>Grade {g}</SelectItem>
+                  <SelectItem key={g} value={String(g)}>
+                    Grade {g}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -284,10 +288,14 @@ function DiagnosticEnginePage() {
                 setUnitId(null);
               }}
             >
-              <SelectTrigger><SelectValue placeholder="Subject" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Subject" />
+              </SelectTrigger>
               <SelectContent>
                 {subjects.map((s) => (
-                  <SelectItem key={s} value={s}>{s}</SelectItem>
+                  <SelectItem key={s} value={s}>
+                    {s}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -302,25 +310,29 @@ function DiagnosticEnginePage() {
                 setUnitId(null);
               }}
             >
-              <SelectTrigger><SelectValue placeholder="Book" /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue placeholder="Book" />
+              </SelectTrigger>
               <SelectContent>
                 {bookChoices.map((b) => (
-                  <SelectItem key={b.id} value={b.id}>{b.title}</SelectItem>
+                  <SelectItem key={b.id} value={b.id}>
+                    {b.title}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           <div className="space-y-1.5">
             <Label>Unit</Label>
-            <Select
-              value={selectedUnitId ?? ""}
-              disabled={!ws}
-              onValueChange={(v) => setUnitId(v)}
-            >
-              <SelectTrigger><SelectValue placeholder="Unit" /></SelectTrigger>
+            <Select value={selectedUnitId ?? ""} disabled={!ws} onValueChange={(v) => setUnitId(v)}>
+              <SelectTrigger>
+                <SelectValue placeholder="Unit" />
+              </SelectTrigger>
               <SelectContent>
                 {(ws?.units ?? []).map((u) => (
-                  <SelectItem key={u.id} value={u.id}>{u.title}</SelectItem>
+                  <SelectItem key={u.id} value={u.id}>
+                    {u.title}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -341,8 +353,7 @@ function DiagnosticEnginePage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <Crosshair className="h-4 w-4 text-primary" />
-                2 · Template and size
+                <Crosshair className="h-4 w-4 text-primary" />2 · Template and size
               </CardTitle>
               <CardDescription>{DIAGNOSTIC_TEMPLATE_DESCRIPTIONS[template]}</CardDescription>
             </CardHeader>
@@ -374,10 +385,14 @@ function DiagnosticEnginePage() {
                       </p>
                     ) : (
                       <Select value={activeBaseline?.id ?? ""} onValueChange={setBaselineId}>
-                        <SelectTrigger><SelectValue placeholder="Baseline" /></SelectTrigger>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Baseline" />
+                        </SelectTrigger>
                         <SelectContent>
                           {unitDiagnostics.map((d) => (
-                            <SelectItem key={d.id} value={d.id}>{d.title}</SelectItem>
+                            <SelectItem key={d.id} value={d.id}>
+                              {d.title}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -387,7 +402,8 @@ function DiagnosticEnginePage() {
               </div>
               <div className="space-y-3">
                 <Label>
-                  Total questions — <span className="font-semibold tabular-nums">{totalQuestions}</span>
+                  Total questions —{" "}
+                  <span className="font-semibold tabular-nums">{totalQuestions}</span>
                 </Label>
                 <Slider
                   value={[totalQuestions]}
@@ -404,7 +420,9 @@ function DiagnosticEnginePage() {
                 <Label>Publish</Label>
                 <div className="flex items-center gap-2 rounded-lg border p-3">
                   <Switch checked={publishNow} onCheckedChange={setPublishNow} />
-                  <span className="text-sm">{publishNow ? "Published (still unassigned)" : "Save as draft"}</span>
+                  <span className="text-sm">
+                    {publishNow ? "Published (still unassigned)" : "Save as draft"}
+                  </span>
                 </div>
                 <p className="text-xs text-muted-foreground">
                   Assignment stays manual on the Assessments page.
@@ -440,7 +458,9 @@ function DiagnosticEnginePage() {
                       <TableRow key={o.outcomeId}>
                         <TableCell>
                           <p className="font-mono text-xs">{o.code}</p>
-                          <p className="max-w-56 truncate text-xs text-muted-foreground">{o.title}</p>
+                          <p className="max-w-56 truncate text-xs text-muted-foreground">
+                            {o.title}
+                          </p>
                         </TableCell>
                         <TableCell className="text-xs tabular-nums">{o.weight}%</TableCell>
                         <TableCell className="text-xs tabular-nums">{o.targetQuestions}</TableCell>
@@ -476,10 +496,15 @@ function DiagnosticEnginePage() {
                       <TableRow key={u.outcomeId} className="bg-muted/40">
                         <TableCell>
                           <p className="font-mono text-xs">{u.code}</p>
-                          <p className="max-w-56 truncate text-xs text-muted-foreground">{u.title}</p>
+                          <p className="max-w-56 truncate text-xs text-muted-foreground">
+                            {u.title}
+                          </p>
                         </TableCell>
                         <TableCell className="text-xs tabular-nums">{u.weight}%</TableCell>
-                        <TableCell colSpan={4} className="text-xs text-amber-600 dark:text-amber-400">
+                        <TableCell
+                          colSpan={4}
+                          className="text-xs text-amber-600 dark:text-amber-400"
+                        >
                           No approved questions in the bank — cannot be measured yet.
                         </TableCell>
                       </TableRow>
@@ -489,8 +514,8 @@ function DiagnosticEnginePage() {
               </div>
               {plan.reusedCount > 0 && (
                 <p className="text-xs text-amber-600 dark:text-amber-400">
-                  {plan.reusedCount} question(s) had to be reused — the unused alternatives for those
-                  outcomes are exhausted.
+                  {plan.reusedCount} question(s) had to be reused — the unused alternatives for
+                  those outcomes are exhausted.
                 </p>
               )}
             </CardContent>
@@ -520,8 +545,8 @@ function DiagnosticEnginePage() {
                   </div>
                 ))}
                 <p className="text-xs text-muted-foreground">
-                  Measured weight {plan.compliance.weightMeasured} of {plan.compliance.weightTotal} ·{" "}
-                  {plan.compliance.outcomesMeasured}/{plan.compliance.outcomesTargeted} coverable
+                  Measured weight {plan.compliance.weightMeasured} of {plan.compliance.weightTotal}{" "}
+                  · {plan.compliance.outcomesMeasured}/{plan.compliance.outcomesTargeted} coverable
                   outcomes measured.
                 </p>
               </CardContent>
@@ -574,8 +599,8 @@ function DiagnosticEnginePage() {
             <CardContent className="flex flex-wrap items-center justify-between gap-3 pt-6">
               <div className="space-y-1">
                 <p className="text-sm font-medium">
-                  {DIAGNOSTIC_TEMPLATE_LABELS[template]} · {plan.plannedQuestionIds.length} questions
-                  across {plan.compliance.outcomesMeasured} outcomes
+                  {DIAGNOSTIC_TEMPLATE_LABELS[template]} · {plan.plannedQuestionIds.length}{" "}
+                  questions across {plan.compliance.outcomesMeasured} outcomes
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Writes only the assessment, its question map, and a book event. Reviewers can
@@ -591,8 +616,14 @@ function DiagnosticEnginePage() {
                   (template === "reassessment" && !activeBaseline)
                 }
               >
-                {generating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
-                {generating ? "Generating…" : `Generate ${DIAGNOSTIC_TEMPLATE_LABELS[template].toLowerCase()}`}
+                {generating ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Sparkles className="h-4 w-4" />
+                )}
+                {generating
+                  ? "Generating…"
+                  : `Generate ${DIAGNOSTIC_TEMPLATE_LABELS[template].toLowerCase()}`}
               </Button>
             </CardContent>
           </Card>
@@ -608,7 +639,9 @@ function DiagnosticEnginePage() {
             </CardHeader>
             <CardContent className="space-y-2">
               {ws.generated.length === 0 && (
-                <p className="text-sm text-muted-foreground">Nothing generated for this book yet.</p>
+                <p className="text-sm text-muted-foreground">
+                  Nothing generated for this book yet.
+                </p>
               )}
               {ws.generated.map((g) => (
                 <div

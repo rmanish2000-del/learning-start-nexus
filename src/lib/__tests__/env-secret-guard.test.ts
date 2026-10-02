@@ -69,8 +69,14 @@ function parseEnv(text: string): Array<{ key: string; value: string }> {
     .filter((l) => l && !l.startsWith("#") && l.includes("="))
     .map((l) => {
       const i = l.indexOf("=");
-      const key = l.slice(0, i).replace(/^export\s+/, "").trim();
-      const value = l.slice(i + 1).trim().replace(/^["']|["']$/g, "");
+      const key = l
+        .slice(0, i)
+        .replace(/^export\s+/, "")
+        .trim();
+      const value = l
+        .slice(i + 1)
+        .trim()
+        .replace(/^["']|["']$/g, "");
       return { key, value };
     });
 }
@@ -87,7 +93,10 @@ describe("committed .env files carry no secrets", () => {
         }
       }
     }
-    expect(offenders, `Non-public variable committed (names only): ${offenders.join(", ")}`).toEqual([]);
+    expect(
+      offenders,
+      `Non-public variable committed (names only): ${offenders.join(", ")}`,
+    ).toEqual([]);
   });
 
   it("no committed value has the shape of a real credential", () => {

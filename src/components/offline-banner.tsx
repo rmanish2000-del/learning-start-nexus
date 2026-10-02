@@ -29,15 +29,12 @@ export function OfflineBanner() {
     }
     if (wasOffline && announced.current) {
       announced.current = false;
-      toast.success(
-        wasAssessment.current ? "Connection restored" : "You're back online",
-        {
-          description: wasAssessment.current
-            ? "You can now submit your answers."
-            : "Refreshing your data…",
-          duration: 4000,
-        },
-      );
+      toast.success(wasAssessment.current ? "Connection restored" : "You're back online", {
+        description: wasAssessment.current
+          ? "You can now submit your answers."
+          : "Refreshing your data…",
+        duration: 4000,
+      });
     }
   }, [online, wasOffline, assessmentActive]);
 

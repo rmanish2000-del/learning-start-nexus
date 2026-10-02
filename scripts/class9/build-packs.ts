@@ -23,10 +23,13 @@ const RETRIEVED_ON = "2026-08-28";
 const SOURCE_REGISTER = {
   "NCERT-C9-MAT-2026-27": {
     id: "NCERT-C9-MAT-2026-27",
-    title: "NCERT Mathematics Textbook for Class IX (rationalised) with the CBSE Secondary Curriculum syllabus for Mathematics (Code 041)",
-    issuingAuthority: "National Council of Educational Research and Training / Central Board of Secondary Education",
+    title:
+      "NCERT Mathematics Textbook for Class IX (rationalised) with the CBSE Secondary Curriculum syllabus for Mathematics (Code 041)",
+    issuingAuthority:
+      "National Council of Educational Research and Training / Central Board of Secondary Education",
     edition: "Rationalised edition in force for session 2026-27",
-    officialReference: "https://ncert.nic.in/textbook.php (Class IX Mathematics) and https://cbseacademic.nic.in/curriculum.html (Secondary Curriculum, Mathematics 041)",
+    officialReference:
+      "https://ncert.nic.in/textbook.php (Class IX Mathematics) and https://cbseacademic.nic.in/curriculum.html (Secondary Curriculum, Mathematics 041)",
     retrievedOn: RETRIEVED_ON,
     licensing:
       "Structure, chapter titles and syllabus weightings are cited as factual curriculum metadata. No textbook text, figures or exercise items are copied or stored in this repository. All questions in the pack are original EduOS material.",
@@ -35,10 +38,13 @@ const SOURCE_REGISTER = {
   },
   "NCERT-C9-SCI-2026-27": {
     id: "NCERT-C9-SCI-2026-27",
-    title: "NCERT Science Textbook for Class IX (rationalised) with the CBSE Secondary Curriculum syllabus for Science (Code 086)",
-    issuingAuthority: "National Council of Educational Research and Training / Central Board of Secondary Education",
+    title:
+      "NCERT Science Textbook for Class IX (rationalised) with the CBSE Secondary Curriculum syllabus for Science (Code 086)",
+    issuingAuthority:
+      "National Council of Educational Research and Training / Central Board of Secondary Education",
     edition: "Rationalised edition in force for session 2026-27",
-    officialReference: "https://ncert.nic.in/textbook.php (Class IX Science) and https://cbseacademic.nic.in/curriculum.html (Secondary Curriculum, Science 086)",
+    officialReference:
+      "https://ncert.nic.in/textbook.php (Class IX Science) and https://cbseacademic.nic.in/curriculum.html (Secondary Curriculum, Science 086)",
     retrievedOn: RETRIEVED_ON,
     licensing:
       "Structure, chapter titles and syllabus weightings are cited as factual curriculum metadata. No textbook text, figures or exercise items are copied or stored in this repository. All questions in the pack are original EduOS material.",
@@ -47,7 +53,10 @@ const SOURCE_REGISTER = {
   },
 } as const;
 
-export function buildPacks(input: AuthoredSubject): { curriculum: CurriculumPack; questions: QuestionPack } {
+export function buildPacks(input: AuthoredSubject): {
+  curriculum: CurriculumPack;
+  questions: QuestionPack;
+} {
   const subject = applyExtensions(input);
   const s = subject.subjectCode;
   const source = SOURCE_REGISTER[subject.sourceId as keyof typeof SOURCE_REGISTER];

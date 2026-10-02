@@ -124,7 +124,15 @@ type QuestionFormState = {
 };
 
 function emptyForm(): QuestionFormState {
-  return { kind: "mcq", difficulty: 2, prompt: "", stimulus: "", options: ["", "", "", ""], correctAnswer: "", explanation: "" };
+  return {
+    kind: "mcq",
+    difficulty: 2,
+    prompt: "",
+    stimulus: "",
+    options: ["", "", "", ""],
+    correctAnswer: "",
+    explanation: "",
+  };
 }
 
 function formFromQuestion(q: QuestionDto): QuestionFormState {
@@ -165,13 +173,14 @@ function QuestionFormDialog({
   const needsStimulus = requiresStimulus(form.kind);
 
   const handleSave = async () => {
-    const options = form.kind === "true_false"
-      ? ["True", "False"]
-      : form.kind === "assertion_reason"
-        ? ASSERTION_REASON_OPTIONS
-        : needsOptions
-          ? form.options.map((o) => o.trim()).filter(Boolean)
-          : null;
+    const options =
+      form.kind === "true_false"
+        ? ["True", "False"]
+        : form.kind === "assertion_reason"
+          ? ASSERTION_REASON_OPTIONS
+          : needsOptions
+            ? form.options.map((o) => o.trim()).filter(Boolean)
+            : null;
     if (needsOptions && form.kind !== "true_false" && options && options.length < 2) {
       toast.error("This question type needs at least 2 options.");
       return;
@@ -233,10 +242,14 @@ function QuestionFormDialog({
                 value={form.kind}
                 onValueChange={(v) => setForm((f) => ({ ...f, kind: v as QuestionKind }))}
               >
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
                   {(Object.keys(KIND_LABELS) as QuestionKind[]).map((k) => (
-                    <SelectItem key={k} value={k}>{KIND_LABELS[k]}</SelectItem>
+                    <SelectItem key={k} value={k}>
+                      {KIND_LABELS[k]}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -247,7 +260,9 @@ function QuestionFormDialog({
                 value={String(form.difficulty)}
                 onValueChange={(v) => setForm((f) => ({ ...f, difficulty: Number(v) }))}
               >
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
                   {[1, 2, 3, 4, 5].map((d) => (
                     <SelectItem key={d} value={String(d)}>
@@ -279,7 +294,9 @@ function QuestionFormDialog({
             <Textarea
               value={form.prompt}
               onChange={(e) => setForm((f) => ({ ...f, prompt: e.target.value }))}
-              placeholder={form.kind === "fill_blank" ? "Use ______ for the blank" : "Question prompt"}
+              placeholder={
+                form.kind === "fill_blank" ? "Use ______ for the blank" : "Question prompt"
+              }
               rows={2}
             />
           </div>
@@ -289,7 +306,9 @@ function QuestionFormDialog({
               <Label>Options (fixed CBSE set)</Label>
               <ul className="text-muted-foreground space-y-1 text-xs">
                 {ASSERTION_REASON_OPTIONS.map((o) => (
-                  <li key={o} className="rounded-md border px-2 py-1">{o}</li>
+                  <li key={o} className="rounded-md border px-2 py-1">
+                    {o}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -325,7 +344,9 @@ function QuestionFormDialog({
                 value={form.correctAnswer}
                 onValueChange={(v) => setForm((f) => ({ ...f, correctAnswer: v }))}
               >
-                <SelectTrigger><SelectValue placeholder="Pick True or False" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pick True or False" />
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="True">True</SelectItem>
                   <SelectItem value="False">False</SelectItem>
@@ -406,7 +427,9 @@ function QuestionCard({
       <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
         <Badge variant="secondary">{KIND_LABELS[question.kind]}</Badge>
         <DifficultyBadge level={question.difficulty} />
-        <span className={`inline-flex items-center rounded-full px-2 py-0.5 font-medium ${STATUS_STYLES[question.status] ?? ""}`}>
+        <span
+          className={`inline-flex items-center rounded-full px-2 py-0.5 font-medium ${STATUS_STYLES[question.status] ?? ""}`}
+        >
           {STATUS_LABELS[question.status]}
         </span>
         <Badge variant="outline" className="font-normal">
@@ -437,7 +460,8 @@ function QuestionCard({
       {question.options && question.options.length > 0 && (
         <ul className="mt-2 grid grid-cols-1 gap-1 sm:grid-cols-2">
           {question.options.map((opt) => {
-            const isCorrect = opt.trim().toLowerCase() === question.correctAnswer.trim().toLowerCase();
+            const isCorrect =
+              opt.trim().toLowerCase() === question.correctAnswer.trim().toLowerCase();
             return (
               <li
                 key={opt}
@@ -507,7 +531,10 @@ function QuestionCard({
             className="text-destructive"
             disabled={busy}
             onClick={() =>
-              void run(() => deleteQuestion({ data: { questionId: question.id } }), "Question deleted.")
+              void run(
+                () => deleteQuestion({ data: { questionId: question.id } }),
+                "Question deleted.",
+              )
             }
           >
             <Trash2 className="h-3.5 w-3.5" /> Delete
@@ -595,11 +622,15 @@ function BatchGenerationCard({
           <div className="space-y-1">
             <Label className="text-xs">Scope</Label>
             <Select value={scope} onValueChange={setScope}>
-              <SelectTrigger className="w-64"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-64">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All units in this book</SelectItem>
                 {units.map((u) => (
-                  <SelectItem key={u.id} value={u.id}>{u.title}</SelectItem>
+                  <SelectItem key={u.id} value={u.id}>
+                    {u.title}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -607,10 +638,14 @@ function BatchGenerationCard({
           <div className="space-y-1">
             <Label className="text-xs">Questions per outcome</Label>
             <Select value={perOutcome} onValueChange={setPerOutcome}>
-              <SelectTrigger className="w-24"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-24">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                  <SelectItem key={n} value={String(n)}>
+                    {n}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -618,18 +653,24 @@ function BatchGenerationCard({
           <div className="space-y-1">
             <Label className="text-xs">Question style</Label>
             <Select value={style} onValueChange={(v) => setStyle(v as "auto" | CbseKind)}>
-              <SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-56">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="auto">Auto (outcome question types)</SelectItem>
                 {CBSE_KINDS.map((k) => (
-                  <SelectItem key={k} value={k}>{CBSE_KIND_LABELS[k]}</SelectItem>
+                  <SelectItem key={k} value={k}>
+                    {CBSE_KIND_LABELS[k]}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           <div className="flex items-center gap-2 pb-2">
             <Switch id="skip-covered" checked={skipCovered} onCheckedChange={setSkipCovered} />
-            <Label htmlFor="skip-covered" className="text-xs">Skip outcomes that already have questions</Label>
+            <Label htmlFor="skip-covered" className="text-xs">
+              Skip outcomes that already have questions
+            </Label>
           </div>
           <Button className="mb-0.5" disabled={running || pending === 0} onClick={() => void run()}>
             <Sparkles className="h-3.5 w-3.5" />
@@ -652,7 +693,8 @@ function BatchGenerationCard({
                 Coverage {report.coverage.coveragePctBefore}% → {report.coverage.coveragePctAfter}%
               </Badge>
               <Badge variant="outline">
-                {report.coverage.outcomesWithQuestionsAfter}/{report.totals.outcomes} outcomes covered
+                {report.coverage.outcomesWithQuestionsAfter}/{report.totals.outcomes} outcomes
+                covered
               </Badge>
               <Badge variant="outline">+{report.totals.questionsInserted} questions</Badge>
               <Badge variant="outline">
@@ -770,26 +812,36 @@ function OutcomePanel({
           <DifficultyBadge level={outcome.difficulty} />
           <Badge variant="secondary">Weight {outcome.diagnosticWeight}%</Badge>
           {outcome.questionTypes.map((qt) => (
-            <Badge key={qt} variant="outline" className="font-normal">{qt}</Badge>
+            <Badge key={qt} variant="outline" className="font-normal">
+              {qt}
+            </Badge>
           ))}
         </div>
 
         {canWrite && (
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <Select value={genCount} onValueChange={setGenCount}>
-              <SelectTrigger className="w-20"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-20">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                  <SelectItem key={n} value={String(n)}>
+                    {n}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
             <Select value={genStyle} onValueChange={(v) => setGenStyle(v as "auto" | CbseKind)}>
-              <SelectTrigger className="w-52"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-52">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="auto">Auto (outcome question types)</SelectItem>
                 {CBSE_KINDS.map((k) => (
-                  <SelectItem key={k} value={k}>{CBSE_KIND_LABELS[k]}</SelectItem>
+                  <SelectItem key={k} value={k}>
+                    {CBSE_KIND_LABELS[k]}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -900,7 +952,9 @@ function QuestionBankPage() {
             value={bookId ?? ""}
             onValueChange={(v) => navigate({ search: { book: v, outcome: undefined } })}
           >
-            <SelectTrigger><SelectValue placeholder="Pick a book" /></SelectTrigger>
+            <SelectTrigger>
+              <SelectValue placeholder="Pick a book" />
+            </SelectTrigger>
             <SelectContent>
               {(library ?? []).map((b) => (
                 <SelectItem key={b.id} value={b.id}>
@@ -917,10 +971,14 @@ function QuestionBankPage() {
         {CHAIN_STEPS.map((step, i) => (
           <span key={step} className="flex items-center gap-1.5">
             {i > 0 && <ArrowRight className="h-3 w-3 text-muted-foreground" />}
-            <span className="rounded-full border bg-background px-2 py-0.5 font-medium">{step}</span>
+            <span className="rounded-full border bg-background px-2 py-0.5 font-medium">
+              {step}
+            </span>
           </span>
         ))}
-        <span className="ml-auto text-muted-foreground">No automatic assessment assembly in this sprint.</span>
+        <span className="ml-auto text-muted-foreground">
+          No automatic assessment assembly in this sprint.
+        </span>
       </div>
 
       {isPending || !workspace ? (
@@ -987,7 +1045,9 @@ function QuestionBankPage() {
                         </button>
                       ))}
                       {unit.outcomes.length === 0 && (
-                        <p className="px-1 text-[11px] text-muted-foreground">No outcomes in this unit.</p>
+                        <p className="px-1 text-[11px] text-muted-foreground">
+                          No outcomes in this unit.
+                        </p>
                       )}
                     </div>
                   </div>

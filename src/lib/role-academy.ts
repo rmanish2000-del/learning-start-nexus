@@ -59,17 +59,24 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
         ],
         outputs: ["An audited pilot grant with reason, grant date, expiry and run count."],
         permissions: "Admin only. Every other role is redirected away from this route.",
-        flow:
-          "Comes before the parent journey: the family must already have an EduOS parent account. Leads to the parent signing in and starting the diagnostic.",
-        tryIt: "Open Pilot access and read an existing grant row — status, subject scope, expiry and reason.",
+        flow: "Comes before the parent journey: the family must already have an EduOS parent account. Leads to the parent signing in and starting the diagnostic.",
+        tryIt:
+          "Open Pilot access and read an existing grant row — status, subject scope, expiry and reason.",
       },
       {
         screen: "Admin & assignments",
         to: "/admin",
-        purpose: "Manage organisation users and see the roles that govern every permission in the product.",
-        actions: ["Review users and their roles.", "Open Assignments to map each learner to an educator."],
-        outputs: ["Role rows and educator↔learner assignments that drive dashboards and RLS scoping."],
-        permissions: "Admin only. Roles live in a separate table; they can never be self-assigned from the UI.",
+        purpose:
+          "Manage organisation users and see the roles that govern every permission in the product.",
+        actions: [
+          "Review users and their roles.",
+          "Open Assignments to map each learner to an educator.",
+        ],
+        outputs: [
+          "Role rows and educator↔learner assignments that drive dashboards and RLS scoping.",
+        ],
+        permissions:
+          "Admin only. Roles live in a separate table; they can never be self-assigned from the UI.",
         flow: "Follows pilot access; feeds the educator journey, which only shows assigned learners.",
         tryIt: "Open Assignments and confirm every active learner has an educator.",
       },
@@ -78,17 +85,24 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
         to: "/auto-verification",
         purpose:
           "Review how draft questions were checked against CBSE paper-pattern intelligence and which ones were auto-approved as EduOS verified.",
-        actions: ["Re-read the deterministic verification run.", "Inspect approval and quarantine counts."],
-        outputs: ["Immutable verification evidence per question; approved items become learner-visible."],
+        actions: [
+          "Re-read the deterministic verification run.",
+          "Inspect approval and quarantine counts.",
+        ],
+        outputs: [
+          "Immutable verification evidence per question; approved items become learner-visible.",
+        ],
         permissions:
           "Admin and reviewer. Verification never invents a human reviewer identity — automated decisions are recorded as automated.",
         flow: "Follows content authoring; gates what the learner journey and PYQ practice can ever show.",
-        tryIt: "Open Automated verification and compare the approved count with the quarantined count.",
+        tryIt:
+          "Open Automated verification and compare the approved count with the quarantined count.",
       },
       {
         screen: "Verification hub",
         to: "/verification",
-        purpose: "The single index of every audit centre: RLS probes, assessment audit, engine audits and launch readiness.",
+        purpose:
+          "The single index of every audit centre: RLS probes, assessment audit, engine audits and launch readiness.",
         actions: ["Open any audit centre.", "Run the live RLS probes."],
         outputs: ["Deterministic pass/fail evidence for platform integrity."],
         permissions: "Admin and reviewer only.",
@@ -127,7 +141,8 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Launch audit",
         to: "/launch-audit",
-        purpose: "Your home page: platform readiness, checklist status and links to every audit centre.",
+        purpose:
+          "Your home page: platform readiness, checklist status and links to every audit centre.",
         actions: ["Read the readiness checklist.", "Follow links into individual audit centres."],
         outputs: ["A single readiness view assembled from live probes."],
         permissions: "Read-only. Reviewers are redirected away from every workspace route.",
@@ -137,18 +152,27 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Automated verification",
         to: "/auto-verification",
-        purpose: "See the deterministic verification of draft questions and the resulting approve / hold decisions.",
-        actions: ["Inspect accuracy, alignment, quality and duplicate signals.", "Read the quarantine reasons."],
+        purpose:
+          "See the deterministic verification of draft questions and the resulting approve / hold decisions.",
+        actions: [
+          "Inspect accuracy, alignment, quality and duplicate signals.",
+          "Read the quarantine reasons.",
+        ],
         outputs: ["Verification evidence rows that cannot be edited after the fact."],
-        permissions: "Read-only for reviewers. No approval can be attributed to a human who did not make it.",
+        permissions:
+          "Read-only for reviewers. No approval can be attributed to a human who did not make it.",
         flow: "Follows content authoring; precedes SME review of anything held back.",
         tryIt: "Open Automated verification and read one quarantine reason end to end.",
       },
       {
         screen: "SME review — Mathematics and Science",
         to: "/sme-review",
-        purpose: "Subject-matter review surface for items that automated verification could not approve on its own.",
-        actions: ["Open the Mathematics or Science review workspace.", "Read each item with its curriculum mapping."],
+        purpose:
+          "Subject-matter review surface for items that automated verification could not approve on its own.",
+        actions: [
+          "Open the Mathematics or Science review workspace.",
+          "Read each item with its curriculum mapping.",
+        ],
         outputs: ["Subject review records tied to the specific question and outcome."],
         permissions: "Admin and reviewer. Learners and parents never see review surfaces.",
         flow: "Receives held items from automated verification; feeds the approved question bank.",
@@ -157,18 +181,27 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Evidence chain",
         to: "/assessment-audit",
-        purpose: "Trace a real assessment from assignment through scoring to stored evidence, with the policy that protected each step.",
-        actions: ["Follow a single assessment through the chain.", "Cross-check with RLS verification."],
+        purpose:
+          "Trace a real assessment from assignment through scoring to stored evidence, with the policy that protected each step.",
+        actions: [
+          "Follow a single assessment through the chain.",
+          "Cross-check with RLS verification.",
+        ],
         outputs: ["An append-only evidence trail — records are added, never edited or deleted."],
         permissions: "Read-only. Reviewers can read the chain but never alter an evidence record.",
         flow: "Closes the loop that started with question verification.",
-        tryIt: "Open the assessment audit trail and confirm each step names the policy that allowed it.",
+        tryIt:
+          "Open the assessment audit trail and confirm each step names the policy that allowed it.",
       },
     ],
     scenarios: [
       {
         title: "Verify isolation between organisations",
-        steps: ["Open RLS verification.", "Run the cross-organisation probes.", "Read each blocked attempt."],
+        steps: [
+          "Open RLS verification.",
+          "Run the cross-organisation probes.",
+          "Read each blocked attempt.",
+        ],
         expected: "Every cross-organisation read, insert and update is refused.",
       },
       {
@@ -192,7 +225,8 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Gap analysis",
         to: "/gap-analysis",
-        purpose: "See which outcomes each learner is losing marks on, with full curriculum traceability.",
+        purpose:
+          "See which outcomes each learner is losing marks on, with full curriculum traceability.",
         actions: ["Open a learner's gaps.", "Read the outcome → topic → chapter mapping."],
         outputs: ["Gaps opened automatically for any outcome scored under 70%."],
         permissions: "Educators see only learners assigned to them, inside their organisation.",
@@ -202,9 +236,12 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Guided intervention",
         to: "/interventions",
-        purpose: "Turn a recommendation produced by gap detection into an approved intervention the learner can act on.",
+        purpose:
+          "Turn a recommendation produced by gap detection into an approved intervention the learner can act on.",
         actions: ["Review the recommendation and its target outcomes.", "Approve it."],
-        outputs: ["An intervention visible to the learner, and AI Tutor access scoped to those outcomes."],
+        outputs: [
+          "An intervention visible to the learner, and AI Tutor access scoped to those outcomes.",
+        ],
         permissions:
           "Educators and admins approve. Approving never changes a score and never closes a gap by itself.",
         flow: "Follows gap analysis; unlocks tutor practice.",
@@ -214,7 +251,8 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
         screen: "Tutor monitoring",
         to: "/learners",
         routeHint: "/learners/:learnerId",
-        purpose: "See tutoring activity for a learner alongside assessments, gaps, interventions and outcomes.",
+        purpose:
+          "See tutoring activity for a learner alongside assessments, gaps, interventions and outcomes.",
         actions: ["Open a learner profile.", "Review tutor sessions and practice history."],
         outputs: ["A single, append-only history per learner."],
         permissions:
@@ -225,9 +263,12 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Fresh reassessment",
         to: "/assessments",
-        purpose: "Prove whether the gap actually closed, using fresh questions the learner has not already seen.",
+        purpose:
+          "Prove whether the gap actually closed, using fresh questions the learner has not already seen.",
         actions: ["Generate and publish a reassessment.", "Assign it to the open outcome."],
-        outputs: ["A reassessment result that alone determines whether the outcome closes or stays open."],
+        outputs: [
+          "A reassessment result that alone determines whether the outcome closes or stays open.",
+        ],
         permissions:
           "Only published assessments with approved, verified questions can be assigned. Reassessment questions are disjoint from the learner's diagnostic.",
         flow: "Last step of the loop; the result feeds Outcome Proof for parents.",
@@ -247,7 +288,11 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       },
       {
         title: "Confirm the Tutor cannot close a gap",
-        steps: ["Note a learner's open gap.", "Have the learner complete a tutor session.", "Re-open Gap analysis."],
+        steps: [
+          "Note a learner's open gap.",
+          "Have the learner complete a tutor session.",
+          "Re-open Gap analysis.",
+        ],
         expected: "The gap is still open; only reassessment evidence can move it.",
       },
     ],
@@ -272,8 +317,13 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Your child and access",
         to: "/parent",
-        purpose: "Add your child, record AI Tutor consent and see how access was granted — pilot or paid.",
-        actions: ["Add a learner.", "Record consent, which unlocks the AI Tutor.", "Review purchases and access."],
+        purpose:
+          "Add your child, record AI Tutor consent and see how access was granted — pilot or paid.",
+        actions: [
+          "Add a learner.",
+          "Record consent, which unlocks the AI Tutor.",
+          "Review purchases and access.",
+        ],
         outputs: ["A learner profile with a handle and 6-digit PIN, plus a consent record."],
         permissions:
           "Read-only for learning evidence. Pilot access is granted by an admin; paid access is the ₹199 diagnostic, credited toward the ₹2,999 Annual Plan if you upgrade within the credit window.",
@@ -286,14 +336,16 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
         purpose: "Your child takes the diagnostic; you read the outcome-by-outcome report.",
         actions: ["Share the handle and PIN with your child.", "Read the report when it appears."],
         outputs: ["A per-outcome score breakdown and the gaps it opened."],
-        permissions: "You can read everything about your own children and nothing about anyone else's.",
+        permissions:
+          "You can read everything about your own children and nothing about anyone else's.",
         flow: "Follows access; feeds the study plan and tutor practice.",
         tryIt: "Open the portal and read the most recent assessment score for your child.",
       },
       {
         screen: "Progress and outcome proof",
         to: "/outcome-proof",
-        purpose: "See whether practice actually moved the needle, with the reassessment evidence behind it.",
+        purpose:
+          "See whether practice actually moved the needle, with the reassessment evidence behind it.",
         actions: ["Read the outcome status and the recommended next action."],
         outputs: ["Evidence of mastery lift, or a clear statement that the outcome is still open."],
         permissions: "Read-only. Parents read evidence; they never mark work or change a score.",
@@ -310,7 +362,8 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
           "Wait for the diagnostic result and open the report.",
           "Open Outcome proof after the reassessment.",
         ],
-        expected: "Every stage is visible and read-only; nothing about other families is ever shown.",
+        expected:
+          "Every stage is visible and read-only; nothing about other families is ever shown.",
       },
     ],
   },
@@ -335,7 +388,10 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
         screen: "Diagnostic",
         to: "/home",
         purpose: "One assessment that finds which CBSE outcomes are costing you marks.",
-        actions: ["Start the assigned assessment.", "Answer one question at a time — answers save as you go."],
+        actions: [
+          "Start the assigned assessment.",
+          "Answer one question at a time — answers save as you go.",
+        ],
         outputs: ["A score per outcome, and a focus area for anything under 70%."],
         permissions: "Scoring happens on the server; you cannot change a result after submitting.",
         flow: "Everything after this is built from your diagnostic.",
@@ -355,7 +411,8 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
         screen: "AI Tutor",
         to: "/home",
         routeHint: "/tutor/:sessionId",
-        purpose: "Practise a focus area with explanations, hints, worked examples and practice questions.",
+        purpose:
+          "Practise a focus area with explanations, hints, worked examples and practice questions.",
         actions: ["Start a tutor session from an approved focus area."],
         outputs: ["A practice history — never a change to your marks."],
         permissions:
@@ -366,7 +423,8 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       {
         screen: "Reassessment",
         to: "/home",
-        purpose: "Fresh questions on the same outcome — the only thing that can close a focus area.",
+        purpose:
+          "Fresh questions on the same outcome — the only thing that can close a focus area.",
         actions: ["Take the reassessment when it appears on your home page."],
         outputs: ["New evidence alongside your diagnostic; your mastery ring updates."],
         permissions: "Questions are always different from your diagnostic questions.",
@@ -401,7 +459,12 @@ export const ROLE_ACADEMY: Record<AppRole, AcademyJourney> = {
       },
       {
         title: "Paper-pattern practice",
-        steps: ["Open Exam pattern.", "Pick a subject, year and set.", "Complete a timed full paper.", "Review the answers."],
+        steps: [
+          "Open Exam pattern.",
+          "Pick a subject, year and set.",
+          "Complete a timed full paper.",
+          "Review the answers.",
+        ],
         expected: "The attempt is saved in your own history and visible to nobody else's account.",
       },
     ],

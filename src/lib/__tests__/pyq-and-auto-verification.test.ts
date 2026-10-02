@@ -118,8 +118,7 @@ const item: AutoVerificationItem = {
   stimulus: null,
   options: ["12", "4", "2", "8"],
   correctAnswer: "4",
-  explanation:
-    "96 = 2^5 x 3 and 404 = 2^2 x 101, so the common factors give an HCF of 2^2 = 4.",
+  explanation: "96 = 2^5 x 3 and 404 = 2^2 x 101, so the common factors give an HCF of 2^2 = 4.",
   outcomeCode: "LO_M1.1.1",
   unitTitle: "Number Systems",
   chapterTitle: "Real Numbers",

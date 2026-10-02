@@ -65,7 +65,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Rational and irrational numbers",
               outcomes: [
                 {
-                  title: "Classify real numbers as rational or irrational and place them on the number line",
+                  title:
+                    "Classify real numbers as rational or irrational and place them on the number line",
                   category: "conceptual",
                   bloom: "understand",
                   difficulty: 2,
@@ -103,7 +104,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Exponents, surds and rationalisation",
               outcomes: [
                 {
-                  title: "Apply the laws of exponents for real bases and rationalise simple denominators",
+                  title:
+                    "Apply the laws of exponents for real bases and rationalise simple denominators",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 3,
@@ -126,7 +128,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 3,
-                      prompt: "Rationalise the denominator of 1/(3 + √2) and give the result in simplest form.",
+                      prompt:
+                        "Rationalise the denominator of 1/(3 + √2) and give the result in simplest form.",
                       answer: "(3 − √2)/7",
                       explanation:
                         "Multiply numerator and denominator by the conjugate (3 − √2): the denominator becomes 3² − (√2)² = 9 − 2 = 7, giving (3 − √2)/7.",
@@ -151,7 +154,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Polynomials, degree and zeroes",
               outcomes: [
                 {
-                  title: "Determine the degree of a polynomial and verify whether a value is a zero",
+                  title:
+                    "Determine the degree of a polynomial and verify whether a value is a zero",
                   category: "conceptual",
                   bloom: "apply",
                   difficulty: 2,
@@ -174,7 +178,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 3,
-                      prompt: "If p(x) = x² − 5x + 6, find p(2) and state whether 2 is a zero of p(x).",
+                      prompt:
+                        "If p(x) = x² − 5x + 6, find p(2) and state whether 2 is a zero of p(x).",
                       answer: "p(2) = 0, so 2 is a zero",
                       explanation:
                         "p(2) = 4 − 10 + 6 = 0. Because the value of the polynomial at x = 2 is zero, x = 2 is a zero of p(x).",
@@ -187,7 +192,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Algebraic identities and factorisation",
               outcomes: [
                 {
-                  title: "Factorise quadratic and cubic expressions using standard identities and the factor theorem",
+                  title:
+                    "Factorise quadratic and cubic expressions using standard identities and the factor theorem",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 3,
@@ -210,7 +216,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "applied_mcq",
                       difficulty: 4,
-                      prompt: "Given that (x − 1) is a factor of x³ − 6x² + 11x − 6, which is the complete factorisation?",
+                      prompt:
+                        "Given that (x − 1) is a factor of x³ − 6x² + 11x − 6, which is the complete factorisation?",
                       options: [
                         "(x − 1)(x − 2)(x − 3)",
                         "(x − 1)(x + 2)(x + 3)",
@@ -235,7 +242,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Solutions of a linear equation in two variables",
               outcomes: [
                 {
-                  title: "Express a linear equation in the form ax + by + c = 0 and find its solutions",
+                  title:
+                    "Express a linear equation in the form ax + by + c = 0 and find its solutions",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 2,
@@ -373,7 +381,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Euclid's axioms and postulates",
               outcomes: [
                 {
-                  title: "Distinguish Euclid's axioms from his postulates and use them in simple reasoning",
+                  title:
+                    "Distinguish Euclid's axioms from his postulates and use them in simple reasoning",
                   category: "conceptual",
                   bloom: "understand",
                   difficulty: 2,
@@ -428,7 +437,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Angle pairs and parallel lines",
               outcomes: [
                 {
-                  title: "Use linear pair, vertically opposite and transversal angle relations to find unknown angles",
+                  title:
+                    "Use linear pair, vertically opposite and transversal angle relations to find unknown angles",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 3,
@@ -473,7 +483,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Congruence criteria for triangles",
               outcomes: [
                 {
-                  title: "Select and justify the correct congruence criterion (SSS, SAS, ASA, AAS, RHS)",
+                  title:
+                    "Select and justify the correct congruence criterion (SSS, SAS, ASA, AAS, RHS)",
                   category: "analysis",
                   bloom: "analyse",
                   difficulty: 3,
@@ -526,7 +537,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt: "Two angles of a triangle measure 48° and 62°. What is the third angle?",
+                      prompt:
+                        "Two angles of a triangle measure 48° and 62°. What is the third angle?",
                       options: ["60°", "70°", "80°", "110°"],
                       answer: "70°",
                       explanation:
@@ -555,7 +567,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Properties of parallelograms",
               outcomes: [
                 {
-                  title: "Use and justify the defining properties of a parallelogram and its special cases",
+                  title:
+                    "Use and justify the defining properties of a parallelogram and its special cases",
                   category: "conceptual",
                   bloom: "apply",
                   difficulty: 3,
@@ -569,7 +582,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt: "In a parallelogram, one angle measures 105°. What is the adjacent angle?",
+                      prompt:
+                        "In a parallelogram, one angle measures 105°. What is the adjacent angle?",
                       options: ["75°", "105°", "85°", "95°"],
                       answer: "75°",
                       explanation:
@@ -597,7 +611,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "The midpoint theorem",
               outcomes: [
                 {
-                  title: "Apply the midpoint theorem and its converse in a triangle or quadrilateral",
+                  title:
+                    "Apply the midpoint theorem and its converse in a triangle or quadrilateral",
                   category: "application",
                   bloom: "apply",
                   difficulty: 3,
@@ -641,7 +656,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Chords, arcs and angles subtended",
               outcomes: [
                 {
-                  title: "Relate chords, their distances from the centre, and the angles they subtend",
+                  title:
+                    "Relate chords, their distances from the centre, and the angles they subtend",
                   category: "conceptual",
                   bloom: "apply",
                   difficulty: 3,
@@ -693,8 +709,7 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt:
-                        "In a cyclic quadrilateral ABCD, ∠A = 95°. What is ∠C?",
+                      prompt: "In a cyclic quadrilateral ABCD, ∠A = 95°. What is ∠C?",
                       options: ["85°", "95°", "105°", "185°"],
                       answer: "85°",
                       explanation:
@@ -744,7 +759,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 3,
-                      prompt: "Find the area of a triangle whose sides are 3 cm, 4 cm and 5 cm using Heron's formula.",
+                      prompt:
+                        "Find the area of a triangle whose sides are 3 cm, 4 cm and 5 cm using Heron's formula.",
                       answer: "6 cm²",
                       explanation:
                         "s = (3 + 4 + 5)/2 = 6. Area = √(6 × 3 × 2 × 1) = √36 = 6 cm². (The triangle is right-angled, and ½ × 3 × 4 = 6 confirms the result.)",
@@ -752,8 +768,7 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "applied_mcq",
                       difficulty: 4,
-                      prompt:
-                        "A triangular park has sides 40 m, 24 m and 32 m. What is its area?",
+                      prompt: "A triangular park has sides 40 m, 24 m and 32 m. What is its area?",
                       options: ["384 m²", "480 m²", "320 m²", "768 m²"],
                       answer: "384 m²",
                       explanation:
@@ -790,14 +805,18 @@ export const MATHEMATICS: AuthoredSubject = {
                       prompt:
                         "Find the curved surface area of a cylinder of radius 7 cm and height 10 cm. Take π = 22/7.",
                       answer: "440 cm²",
-                      explanation:
-                        "CSA = 2πrh = 2 × (22/7) × 7 × 10 = 440 cm².",
+                      explanation: "CSA = 2πrh = 2 × (22/7) × 7 × 10 = 440 cm².",
                     },
                     {
                       kind: "mcq",
                       difficulty: 3,
                       prompt: "If the radius of a sphere is doubled, its surface area becomes:",
-                      options: ["twice as large", "three times as large", "four times as large", "unchanged"],
+                      options: [
+                        "twice as large",
+                        "three times as large",
+                        "four times as large",
+                        "unchanged",
+                      ],
                       answer: "four times as large",
                       explanation:
                         "Surface area = 4πr² varies with the square of the radius, so doubling r multiplies the area by 2² = 4.",
@@ -810,7 +829,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Volumes of solids",
               outcomes: [
                 {
-                  title: "Calculate volumes of cylinders, cones and spheres and solve capacity problems",
+                  title:
+                    "Calculate volumes of cylinders, cones and spheres and solve capacity problems",
                   category: "application",
                   bloom: "apply",
                   difficulty: 3,
@@ -860,7 +880,8 @@ export const MATHEMATICS: AuthoredSubject = {
               title: "Organising and representing data",
               outcomes: [
                 {
-                  title: "Organise raw data into frequency tables and read bar graphs and histograms",
+                  title:
+                    "Organise raw data into frequency tables and read bar graphs and histograms",
                   category: "procedural",
                   bloom: "understand",
                   difficulty: 2,
@@ -884,7 +905,8 @@ export const MATHEMATICS: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt: "In a grouped frequency distribution, the class mark of the class 30–40 is:",
+                      prompt:
+                        "In a grouped frequency distribution, the class mark of the class 30–40 is:",
                       options: ["30", "35", "40", "10"],
                       answer: "35",
                       explanation:
@@ -975,7 +997,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt: "During the melting of ice at 0 °C, the temperature of the mixture stays constant because the supplied heat:",
+                      prompt:
+                        "During the melting of ice at 0 °C, the temperature of the mixture stays constant because the supplied heat:",
                       options: [
                         "is lost to the surroundings",
                         "is used to overcome the forces between particles",
@@ -1003,7 +1026,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Evaporation and cooling",
               outcomes: [
                 {
-                  title: "Relate evaporation rate to surface area, temperature, humidity and wind speed",
+                  title:
+                    "Relate evaporation rate to surface area, temperature, humidity and wind speed",
                   category: "application",
                   bloom: "analyse",
                   difficulty: 2,
@@ -1018,7 +1042,12 @@ export const SCIENCE: AuthoredSubject = {
                       kind: "applied_mcq",
                       difficulty: 3,
                       prompt: "Wet clothes dry fastest on a day that is:",
-                      options: ["hot and humid", "hot, dry and windy", "cold and windy", "cold and humid"],
+                      options: [
+                        "hot and humid",
+                        "hot, dry and windy",
+                        "cold and windy",
+                        "cold and humid",
+                      ],
                       answer: "hot, dry and windy",
                       explanation:
                         "High temperature gives particles more energy to escape, low humidity leaves room for more vapour in the air, and wind carries vapour away — all three raise the rate of evaporation.",
@@ -1046,7 +1075,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Mixtures, solutions and concentration",
               outcomes: [
                 {
-                  title: "Classify matter as element, compound or mixture and compute solution concentration",
+                  title:
+                    "Classify matter as element, compound or mixture and compute solution concentration",
                   category: "conceptual",
                   bloom: "apply",
                   difficulty: 3,
@@ -1083,7 +1113,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Separation of mixtures",
               outcomes: [
                 {
-                  title: "Choose an appropriate separation technique for a given mixture and justify it",
+                  title:
+                    "Choose an appropriate separation technique for a given mixture and justify it",
                   category: "application",
                   bloom: "analyse",
                   difficulty: 3,
@@ -1132,7 +1163,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Laws of chemical combination and the mole concept",
               outcomes: [
                 {
-                  title: "Apply the law of conservation of mass and convert between mass, moles and particles",
+                  title:
+                    "Apply the law of conservation of mass and convert between mass, moles and particles",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 3,
@@ -1212,7 +1244,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Atomic models and subatomic particles",
               outcomes: [
                 {
-                  title: "Compare atomic models and describe the distribution of subatomic particles",
+                  title:
+                    "Compare atomic models and describe the distribution of subatomic particles",
                   category: "conceptual",
                   bloom: "understand",
                   difficulty: 3,
@@ -1241,7 +1274,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 2,
-                      prompt: "An atom has 11 protons, 12 neutrons and 11 electrons. State its mass number and charge.",
+                      prompt:
+                        "An atom has 11 protons, 12 neutrons and 11 electrons. State its mass number and charge.",
                       answer: "Mass number 23; the atom is neutral (charge 0)",
                       explanation:
                         "Mass number = protons + neutrons = 11 + 12 = 23. Equal numbers of protons and electrons make the net charge zero.",
@@ -1254,7 +1288,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Electronic configuration, valency and isotopes",
               outcomes: [
                 {
-                  title: "Write electronic configurations and use them to deduce valency; distinguish isotopes and isobars",
+                  title:
+                    "Write electronic configurations and use them to deduce valency; distinguish isotopes and isobars",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 3,
@@ -1277,7 +1312,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt: "Two atoms with the same atomic number but different mass numbers are called:",
+                      prompt:
+                        "Two atoms with the same atomic number but different mass numbers are called:",
                       options: ["Isobars", "Isotopes", "Ions", "Isomers"],
                       answer: "Isotopes",
                       explanation:
@@ -1303,7 +1339,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Cell structure and organelles",
               outcomes: [
                 {
-                  title: "Relate the structure of cell organelles to their functions and compare plant and animal cells",
+                  title:
+                    "Relate the structure of cell organelles to their functions and compare plant and animal cells",
                   category: "conceptual",
                   bloom: "understand",
                   difficulty: 2,
@@ -1324,15 +1361,18 @@ export const SCIENCE: AuthoredSubject = {
                         "make proteins for export",
                         "release energy as ATP",
                       ],
-                      answer: "contain digestive enzymes that can break down the cell's own material",
+                      answer:
+                        "contain digestive enzymes that can break down the cell's own material",
                       explanation:
                         "Lysosomes hold powerful hydrolytic enzymes. If the cell is damaged, these enzymes are released and digest the cell's own contents.",
                     },
                     {
                       kind: "short_answer",
                       difficulty: 2,
-                      prompt: "Name two structures present in a plant cell but absent in an animal cell.",
-                      answer: "Cell wall and plastids (chloroplasts); a large central vacuole is also typical",
+                      prompt:
+                        "Name two structures present in a plant cell but absent in an animal cell.",
+                      answer:
+                        "Cell wall and plastids (chloroplasts); a large central vacuole is also typical",
                       explanation:
                         "The rigid cellulose cell wall gives shape and support, and plastids such as chloroplasts carry out photosynthesis. Animal cells have neither.",
                     },
@@ -1344,7 +1384,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Diffusion, osmosis and the plasma membrane",
               outcomes: [
                 {
-                  title: "Predict the behaviour of cells in hypotonic, isotonic and hypertonic solutions",
+                  title:
+                    "Predict the behaviour of cells in hypotonic, isotonic and hypertonic solutions",
                   category: "application",
                   bloom: "analyse",
                   difficulty: 3,
@@ -1406,7 +1447,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 2,
-                      prompt: "Which tissue transports water and dissolved minerals from the root to the leaves?",
+                      prompt:
+                        "Which tissue transports water and dissolved minerals from the root to the leaves?",
                       options: ["Phloem", "Xylem", "Collenchyma", "Parenchyma"],
                       answer: "Xylem",
                       explanation:
@@ -1415,8 +1457,10 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 3,
-                      prompt: "Why does the growth in the length of a stem occur mainly at its tip?",
-                      answer: "Because apical meristem, which divides actively, is located at the tip.",
+                      prompt:
+                        "Why does the growth in the length of a stem occur mainly at its tip?",
+                      answer:
+                        "Because apical meristem, which divides actively, is located at the tip.",
                       explanation:
                         "Meristematic tissue has thin-walled cells with dense cytoplasm that divide continuously. Apical meristem at the shoot and root tips increases length.",
                     },
@@ -1451,7 +1495,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 2,
-                      prompt: "Name the connective tissue that transports gases and nutrients around the body.",
+                      prompt:
+                        "Name the connective tissue that transports gases and nutrients around the body.",
                       answer: "Blood",
                       explanation:
                         "Blood is a fluid connective tissue whose plasma matrix carries cells, dissolved gases, nutrients and wastes throughout the body.",
@@ -1476,7 +1521,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Describing motion and equations of motion",
               outcomes: [
                 {
-                  title: "Distinguish distance from displacement and apply the equations of uniformly accelerated motion",
+                  title:
+                    "Distinguish distance from displacement and apply the equations of uniformly accelerated motion",
                   category: "procedural",
                   bloom: "apply",
                   difficulty: 3,
@@ -1501,7 +1547,12 @@ export const SCIENCE: AuthoredSubject = {
                       difficulty: 3,
                       prompt:
                         "An athlete runs once around a circular track of circumference 400 m and returns to the start. Distance and displacement are:",
-                      options: ["400 m and 400 m", "400 m and 0 m", "0 m and 400 m", "200 m and 400 m"],
+                      options: [
+                        "400 m and 400 m",
+                        "400 m and 0 m",
+                        "0 m and 400 m",
+                        "200 m and 400 m",
+                      ],
                       answer: "400 m and 0 m",
                       explanation:
                         "Distance is the total path length, 400 m. Displacement is the straight-line change in position; since the athlete finishes where they started, it is zero.",
@@ -1514,7 +1565,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Graphical representation and uniform circular motion",
               outcomes: [
                 {
-                  title: "Interpret distance–time and velocity–time graphs and describe uniform circular motion",
+                  title:
+                    "Interpret distance–time and velocity–time graphs and describe uniform circular motion",
                   category: "analysis",
                   bloom: "analyse",
                   difficulty: 3,
@@ -1528,7 +1580,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "mcq",
                       difficulty: 3,
-                      prompt: "A horizontal straight line on a velocity–time graph represents motion with:",
+                      prompt:
+                        "A horizontal straight line on a velocity–time graph represents motion with:",
                       options: [
                         "zero velocity",
                         "constant velocity and zero acceleration",
@@ -1581,10 +1634,10 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 2,
-                      prompt: "A force of 20 N acts on a body of mass 4 kg. Calculate its acceleration.",
+                      prompt:
+                        "A force of 20 N acts on a body of mass 4 kg. Calculate its acceleration.",
                       answer: "5 m/s²",
-                      explanation:
-                        "From Newton's second law, a = F/m = 20 ÷ 4 = 5 m/s².",
+                      explanation: "From Newton's second law, a = F/m = 20 ÷ 4 = 5 m/s².",
                     },
                     {
                       kind: "applied_mcq",
@@ -1666,7 +1719,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 2,
-                      prompt: "A body has a mass of 12 kg. Find its weight on Earth (g = 9.8 m/s²).",
+                      prompt:
+                        "A body has a mass of 12 kg. Find its weight on Earth (g = 9.8 m/s²).",
                       answer: "117.6 N",
                       explanation:
                         "W = mg = 12 × 9.8 = 117.6 N. Mass stays 12 kg everywhere, while weight depends on the local value of g.",
@@ -1703,7 +1757,8 @@ export const SCIENCE: AuthoredSubject = {
                     {
                       kind: "short_answer",
                       difficulty: 3,
-                      prompt: "A force of 200 N acts on an area of 0.5 m². Calculate the pressure exerted.",
+                      prompt:
+                        "A force of 200 N acts on an area of 0.5 m². Calculate the pressure exerted.",
                       answer: "400 Pa",
                       explanation:
                         "Pressure = thrust ÷ area = 200 ÷ 0.5 = 400 N/m², that is 400 pascal.",
@@ -1790,8 +1845,7 @@ export const SCIENCE: AuthoredSubject = {
                       difficulty: 3,
                       prompt: "A machine does 900 J of work in 30 s. Calculate its power.",
                       answer: "30 W",
-                      explanation:
-                        "Power = work ÷ time = 900 ÷ 30 = 30 J/s, that is 30 watt.",
+                      explanation: "Power = work ÷ time = 900 ÷ 30 = 30 J/s, that is 30 watt.",
                     },
                     {
                       kind: "applied_mcq",
@@ -1822,16 +1876,14 @@ export const SCIENCE: AuthoredSubject = {
               title: "Production, propagation and characteristics of sound",
               outcomes: [
                 {
-                  title: "Explain sound as a longitudinal wave and relate frequency, wavelength and speed",
+                  title:
+                    "Explain sound as a longitudinal wave and relate frequency, wavelength and speed",
                   category: "conceptual",
                   bloom: "apply",
                   difficulty: 3,
                   weight: 4,
                   types: ["mcq", "short_answer"],
-                  atoms: [
-                    "Describe compressions and rarefactions in a medium",
-                    "Apply v = fλ",
-                  ],
+                  atoms: ["Describe compressions and rarefactions in a medium", "Apply v = fλ"],
                   questions: [
                     {
                       kind: "short_answer",
@@ -1864,7 +1916,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Reflection of sound and its applications",
               outcomes: [
                 {
-                  title: "Apply reflection of sound to echoes, reverberation and SONAR calculations",
+                  title:
+                    "Apply reflection of sound to echoes, reverberation and SONAR calculations",
                   category: "application",
                   bloom: "apply",
                   difficulty: 4,
@@ -1915,7 +1968,8 @@ export const SCIENCE: AuthoredSubject = {
               title: "Crop production and management",
               outcomes: [
                 {
-                  title: "Describe crop variety improvement, nutrient management and cropping patterns",
+                  title:
+                    "Describe crop variety improvement, nutrient management and cropping patterns",
                   category: "conceptual",
                   bloom: "understand",
                   difficulty: 2,
@@ -1967,7 +2021,12 @@ export const SCIENCE: AuthoredSubject = {
                       kind: "mcq",
                       difficulty: 2,
                       prompt: "Milch animals are those reared mainly for:",
-                      options: ["Farm labour", "Milk production", "Egg production", "Honey production"],
+                      options: [
+                        "Farm labour",
+                        "Milk production",
+                        "Egg production",
+                        "Honey production",
+                      ],
                       answer: "Milk production",
                       explanation:
                         "'Milch' refers to milk-yielding animals such as dairy cows and buffaloes. Draught animals are kept for farm work.",

@@ -10,13 +10,7 @@ import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
@@ -104,11 +98,8 @@ function SmeReviewPage() {
   if (query.isLoading) return <Skeleton className="h-96 w-full" />;
   if (query.isError) return <QueryError error={query.error} onRetry={() => query.refetch()} />;
 
-  const identityReady =
-    reviewerName.trim().length >= 2 && reviewerQualification.trim().length >= 2;
-  const decisionReady = (id: string) =>
-    identityReady && (basis[id]?.trim().length ?? 0) >= 10;
-
+  const identityReady = reviewerName.trim().length >= 2 && reviewerQualification.trim().length >= 2;
+  const decisionReady = (id: string) => identityReady && (basis[id]?.trim().length ?? 0) >= 10;
 
   return (
     <div className="space-y-6">
@@ -233,86 +224,82 @@ function SmeReviewPage() {
           <p className="text-muted-foreground text-sm">No draft items awaiting review.</p>
         ) : null}
         {visible.map((item) => (
-
-              <Card key={item.id}>
-                <CardHeader className="space-y-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="outline">{item.externalRef ?? item.id.slice(0, 8)}</Badge>
-                    <Badge variant="secondary">{item.unitTitle}</Badge>
-                    <Badge variant="secondary">Difficulty {item.difficulty}</Badge>
-                    {item.overlapCandidate ? (
-                      <Badge variant="destructive" className="gap-1">
-                        <AlertTriangle className="size-3" /> NCERT overlap candidate
-                      </Badge>
+          <Card key={item.id}>
+            <CardHeader className="space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="outline">{item.externalRef ?? item.id.slice(0, 8)}</Badge>
+                <Badge variant="secondary">{item.unitTitle}</Badge>
+                <Badge variant="secondary">Difficulty {item.difficulty}</Badge>
+                {item.overlapCandidate ? (
+                  <Badge variant="destructive" className="gap-1">
+                    <AlertTriangle className="size-3" /> NCERT overlap candidate
+                  </Badge>
+                ) : null}
+                {item.nearDuplicateOf ? (
+                  <Badge variant="destructive" className="gap-1">
+                    <Copy className="size-3" /> Near-duplicate of {item.nearDuplicateOf}
+                  </Badge>
+                ) : null}
+              </div>
+              <CardTitle className="text-base leading-relaxed">{item.prompt}</CardTitle>
+              <CardDescription>
+                {item.outcomeCode} — {item.outcomeTitle}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm">
+              {item.stimulus ? <p className="text-muted-foreground">{item.stimulus}</p> : null}
+              <p>
+                <span className="font-medium">Answer:</span> {item.correctAnswer}
+              </p>
+              {item.explanation ? (
+                <p className="text-muted-foreground">{item.explanation}</p>
+              ) : null}
+              <Textarea
+                value={notes[item.id] ?? ""}
+                onChange={(e) => setNotes((n) => ({ ...n, [item.id]: e.target.value }))}
+                placeholder="Reviewer comment or required correction (optional)"
+                aria-label={`Reviewer comment for ${item.externalRef ?? item.id}`}
+              />
+              <Textarea
+                value={basis[item.id] ?? ""}
+                onChange={(e) => setBasis((b) => ({ ...b, [item.id]: e.target.value }))}
+                placeholder="Decision basis — required. Cite the syllabus point or academic reasoning."
+                aria-label={`Decision basis for ${item.externalRef ?? item.id}`}
+              />
+              <div className="flex flex-wrap gap-2">
+                {SME_DECISIONS.map((action) => (
+                  <Button
+                    key={action}
+                    size="sm"
+                    variant={
+                      action === "verified"
+                        ? "default"
+                        : action === "rejected"
+                          ? "destructive"
+                          : "outline"
+                    }
+                    disabled={!decisionReady(item.id) || mutation.isPending}
+                    onClick={() => mutation.mutate({ questionId: item.id, action })}
+                  >
+                    {action === "verified" ? (
+                      <BadgeCheck className="mr-1 size-4" />
+                    ) : action === "rejected" ? (
+                      <XCircle className="mr-1 size-4" />
                     ) : null}
-                    {item.nearDuplicateOf ? (
-                      <Badge variant="destructive" className="gap-1">
-                        <Copy className="size-3" /> Near-duplicate of {item.nearDuplicateOf}
-                      </Badge>
-                    ) : null}
-                  </div>
-                  <CardTitle className="text-base leading-relaxed">{item.prompt}</CardTitle>
-                  <CardDescription>
-                    {item.outcomeCode} — {item.outcomeTitle}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm">
-                  {item.stimulus ? (
-                    <p className="text-muted-foreground">{item.stimulus}</p>
-                  ) : null}
-                  <p>
-                    <span className="font-medium">Answer:</span> {item.correctAnswer}
-                  </p>
-                  {item.explanation ? (
-                    <p className="text-muted-foreground">{item.explanation}</p>
-                  ) : null}
-                  <Textarea
-                    value={notes[item.id] ?? ""}
-                    onChange={(e) => setNotes((n) => ({ ...n, [item.id]: e.target.value }))}
-                    placeholder="Reviewer comment or required correction (optional)"
-                    aria-label={`Reviewer comment for ${item.externalRef ?? item.id}`}
-                  />
-                  <Textarea
-                    value={basis[item.id] ?? ""}
-                    onChange={(e) => setBasis((b) => ({ ...b, [item.id]: e.target.value }))}
-                    placeholder="Decision basis — required. Cite the syllabus point or academic reasoning."
-                    aria-label={`Decision basis for ${item.externalRef ?? item.id}`}
-                  />
-                  <div className="flex flex-wrap gap-2">
-                    {SME_DECISIONS.map((action) => (
-                      <Button
-                        key={action}
-                        size="sm"
-                        variant={
-                          action === "verified"
-                            ? "default"
-                            : action === "rejected"
-                              ? "destructive"
-                              : "outline"
-                        }
-                        disabled={!decisionReady(item.id) || mutation.isPending}
-                        onClick={() => mutation.mutate({ questionId: item.id, action })}
-                      >
-                        {action === "verified" ? (
-                          <BadgeCheck className="mr-1 size-4" />
-                        ) : action === "rejected" ? (
-                          <XCircle className="mr-1 size-4" />
-                        ) : null}
-                        {SME_DECISION_LABELS[action]}
-                      </Button>
-                    ))}
-                  </div>
-                  {!decisionReady(item.id) ? (
-                    <p className="text-muted-foreground text-xs">
-                      Reviewer name, qualification and a decision basis of at least 10 characters
-                      are required before a decision can be recorded.
-                    </p>
-                  ) : null}
-                </CardContent>
-              </Card>
-            ))}
+                    {SME_DECISION_LABELS[action]}
+                  </Button>
+                ))}
+              </div>
+              {!decisionReady(item.id) ? (
+                <p className="text-muted-foreground text-xs">
+                  Reviewer name, qualification and a decision basis of at least 10 characters are
+                  required before a decision can be recorded.
+                </p>
+              ) : null}
+            </CardContent>
+          </Card>
+        ))}
       </div>
-
 
       <Card>
         <CardHeader>

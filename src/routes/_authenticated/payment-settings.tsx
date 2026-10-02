@@ -185,7 +185,11 @@ function PaymentSettingsPage() {
               </div>
 
               <dl className="grid gap-3 sm:grid-cols-2">
-                <Field label="Key id" value={data.maskedKeyId ?? "—"} icon={<KeyRound className="size-3.5" />} />
+                <Field
+                  label="Key id"
+                  value={data.maskedKeyId ?? "—"}
+                  icon={<KeyRound className="size-3.5" />}
+                />
                 <Field label="Key source" value={SOURCE_LABEL[data.source] ?? data.source} />
                 <Field
                   label="Key secret"
@@ -339,9 +343,7 @@ function PaymentSettingsPage() {
             <>
               <div className="flex flex-wrap items-center gap-2">
                 <Badge variant={webhook.lastEvent.signatureValid ? "default" : "destructive"}>
-                  {webhook.lastEvent.signatureValid
-                    ? "Signature verified"
-                    : "Signature rejected"}
+                  {webhook.lastEvent.signatureValid ? "Signature verified" : "Signature rejected"}
                 </Badge>
                 {webhook.lastEvent.isDuplicate ? (
                   <Badge variant="secondary">Replay of a seen event</Badge>
@@ -380,9 +382,8 @@ function PaymentSettingsPage() {
               </dl>
 
               <p className="text-xs text-muted-foreground">
-                Last 200 deliveries: {webhook.totals.received} received ·{" "}
-                {webhook.totals.verified} verified · {webhook.totals.rejected} rejected ·{" "}
-                {webhook.totals.duplicates} replays.
+                Last 200 deliveries: {webhook.totals.received} received · {webhook.totals.verified}{" "}
+                verified · {webhook.totals.rejected} rejected · {webhook.totals.duplicates} replays.
               </p>
             </>
           )}

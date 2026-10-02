@@ -50,8 +50,7 @@ export const EXT: UnitExtension = {
           "A body moves in a circle of radius 7 m at constant speed, completing one round in 22 s. Its speed is (use pi = 22/7)",
         options: ["1 m/s", "2 m/s", "3 m/s", "4 m/s"],
         answer: "2 m/s",
-        explanation:
-          "Speed = circumference / time = (2 x 22/7 x 7) / 22 = 44/22 = 2 m/s.",
+        explanation: "Speed = circumference / time = (2 x 22/7 x 7) / 22 = 44/22 = 2 m/s.",
       },
     ],
     "C9-SCI-U3-CH2-T1-O1": [
@@ -90,16 +89,14 @@ export const EXT: UnitExtension = {
           "A 2 kg trolley moving at 3 m/s collides with a stationary 1 kg trolley and they stick together. Find their common velocity.",
         options: ["1 m/s", "2 m/s", "3 m/s", "4 m/s"],
         answer: "2 m/s",
-        explanation:
-          "By conservation of momentum: 2x3 + 1x0 = (2+1)v, so 6 = 3v, v = 2 m/s.",
+        explanation: "By conservation of momentum: 2x3 + 1x0 = (2+1)v, so 6 = 3v, v = 2 m/s.",
       },
     ],
     "C9-SCI-U3-CH3-T1-O1": [
       {
         kind: "mcq",
         difficulty: 2,
-        prompt:
-          "The weight of an object of mass 5 kg on Earth's surface (g = 10 m/s²) is",
+        prompt: "The weight of an object of mass 5 kg on Earth's surface (g = 10 m/s²) is",
         options: ["5 N", "10 N", "50 N", "500 N"],
         answer: "50 N",
         explanation: "Weight W = mg = 5 x 10 = 50 N.",
@@ -125,8 +122,7 @@ export const EXT: UnitExtension = {
       {
         kind: "applied_mcq",
         difficulty: 3,
-        prompt:
-          "A force of 40 N acts perpendicularly on an area of 2 m². The pressure exerted is",
+        prompt: "A force of 40 N acts perpendicularly on an area of 2 m². The pressure exerted is",
         options: ["10 Pa", "20 Pa", "40 Pa", "80 Pa"],
         answer: "20 Pa",
         explanation: "Pressure P = F/A = 40/2 = 20 Pa.",
@@ -155,8 +151,7 @@ export const EXT: UnitExtension = {
       {
         kind: "short_answer",
         difficulty: 3,
-        prompt:
-          "Find the kinetic energy of a 2 kg ball moving with a speed of 5 m/s.",
+        prompt: "Find the kinetic energy of a 2 kg ball moving with a speed of 5 m/s.",
         answer: "25 J",
         explanation: "KE = 1/2 m v^2 = 0.5 x 2 x 25 = 25 J.",
       },
@@ -165,8 +160,7 @@ export const EXT: UnitExtension = {
       {
         kind: "applied_mcq",
         difficulty: 3,
-        prompt:
-          "A motor does 600 J of work in 20 s. What is its power output?",
+        prompt: "A motor does 600 J of work in 20 s. What is its power output?",
         options: ["10 W", "30 W", "600 W", "12000 W"],
         answer: "30 W",
         explanation: "Power P = W/t = 600/20 = 30 W.",
@@ -191,8 +185,7 @@ export const EXT: UnitExtension = {
       {
         kind: "mcq",
         difficulty: 2,
-        prompt:
-          "Sound waves travelling through air are best described as",
+        prompt: "Sound waves travelling through air are best described as",
         options: [
           "transverse waves",
           "longitudinal waves",
@@ -230,8 +223,7 @@ export const EXT: UnitExtension = {
         prompt:
           "State the minimum distance between a listener and a reflecting surface needed to hear a distinct echo, taking the speed of sound as 340 m/s (persistence of hearing is 0.1 s).",
         answer: "17 m",
-        explanation:
-          "Minimum distance = (speed x time)/2 = (340 x 0.1)/2 = 34/2 = 17 m.",
+        explanation: "Minimum distance = (speed x time)/2 = (340 x 0.1)/2 = 34/2 = 17 m.",
       },
     ],
   },

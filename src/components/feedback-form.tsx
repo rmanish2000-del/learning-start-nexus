@@ -27,7 +27,9 @@ import { cn } from "@/lib/utils";
  * Re-encode the picked image through a canvas. This strips EXIF/location
  * metadata and caps the size before anything leaves the device.
  */
-async function safeEncode(file: File): Promise<{ contentType: "image/jpeg"; base64: string; preview: string }> {
+async function safeEncode(
+  file: File,
+): Promise<{ contentType: "image/jpeg"; base64: string; preview: string }> {
   const bitmap = await createImageBitmap(file);
   const scale = Math.min(1, 1400 / Math.max(bitmap.width, bitmap.height));
   const canvas = document.createElement("canvas");
@@ -64,7 +66,9 @@ export function FeedbackForm({
 
   async function pickFile(file: File | undefined) {
     if (!file) return;
-    if (!ALLOWED_SCREENSHOT_TYPES.includes(file.type as (typeof ALLOWED_SCREENSHOT_TYPES)[number])) {
+    if (
+      !ALLOWED_SCREENSHOT_TYPES.includes(file.type as (typeof ALLOWED_SCREENSHOT_TYPES)[number])
+    ) {
       setError("Please choose a PNG, JPEG or WebP image.");
       return;
     }
@@ -106,11 +110,18 @@ export function FeedbackForm({
     setBusy(true);
     try {
       const result = await submitFeedbackFn({
-        data: { ...parsed.data, isAuthenticated: /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie) },
+        data: {
+          ...parsed.data,
+          isAuthenticated: /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie),
+        },
       });
       trackGuidance("feedback_submitted", { route });
       setSent(true);
-      toast.success(result.duplicate ? "We already have this one — thank you." : "Thank you. Your feedback is in.");
+      toast.success(
+        result.duplicate
+          ? "We already have this one — thank you."
+          : "Thank you. Your feedback is in.",
+      );
       onDone?.();
     } catch (err) {
       const offline = typeof navigator !== "undefined" && navigator.onLine === false;
@@ -132,7 +143,9 @@ export function FeedbackForm({
         <ShieldCheck className="mx-auto h-8 w-8 text-primary" />
         <p className="text-sm font-medium">Thank you — that's been sent to the EduOS team.</p>
         <p className="text-xs text-muted-foreground">
-          {consent && email ? "We'll reply to you if we need more detail." : "You told us anonymously."}
+          {consent && email
+            ? "We'll reply to you if we need more detail."
+            : "You told us anonymously."}
         </p>
         <p className="text-xs text-muted-foreground">
           Need a reply sooner? Write to{" "}
@@ -209,16 +222,32 @@ export function FeedbackForm({
         />
         {shot ? (
           <div className="flex items-center gap-2 rounded-md border p-2">
-            <img src={shot.preview} alt="Screenshot preview" className="h-14 w-20 rounded object-cover" />
+            <img
+              src={shot.preview}
+              alt="Screenshot preview"
+              className="h-14 w-20 rounded object-cover"
+            />
             <p className="min-w-0 flex-1 text-[11px] text-muted-foreground">
               Attached. Location and camera details are removed before sending.
             </p>
-            <Button type="button" variant="ghost" size="sm" onClick={() => setShot(null)} aria-label="Remove screenshot">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setShot(null)}
+              aria-label="Remove screenshot"
+            >
               <X className="h-4 w-4" />
             </Button>
           </div>
         ) : (
-          <Button type="button" variant="outline" size="sm" className="gap-1.5" onClick={() => fileRef.current?.click()}>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            onClick={() => fileRef.current?.click()}
+          >
             <ImageUp className="h-3.5 w-3.5" /> Attach a screenshot
           </Button>
         )}
@@ -254,7 +283,11 @@ export function FeedbackForm({
         </p>
       )}
 
-      <Button className="w-full gap-1.5" disabled={busy || message.trim().length < 10} onClick={() => void submit()}>
+      <Button
+        className="w-full gap-1.5"
+        disabled={busy || message.trim().length < 10}
+        onClick={() => void submit()}
+      >
         {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
         Send feedback
       </Button>

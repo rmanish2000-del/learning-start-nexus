@@ -191,13 +191,16 @@ describe("request-scoped assessment idempotency", () => {
       if (table === "assessment_question_map") {
         return {
           ...realFrom(table),
-          insert: () => Promise.resolve({ data: null, error: { code: "XX000", message: "map failed" } }),
+          insert: () =>
+            Promise.resolve({ data: null, error: { code: "XX000", message: "map failed" } }),
         };
       }
       return realFrom(table);
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await expect(createAssessmentDraft(c as any, CTX, submitA("req-a"))).rejects.toThrow("map failed");
+    await expect(createAssessmentDraft(c as any, CTX, submitA("req-a"))).rejects.toThrow(
+      "map failed",
+    );
     expect(db["assessments"]).toHaveLength(0);
   });
 });

@@ -18,7 +18,12 @@ const BASE = process.env["MONITOR_BASE_URL"] ?? "https://eduos-staging.lovable.a
 type Probe = { name: string; path: string; budgetMs: number; expect?: (body: string) => boolean };
 
 const PROBES: Probe[] = [
-  { name: "health", path: "/api/public/health", budgetMs: 1500, expect: (b) => b.includes('"status":"ok"') },
+  {
+    name: "health",
+    path: "/api/public/health",
+    budgetMs: 1500,
+    expect: (b) => b.includes('"status":"ok"'),
+  },
   { name: "landing", path: "/", budgetMs: 3000, expect: (b) => b.includes("<h1") },
   { name: "diagnostic", path: "/diagnostic", budgetMs: 3000 },
   { name: "auth", path: "/auth", budgetMs: 3000 },
@@ -61,7 +66,9 @@ async function probe(p: Probe): Promise<Result> {
 async function main(): Promise<void> {
   const results = await Promise.all(PROBES.map(probe));
   for (const r of results) {
-    console.log(`${r.ok ? "OK  " : "FAIL"} ${r.name.padEnd(11)} ${String(r.status).padStart(3)} ${String(r.ms).padStart(5)}ms  ${r.note}`);
+    console.log(
+      `${r.ok ? "OK  " : "FAIL"} ${r.name.padEnd(11)} ${String(r.status).padStart(3)} ${String(r.ms).padStart(5)}ms  ${r.note}`,
+    );
   }
   const failed = results.filter((r) => !r.ok);
   console.log(`\n${results.length - failed.length}/${results.length} probes healthy at ${BASE}`);

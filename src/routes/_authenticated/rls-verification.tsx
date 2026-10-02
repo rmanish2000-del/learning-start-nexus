@@ -80,8 +80,8 @@ function RlsVerificationPage() {
             <ShieldCheck className="h-5 w-5 text-primary" /> RLS Verification
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Policy names and expressions below are read live from the database catalog
-            (pg_policies) — not from application code.
+            Policy names and expressions below are read live from the database catalog (pg_policies)
+            — not from application code.
           </p>
         </div>
         <Button
@@ -99,7 +99,8 @@ function RlsVerificationPage() {
           Signed in as <span className="font-medium text-foreground">{data.me.role}</span>
           {data.me.orgName ? (
             <>
-              {" "}· Org: <span className="font-medium text-foreground">{data.me.orgName}</span>
+              {" "}
+              · Org: <span className="font-medium text-foreground">{data.me.orgName}</span>
             </>
           ) : null}{" "}
           · Generated {fmt(data.generatedAt)}
@@ -173,8 +174,8 @@ function RlsVerificationPage() {
               <CardDescription>
                 Executes real database operations as <span className="font-medium">you</span>{" "}
                 against rows owned by another organization, then shows the verbatim database
-                response. A row is located with the service role first, so the target is
-                guaranteed to exist.
+                response. A row is located with the service role first, so the target is guaranteed
+                to exist.
               </CardDescription>
             </div>
             {isStaff ? (
@@ -188,13 +189,13 @@ function RlsVerificationPage() {
         <CardContent>
           {!isStaff ? (
             <p className="text-sm text-muted-foreground">
-              The test runner performs privileged write attempts and is available to staff
-              accounts only. Sign in as an admin or educator to execute it.
+              The test runner performs privileged write attempts and is available to staff accounts
+              only. Sign in as an admin or educator to execute it.
             </p>
           ) : !tests ? (
             <p className="text-sm text-muted-foreground">
-              Not run yet in this session. Press “Run tests” to execute the three cross-org
-              probes against live data.
+              Not run yet in this session. Press “Run tests” to execute the three cross-org probes
+              against live data.
             </p>
           ) : (
             <div className="space-y-3">

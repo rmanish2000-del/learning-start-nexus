@@ -110,7 +110,6 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
     [steps],
   );
 
-
   const finish = useCallback(() => {
     setOnboardingFlag(tourSeenKey(tourId));
     setActive(null);
@@ -131,7 +130,6 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
     },
     [findNext, goTo],
   );
-
 
   // Auto-start once per browser, after the page settles. Never auto-start
   // for a user who has completed onboarding (no forced tours) — unless a
@@ -272,7 +270,8 @@ export function GuidedTour({ tourId, steps, autoStart = true }: GuidedTourProps)
                 else goTo(next);
               }}
             >
-              {findNext(active + 1) === null ? "Done" : "Next"} <ArrowRight className="ml-1 h-3 w-3" />
+              {findNext(active + 1) === null ? "Done" : "Next"}{" "}
+              <ArrowRight className="ml-1 h-3 w-3" />
             </Button>
           </div>
         </div>

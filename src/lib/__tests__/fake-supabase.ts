@@ -33,7 +33,10 @@ function uniqueViolation(rows: Row[], table: string, candidate: Row): DbError {
     // Partial index semantics: NULLs are never conflicting.
     if (cols.some((c) => (candidate[c] ?? null) === null)) continue;
     if (rows.some((r) => cols.every((c) => r[c] === candidate[c]))) {
-      return { code: "23505", message: `duplicate key value violates unique constraint on ${table}` };
+      return {
+        code: "23505",
+        message: `duplicate key value violates unique constraint on ${table}`,
+      };
     }
   }
   return null;
@@ -115,8 +118,7 @@ class Query implements PromiseLike<{ data: Row[] | null; error: DbError }> {
 
   then<TResult1 = { data: Row[] | null; error: DbError }, TResult2 = never>(
     onfulfilled?:
-      | ((value: { data: Row[] | null; error: DbError }) => TResult1 | PromiseLike<TResult1>)
-      | null,
+      ((value: { data: Row[] | null; error: DbError }) => TResult1 | PromiseLike<TResult1>) | null,
     onrejected?: ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null,
   ): PromiseLike<TResult1 | TResult2> {
     const rows = this.run();

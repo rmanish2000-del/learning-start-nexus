@@ -7,7 +7,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/integrations/supabase/types";
-import { computeOutcomeMetrics, type GapRow, type OutcomeMetricRow } from "./outcome-dashboard-shared";
+import {
+  computeOutcomeMetrics,
+  type GapRow,
+  type OutcomeMetricRow,
+} from "./outcome-dashboard-shared";
 import { summariseClosure, type ClosureSummary } from "./closure-shared";
 import {
   daysBetween,
@@ -98,7 +102,10 @@ export async function fetchStudentHomeView(
     status: string;
     updated_at: string;
   }[];
-  const tutorRows = (tutorRes.data ?? []) as unknown as { gap_id: string | null; updated_at: string }[];
+  const tutorRows = (tutorRes.data ?? []) as unknown as {
+    gap_id: string | null;
+    updated_at: string;
+  }[];
 
   const now = new Date();
   const tutorByGap = new Set(tutorRows.map((t) => t.gap_id).filter((v): v is string => !!v));
@@ -121,16 +128,16 @@ export async function fetchStudentHomeView(
       } else if (tutorByGap.has(g.id)) {
         stage = "Tutor";
         phaseStart =
-          tutorRows.find((t) => t.gap_id === g.id)?.updated_at ?? intervention?.updated_at ?? phaseStart;
+          tutorRows.find((t) => t.gap_id === g.id)?.updated_at ??
+          intervention?.updated_at ??
+          phaseStart;
       } else if (intervention) {
         stage = "Intervention";
         phaseStart = intervention.updated_at;
       }
 
       let action: StudentGapAction = "wait";
-      let actionLabel = educatorAssigned
-        ? "Waiting for your educator"
-        : "In your study plan below";
+      let actionLabel = educatorAssigned ? "Waiting for your educator" : "In your study plan below";
       if (stage === "Evidence") {
         action = "review-evidence";
         actionLabel = "See your proof";

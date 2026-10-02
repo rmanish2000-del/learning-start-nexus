@@ -20,7 +20,11 @@ export type ProofStat = { label: string; value: string; note: string };
 export const PROOF_STRIP: ProofStat[] = [
   { label: "Gap closure rate", value: "72%", note: "Gaps closed after intervention, pilot cohort" },
   { label: "Average mastery lift", value: "+43 pts", note: "Baseline vs fresh-item reassessment" },
-  { label: "Verified evidence rows", value: "128", note: "Each backed by stored, replayable evidence" },
+  {
+    label: "Verified evidence rows",
+    value: "128",
+    note: "Each backed by stored, replayable evidence",
+  },
 ];
 
 export type RoleLane = {
@@ -72,14 +76,16 @@ export const LOOP_STEPS: LoopStep[] = [
     title: "Diagnostic",
     artefact: "Diagnostic score",
     detail: "Curriculum-mapped items, blueprint-balanced across outcomes.",
-    sample: "Learner A · Class 10 Mathematics · Real Numbers & Polynomials diagnostic · 20 items · scored 42%",
+    sample:
+      "Learner A · Class 10 Mathematics · Real Numbers & Polynomials diagnostic · 20 items · scored 42%",
   },
   {
     key: "gap",
     title: "Gap detected",
     artefact: "Weak outcome",
     detail: "Scoring is per outcome, not per paper, so the gap is specific.",
-    sample: "Weak outcome: “Apply the factor theorem to find polynomial zeroes” · 2 of 6 correct · band: Weak",
+    sample:
+      "Weak outcome: “Apply the factor theorem to find polynomial zeroes” · 2 of 6 correct · band: Weak",
   },
   {
     key: "intervention",

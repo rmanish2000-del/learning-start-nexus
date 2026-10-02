@@ -90,7 +90,12 @@ export function HowItWorksDialog() {
   const tourId = content.tourId ?? ROLE_TOUR_ID[role];
 
   return (
-    <div className="fixed inset-0 z-[85] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={content.heading}>
+    <div
+      className="fixed inset-0 z-[85] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={content.heading}
+    >
       <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" onClick={close} />
       <div className="relative w-full max-w-md rounded-2xl border bg-card p-6 shadow-2xl md:p-8">
         <button

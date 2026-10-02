@@ -144,7 +144,6 @@ export async function importLearnersImpl(
       continue;
     }
 
-
     const { error: learnerError } = await supabaseAdmin.from("learners").insert({
       org_id: input.orgId,
       student_user_id: user.user.id,

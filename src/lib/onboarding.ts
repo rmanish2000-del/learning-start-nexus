@@ -128,7 +128,6 @@ export function markOnboardingComplete(role: string): void {
   for (const id of ALL_TOUR_IDS) setOnboardingFlag(tourSeenKey(id));
 }
 
-
 export const tourReplayKey = (tourId: string) => `tour-replay:${tourId}`;
 
 /** Per-role flag for the first-login "How EduOS Works" intro dialog. */

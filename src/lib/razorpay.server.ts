@@ -15,10 +15,18 @@ export type RazorpayOrder = {
   status: string;
 };
 
-async function credentials(): Promise<{ keyId: string; keySecret: string; webhookSecret: string | null }> {
+async function credentials(): Promise<{
+  keyId: string;
+  keySecret: string;
+  webhookSecret: string | null;
+}> {
   const resolved = await resolveRazorpayCredentials();
   if (!resolved) throw new Error("Payments are not configured.");
-  return { keyId: resolved.keyId, keySecret: resolved.keySecret, webhookSecret: resolved.webhookSecret };
+  return {
+    keyId: resolved.keyId,
+    keySecret: resolved.keySecret,
+    webhookSecret: resolved.webhookSecret,
+  };
 }
 
 export async function razorpayKeyId(): Promise<string> {
@@ -51,8 +59,7 @@ export async function createRazorpayOrder(input: {
     signal: AbortSignal.timeout(15_000),
   });
   const body = (await res.json().catch(() => null)) as
-    | (RazorpayOrder & { error?: { description?: string } })
-    | null;
+    (RazorpayOrder & { error?: { description?: string } }) | null;
   if (!res.ok || !body?.id) {
     console.error("[razorpay] order create failed", res.status, body?.error?.description);
     if (res.status === 401) {
@@ -87,7 +94,10 @@ export async function verifyCheckoutSignature(input: {
 }
 
 /** Verifies the `X-Razorpay-Signature` header over the raw webhook body. */
-export async function verifyWebhookSignature(rawBody: string, signature: string | null): Promise<boolean> {
+export async function verifyWebhookSignature(
+  rawBody: string,
+  signature: string | null,
+): Promise<boolean> {
   const secret = await resolveRazorpayCredentials()
     .then((c) => c?.webhookSecret ?? process.env["RAZORPAY_WEBHOOK_SECRET"] ?? null)
     .catch(() => process.env["RAZORPAY_WEBHOOK_SECRET"] ?? null);

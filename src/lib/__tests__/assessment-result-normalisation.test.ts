@@ -10,7 +10,12 @@ import {
 const questions = [
   { id: "q1", subtopic: "LO_M1.1.1", kind: "mcq" as ItemKind, correct_answer: "2 x 3" },
   { id: "q2", subtopic: "LO_M1.1.2", kind: "numeric" as ItemKind, correct_answer: "12" },
-  { id: "q3", subtopic: "LO_M1.1.2", kind: "short_answer" as ItemKind, correct_answer: "irrational" },
+  {
+    id: "q3",
+    subtopic: "LO_M1.1.2",
+    kind: "short_answer" as ItemKind,
+    correct_answer: "irrational",
+  },
 ];
 
 // Regression: the parent-diagnostic pipeline writes a DiagnosticReport object
@@ -37,7 +42,13 @@ describe("normalizeResultEntries", () => {
 
   it("keeps a stored ResultEntry[] breakdown as-is", () => {
     const stored: ResultEntry[] = [
-      { item_id: "q1", subtopic: "LO_M1.1.1", given: "2 x 3", correct_answer: "2 x 3", correct: true },
+      {
+        item_id: "q1",
+        subtopic: "LO_M1.1.1",
+        given: "2 x 3",
+        correct_answer: "2 x 3",
+        correct: true,
+      },
     ];
     expect(normalizeResultEntries(stored, questions, {})).toEqual(stored);
   });
@@ -51,7 +62,10 @@ describe("normalizeResultEntries", () => {
   });
 
   it("drops malformed entries mixed into a stored array", () => {
-    const mixed = [{ nope: true }, { item_id: "q1", subtopic: "x", given: "", correct_answer: "y", correct: false }];
+    const mixed = [
+      { nope: true },
+      { item_id: "q1", subtopic: "x", given: "", correct_answer: "y", correct: false },
+    ];
     expect(normalizeResultEntries(mixed, questions, {})).toHaveLength(1);
   });
 });
@@ -68,11 +82,13 @@ describe("summarizeResultEntries", () => {
 
   it("recomputes when stored totals are missing", () => {
     const entries = normalizeResultEntries(diagnosticReport, questions, { q1: "2 x 3" });
-    expect(summarizeResultEntries(entries, { scorePct: null, correct: null, total: null })).toEqual({
-      scorePct: 33,
-      correct: 1,
-      total: 3,
-    });
+    expect(summarizeResultEntries(entries, { scorePct: null, correct: null, total: null })).toEqual(
+      {
+        scorePct: 33,
+        correct: 1,
+        total: 3,
+      },
+    );
   });
 
   it("never divides by zero", () => {

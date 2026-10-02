@@ -12,7 +12,6 @@ import {
   runBuilderProbes,
 } from "./builder-audit.server";
 
-
 export const getBuilderAudit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {

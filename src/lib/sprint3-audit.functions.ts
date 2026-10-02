@@ -74,7 +74,12 @@ export const runSprint3Probes = createServerFn({ method: "POST" })
     // determinism fingerprint. Cross-org probes target the OTHER org, but
     // keeping the whole run sequential makes ordering obvious to a reviewer.
     const detection = await runDetectionProbe(context.supabase, supabaseAdmin, me.orgId);
-    const workflow = await runWorkflowProbe(context.supabase, supabaseAdmin, me.orgId, context.userId);
+    const workflow = await runWorkflowProbe(
+      context.supabase,
+      supabaseAdmin,
+      me.orgId,
+      context.userId,
+    );
     const crossOrg = await runSprint3CrossOrgTests(context.supabase, supabaseAdmin, me.orgId);
 
     return { generatedAt: new Date().toISOString(), detection, workflow, crossOrg };

@@ -50,7 +50,5 @@ export const PROTECTED_ROUTES = [
 ] as const;
 
 export function isProtectedPath(pathname: string): boolean {
-  return PROTECTED_ROUTES.some(
-    (route) => pathname === route || pathname.startsWith(route + "/"),
-  );
+  return PROTECTED_ROUTES.some((route) => pathname === route || pathname.startsWith(route + "/"));
 }

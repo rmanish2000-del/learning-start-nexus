@@ -11,19 +11,10 @@ import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { friendlyErrorMessage } from "@/lib/user-errors";
-import {
-  getAutoVerificationFn,
-  runAutoVerificationFn,
-} from "@/lib/auto-verification.functions";
+import { getAutoVerificationFn, runAutoVerificationFn } from "@/lib/auto-verification.functions";
 import { AUTO_VERIFICATION_ENGINE_VERSION } from "@/lib/auto-verification-shared";
 
 export const Route = createFileRoute("/_authenticated/auto-verification")({
@@ -77,12 +68,12 @@ function AutoVerificationPage() {
           <ContextHelp page="/auto-verification" />
         </div>
         <p className="text-muted-foreground max-w-3xl text-sm">
-          Engine v{AUTO_VERIFICATION_ENGINE_VERSION}. Every draft is checked for answer
-          correctness, curriculum alignment, distractor and explanation quality, ambiguity,
-          copyright contamination, duplication and diagnostic/reassessment pool separation. Only
-          items passing every machine-checkable test with strong evidence are marked{" "}
-          <strong>EduOS verified (automated)</strong>; everything else is held back from release. This is
-          an automated check, not certification by a named subject expert, CBSE or NCERT.
+          Engine v{AUTO_VERIFICATION_ENGINE_VERSION}. Every draft is checked for answer correctness,
+          curriculum alignment, distractor and explanation quality, ambiguity, copyright
+          contamination, duplication and diagnostic/reassessment pool separation. Only items passing
+          every machine-checkable test with strong evidence are marked{" "}
+          <strong>EduOS verified (automated)</strong>; everything else is held back from release.
+          This is an automated check, not certification by a named subject expert, CBSE or NCERT.
         </p>
       </header>
 

@@ -1,53 +1,56 @@
-import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
-import Ajv from 'ajv';
-import { describe, expect, it } from 'vitest';
+import { createHash } from "node:crypto";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import Ajv from "ajv";
+import { describe, expect, it } from "vitest";
 
 // @ts-expect-error - non-runtime audit tooling, plain ESM without types
-import { findDuplicateKeys, scanContamination } from '../../../scripts/audit/build-baseline-package.mjs';
+import {
+  findDuplicateKeys,
+  scanContamination,
+} from "../../../scripts/audit/build-baseline-package.mjs";
 
-const DIR = 'audit-data/class10/2026-27';
+const DIR = "audit-data/class10/2026-27";
 
 const FILES = [
-  'cbse-class10-mathematics-2026-27-baseline.json',
-  'cbse-class10-mathematics-2026-27-baseline.schema.json',
-  'mathematics-baseline-file-validation.json',
-  'cbse-class10-science-2026-27-baseline.json',
-  'cbse-class10-science-2026-27-baseline.schema.json',
-  'science-baseline-file-validation.json',
+  "cbse-class10-mathematics-2026-27-baseline.json",
+  "cbse-class10-mathematics-2026-27-baseline.schema.json",
+  "mathematics-baseline-file-validation.json",
+  "cbse-class10-science-2026-27-baseline.json",
+  "cbse-class10-science-2026-27-baseline.schema.json",
+  "science-baseline-file-validation.json",
 ];
 
 const read = (name: string) => readFileSync(join(DIR, name));
-const text = (name: string) => read(name).toString('utf8');
+const text = (name: string) => read(name).toString("utf8");
 const json = (name: string) => JSON.parse(text(name));
-const sha256 = (name: string) => createHash('sha256').update(read(name)).digest('hex');
+const sha256 = (name: string) => createHash("sha256").update(read(name)).digest("hex");
 
-describe('class 10 2026-27 baseline package — files', () => {
-  it('contains exactly the six required files', () => {
+describe("class 10 2026-27 baseline package — files", () => {
+  it("contains exactly the six required files", () => {
     expect(readdirSync(DIR).sort()).toEqual([...FILES].sort());
   });
 
-  it('has no duplicate-extension filenames', () => {
-    for (const name of readdirSync(DIR)) expect(name.endsWith('.json.json')).toBe(false);
+  it("has no duplicate-extension filenames", () => {
+    for (const name of readdirSync(DIR)) expect(name.endsWith(".json.json")).toBe(false);
   });
 
-  it('parses every file as strict JSON with valid UTF-8', () => {
+  it("parses every file as strict JSON with valid UTF-8", () => {
     for (const name of FILES) {
-      expect(() => new TextDecoder('utf-8', { fatal: true }).decode(read(name))).not.toThrow();
+      expect(() => new TextDecoder("utf-8", { fatal: true }).decode(read(name))).not.toThrow();
       expect(() => json(name)).not.toThrow();
     }
   });
 
-  it('detects no duplicate JSON keys in any file', () => {
+  it("detects no duplicate JSON keys in any file", () => {
     for (const name of FILES) expect(findDuplicateKeys(text(name))).toEqual([]);
   });
 
-  it('detects duplicate keys when they exist (parser sanity)', () => {
-    expect(findDuplicateKeys('{"a":1,"b":{"c":1,"c":2}}')).toEqual(['b.c']);
+  it("detects duplicate keys when they exist (parser sanity)", () => {
+    expect(findDuplicateKeys('{"a":1,"b":{"c":1,"c":2}}')).toEqual(["b.c"]);
   });
 
-  it('reports zero HTML and Markdown contamination on saved bytes', () => {
+  it("reports zero HTML and Markdown contamination on saved bytes", () => {
     for (const name of FILES) {
       const scan = scanContamination(text(name));
       expect(scan.html).toBe(0);
@@ -55,21 +58,21 @@ describe('class 10 2026-27 baseline package — files', () => {
     }
   });
 
-  it('serialises deterministically (2-space indent, trailing newline)', () => {
+  it("serialises deterministically (2-space indent, trailing newline)", () => {
     for (const name of FILES) {
       expect(text(name)).toBe(`${JSON.stringify(json(name), null, 2)}\n`);
     }
   });
 });
 
-describe('class 10 2026-27 baseline package — baseline/schema separation', () => {
-  for (const subject of ['mathematics', 'science'] as const) {
+describe("class 10 2026-27 baseline package — baseline/schema separation", () => {
+  for (const subject of ["mathematics", "science"] as const) {
     it(`${subject} schema is draft-07 and carries no baseline content`, () => {
       const schema = json(`cbse-class10-${subject}-2026-27-baseline.schema.json`);
-      expect(schema.$schema).toBe('http://json-schema.org/draft-07/schema#');
+      expect(schema.$schema).toBe("http://json-schema.org/draft-07/schema#");
       expect(schema.requirements).toBeUndefined();
       expect(schema.source_records).toBeUndefined();
-      expect(schema.properties.requirements.type).toBe('array');
+      expect(schema.properties.requirements.type).toBe("array");
     });
 
     it(`${subject} baseline references its local schema file`, () => {
@@ -87,11 +90,11 @@ describe('class 10 2026-27 baseline package — baseline/schema separation', () 
   }
 });
 
-describe('class 10 2026-27 baseline package — record reconciliation', () => {
+describe("class 10 2026-27 baseline package — record reconciliation", () => {
   const cases = [
     {
-      subject: 'mathematics',
-      prefix: 'REQ_MATH_2026_',
+      subject: "mathematics",
+      prefix: "REQ_MATH_2026_",
       units: 7,
       chapters: 14,
       requirements: 38,
@@ -99,8 +102,8 @@ describe('class 10 2026-27 baseline package — record reconciliation', () => {
       ambiguities: 0,
     },
     {
-      subject: 'science',
-      prefix: 'REQ_SCI_2026_',
+      subject: "science",
+      prefix: "REQ_SCI_2026_",
       units: 5,
       chapters: 13,
       requirements: 46,
@@ -126,19 +129,17 @@ describe('class 10 2026-27 baseline package — record reconciliation', () => {
       expect(b.exclusions).toHaveLength(c.exclusions);
       expect(b.ambiguities).toHaveLength(c.ambiguities);
 
-      const expectedIds = reqs.map(
-        (_, i) => `${c.prefix}${String(i + 1).padStart(3, '0')}`,
-      );
+      const expectedIds = reqs.map((_, i) => `${c.prefix}${String(i + 1).padStart(3, "0")}`);
       expect(reqs.map((r) => r.requirement_id)).toEqual(expectedIds);
       expect(new Set(reqs.map((r) => r.requirement_id)).size).toBe(c.requirements);
-      expect(reqs.map((r) => r.sequence)).toEqual(
-        reqs.map((_, i) => i + 1),
-      );
+      expect(reqs.map((r) => r.sequence)).toEqual(reqs.map((_, i) => i + 1));
     });
 
     it(`${c.subject} source references all resolve`, () => {
       const b = json(`cbse-class10-${c.subject}-2026-27-baseline.json`);
-      const ids = new Set((b.source_records as Array<{ source_id: string }>).map((s) => s.source_id));
+      const ids = new Set(
+        (b.source_records as Array<{ source_id: string }>).map((s) => s.source_id),
+      );
       for (const r of b.requirements) expect(ids.has(r.official_source_id)).toBe(true);
       for (const e of b.exclusions) expect(ids.has(e.official_source_id)).toBe(true);
     });
@@ -146,9 +147,9 @@ describe('class 10 2026-27 baseline package — record reconciliation', () => {
     it(`${c.subject} source records stay unverified`, () => {
       const b = json(`cbse-class10-${c.subject}-2026-27-baseline.json`);
       for (const s of b.source_records) {
-        expect(s.applicability_status).toBe('PENDING_CONFIRMATION');
-        expect(s.finality_status).toBe('PENDING_CONFIRMATION');
-        expect(s.checksum_status).toBe('CHECKSUM_NOT_COMPUTED');
+        expect(s.applicability_status).toBe("PENDING_CONFIRMATION");
+        expect(s.finality_status).toBe("PENDING_CONFIRMATION");
+        expect(s.checksum_status).toBe("CHECKSUM_NOT_COMPUTED");
         expect(s.sha256).toBeNull();
         expect(s.publication_date).toBeNull();
         expect(s.document_version).toBeNull();
@@ -157,31 +158,32 @@ describe('class 10 2026-27 baseline package — record reconciliation', () => {
     });
   }
 
-  it('science exclusions use safe non-executing audit wording', () => {
-    const b = json('cbse-class10-science-2026-27-baseline.json');
+  it("science exclusions use safe non-executing audit wording", () => {
+    const b = json("cbse-class10-science-2026-27-baseline.json");
     const activeChapterTopics = new Set(
-      b.requirements.map((r: { official_chapter: string; official_topic: string }) =>
-        `${r.official_chapter}::${r.official_topic}`,
+      b.requirements.map(
+        (r: { official_chapter: string; official_topic: string }) =>
+          `${r.official_chapter}::${r.official_topic}`,
       ),
     );
     for (const e of b.exclusions) {
       expect(e.effect_on_eduos).toBe(
-        'NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING',
+        "NOT_ELIGIBLE_FOR_CURRENT_DIAGNOSTICS_PENDING_CONFIRMED_MAPPING",
       );
       expect(e.candidate_effect_statement.length).toBeGreaterThan(0);
       expect(activeChapterTopics.has(`${e.official_chapter}::${e.excluded_topic}`)).toBe(false);
     }
   });
 
-  it('science ambiguities remain unresolved in this package', () => {
-    const validation = json('science-baseline-file-validation.json');
+  it("science ambiguities remain unresolved in this package", () => {
+    const validation = json("science-baseline-file-validation.json");
     expect(validation.ambiguities).toBe(2);
     expect(validation.semantic_transformations).toEqual([]);
   });
 });
 
-describe('class 10 2026-27 baseline package — validation files', () => {
-  for (const subject of ['mathematics', 'science'] as const) {
+describe("class 10 2026-27 baseline package — validation files", () => {
+  for (const subject of ["mathematics", "science"] as const) {
     it(`${subject} validation file records reverified SHA-256 hashes`, () => {
       const v = json(`${subject}-baseline-file-validation.json`);
       const baselineName = `cbse-class10-${subject}-2026-27-baseline.json`;
@@ -195,7 +197,7 @@ describe('class 10 2026-27 baseline package — validation files', () => {
       expect(v.schema_sha256).toBe(sha256(schemaName));
       expect(v.baseline_bytes).toBe(read(baselineName).length);
       expect(v.schema_bytes).toBe(read(schemaName).length);
-      expect(v.validation_status).toBe('PASS');
+      expect(v.validation_status).toBe("PASS");
       expect(v.duplicate_json_keys_checked).toBe(true);
       expect(v.duplicate_json_keys).toEqual([]);
       expect(v.html_contamination_count).toBe(0);

@@ -18,7 +18,6 @@ import { friendlyErrorMessage } from "@/lib/user-errors";
 import { pageHead } from "@/lib/seo";
 import { SUPPORT_EMAIL, supportMailto } from "@/lib/support";
 
-
 /** Explicit account-type picker — the first decision on the sign-in screen. */
 const ROLE_OPTIONS = [
   {
@@ -42,7 +41,11 @@ const ROLE_OPTIONS = [
 ];
 
 // All optional: plain <Link to="/auth"> must stay valid everywhere.
-type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string };
+type AuthSearch = {
+  tab?: "staff" | "student" | "parent";
+  mode?: "signin" | "signup";
+  next?: string;
+};
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
@@ -58,7 +61,6 @@ export const Route = createFileRoute("/auth")({
       : {}),
   }),
 
-
   head: () =>
     pageHead({
       path: "/auth",
@@ -68,7 +70,6 @@ export const Route = createFileRoute("/auth")({
       twitterCard: "summary",
       noindex: true,
     }),
-
 
   component: AuthPage,
 });
@@ -81,7 +82,10 @@ export const Route = createFileRoute("/auth")({
  * write deferred by email confirmation. Claim the `parent` role here instead of
  * silently defaulting to `student`.
  */
-async function resolveRole(user: { id: string; user_metadata?: Record<string, unknown> }): Promise<AppRole> {
+async function resolveRole(user: {
+  id: string;
+  user_metadata?: Record<string, unknown>;
+}): Promise<AppRole> {
   const { data } = await supabase
     .from("user_roles")
     .select("role")
@@ -144,9 +148,6 @@ function AuthPage() {
     }
   };
 
-
-
-
   // Already signed in? Route to the right home for the role.
   useEffect(() => {
     void supabase.auth.getUser().then(async ({ data }) => {
@@ -196,7 +197,10 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { data: { full_name: fullName, phone, signup_role: "parent" }, emailRedirectTo: `${window.location.origin}/auth` },
+          options: {
+            data: { full_name: fullName, phone, signup_role: "parent" },
+            emailRedirectTo: `${window.location.origin}/auth`,
+          },
         });
         if (error) {
           toast.error(error.message);
@@ -224,7 +228,11 @@ function AuthPage() {
 
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
+        toast.error(
+          error.message === "Invalid login credentials"
+            ? "Invalid email or password."
+            : error.message,
+        );
         return;
       }
       if (data.user) await goHome(data.user);
@@ -272,7 +280,13 @@ function AuthPage() {
         <span className="text-xs uppercase tracking-wide text-muted-foreground">or</span>
         <span className="h-px flex-1 bg-border" />
       </div>
-      <Button type="button" variant="outline" className="w-full" onClick={onGoogle} disabled={pending}>
+      <Button
+        type="button"
+        variant="outline"
+        className="w-full"
+        onClick={onGoogle}
+        disabled={pending}
+      >
         Continue with Google
       </Button>
     </div>
@@ -291,7 +305,11 @@ function AuthPage() {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     setPending(false);
     if (error) {
-      toast.error(error.message === "Invalid login credentials" ? "Invalid email or password." : error.message);
+      toast.error(
+        error.message === "Invalid login credentials"
+          ? "Invalid email or password."
+          : error.message,
+      );
       return;
     }
     if (data.user) await goHome(data.user);
@@ -353,7 +371,6 @@ function AuthPage() {
         <p className="text-xs text-ink-muted">Learning intelligence for tutoring centers</p>
       </div>
 
-
       {/* Sign-in panel */}
       <div className="flex items-center justify-center bg-background px-4 py-12">
         <div className="w-full max-w-sm space-y-8">
@@ -365,7 +382,9 @@ function AuthPage() {
               <span className="text-lg font-semibold tracking-tight">EduOS</span>
             </div>
             <h2 className="text-2xl font-semibold tracking-tight">
-              {tab === "parent" && parentMode === "signup" ? "Create your parent account" : "Sign in"}
+              {tab === "parent" && parentMode === "signup"
+                ? "Create your parent account"
+                : "Sign in"}
             </h2>
             <p className="text-sm text-muted-foreground">
               {tab === "staff"
@@ -412,9 +431,6 @@ function AuthPage() {
           </div>
 
           <Tabs value={tab} onValueChange={(value) => setTab(value as typeof tab)}>
-
-
-
             <TabsContent value="staff" className="pt-6">
               <form method="post" onSubmit={onStaffSubmit} className="space-y-4">
                 <div className="space-y-2">
@@ -488,7 +504,8 @@ function AuthPage() {
                     />
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    A parent sets your handle and PIN in the Parent portal (a centre educator can too).
+                    A parent sets your handle and PIN in the Parent portal (a centre educator can
+                    too).
                   </p>
                 </div>
                 <Button type="submit" className="w-full" disabled={pending}>
@@ -505,14 +522,29 @@ function AuthPage() {
                       <Label htmlFor="p-name">Your full name</Label>
                       <div className="relative">
                         <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input id="p-name" name="p-name" autoComplete="name" placeholder="Priya Sharma" className="pl-9" required />
+                        <Input
+                          id="p-name"
+                          name="p-name"
+                          autoComplete="name"
+                          placeholder="Priya Sharma"
+                          className="pl-9"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="p-phone">Mobile</Label>
                       <div className="relative">
                         <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input id="p-phone" name="p-phone" inputMode="tel" autoComplete="tel" placeholder="9XXXXXXXXX" className="pl-9" required />
+                        <Input
+                          id="p-phone"
+                          name="p-phone"
+                          inputMode="tel"
+                          autoComplete="tel"
+                          placeholder="9XXXXXXXXX"
+                          className="pl-9"
+                          required
+                        />
                       </div>
                     </div>
                   </>
@@ -521,7 +553,15 @@ function AuthPage() {
                   <Label htmlFor="p-email">Email</Label>
                   <div className="relative">
                     <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                    <Input id="p-email" name="p-email" type="email" autoComplete="email" placeholder="you@example.com" className="pl-9" required />
+                    <Input
+                      id="p-email"
+                      name="p-email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@example.com"
+                      className="pl-9"
+                      required
+                    />
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -582,8 +622,6 @@ function AuthPage() {
             </p>
           )}
 
-
-
           <p className="text-center text-xs text-muted-foreground">
             Still stuck? Email{" "}
             <a
@@ -596,10 +634,18 @@ function AuthPage() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-            <Link to="/about" className="hover:text-foreground">About</Link>
-            <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-foreground">Terms of Service</Link>
-            <Link to="/contact" className="hover:text-foreground">Contact</Link>
+            <Link to="/about" className="hover:text-foreground">
+              About
+            </Link>
+            <Link to="/privacy" className="hover:text-foreground">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-foreground">
+              Terms of Service
+            </Link>
+            <Link to="/contact" className="hover:text-foreground">
+              Contact
+            </Link>
           </div>
         </div>
       </div>

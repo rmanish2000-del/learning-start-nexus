@@ -29,7 +29,12 @@ const CURRICULUM_TABLES = [
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
+  const e = err as {
+    code?: string;
+    message?: string;
+    details?: string | null;
+    hint?: string | null;
+  };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -56,7 +61,11 @@ const COUNT_SPECS: { table: (typeof CURRICULUM_TABLES)[number]; label: string; n
   { table: "curriculum_units", label: "Units", note: "Top level of the imported tree." },
   { table: "curriculum_chapters", label: "Chapters", note: "Belong to units (cascade on delete)." },
   { table: "curriculum_topics", label: "Topics", note: "Belong to chapters." },
-  { table: "curriculum_outcomes", label: "Learning outcomes", note: "Suggested → approved workflow." },
+  {
+    table: "curriculum_outcomes",
+    label: "Learning outcomes",
+    note: "Suggested → approved workflow.",
+  },
   { table: "concept_nodes", label: "Concept nodes", note: "Knowledge graph vertices." },
   { table: "concept_edges", label: "Concept edges", note: "Parent → child concept relations." },
   { table: "book_events", label: "Processing history", note: "Append-only audit trail per book." },
@@ -207,7 +216,10 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
 
   const unitById = new Map((unitRows ?? []).map((u) => [u.id as string, u.title as string]));
   const chapterById = new Map(
-    (chapterRows ?? []).map((c) => [c.id as string, { title: c.title as string, unitId: c.unit_id as string }]),
+    (chapterRows ?? []).map((c) => [
+      c.id as string,
+      { title: c.title as string, unitId: c.unit_id as string },
+    ]),
   );
   const outcomesByTopic = new Map<string, string[]>();
   for (const o of outcomeRows ?? []) {
@@ -218,7 +230,8 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
   const chapterOrder = new Map((chapterRows ?? []).map((c, i) => [c.id as string, i]));
   const sortedTopics = [...(topicRows ?? [])].sort(
     (a, b) =>
-      (chapterOrder.get(a.chapter_id as string) ?? 0) - (chapterOrder.get(b.chapter_id as string) ?? 0) ||
+      (chapterOrder.get(a.chapter_id as string) ?? 0) -
+        (chapterOrder.get(b.chapter_id as string) ?? 0) ||
       (a.position as number) - (b.position as number),
   );
   const sampleRows: PilotSampleRow[] = sortedTopics.slice(0, 12).map((t) => {
@@ -236,7 +249,11 @@ export async function fetchPilotSnapshot(supabase: Client): Promise<PilotSnapsho
   // Knowledge graph sample: first 12 edges resolved to concept labels.
   const [{ data: gNodes }, { data: gEdges }] = await Promise.all([
     supabase.from("concept_nodes").select("id, label").eq("book_id", PILOT_BOOK_ID),
-    supabase.from("concept_edges").select("parent_id, child_id").eq("book_id", PILOT_BOOK_ID).limit(12),
+    supabase
+      .from("concept_edges")
+      .select("parent_id, child_id")
+      .eq("book_id", PILOT_BOOK_ID)
+      .limit(12),
   ]);
   const labelById = new Map((gNodes ?? []).map((n) => [n.id as string, n.label as string]));
   const graphSample: PilotGraphEdge[] = (gEdges ?? []).map((e) => ({
@@ -511,8 +528,12 @@ export async function runCurriculumProbes(
     const chapterIds = new Set((chapters ?? []).map((c) => c.id as string));
     const topicIds = new Set((topics ?? []).map((t) => t.id as string));
     const orphanChapters = (chapters ?? []).filter((c) => !unitIds.has(c.unit_id as string)).length;
-    const orphanTopics = (topics ?? []).filter((t) => !chapterIds.has(t.chapter_id as string)).length;
-    const orphanOutcomes = (outcomes ?? []).filter((o) => !topicIds.has(o.topic_id as string)).length;
+    const orphanTopics = (topics ?? []).filter(
+      (t) => !chapterIds.has(t.chapter_id as string),
+    ).length;
+    const orphanOutcomes = (outcomes ?? []).filter(
+      (o) => !topicIds.has(o.topic_id as string),
+    ).length;
     const orphans = orphanChapters + orphanTopics + orphanOutcomes;
     probes.push({
       key: "tree-integrity",

@@ -171,7 +171,9 @@ export function buildDiagnosticReport(items: GradedItem[]): DiagnosticReport {
       questionsMissed: o.total - o.correct,
       questionsTotal: o.total,
       marksAtRisk: Math.max(1, Math.round((o.weight / assessedWeight) * CHAPTER_GROUP_MARKS)),
-      intervention: strategyByOutcome.get(o.outcomeId) ?? "Targeted re-teach followed by a fresh-item re-check.",
+      intervention:
+        strategyByOutcome.get(o.outcomeId) ??
+        "Targeted re-teach followed by a fresh-item re-check.",
       priorityScore: o.weight * (100 - o.pct),
     }))
     .sort((a, b) => b.priorityScore - a.priorityScore || (a.code < b.code ? -1 : 1));

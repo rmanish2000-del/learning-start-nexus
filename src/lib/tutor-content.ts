@@ -44,13 +44,13 @@ export const TUTOR_CONCEPTS: ConceptContent[] = [
     tryQuestion: {
       question: "Simplify 4/8 to its lowest terms.",
       answer: "1/2",
-      solution:
-        "Both 4 and 8 divide by 4: 4 ÷ 4 = 1 and 8 ÷ 4 = 2, so 4/8 = 1/2.",
+      solution: "Both 4 and 8 divide by 4: 4 ÷ 4 = 1 and 8 ÷ 4 = 2, so 4/8 = 1/2.",
       hint: "What is the biggest number that divides both 4 and 8 evenly?",
     },
     practice: [
       {
-        question: "Which fraction is equivalent to 2/3: 4/6 or 3/6? Answer with the equivalent one.",
+        question:
+          "Which fraction is equivalent to 2/3: 4/6 or 3/6? Answer with the equivalent one.",
         answer: "4/6",
         solution: "Multiply top and bottom of 2/3 by 2: 2×2 = 4 and 3×2 = 6, so 2/3 = 4/6.",
         hint: "Try multiplying the top and bottom of 2/3 by 2.",
@@ -242,7 +242,8 @@ export const TUTOR_CONCEPTS: ConceptContent[] = [
         hint: "Find one fifth of 30 first.",
       },
       {
-        question: "A class has 24 students and 5/6 are present. How many are present? Answer with a number.",
+        question:
+          "A class has 24 students and 5/6 are present. How many are present? Answer with a number.",
         answer: "20",
         solution: "24 ÷ 6 = 4, then 4 × 5 = 20 students present.",
         hint: "One sixth of 24 is 4 — now take five of those parts.",

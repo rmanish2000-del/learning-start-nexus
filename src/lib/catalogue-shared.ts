@@ -320,7 +320,10 @@ export function resolveSubjectAccess(input: {
   return null;
 }
 
-export function expireDueEntitlements(entitlements: Entitlement[], at: Date = new Date()): Entitlement[] {
+export function expireDueEntitlements(
+  entitlements: Entitlement[],
+  at: Date = new Date(),
+): Entitlement[] {
   return entitlements.map((e) =>
     e.status === "active" && e.expiresAt && new Date(e.expiresAt).getTime() <= at.getTime()
       ? { ...e, status: "expired" as const }
@@ -422,9 +425,7 @@ export function evaluateDiagnosticCredit(input: {
   if (credit.learnerId !== input.learnerId) return none("different_learner");
   if (credit.creditConsumedAt) return none("already_applied");
   if (credit.status !== "active") return none("credit_not_active");
-  if (
-    !(CREDIT_QUALIFYING_PLAN_TYPES as readonly string[]).includes(input.plan.planType)
-  ) {
+  if (!(CREDIT_QUALIFYING_PLAN_TYPES as readonly string[]).includes(input.plan.planType)) {
     return none("plan_not_qualifying");
   }
   const planSubjects = input.planSubjectIds ?? [];

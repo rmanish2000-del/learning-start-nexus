@@ -141,7 +141,14 @@ function Field({
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>
-      <Input id={id} name={id} type={type} required={required} placeholder={placeholder} maxLength={200} />
+      <Input
+        id={id}
+        name={id}
+        type={type}
+        required={required}
+        placeholder={placeholder}
+        maxLength={200}
+      />
     </div>
   );
 }

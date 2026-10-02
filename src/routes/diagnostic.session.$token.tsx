@@ -30,7 +30,8 @@ import {
 } from "@/components/assessment-offline-guard";
 
 const TITLE = "Diagnostic in progress | EduOS";
-const DESCRIPTION = "Answer one question at a time. Progress is saved after every answer and can be resumed later.";
+const DESCRIPTION =
+  "Answer one question at a time. Progress is saved after every answer and can be resumed later.";
 
 export const Route = createFileRoute("/diagnostic/session/$token")({
   head: () => ({
@@ -46,7 +47,6 @@ export const Route = createFileRoute("/diagnostic/session/$token")({
   }),
   component: DiagnosticSessionPage,
 });
-
 
 // Answer ownership: only the learner's own student session may open this page.
 // The server re-checks it on every call — this gate only keeps the UI honest.
@@ -118,9 +118,13 @@ function DiagnosticSessionPageBody() {
     setAnswers((prev) => ({ ...prev, [question.id]: value }));
     setSaving(true);
     try {
-      await saveFn({ data: { token, questionId: question.id, answer: value, position: nextIndex } });
+      await saveFn({
+        data: { token, questionId: question.id, answer: value, position: nextIndex },
+      });
     } catch (error) {
-      toast.error(friendlyErrorMessage(error, t("session.error.save", "That answer could not be saved.")));
+      toast.error(
+        friendlyErrorMessage(error, t("session.error.save", "That answer could not be saved.")),
+      );
     } finally {
       setSaving(false);
     }
@@ -142,7 +146,12 @@ function DiagnosticSessionPageBody() {
       await submitFn({ data: { token } });
       await navigate({ to: "/diagnostic/complete/$token", params: { token } });
     } catch (error) {
-      toast.error(friendlyErrorMessage(error, t("session.error.submit", "The diagnostic could not be submitted.")));
+      toast.error(
+        friendlyErrorMessage(
+          error,
+          t("session.error.submit", "The diagnostic could not be submitted."),
+        ),
+      );
       setSubmitting(false);
     }
   }
@@ -157,7 +166,11 @@ function DiagnosticSessionPageBody() {
   if (query.isError || !run) {
     return (
       <DiagnosticShell variant="learner">
-        <QueryError title={t("session.invalid", "This diagnostic link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
+        <QueryError
+          title={t("session.invalid", "This diagnostic link is not valid")}
+          error={query.error}
+          onRetry={() => void query.refetch()}
+        />
       </DiagnosticShell>
     );
   }
@@ -166,7 +179,11 @@ function DiagnosticSessionPageBody() {
   const options = question?.options ?? null;
 
   return (
-    <DiagnosticShell variant="learner" learnerName={run.childFirstName} footerNote={`${run.subject} · ${run.unitTitle}`}>
+    <DiagnosticShell
+      variant="learner"
+      learnerName={run.childFirstName}
+      footerNote={`${run.subject} · ${run.unitTitle}`}
+    >
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-xl font-semibold tracking-tight">
@@ -209,7 +226,9 @@ function DiagnosticSessionPageBody() {
               ) : null}
             </div>
             {question.stimulus ? (
-              <p className="rounded-md border bg-muted/40 p-3 text-sm text-muted-foreground">{question.stimulus}</p>
+              <p className="rounded-md border bg-muted/40 p-3 text-sm text-muted-foreground">
+                {question.stimulus}
+              </p>
             ) : null}
             <CardTitle className="text-base leading-relaxed">{question.prompt}</CardTitle>
           </CardHeader>
@@ -225,7 +244,10 @@ function DiagnosticSessionPageBody() {
                   return (
                     <div key={id} className="flex items-start gap-3 rounded-md border p-3">
                       <RadioGroupItem value={option} id={id} className="mt-0.5" />
-                      <Label htmlFor={id} className="cursor-pointer text-sm font-normal leading-relaxed">
+                      <Label
+                        htmlFor={id}
+                        className="cursor-pointer text-sm font-normal leading-relaxed"
+                      >
                         {option}
                       </Label>
                     </div>
@@ -239,7 +261,9 @@ function DiagnosticSessionPageBody() {
                   id="free-answer"
                   rows={4}
                   value={answers[question.id] ?? ""}
-                  onChange={(e) => setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))}
+                  onChange={(e) =>
+                    setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))
+                  }
                   onBlur={(e) => void persist(e.target.value, index)}
                   placeholder={t("session.freeAnswer.placeholder", "Type the answer")}
                 />
@@ -247,7 +271,11 @@ function DiagnosticSessionPageBody() {
             )}
 
             <div className="flex items-center justify-between gap-3">
-              <Button variant="outline" onClick={() => setIndex(Math.max(0, index - 1))} disabled={index === 0}>
+              <Button
+                variant="outline"
+                onClick={() => setIndex(Math.max(0, index - 1))}
+                disabled={index === 0}
+              >
                 <ArrowLeft className="mr-2 h-4 w-4" /> {t("common.back", "Back")}
               </Button>
               {isLast ? (
