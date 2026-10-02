@@ -1,0 +1,99 @@
+{
+  "$schema": "https://design-tokens.org/schemas/dtcg/1.0.0",
+  "global": {
+    "orange": {
+      "600": { "$value": "#EA580C", "$type": "color", "$description": "Brand orange — authoritative from index.css --brand-orange" }
+    },
+    "navy": {
+      "950": { "$value": "#0F172A", "$type": "color", "$description": "Brand navy — sidebar background" }
+    },
+    "blue": {
+      "600": { "$value": "#2563EB", "$type": "color", "$description": "Centre Admin role accent" },
+      "50":  { "$value": "#EFF6FF", "$type": "color", "$description": "Centre Admin accent background" }
+    },
+    "teal": {
+      "600": { "$value": "#0D9488", "$type": "color", "$description": "Educator role accent" }
+    },
+    "violet": {
+      "700": { "$value": "#6D28D9", "$type": "color", "$description": "Reviewer role accent" }
+    },
+    "gray": {
+      "50":  { "$value": "#F2F3F7", "$type": "color", "$description": "--bg page background" },
+      "100": { "$value": "#E3E5EE", "$type": "color", "$description": "--border hairline" },
+      "500": { "$value": "#9CA3AF", "$type": "color", "$description": "--text-tertiary muted text" },
+      "600": { "$value": "#4B5563", "$type": "color", "$description": "--text-secondary label / caption" },
+      "900": { "$value": "#111827", "$type": "color", "$description": "--text-primary body text" }
+    },
+    "green": {
+      "600": { "$value": "#059669", "$type": "color", "$description": "Mastery: Strong" }
+    },
+    "teal2": {
+      "600": { "$value": "#0D9488", "$type": "color", "$description": "Mastery: Secure" }
+    },
+    "amber": {
+      "600": { "$value": "#D97706", "$type": "color", "$description": "Mastery: Developing" }
+    },
+    "red": {
+      "600": { "$value": "#DC2626", "$type": "color", "$description": "Mastery: Weak / Error / Destructive" }
+    }
+  },
+  "semantic": {
+    "role": {
+      "centreAdmin": { "$value": "{global.blue.600}", "$type": "color" },
+      "centreAdminBg": { "$value": "{global.blue.50}", "$type": "color" },
+      "educator": { "$value": "{global.teal.600}", "$type": "color" },
+      "reviewer": { "$value": "{global.violet.700}", "$type": "color" },
+      "learner": { "$value": "{global.orange.600}", "$type": "color" }
+    },
+    "surface": {
+      "page": { "$value": "{global.gray.50}", "$type": "color" },
+      "card": { "$value": "#FFFFFF", "$type": "color" },
+      "sidebar": { "$value": "{global.navy.950}", "$type": "color" }
+    },
+    "border": {
+      "default": { "$value": "{global.gray.100}", "$type": "color" }
+    },
+    "text": {
+      "primary": { "$value": "{global.gray.900}", "$type": "color" },
+      "secondary": { "$value": "{global.gray.600}", "$type": "color" },
+      "tertiary": { "$value": "{global.gray.500}", "$type": "color" }
+    },
+    "mastery": {
+      "strong": { "$value": "{global.green.600}", "$type": "color" },
+      "secure": { "$value": "{global.teal2.600}", "$type": "color" },
+      "developing": { "$value": "{global.amber.600}", "$type": "color" },
+      "weak": { "$value": "{global.red.600}", "$type": "color" }
+    },
+    "status": {
+      "error": { "$value": "{global.red.600}", "$type": "color" },
+      "warning": { "$value": "{global.amber.600}", "$type": "color" },
+      "success": { "$value": "{global.green.600}", "$type": "color" },
+      "info": { "$value": "{global.blue.600}", "$type": "color" }
+    }
+  },
+  "typography": {
+    "display": { "$value": "Outfit, system-ui, sans-serif", "$type": "fontFamily" },
+    "body": { "$value": "Inter, system-ui, sans-serif", "$type": "fontFamily" },
+    "mono": { "$value": "DM Mono, monospace", "$type": "fontFamily" }
+  },
+  "spacing": {
+    "1": { "$value": "4px",  "$type": "dimension" },
+    "2": { "$value": "8px",  "$type": "dimension" },
+    "3": { "$value": "12px", "$type": "dimension" },
+    "4": { "$value": "16px", "$type": "dimension" },
+    "5": { "$value": "20px", "$type": "dimension" },
+    "6": { "$value": "24px", "$type": "dimension" },
+    "8": { "$value": "32px", "$type": "dimension" }
+  },
+  "borderRadius": {
+    "sm": { "$value": "6px",  "$type": "dimension" },
+    "md": { "$value": "10px", "$type": "dimension" },
+    "lg": { "$value": "14px", "$type": "dimension" },
+    "xl": { "$value": "18px", "$type": "dimension" }
+  },
+  "notes": {
+    "orangeDiscrepancy": "index.css uses #EA580C (orange-600) as --brand-orange. DesignSystemPage tokens JSON lists #F97316 (orange-500) as a legacy value. #EA580C is authoritative.",
+    "paymentSettings": "Visible ONLY to rmanish2000@gmail.com. All other roles: absent from DOM entirely.",
+    "centreAdminAccent": "#2563EB chosen to be distinct from educator (#0D9488), reviewer (#6D28D9), and learner (#EA580C) role accents."
+  }
+}

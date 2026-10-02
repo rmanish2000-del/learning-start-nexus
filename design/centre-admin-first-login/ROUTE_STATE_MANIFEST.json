@@ -1,0 +1,157 @@
+{
+  "$schema": "https://eduos.global/schemas/route-state-manifest/v1",
+  "role": "centre-admin",
+  "accentColor": "#2563EB",
+  "paymentSettings": {
+    "visibleTo": ["rmanish2000@gmail.com"],
+    "strategy": "absent",
+    "note": "Do NOT render conditionally. Do NOT return 403. Completely absent from DOM."
+  },
+  "routes": [
+    {
+      "path": "/centre/quick-start",
+      "label": "Quick Start",
+      "icon": "rocket",
+      "navPosition": 1,
+      "visibility": "first-login-until-checklist-complete",
+      "checklistSteps": [
+        { "n": 1, "label": "Account approved", "autoComplete": true },
+        { "n": 2, "label": "Complete centre profile", "route": "/centre/settings/profile" },
+        { "n": 3, "label": "Add first educator", "route": "/centre/educators/invite" },
+        { "n": 4, "label": "Add learners or explore sample", "route": "/centre/learners/add", "sampleOption": true },
+        { "n": 5, "label": "Assign a diagnostic", "route": "/centre/assessments" },
+        { "n": 6, "label": "Review first report", "route": "/centre/reports" }
+      ],
+      "states": [
+        { "name": "loading", "skeletonTarget": "checklist-items", "sidebarInteractive": true },
+        { "name": "zero-data", "headline": "Welcome to EduOS!", "cta": "Start Setup", "ctaRoute": "/centre/quick-start/step/2" },
+        { "name": "in-progress", "progressPct": "dynamic" },
+        { "name": "complete", "action": "remove-nav-item", "redirect": "/centre/dashboard" }
+      ]
+    },
+    {
+      "path": "/centre/dashboard",
+      "label": "Dashboard",
+      "icon": "home",
+      "navPosition": 2,
+      "states": [
+        { "name": "loading", "skeletonTarget": "metric-cards", "sidebarInteractive": true },
+        { "name": "zero-data", "headline": "Your centre is ready", "cta": "Begin Setup", "ctaRoute": "/centre/quick-start" },
+        { "name": "populated", "requires": ["learner-count", "assessment-count", "mastery-distribution"] },
+        { "name": "error", "headline": "Dashboard couldn't load", "cta": "Retry", "contact": "support@eduos.global" }
+      ]
+    },
+    {
+      "path": "/centre/learners",
+      "label": "Learners",
+      "icon": "users",
+      "navPosition": 3,
+      "states": [
+        { "name": "loading", "skeletonTarget": "table-rows", "count": 5 },
+        { "name": "zero-data", "headline": "No learners added yet", "cta": "Add First Learner", "ctaRoute": "/centre/learners/add" },
+        { "name": "populated", "features": ["search", "filter-by-class", "filter-by-board", "mastery-band-pill"] },
+        { "name": "error", "headline": "Couldn't load learners", "cta": "Retry" }
+      ]
+    },
+    {
+      "path": "/centre/educators",
+      "label": "Educators",
+      "icon": "academic-cap",
+      "navPosition": 4,
+      "states": [
+        { "name": "loading", "skeletonTarget": "card-list" },
+        { "name": "zero-data", "headline": "No educators yet", "cta": "Invite Educator", "ctaRoute": "/centre/educators/invite" },
+        { "name": "populated", "features": ["invite-by-email", "manage-groups", "deactivate"] },
+        { "name": "error", "headline": "Couldn't load educators", "cta": "Retry" }
+      ]
+    },
+    {
+      "path": "/centre/assessments",
+      "label": "Assessments",
+      "icon": "clipboard-list",
+      "navPosition": 5,
+      "states": [
+        { "name": "loading", "skeletonTarget": "assessment-cards" },
+        { "name": "zero-data", "headline": "No assessments assigned", "cta": "Browse Library", "ctaRoute": "/centre/assessments/library" },
+        { "name": "populated", "features": ["filter-by-subject", "filter-by-class", "completion-pct", "mastery-avg"] },
+        { "name": "permission-denied", "headline": "Creation restricted", "body": "Assign from library. Contact support to request content." }
+      ]
+    },
+    {
+      "path": "/centre/interventions",
+      "label": "Interventions",
+      "icon": "lightning-bolt",
+      "navPosition": 6,
+      "states": [
+        { "name": "loading", "skeletonTarget": "intervention-queue" },
+        { "name": "zero-data", "headline": "No interventions yet", "body": "Interventions appear after a diagnostic assessment is completed and gaps are identified." },
+        { "name": "populated", "features": ["ai-tutor-sessions", "guided-gap-plan", "status-tracking"] },
+        { "name": "error", "headline": "Couldn't load interventions", "cta": "Retry" }
+      ]
+    },
+    {
+      "path": "/centre/reports",
+      "label": "Reports",
+      "icon": "chart-bar",
+      "navPosition": 7,
+      "states": [
+        { "name": "loading", "copy": "Analysing outcomes…", "blocksSidebar": false },
+        { "name": "zero-data", "headline": "No reports yet", "cta": "Assign Diagnostic", "ctaRoute": "/centre/assessments" },
+        { "name": "populated", "features": ["mastery-breakdown", "evidence-chain", "gap-recommendations", "pdf-export"] },
+        { "name": "error", "headline": "Report generation failed", "cta": "Retry", "contact": "support@eduos.global" }
+      ]
+    },
+    {
+      "path": "/centre/settings",
+      "label": "Settings",
+      "icon": "cog",
+      "navPosition": 8,
+      "sections": ["centre-profile", "notifications", "team-management"],
+      "excludedSections": ["payment-settings"],
+      "states": [
+        { "name": "loading", "skeletonTarget": "settings-form" },
+        { "name": "zero-data", "headline": "Complete your centre profile", "cta": "Complete Profile" },
+        { "name": "populated", "saveBehaviour": "all-or-nothing" },
+        { "name": "error", "headline": "Settings couldn't save", "cta": "Try Again" },
+        { "name": "permission-denied", "headline": "Managed by EduOS", "contact": "support@eduos.global" }
+      ]
+    },
+    {
+      "path": "/centre/help",
+      "label": "Help",
+      "icon": "question-mark-circle",
+      "navPosition": 9,
+      "alwaysVisible": true,
+      "neverGreyed": true,
+      "states": [
+        { "name": "loading", "skeletonTarget": "help-articles" },
+        { "name": "populated", "features": ["search", "contact-support", "onboarding-guide"] }
+      ]
+    }
+  ],
+  "sampleWorkspace": {
+    "trigger": "checklist-step-4",
+    "label": "SAMPLE",
+    "labelRequired": "every-screen-and-export",
+    "isolation": "namespace",
+    "affectsBilling": false,
+    "affectsCompliance": false,
+    "affectsEvidence": false,
+    "removalSteps": 1,
+    "removalIsLogged": true,
+    "removalIsIrreversible": true,
+    "sampleLearners": [
+      { "id": "sample-a", "display": "Learner A", "class": 10, "board": "CBSE" },
+      { "id": "sample-b", "display": "Learner B", "class": 10, "board": "CBSE" },
+      { "id": "sample-c", "display": "Learner C", "class": 9,  "board": "CBSE" },
+      { "id": "sample-d", "display": "Learner D", "class": 10, "board": "State" },
+      { "id": "sample-e", "display": "Learner E", "class": 9,  "board": "State" }
+    ]
+  },
+  "pricing": {
+    "free": "₹0",
+    "perLearner": "₹199/month",
+    "centrePlan": "₹2999/month",
+    "centrePlanAnnual": "₹2800/month"
+  }
+}
