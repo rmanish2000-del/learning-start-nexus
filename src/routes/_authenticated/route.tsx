@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, redirect } from "@tanstack/react-router";
+import { createFileRoute, type ErrorComponentProps, Link, Outlet, redirect } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 
@@ -104,7 +104,7 @@ export const Route = createFileRoute("/_authenticated")({
 });
 
 /** Any unhandled failure inside the workspace still renders a way forward. */
-function WorkspaceError({ error }: { error: Error }) {
+function WorkspaceError({ error }: ErrorComponentProps) {
   return (
     <div className="mx-auto max-w-lg space-y-4 p-8 text-center">
       <h1 className="text-xl font-semibold tracking-tight">Something went wrong</h1>
