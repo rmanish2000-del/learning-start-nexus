@@ -11,12 +11,24 @@ import { describe, expect, it } from "vitest";
 
 import {
   isPlatformOwnerEmail,
+  isPlatformOwnerUser,
   isPlatformOwnerPath,
   PLATFORM_OWNER_EMAIL,
 } from "../platform-owner-shared";
 
 const root = process.cwd();
 const read = (p: string) => readFileSync(join(root, p), "utf8");
+
+describe("isPlatformOwnerUser", () => {
+  it("requires the exact owner email and a confirmed email", () => {
+    const at = "2026-01-01T00:00:00Z";
+    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com", email_confirmed_at: at })).toBe(true);
+    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com", email_confirmed_at: null })).toBe(false);
+    expect(isPlatformOwnerUser({ email: "rmanish2000@gmail.com" })).toBe(false);
+    expect(isPlatformOwnerUser({ email: "centre.admin@example.test", email_confirmed_at: at })).toBe(false);
+    expect(isPlatformOwnerUser(null)).toBe(false);
+  });
+});
 
 describe("isPlatformOwnerEmail", () => {
   it("accepts only the owner, case- and whitespace-insensitively", () => {
@@ -121,10 +133,13 @@ describe("server functions gate on the platform owner", () => {
     expect(src).not.toContain('["admin"]');
   });
 
-  it("the server gate reads the identity from verified claims and never from input", () => {
+  it("the server gate re-validates with the auth server, requires a confirmed email and returns a generic 403", () => {
     const src = read("src/lib/platform-owner.server.ts");
-    expect(src).toContain("context.claims");
     expect(src).toContain("auth.getUser()");
+    expect(src).toContain("isPlatformOwnerUser(data.user)");
+    expect(src).toContain('new Response("Forbidden", { status: 403 })');
+    expect(src).not.toContain("process.env");
+    expect(src).not.toContain("context.claims");
     expect(src).not.toMatch(/data\.(email|ownerEmail)/);
   });
 });
