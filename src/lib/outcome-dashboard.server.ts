@@ -30,11 +30,13 @@ async function loadScope(supabase: Client): Promise<{
   educatorNames: Map<string, string>;
 }> {
   const [learnersRes, gapsRes, outcomesRes] = await Promise.all([
-    // Centre/school outcome metrics are centre-managed learners only.
+    // Centre/school outcome metrics are centre-managed learners only, and
+    // never the labelled SAMPLE workspace (data-layer exclusion).
     supabase
       .from("learners")
       .select("id, full_name, educator_id, grade, subject, mastery_score")
-      .eq("learner_mode", "centre_managed"),
+      .eq("learner_mode", "centre_managed")
+      .eq("is_sample", false),
     supabase.from("learning_gaps").select("id, learner_id, status, first_detected_at, updated_at"),
     (supabase as SupabaseClient)
       .from("learner_outcomes")

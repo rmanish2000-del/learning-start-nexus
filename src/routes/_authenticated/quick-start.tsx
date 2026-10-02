@@ -3,6 +3,7 @@ import { ArrowRight, Compass, GraduationCap, LifeBuoy, Play, Sparkles } from "lu
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { CentreSetupChecklist } from "@/components/centre-setup-checklist";
 import { QUICK_START } from "@/lib/help-center";
 import { requestIntro, requestTour } from "@/lib/onboarding";
 import { ROLE_LABELS } from "@/lib/roles";
@@ -43,6 +44,10 @@ function QuickStartPage() {
           Tailored to your role: <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>
         </p>
       </div>
+
+      {/* Centre admins get the six-step first-login checklist; state lives on
+          the server, so it is the same on every device. */}
+      {role === "admin" && <CentreSetupChecklist />}
 
       <ol className="space-y-3">
         {content.steps.map((step, i) => (

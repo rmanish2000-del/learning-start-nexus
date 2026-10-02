@@ -40,7 +40,6 @@ export const REVIEWER_ALLOWED_PATHS = [
   "/diagnostic-engine-audit",
   "/gap-analysis",
   "/gap-analysis-audit",
-  "/payment-audit",
   "/quick-start",
   "/help",
   "/outcome-proof",
@@ -80,7 +79,9 @@ export function isStudentAllowedPath(pathname: string): boolean {
   return matchesPath(STUDENT_ALLOWED_PATHS, pathname);
 }
 
-// Audit / verification surfaces are restricted to admins and reviewers.
+// Audit / verification surfaces are platform-level: restricted to the platform
+// owner (see platform-owner-shared.ts) and reviewers. /payment-audit is owner
+// only and lives in PLATFORM_OWNER_PATHS, which is checked first.
 export const AUDIT_PATHS = [
   "/verification",
   "/assessment-verification",

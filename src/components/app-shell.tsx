@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { CENTRE_SETUP_QUERY_KEY } from "@/components/centre-setup-checklist";
+import { getCentreSetupFn } from "@/lib/centre-setup.functions";
 import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, CreditCard, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, MessageSquare, PieChart, Rocket, Settings, ShieldCheck, Sparkles, Target, Ticket, TrendingUp, UserCog, Users } from "lucide-react";
 import { HowItWorksDialog } from "@/components/how-it-works";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -30,7 +33,18 @@ type NavItem = {
   icon: typeof LayoutDashboard;
   roles: AppRole[];
   exact?: boolean;
+  /** Platform-owner exclusive: not rendered for anyone else, whatever their role. */
+  ownerOnly?: boolean;
+  /** Also visible to the platform owner even if their role is not listed. */
+  ownerAlso?: boolean;
 };
+
+/** Capability check for navigation: role membership plus platform-owner flags. */
+export function canSeeNavItem(item: NavItem, role: AppRole, platformOwner: boolean): boolean {
+  if (item.ownerOnly && !platformOwner) return false;
+  if (item.roles.includes(role)) return true;
+  return Boolean(item.ownerAlso && platformOwner);
+}
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
@@ -47,10 +61,11 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
-  { to: "/payment-settings", label: "Payment Settings", icon: CreditCard, roles: ["admin"], exact: true },
-  { to: "/pilot-access", label: "Pilot Access", icon: Ticket, roles: ["admin"], exact: true },
-  { to: "/feedback-review", label: "Feedback", icon: MessageSquare, roles: ["admin"], exact: true },
-  { to: "/auto-verification", label: "Auto Verification", icon: BadgeCheck, roles: ["admin", "reviewer"], exact: true },
+  // Platform-level surfaces: absent from the DOM for every centre admin.
+  { to: "/payment-settings", label: "Payment Settings", icon: CreditCard, roles: ["admin"], exact: true, ownerOnly: true },
+  { to: "/pilot-access", label: "Pilot Access", icon: Ticket, roles: ["admin"], exact: true, ownerOnly: true },
+  { to: "/feedback-review", label: "Feedback", icon: MessageSquare, roles: ["admin"], exact: true, ownerOnly: true },
+  { to: "/auto-verification", label: "Auto Verification", icon: BadgeCheck, roles: ["reviewer"], exact: true, ownerAlso: true },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
   { to: "/exam-pattern", label: "Exam Pattern", icon: Target, roles: ["student"], exact: true },
   { to: "/parent", label: "My Child", icon: HeartHandshake, roles: ["parent"], exact: true },
@@ -61,8 +76,13 @@ const NAV_ITEMS: NavItem[] = [
 // sidebar stays scannable while deep links keep working.
 const SYSTEM_ITEMS: NavItem[] = [
   { to: "/settings", label: "Settings", icon: Settings, roles: ["admin", "educator", "student"] },
-  { to: "/verification", label: "Verification", icon: ShieldCheck, roles: ["admin", "reviewer"] },
+  { to: "/verification", label: "Verification", icon: ShieldCheck, roles: ["reviewer"], ownerAlso: true },
 ];
+
+// Centre admins see Quick Start pinned first in Workspace until the six-step
+// setup checklist is complete (server-side state); then it leaves the main
+// navigation and stays reachable from Support.
+const CENTRE_QUICK_START: NavItem = { to: "/quick-start", label: "Quick Start", icon: Rocket, roles: ["admin"], exact: true };
 
 
 const SUPPORT_ITEMS: NavItem[] = [
@@ -122,8 +142,8 @@ const TITLES: [RegExp, string][] = [
 const authRoute = getRouteApi("/_authenticated");
 
 function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
-  const { role } = authRoute.useRouteContext();
-  if (!items.some((item) => item.roles.includes(role))) return null;
+  const { role, platformOwner } = authRoute.useRouteContext();
+  if (!items.some((item) => canSeeNavItem(item, role, platformOwner))) return null;
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
@@ -135,12 +155,12 @@ function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
 }
 
 function NavLinks({ items }: { items: NavItem[] }) {
-  const { role } = authRoute.useRouteContext();
+  const { role, platformOwner } = authRoute.useRouteContext();
   const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <SidebarMenu>
-      {items.filter((item) => item.roles.includes(role)).map((item) => (
+      {items.filter((item) => canSeeNavItem(item, role, platformOwner)).map((item) => (
         <SidebarMenuItem key={item.to}>
           <SidebarMenuButton
             asChild
@@ -150,6 +170,7 @@ function NavLinks({ items }: { items: NavItem[] }) {
             <Link
               to={item.to}
               {...(item.exact ? { activeOptions: { exact: true } } : {})}
+              activeProps={{ "aria-current": "page" }}
               onClick={() => isMobile && setOpenMobile(false)}
             >
               <item.icon />
@@ -256,9 +277,33 @@ function OrgFooterLabel() {
 }
 
 
+// Workspace navigation for the signed-in role. Centre admins get Quick Start
+// pinned at position 1 until their server-side setup checklist completes.
+function WorkspaceNav() {
+  const { role } = authRoute.useRouteContext();
+  const fetchSetup = useServerFn(getCentreSetupFn);
+  const { data: setup } = useQuery({
+    queryKey: CENTRE_SETUP_QUERY_KEY,
+    queryFn: () => fetchSetup(),
+    enabled: role === "admin",
+    staleTime: 30_000,
+  });
+  // While the checklist state is loading (first paint), keep the item visible:
+  // a first-login admin must never miss it. Only a confirmed "complete" hides it.
+  const pinQuickStart = role === "admin" && setup?.complete !== true;
+  const items = pinQuickStart ? [CENTRE_QUICK_START, ...NAV_ITEMS] : NAV_ITEMS;
+  return <NavGroup label="Workspace" items={items} />;
+}
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:shadow"
+      >
+        Skip to content
+      </a>
       <Sidebar className="print:hidden">
         <SidebarHeader className="px-3 py-3.5">
           <Link to="/dashboard" className="flex items-center gap-2.5">
@@ -271,7 +316,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </Link>
         </SidebarHeader>
         <SidebarContent data-tour="sidebar-nav">
-          <NavGroup label="Workspace" items={NAV_ITEMS} />
+          <WorkspaceNav />
           <NavGroup label="Support" items={SUPPORT_ITEMS} />
           <NavGroup label="System" items={SYSTEM_ITEMS} />
         </SidebarContent>
@@ -292,7 +337,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
         <DemoContextBar />
-        <main className="min-w-0 max-w-full flex-1 overflow-x-clip p-4 md:p-6">{children}</main>
+        <main id="main-content" tabIndex={-1} className="min-w-0 max-w-full flex-1 overflow-x-clip p-4 md:p-6">
+          {children}
+        </main>
       </SidebarInset>
       <HowItWorksDialog />
     </SidebarProvider>

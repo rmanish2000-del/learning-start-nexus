@@ -2,7 +2,8 @@ import { useRef } from "react";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, BookOpenCheck, TrendingUp, TriangleAlert, Users } from "lucide-react";
+import { ArrowRight, BookOpenCheck, FlaskConical, Rocket, TrendingUp, TriangleAlert, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
@@ -122,16 +123,31 @@ function DashboardPage() {
   } = useQuery({
     queryKey: ["learners"],
     queryFn: async () => {
+      // Roster health counts real learners only; the SAMPLE workspace is
+      // excluded from every number on this page.
       const { data, error } = await supabase
         .from("learners")
         .select("*")
         .eq("learner_mode", "centre_managed")
+        .eq("is_sample", false)
         .order("full_name");
       if (error) throw error;
       return data;
     },
     retry: false,
     throwOnError: false,
+  });
+
+  const { data: sampleCount } = useQuery({
+    queryKey: ["sample-learner-count"],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from("learners")
+        .select("id", { count: "exact", head: true })
+        .eq("is_sample", true);
+      if (error) throw error;
+      return count ?? 0;
+    },
   });
 
 
@@ -268,6 +284,40 @@ function DashboardPage() {
           error={learnersError}
           onRetry={() => void refetchLearners()}
         />
+      )}
+
+      {/* Zero-data state for a freshly approved centre: never a blank page. */}
+      {role === "admin" && !isPending && !learnersIsError && total === 0 && (
+        <Card className="border-primary/25 bg-primary/[0.03]">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Rocket className="h-4 w-4 text-primary" aria-hidden="true" /> Your centre is ready
+            </CardTitle>
+            <CardDescription>
+              No learners yet. Follow the setup checklist to add educators and learners, assign a
+              diagnostic and see your first report — or explore with the labelled sample workspace.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-2">
+            <Button asChild size="sm">
+              <Link to="/quick-start">Begin setup</Link>
+            </Button>
+            <Button asChild size="sm" variant="outline">
+              <Link to="/learners">Add learners</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {(sampleCount ?? 0) > 0 && (
+        <p className="flex items-start gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-800 dark:text-amber-300">
+          <FlaskConical className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          <span>
+            <span className="font-semibold">SAMPLE workspace active</span> — {sampleCount} sample learners are
+            excluded from every number on this page. They are labelled SAMPLE in Learners and can be
+            removed from Settings.
+          </span>
+        </p>
       )}
 
 
