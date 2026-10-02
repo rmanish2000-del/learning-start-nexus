@@ -5239,7 +5239,10 @@ export type Database = {
       }
     }
     Functions: {
-      create_sample_workspace: { Args: never; Returns: number }
+      create_sample_workspace: {
+        Args: { _actor: string; _org: string }
+        Returns: number
+      }
       expire_stale_parent_orders: {
         Args: { older_than?: string }
         Returns: number
@@ -5249,7 +5252,10 @@ export type Database = {
         Returns: boolean
       }
       profile_phone: { Args: { _user_id: string }; Returns: string }
-      remove_sample_workspace: { Args: never; Returns: number }
+      remove_sample_workspace: {
+        Args: { _actor: string; _org: string }
+        Returns: number
+      }
       tutor_evidence_by_gap: {
         Args: never
         Returns: {
