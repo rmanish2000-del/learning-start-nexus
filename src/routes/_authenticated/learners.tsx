@@ -14,7 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { createLearner } from "@/lib/learners.functions";
 import { listStaffUsers } from "@/lib/admin.functions";
 import { createLearnerSchema } from "@/lib/schemas";
-import { statusBadge, liftText } from "./dashboard";
+import { statusBadge, liftText } from "@/components/learner-status";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

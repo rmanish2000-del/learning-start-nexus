@@ -171,7 +171,9 @@ describe("client route gate and navigation", () => {
       const block = src.slice(start, src.indexOf("}", start));
       expect(block, to).toContain("ownerOnly: true");
     }
-    expect(src).toContain("if (item.ownerOnly && !platformOwner) return false;");
+    expect(read("src/lib/nav-visibility.ts")).toContain(
+      "if (item.ownerOnly) return platformOwner;",
+    );
     expect(src).toContain("canSeeNavItem(item, role, platformOwner)");
   });
 
@@ -214,8 +216,10 @@ describe("database: pilot applications and sign-up roles", () => {
 
 describe("owner navigation is identity-based", () => {
   it("owner-only links ignore role and depend only on platformOwner", () => {
+    expect(readFileSync("src/lib/nav-visibility.ts", "utf8")).toContain(
+      "if (item.ownerOnly) return platformOwner;",
+    );
     const src = readFileSync("src/components/app-shell.tsx", "utf8");
-    expect(src).toContain("if (item.ownerOnly) return platformOwner;");
     expect(src).toContain('to: "/payment-audit"');
   });
   it("dashboard no longer links centre admins to the sprint 5 audit", () => {
