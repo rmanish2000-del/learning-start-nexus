@@ -23,3 +23,8 @@ on the live database (versions 045357, 045439, 045629, 050000, 050123, 050331).
 1. Export structure-only schema of the live database (no data).
 2. Commit it as a baseline migration and mark covered versions as applied.
 3. Prove fresh replay = baseline + newer migrations on a throwaway database.
+
+## Status update — 2026-10-02 (post-production verification)
+Still OPEN; does not block the Parts A–F release. Canonical main at review:
+8ba61cc12410798f0119f15a424eb46eff660dd8. No new migrations added; no applied
+migration edited. Baseline export remains the only supported path to close it.
