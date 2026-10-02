@@ -4,14 +4,15 @@
 //     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { execSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { loadEnv } from "vite";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/tanstack/vite";
 import { VitePWA } from "vite-plugin-pwa";
+
+// @ts-expect-error -- plain ESM helper shared with the release-evidence CLI
+import { releaseFingerprint } from "./scripts/release-fingerprint.mjs";
 
 // Safe PWA Phase 1.
 //
@@ -26,49 +27,14 @@ const PRIVATE_PATHS =
 // request time; load them into process.env without exposing them to the client.
 Object.assign(process.env, loadEnv(process.env["NODE_ENV"] ?? "development", process.cwd(), ""));
 
-// Commit SHA baked into the build for /api/public/version. Only the SHA is exposed.
-// Resolution order: CI-provided env vars, then the .git directory read as plain
-// files (no git binary needed), then the git binary. Anything else → "unknown".
-const SHA_RE = /^[0-9a-f]{40}$/;
-function shaFromGitFiles(): string | null {
-  try {
-    const gitDir = path.resolve(import.meta.dirname, ".git");
-    const head = readFileSync(path.join(gitDir, "HEAD"), "utf8").trim();
-    if (SHA_RE.test(head)) return head;
-    const ref = head.startsWith("ref: ") ? head.slice(5).trim() : null;
-    if (!ref) return null;
-    const loose = path.join(gitDir, ref);
-    if (existsSync(loose)) return readFileSync(loose, "utf8").trim();
-    const packed = readFileSync(path.join(gitDir, "packed-refs"), "utf8");
-    const line = packed.split("\n").find((l) => l.endsWith(" " + ref));
-    return line ? (line.split(" ")[0] ?? null) : null;
-  } catch {
-    return null;
-  }
-}
-function buildSha(): string {
-  const candidates = [
-    process.env["BUILD_SHA"],
-    process.env["COMMIT_SHA"],
-    process.env["GITHUB_SHA"],
-    process.env["CF_PAGES_COMMIT_SHA"],
-    process.env["WORKERS_CI_COMMIT_SHA"],
-    process.env["VERCEL_GIT_COMMIT_SHA"],
-    shaFromGitFiles(),
-  ];
-  try {
-    candidates.push(
-      execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] })
-        .toString()
-        .trim(),
-    );
-  } catch {
-    // git binary unavailable in this build environment
-  }
-  return (
-    candidates.map((c) => c?.trim().toLowerCase()).find((c) => c && SHA_RE.test(c)) ?? "unknown"
-  );
-}
+// Deterministic release identity for /api/public/version: release ID,
+// source-tree fingerprint and build timestamp only (see scripts/release-fingerprint.mjs).
+const RELEASE_INFO = {
+  ...(({ releaseId, fingerprint }) => ({ releaseId, fingerprint }))(
+    releaseFingerprint(import.meta.dirname),
+  ),
+  builtAt: new Date().toISOString(),
+};
 
 export default defineConfig({
   tanstackStart: {
@@ -77,7 +43,7 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    define: { __BUILD_SHA__: JSON.stringify(buildSha()) },
+    define: { __RELEASE_INFO__: JSON.stringify(RELEASE_INFO) },
     resolve: {
       alias: {
         // React Email pulls htmlparser2 -> entities; pin every import to the
