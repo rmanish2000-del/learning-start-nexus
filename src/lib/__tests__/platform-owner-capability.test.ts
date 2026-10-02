@@ -179,7 +179,7 @@ describe("client route gate and navigation", () => {
 });
 
 describe("database: pilot applications and sign-up roles", () => {
-  const sql = read("supabase/migrations/20261002050123_4b519290-29d6-4d7b-a837-c369974aa40e.sql");
+  const sql = read("supabase/migrations/20261002050000_centre_admin_first_login.sql");
 
   it("defines the owner identity in the database and restricts pilot_leads to it", () => {
     expect(sql).toContain("FUNCTION private.is_platform_owner()");
