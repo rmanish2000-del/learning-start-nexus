@@ -5,6 +5,7 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { execSync } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { loadEnv } from "vite";
@@ -26,15 +27,43 @@ const PRIVATE_PATHS =
 Object.assign(process.env, loadEnv(process.env["NODE_ENV"] ?? "development", process.cwd(), ""));
 
 // Commit SHA baked into the build for /api/public/version. Only the SHA is exposed.
-function buildSha(): string {
+// Resolution order: CI-provided env vars, then the .git directory read as plain
+// files (no git binary needed), then the git binary. Anything else → "unknown".
+const SHA_RE = /^[0-9a-f]{40}$/;
+function shaFromGitFiles(): string | null {
   try {
-    const sha = execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] })
-      .toString()
-      .trim();
-    return /^[0-9a-f]{40}$/.test(sha) ? sha : "unknown";
+    const gitDir = path.resolve(import.meta.dirname, ".git");
+    const head = readFileSync(path.join(gitDir, "HEAD"), "utf8").trim();
+    if (SHA_RE.test(head)) return head;
+    const ref = head.startsWith("ref: ") ? head.slice(5).trim() : null;
+    if (!ref) return null;
+    const loose = path.join(gitDir, ref);
+    if (existsSync(loose)) return readFileSync(loose, "utf8").trim();
+    const packed = readFileSync(path.join(gitDir, "packed-refs"), "utf8");
+    const line = packed.split("\n").find((l) => l.endsWith(" " + ref));
+    return line ? line.split(" ")[0] : null;
   } catch {
-    return "unknown";
+    return null;
   }
+}
+function buildSha(): string {
+  const candidates = [
+    process.env["BUILD_SHA"],
+    process.env["COMMIT_SHA"],
+    process.env["GITHUB_SHA"],
+    process.env["CF_PAGES_COMMIT_SHA"],
+    process.env["WORKERS_CI_COMMIT_SHA"],
+    process.env["VERCEL_GIT_COMMIT_SHA"],
+    shaFromGitFiles(),
+  ];
+  try {
+    candidates.push(
+      execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim(),
+    );
+  } catch {
+    // git binary unavailable in this build environment
+  }
+  return candidates.map((c) => c?.trim().toLowerCase()).find((c) => c && SHA_RE.test(c)) ?? "unknown";
 }
 
 export default defineConfig({
