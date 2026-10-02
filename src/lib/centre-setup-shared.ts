@@ -51,7 +51,9 @@ export type CentreSetupState = {
   realLearnerCount: number;
 };
 
-export function isCentreProfileComplete(s: Pick<CentreSetupSignals, "orgName" | "orgEmail" | "orgPhone">): boolean {
+export function isCentreProfileComplete(
+  s: Pick<CentreSetupSignals, "orgName" | "orgEmail" | "orgPhone">,
+): boolean {
   return Boolean(s.orgName?.trim()) && Boolean(s.orgEmail?.trim()) && Boolean(s.orgPhone?.trim());
 }
 
@@ -85,7 +87,8 @@ export function deriveCentreSetup(s: CentreSetupSignals): CentreSetupState {
       key: "first-educator",
       n: 3,
       title: "Add your first educator",
-      description: "Create an educator account. Educators run diagnostics and interventions day to day.",
+      description:
+        "Create an educator account. Educators run diagnostics and interventions day to day.",
       done: educatorDone,
       to: "/admin",
       ctaLabel: "Add educator",
@@ -105,7 +108,8 @@ export function deriveCentreSetup(s: CentreSetupSignals): CentreSetupState {
       key: "assign-diagnostic",
       n: 5,
       title: "Assign a diagnostic",
-      description: "Assign a published diagnostic to a learner. They see it on their home screen instantly.",
+      description:
+        "Assign a published diagnostic to a learner. They see it on their home screen instantly.",
       done: diagnosticDone,
       to: "/assessments",
       ctaLabel: "Open assessments",

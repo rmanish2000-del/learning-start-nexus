@@ -86,29 +86,62 @@ export function CentreProfileForm({ orgId }: { orgId: string }) {
             <Skeleton className="h-9 w-full" />
           </div>
         ) : query.isError ? (
-          <QueryError title="Centre profile didn't load" error={query.error} onRetry={() => query.refetch()} compact />
+          <QueryError
+            title="Centre profile didn't load"
+            error={query.error}
+            onRetry={() => query.refetch()}
+            compact
+          />
         ) : (
           <form onSubmit={onSubmit} className="space-y-3">
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="centre-name">Centre name</Label>
-                <Input id="centre-name" name="name" defaultValue={query.data.name} required maxLength={120} />
+                <Input
+                  id="centre-name"
+                  name="name"
+                  defaultValue={query.data.name}
+                  required
+                  maxLength={120}
+                />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="centre-email">Contact email</Label>
-                <Input id="centre-email" name="email" type="email" defaultValue={query.data.email ?? ""} required />
+                <Input
+                  id="centre-email"
+                  name="email"
+                  type="email"
+                  defaultValue={query.data.email ?? ""}
+                  required
+                />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="centre-phone">Contact phone</Label>
-                <Input id="centre-phone" name="phone" type="tel" defaultValue={query.data.phone ?? ""} required />
+                <Input
+                  id="centre-phone"
+                  name="phone"
+                  type="tel"
+                  defaultValue={query.data.phone ?? ""}
+                  required
+                />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="centre-tagline">Tagline (optional)</Label>
-                <Input id="centre-tagline" name="tagline" defaultValue={query.data.tagline ?? ""} maxLength={160} />
+                <Input
+                  id="centre-tagline"
+                  name="tagline"
+                  defaultValue={query.data.tagline ?? ""}
+                  maxLength={160}
+                />
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="centre-website">Website (optional)</Label>
-                <Input id="centre-website" name="website" defaultValue={query.data.website ?? ""} maxLength={200} />
+                <Input
+                  id="centre-website"
+                  name="website"
+                  defaultValue={query.data.website ?? ""}
+                  maxLength={200}
+                />
               </div>
             </div>
             {fieldError && (

@@ -82,14 +82,36 @@ describe("deriveCentreSetup", () => {
 
 describe("centre profile", () => {
   it("is complete only with a name, contact email and phone", () => {
-    expect(isCentreProfileComplete({ orgName: "A", orgEmail: "a@b.c", orgPhone: "123" })).toBe(true);
+    expect(isCentreProfileComplete({ orgName: "A", orgEmail: "a@b.c", orgPhone: "123" })).toBe(
+      true,
+    );
     expect(isCentreProfileComplete({ orgName: "A", orgEmail: " ", orgPhone: "123" })).toBe(false);
-    expect(isCentreProfileComplete({ orgName: "", orgEmail: "a@b.c", orgPhone: "123" })).toBe(false);
+    expect(isCentreProfileComplete({ orgName: "", orgEmail: "a@b.c", orgPhone: "123" })).toBe(
+      false,
+    );
   });
 
   it("validates the profile form server-side", () => {
-    expect(centreProfileSchema.safeParse({ name: "Meridian", email: "x@y.z", phone: "9876543210" }).success).toBe(true);
-    expect(centreProfileSchema.safeParse({ name: "M", email: "x@y.z", phone: "9876543210" }).success).toBe(false);
-    expect(centreProfileSchema.safeParse({ name: "Meridian", email: "not-an-email", phone: "9876543210" }).success).toBe(false);
+    expect(
+      centreProfileSchema.safeParse({
+        name: "Meridian",
+        email: "hello@meridian.example",
+        phone: "9876543210",
+      }).success,
+    ).toBe(true);
+    expect(
+      centreProfileSchema.safeParse({
+        name: "M",
+        email: "hello@meridian.example",
+        phone: "9876543210",
+      }).success,
+    ).toBe(false);
+    expect(
+      centreProfileSchema.safeParse({
+        name: "Meridian",
+        email: "not-an-email",
+        phone: "9876543210",
+      }).success,
+    ).toBe(false);
   });
 });

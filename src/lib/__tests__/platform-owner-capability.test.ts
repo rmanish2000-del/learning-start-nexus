@@ -9,7 +9,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { isPlatformOwnerEmail, isPlatformOwnerPath, PLATFORM_OWNER_EMAIL } from "../platform-owner-shared";
+import {
+  isPlatformOwnerEmail,
+  isPlatformOwnerPath,
+  PLATFORM_OWNER_EMAIL,
+} from "../platform-owner-shared";
 
 const root = process.cwd();
 const read = (p: string) => readFileSync(join(root, p), "utf8");
@@ -34,10 +38,24 @@ describe("isPlatformOwnerEmail", () => {
 
 describe("platform-owner paths", () => {
   it("covers every platform-level route and nothing a centre admin needs", () => {
-    for (const p of ["/payment-settings", "/payment-settings/x", "/pilot-access", "/feedback-review", "/payment-audit"]) {
+    for (const p of [
+      "/payment-settings",
+      "/payment-settings/x",
+      "/pilot-access",
+      "/feedback-review",
+      "/payment-audit",
+    ]) {
       expect(isPlatformOwnerPath(p)).toBe(true);
     }
-    for (const p of ["/dashboard", "/learners", "/assessments", "/admin", "/settings", "/quick-start", "/help"]) {
+    for (const p of [
+      "/dashboard",
+      "/learners",
+      "/assessments",
+      "/admin",
+      "/settings",
+      "/quick-start",
+      "/help",
+    ]) {
       expect(isPlatformOwnerPath(p)).toBe(false);
     }
   });
@@ -56,8 +74,14 @@ describe("server functions gate on the platform owner", () => {
         "getWebhookStatusFn",
       ],
     ],
-    ["src/lib/pilot-access.functions.ts", ["listPilotGrantsFn", "grantPilotAccessFn", "extendPilotAccessFn", "revokePilotAccessFn"]],
-    ["src/lib/pilot-invitations.functions.ts", ["createPilotInvitationFn", "listPilotInvitationsFn", "revokePilotInvitationFn"]],
+    [
+      "src/lib/pilot-access.functions.ts",
+      ["listPilotGrantsFn", "grantPilotAccessFn", "extendPilotAccessFn", "revokePilotAccessFn"],
+    ],
+    [
+      "src/lib/pilot-invitations.functions.ts",
+      ["createPilotInvitationFn", "listPilotInvitationsFn", "revokePilotInvitationFn"],
+    ],
     ["src/lib/payment-audit.functions.ts", ["getPaymentAuditFn"]],
   ];
 
@@ -72,14 +96,19 @@ describe("server functions gate on the platform owner", () => {
         expect(start, fn).toBeGreaterThan(-1);
         const next = src.indexOf("export const ", start + 1);
         const body = src.slice(start, next === -1 ? undefined : next);
-        expect(body, `${fn} must call requirePlatformOwner`).toContain("await requirePlatformOwner(context)");
+        expect(body, `${fn} must call requirePlatformOwner`).toContain(
+          "await requirePlatformOwner(context)",
+        );
       }
     });
   }
 
   it("centre approval is owner-only while learner import stays centre-scoped", () => {
     const src = read("src/lib/centre-onboarding.functions.ts");
-    const approve = src.slice(src.indexOf("export const approveCentreLead"), src.indexOf("export const importLearners"));
+    const approve = src.slice(
+      src.indexOf("export const approveCentreLead"),
+      src.indexOf("export const importLearners"),
+    );
     expect(approve).toContain("await requirePlatformOwner(context)");
     expect(approve).not.toContain('requireAnyRole(context.supabase, context.userId, ["admin"])');
     const importBody = src.slice(src.indexOf("export const importLearners"));
@@ -107,7 +136,9 @@ describe("client route gate and navigation", () => {
     expect(src).toContain("isPlatformOwnerPath(location.pathname) && !platformOwner");
     expect(src).toContain("platformOwner,");
     // Audit surfaces are no longer open to every admin.
-    expect(src).toContain('isAuditPath(location.pathname) && !platformOwner && role !== "reviewer"');
+    expect(src).toContain(
+      'isAuditPath(location.pathname) && !platformOwner && role !== "reviewer"',
+    );
     expect(src).not.toMatch(/isAuditPath\(location\.pathname\) && role !== "admin"/);
   });
 
@@ -124,7 +155,10 @@ describe("client route gate and navigation", () => {
 
   it("reviewers no longer reach the payment audit", () => {
     const src = read("src/lib/roles.ts");
-    const reviewerBlock = src.slice(src.indexOf("REVIEWER_ALLOWED_PATHS"), src.indexOf("isReviewerAllowedPath"));
+    const reviewerBlock = src.slice(
+      src.indexOf("REVIEWER_ALLOWED_PATHS"),
+      src.indexOf("isReviewerAllowedPath"),
+    );
     expect(reviewerBlock).not.toContain("/payment-audit");
   });
 });
@@ -137,12 +171,19 @@ describe("database: pilot applications and sign-up roles", () => {
     expect(sql).toContain("= 'rmanish2000@gmail.com'");
     expect(sql).toContain('DROP POLICY IF EXISTS "Admins can read pilot applications"');
     expect(sql).toContain('DROP POLICY IF EXISTS "Admins can update pilot applications"');
-    expect(sql).toMatch(/pilot_leads FOR SELECT TO authenticated\s+USING \(private\.is_platform_owner\(\)\)/);
-    expect(sql).toMatch(/pilot_leads FOR UPDATE TO authenticated\s+USING \(private\.is_platform_owner\(\)\)/);
+    expect(sql).toMatch(
+      /pilot_leads FOR SELECT TO authenticated\s+USING \(private\.is_platform_owner\(\)\)/,
+    );
+    expect(sql).toMatch(
+      /pilot_leads FOR UPDATE TO authenticated\s+USING \(private\.is_platform_owner\(\)\)/,
+    );
   });
 
   it("self-service sign-up can only ever claim the parent role", () => {
-    const fn = sql.slice(sql.indexOf("FUNCTION public.handle_new_user()"), sql.indexOf("$function$;"));
+    const fn = sql.slice(
+      sql.indexOf("FUNCTION public.handle_new_user()"),
+      sql.indexOf("$function$;"),
+    );
     expect(fn).toContain("v_signup_role = 'parent'");
     expect(fn).toContain("v_provisioned AND v_signup_role IN");
     expect(fn).not.toMatch(/v_signup_role IN \('parent'/);

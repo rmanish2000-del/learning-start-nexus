@@ -40,7 +40,9 @@ export function CentreSetupChecklist() {
   const sampleMutation = useMutation({
     mutationFn: () => createSample(),
     onSuccess: (r) => {
-      toast.success(`Sample workspace loaded — ${r.learners} learners, ${r.assessments} assessments. Everything is labelled SAMPLE.`);
+      toast.success(
+        `Sample workspace loaded — ${r.learners} learners, ${r.assessments} assessments. Everything is labelled SAMPLE.`,
+      );
       invalidate();
     },
     onError: (e: Error) => toast.error(e.message),
@@ -131,9 +133,9 @@ export function CentreSetupChecklist() {
       <CardContent className="space-y-2">
         {state.sampleActive && (
           <p className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-800 dark:text-amber-300">
-            <span className="font-semibold">SAMPLE workspace active</span> — {state.sampleLearnerCount} generated
-            learners are labelled SAMPLE on every screen and are excluded from reports, billing and
-            evidence. Remove them any time from Settings.
+            <span className="font-semibold">SAMPLE workspace active</span> —{" "}
+            {state.sampleLearnerCount} generated learners are labelled SAMPLE on every screen and
+            are excluded from reports, billing and evidence. Remove them any time from Settings.
           </p>
         )}
         {state.steps.map((step) => (
@@ -144,10 +146,15 @@ export function CentreSetupChecklist() {
             {step.done ? (
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
             ) : (
-              <Circle className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/50" aria-hidden="true" />
+              <Circle
+                className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/50"
+                aria-hidden="true"
+              />
             )}
             <div className="min-w-0 flex-1">
-              <p className={`text-sm font-medium ${step.done ? "text-muted-foreground line-through" : ""}`}>
+              <p
+                className={`text-sm font-medium ${step.done ? "text-muted-foreground line-through" : ""}`}
+              >
                 {step.n}. {step.title}
               </p>
               <p className="mt-0.5 text-xs text-muted-foreground">{step.description}</p>

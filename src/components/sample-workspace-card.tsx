@@ -84,7 +84,12 @@ export function SampleWorkspaceCard() {
               Active — {n} sample learners, 3 sample assessments. Removal deletes all of it in one
               transaction and is logged with your account.
             </p>
-            <Button variant="destructive" size="sm" className="gap-1.5" onClick={() => setConfirmOpen(true)}>
+            <Button
+              variant="destructive"
+              size="sm"
+              className="gap-1.5"
+              onClick={() => setConfirmOpen(true)}
+            >
               <Trash2 className="h-3.5 w-3.5" aria-hidden="true" /> Remove sample workspace
             </Button>
           </>
@@ -114,7 +119,11 @@ export function SampleWorkspaceCard() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setConfirmOpen(false)} disabled={removeMutation.isPending}>
+            <Button
+              variant="outline"
+              onClick={() => setConfirmOpen(false)}
+              disabled={removeMutation.isPending}
+            >
               Cancel
             </Button>
             <Button

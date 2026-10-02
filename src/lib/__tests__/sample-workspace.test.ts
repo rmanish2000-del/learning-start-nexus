@@ -13,30 +13,42 @@ const sql = read("supabase/migrations/20261002050000_centre_admin_first_login.sq
 describe("schema", () => {
   it("flags sample rows on every table the workspace writes to", () => {
     for (const table of ["learners", "assessments", "assessment_sessions"]) {
-      expect(sql).toContain(`ALTER TABLE public.${table} ADD COLUMN IF NOT EXISTS is_sample boolean NOT NULL DEFAULT false;`);
+      expect(sql).toContain(
+        `ALTER TABLE public.${table} ADD COLUMN IF NOT EXISTS is_sample boolean NOT NULL DEFAULT false;`,
+      );
     }
   });
 
   it("creation and removal are SECURITY DEFINER functions callable by the service role only", () => {
     for (const fn of ["create_sample_workspace", "remove_sample_workspace"]) {
       expect(sql).toContain(`FUNCTION public.${fn}(p_org uuid, p_actor uuid)`);
-      expect(sql).toContain(`REVOKE EXECUTE ON FUNCTION public.${fn}(uuid, uuid) FROM PUBLIC, anon, authenticated;`);
+      expect(sql).toContain(
+        `REVOKE EXECUTE ON FUNCTION public.${fn}(uuid, uuid) FROM PUBLIC, anon, authenticated;`,
+      );
       expect(sql).toContain(`GRANT EXECUTE ON FUNCTION public.${fn}(uuid, uuid) TO service_role;`);
     }
-    const create = sql.slice(sql.indexOf("FUNCTION public.create_sample_workspace"), sql.indexOf("FUNCTION public.remove_sample_workspace"));
+    const create = sql.slice(
+      sql.indexOf("FUNCTION public.create_sample_workspace"),
+      sql.indexOf("FUNCTION public.remove_sample_workspace"),
+    );
     expect(create).toContain("SECURITY DEFINER");
     expect(create).toContain("RAISE EXCEPTION 'sample workspace already exists'");
   });
 
   it("every generated row is labelled SAMPLE and scoped to the requesting organization", () => {
-    const create = sql.slice(sql.indexOf("FUNCTION public.create_sample_workspace"), sql.indexOf("FUNCTION public.remove_sample_workspace"));
-    const learnerInserts = create.match(/INSERT INTO public\.learners[\s\S]*?VALUES \(p_org,[^\n]*\n/g) ?? [];
+    const create = sql.slice(
+      sql.indexOf("FUNCTION public.create_sample_workspace"),
+      sql.indexOf("FUNCTION public.remove_sample_workspace"),
+    );
+    const learnerInserts =
+      create.match(/INSERT INTO public\.learners[\s\S]*?VALUES \(p_org,[^\n]*\n/g) ?? [];
     expect(learnerInserts).toHaveLength(5);
     for (const row of learnerInserts) {
       expect(row).toContain("(SAMPLE)");
       expect(row).toContain("true, true, 'centre_managed'"); // is_demo, is_sample
     }
-    const assessmentInserts = create.match(/INSERT INTO public\.assessments[\s\S]*?VALUES \(p_org,[^\n]*\n/g) ?? [];
+    const assessmentInserts =
+      create.match(/INSERT INTO public\.assessments[\s\S]*?VALUES \(p_org,[^\n]*\n/g) ?? [];
     expect(assessmentInserts).toHaveLength(3);
     for (const row of assessmentInserts) {
       expect(row).toContain("'SAMPLE ·");
