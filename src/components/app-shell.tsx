@@ -71,7 +71,9 @@ type NavItem = {
 
 /** Capability check for navigation: role membership plus platform-owner flags. */
 export function canSeeNavItem(item: NavItem, role: AppRole, platformOwner: boolean): boolean {
-  if (item.ownerOnly && !platformOwner) return false;
+  // Owner-only links depend on identity alone: the confirmed platform owner
+  // sees them whatever their workspace role (e.g. parent); nobody else does.
+  if (item.ownerOnly) return platformOwner;
   if (item.roles.includes(role)) return true;
   return Boolean(item.ownerAlso && platformOwner);
 }
@@ -161,6 +163,14 @@ const NAV_ITEMS: NavItem[] = [
     label: "Feedback",
     icon: MessageSquare,
     roles: ["admin"],
+    exact: true,
+    ownerOnly: true,
+  },
+  {
+    to: "/payment-audit",
+    label: "Payment Audit",
+    icon: CreditCard,
+    roles: [],
     exact: true,
     ownerOnly: true,
   },

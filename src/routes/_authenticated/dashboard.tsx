@@ -399,19 +399,13 @@ function DashboardPage() {
 
       <Card data-tour="educator-outcomes">
         <div ref={outcomesRef} className="scroll-mt-20" />
-        <CardHeader className="flex flex-row items-center justify-between">
+        <CardHeader>
           <div>
             <CardTitle className="text-base">Intervention outcomes</CardTitle>
             <CardDescription>
               Reassessment results across the organization — diagnostic vs post-intervention
             </CardDescription>
           </div>
-          <Link
-            to="/sprint-5-audit"
-            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-          >
-            Audit <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
         </CardHeader>
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
