@@ -106,14 +106,7 @@ function CrossOrgCard({ tests }: { tests: Sprint3CrossOrgTest[] }) {
               </div>
               {t.dbResponse.code ? (
                 <div className="mt-1.5">
-                  <DbErrorBlock
-                    error={{
-                      code: t.dbResponse.code,
-                      message: t.dbResponse.message,
-                      details: null,
-                      hint: null,
-                    }}
-                  />
+                  <DbErrorBlock error={{ code: t.dbResponse.code, message: t.dbResponse.message, details: null, hint: null }} />
                 </div>
               ) : null}
               {t.postCheck ? (
@@ -190,11 +183,7 @@ function Sprint3AuditPage() {
     try {
       const res = await runProbes();
       setProbes(res);
-      const parts = [
-        res.detection?.pass ?? true,
-        res.workflow?.pass ?? true,
-        ...res.crossOrg.map((t) => t.pass),
-      ];
+      const parts = [res.detection?.pass ?? true, res.workflow?.pass ?? true, ...res.crossOrg.map((t) => t.pass)];
       const failed = parts.filter((p) => !p).length;
       if (failed === 0) toast.success("All Sprint 3 probes passed.");
       else toast.error(`${failed} probe(s) FAILED.`);
@@ -244,8 +233,7 @@ function Sprint3AuditPage() {
           Signed in as <span className="font-medium text-foreground">{data.me.role}</span>
           {data.me.orgName ? (
             <>
-              {" "}
-              · Org: <span className="font-medium text-foreground">{data.me.orgName}</span>
+              {" "}· Org: <span className="font-medium text-foreground">{data.me.orgName}</span>
             </>
           ) : null}{" "}
           · Generated {fmt(data.generatedAt)}
@@ -258,8 +246,7 @@ function Sprint3AuditPage() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Database className="h-4 w-4 text-muted-foreground" /> 1 — Row visibility vs global
-            totals
+            <Database className="h-4 w-4 text-muted-foreground" /> 1 — Row visibility vs global totals
           </CardTitle>
           <CardDescription>
             Same query run twice: once as you (RLS applies), once with the service role (all
@@ -267,11 +254,7 @@ function Sprint3AuditPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          {data ? (
-            data.counts.map((c) => <CountRow key={c.table} c={c} />)
-          ) : (
-            <Skeleton className="h-24 w-full" />
-          )}
+          {data ? data.counts.map((c) => <CountRow key={c.table} c={c} />) : <Skeleton className="h-24 w-full" />}
         </CardContent>
       </Card>
 
@@ -303,9 +286,7 @@ function Sprint3AuditPage() {
               <tbody>
                 {(data?.ruleBook.rules ?? []).map((r) => (
                   <tr key={r.ruleId} className="border-b last:border-0">
-                    <td className="py-1.5 pr-3">
-                      <Mono>{r.ruleId}</Mono>
-                    </td>
+                    <td className="py-1.5 pr-3"><Mono>{r.ruleId}</Mono></td>
                     <td className="py-1.5 pr-3">{r.subtopic}</td>
                     <td className="py-1.5 pr-3">{r.severity}</td>
                     <td className="py-1.5 pr-3">{r.priority}</td>
@@ -371,12 +352,10 @@ function Sprint3AuditPage() {
                   </div>
                 ))}
               <p className="pt-1 text-xs text-muted-foreground">
-                Learner:{" "}
-                <span className="font-medium text-foreground">{data.chain.learnerName}</span>
+                Learner: <span className="font-medium text-foreground">{data.chain.learnerName}</span>
                 {data.chain.gap?.sessionId ? (
                   <>
-                    {" "}
-                    · evidence session: <Mono>{data.chain.gap.sessionId}</Mono>
+                    {" "}· evidence session: <Mono>{data.chain.gap.sessionId}</Mono>
                   </>
                 ) : null}
               </p>
@@ -407,16 +386,12 @@ function Sprint3AuditPage() {
                     <p className="text-sm text-muted-foreground">None visible.</p>
                   )}
                   {data.gaps.map((g) => (
-                    <div
-                      key={g.id}
-                      className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border px-3 py-2 text-xs"
-                    >
+                    <div key={g.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border px-3 py-2 text-xs">
                       <Mono>{g.id.slice(0, 8)}…</Mono>
                       <span className="font-medium">{g.learners?.full_name ?? "—"}</span>
                       <span>{g.subtopic}</span>
                       <span className="text-muted-foreground">
-                        {g.items_correct}/{g.items_total} ({g.gap_score_pct}%) · {g.severity} ·{" "}
-                        {g.status}
+                        {g.items_correct}/{g.items_total} ({g.gap_score_pct}%) · {g.severity} · {g.status}
                       </span>
                     </div>
                   ))}
@@ -431,17 +406,12 @@ function Sprint3AuditPage() {
                     <p className="text-sm text-muted-foreground">None visible.</p>
                   )}
                   {data.recommendations.map((r) => (
-                    <div
-                      key={r.id}
-                      className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border px-3 py-2 text-xs"
-                    >
+                    <div key={r.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border px-3 py-2 text-xs">
                       <Mono>{r.id.slice(0, 8)}…</Mono>
                       <Mono>{r.rule_id}</Mono>
                       <span className="font-medium">{r.learners?.full_name ?? "—"}</span>
                       <span>{r.title}</span>
-                      <span className="text-muted-foreground">
-                        p{r.priority} · {r.status}
-                      </span>
+                      <span className="text-muted-foreground">p{r.priority} · {r.status}</span>
                     </div>
                   ))}
                 </div>
@@ -455,10 +425,7 @@ function Sprint3AuditPage() {
                     <p className="text-sm text-muted-foreground">None visible.</p>
                   )}
                   {data.interventions.map((i) => (
-                    <div
-                      key={i.id}
-                      className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border px-3 py-2 text-xs"
-                    >
+                    <div key={i.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border px-3 py-2 text-xs">
                       <Mono>{i.id.slice(0, 8)}…</Mono>
                       <span className="font-medium">{i.learners?.full_name ?? "—"}</span>
                       <span>{i.title}</span>
@@ -509,21 +476,15 @@ function Sprint3AuditPage() {
 
               {/* Detection probe */}
               <div className="space-y-3">
-                <p className="text-sm font-medium">
-                  Detection — engine re-run on the latest submitted session
-                </p>
+                <p className="text-sm font-medium">Detection — engine re-run on the latest submitted session</p>
                 {!probes.detection ? (
-                  <p className="text-sm text-muted-foreground">
-                    No submitted session visible to re-run.
-                  </p>
+                  <p className="text-sm text-muted-foreground">No submitted session visible to re-run.</p>
                 ) : (
                   <div className="rounded-lg border p-3.5">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <p className="text-sm">
                         {probes.detection.learnerName} — {probes.detection.assessmentTitle}{" "}
-                        <span className="text-muted-foreground">
-                          ({probes.detection.scorePct}%)
-                        </span>
+                        <span className="text-muted-foreground">({probes.detection.scorePct}%)</span>
                       </p>
                       <Pass pass={probes.detection.pass} />
                     </div>
@@ -540,15 +501,8 @@ function Sprint3AuditPage() {
                           {probes.detection.subtopicStats.map((s) => (
                             <div key={s.subtopic} className="flex justify-between">
                               <span>{s.subtopic}</span>
-                              <span
-                                className={
-                                  s.severity
-                                    ? "font-medium text-destructive"
-                                    : "text-muted-foreground"
-                                }
-                              >
-                                {s.correct}/{s.total} ({s.pct}%)
-                                {s.severity ? ` — gap (${s.severity})` : ""}
+                              <span className={s.severity ? "font-medium text-destructive" : "text-muted-foreground"}>
+                                {s.correct}/{s.total} ({s.pct}%){s.severity ? ` — gap (${s.severity})` : ""}
                               </span>
                             </div>
                           ))}
@@ -557,30 +511,13 @@ function Sprint3AuditPage() {
                           <p className="mb-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
                             Idempotency
                           </p>
-                          <div>
-                            run 1: detected {probes.detection.firstRun.detected}, refreshed{" "}
-                            {probes.detection.firstRun.refreshed}, addressed{" "}
-                            {probes.detection.firstRun.addressed}, recs +
-                            {probes.detection.firstRun.recsCreated}
-                          </div>
-                          <div>
-                            run 2: detected {probes.detection.secondRun.detected}, reopened{" "}
-                            {probes.detection.secondRun.reopened}, recs +
-                            {probes.detection.secondRun.recsCreated}
-                          </div>
+                          <div>run 1: detected {probes.detection.firstRun.detected}, refreshed {probes.detection.firstRun.refreshed}, addressed {probes.detection.firstRun.addressed}, recs +{probes.detection.firstRun.recsCreated}</div>
+                          <div>run 2: detected {probes.detection.secondRun.detected}, reopened {probes.detection.secondRun.reopened}, recs +{probes.detection.secondRun.recsCreated}</div>
                           <div className="mt-1 break-all text-muted-foreground">
                             fingerprint: {probes.detection.fingerprintAfter.slice(0, 48)}…
                           </div>
-                          <div
-                            className={
-                              probes.detection.fingerprintBefore ===
-                              probes.detection.fingerprintAfter
-                                ? "text-emerald-600 dark:text-emerald-400"
-                                : "text-destructive"
-                            }
-                          >
-                            {probes.detection.fingerprintBefore ===
-                            probes.detection.fingerprintAfter
+                          <div className={probes.detection.fingerprintBefore === probes.detection.fingerprintAfter ? "text-emerald-600 dark:text-emerald-400" : "text-destructive"}>
+                            {probes.detection.fingerprintBefore === probes.detection.fingerprintAfter
                               ? "fingerprint unchanged across runs — deterministic"
                               : "fingerprint CHANGED — non-deterministic"}
                           </div>
@@ -598,9 +535,7 @@ function Sprint3AuditPage() {
                   {probes.workflow ? ` (learner: ${probes.workflow.learnerName})` : ""}
                 </p>
                 {!probes.workflow ? (
-                  <p className="text-sm text-muted-foreground">
-                    No learner available in your organization.
-                  </p>
+                  <p className="text-sm text-muted-foreground">No learner available in your organization.</p>
                 ) : (
                   <div className="space-y-2">
                     {probes.workflow.steps.map((s) => (
@@ -673,8 +608,7 @@ function Sprint3AuditPage() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <ListChecks className="h-4 w-4 text-muted-foreground" /> 7 — Acceptance checklist —
-            manual steps, not auto-verified
+            <ListChecks className="h-4 w-4 text-muted-foreground" /> 7 — Acceptance checklist — manual steps, not auto-verified
           </CardTitle>
           <CardDescription>
             Each item names the observable evidence for it — an independent reviewer can validate

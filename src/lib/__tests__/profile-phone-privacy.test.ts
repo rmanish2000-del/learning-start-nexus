@@ -31,9 +31,7 @@ describe("profiles phone column privileges", () => {
   });
 
   it("re-grants only the non-sensitive columns to signed-in users", () => {
-    const grant = /GRANT SELECT \(([^)]+)\)\s*\n?\s*ON public\.profiles TO authenticated/i.exec(
-      sql,
-    );
+    const grant = /GRANT SELECT \(([^)]+)\)\s*\n?\s*ON public\.profiles TO authenticated/i.exec(sql);
     expect(grant).not.toBeNull();
     const columns = (grant?.[1] ?? "").split(",").map((c) => c.trim());
     expect(columns).toEqual(["id", "org_id", "full_name", "created_at", "updated_at"]);
@@ -94,9 +92,9 @@ describe("profile_phone access matrix", () => {
   });
 
   it("denies an admin when the target has no organisation", () => {
-    expect(
-      canReadPhone({ uid: "admin-1", isAdmin: true, orgId: "org-1" }, { id: "x", orgId: null }),
-    ).toBe(false);
+    expect(canReadPhone({ uid: "admin-1", isAdmin: true, orgId: "org-1" }, { id: "x", orgId: null })).toBe(
+      false,
+    );
   });
 });
 

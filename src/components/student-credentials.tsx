@@ -43,7 +43,8 @@ export function StudentLoginPanel({
       setOpen(false);
       onSaved();
     },
-    onError: (error) => toast.error(friendlyErrorMessage(error, "Could not save the PIN.")),
+    onError: (error) =>
+      toast.error(friendlyErrorMessage(error, "Could not save the PIN.")),
   });
 
   return (
@@ -130,8 +131,7 @@ export function LoginInstructionActions({
   handle: string;
 }) {
   const { t } = useI18n();
-  const origin =
-    typeof window === "undefined" ? "https://www.eduos.global" : window.location.origin;
+  const origin = typeof window === "undefined" ? "https://www.eduos.global" : window.location.origin;
   const text = loginInstructionsText({ learnerName, handle, origin });
 
   return (

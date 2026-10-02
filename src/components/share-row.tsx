@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { trackGuidance } from "@/lib/guidance-track";
 import { campaignUrl, type UtmCampaign } from "@/lib/utm";
 
+
 /**
  * Accessible sharing for a public page: WhatsApp, the device's own share
  * sheet where available, and copy-link. Rendered inline in page flow so it
@@ -77,6 +78,7 @@ export function ShareRow({
         <Share2 className="mr-2 h-4 w-4" aria-hidden /> Share
       </Button>
       <Button variant="ghost" size="sm" className="min-h-9" onClick={() => void copy()}>
+
         {copied ? (
           <>
             <Check className="mr-2 h-4 w-4" aria-hidden /> Link copied

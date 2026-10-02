@@ -4,6 +4,7 @@ import { Bot, Crosshair, GraduationCap, RefreshCcw, ShieldCheck } from "lucide-r
 import { PublicPageLayout } from "@/components/public-layout";
 import { breadcrumbLd, organizationLd, pageHead } from "@/lib/seo";
 
+
 const TITLE = "About EduOS — Learning Intelligence and Intervention";
 const DESCRIPTION =
   "EduOS is a Learning Intelligence and Intervention System: it names the specific learning gaps behind the marks, tracks the intervention, and reassesses on fresh items to evidence progress.";
@@ -76,8 +77,8 @@ function AboutPage() {
         <h2 className="text-lg font-semibold tracking-tight">Who EduOS is for</h2>
         <ul className="list-disc space-y-1.5 pl-5">
           <li>
-            <span className="font-medium">Parents</span> start with a free learning check, can buy a
-            full diagnostic, and read the gaps and progress in plain language while the learner
+            <span className="font-medium">Parents</span> start with a free learning check, can buy
+            a full diagnostic, and read the gaps and progress in plain language while the learner
             answers independently.
           </li>
           <li>
@@ -87,8 +88,8 @@ function AboutPage() {
           </li>
           <li>
             <span className="font-medium">Schools</span> are an expansion use case. EduOS can
-            support earlier gap visibility, structured interventions, reassessment and evidence, but
-            engagement is consultation-led.
+            support earlier gap visibility, structured interventions, reassessment and evidence,
+            but engagement is consultation-led.
           </li>
         </ul>
       </section>

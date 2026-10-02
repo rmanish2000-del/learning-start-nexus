@@ -131,11 +131,10 @@ function audit() {
 
 function expectAuditClean() {
   const rows = audit();
-  for (const row of rows)
-    expect({ ref: row.orderRef, issues: row.issues }).toEqual({
-      ref: row.orderRef,
-      issues: [],
-    });
+  for (const row of rows) expect({ ref: row.orderRef, issues: row.issues }).toEqual({
+    ref: row.orderRef,
+    issues: [],
+  });
   return rows;
 }
 
@@ -233,11 +232,7 @@ describe("C. Failed payment", () => {
 describe("D. Cancelled payment", () => {
   it("records the abandoned checkout and still allows a later successful retry", async () => {
     const { recordRazorpayFailure } = await api();
-    await recordRazorpayFailure({
-      orderRef: "EDUDIAG1",
-      reason: "Checkout closed by parent",
-      userId: PARENT_USER,
-    });
+    await recordRazorpayFailure({ orderRef: "EDUDIAG1", reason: "Checkout closed by parent", userId: PARENT_USER });
     expect(orderByRef("EDUDIAG1")["status"]).toBe("failed");
     expect(entitlements()).toHaveLength(0);
 
@@ -427,12 +422,8 @@ describe("K. Purchase ownership", () => {
   it("refuses checkout for an anonymous caller and for a different account", async () => {
     const { startRazorpayCheckout, getOrder } = await api();
 
-    await expect(startRazorpayCheckout("EDUDIAG1", null)).rejects.toThrow(
-      /Sign in with the account/,
-    );
-    await expect(startRazorpayCheckout("EDUDIAG1", OTHER_USER)).rejects.toThrow(
-      /Sign in with the account/,
-    );
+    await expect(startRazorpayCheckout("EDUDIAG1", null)).rejects.toThrow(/Sign in with the account/);
+    await expect(startRazorpayCheckout("EDUDIAG1", OTHER_USER)).rejects.toThrow(/Sign in with the account/);
     await expect(getOrder("EDUDIAG1", OTHER_USER)).rejects.toThrow(/Sign in with the account/);
 
     // Nothing was created at the gateway and no entitlement was granted.

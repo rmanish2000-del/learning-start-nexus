@@ -35,9 +35,9 @@ describe("friendlyErrorMessage", () => {
     expect(friendlyErrorMessage(new Error("new row violates row-level security policy"))).toMatch(
       /don't have access/i,
     );
-    expect(
-      friendlyErrorMessage(new Error('duplicate key value violates unique constraint "x"')),
-    ).toMatch(/already exists/i);
+    expect(friendlyErrorMessage(new Error('duplicate key value violates unique constraint "x"'))).toMatch(
+      /already exists/i,
+    );
     expect(friendlyErrorMessage(new Error("JWT expired"))).toMatch(/sign in again/i);
     expect(friendlyErrorMessage(new Error("Failed to fetch"))).toMatch(/connection/i);
   });
@@ -51,9 +51,7 @@ describe("friendlyErrorMessage", () => {
   it("falls back for empty, unknown, or stack-like values", () => {
     expect(friendlyErrorMessage(undefined, "fallback")).toBe("fallback");
     expect(friendlyErrorMessage(new Error("   "), "fallback")).toBe("fallback");
-    expect(friendlyErrorMessage(new Error("boom\n    at foo (bar.ts:1:1)"), "fallback")).toBe(
-      "fallback",
-    );
+    expect(friendlyErrorMessage(new Error("boom\n    at foo (bar.ts:1:1)"), "fallback")).toBe("fallback");
     expect(friendlyErrorMessage(new Error("x".repeat(400)), "fallback")).toBe("fallback");
   });
 
@@ -68,9 +66,7 @@ describe("parseZodIssues / zodFieldErrors", () => {
   });
 
   it("maps issues onto field keys", () => {
-    const fields = zodFieldErrors(
-      zodError(registerParentSchema, { fullName: "A", email: "nope", phone: "1" }),
-    );
+    const fields = zodFieldErrors(zodError(registerParentSchema, { fullName: "A", email: "nope", phone: "1" }));
     expect(fields["full name"]).toBe("Enter your full name");
     expect(fields["phone"]).toBe("Enter a valid mobile number");
     expect(fields["email"]).toBe("Enter a valid email");

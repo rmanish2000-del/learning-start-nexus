@@ -23,15 +23,9 @@ export const Route = createFileRoute("/_authenticated/gaps/$gapId")({
   head: () => ({
     meta: [
       { title: "Gap detail — EduOS" },
-      {
-        name: "description",
-        content: "Evidence, recommended intervention and next action for a detected learning gap.",
-      },
+      { name: "description", content: "Evidence, recommended intervention and next action for a detected learning gap." },
       { property: "og:title", content: "Gap detail — EduOS" },
-      {
-        property: "og:description",
-        content: "Evidence, recommended intervention and next action for a detected learning gap.",
-      },
+      { property: "og:description", content: "Evidence, recommended intervention and next action for a detected learning gap." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -153,15 +147,11 @@ function GapDetailPage() {
               {item.prompt && <p className="font-medium">{item.prompt}</p>}
               <dl className="mt-2 grid gap-1 text-muted-foreground sm:grid-cols-2">
                 <div>
-                  <dt className="text-xs uppercase tracking-wide">
-                    {t("gap.answer.learner", "Learner answer")}
-                  </dt>
+                  <dt className="text-xs uppercase tracking-wide">{t("gap.answer.learner", "Learner answer")}</dt>
                   <dd className="text-foreground">{item.learnerAnswer}</dd>
                 </div>
                 <div>
-                  <dt className="text-xs uppercase tracking-wide">
-                    {t("gap.answer.expected", "Expected answer")}
-                  </dt>
+                  <dt className="text-xs uppercase tracking-wide">{t("gap.answer.expected", "Expected answer")}</dt>
                   <dd className="text-foreground">{item.expectedAnswer}</dd>
                 </div>
               </dl>
@@ -204,10 +194,7 @@ function GapDetailPage() {
               <GraduationCap className="h-3.5 w-3.5" />
               {data.learnerMode === "direct_parent"
                 ? t("gap.mode.directNote", "Direct learner — no educator approval is required.")
-                : t(
-                    "gap.mode.centreNote",
-                    "Centre learner — educator review applies before release.",
-                  )}
+                : t("gap.mode.centreNote", "Centre learner — educator review applies before release.")}
             </p>
           )}
         </CardContent>

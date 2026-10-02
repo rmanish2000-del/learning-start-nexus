@@ -65,12 +65,7 @@ export function ModalBody({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={cn(
-        "min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain px-6 py-5",
-        className,
-      )}
-    >
+    <div className={cn("min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain px-6 py-5", className)}>
       {children}
     </div>
   );
@@ -143,13 +138,7 @@ export function FormField({
 }
 
 // Explains why an action is unavailable instead of showing a mute disabled control.
-export function DisabledReason({
-  reason,
-  children,
-}: {
-  reason: string;
-  children: React.ReactNode;
-}) {
+export function DisabledReason({ reason, children }: { reason: string; children: React.ReactNode }) {
   return (
     <span className="inline-flex flex-col gap-1">
       <span title={reason} className="inline-flex">

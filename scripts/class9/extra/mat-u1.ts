@@ -69,14 +69,12 @@ const O2: AuthoredQuestion[] = [
     prompt: "√5 × √5 is a rational number.",
     options: ["True", "False"],
     answer: "True",
-    explanation:
-      "√5 × √5 = 5, and 5 is an integer, hence rational, even though √5 itself is irrational.",
+    explanation: "√5 × √5 = 5, and 5 is an integer, hence rational, even though √5 itself is irrational.",
   },
   {
     kind: "short_answer",
     difficulty: 4,
-    prompt:
-      "Rationalise the denominator of 5/(√7 − √2) and give the simplified numerator over the whole-number denominator.",
+    prompt: "Rationalise the denominator of 5/(√7 − √2) and give the simplified numerator over the whole-number denominator.",
     answer: "5(√7 + √2)/5, i.e. √7 + √2",
     explanation:
       "Multiplying by the conjugate (√7 + √2) gives denominator 7 − 2 = 5, so 5(√7 + √2)/5 simplifies to √7 + √2.",
@@ -84,7 +82,8 @@ const O2: AuthoredQuestion[] = [
   {
     kind: "applied_mcq",
     difficulty: 5,
-    prompt: "A rectangle has area (3 + √5)(3 − √5) square units. What is its area?",
+    prompt:
+      "A rectangle has area (3 + √5)(3 − √5) square units. What is its area?",
     options: ["4", "9 − √5", "9 + √5", "14"],
     answer: "4",
     explanation: "This fits (a + b)(a − b) = a² − b² with a = 3, b = √5, giving 9 − 5 = 4.",
@@ -95,8 +94,7 @@ const topicSquaresCubes: AuthoredTopic = {
   title: "Squares, cubes and estimation of roots",
   outcomes: [
     {
-      title:
-        "Estimate and verify square roots and cube roots of numbers using known perfect powers",
+      title: "Estimate and verify square roots and cube roots of numbers using known perfect powers",
       category: "procedural",
       bloom: "apply",
       difficulty: 2,
@@ -120,8 +118,7 @@ const topicSquaresCubes: AuthoredTopic = {
           difficulty: 2,
           prompt: "Find the best whole-number estimate for the cube root of 66.",
           answer: "4",
-          explanation:
-            "4³ = 64 and 5³ = 125; since 66 is much closer to 64, the best whole-number estimate is 4.",
+          explanation: "4³ = 64 and 5³ = 125; since 66 is much closer to 64, the best whole-number estimate is 4.",
         },
         {
           kind: "true_false",
@@ -138,8 +135,7 @@ const topicSquaresCubes: AuthoredTopic = {
             "A square garden has area 90 m². Between which two consecutive whole numbers does the side length lie?",
           options: ["8 and 9", "9 and 10", "7 and 8", "10 and 11"],
           answer: "9 and 10",
-          explanation:
-            "Side length = √90; since 9² = 81 and 10² = 100, and 81 < 90 < 100, it lies between 9 and 10.",
+          explanation: "Side length = √90; since 9² = 81 and 10² = 100, and 81 < 90 < 100, it lies between 9 and 10.",
         },
         {
           kind: "mcq",
@@ -147,15 +143,15 @@ const topicSquaresCubes: AuthoredTopic = {
           prompt: "Which of these is the closest integer estimate to √0.99 × √99?",
           options: ["9", "10", "99", "1"],
           answer: "10",
-          explanation: "√0.99 × √99 = √(0.99 × 99) = √98.01, which is very close to √100 = 10.",
+          explanation:
+            "√0.99 × √99 = √(0.99 × 99) = √98.01, which is very close to √100 = 10.",
         },
         {
           kind: "short_answer",
           difficulty: 2,
           prompt: "Estimate the square root of 145 to the nearest whole number.",
           answer: "12",
-          explanation:
-            "12² = 144 and 13² = 169; since 145 is very close to 144, the nearest whole-number estimate is 12.",
+          explanation: "12² = 144 and 13² = 169; since 145 is very close to 144, the nearest whole-number estimate is 12.",
         },
       ],
     },
@@ -166,8 +162,7 @@ const topicNumberLine: AuthoredTopic = {
   title: "Representing real numbers on the number line",
   outcomes: [
     {
-      title:
-        "Locate rational and irrational numbers on the number line using geometric and successive magnification methods",
+      title: "Locate rational and irrational numbers on the number line using geometric and successive magnification methods",
       category: "conceptual",
       bloom: "apply",
       difficulty: 3,
@@ -219,8 +214,7 @@ const topicNumberLine: AuthoredTopic = {
         {
           kind: "short_answer",
           difficulty: 3,
-          prompt:
-            "State the interval obtained after zooming once into [0, 1] to locate the number 0.68.",
+          prompt: "State the interval obtained after zooming once into [0, 1] to locate the number 0.68.",
           answer: "[0.6, 0.7]",
           explanation:
             "Since 0.68 begins with digits 0.6, the first magnification step narrows [0, 1] to the interval [0.6, 0.7].",
@@ -232,19 +226,14 @@ const topicNumberLine: AuthoredTopic = {
             "To geometrically construct √5 on the number line in one step from a segment of length 2 units, what length must the perpendicular leg be?",
           options: ["1 unit", "3 units", "√3 units", "2 units"],
           answer: "1 unit",
-          explanation: "Pythagoras theorem requires 2² + leg² = 5, so leg² = 1 and leg = 1 unit.",
+          explanation:
+            "Pythagoras theorem requires 2² + leg² = 5, so leg² = 1 and leg = 1 unit.",
         },
         {
           kind: "mcq",
           difficulty: 3,
-          prompt:
-            "Which point below best represents √7 constructed on the number line from a segment of length 3 units?",
-          options: [
-            "A perpendicular leg of length √(7-9)",
-            "A perpendicular leg of length √2 with base 3 as one leg",
-            "A hypotenuse of length 3 with one leg √7",
-            "A perpendicular leg of length √7 with hypotenuse 3",
-          ],
+          prompt: "Which point below best represents √7 constructed on the number line from a segment of length 3 units?",
+          options: ["A perpendicular leg of length √(7-9)", "A perpendicular leg of length √2 with base 3 as one leg", "A hypotenuse of length 3 with one leg √7", "A perpendicular leg of length √7 with hypotenuse 3"],
           answer: "A hypotenuse of length 3 with one leg √7",
           explanation:
             "Constructing √7 needs a right triangle where the hypotenuse works out to √7; using legs 2 and √3 satisfies 2² + (√3)² = 7, so a hypotenuse equal to √7 is drawn using compasses.",
@@ -258,8 +247,7 @@ const topicOperations: AuthoredTopic = {
   title: "Operations on real numbers",
   outcomes: [
     {
-      title:
-        "Perform addition, subtraction, multiplication and division involving rational and irrational numbers correctly",
+      title: "Perform addition, subtraction, multiplication and division involving rational and irrational numbers correctly",
       category: "procedural",
       bloom: "apply",
       difficulty: 3,
@@ -276,14 +264,12 @@ const topicOperations: AuthoredTopic = {
           prompt: "Simplify: 3√2 + 5√2 − √2.",
           options: ["7√2", "8√2", "9√2", "7"],
           answer: "7√2",
-          explanation:
-            "Since all terms share the irrational part √2, combine coefficients: 3 + 5 − 1 = 7, giving 7√2.",
+          explanation: "Since all terms share the irrational part √2, combine coefficients: 3 + 5 − 1 = 7, giving 7√2.",
         },
         {
           kind: "true_false",
           difficulty: 2,
-          prompt:
-            "The sum of a non-zero rational number and an irrational number is always irrational.",
+          prompt: "The sum of a non-zero rational number and an irrational number is always irrational.",
           options: ["True", "False"],
           answer: "True",
           explanation:
@@ -312,8 +298,7 @@ const topicOperations: AuthoredTopic = {
           prompt: "Which expression equals a rational number?",
           options: ["(2 + √3) + (2 − √3)", "(2 + √3) + (3 + √3)", "√3 + √5", "√3 × √5"],
           answer: "(2 + √3) + (2 − √3)",
-          explanation:
-            "(2 + √3) + (2 − √3) = 4, since the surd terms cancel out, leaving a rational number.",
+          explanation: "(2 + √3) + (2 − √3) = 4, since the surd terms cancel out, leaving a rational number.",
         },
         {
           kind: "true_false",
@@ -321,8 +306,7 @@ const topicOperations: AuthoredTopic = {
           prompt: "The quotient of two irrational numbers is always irrational.",
           options: ["True", "False"],
           answer: "False",
-          explanation:
-            "For example, √8 ÷ √2 = √4 = 2, which is rational, so the quotient of two irrationals can be rational.",
+          explanation: "For example, √8 ÷ √2 = √4 = 2, which is rational, so the quotient of two irrationals can be rational.",
         },
         {
           kind: "short_answer",
@@ -340,8 +324,7 @@ const topicLaws: AuthoredTopic = {
   title: "Laws of exponents for real numbers",
   outcomes: [
     {
-      title:
-        "Use the laws of exponents to simplify expressions involving rational exponents and negative powers",
+      title: "Use the laws of exponents to simplify expressions involving rational exponents and negative powers",
       category: "procedural",
       bloom: "apply",
       difficulty: 3,
@@ -358,8 +341,7 @@ const topicLaws: AuthoredTopic = {
           prompt: "Simplify: 5^7 ÷ 5^4.",
           options: ["5^3", "5^11", "5^(7/4)", "5^28"],
           answer: "5^3",
-          explanation:
-            "For the same base, dividing subtracts exponents: 5^7 ÷ 5^4 = 5^(7−4) = 5^3.",
+          explanation: "For the same base, dividing subtracts exponents: 5^7 ÷ 5^4 = 5^(7−4) = 5^3.",
         },
         {
           kind: "short_answer",
@@ -374,18 +356,15 @@ const topicLaws: AuthoredTopic = {
           prompt: "For any non-zero real number a, a^0 = 1.",
           options: ["True", "False"],
           answer: "True",
-          explanation:
-            "By the definition and laws of exponents, any non-zero base raised to the power zero equals 1.",
+          explanation: "By the definition and laws of exponents, any non-zero base raised to the power zero equals 1.",
         },
         {
           kind: "applied_mcq",
           difficulty: 4,
-          prompt:
-            "Simplify (2^3 × 3^3) into a single base-product power using the law (ab)^m = a^m × b^m in reverse.",
+          prompt: "Simplify (2^3 × 3^3) into a single base-product power using the law (ab)^m = a^m × b^m in reverse.",
           options: ["6^3", "5^3", "6^6", "6^9"],
           answer: "6^3",
-          explanation:
-            "Since 2^3 × 3^3 = (2 × 3)^3 = 6^3 by the combined-power law applied in reverse.",
+          explanation: "Since 2^3 × 3^3 = (2 × 3)^3 = 6^3 by the combined-power law applied in reverse.",
         },
         {
           kind: "mcq",
@@ -409,8 +388,7 @@ const topicLaws: AuthoredTopic = {
           prompt: "For a > 0, a^(-2) is always a positive real number.",
           options: ["True", "False"],
           answer: "True",
-          explanation:
-            "a^(-2) = 1/a², and since a² is positive for a > 0, its reciprocal is also positive.",
+          explanation: "a^(-2) = 1/a², and since a² is positive for a > 0, its reciprocal is also positive.",
         },
       ],
     },

@@ -70,9 +70,5 @@ export const generateBlueprintOutcomesFn = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     await requireAnyRole(context.supabase, context.userId, [...STAFF]);
     const orgId = await callerOrgId(context.supabase, context.userId);
-    return generateBlueprintOutcomes(
-      context.supabase,
-      { orgId, userId: context.userId },
-      data.bookId,
-    );
+    return generateBlueprintOutcomes(context.supabase, { orgId, userId: context.userId }, data.bookId);
   });

@@ -80,7 +80,8 @@ export function IosInstallGuide() {
             onClick={(e) => e.stopPropagation()}
             className="w-full max-w-md rounded-t-[16px] bg-background p-5 shadow-xl"
             style={{
-              animation: "eduos-pwa-slide-up var(--eds-duration-base) var(--eds-easing-decelerate)",
+              animation:
+                "eduos-pwa-slide-up var(--eds-duration-base) var(--eds-easing-decelerate)",
             }}
           >
             <div className="flex items-start justify-between gap-3">

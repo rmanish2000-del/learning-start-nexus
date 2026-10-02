@@ -157,30 +157,19 @@ export function competencyQualityIssues(q: {
   const prompt = q.prompt.trim();
 
   if (q.kind === "case_study") {
-    if (stimulus.length < 180)
-      issues.push("case study scenario is too thin (needs a real 3–5 sentence situation)");
-    if ((stimulus.match(/[.!?]/g) ?? []).length < 3)
-      issues.push("case study scenario needs at least three sentences");
-    if (RECALL_OPENERS.test(prompt))
-      issues.push("case study question is direct recall, not applied reasoning");
+    if (stimulus.length < 180) issues.push("case study scenario is too thin (needs a real 3–5 sentence situation)");
+    if ((stimulus.match(/[.!?]/g) ?? []).length < 3) issues.push("case study scenario needs at least three sentences");
+    if (RECALL_OPENERS.test(prompt)) issues.push("case study question is direct recall, not applied reasoning");
   }
 
   if (q.kind === "assertion_reason") {
     if (!/assertion\s*\(a\)\s*:/i.test(stimulus) || !/reason\s*\(r\)\s*:/i.test(stimulus)) {
-      issues.push(
-        "assertion–reason stimulus must contain 'Assertion (A):' and 'Reason (R):' lines",
-      );
+      issues.push("assertion–reason stimulus must contain 'Assertion (A):' and 'Reason (R):' lines");
     }
-    const a =
-      stimulus
-        .split(/reason\s*\(r\)\s*:/i)[0]
-        ?.replace(/assertion\s*\(a\)\s*:/i, "")
-        .trim() ?? "";
+    const a = stimulus.split(/reason\s*\(r\)\s*:/i)[0]?.replace(/assertion\s*\(a\)\s*:/i, "").trim() ?? "";
     const r = stimulus.split(/reason\s*\(r\)\s*:/i)[1]?.trim() ?? "";
-    if (a.length < 25 || r.length < 25)
-      issues.push("assertion and reason must both be complete statements");
-    if (a && r && a.toLowerCase() === r.toLowerCase())
-      issues.push("reason merely restates the assertion");
+    if (a.length < 25 || r.length < 25) issues.push("assertion and reason must both be complete statements");
+    if (a && r && a.toLowerCase() === r.toLowerCase()) issues.push("reason merely restates the assertion");
   }
 
   if (q.kind === "data_interpretation") {
@@ -190,8 +179,7 @@ export function competencyQualityIssues(q: {
   }
 
   if (q.kind === "applied_mcq") {
-    if (prompt.length < 90)
-      issues.push("applied MCQ needs a described novel situation, not a one-line recall prompt");
+    if (prompt.length < 90) issues.push("applied MCQ needs a described novel situation, not a one-line recall prompt");
     if (RECALL_OPENERS.test(prompt)) issues.push("applied MCQ opens as a recall question");
     const opts = q.options ?? [];
     if (opts.length !== 4) issues.push("applied MCQ needs exactly four options");
@@ -199,6 +187,7 @@ export function competencyQualityIssues(q: {
 
   return issues;
 }
+
 
 export type CbseCoverageRow = {
   kind: string;

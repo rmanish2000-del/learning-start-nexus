@@ -54,6 +54,7 @@ const UNLOCKS = [
   "Evidence portfolio with verifier attribution for every closed gap.",
 ];
 
+
 // Identity gate: the report, the run and the upgrade are account-owned. The
 // server re-checks ownership on every call; this only keeps the UI honest.
 function UpgradePage() {
@@ -101,8 +102,7 @@ function UpgradePageBody() {
       const order = await createFn({ data: { token } });
       if (order.status !== "paid") {
         const intent = await intentFn({ data: { orderRef: order.orderRef } });
-        if (!intent.razorpayOrderId)
-          throw new Error("The payment gateway is unavailable right now.");
+        if (!intent.razorpayOrderId) throw new Error("The payment gateway is unavailable right now.");
         const result = await openRazorpayCheckout({
           keyId: intent.keyId,
           razorpayOrderId: intent.razorpayOrderId,
@@ -111,9 +111,7 @@ function UpgradePageBody() {
           notes: { order_ref: order.orderRef },
         });
         if (!result) {
-          await failFn({
-            data: { orderRef: order.orderRef, reason: "Checkout dismissed by the parent" },
-          });
+          await failFn({ data: { orderRef: order.orderRef, reason: "Checkout dismissed by the parent" } });
           toast.message(t("pay.cancelled", "Payment cancelled. Nothing was charged."));
           return;
         }
@@ -137,6 +135,7 @@ function UpgradePageBody() {
     }
   }
 
+
   if (query.isLoading) {
     return (
       <DiagnosticShell>
@@ -147,11 +146,7 @@ function UpgradePageBody() {
   if (query.isError || !view) {
     return (
       <DiagnosticShell>
-        <QueryError
-          title={t("upgrade.invalid", "This upgrade link is not valid")}
-          error={query.error}
-          onRetry={() => void query.refetch()}
-        />
+        <QueryError title={t("upgrade.invalid", "This upgrade link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
       </DiagnosticShell>
     );
   }
@@ -172,29 +167,19 @@ function UpgradePageBody() {
                 `Close ${view.childFirstName}'s ${gapCount} open ${gapCount === 1 ? "gap" : "gaps"} this year.`,
                 { name: view.childFirstName, n: gapCount },
               )
-            : t(
-                "upgrade.title.secure",
-                `Hold ${view.childFirstName}'s level through the board year.`,
-                {
-                  name: view.childFirstName,
-                },
-              )}
+            : t("upgrade.title.secure", `Hold ${view.childFirstName}'s level through the board year.`, {
+                name: view.childFirstName,
+              })}
         </h1>
         {view.report && gapCount > 0 ? (
           <p className="text-sm text-muted-foreground">
             {t(
               "upgrade.atRisk",
-              `At risk right now: ${view.report.gaps
-                .slice(0, 3)
-                .map((g) => g.code)
-                .join(", ")}${
+              `At risk right now: ${view.report.gaps.slice(0, 3).map((g) => g.code).join(", ")}${
                 gapCount > 3 ? ` and ${gapCount - 3} more` : ""
               } — about ${view.report.marksAtRiskTotal} of the ~${CHAPTER_GROUP_MARKS} marks this chapter group carries.`,
               {
-                codes: view.report.gaps
-                  .slice(0, 3)
-                  .map((g) => g.code)
-                  .join(", "),
+                codes: view.report.gaps.slice(0, 3).map((g) => g.code).join(", "),
                 more: gapCount > 3 ? String(gapCount - 3) : "0",
                 marks: view.report.marksAtRiskTotal,
                 total: CHAPTER_GROUP_MARKS,
@@ -207,9 +192,7 @@ function UpgradePageBody() {
       {view.planPurchased ? (
         <Card className="mt-8">
           <CardHeader>
-            <CardTitle className="text-base">
-              {t("upgrade.active.title", "The plan is already active")}
-            </CardTitle>
+            <CardTitle className="text-base">{t("upgrade.active.title", "The plan is already active")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
             <p>
@@ -221,8 +204,7 @@ function UpgradePageBody() {
             </p>
             <Button asChild>
               <Link to="/diagnostic/report/$token" params={{ token }}>
-                {t("upgrade.backToReport", "Back to the report")}{" "}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {t("upgrade.backToReport", "Back to the report")} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardContent>
@@ -236,9 +218,7 @@ function UpgradePageBody() {
             <div className="flex flex-wrap items-baseline gap-3">
               {offer.creditApplied ? (
                 <>
-                  <span className="text-sm text-muted-foreground line-through">
-                    {formatInr(offer.listPaise)}
-                  </span>
+                  <span className="text-sm text-muted-foreground line-through">{formatInr(offer.listPaise)}</span>
                   <span className="text-3xl font-semibold tracking-tight">
                     {formatInr(offer.firstInvoicePaise)}
                   </span>
@@ -252,12 +232,8 @@ function UpgradePageBody() {
                 </>
               ) : (
                 <>
-                  <span className="text-3xl font-semibold tracking-tight">
-                    {formatInr(offer.listPaise)}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {t("upgrade.pay.perYear", "per year · renews annually")}
-                  </span>
+                  <span className="text-3xl font-semibold tracking-tight">{formatInr(offer.listPaise)}</span>
+                  <span className="text-sm text-muted-foreground">{t("upgrade.pay.perYear", "per year · renews annually")}</span>
                 </>
               )}
             </div>
@@ -273,9 +249,7 @@ function UpgradePageBody() {
 
             <Separator />
             <div className="space-y-2">
-              <p className="text-sm font-medium">
-                {t("upgrade.unlock.title", "What changes today")}
-              </p>
+              <p className="text-sm font-medium">{t("upgrade.unlock.title", "What changes today")}</p>
               {UNLOCKS.map((line, i) => (
                 <p key={line} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -295,11 +269,7 @@ function UpgradePageBody() {
             </Alert>
 
             <Button size="lg" className="w-full" onClick={purchase} disabled={pending}>
-              {pending ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <Lock className="mr-2 h-4 w-4" />
-              )}
+              {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lock className="mr-2 h-4 w-4" />}
               {t("upgrade.cta", `Start the plan — ${formatInr(offer.firstInvoicePaise)}`, {
                 price: formatInr(offer.firstInvoicePaise),
               })}
@@ -310,9 +280,7 @@ function UpgradePageBody() {
               <span>{t("upgrade.trust.1", "No card stored by EduOS")}</span>
               <span>{t("upgrade.trust.2", "Data deleted on request")}</span>
               <span>
-                {t("upgrade.trust.sibling", `Sibling plan ${formatInr(249_900)}`, {
-                  price: formatInr(249_900),
-                })}
+                {t("upgrade.trust.sibling", `Sibling plan ${formatInr(249_900)}`, { price: formatInr(249_900) })}
               </span>
             </div>
           </CardContent>

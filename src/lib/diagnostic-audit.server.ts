@@ -5,15 +5,14 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { fetchPolicyAudit, type DbErrorShape, type PolicyAuditRow } from "./audit.server";
+import {
+  fetchPolicyAudit,
+  type DbErrorShape,
+  type PolicyAuditRow,
+} from "./audit.server";
 import type { CallerCtx } from "./blueprint-audit.server";
 import { PILOT_BOOK_ID } from "./curriculum-audit.server";
-import {
-  allocateByWeight,
-  buildDiagnosticPlan,
-  predictRisks,
-  type RiskRow,
-} from "./diagnostic-shared";
+import { allocateByWeight, buildDiagnosticPlan, predictRisks, type RiskRow } from "./diagnostic-shared";
 
 type Client = SupabaseClient<Database>;
 
@@ -31,17 +30,15 @@ export const DIAG_EXPECTED = {
   outcomesInUnit: 3,
   // Sprint 6G seeded two submitted demo sessions on the diagnostic to power
   // the Gap Analysis sprint — they are expected and allowed by probe P6.
-  demoSessionIds: ["dd000001-0000-4000-8000-000000000001", "dd000002-0000-4000-8000-000000000002"],
+  demoSessionIds: [
+    "dd000001-0000-4000-8000-000000000001",
+    "dd000002-0000-4000-8000-000000000002",
+  ],
 } as const;
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as {
-    code?: string;
-    message?: string;
-    details?: string | null;
-    hint?: string | null;
-  };
+  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -65,24 +62,9 @@ export type EngineCount = {
 
 export async function fetchEngineCounts(supabase: Client, admin: Client): Promise<EngineCount[]> {
   const specs = [
-    {
-      table: "assessments",
-      label: "Assessments",
-      note: "Includes engine-generated diagnostics and reassessments.",
-      idCol: "id",
-    },
-    {
-      table: "assessment_question_map",
-      label: "Question maps",
-      note: "The engine's picked questions per generated assessment.",
-      idCol: "assessment_id",
-    },
-    {
-      table: "book_events",
-      label: "Book events",
-      note: "Append-only log — diagnostic_generated rows record every generation.",
-      idCol: "id",
-    },
+    { table: "assessments", label: "Assessments", note: "Includes engine-generated diagnostics and reassessments.", idCol: "id" },
+    { table: "assessment_question_map", label: "Question maps", note: "The engine's picked questions per generated assessment.", idCol: "assessment_id" },
+    { table: "book_events", label: "Book events", note: "Append-only log — diagnostic_generated rows record every generation.", idCol: "id" },
   ] as const;
   const out: EngineCount[] = [];
   for (const spec of specs) {
@@ -187,29 +169,21 @@ export async function fetchEngineSnapshot(client: Client): Promise<EngineSnapsho
       .in("assessment_id", [E.diagnosticId, E.reassessmentId]),
     client.from("assessments").select("id").eq("book_id", diagnostic.book_id),
   ]);
-  if (outcomesRes.error || questionsRes.error || mapsRes.error || bookAssessmentsRes.error)
-    return empty;
+  if (outcomesRes.error || questionsRes.error || mapsRes.error || bookAssessmentsRes.error) return empty;
 
   const outcomes = (outcomesRes.data ?? []).filter((o) => o.status === "active");
   const approved = (questionsRes.data ?? []).filter((q) => q.status === "approved");
   const maps = mapsRes.data ?? [];
 
-  const diagnosticIds = maps
-    .filter((m) => m.assessment_id === E.diagnosticId)
-    .map((m) => m.question_id);
-  const reassessmentIds = maps
-    .filter((m) => m.assessment_id === E.reassessmentId)
-    .map((m) => m.question_id);
+  const diagnosticIds = maps.filter((m) => m.assessment_id === E.diagnosticId).map((m) => m.question_id);
+  const reassessmentIds = maps.filter((m) => m.assessment_id === E.reassessmentId).map((m) => m.question_id);
 
   // Usage state as the engine saw it at generation time: all mapped questions
   // of the book excluding the generated pair itself.
   const { data: otherMaps } = await client
     .from("assessment_question_map")
     .select("assessment_id, question_id")
-    .in(
-      "assessment_id",
-      (bookAssessmentsRes.data ?? []).map((a) => a.id).filter((id) => id !== E.reassessmentId),
-    );
+    .in("assessment_id", (bookAssessmentsRes.data ?? []).map((a) => a.id).filter((id) => id !== E.reassessmentId));
   const usedAtGeneration = new Set(
     (otherMaps ?? []).filter((m) => m.assessment_id !== E.reassessmentId).map((m) => m.question_id),
   );
@@ -253,11 +227,9 @@ export async function fetchEngineSnapshot(client: Client): Promise<EngineSnapsho
     title: o.title,
     weight: o.diagnostic_weight,
     diagnosticStored: storedCount(o.id, diagnosticIds),
-    diagnosticRecomputed:
-      diagnosticPlan.outcomes.find((p) => p.outcomeId === o.id)?.actualQuestions ?? 0,
+    diagnosticRecomputed: diagnosticPlan.outcomes.find((p) => p.outcomeId === o.id)?.actualQuestions ?? 0,
     reassessmentStored: storedCount(o.id, reassessmentIds),
-    reassessmentRecomputed:
-      reassessmentPlan.outcomes.find((p) => p.outcomeId === o.id)?.actualQuestions ?? 0,
+    reassessmentRecomputed: reassessmentPlan.outcomes.find((p) => p.outcomeId === o.id)?.actualQuestions ?? 0,
     approvedInBank: approved.filter((q) => q.outcome_id === o.id).length,
   }));
 
@@ -326,30 +298,21 @@ export async function runEngineProbes(
       key: "seeded-pair",
       name: "P1 — Generated pair seeded",
       expectation: `"${E.diagnosticTitle}" and "${E.reassessmentTitle}" exist with ${E.totalQuestions} mapped questions each.`,
-      detail:
-        snap.diagnosticPresent && snap.reassessmentPresent
-          ? `Diagnostic: ${snap.diagnosticQuestions} questions (${snap.diagnosticStatus}); reassessment: ${snap.reassessmentQuestions} questions (${snap.reassessmentStatus}).`
-          : "Seeded generated pair not found.",
+      detail: snap.diagnosticPresent && snap.reassessmentPresent
+        ? `Diagnostic: ${snap.diagnosticQuestions} questions (${snap.diagnosticStatus}); reassessment: ${snap.reassessmentQuestions} questions (${snap.reassessmentStatus}).`
+        : "Seeded generated pair not found.",
       pass: ok,
     });
   }
 
   // P2 — Weight compliance: stored allocation matches largest-remainder recompute.
   {
-    const weights = snap.rows.map((r) => ({
-      id: r.code,
-      code: r.code,
-      diagnosticWeight: r.weight,
-    }));
+    const weights = snap.rows.map((r) => ({ id: r.code, code: r.code, diagnosticWeight: r.weight }));
     const recomputed = allocateByWeight(weights, E.totalQuestions);
     const mismatches = snap.rows.filter(
-      (r) =>
-        r.diagnosticStored !== (recomputed.get(r.code) ?? 0) ||
-        r.diagnosticStored !== r.diagnosticRecomputed,
+      (r) => r.diagnosticStored !== (recomputed.get(r.code) ?? 0) || r.diagnosticStored !== r.diagnosticRecomputed,
     );
-    const summary = snap.rows
-      .map((r) => `${r.code} ${r.weight}%→${r.diagnosticStored}q`)
-      .join(", ");
+    const summary = snap.rows.map((r) => `${r.code} ${r.weight}%→${r.diagnosticStored}q`).join(", ");
     probes.push({
       key: "weight-compliance",
       name: "P2 — Weight compliance (largest remainder)",
@@ -366,8 +329,7 @@ export async function runEngineProbes(
     probes.push({
       key: "outcome-coverage",
       name: "P3 — Outcome coverage",
-      expectation:
-        "The generated diagnostic measures every unit outcome that has at least one approved question.",
+      expectation: "The generated diagnostic measures every unit outcome that has at least one approved question.",
       detail: `Coverable outcomes: ${coverable.length}/${snap.rows.length}; measured by the diagnostic: ${measured.length}.`,
       pass: snap.diagnosticPresent && coverable.length > 0 && measured.length === coverable.length,
     });
@@ -378,8 +340,7 @@ export async function runEngineProbes(
     probes.push({
       key: "reassessment-separation",
       name: "P4 — Reassessment separation",
-      expectation:
-        "The reassessment shares zero questions with the baseline diagnostic (alternatives existed for every outcome).",
+      expectation: "The reassessment shares zero questions with the baseline diagnostic (alternatives existed for every outcome).",
       detail: `Overlapping question ids between the pair: ${snap.overlapCount}.`,
       pass: snap.reassessmentPresent && snap.reassessmentQuestions > 0 && snap.overlapCount === 0,
     });
@@ -390,8 +351,7 @@ export async function runEngineProbes(
     probes.push({
       key: "reuse-rules",
       name: "P5 — Question reuse rules",
-      expectation:
-        "Every reassessment question is approved and was unused by any other assessment (reused count = 0 when alternatives exist).",
+      expectation: "Every reassessment question is approved and was unused by any other assessment (reused count = 0 when alternatives exist).",
       detail: `Reassessment questions: ${snap.reassessmentQuestions}; already used elsewhere: ${snap.reusedCount}; not approved: ${snap.unapprovedCount}.`,
       pass: snap.reassessmentQuestions > 0 && snap.reusedCount === 0 && snap.unapprovedCount === 0,
     });
@@ -432,25 +392,10 @@ export async function runEngineProbes(
     .maybeSingle();
   if (!otherOrg) {
     for (const [key, name, expectation] of [
-      [
-        "cross-org-read",
-        "P7 — Cross-organization read isolation",
-        "Reading another org's generated maps returns 0 rows.",
-      ],
-      [
-        "cross-org-write",
-        "P8 — Cross-organization write rejected",
-        "Inserting a map row for another org is rejected by RLS.",
-      ],
+      ["cross-org-read", "P7 — Cross-organization read isolation", "Reading another org's generated maps returns 0 rows."],
+      ["cross-org-write", "P8 — Cross-organization write rejected", "Inserting a map row for another org is rejected by RLS."],
     ] as const) {
-      probes.push({
-        key,
-        name,
-        expectation,
-        detail: "No second organization exists to test against.",
-        pass: true,
-        skipped: true,
-      });
+      probes.push({ key, name, expectation, detail: "No second organization exists to test against.", pass: true, skipped: true });
     }
   } else {
     const { data: otherAssessment } = await admin
@@ -474,11 +419,7 @@ export async function runEngineProbes(
       dbError: shapeError(read.error),
     });
 
-    const { data: anyQuestion } = await admin
-      .from("question_bank")
-      .select("id")
-      .limit(1)
-      .maybeSingle();
+    const { data: anyQuestion } = await admin.from("question_bank").select("id").limit(1).maybeSingle();
     const write = await (supabase as SupabaseClient).from("assessment_question_map").insert({
       assessment_id: otherAssessment?.id ?? NO_ROWS[0],
       question_id: anyQuestion?.id ?? NO_ROWS[0],
@@ -489,9 +430,7 @@ export async function runEngineProbes(
       key: "cross-org-write",
       name: "P8 — Cross-organization write rejected",
       expectation: `Inserting a question map into "${otherOrg.name}" fails (RLS or FK violation).`,
-      detail: write.error
-        ? `Rejected: ${write.error.message}`
-        : "INSERT SUCCEEDED — tenant isolation breach.",
+      detail: write.error ? `Rejected: ${write.error.message}` : "INSERT SUCCEEDED — tenant isolation breach.",
       pass: !!write.error,
       dbError: shapeError(write.error),
     });
@@ -499,11 +438,7 @@ export async function runEngineProbes(
 
   // P9 — Role write gate: reviewer generation denied; staff round-trip works.
   if (me.role === "reviewer") {
-    const { data: anyQuestion } = await admin
-      .from("question_bank")
-      .select("id")
-      .limit(1)
-      .maybeSingle();
+    const { data: anyQuestion } = await admin.from("question_bank").select("id").limit(1).maybeSingle();
     const attempt = await (supabase as SupabaseClient).from("assessment_question_map").insert({
       assessment_id: E.diagnosticId,
       question_id: anyQuestion?.id ?? NO_ROWS[0],
@@ -514,9 +449,7 @@ export async function runEngineProbes(
       key: "role-write-gate",
       name: "P9 — Reviewer is read-only",
       expectation: "A reviewer's INSERT into assessment_question_map is rejected.",
-      detail: attempt.error
-        ? `Rejected: ${attempt.error.message}`
-        : "INSERT SUCCEEDED — reviewers must not write.",
+      detail: attempt.error ? `Rejected: ${attempt.error.message}` : "INSERT SUCCEEDED — reviewers must not write.",
       pass: !!attempt.error,
       dbError: shapeError(attempt.error),
     });
@@ -568,15 +501,11 @@ export async function runEngineProbes(
           sort_order: 1,
           points: 1,
         });
-        const del = await (supabase as SupabaseClient)
-          .from("assessments")
-          .delete()
-          .eq("id", ins.data.id);
+        const del = await (supabase as SupabaseClient).from("assessments").delete().eq("id", ins.data.id);
         probes.push({
           key: "role-write-gate",
           name: "P9 — Staff generation round-trip",
-          expectation:
-            "Staff can create and delete a generated assessment in their own org (map rows cascade).",
+          expectation: "Staff can create and delete a generated assessment in their own org (map rows cascade).",
           detail: mapIns.error
             ? `Assessment created but map insert failed: ${mapIns.error.message}`
             : del.error

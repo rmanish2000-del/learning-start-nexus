@@ -262,7 +262,9 @@ function assertCommercial(row: OrderRow): void {
 async function loadOrderByRef(ref: string): Promise<OrderRow> {
   const { data, error } = await supabaseAdmin
     .from("parent_orders")
-    .select(ORDER_COLUMNS)
+    .select(
+      ORDER_COLUMNS,
+    )
     .eq("order_ref", ref)
     .maybeSingle();
   if (error) throw new Error(error.message);
@@ -280,7 +282,9 @@ async function loadOrderByRef(ref: string): Promise<OrderRow> {
 async function loadOrderByToken(accessToken: string): Promise<OrderRow> {
   const { data, error } = await supabaseAdmin
     .from("parent_orders")
-    .select(ORDER_COLUMNS)
+    .select(
+      ORDER_COLUMNS,
+    )
     .eq("access_token", accessToken)
     .maybeSingle();
   if (error) throw new Error(error.message);
@@ -299,6 +303,7 @@ async function loadOrderByToken(accessToken: string): Promise<OrderRow> {
   await assertPilotRunActive(run.id);
   return pilotRunAsRow(run as PilotRunRow);
 }
+
 
 /**
  * Purchase ownership. Orders created by the identity-first flow always carry
@@ -319,10 +324,7 @@ function assertOrderOwner(row: OrderRow, userId: string | null): void {
  * Enforced here so no client route, hidden button or direct RPC call can bypass
  * it, and a parent session is refused even though it owns the order.
  */
-async function assertLearnerAnswerer(
-  row: OrderRow,
-  userId: string | null,
-): Promise<{ fullName: string; handle: string }> {
+async function assertLearnerAnswerer(row: OrderRow, userId: string | null): Promise<{ fullName: string; handle: string }> {
   if (!row.learner_id) throw new Error("This diagnostic is not linked to a student profile yet.");
   const { data: learner, error } = await supabaseAdmin
     .from("learners")
@@ -346,13 +348,10 @@ async function assertLearnerAnswerer(
   return { fullName: learner.full_name, handle: learner.handle };
 }
 
+
 async function unitTitle(unitId: string | null): Promise<string | null> {
   if (!unitId) return null;
-  const { data } = await supabaseAdmin
-    .from("curriculum_units")
-    .select("title")
-    .eq("id", unitId)
-    .maybeSingle();
+  const { data } = await supabaseAdmin.from("curriculum_units").select("title").eq("id", unitId).maybeSingle();
   return data?.title ?? null;
 }
 
@@ -412,7 +411,10 @@ export async function createDiagnosticOrder(input: {
   // Wave 0: the catalogue is now the authority on what may be sold. The
   // explicit Class 10 guard above is kept deliberately — this check can only
   // ever refuse more, never less.
-  if (book.catalogue_subject_id && !(await isSubjectPurchasable(book.catalogue_subject_id))) {
+  if (
+    book.catalogue_subject_id &&
+    !(await isSubjectPurchasable(book.catalogue_subject_id))
+  ) {
     throw new Error("That subject is not available.");
   }
 
@@ -497,9 +499,7 @@ async function markOrderPaid(row: OrderRow, providerPaymentRef: string): Promise
       kind,
       granted_at: paidAt,
       expires_at:
-        kind === "board_success_plan"
-          ? new Date(Date.now() + 365 * 86_400_000).toISOString()
-          : null,
+        kind === "board_success_plan" ? new Date(Date.now() + 365 * 86_400_000).toISOString() : null,
     });
   }
 
@@ -533,7 +533,9 @@ async function markOrderFailed(row: OrderRow, reason: string): Promise<void> {
 async function loadOrderByProviderOrderId(providerOrderId: string): Promise<OrderRow | null> {
   const { data, error } = await supabaseAdmin
     .from("parent_orders")
-    .select(ORDER_COLUMNS)
+    .select(
+      ORDER_COLUMNS,
+    )
     .eq("provider_order_id", providerOrderId)
     .maybeSingle();
   if (error) throw new Error(error.message);
@@ -552,10 +554,7 @@ export type CheckoutIntent = {
 };
 
 /** Creates (or reuses) the Razorpay order this checkout session will pay. */
-export async function startRazorpayCheckout(
-  ref: string,
-  userId: string | null = null,
-): Promise<CheckoutIntent> {
+export async function startRazorpayCheckout(ref: string, userId: string | null = null): Promise<CheckoutIntent> {
   const { createRazorpayOrder, razorpayKeyId, razorpayMode } = await import("./razorpay.server");
   const row = await loadOrderByRef(ref);
   assertOrderOwner(row, userId);
@@ -631,8 +630,7 @@ export async function verifyRazorpayCheckout(input: {
   assertCommercial(row);
 
   const matched = await loadOrderByProviderOrderId(input.razorpayOrderId);
-  if (!matched || matched.id !== row.id)
-    throw new Error("This payment does not belong to that order.");
+  if (!matched || matched.id !== row.id) throw new Error("This payment does not belong to that order.");
 
   if (!(await verifyCheckoutSignature(input))) {
     await markOrderFailed(row, "Signature verification failed");
@@ -678,14 +676,12 @@ export async function failFromWebhook(input: {
   return "failed";
 }
 
+
 // ---------------------------------------------------------------------------
 // Provisioning: learner + curriculum-mapped diagnostic + session
 // ---------------------------------------------------------------------------
 
-export async function generateParentDiagnostic(
-  row: OrderRow,
-  _learnerName: string,
-): Promise<{
+export async function generateParentDiagnostic(row: OrderRow, _learnerName: string): Promise<{
   assessmentId: string;
   questionCount: number;
 }> {
@@ -792,8 +788,7 @@ export async function setupDiagnostic(input: {
   assertOrderOwner(row, input.userId);
   if (row.status !== "paid") throw new Error("This order has not been paid yet.");
   if (row.session_id) return { accessToken: row.access_token };
-  if (!row.book_id || !row.unit_id || !row.org_id)
-    throw new Error("This order is missing its curriculum selection.");
+  if (!row.book_id || !row.unit_id || !row.org_id) throw new Error("This order is missing its curriculum selection.");
   if (!row.learner_id) throw new Error("This order is not linked to a student profile.");
 
   // The student profile already exists — it was required before checkout.
@@ -864,9 +859,7 @@ async function loadQuestions(assessmentId: string): Promise<{
 }> {
   const { data: map, error } = await supabaseAdmin
     .from("assessment_question_map")
-    .select(
-      "sort_order, question_bank(id, outcome_id, kind, difficulty, prompt, stimulus, options, correct_answer, explanation)",
-    )
+    .select("sort_order, question_bank(id, outcome_id, kind, difficulty, prompt, stimulus, options, correct_answer, explanation)")
     .eq("assessment_id", assessmentId)
     .order("sort_order");
   if (error) throw new Error(error.message);
@@ -930,15 +923,11 @@ export type DiagnosticRun = {
   questions: RunQuestion[];
 };
 
-export async function loadRun(
-  accessToken: string,
-  userId: string | null = null,
-): Promise<DiagnosticRun> {
+export async function loadRun(accessToken: string, userId: string | null = null): Promise<DiagnosticRun> {
   const row = await loadOrderByToken(accessToken);
   const learner = await assertLearnerAnswerer(row, userId);
 
-  if (!row.session_id || !row.assessment_id)
-    throw new Error("This diagnostic has not been set up yet.");
+  if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
     .from("assessment_sessions")
@@ -988,20 +977,12 @@ export async function saveRunAnswer(input: {
     .eq("id", row.session_id)
     .single();
   if (error) throw new Error(error.message);
-  if (session.status === "submitted")
-    throw new Error("This diagnostic has already been submitted.");
+  if (session.status === "submitted") throw new Error("This diagnostic has already been submitted.");
 
-  const answers = {
-    ...((session.answers as Record<string, string>) ?? {}),
-    [input.questionId]: input.answer,
-  };
+  const answers = { ...((session.answers as Record<string, string>) ?? {}), [input.questionId]: input.answer };
   const { error: uError } = await supabaseAdmin
     .from("assessment_sessions")
-    .update({
-      answers,
-      current_position: input.position,
-      last_activity_at: new Date().toISOString(),
-    })
+    .update({ answers, current_position: input.position, last_activity_at: new Date().toISOString() })
     .eq("id", session.id);
   if (uError) throw new Error(uError.message);
   return { saved: true };
@@ -1016,15 +997,11 @@ function isCorrect(given: string | undefined, expected: string): boolean {
   return given.trim().toLowerCase() === expected.trim().toLowerCase();
 }
 
-export async function submitRun(
-  accessToken: string,
-  userId: string | null = null,
-): Promise<{ accessToken: string }> {
+export async function submitRun(accessToken: string, userId: string | null = null): Promise<{ accessToken: string }> {
   const row = await loadOrderByToken(accessToken);
   await assertLearnerAnswerer(row, userId);
 
-  if (!row.session_id || !row.assessment_id)
-    throw new Error("This diagnostic has not been set up yet.");
+  if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const { data: session, error } = await supabaseAdmin
     .from("assessment_sessions")
@@ -1079,10 +1056,7 @@ export async function submitRun(
         learner_id: row.learner_id!,
         session_id: session.id,
         subject: row.subject ?? "",
-        topic: (report.outcomes.find((o) => o.outcomeId === g.outcomeId)?.title ?? g.title).slice(
-          0,
-          200,
-        ),
+        topic: (report.outcomes.find((o) => o.outcomeId === g.outcomeId)?.title ?? g.title).slice(0, 200),
         subtopic: `${g.code} — ${g.title}`.slice(0, 200),
         items_total: g.questionsTotal,
         items_correct: g.questionsTotal - g.questionsMissed,
@@ -1136,10 +1110,7 @@ export type ParentReport = {
   planOrderRef: string | null;
 };
 
-export async function loadReport(
-  accessToken: string,
-  userId: string | null = null,
-): Promise<ParentReport> {
+export async function loadReport(accessToken: string, userId: string | null = null): Promise<ParentReport> {
   const row = await loadOrderByToken(accessToken);
   assertOrderOwner(row, userId);
   if (!row.session_id) throw new Error("This diagnostic has not been set up yet.");
@@ -1190,10 +1161,7 @@ export async function loadReport(
 // Upgrade — ₹2,999 Board Success Plan
 // ---------------------------------------------------------------------------
 
-export async function createUpgradeOrder(
-  accessToken: string,
-  userId: string | null = null,
-): Promise<PublicOrder> {
+export async function createUpgradeOrder(accessToken: string, userId: string | null = null): Promise<PublicOrder> {
   const row = await loadOrderByToken(accessToken);
   assertOrderOwner(row, userId);
   if (row.purpose !== "diagnostic") throw new Error("Upgrade must start from a diagnostic order.");
@@ -1231,7 +1199,9 @@ export async function createUpgradeOrder(
       contact_email: row.contact_email,
       parent_order_id: row.id,
     })
-    .select(ORDER_COLUMNS)
+    .select(
+      ORDER_COLUMNS,
+    )
     .single();
   if (error) throw new Error(error.message);
   return toPublicOrder({ ...(data as Omit<OrderRow, "source">), source: "order" });
@@ -1271,8 +1241,7 @@ export async function loadHandoff(accessToken: string, userId: string): Promise<
   const row = await loadOrderByToken(accessToken);
   assertOrderOwner(row, userId);
   if (row.status !== "paid") throw new Error("This diagnostic has not been paid for yet.");
-  if (!row.session_id || !row.assessment_id)
-    throw new Error("This diagnostic has not been set up yet.");
+  if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
   if (!row.learner_id) throw new Error("This diagnostic is not linked to a student profile.");
 
   const [{ data: learner }, { data: session }, { count }] = await Promise.all([
@@ -1295,11 +1264,7 @@ export async function loadHandoff(accessToken: string, userId: string): Promise<
   const answers = (session?.answers as Record<string, string> | null) ?? {};
   const answeredCount = Object.values(answers).filter((v) => v !== "").length;
   const status: DiagnosticHandoff["status"] =
-    session?.status === "submitted"
-      ? "submitted"
-      : answeredCount > 0
-        ? "in_progress"
-        : "not_started";
+    session?.status === "submitted" ? "submitted" : answeredCount > 0 ? "in_progress" : "not_started";
 
   return {
     accessToken: row.access_token,
@@ -1329,21 +1294,13 @@ export type RunCompletion = {
  * Learner-only completion confirmation. The learner never sees the parent
  * report: the score and the recommendations belong on the parent's side.
  */
-export async function loadRunCompletion(
-  accessToken: string,
-  userId: string,
-): Promise<RunCompletion> {
+export async function loadRunCompletion(accessToken: string, userId: string): Promise<RunCompletion> {
   const row = await loadOrderByToken(accessToken);
   const learner = await assertLearnerAnswerer(row, userId);
-  if (!row.session_id || !row.assessment_id)
-    throw new Error("This diagnostic has not been set up yet.");
+  if (!row.session_id || !row.assessment_id) throw new Error("This diagnostic has not been set up yet.");
 
   const [{ data: session }, { count }] = await Promise.all([
-    supabaseAdmin
-      .from("assessment_sessions")
-      .select("status, answers")
-      .eq("id", row.session_id)
-      .maybeSingle(),
+    supabaseAdmin.from("assessment_sessions").select("status, answers").eq("id", row.session_id).maybeSingle(),
     supabaseAdmin
       .from("assessment_question_map")
       .select("question_id", { count: "exact", head: true })
@@ -1413,11 +1370,7 @@ export async function listLearnerDiagnostics(learnerId: string): Promise<
 
   for (const row of rows) {
     const [{ data: session }, { count }] = await Promise.all([
-      supabaseAdmin
-        .from("assessment_sessions")
-        .select("status, answers")
-        .eq("id", row.session_id!)
-        .maybeSingle(),
+      supabaseAdmin.from("assessment_sessions").select("status, answers").eq("id", row.session_id!).maybeSingle(),
       supabaseAdmin
         .from("assessment_question_map")
         .select("question_id", { count: "exact", head: true })
@@ -1429,18 +1382,14 @@ export async function listLearnerDiagnostics(learnerId: string): Promise<
       accessToken: row.access_token,
       subject: row.subject ?? "",
       unitTitle: (await unitTitle(row.unit_id)) ?? "",
-      status:
-        session?.status === "submitted"
-          ? "submitted"
-          : answeredCount > 0
-            ? "in_progress"
-            : "not_started",
+      status: session?.status === "submitted" ? "submitted" : answeredCount > 0 ? "in_progress" : "not_started",
       answeredCount,
       totalQuestions: count ?? 0,
     });
   }
   return out;
 }
+
 
 // ---------------------------------------------------------------------------
 // Pilot runs — free access, zero commercial footprint

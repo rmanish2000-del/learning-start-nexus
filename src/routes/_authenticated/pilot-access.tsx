@@ -13,7 +13,13 @@ import { toast } from "sonner";
 import { ContextHelp } from "@/components/context-help";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -44,8 +50,7 @@ export const Route = createFileRoute("/_authenticated/pilot-access")({
       { property: "og:title", content: "Pilot access | EduOS" },
       {
         property: "og:description",
-        content:
-          "Administer free pilot journeys for selected families without any commercial record.",
+        content: "Administer free pilot journeys for selected families without any commercial record.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -145,8 +150,7 @@ function PilotAccessPage() {
       toast.success("Invitation created. Copy the link now — it is shown once.");
       await refreshInvites();
     },
-    onError: (error) =>
-      toast.error(friendlyErrorMessage(error, "Could not create the invitation.")),
+    onError: (error) => toast.error(friendlyErrorMessage(error, "Could not create the invitation.")),
   });
 
   const revokeInvite = useMutation({
@@ -156,8 +160,7 @@ function PilotAccessPage() {
       toast.success("Invitation revoked.");
       await refreshInvites();
     },
-    onError: (error) =>
-      toast.error(friendlyErrorMessage(error, "Could not revoke the invitation.")),
+    onError: (error) => toast.error(friendlyErrorMessage(error, "Could not revoke the invitation.")),
   });
 
   const rows = grants.data ?? [];
@@ -171,8 +174,8 @@ function PilotAccessPage() {
           <ContextHelp page="/pilot-access" />
         </div>
         <p className="text-sm text-muted-foreground">
-          Selected families get the complete journey — diagnostic, report, gaps, Study Plan, AI
-          Tutor and reassessment — free. No order, payment or invoice is ever created.
+          Selected families get the complete journey — diagnostic, report, gaps, Study Plan, AI Tutor and
+          reassessment — free. No order, payment or invoice is ever created.
         </p>
       </header>
 
@@ -182,8 +185,7 @@ function PilotAccessPage() {
             <Ticket className="h-4 w-4" /> Grant pilot access
           </CardTitle>
           <CardDescription>
-            The family must already have an EduOS parent account. Leave the subject blank for both
-            subjects.
+            The family must already have an EduOS parent account. Leave the subject blank for both subjects.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
@@ -373,8 +375,7 @@ function PilotAccessPage() {
             <ShieldCheck className="h-4 w-4" /> Pilot grants
           </CardTitle>
           <CardDescription>
-            Revoking or letting a grant expire removes access immediately; the family's history
-            stays intact.
+            Revoking or letting a grant expire removes access immediately; the family's history stays intact.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -390,16 +391,10 @@ function PilotAccessPage() {
               >
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-medium">
-                      {row.parentName ?? row.parentEmail ?? "Parent"}
-                    </span>
+                    <span className="font-medium">{row.parentName ?? row.parentEmail ?? "Parent"}</span>
                     <Badge
                       variant={
-                        row.status === "active"
-                          ? "default"
-                          : row.status === "revoked"
-                            ? "destructive"
-                            : "secondary"
+                        row.status === "active" ? "default" : row.status === "revoked" ? "destructive" : "secondary"
                       }
                     >
                       {row.status}

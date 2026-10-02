@@ -31,9 +31,7 @@ function inDays(days: number): string {
 
 async function resolveParent(email: string): Promise<{ userId: string; orgId: string | null }> {
   const wanted = email.trim().toLowerCase();
-  const { data: list, error: listError } = await supabaseAdmin.auth.admin.listUsers({
-    perPage: 1000,
-  });
+  const { data: list, error: listError } = await supabaseAdmin.auth.admin.listUsers({ perPage: 1000 });
   if (listError) throw new Error(listError.message);
   const user = list.users.find((u) => (u.email ?? "").toLowerCase() === wanted);
   if (!user) {
@@ -121,12 +119,7 @@ export async function extendPilotAccess(input: {
     .eq("id", input.grantId);
   if (uError) throw new Error(uError.message);
 
-  await logEvent(
-    input.grantId,
-    "extended",
-    input.actorUserId,
-    `+${input.days} day(s) · ${input.reason}`,
-  );
+  await logEvent(input.grantId, "extended", input.actorUserId, `+${input.days} day(s) · ${input.reason}`);
 }
 
 export async function revokePilotAccess(input: {
@@ -248,9 +241,8 @@ export async function assertPilotRunActive(runId: string): Promise<void> {
     .eq("id", runId)
     .maybeSingle();
   if (error) throw new Error(error.message);
-  const grant = (
-    data as { pilot_grants?: { expires_at: string; revoked_at: string | null } } | null
-  )?.pilot_grants;
+  const grant = (data as { pilot_grants?: { expires_at: string; revoked_at: string | null } } | null)
+    ?.pilot_grants;
   if (!grant || grant.revoked_at || new Date(grant.expires_at).getTime() <= Date.now()) {
     throw new Error("This pilot access has ended. Ask EduOS to extend it, or buy the diagnostic.");
   }
@@ -317,8 +309,9 @@ export async function startPilotRun(input: {
     .maybeSingle();
   if (!learner) throw new Error("That student profile could not be found.");
 
-  const { newAccessToken, newRunRef, setupPilotDiagnosticRun } =
-    await import("./parent-diagnostic.server");
+  const { newAccessToken, newRunRef, setupPilotDiagnosticRun } = await import(
+    "./parent-diagnostic.server"
+  );
 
   const { data: run, error } = await supabaseAdmin
     .from("pilot_diagnostic_runs")

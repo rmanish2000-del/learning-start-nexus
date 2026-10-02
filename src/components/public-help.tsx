@@ -1,25 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  CircleHelp,
-  Mail,
-  MessageSquarePlus,
-  Search,
-  SearchX,
-  X,
-} from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, CircleHelp, Mail, MessageSquarePlus, Search, SearchX, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FeedbackForm } from "@/components/feedback-form";
@@ -139,28 +123,16 @@ export function PublicHelpLauncher() {
         <DialogContent className="max-h-[85dvh] w-[calc(100vw-2rem)] max-w-lg overflow-y-auto">
           <DialogHeader className="text-left">
             <DialogTitle>{guidance.title}</DialogTitle>
-            <DialogDescription>
-              Guidance for this page. Close it any time — nothing is required.
-            </DialogDescription>
+            <DialogDescription>Guidance for this page. Close it any time — nothing is required.</DialogDescription>
           </DialogHeader>
 
           <Tabs value={tab} onValueChange={changeTab}>
             <TabsList className="flex w-full flex-wrap justify-start gap-1 overflow-x-auto">
-              <TabsTrigger value="explain" className="text-xs">
-                Explain
-              </TabsTrigger>
-              <TabsTrigger value="next" className="text-xs">
-                What next
-              </TabsTrigger>
-              <TabsTrigger value="faq" className="text-xs">
-                FAQ
-              </TabsTrigger>
-              <TabsTrigger value="feedback" className="text-xs">
-                Feedback
-              </TabsTrigger>
-              <TabsTrigger value="contact" className="text-xs">
-                Contact
-              </TabsTrigger>
+              <TabsTrigger value="explain" className="text-xs">Explain</TabsTrigger>
+              <TabsTrigger value="next" className="text-xs">What next</TabsTrigger>
+              <TabsTrigger value="faq" className="text-xs">FAQ</TabsTrigger>
+              <TabsTrigger value="feedback" className="text-xs">Feedback</TabsTrigger>
+              <TabsTrigger value="contact" className="text-xs">Contact</TabsTrigger>
             </TabsList>
 
             <TabsContent value="explain" className="space-y-3 pt-3">
@@ -185,18 +157,12 @@ export function PublicHelpLauncher() {
               )}
 
               {walkthrough.length > 0 && step !== null && (
-                <div
-                  className="rounded-lg border bg-muted/40 p-3"
-                  role="group"
-                  aria-label="Page walkthrough"
-                >
+                <div className="rounded-lg border bg-muted/40 p-3" role="group" aria-label="Page walkthrough">
                   <p className="text-xs font-medium text-muted-foreground">
                     Step {step + 1} of {walkthrough.length}
                   </p>
                   <p className="mt-1 text-sm font-semibold">{walkthrough[step]!.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {walkthrough[step]!.body}
-                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{walkthrough[step]!.body}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Button
                       variant="outline"
@@ -242,9 +208,7 @@ export function PublicHelpLauncher() {
                   className="block rounded-lg border p-3 transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                   <p className="text-sm font-medium">{item.label}</p>
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                    {item.detail}
-                  </p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{item.detail}</p>
                 </Link>
               ))}
             </TabsContent>
@@ -256,8 +220,7 @@ export function PublicHelpLauncher() {
                   value={query}
                   onChange={(e) => {
                     setQuery(e.target.value);
-                    if (e.target.value.trim().length > 2)
-                      trackGuidance("faq_searched", { route: pathname });
+                    if (e.target.value.trim().length > 2) trackGuidance("faq_searched", { route: pathname });
                   }}
                   placeholder="Search — pricing, sign in, papers…"
                   className="pl-9"
@@ -276,9 +239,7 @@ export function PublicHelpLauncher() {
                 <ul className="space-y-2">
                   {results.map((entry) => (
                     <li key={entry.id} className="rounded-lg border">
-                      <details
-                        onToggle={() => trackGuidance("faq_article_opened", { route: pathname })}
-                      >
+                      <details onToggle={() => trackGuidance("faq_article_opened", { route: pathname })}>
                         <summary className="cursor-pointer list-none p-3 text-sm font-medium">
                           {entry.question}
                         </summary>
@@ -297,11 +258,7 @@ export function PublicHelpLauncher() {
             </TabsContent>
 
             <TabsContent value="feedback" className="pt-3">
-              <FeedbackForm
-                route={pathname}
-                guidanceContext={guidance.match}
-                onDone={() => undefined}
-              />
+              <FeedbackForm route={pathname} guidanceContext={guidance.match} onDone={() => undefined} />
             </TabsContent>
 
             <TabsContent value="contact" className="space-y-3 pt-3">

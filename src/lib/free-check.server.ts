@@ -251,7 +251,10 @@ async function loadCheckRow(checkId: string): Promise<CheckRow> {
  * read the question paper or write an answer — a parent session is refused
  * here, on the server, whatever the UI offers.
  */
-async function assertLearnerSession(row: CheckRow, userId: string): Promise<{ fullName: string }> {
+async function assertLearnerSession(
+  row: CheckRow,
+  userId: string,
+): Promise<{ fullName: string }> {
   const { data: learner, error } = await supabaseAdmin
     .from("learners")
     .select("id, full_name, student_user_id")
@@ -308,8 +311,7 @@ export async function saveFreeCheckAnswer(input: {
   const row = await loadCheckRow(input.checkId);
   await assertLearnerSession(row, input.userId);
   if (row.status === "submitted") throw new Error("This learning check is already complete.");
-  if (!row.question_ids.includes(input.questionId))
-    throw new Error("That question is not part of this check.");
+  if (!row.question_ids.includes(input.questionId)) throw new Error("That question is not part of this check.");
 
   const answers = { ...(row.answers ?? {}), [input.questionId]: input.answer };
   const { error } = await supabaseAdmin
@@ -395,18 +397,14 @@ async function buildPreview(row: CheckRow): Promise<FreeCheckPreview> {
     .maybeSingle();
 
   const graded =
-    (
-      row.result as {
-        graded?: { code: string; title: string; strategy: string | null; correct: boolean }[];
-      } | null
-    )?.graded ?? [];
+    (row.result as { graded?: { code: string; title: string; strategy: string | null; correct: boolean }[] } | null)
+      ?.graded ?? [];
 
   const skills = graded.map((g) => ({ code: g.code, title: g.title, correct: g.correct }));
   const possibleGaps = graded
     .filter((g) => !g.correct)
     .map((g) => ({ code: g.code, title: g.title }));
-  const sample =
-    graded.find((g) => !g.correct && g.strategy) ?? graded.find((g) => !g.correct) ?? null;
+  const sample = graded.find((g) => !g.correct && g.strategy) ?? graded.find((g) => !g.correct) ?? null;
 
   return {
     checkId: row.id,
@@ -430,17 +428,9 @@ async function buildPreview(row: CheckRow): Promise<FreeCheckPreview> {
 }
 
 /** Free-check runs the signed-in learner still has to finish. */
-export async function listLearnerFreeChecks(learnerId: string): Promise<
-  {
-    checkId: string;
-    subject: string;
-    unitTitle: string;
-    status: string;
-    answered: number;
-    total: number;
-    scorePct: number | null;
-  }[]
-> {
+export async function listLearnerFreeChecks(
+  learnerId: string,
+): Promise<{ checkId: string; subject: string; unitTitle: string; status: string; answered: number; total: number; scorePct: number | null }[]> {
   const { data, error } = await supabaseAdmin
     .from("free_learning_checks")
     .select(CHECK_COLUMNS)

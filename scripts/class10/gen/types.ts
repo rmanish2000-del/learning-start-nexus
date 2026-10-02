@@ -91,10 +91,7 @@ export type OutcomeAuthor = {
   reassessment: Draft[];
 };
 
-export function mcqOptions(
-  correct: string,
-  distractors: string[],
-): { options: string[]; correctAnswer: string } {
+export function mcqOptions(correct: string, distractors: string[]): { options: string[]; correctAnswer: string } {
   const options = [correct, ...distractors];
   return { options, correctAnswer: correct };
 }

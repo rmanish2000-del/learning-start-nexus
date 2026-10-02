@@ -126,7 +126,9 @@ function LaunchAuditPage() {
     })();
     setCookieState(readCookieConsent());
     setCookieChoicePersisted(localStorage.getItem(CONSENT_KEY) !== null);
-    setInstallBannerMounted(document.querySelector("[data-eduos-install-banner]") !== null);
+    setInstallBannerMounted(
+      document.querySelector("[data-eduos-install-banner]") !== null,
+    );
 
     // PWA installability checks — all verifiable from this browser, live.
     void (async () => {
@@ -237,9 +239,7 @@ function LaunchAuditPage() {
 
   const resetInstallBanner = () => {
     localStorage.removeItem(INSTALL_DISMISS_KEY);
-    toast.success(
-      "Install banner dismissal cleared — it will reappear when the app is installable.",
-    );
+    toast.success("Install banner dismissal cleared — it will reappear when the app is installable.");
   };
 
   const handleRun = async () => {
@@ -313,7 +313,9 @@ function LaunchAuditPage() {
     },
     {
       label: "Guardian consent table live with append-only history",
-      ok: data.policySummary.consentPolicies.length >= 2 && withConsent.length > 0,
+      ok:
+        data.policySummary.consentPolicies.length >= 2 &&
+        withConsent.length > 0,
     },
     {
       label: "AI tutor gated on consent; assessments & learning plan unaffected",
@@ -332,8 +334,7 @@ function LaunchAuditPage() {
       ok: pwaChecks?.find((c) => c.key === "icons")?.ok ?? false,
     },
     {
-      label:
-        "Install banner mounted app-wide (Android prompt + iPhone instructions, 14-day snooze)",
+      label: "Install banner mounted app-wide (Android prompt + iPhone instructions, 14-day snooze)",
       // Verified from the live DOM rather than asserted.
       ok: installBannerMounted,
     },
@@ -400,17 +401,10 @@ function LaunchAuditPage() {
         </CardHeader>
         <CardContent className="space-y-2">
           {(pageChecks ?? PUBLIC_PAGES.map((p) => ({ ...p, status: null, ok: false }))).map((p) => (
-            <div
-              key={p.path}
-              className="flex items-center justify-between rounded-lg border px-3 py-2 text-sm"
-            >
+            <div key={p.path} className="flex items-center justify-between rounded-lg border px-3 py-2 text-sm">
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-muted-foreground" />
-                <Link
-                  to={p.path}
-                  target="_blank"
-                  className="font-medium text-primary hover:underline"
-                >
+                <Link to={p.path} target="_blank" className="font-medium text-primary hover:underline">
                   {p.label}
                 </Link>
                 <Mono>{p.path}</Mono>
@@ -444,8 +438,8 @@ function LaunchAuditPage() {
             <>
               <Badge variant="secondary">Choice recorded</Badge>
               <span>
-                Preference: <Mono>{cookieState.choice}</Mono> · version{" "}
-                <Mono>{cookieState.version}</Mono> · at {fmt(cookieState.at)}
+                Preference: <Mono>{cookieState.choice}</Mono> · version <Mono>{cookieState.version}</Mono>{" "}
+                · at {fmt(cookieState.at)}
               </span>
             </>
           ) : (
@@ -530,25 +524,17 @@ function LaunchAuditPage() {
           </div>
           <div className="grid gap-2 sm:grid-cols-3">
             <div className="rounded-lg border p-3">
-              <p className="text-2xl font-semibold">
-                {data.policySummary.reviewerSelectPolicies.length}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                SELECT policies granting reviewer reads
-              </p>
+              <p className="text-2xl font-semibold">{data.policySummary.reviewerSelectPolicies.length}</p>
+              <p className="text-xs text-muted-foreground">SELECT policies granting reviewer reads</p>
             </div>
             <div className="rounded-lg border p-3">
-              <p className="text-2xl font-semibold">
-                {data.policySummary.reviewerWritePolicies.length}
-              </p>
+              <p className="text-2xl font-semibold">{data.policySummary.reviewerWritePolicies.length}</p>
               <p className="text-xs text-muted-foreground">
                 Write policies referencing reviewer (must be 0)
               </p>
             </div>
             <div className="rounded-lg border p-3">
-              <p className="text-2xl font-semibold">
-                {data.policySummary.tutorInteractionReviewerPolicies.length}
-              </p>
+              <p className="text-2xl font-semibold">{data.policySummary.tutorInteractionReviewerPolicies.length}</p>
               <p className="text-xs text-muted-foreground">
                 tutor_interactions policies for reviewer (must be 0 — chat stays private)
               </p>
@@ -571,8 +557,7 @@ function LaunchAuditPage() {
           <CardDescription>
             Latest consent record per learner in this org (RLS-scoped). History is append-only —
             policies on <Mono>guardian_consents</Mono>:{" "}
-            {data.policySummary.consentPolicies.map((p) => `${p.policyname} [${p.cmd}]`).join(", ")}
-            .
+            {data.policySummary.consentPolicies.map((p) => `${p.policyname} [${p.cmd}]`).join(", ")}.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -611,9 +596,7 @@ function LaunchAuditPage() {
                     )}
                   </TableCell>
                   <TableCell>{c.latestConsentDate ?? "—"}</TableCell>
-                  <TableCell>
-                    {c.latestConsentVersion ? <Mono>{c.latestConsentVersion}</Mono> : "—"}
-                  </TableCell>
+                  <TableCell>{c.latestConsentVersion ? <Mono>{c.latestConsentVersion}</Mono> : "—"}</TableCell>
                   <TableCell className="text-right">{c.totalRecords}</TableCell>
                 </TableRow>
               ))}

@@ -75,9 +75,7 @@ export async function fetchGapSessions(
 
   const { data: sessions, error: sErr } = await supabase
     .from("assessment_sessions")
-    .select(
-      "id, learner_id, assessment_id, status, score_pct, correct_count, total_count, submitted_at",
-    )
+    .select("id, learner_id, assessment_id, status, score_pct, correct_count, total_count, submitted_at")
     .in("assessment_id", assessmentIds)
     .eq("status", "submitted")
     .order("submitted_at", { ascending: false });
@@ -278,10 +276,7 @@ export async function assembleAnalysisInput(
   const answers: Record<string, string> =
     session.answers && typeof session.answers === "object" && !Array.isArray(session.answers)
       ? Object.fromEntries(
-          Object.entries(session.answers as Record<string, unknown>).map(([k, v]) => [
-            k,
-            String(v),
-          ]),
+          Object.entries(session.answers as Record<string, unknown>).map(([k, v]) => [k, String(v)]),
         )
       : {};
 
@@ -325,14 +320,16 @@ export async function assembleAnalysisInput(
       : null,
     unit: unitRow ? { id: unitRow.id, title: unitRow.title } : null,
     input: {
-      levels: (levelsRes.data ?? []).map((l): MasteryBandDto => ({
-        id: l.id,
-        label: l.label,
-        minScore: l.min_score,
-        maxScore: l.max_score,
-        color: l.color,
-        sortOrder: l.sort_order,
-      })),
+      levels: (levelsRes.data ?? []).map(
+        (l): MasteryBandDto => ({
+          id: l.id,
+          label: l.label,
+          minScore: l.min_score,
+          maxScore: l.max_score,
+          color: l.color,
+          sortOrder: l.sort_order,
+        }),
+      ),
       outcomes: (outcomesRes.data ?? [])
         .filter((o) => assessment.unit_id === null || o.unit_id === assessment.unit_id)
         .map((o) => ({
@@ -383,13 +380,7 @@ export async function fetchGapAnalysis(supabase: Client, sessionId: string): Pro
       grade: 0,
       masteryScore: 0,
     },
-    book: a.book ?? {
-      id: a.assessment.bookId,
-      title: "Unknown book",
-      board: null,
-      grade: 0,
-      subject: "",
-    },
+    book: a.book ?? { id: a.assessment.bookId, title: "Unknown book", board: null, grade: 0, subject: "" },
     unit: a.unit,
     levels: a.input.levels,
     rows,

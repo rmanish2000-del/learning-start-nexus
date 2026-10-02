@@ -102,30 +102,10 @@ function plan(over: Partial<PricePlan> = {}): PricePlan {
 describe("catalogue hierarchy", () => {
   it("builds unique canonical codes per board/year/class/subject", () => {
     const codes = [
-      canonicalSubjectCode({
-        board: "CBSE",
-        academicYear: "2026-27",
-        classLevel: 10,
-        subjectKey: "Mathematics",
-      }),
-      canonicalSubjectCode({
-        board: "CBSE",
-        academicYear: "2026-27",
-        classLevel: 10,
-        subjectKey: "Science",
-      }),
-      canonicalSubjectCode({
-        board: "CBSE",
-        academicYear: "2026-27",
-        classLevel: 9,
-        subjectKey: "Mathematics",
-      }),
-      canonicalSubjectCode({
-        board: "CBSE",
-        academicYear: "2027-28",
-        classLevel: 10,
-        subjectKey: "Mathematics",
-      }),
+      canonicalSubjectCode({ board: "CBSE", academicYear: "2026-27", classLevel: 10, subjectKey: "Mathematics" }),
+      canonicalSubjectCode({ board: "CBSE", academicYear: "2026-27", classLevel: 10, subjectKey: "Science" }),
+      canonicalSubjectCode({ board: "CBSE", academicYear: "2026-27", classLevel: 9, subjectKey: "Mathematics" }),
+      canonicalSubjectCode({ board: "CBSE", academicYear: "2027-28", classLevel: 10, subjectKey: "Mathematics" }),
     ];
     expect(codes[0]).toBe("CBSE-2026-27-C10-MAT");
     expect(new Set(codes).size).toBe(codes.length);
@@ -149,11 +129,7 @@ describe("academic-year versioning", () => {
 
   it("isolates academic years", () => {
     expect(
-      activeVersionFor([v1, v2], {
-        academicYear: "2027-28",
-        classLevel: 10,
-        subjectKey: "Mathematics",
-      }),
+      activeVersionFor([v1, v2], { academicYear: "2027-28", classLevel: 10, subjectKey: "Mathematics" }),
     ).toBeNull();
   });
 
@@ -213,105 +189,38 @@ describe("entitlement resolution", () => {
   });
 
   it("grants access from a bundle that contains the subject", () => {
-    const e = entitlement({
-      entitlementType: "class_bundle",
-      catalogueSubjectId: null,
-      bundleId: "b1",
-    });
-    const bundles = [
-      {
-        id: "b1",
-        code: "C10",
-        classId: null,
-        classLevel: 10,
-        memberSubjectIds: ["sub-maths", "sub-sci"],
-      },
-    ];
-    expect(
-      resolveSubjectAccess({
-        learnerId: "L1",
-        catalogueSubjectId: "sub-sci",
-        entitlements: [e],
-        bundles,
-        at: NOW,
-      }),
-    ).not.toBeNull();
-    expect(
-      resolveSubjectAccess({
-        learnerId: "L1",
-        catalogueSubjectId: "sub-eng",
-        entitlements: [e],
-        bundles,
-        at: NOW,
-      }),
-    ).toBeNull();
+    const e = entitlement({ entitlementType: "class_bundle", catalogueSubjectId: null, bundleId: "b1" });
+    const bundles = [{ id: "b1", code: "C10", classId: null, classLevel: 10, memberSubjectIds: ["sub-maths", "sub-sci"] }];
+    expect(resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-sci", entitlements: [e], bundles, at: NOW })).not.toBeNull();
+    expect(resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-eng", entitlements: [e], bundles, at: NOW })).toBeNull();
   });
 
   it("resolves grandfathered whole-class access", () => {
-    const legacy = entitlement({
-      entitlementType: "class_bundle",
-      catalogueSubjectId: null,
-      bundleId: null,
-      classLevel: 10,
-    });
+    const legacy = entitlement({ entitlementType: "class_bundle", catalogueSubjectId: null, bundleId: null, classLevel: 10 });
     expect(
-      resolveSubjectAccess({
-        learnerId: "L1",
-        catalogueSubjectId: "sub-sci",
-        classLevel: 10,
-        entitlements: [legacy],
-        at: NOW,
-      }),
+      resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-sci", classLevel: 10, entitlements: [legacy], at: NOW }),
     ).not.toBeNull();
   });
 
   it("honours parent-purchased and centre-sponsored sources alike", () => {
-    const centre = entitlement({
-      entitlementType: "centre_sponsored",
-      sponsorType: "centre",
-      orgId: "org-1",
-    });
-    const found = resolveSubjectAccess({
-      learnerId: "L1",
-      catalogueSubjectId: "sub-maths",
-      entitlements: [centre],
-      at: NOW,
-    });
+    const centre = entitlement({ entitlementType: "centre_sponsored", sponsorType: "centre", orgId: "org-1" });
+    const found = resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-maths", entitlements: [centre], at: NOW });
     expect(found?.sponsorType).toBe("centre");
   });
 
   it("never leaks another learner's entitlement", () => {
     expect(
-      resolveSubjectAccess({
-        learnerId: "L2",
-        catalogueSubjectId: "sub-maths",
-        entitlements: [entitlement()],
-        at: NOW,
-      }),
+      resolveSubjectAccess({ learnerId: "L2", catalogueSubjectId: "sub-maths", entitlements: [entitlement()], at: NOW }),
     ).toBeNull();
   });
 
   it("expires and renews", () => {
     const expired = entitlement({ expiresAt: "2026-08-01T00:00:00.000Z" });
-    expect(
-      resolveSubjectAccess({
-        learnerId: "L1",
-        catalogueSubjectId: "sub-maths",
-        entitlements: [expired],
-        at: NOW,
-      }),
-    ).toBeNull();
+    expect(resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-maths", entitlements: [expired], at: NOW })).toBeNull();
     expect(expireDueEntitlements([expired], NOW)[0]?.status).toBe("expired");
 
     const renewed = renewEntitlement(expired, 365, NOW);
-    expect(
-      resolveSubjectAccess({
-        learnerId: "L1",
-        catalogueSubjectId: "sub-maths",
-        entitlements: [renewed],
-        at: NOW,
-      }),
-    ).not.toBeNull();
+    expect(resolveSubjectAccess({ learnerId: "L1", catalogueSubjectId: "sub-maths", entitlements: [renewed], at: NOW })).not.toBeNull();
   });
 });
 
@@ -327,13 +236,7 @@ describe("diagnostic credit (D5)", () => {
   });
 
   it("applies once and yields the ₹2,800 upgrade", () => {
-    const decision = evaluateDiagnosticCredit({
-      plan: plan(),
-      learnerId: "L1",
-      credit,
-      creditSubjectId: "sub-maths",
-      at: NOW,
-    });
+    const decision = evaluateDiagnosticCredit({ plan: plan(), learnerId: "L1", credit, creditSubjectId: "sub-maths", at: NOW });
     expect(decision.eligible).toBe(true);
     expect(decision.creditPaise).toBe(19_900);
     expect(decision.payablePaise).toBe(280_000);
@@ -341,25 +244,16 @@ describe("diagnostic credit (D5)", () => {
 
   it("cannot be applied a second time", () => {
     const used = { ...credit, creditConsumedAt: "2026-08-21T00:00:00.000Z" };
-    expect(
-      evaluateDiagnosticCredit({ plan: plan(), learnerId: "L1", credit: used, at: NOW }).reason,
-    ).toBe("already_applied");
+    expect(evaluateDiagnosticCredit({ plan: plan(), learnerId: "L1", credit: used, at: NOW }).reason).toBe("already_applied");
   });
 
   it("requires the same learner", () => {
-    expect(
-      evaluateDiagnosticCredit({ plan: plan(), learnerId: "L2", credit, at: NOW }).reason,
-    ).toBe("different_learner");
+    expect(evaluateDiagnosticCredit({ plan: plan(), learnerId: "L2", credit, at: NOW }).reason).toBe("different_learner");
   });
 
   it("requires a qualifying plan and a qualifying subject", () => {
     expect(
-      evaluateDiagnosticCredit({
-        plan: plan({ planType: "subject_diagnostic" }),
-        learnerId: "L1",
-        credit,
-        at: NOW,
-      }).reason,
+      evaluateDiagnosticCredit({ plan: plan({ planType: "subject_diagnostic" }), learnerId: "L1", credit, at: NOW }).reason,
     ).toBe("plan_not_qualifying");
     expect(
       evaluateDiagnosticCredit({
@@ -377,35 +271,15 @@ describe("diagnostic credit (D5)", () => {
 // 12, 13, 14 — pricing
 describe("pricing foundation", () => {
   it("resolves by effective date and prefers the latest live plan", () => {
-    const older = plan({
-      id: "old",
-      amountPaise: 199_900,
-      effectiveFrom: "2025-01-01T00:00:00.000Z",
-    });
-    const current = plan({
-      id: "new",
-      amountPaise: 299_900,
-      effectiveFrom: "2026-01-01T00:00:00.000Z",
-    });
+    const older = plan({ id: "old", amountPaise: 199_900, effectiveFrom: "2025-01-01T00:00:00.000Z" });
+    const current = plan({ id: "new", amountPaise: 299_900, effectiveFrom: "2026-01-01T00:00:00.000Z" });
     expect(resolvePlan([older, current], current.code, NOW)?.amountPaise).toBe(299_900);
   });
 
   it("never resolves an inactive or future plan", () => {
     expect(resolvePlan([plan({ isActive: false })], "CBSE-2026-27-C10-ANNUAL", NOW)).toBeNull();
-    expect(
-      resolvePlan(
-        [plan({ effectiveFrom: "2027-01-01T00:00:00.000Z" })],
-        "CBSE-2026-27-C10-ANNUAL",
-        NOW,
-      ),
-    ).toBeNull();
-    expect(
-      resolvePlan(
-        [plan({ effectiveTo: "2026-02-01T00:00:00.000Z" })],
-        "CBSE-2026-27-C10-ANNUAL",
-        NOW,
-      ),
-    ).toBeNull();
+    expect(resolvePlan([plan({ effectiveFrom: "2027-01-01T00:00:00.000Z" })], "CBSE-2026-27-C10-ANNUAL", NOW)).toBeNull();
+    expect(resolvePlan([plan({ effectiveTo: "2026-02-01T00:00:00.000Z" })], "CBSE-2026-27-C10-ANNUAL", NOW)).toBeNull();
   });
 
   it("captures an immutable order snapshot with no tax while tax is inactive", () => {
@@ -414,22 +288,14 @@ describe("pricing foundation", () => {
       credit: { eligible: true, creditPaise: 19_900, payablePaise: 280_000, reason: null },
       at: NOW,
     });
-    expect(snap).toMatchObject({
-      listPricePaise: 299_900,
-      creditPaise: 19_900,
-      payablePaise: 280_000,
-      taxPaise: 0,
-      currency: "INR",
-    });
+    expect(snap).toMatchObject({ listPricePaise: 299_900, creditPaise: 19_900, payablePaise: 280_000, taxPaise: 0, currency: "INR" });
     expect(() => {
       (snap as unknown as { payablePaise: number }).payablePaise = 1;
     }).toThrow();
   });
 
   it("keeps live production prices unchanged", () => {
-    expect(plan({ code: "CBSE-2026-27-C10-DIAGNOSTIC", amountPaise: 19_900 }).amountPaise).toBe(
-      19_900,
-    );
+    expect(plan({ code: "CBSE-2026-27-C10-DIAGNOSTIC", amountPaise: 19_900 }).amountPaise).toBe(19_900);
     expect(plan().amountPaise).toBe(299_900);
   });
 });
@@ -453,9 +319,7 @@ describe("commercial readiness gates", () => {
     const draft = subject({ commercialStatus: "draft", isActive: false });
     expect(isCommerciallyAvailable(draft)).toBe(false);
     expect(availableSubjects([draft])).toHaveLength(0);
-    expect(
-      canActivateCommercially({ ...readyInput, subject: subject({ curriculumApproved: false }) }),
-    ).toBe(false);
+    expect(canActivateCommercially({ ...readyInput, subject: subject({ curriculumApproved: false }) })).toBe(false);
   });
 
   it("unreviewed content cannot become diagnostic-ready", () => {
@@ -465,10 +329,7 @@ describe("commercial readiness gates", () => {
   });
 
   it("missing reassessment coverage blocks commercial readiness", () => {
-    const result = evaluateCommercialReadiness({
-      ...readyInput,
-      reassessmentQuestionsByUnit: { u1: 4 },
-    });
+    const result = evaluateCommercialReadiness({ ...readyInput, reassessmentQuestionsByUnit: { u1: 4 } });
     expect(result.ready).toBe(false);
     expect(result.blockers).toContain("insufficient_reassessment_inventory:u1");
   });
@@ -480,9 +341,7 @@ describe("commercial readiness gates", () => {
   });
 
   it("no active pricing blocks activation", () => {
-    expect(
-      evaluateCommercialReadiness({ ...readyInput, hasActivePricing: false }).blockers,
-    ).toContain("no_active_pricing");
+    expect(evaluateCommercialReadiness({ ...readyInput, hasActivePricing: false }).blockers).toContain("no_active_pricing");
   });
 
   it("archived or retired entries disappear from every selector", () => {

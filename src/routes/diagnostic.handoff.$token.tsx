@@ -123,16 +123,12 @@ function HandoffBody() {
         <CardContent className="space-y-4">
           <div className="rounded-lg border bg-muted/30 p-3 text-sm">
             <p>
-              {t("handoff.handle", "Handle")}:{" "}
-              <span className="font-mono font-medium">{h.learnerHandle}</span>
+              {t("handoff.handle", "Handle")}: <span className="font-mono font-medium">{h.learnerHandle}</span>
             </p>
             <p className="mt-1 text-muted-foreground">
               PIN:{" "}
               {h.hasLogin
-                ? t(
-                    "handoff.pinSet",
-                    "the 6-digit PIN you set. You can reset it any time from the Parent portal.",
-                  )
+                ? t("handoff.pinSet", "the 6-digit PIN you set. You can reset it any time from the Parent portal.")
                 : t(
                     "handoff.pinMissing",
                     "not set yet — set a 6-digit PIN in the Parent portal before your child signs in.",
@@ -156,8 +152,7 @@ function HandoffBody() {
             </Button>
             <Button asChild variant="ghost">
               <Link to="/parent">
-                <ArrowLeft className="mr-2 h-4 w-4" />{" "}
-                {t("handoff.backToPortal", "Back to Parent portal")}
+                <ArrowLeft className="mr-2 h-4 w-4" /> {t("handoff.backToPortal", "Back to Parent portal")}
               </Link>
             </Button>
           </div>
@@ -169,18 +164,15 @@ function HandoffBody() {
           <CardTitle className="flex items-center gap-2 text-base">
             {h.status === "submitted" ? (
               <>
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" />{" "}
-                {t("status.completed", "Completed — report ready")}
+                <CheckCircle2 className="h-4 w-4 text-emerald-600" /> {t("status.completed", "Completed — report ready")}
               </>
             ) : h.status === "in_progress" ? (
               <>
-                <PlayCircle className="h-4 w-4 text-amber-600" />{" "}
-                {t("status.inProgress", "In progress")}
+                <PlayCircle className="h-4 w-4 text-amber-600" /> {t("status.inProgress", "In progress")}
               </>
             ) : (
               <>
-                <CircleDashed className="h-4 w-4 text-muted-foreground" />{" "}
-                {t("status.notStarted", "Not started")}
+                <CircleDashed className="h-4 w-4 text-muted-foreground" /> {t("status.notStarted", "Not started")}
               </>
             )}
           </CardTitle>
@@ -189,9 +181,7 @@ function HandoffBody() {
           <Progress value={pct} />
           <p className="text-sm text-muted-foreground">
             {h.answeredCount} of {h.totalQuestions} questions answered.
-            {h.status === "submitted"
-              ? " The report is ready below."
-              : " This page updates itself."}
+            {h.status === "submitted" ? " The report is ready below." : " This page updates itself."}
           </p>
           {h.status === "submitted" ? (
             <Button asChild>

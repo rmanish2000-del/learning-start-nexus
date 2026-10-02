@@ -54,16 +54,10 @@ function jaccard(a: Set<string>, b: Set<string>): number {
 
 export function validate(items: GeneratedItem[]) {
   const findings: Finding[] = [];
-  const push = (
-    i: GeneratedItem,
-    check: string,
-    detail: string,
-    severity: Finding["severity"] = "ERROR",
-  ) => findings.push({ externalRef: i.externalRef, check, severity, detail });
+  const push = (i: GeneratedItem, check: string, detail: string, severity: Finding["severity"] = "ERROR") =>
+    findings.push({ externalRef: i.externalRef, check, severity, detail });
 
-  const validRequirements = new Set<string>(
-    (crosswalk.rows as { official_requirement_id: string }[]).map((r) => r.official_requirement_id),
-  );
+  const validRequirements = new Set<string>((crosswalk.rows as { official_requirement_id: string }[]).map((r) => r.official_requirement_id));
   const validOutcomes = new Set<string>();
   const validAtoms = new Set<string>();
   const validUnits = new Set<string>();
@@ -74,8 +68,7 @@ export function validate(items: GeneratedItem[]) {
       for (const ao of unit.assessmentOutcomes) validOutcomes.add(ao.assessmentOutcomeId);
       for (const chapter of unit.chapters) {
         validChapters.add(chapter.chapterId);
-        for (const topic of chapter.topics)
-          for (const atom of topic.curriculumOutcomes) validAtoms.add(atom.curriculumOutcomeId);
+        for (const topic of chapter.topics) for (const atom of topic.curriculumOutcomes) validAtoms.add(atom.curriculumOutcomeId);
       }
     }
   }
@@ -92,23 +85,16 @@ export function validate(items: GeneratedItem[]) {
       push(item, "external_reference_format", `malformed reference ${item.externalRef}`);
     }
     refSeen.set(item.externalRef, (refSeen.get(item.externalRef) ?? 0) + 1);
-    if (item.officialRequirementIds.length === 0)
-      push(item, "requirement_mapping", "no official requirement");
+    if (item.officialRequirementIds.length === 0) push(item, "requirement_mapping", "no official requirement");
     for (const req of item.officialRequirementIds) {
-      if (!validRequirements.has(req))
-        push(item, "requirement_mapping", `unknown requirement ${req}`);
+      if (!validRequirements.has(req)) push(item, "requirement_mapping", `unknown requirement ${req}`);
     }
-    if (!validUnits.has(item.unitId))
-      push(item, "curriculum_mapping", `unknown unit ${item.unitId}`);
-    if (item.chapterId && !validChapters.has(item.chapterId))
-      push(item, "curriculum_mapping", `unknown chapter ${item.chapterId}`);
-    if (!validOutcomes.has(item.outcomeId))
-      push(item, "outcome_mapping", `unknown outcome ${item.outcomeId}`);
-    if (item.atomId && !validAtoms.has(item.atomId))
-      push(item, "atom_mapping", `unknown atom ${item.atomId}`);
+    if (!validUnits.has(item.unitId)) push(item, "curriculum_mapping", `unknown unit ${item.unitId}`);
+    if (item.chapterId && !validChapters.has(item.chapterId)) push(item, "curriculum_mapping", `unknown chapter ${item.chapterId}`);
+    if (!validOutcomes.has(item.outcomeId)) push(item, "outcome_mapping", `unknown outcome ${item.outcomeId}`);
+    if (item.atomId && !validAtoms.has(item.atomId)) push(item, "atom_mapping", `unknown atom ${item.atomId}`);
     if (!item.atomId) push(item, "atom_mapping", "atom unavailable", "HUMAN_REVIEW_REQUIRED");
-    if (item.academicYear !== "2026-27")
-      push(item, "academic_year", `unexpected year ${item.academicYear}`);
+    if (item.academicYear !== "2026-27") push(item, "academic_year", `unexpected year ${item.academicYear}`);
 
     // --- status gates
     if (item.status !== "draft" || item.verificationState !== "unverified") {
@@ -122,14 +108,11 @@ export function validate(items: GeneratedItem[]) {
     if (!item.correctAnswer.trim()) push(item, "answer_present", "empty correct answer");
     if (item.options) {
       const opts = item.options;
-      if (new Set(opts).size !== opts.length)
-        push(item, "duplicate_options", "repeated option text");
-      if (!opts.includes(item.correctAnswer))
-        push(item, "answer_in_options", "correct answer absent from options");
+      if (new Set(opts).size !== opts.length) push(item, "duplicate_options", "repeated option text");
+      if (!opts.includes(item.correctAnswer)) push(item, "answer_in_options", "correct answer absent from options");
       if (opts.length < 2) push(item, "option_count", "fewer than two options");
     }
-    if (!item.explanation || item.explanation.length < 30)
-      push(item, "explanation_present", "explanation too short");
+    if (!item.explanation || item.explanation.length < 30) push(item, "explanation_present", "explanation too short");
 
     // --- markup and contamination
     for (const [field, text] of [
@@ -137,24 +120,18 @@ export function validate(items: GeneratedItem[]) {
       ["correctAnswer", item.correctAnswer],
       ["explanation", item.explanation],
     ] as const) {
-      if (MARKUP.test(text))
-        push(item, "markup_contamination", `${field} contains HTML or Markdown markup`);
+      if (MARKUP.test(text)) push(item, "markup_contamination", `${field} contains HTML or Markdown markup`);
     }
     const haystack = `${item.prompt} ${item.explanation}`.toLowerCase();
     for (const term of EXCLUDED_TERMS) {
-      if (haystack.includes(term))
-        push(item, "exclusion_leakage", `references excluded scope: ${term}`);
+      if (haystack.includes(term)) push(item, "exclusion_leakage", `references excluded scope: ${term}`);
     }
 
     // --- numeric recomputation
     if (item.numericCheck) {
       const fn = RECOMPUTE[item.numericCheck.fn];
       if (!fn) {
-        push(
-          item,
-          "numeric_recomputation",
-          `no independent implementation for ${item.numericCheck.fn}`,
-        );
+        push(item, "numeric_recomputation", `no independent implementation for ${item.numericCheck.fn}`);
       } else {
         numericChecked += 1;
         const got = fn(item.numericCheck.args);
@@ -192,19 +169,11 @@ export function validate(items: GeneratedItem[]) {
   }
 
   for (const [ref, count] of refSeen) {
-    if (count > 1)
-      findings.push({
-        externalRef: ref,
-        check: "duplicate_reference",
-        severity: "ERROR",
-        detail: `${count} items share this reference`,
-      });
+    if (count > 1) findings.push({ externalRef: ref, check: "duplicate_reference", severity: "ERROR", detail: `${count} items share this reference` });
   }
 
   // --- pool separation: no prompt may appear in both pools
-  const diag = new Set(
-    items.filter((i) => i.pool === "DIAGNOSTIC").map((i) => i.prompt.trim().toLowerCase()),
-  );
+  const diag = new Set(items.filter((i) => i.pool === "DIAGNOSTIC").map((i) => i.prompt.trim().toLowerCase()));
   for (const item of items.filter((i) => i.pool === "FRESH_REASSESSMENT")) {
     if (diag.has(item.prompt.trim().toLowerCase())) {
       push(item, "pool_separation", "prompt also present in the diagnostic pool");
@@ -265,9 +234,7 @@ if (import.meta.main) {
   const items = buildItems();
   const results = validate(items);
   const queues = reviewQueues(items);
-  const failing = new Set(
-    results.findings.filter((f) => f.severity === "ERROR").map((f) => f.externalRef),
-  );
+  const failing = new Set(results.findings.filter((f) => f.severity === "ERROR").map((f) => f.externalRef));
   for (const queue of Object.values(queues)) {
     for (const row of queue) if (failing.has(row.external_ref)) row.automated_validation = "FAIL";
   }
@@ -293,6 +260,5 @@ if (import.meta.main) {
     )}\n`,
   );
   console.log(JSON.stringify(results.checks, null, 2));
-  for (const f of results.findings.slice(0, 40))
-    console.log(`${f.severity} ${f.externalRef} ${f.check}: ${f.detail}`);
+  for (const f of results.findings.slice(0, 40)) console.log(`${f.severity} ${f.externalRef} ${f.check}: ${f.detail}`);
 }

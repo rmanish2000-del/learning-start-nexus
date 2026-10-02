@@ -8,16 +8,10 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import {
-  feedbackListSchema,
-  feedbackReviewUpdateSchema,
-  feedbackSubmissionSchema,
-} from "./feedback-shared";
+import { feedbackListSchema, feedbackReviewUpdateSchema, feedbackSubmissionSchema } from "./feedback-shared";
 import { guidanceEventSchema } from "./guidance-analytics";
 
-const submitInput = feedbackSubmissionSchema.extend({
-  isAuthenticated: z.boolean().default(false),
-});
+const submitInput = feedbackSubmissionSchema.extend({ isAuthenticated: z.boolean().default(false) });
 
 export const submitFeedbackFn = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => submitInput.parse(data))
@@ -38,11 +32,7 @@ export const recordGuidanceEventFn = createServerFn({ method: "POST" })
 // platform-owner only — never a centre admin.
 async function assertAdmin(context: { supabase: unknown; userId: string; claims?: unknown }) {
   const { requirePlatformOwner } = await import("./platform-owner.server");
-  await requirePlatformOwner({
-    supabase: context.supabase as never,
-    userId: context.userId,
-    claims: context.claims,
-  });
+  await requirePlatformOwner({ supabase: context.supabase as never, userId: context.userId, claims: context.claims });
 }
 
 export const listFeedbackFn = createServerFn({ method: "GET" })
@@ -75,9 +65,7 @@ export const feedbackScreenshotUrlFn = createServerFn({ method: "POST" })
 
 export const guidanceCountsFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((data: unknown) =>
-    z.object({ days: z.number().int().min(1).max(180).default(30) }).parse(data ?? {}),
-  )
+  .inputValidator((data: unknown) => z.object({ days: z.number().int().min(1).max(180).default(30) }).parse(data ?? {}))
   .handler(async ({ data, context }) => {
     await assertAdmin(context);
     const { guidanceEventCounts } = await import("./feedback.server");

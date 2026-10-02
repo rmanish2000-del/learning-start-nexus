@@ -1,14 +1,6 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, getRouteApi, Link } from "@tanstack/react-router";
-import {
-  ChevronDown,
-  Compass,
-  GraduationCap,
-  LifeBuoy,
-  Search,
-  SearchX,
-  Sparkles,
-} from "lucide-react";
+import { ChevronDown, Compass, GraduationCap, LifeBuoy, Search, SearchX, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,14 +15,12 @@ export const Route = createFileRoute("/_authenticated/help")({
       { title: "Help Center — EduOS" },
       {
         name: "description",
-        content:
-          "Searchable help for EduOS: sign-in, assessments, interventions, the AI Tutor, progress, and audits.",
+        content: "Searchable help for EduOS: sign-in, assessments, interventions, the AI Tutor, progress, and audits.",
       },
       { property: "og:title", content: "Help Center — EduOS" },
       {
         property: "og:description",
-        content:
-          "Searchable help for EduOS: sign-in, assessments, interventions, the AI Tutor, progress, and audits.",
+        content: "Searchable help for EduOS: sign-in, assessments, interventions, the AI Tutor, progress, and audits.",
       },
     ],
   }),

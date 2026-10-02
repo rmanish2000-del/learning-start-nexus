@@ -130,9 +130,7 @@ export function StudyPlanCard({
                     <Badge variant="outline" className="capitalize">
                       {f.severity}
                     </Badge>
-                    <span className="ml-auto text-xs tabular-nums text-muted-foreground">
-                      {f.pct}%
-                    </span>
+                    <span className="ml-auto text-xs tabular-nums text-muted-foreground">{f.pct}%</span>
                   </div>
                   <Progress value={f.pct} className="mt-2 h-1.5" />
                   <p className="mt-2 text-sm text-muted-foreground">{f.activity}</p>

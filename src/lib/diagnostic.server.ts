@@ -6,11 +6,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import type {
-  DiagnosticWorkspace,
-  EngineOutcome,
-  generateDiagnosticSchema,
-} from "./diagnostic-shared";
+import type { DiagnosticWorkspace, EngineOutcome, generateDiagnosticSchema } from "./diagnostic-shared";
 import { buildDiagnosticPlan } from "./diagnostic-shared";
 import { fetchExcludedQuestionIds } from "./release-pool";
 import type { z } from "zod";
@@ -32,21 +28,11 @@ export async function fetchDiagnosticWorkspace(
   unitId?: string,
 ): Promise<DiagnosticWorkspace> {
   const [bookRes, unitsRes, outcomesRes, questionsRes, assessmentsRes] = await Promise.all([
-    supabase
-      .from("books")
-      .select("id, title, board, grade, subject, status")
-      .eq("id", bookId)
-      .maybeSingle(),
-    supabase
-      .from("curriculum_units")
-      .select("id, title, position")
-      .eq("book_id", bookId)
-      .order("position"),
+    supabase.from("books").select("id, title, board, grade, subject, status").eq("id", bookId).maybeSingle(),
+    supabase.from("curriculum_units").select("id, title, position").eq("book_id", bookId).order("position"),
     supabase
       .from("assessment_outcomes")
-      .select(
-        "id, unit_id, code, title, category, bloom_level, difficulty, diagnostic_weight, status",
-      )
+      .select("id, unit_id, code, title, category, bloom_level, difficulty, diagnostic_weight, status")
       .eq("book_id", bookId)
       .order("code"),
     supabase
@@ -71,8 +57,7 @@ export async function fetchDiagnosticWorkspace(
   }
 
   const units = unitsRes.data ?? [];
-  const selectedUnitId =
-    unitId && units.some((u) => u.id === unitId) ? unitId : (units[0]?.id ?? null);
+  const selectedUnitId = unitId && units.some((u) => u.id === unitId) ? unitId : (units[0]?.id ?? null);
 
   const assessments = assessmentsRes.data ?? [];
   const assessmentIds = assessments.map((a) => a.id);
@@ -257,9 +242,7 @@ export async function generateDiagnostic(
   }
 
   const defaultTitle = `${unitRes.data.title} — Unit ${input.template === "diagnostic" ? "Diagnostic" : "Reassessment"} (Auto)`;
-  const weightSummary = plan.outcomes
-    .map((p) => `${p.code}:${p.weight}%→${p.actualQuestions}q`)
-    .join(", ");
+  const weightSummary = plan.outcomes.map((p) => `${p.code}:${p.weight}%→${p.actualQuestions}q`).join(", ");
 
   const { data: inserted, error: insertError } = await supabase
     .from("assessments")

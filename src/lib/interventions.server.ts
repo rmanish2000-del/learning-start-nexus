@@ -86,12 +86,7 @@ export async function applyGapDetection(
         });
         if (insError) throw new Error(insError.message);
         summary.detected += 1;
-        summary.outcomes.push({
-          subtopic: stat.subtopic,
-          pct: stat.pct,
-          severity,
-          outcome: "detected",
-        });
+        summary.outcomes.push({ subtopic: stat.subtopic, pct: stat.pct, severity, outcome: "detected" });
       } else if (existing.status === "dismissed") {
         summary.dismissedKept += 1;
         summary.outcomes.push({
@@ -117,20 +112,10 @@ export async function applyGapDetection(
         if (updError) throw new Error(updError.message);
         if (existing.status === "addressed") {
           summary.reopened += 1;
-          summary.outcomes.push({
-            subtopic: stat.subtopic,
-            pct: stat.pct,
-            severity,
-            outcome: "reopened",
-          });
+          summary.outcomes.push({ subtopic: stat.subtopic, pct: stat.pct, severity, outcome: "reopened" });
         } else {
           summary.refreshed += 1;
-          summary.outcomes.push({
-            subtopic: stat.subtopic,
-            pct: stat.pct,
-            severity,
-            outcome: "refreshed",
-          });
+          summary.outcomes.push({ subtopic: stat.subtopic, pct: stat.pct, severity, outcome: "refreshed" });
         }
       }
     } else if (existing && existing.status === "open") {
@@ -140,19 +125,9 @@ export async function applyGapDetection(
         .eq("id", existing.id);
       if (resError) throw new Error(resError.message);
       summary.addressed += 1;
-      summary.outcomes.push({
-        subtopic: stat.subtopic,
-        pct: stat.pct,
-        severity,
-        outcome: "addressed",
-      });
+      summary.outcomes.push({ subtopic: stat.subtopic, pct: stat.pct, severity, outcome: "addressed" });
     } else {
-      summary.outcomes.push({
-        subtopic: stat.subtopic,
-        pct: stat.pct,
-        severity,
-        outcome: "no-gap",
-      });
+      summary.outcomes.push({ subtopic: stat.subtopic, pct: stat.pct, severity, outcome: "no-gap" });
     }
   }
 
@@ -188,23 +163,14 @@ export async function regenerateRecommendations(
   const orgId = openGaps[0]?.org_id;
   const mapBySubtopic = new Map<
     string,
-    {
-      outcomeTitle: string;
-      failurePattern: string;
-      intervention: string;
-      priority: number;
-      outcomeId: string;
-    }
+    { outcomeTitle: string; failurePattern: string; intervention: string; priority: number; outcomeId: string }
   >();
   if (orgId && openGaps.length > 0) {
     const { data: outcomeRows } = await admin
       .from("assessment_outcomes")
       .select("id, code, title")
       .eq("org_id", orgId)
-      .in(
-        "code",
-        openGaps.map((g) => g.subtopic),
-      );
+      .in("code", openGaps.map((g) => g.subtopic));
     const outcomeIds = (outcomeRows ?? []).map((o) => o.id);
     if (outcomeIds.length > 0) {
       const { data: mapRows } = await admin

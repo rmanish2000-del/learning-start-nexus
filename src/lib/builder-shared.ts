@@ -115,8 +115,7 @@ export function computeCoverage(
     questionCount: selected.length,
     outcomesMeasured: measuredIds.size,
     outcomesTotal,
-    outcomeCoveragePct:
-      outcomesTotal === 0 ? 0 : Math.round((measuredIds.size / outcomesTotal) * 100),
+    outcomeCoveragePct: outcomesTotal === 0 ? 0 : Math.round((measuredIds.size / outcomesTotal) * 100),
     weightMeasured,
     weightTotal,
     blueprintAlignmentPct: weightTotal === 0 ? 0 : Math.round((weightMeasured / weightTotal) * 100),

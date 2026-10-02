@@ -21,27 +21,19 @@ const past = new Date(Date.now() - 86_400_000).toISOString();
 
 describe("invitation state machine", () => {
   it("is valid while unaccepted, unrevoked and unexpired", () => {
-    expect(invitationState({ revoked_at: null, accepted_at: null, expires_at: future })).toBe(
-      "valid",
-    );
+    expect(invitationState({ revoked_at: null, accepted_at: null, expires_at: future })).toBe("valid");
   });
 
   it("reports acceptance", () => {
-    expect(invitationState({ revoked_at: null, accepted_at: past, expires_at: future })).toBe(
-      "accepted",
-    );
+    expect(invitationState({ revoked_at: null, accepted_at: past, expires_at: future })).toBe("accepted");
   });
 
   it("expires on time", () => {
-    expect(invitationState({ revoked_at: null, accepted_at: null, expires_at: past })).toBe(
-      "expired",
-    );
+    expect(invitationState({ revoked_at: null, accepted_at: null, expires_at: past })).toBe("expired");
   });
 
   it("revocation wins over everything else", () => {
-    expect(invitationState({ revoked_at: past, accepted_at: past, expires_at: future })).toBe(
-      "revoked",
-    );
+    expect(invitationState({ revoked_at: past, accepted_at: past, expires_at: future })).toBe("revoked");
   });
 });
 
@@ -108,9 +100,7 @@ describe("invitation safety", () => {
 
   it("creates no new auth user, profile, role, family or organisation", () => {
     expect(server).not.toContain("auth.admin.createUser");
-    expect(server).not.toMatch(
-      /from\("(profiles|user_roles|organizations|orgs)"\)\s*\n?\s*\.insert/,
-    );
+    expect(server).not.toMatch(/from\("(profiles|user_roles|organizations|orgs)"\)\s*\n?\s*\.insert/);
   });
 
   it("keeps create, list and revoke platform-owner-only and accept authenticated", () => {

@@ -228,21 +228,14 @@ async function main() {
   const categorySummary = categories.map((category) => {
     const inCategory = records.filter((r) => r.category === category);
     const retrieved = inCategory.filter((r) => r.retrievalStatus === "RETRIEVED");
-    const forSession = retrieved.filter(
-      (r) => r.academicYear === "2026-27" || r.academicYear === "current",
-    );
+    const forSession = retrieved.filter((r) => r.academicYear === "2026-27" || r.academicYear === "current");
     return {
       category,
       attempted: inCategory.length,
       retrieved: retrieved.length,
       missing: inCategory.length - retrieved.length,
       satisfiesCurrentSession: forSession.length > 0,
-      status:
-        forSession.length > 0
-          ? "RETRIEVED"
-          : retrieved.length > 0
-            ? "PRIOR_SESSION_ONLY"
-            : "MISSING",
+      status: forSession.length > 0 ? "RETRIEVED" : retrieved.length > 0 ? "PRIOR_SESSION_ONLY" : "MISSING",
     };
   });
 
@@ -262,14 +255,10 @@ async function main() {
       : "CATEGORIES_INCOMPLETE",
   };
 
-  const out = resolve(
-    import.meta.dirname,
-    "../../content/compliance/class-10-2026-27.missing-sources.json",
-  );
+  const out = resolve(import.meta.dirname, "../../content/compliance/class-10-2026-27.missing-sources.json");
   writeFileSync(out, `${JSON.stringify(payload, null, 2)}\n`);
   console.log(`wrote ${out} — ${payload.overallStatus}`);
-  for (const c of categorySummary)
-    console.log(`  ${c.category}: ${c.status} (${c.retrieved}/${c.attempted})`);
+  for (const c of categorySummary) console.log(`  ${c.category}: ${c.status} (${c.retrieved}/${c.attempted})`);
 }
 
 if (import.meta.main) await main();

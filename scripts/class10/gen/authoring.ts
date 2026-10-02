@@ -9,8 +9,7 @@ const AR_OPTIONS = [
   "A is false but R is true.",
 ] as const;
 
-export type ARVerdict =
-  "A_R_TRUE_R_EXPLAINS" | "A_R_TRUE_R_DOES_NOT_EXPLAIN" | "A_TRUE_R_FALSE" | "A_FALSE_R_TRUE";
+export type ARVerdict = "A_R_TRUE_R_EXPLAINS" | "A_R_TRUE_R_DOES_NOT_EXPLAIN" | "A_TRUE_R_FALSE" | "A_FALSE_R_TRUE";
 
 const AR_INDEX: Record<ARVerdict, number> = {
   A_R_TRUE_R_EXPLAINS: 0,
@@ -73,13 +72,7 @@ export function mc(
   };
 }
 
-export function tf(
-  templateId: string,
-  difficulty: number,
-  statement: string,
-  isTrue: boolean,
-  explanation: string,
-): Draft {
+export function tf(templateId: string, difficulty: number, statement: string, isTrue: boolean, explanation: string): Draft {
   return {
     templateId,
     kind: "true_false",
@@ -156,22 +149,8 @@ export function di(
   };
 }
 
-export function fb(
-  templateId: string,
-  difficulty: number,
-  prompt: string,
-  correctAnswer: string,
-  explanation: string,
-): Draft {
-  return {
-    templateId,
-    kind: "fill_blank",
-    difficulty,
-    prompt,
-    correctAnswer,
-    explanation,
-    marks: 1,
-  };
+export function fb(templateId: string, difficulty: number, prompt: string, correctAnswer: string, explanation: string): Draft {
+  return { templateId, kind: "fill_blank", difficulty, prompt, correctAnswer, explanation, marks: 1 };
 }
 
 // --- arithmetic helpers used by the authors (answers are computed, not typed) --

@@ -75,10 +75,7 @@ async function materialisePlan(
       .select("id, gap_id, title, activity, status")
       .eq("learner_id", input.learnerId)
       .eq("status", "suggested"),
-    admin
-      .from("interventions")
-      .select("id, recommendation_id, gap_id")
-      .eq("learner_id", input.learnerId),
+    admin.from("interventions").select("id, recommendation_id, gap_id").eq("learner_id", input.learnerId),
   ]);
   const seenRec = new Set((existing ?? []).map((i) => i.recommendation_id).filter(Boolean));
   const seenGap = new Set((existing ?? []).map((i) => i.gap_id).filter(Boolean));
@@ -190,8 +187,7 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
   // sessions store a flat per-item breakdown array. Support both.
   const result = latest.result as unknown;
   const outcomeResults = Array.isArray((result as { outcomes?: unknown } | null)?.outcomes)
-    ? (result as { outcomes: { code: string; correct: number; total: number; pct: number }[] })
-        .outcomes
+    ? ((result as { outcomes: { code: string; correct: number; total: number; pct: number }[] }).outcomes)
     : null;
   const breakdown = (Array.isArray(result) ? result : []) as unknown as BreakdownEntry[];
   const buckets = outcomeResults
@@ -237,9 +233,8 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
 
   const titles = new Map<string, string>([
     // Result rows carry their own outcome titles; curriculum rows win when present.
-    ...(outcomeResults ?? []).map(
-      (o) => [o.code, (o as { title?: string }).title ?? o.code] as [string, string],
-    ),
+    ...(outcomeResults ?? [])
+      .map((o) => [o.code, (o as { title?: string }).title ?? o.code] as [string, string]),
     ...(outcomeRows ?? []).map((o) => [o.code, o.title] as [string, string]),
   ]);
 
@@ -263,8 +258,8 @@ export async function fetchStudyPlan(supabase: Client, userId: string): Promise<
       .filter((b) => b.pct < MASTERY_THRESHOLD)
       .map((b) => {
         const gap = gapByCode.get(b.code) ?? null;
-        const rec = gap ? (recByGap.get(gap.id) ?? null) : null;
-        const intervention = gap ? (intByGap.get(gap.id) ?? null) : null;
+        const rec = gap ? recByGap.get(gap.id) ?? null : null;
+        const intervention = gap ? intByGap.get(gap.id) ?? null : null;
         return {
           gapId: gap?.id ?? null,
           code: b.code,

@@ -78,7 +78,11 @@ export function AudiencePanel({
 }
 
 /** Standalone section wrapper, kept for non-tabbed surfaces. */
-export function AudienceSection({ id, muted, ...content }: AudienceContent & { muted?: boolean }) {
+export function AudienceSection({
+  id,
+  muted,
+  ...content
+}: AudienceContent & { muted?: boolean }) {
   return (
     <section
       id={id}

@@ -4,7 +4,11 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { fetchPolicyAudit, type DbErrorShape, type PolicyAuditRow } from "./audit.server";
+import {
+  fetchPolicyAudit,
+  type DbErrorShape,
+  type PolicyAuditRow,
+} from "./audit.server";
 import type { CallerCtx } from "./blueprint-audit.server";
 import { PILOT_BOOK_ID } from "./curriculum-audit.server";
 import { computeCoverage } from "./builder-shared";
@@ -24,12 +28,7 @@ export const BUILDER_EXPECTED = {
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as {
-    code?: string;
-    message?: string;
-    details?: string | null;
-    hint?: string | null;
-  };
+  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -53,16 +52,8 @@ export type BuilderCount = {
 
 export async function fetchBuilderCounts(supabase: Client, admin: Client): Promise<BuilderCount[]> {
   const specs = [
-    {
-      table: "assessments",
-      label: "Assessments",
-      note: "Includes curriculum-built assessments (book-linked).",
-    },
-    {
-      table: "assessment_question_map",
-      label: "Question maps",
-      note: "Which bank questions make up each built assessment.",
-    },
+    { table: "assessments", label: "Assessments", note: "Includes curriculum-built assessments (book-linked)." },
+    { table: "assessment_question_map", label: "Question maps", note: "Which bank questions make up each built assessment." },
   ] as const;
   const out: BuilderCount[] = [];
   for (const spec of specs) {
@@ -237,7 +228,10 @@ export async function runBuilderProbes(
   // P1 — Seeded build present with expected shape.
   {
     const snap = await fetchBuilderSnapshot(admin);
-    const ok = snap.present && snap.template === E.template && snap.questions >= E.minQuestions;
+    const ok =
+      snap.present &&
+      snap.template === E.template &&
+      snap.questions >= E.minQuestions;
     probes.push({
       key: "seed-build",
       name: "P1 — Demo build seeded",
@@ -263,8 +257,7 @@ export async function runBuilderProbes(
     probes.push({
       key: "question-coverage",
       name: "P2 — Question coverage: mapped questions exist and are approved",
-      expectation:
-        "Every question mapped into a built assessment exists in the question bank with status = approved.",
+      expectation: "Every question mapped into a built assessment exists in the question bank with status = approved.",
       detail: `Mapped questions: ${ids.length}; missing from bank: ${missing.length}; not approved: ${unapproved.length}.`,
       pass: ids.length > 0 && missing.length === 0 && unapproved.length === 0,
     });
@@ -281,15 +274,9 @@ export async function runBuilderProbes(
       .select("assessment_id, question_id");
     const { data: questions } = await admin.from("question_bank").select("id, outcome_id");
     const { data: outcomes } = await admin.from("assessment_outcomes").select("id, unit_id");
-    const unitByAssessment = new Map(
-      (assessments ?? []).map((a) => [a.id as string, a.unit_id as string]),
-    );
-    const outcomeByQuestion = new Map(
-      (questions ?? []).map((q) => [q.id as string, q.outcome_id as string]),
-    );
-    const unitByOutcome = new Map(
-      (outcomes ?? []).map((o) => [o.id as string, o.unit_id as string]),
-    );
+    const unitByAssessment = new Map((assessments ?? []).map((a) => [a.id as string, a.unit_id as string]));
+    const outcomeByQuestion = new Map((questions ?? []).map((q) => [q.id as string, q.outcome_id as string]));
+    const unitByOutcome = new Map((outcomes ?? []).map((o) => [o.id as string, o.unit_id as string]));
     const misaligned = (maps ?? []).filter((m) => {
       const unitId = unitByAssessment.get(m.assessment_id as string);
       const outcomeId = outcomeByQuestion.get(m.question_id as string);
@@ -298,8 +285,7 @@ export async function runBuilderProbes(
     probes.push({
       key: "outcome-alignment",
       name: "P3 — Outcome alignment with the assessment's unit",
-      expectation:
-        "Every mapped question's assessment outcome belongs to the same curriculum unit as the assessment.",
+      expectation: "Every mapped question's assessment outcome belongs to the same curriculum unit as the assessment.",
       detail: `Map rows checked: ${maps?.length ?? 0}; misaligned: ${misaligned.length}.`,
       pass: (maps ?? []).length > 0 && misaligned.length === 0,
     });
@@ -318,22 +304,14 @@ export async function runBuilderProbes(
         const o = (outcomes ?? []).find((x) => x.id);
         return { outcomeId: o?.id ?? "", difficulty: r.difficulty };
       }),
-      (outcomes ?? []).map((o) => ({
-        id: o.id as string,
-        diagnosticWeight: o.diagnostic_weight as number,
-      })),
+      (outcomes ?? []).map((o) => ({ id: o.id as string, diagnosticWeight: o.diagnostic_weight as number })),
     );
     void recomputed;
-    const ok =
-      total === 100 &&
-      snap.weightTotal === 100 &&
-      snap.weightMeasured > 0 &&
-      snap.weightMeasured <= 100;
+    const ok = total === 100 && snap.weightTotal === 100 && snap.weightMeasured > 0 && snap.weightMeasured <= 100;
     probes.push({
       key: "blueprint-weights",
       name: "P4 — Blueprint weights consistent",
-      expectation:
-        "The unit's diagnostic weights sum to 100 and the build's measured weight is a positive subset (alignment % = measured / total).",
+      expectation: "The unit's diagnostic weights sum to 100 and the build's measured weight is a positive subset (alignment % = measured / total).",
       detail: `Unit weight total: ${total}; build measured: ${snap.weightMeasured} → blueprint alignment ${snap.blueprintAlignmentPct}%, outcome coverage ${snap.outcomeCoveragePct}%.`,
       pass: ok,
     });
@@ -343,25 +321,19 @@ export async function runBuilderProbes(
   {
     const { data: questions } = await admin.from("question_bank").select("id, outcome_id");
     const { data: outcomes } = await admin.from("assessment_outcomes").select("id");
-    const { data: maps } = await admin
-      .from("assessment_question_map")
-      .select("assessment_id, question_id");
+    const { data: maps } = await admin.from("assessment_question_map").select("assessment_id, question_id");
     const { data: assessments } = await admin.from("assessments").select("id");
     const outcomeIds = new Set((outcomes ?? []).map((o) => o.id as string));
     const questionIds = new Set((questions ?? []).map((q) => q.id as string));
     const assessmentIds = new Set((assessments ?? []).map((a) => a.id as string));
-    const orphanQuestions = (questions ?? []).filter(
-      (q) => !outcomeIds.has(q.outcome_id as string),
-    );
+    const orphanQuestions = (questions ?? []).filter((q) => !outcomeIds.has(q.outcome_id as string));
     const danglingMaps = (maps ?? []).filter(
-      (m) =>
-        !questionIds.has(m.question_id as string) || !assessmentIds.has(m.assessment_id as string),
+      (m) => !questionIds.has(m.question_id as string) || !assessmentIds.has(m.assessment_id as string),
     );
     probes.push({
       key: "no-orphans",
       name: "P5 — No orphan questions or dangling map rows",
-      expectation:
-        "Every bank question resolves to an assessment outcome; every map row resolves to an existing assessment and question.",
+      expectation: "Every bank question resolves to an assessment outcome; every map row resolves to an existing assessment and question.",
       detail: `Bank questions: ${questions?.length ?? 0} (orphans: ${orphanQuestions.length}); map rows: ${maps?.length ?? 0} (dangling: ${danglingMaps.length}).`,
       pass: orphanQuestions.length === 0 && danglingMaps.length === 0,
     });
@@ -376,25 +348,10 @@ export async function runBuilderProbes(
     .maybeSingle();
   if (!otherOrg) {
     for (const [key, name, expectation] of [
-      [
-        "cross-org-read",
-        "P6 — Cross-organization read isolation",
-        "Reading another org's question maps returns 0 rows.",
-      ],
-      [
-        "cross-org-write",
-        "P7 — Cross-organization write rejected",
-        "Inserting a map row for another org is rejected by RLS.",
-      ],
+      ["cross-org-read", "P6 — Cross-organization read isolation", "Reading another org's question maps returns 0 rows."],
+      ["cross-org-write", "P7 — Cross-organization write rejected", "Inserting a map row for another org is rejected by RLS."],
     ] as const) {
-      probes.push({
-        key,
-        name,
-        expectation,
-        detail: "No second organization exists to test against.",
-        pass: true,
-        skipped: true,
-      });
+      probes.push({ key, name, expectation, detail: "No second organization exists to test against.", pass: true, skipped: true });
     }
   } else {
     // Find an assessment in the other org to target.
@@ -419,11 +376,7 @@ export async function runBuilderProbes(
       dbError: shapeError(read.error),
     });
 
-    const { data: anyQuestion } = await admin
-      .from("question_bank")
-      .select("id")
-      .limit(1)
-      .maybeSingle();
+    const { data: anyQuestion } = await admin.from("question_bank").select("id").limit(1).maybeSingle();
     const write = await (supabase as SupabaseClient).from("assessment_question_map").insert({
       assessment_id: otherAssessment?.id ?? "00000000-0000-0000-0000-000000000000",
       question_id: anyQuestion?.id ?? "00000000-0000-0000-0000-000000000000",
@@ -434,9 +387,7 @@ export async function runBuilderProbes(
       key: "cross-org-write",
       name: "P7 — Cross-organization write rejected",
       expectation: `Inserting a question map into "${otherOrg.name}" fails (RLS or FK violation).`,
-      detail: write.error
-        ? `Rejected: ${write.error.message}`
-        : "INSERT SUCCEEDED — tenant isolation breach.",
+      detail: write.error ? `Rejected: ${write.error.message}` : "INSERT SUCCEEDED — tenant isolation breach.",
       pass: !!write.error,
       dbError: shapeError(write.error),
     });
@@ -444,11 +395,7 @@ export async function runBuilderProbes(
 
   // P8 — Role write gate: reviewer build denied; staff build/delete round-trip.
   if (me.role === "reviewer") {
-    const { data: anyQuestion } = await admin
-      .from("question_bank")
-      .select("id")
-      .limit(1)
-      .maybeSingle();
+    const { data: anyQuestion } = await admin.from("question_bank").select("id").limit(1).maybeSingle();
     const attempt = await (supabase as SupabaseClient).from("assessment_question_map").insert({
       assessment_id: E.assessmentId,
       question_id: anyQuestion?.id ?? "00000000-0000-0000-0000-000000000000",
@@ -459,9 +406,7 @@ export async function runBuilderProbes(
       key: "role-write-gate",
       name: "P8 — Reviewer is read-only",
       expectation: "A reviewer's INSERT into assessment_question_map is rejected.",
-      detail: attempt.error
-        ? `Rejected: ${attempt.error.message}`
-        : "INSERT SUCCEEDED — reviewers must not write.",
+      detail: attempt.error ? `Rejected: ${attempt.error.message}` : "INSERT SUCCEEDED — reviewers must not write.",
       pass: !!attempt.error,
       dbError: shapeError(attempt.error),
     });
@@ -514,15 +459,11 @@ export async function runBuilderProbes(
           sort_order: 1,
           points: 1,
         });
-        const del = await (supabase as SupabaseClient)
-          .from("assessments")
-          .delete()
-          .eq("id", ins.data.id);
+        const del = await (supabase as SupabaseClient).from("assessments").delete().eq("id", ins.data.id);
         probes.push({
           key: "role-write-gate",
           name: "P8 — Staff build round-trip",
-          expectation:
-            "Staff can build and delete a curriculum assessment in their own org (map rows cascade).",
+          expectation: "Staff can build and delete a curriculum assessment in their own org (map rows cascade).",
           detail: mapIns.error
             ? `Assessment created but map insert failed: ${mapIns.error.message}`
             : del.error

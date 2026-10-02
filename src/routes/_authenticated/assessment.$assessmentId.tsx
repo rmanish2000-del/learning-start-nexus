@@ -7,12 +7,7 @@ import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import {
-  asResultEntries,
-  DIFFICULTY_LABELS,
-  normalizeQuestionOptions,
-  type ResultEntry,
-  type RunnerQuestion,
-} from "@/lib/assessment-shared";
+  asResultEntries, DIFFICULTY_LABELS, normalizeQuestionOptions, type ResultEntry, type RunnerQuestion } from "@/lib/assessment-shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -54,10 +49,7 @@ export const Route = createFileRoute("/_authenticated/assessment/$assessmentId")
       { title: "Assessment detail — EduOS" },
       { name: "description", content: "Questions, sessions, and results for this assessment." },
       { property: "og:title", content: "Assessment detail — EduOS" },
-      {
-        property: "og:description",
-        content: "Questions, sessions, and results for this assessment.",
-      },
+      { property: "og:description", content: "Questions, sessions, and results for this assessment." },
     ],
   }),
   component: AssessmentDetailPage,
@@ -112,9 +104,7 @@ function AssessmentDetailPage() {
       if ((qMap ?? []).length > 0) {
         const rows = qMap ?? [];
         const outcomeIds = [
-          ...new Set(
-            rows.map((r) => (r.question_bank as unknown as { outcome_id: string }).outcome_id),
-          ),
+          ...new Set(rows.map((r) => (r.question_bank as unknown as { outcome_id: string }).outcome_id)),
         ];
         const { data: outcomes } = await supabase
           .from("assessment_outcomes")
@@ -153,10 +143,7 @@ function AssessmentDetailPage() {
         .order("sort_order");
       if (error) throw error;
       return (data ?? []).map((row) => {
-        const item = row.assessment_items as unknown as Omit<
-          RunnerQuestion,
-          "sort_order" | "points" | "options"
-        > & {
+        const item = row.assessment_items as unknown as Omit<RunnerQuestion, "sort_order" | "points" | "options"> & {
           options: unknown;
         };
         return {
@@ -174,9 +161,7 @@ function AssessmentDetailPage() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("assessment_sessions")
-        .select(
-          "id, learner_id, status, score_pct, correct_count, total_count, result, due, submitted_at, last_activity_at, learners(full_name, handle)",
-        )
+        .select("id, learner_id, status, score_pct, correct_count, total_count, result, due, submitted_at, last_activity_at, learners(full_name, handle)")
         .eq("assessment_id", assessmentId)
         .order("created_at", { ascending: false });
       if (error) throw error;
@@ -201,7 +186,9 @@ function AssessmentDetailPage() {
       }
     },
     onError: (e) =>
-      toast.error(friendlyErrorMessage(e, "Could not publish. The assessment is still a draft.")),
+      toast.error(
+        friendlyErrorMessage(e, "Could not publish. The assessment is still a draft."),
+      ),
   });
 
   const itemById = useMemo(() => new Map((items ?? []).map((i) => [i.id, i])), [items]);
@@ -328,8 +315,7 @@ function AssessmentDetailPage() {
                   <CircleX className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
                 )}
                 <span className={check.ok ? "" : "text-muted-foreground"}>
-                  <span className="font-medium text-foreground">{check.label}</span> —{" "}
-                  {check.detail}
+                  <span className="font-medium text-foreground">{check.label}</span> — {check.detail}
                 </span>
               </li>
             ))}
@@ -381,9 +367,7 @@ function AssessmentDetailPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">
-              Questions
-            </CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">Questions</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold tabular-nums">{(items ?? []).length}</p>
@@ -391,9 +375,7 @@ function AssessmentDetailPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">
-              Assigned
-            </CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">Assigned</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-semibold tabular-nums">{(sessions ?? []).length}</p>
@@ -401,14 +383,10 @@ function AssessmentDetailPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">
-              Average score
-            </CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">Average score</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-semibold tabular-nums">
-              {avgScore != null ? `${avgScore}%` : "—"}
-            </p>
+            <p className="text-2xl font-semibold tabular-nums">{avgScore != null ? `${avgScore}%` : "—"}</p>
           </CardContent>
         </Card>
       </div>
@@ -435,10 +413,8 @@ function AssessmentDetailPage() {
                   <TableCell className="max-w-md">
                     <p className="text-sm">{item.prompt}</p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      {item.kind === "mcq"
-                        ? `Options: ${(item.options ?? []).map((o) => o.label).join(" · ")}`
-                        : "Numeric answer"}{" "}
-                      · {DIFFICULTY_LABELS[item.difficulty]}
+                      {item.kind === "mcq" ? `Options: ${(item.options ?? []).map((o) => o.label).join(" · ")}` : "Numeric answer"} ·{" "}
+                      {DIFFICULTY_LABELS[item.difficulty]}
                     </p>
                   </TableCell>
                   <TableCell>
@@ -474,20 +450,14 @@ function AssessmentDetailPage() {
               {(sessions ?? []).map((s) => (
                 <TableRow key={s.id}>
                   <TableCell>
-                    <Link
-                      to="/learners/$learnerId"
-                      params={{ learnerId: s.learner_id }}
-                      className="font-medium hover:underline"
-                    >
+                    <Link to="/learners/$learnerId" params={{ learnerId: s.learner_id }} className="font-medium hover:underline">
                       {s.learners?.full_name ?? "—"}
                     </Link>
                     <p className="text-xs text-muted-foreground">@{s.learners?.handle}</p>
                   </TableCell>
                   <TableCell className="capitalize text-sm">{s.status.replace("_", " ")}</TableCell>
                   <TableCell className="text-right font-semibold tabular-nums">
-                    {s.score_pct != null
-                      ? `${s.score_pct}% (${s.correct_count}/${s.total_count})`
-                      : "—"}
+                    {s.score_pct != null ? `${s.score_pct}% (${s.correct_count}/${s.total_count})` : "—"}
                   </TableCell>
                   <TableCell className="text-sm text-muted-foreground">
                     {s.submitted_at ? new Date(s.submitted_at).toLocaleDateString() : "—"}
@@ -530,23 +500,17 @@ function AssessmentDetailPage() {
                   <CircleX className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
                 )}
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm">
-                    {itemById.get(entry.item_id)?.prompt ?? `Question ${i + 1}`}
-                  </p>
+                  <p className="text-sm">{itemById.get(entry.item_id)?.prompt ?? `Question ${i + 1}`}</p>
                   <p className="mt-0.5 text-xs text-muted-foreground">
-                    Answered{" "}
-                    <span className="font-medium text-foreground">{entry.given || "—"}</span>
+                    Answered <span className="font-medium text-foreground">{entry.given || "—"}</span>
                     {!entry.correct && (
                       <>
-                        {" · "}correct:{" "}
-                        <span className="font-medium text-foreground">{entry.correct_answer}</span>
+                        {" · "}correct: <span className="font-medium text-foreground">{entry.correct_answer}</span>
                       </>
                     )}
                   </p>
                 </div>
-                <Badge variant="outline" className="shrink-0">
-                  {entry.subtopic}
-                </Badge>
+                <Badge variant="outline" className="shrink-0">{entry.subtopic}</Badge>
               </div>
             ))}
           </div>

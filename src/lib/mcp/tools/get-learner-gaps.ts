@@ -9,10 +9,7 @@ export default defineTool({
     "Return detected learning gaps for one learner, including topic, subtopic, severity, status and gap score.",
   inputSchema: {
     learner_id: z.string().uuid().describe("Learner id from list_learners."),
-    status: z
-      .enum(["open", "in_progress", "resolved"])
-      .optional()
-      .describe("Optional status filter."),
+    status: z.enum(["open", "in_progress", "resolved"]).optional().describe("Optional status filter."),
     limit: z.number().int().min(1).max(100).default(50),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
@@ -23,9 +20,7 @@ export default defineTool({
     const supabase = supabaseForUser(ctx);
     let query = supabase
       .from("learning_gaps")
-      .select(
-        "id, subject, topic, subtopic, severity, status, gap_score_pct, items_correct, items_total, detected_at",
-      )
+      .select("id, subject, topic, subtopic, severity, status, gap_score_pct, items_correct, items_total, detected_at")
       .eq("learner_id", learner_id)
       .order("gap_score_pct", { ascending: true })
       .limit(limit ?? 50);

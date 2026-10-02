@@ -33,11 +33,7 @@ export const Route = createFileRoute("/_authenticated/verification")({
   head: () => ({
     meta: [
       { title: "Verification — EduOS" },
-      {
-        name: "description",
-        content:
-          "Internal Phase 1 verification page: identity, role, organization, and RLS evidence.",
-      },
+      { name: "description", content: "Internal Phase 1 verification page: identity, role, organization, and RLS evidence." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -61,9 +57,7 @@ function useVerificationData(userId: string, orgId: string | null, role: string)
   const learners = useQuery({
     queryKey: ["verify-learners"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("learners")
-        .select("id, full_name, educator_id, student_user_id");
+      const { data, error } = await supabase.from("learners").select("id, full_name, educator_id, student_user_id");
       if (error) throw error;
       return data;
     },
@@ -86,102 +80,24 @@ function useVerificationData(userId: string, orgId: string | null, role: string)
   return { orgs, learners, myLearner };
 }
 
-const ACCESS_MATRIX: {
-  route: string;
-  admin: string;
-  educator: string;
-  student: string;
-  anon: string;
-}[] = [
-  {
-    route: "/dashboard",
-    admin: "allow",
-    educator: "allow",
-    student: "redirect:/home",
-    anon: "redirect:/auth",
-  },
-  {
-    route: "/learners",
-    admin: "allow",
-    educator: "allow",
-    student: "redirect:/home",
-    anon: "redirect:/auth",
-  },
-  {
-    route: "/learners/$learnerId",
-    admin: "allow (org-scoped)",
-    educator: "allow (org-scoped)",
-    student: "redirect:/home",
-    anon: "redirect:/auth",
-  },
-  {
-    route: "/assignments",
-    admin: "allow",
-    educator: "redirect:/dashboard",
-    student: "redirect:/home",
-    anon: "redirect:/auth",
-  },
-  {
-    route: "/admin",
-    admin: "allow",
-    educator: "redirect:/dashboard",
-    student: "redirect:/home",
-    anon: "redirect:/auth",
-  },
-  {
-    route: "/settings",
-    admin: "allow",
-    educator: "allow",
-    student: "allow",
-    anon: "redirect:/auth",
-  },
-  {
-    route: "/home",
-    admin: "redirect:/dashboard",
-    educator: "redirect:/dashboard",
-    student: "allow",
-    anon: "redirect:/auth",
-  },
+const ACCESS_MATRIX: { route: string; admin: string; educator: string; student: string; anon: string }[] = [
+  { route: "/dashboard", admin: "allow", educator: "allow", student: "redirect:/home", anon: "redirect:/auth" },
+  { route: "/learners", admin: "allow", educator: "allow", student: "redirect:/home", anon: "redirect:/auth" },
+  { route: "/learners/$learnerId", admin: "allow (org-scoped)", educator: "allow (org-scoped)", student: "redirect:/home", anon: "redirect:/auth" },
+  { route: "/assignments", admin: "allow", educator: "redirect:/dashboard", student: "redirect:/home", anon: "redirect:/auth" },
+  { route: "/admin", admin: "allow", educator: "redirect:/dashboard", student: "redirect:/home", anon: "redirect:/auth" },
+  { route: "/settings", admin: "allow", educator: "allow", student: "allow", anon: "redirect:/auth" },
+  { route: "/home", admin: "redirect:/dashboard", educator: "redirect:/dashboard", student: "allow", anon: "redirect:/auth" },
 ];
 
 // Credentials are never listed in the product. Admins hold them out of band.
 const TEST_ACCOUNTS = [
-  {
-    role: "Admin",
-    org: "Brightpath Learning (Org A)",
-    credential: "admin@eduos.dev",
-    secret: "held by admin",
-  },
-  {
-    role: "Educator",
-    org: "Brightpath Learning (Org A)",
-    credential: "priya.nair@eduos.dev",
-    secret: "held by admin",
-  },
-  {
-    role: "Educator",
-    org: "Brightpath Learning (Org A)",
-    credential: "marcus.reed@eduos.dev",
-    secret: "held by admin",
-  },
-  {
-    role: "Educator",
-    org: "Northstar Tutoring (Org B)",
-    credential: "nina.osei@northstar.education",
-    secret: "held by admin",
-  },
-  {
-    role: "Student",
-    org: "Brightpath Learning (Org A)",
-    credential: "handle: aarav",
-    secret: "PIN held by educator",
-  },
-  {
-    role: "Student",
-    org: "Northstar Tutoring (Org B)",
-    credential: "handle: tom",
-    secret: "PIN held by educator",
-  },
+  { role: "Admin", org: "Brightpath Learning (Org A)", credential: "admin@eduos.dev", secret: "held by admin" },
+  { role: "Educator", org: "Brightpath Learning (Org A)", credential: "priya.nair@eduos.dev", secret: "held by admin" },
+  { role: "Educator", org: "Brightpath Learning (Org A)", credential: "marcus.reed@eduos.dev", secret: "held by admin" },
+  { role: "Educator", org: "Northstar Tutoring (Org B)", credential: "nina.osei@northstar.education", secret: "held by admin" },
+  { role: "Student", org: "Brightpath Learning (Org A)", credential: "handle: aarav", secret: "PIN held by educator" },
+  { role: "Student", org: "Northstar Tutoring (Org B)", credential: "handle: tom", secret: "PIN held by educator" },
 ];
 
 const SECURITY_CHECKLIST = [
@@ -288,9 +204,7 @@ function VerificationPage() {
           <CardContent className="space-y-2 text-sm">
             <div className="flex items-center justify-between gap-4">
               <span className="text-muted-foreground">Current role</span>
-              <Badge variant={role === "admin" ? "default" : "secondary"}>
-                {ROLE_LABELS[role]}
-              </Badge>
+              <Badge variant={role === "admin" ? "default" : "secondary"}>{ROLE_LABELS[role]}</Badge>
             </div>
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Organization</span>
@@ -336,8 +250,7 @@ function VerificationPage() {
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Your learner record</span>
               <span className="font-medium">
-                {myLearner.data.full_name} (
-                <span className="font-mono text-xs">@{myLearner.data.handle}</span>)
+                {myLearner.data.full_name} (<span className="font-mono text-xs">@{myLearner.data.handle}</span>)
               </span>
             </div>
           )}
@@ -361,8 +274,7 @@ function VerificationPage() {
             <span className="font-mono text-xs">302 → /auth</span> before any page content loads.
             {probe.data && (
               <>
-                {" "}
-                Probed <span className="font-mono text-xs">{probe.data.origin}</span> at{" "}
+                {" "}Probed <span className="font-mono text-xs">{probe.data.origin}</span> at{" "}
                 {new Date(probe.data.probedAt).toLocaleString()}.
               </>
             )}
@@ -456,18 +368,10 @@ function VerificationPage() {
               {ACCESS_MATRIX.map((row) => (
                 <TableRow key={row.route}>
                   <TableCell className="font-mono text-xs">{row.route}</TableCell>
-                  <TableCell>
-                    <AccessCell value={row.admin} />
-                  </TableCell>
-                  <TableCell>
-                    <AccessCell value={row.educator} />
-                  </TableCell>
-                  <TableCell>
-                    <AccessCell value={row.student} />
-                  </TableCell>
-                  <TableCell>
-                    <AccessCell value={row.anon} />
-                  </TableCell>
+                  <TableCell><AccessCell value={row.admin} /></TableCell>
+                  <TableCell><AccessCell value={row.educator} /></TableCell>
+                  <TableCell><AccessCell value={row.student} /></TableCell>
+                  <TableCell><AccessCell value={row.anon} /></TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -498,9 +402,7 @@ function VerificationPage() {
             <TableBody>
               {TEST_ACCOUNTS.map((acct) => (
                 <TableRow key={acct.credential}>
-                  <TableCell>
-                    <Badge variant="secondary">{acct.role}</Badge>
-                  </TableCell>
+                  <TableCell><Badge variant="secondary">{acct.role}</Badge></TableCell>
                   <TableCell className="text-sm">{acct.org}</TableCell>
                   <TableCell className="font-mono text-xs">{acct.credential}</TableCell>
                   <TableCell className="font-mono text-xs">{acct.secret}</TableCell>
@@ -529,11 +431,8 @@ function VerificationPage() {
             ))}
           </ul>
           <p className="pt-4 text-xs text-muted-foreground">
-            Persistence proof: create a learner from{" "}
-            <Link to="/learners" className="underline">
-              Learners
-            </Link>
-            , refresh the page, and the record remains — all data is served from the database, not
+            Persistence proof: create a learner from <Link to="/learners" className="underline">Learners</Link>,
+            refresh the page, and the record remains — all data is served from the database, not
             frontend state.
           </p>
         </CardContent>

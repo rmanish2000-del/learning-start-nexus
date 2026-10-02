@@ -53,14 +53,10 @@ for (const subject of SUBJECTS) {
     `activation: active=${curriculum.activation.isActive} commercial=${curriculum.activation.commercialStatus} ` +
       `review=${curriculum.activation.reviewState} diagnosticEligible=${curriculum.activation.diagnosticEligible}`,
   );
-  console.log(
-    `integrity issues: ${errors.length} error(s), ${issues.length - errors.length} warning(s)`,
-  );
+  console.log(`integrity issues: ${errors.length} error(s), ${issues.length - errors.length} warning(s)`);
   for (const i of issues) console.log(`  [${i.level}] ${i.code}: ${i.detail}`);
 
-  console.log(
-    "readiness matrix (unit | outcomes | required | prepared | verified | coverage% | shortfall):",
-  );
+  console.log("readiness matrix (unit | outcomes | required | prepared | verified | coverage% | shortfall):");
   for (const m of matrix) {
     console.log(
       `  ${m.unitId} ${m.unitTitle.padEnd(34)} ${String(m.outcomes).padStart(2)} | ` +

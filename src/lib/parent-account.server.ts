@@ -5,7 +5,11 @@
 // parent_learner_links. Purchases are refused until all of that exists.
 
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import type { ParentAccount, ParentPurchase, ParentStudent } from "./parent-account-shared";
+import type {
+  ParentAccount,
+  ParentPurchase,
+  ParentStudent,
+} from "./parent-account-shared";
 
 export async function defaultOrgId(): Promise<string> {
   const { data, error } = await supabaseAdmin
@@ -20,11 +24,7 @@ export async function defaultOrgId(): Promise<string> {
 }
 
 function handleFor(name: string): string {
-  const slug =
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "")
-      .slice(0, 10) || "student";
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 10) || "student";
   return `${slug}-${crypto.randomUUID().slice(0, 8)}`;
 }
 
@@ -150,6 +150,7 @@ export async function setStudentPinAsAdmin(
     .single();
   if (error || !learner) throw new Error("Student profile not found.");
 
+
   const { studentEmail, studentPassword } = await import("./auth-utils");
   const password = studentPassword(learner.handle, input.pin);
 
@@ -175,10 +176,7 @@ export async function setStudentPinAsAdmin(
   await supabaseAdmin
     .from("user_roles")
     .insert({ user_id: created.user.id, role: "student" })
-    .then(
-      () => undefined,
-      () => undefined,
-    );
+    .then(() => undefined, () => undefined);
 
   // The signup trigger homes every new profile to the first organisation, so a
   // student created for a learner in any other org is hidden from their own
@@ -198,6 +196,7 @@ export async function setStudentPinAsAdmin(
 
   return { handle: learner.handle, created: true };
 }
+
 
 /** Throws unless the student profile belongs to this parent account. */
 export async function assertStudentOwned(userId: string, learnerId: string): Promise<void> {
@@ -262,7 +261,10 @@ export async function addStudent(
   };
 }
 
-export async function loadParentAccount(userId: string, email: string): Promise<ParentAccount> {
+export async function loadParentAccount(
+  userId: string,
+  email: string,
+): Promise<ParentAccount> {
   const [{ data: profile }, students] = await Promise.all([
     supabaseAdmin.from("profiles").select("full_name, phone").eq("id", userId).maybeSingle(),
     listStudents(userId),
@@ -282,10 +284,7 @@ export async function loadParentAccount(userId: string, email: string): Promise<
 
   const [sessionsRes, unitsRes] = await Promise.all([
     sessionIds.length > 0
-      ? supabaseAdmin
-          .from("assessment_sessions")
-          .select("id, status, score_pct")
-          .in("id", sessionIds)
+      ? supabaseAdmin.from("assessment_sessions").select("id, status, score_pct").in("id", sessionIds)
       : Promise.resolve({ data: [] as { id: string; status: string; score_pct: number | null }[] }),
     unitIds.length > 0
       ? supabaseAdmin.from("curriculum_units").select("id, title").in("id", unitIds)
@@ -308,11 +307,7 @@ export async function loadParentAccount(userId: string, email: string): Promise<
       studentId: o.learner_id,
       studentName: (o.learner_id ? studentById.get(o.learner_id) : null) ?? o.child_first_name,
       accessToken: o.status === "paid" ? o.access_token : null,
-      sessionStatus: !session
-        ? "not_started"
-        : session.status === "submitted"
-          ? "submitted"
-          : "in_progress",
+      sessionStatus: !session ? "not_started" : session.status === "submitted" ? "submitted" : "in_progress",
       scorePct: session?.score_pct ?? null,
       paidAt: o.paid_at,
       createdAt: o.created_at,

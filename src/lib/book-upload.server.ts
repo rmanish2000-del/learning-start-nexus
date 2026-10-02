@@ -144,14 +144,8 @@ function normalizeUnits(
           topics: (c.topics ?? [])
             .map((t) => ({
               title: clean(t.title ?? "", 200),
-              keyConcepts: (t.keyConcepts ?? [])
-                .map((k) => clean(k, 120))
-                .filter(Boolean)
-                .slice(0, 8),
-              outcomes: (t.outcomes ?? [])
-                .map((o) => clean(o, 300))
-                .filter((o) => o.length >= 3)
-                .slice(0, 6),
+              keyConcepts: (t.keyConcepts ?? []).map((k) => clean(k, 120)).filter(Boolean).slice(0, 8),
+              outcomes: (t.outcomes ?? []).map((o) => clean(o, 300)).filter((o) => o.length >= 3).slice(0, 6),
             }))
             .filter((t) => t.title.length > 0)
             .slice(0, 12),
@@ -162,6 +156,7 @@ function normalizeUnits(
     .filter((u) => u.title.length > 0 && u.chapters.length > 0)
     .slice(0, 12);
 }
+
 
 // Some gateway models return only titles and drop the nested key-concept /
 // outcome arrays. A second, narrower pass fills those in per chapter so every
@@ -237,10 +232,7 @@ async function enrichUnits(
         );
         if (!match) continue;
         if ((topic.keyConcepts?.length ?? 0) === 0) {
-          topic.keyConcepts = (match.keyConcepts ?? [])
-            .map((k) => clean(k, 120))
-            .filter(Boolean)
-            .slice(0, 8);
+          topic.keyConcepts = (match.keyConcepts ?? []).map((k) => clean(k, 120)).filter(Boolean).slice(0, 8);
         }
         if ((topic.outcomes?.length ?? 0) === 0) {
           topic.outcomes = (match.outcomes ?? [])
@@ -254,11 +246,7 @@ async function enrichUnits(
   return units;
 }
 
-async function extractTextFromFile(
-  path: string,
-  mimeType: string,
-  bytes: Uint8Array,
-): Promise<string> {
+async function extractTextFromFile(path: string, mimeType: string, bytes: Uint8Array): Promise<string> {
   if (mimeType === "application/pdf" || path.toLowerCase().endsWith(".pdf")) {
     const { extractText } = await import("unpdf");
     const { text } = await extractText(bytes, { mergePages: true });
@@ -322,15 +310,9 @@ export async function extractCurriculumFromBook(
 
   let text: string;
   try {
-    text = await extractTextFromFile(
-      path,
-      book.mime_types[0] ?? "",
-      new Uint8Array(await blob.arrayBuffer()),
-    );
+    text = await extractTextFromFile(path, book.mime_types[0] ?? "", new Uint8Array(await blob.arrayBuffer()));
   } catch (error) {
-    return fail(
-      `Text extraction failed: ${error instanceof Error ? error.message : "unknown error"}`,
-    );
+    return fail(`Text extraction failed: ${error instanceof Error ? error.message : "unknown error"}`);
   }
   text = text.replace(/\s+/g, " ").trim();
   if (text.length < 200) {

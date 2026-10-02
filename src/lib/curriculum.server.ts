@@ -29,10 +29,7 @@ const TABLE_BY_KIND = {
 // Reads
 // ---------------------------------------------------------------------------
 
-function mapBook(
-  row: Database["public"]["Tables"]["books"]["Row"],
-  counts: BookSummary["counts"],
-): BookSummary {
+function mapBook(row: Database["public"]["Tables"]["books"]["Row"], counts: BookSummary["counts"]): BookSummary {
   return {
     id: row.id,
     title: row.title,
@@ -116,12 +113,7 @@ export async function fetchBookWorkspace(supabase: Client, bookId: string): Prom
   const outcomesByTopic = new Map<string, OutcomeNode[]>();
   for (const o of outcomesRes.data ?? []) {
     const list = outcomesByTopic.get(o.topic_id) ?? [];
-    list.push({
-      id: o.id,
-      text: o.text,
-      status: o.status as OutcomeNode["status"],
-      position: o.position,
-    });
+    list.push({ id: o.id, text: o.text, status: o.status as OutcomeNode["status"], position: o.position });
     outcomesByTopic.set(o.topic_id, list);
   }
 
@@ -144,12 +136,14 @@ export async function fetchBookWorkspace(supabase: Client, bookId: string): Prom
     position: u.position,
     chapters: (chaptersRes.data ?? [])
       .filter((c) => c.unit_id === u.id)
-      .map((c): ChapterNode => ({
-        id: c.id,
-        title: c.title,
-        position: c.position,
-        topics: topicsByChapter.get(c.id) ?? [],
-      })),
+      .map(
+        (c): ChapterNode => ({
+          id: c.id,
+          title: c.title,
+          position: c.position,
+          topics: topicsByChapter.get(c.id) ?? [],
+        }),
+      ),
   }));
 
   const counts = {
@@ -172,12 +166,14 @@ export async function fetchBookWorkspace(supabase: Client, bookId: string): Prom
         relation: e.relation,
       })),
     },
-    events: (eventsRes.data ?? []).map((e): BookEventRow => ({
-      id: e.id,
-      event: e.event,
-      detail: (e.detail ?? {}) as EventDetail,
-      createdAt: e.created_at,
-    })),
+    events: (eventsRes.data ?? []).map(
+      (e): BookEventRow => ({
+        id: e.id,
+        event: e.event,
+        detail: (e.detail ?? {}) as EventDetail,
+        createdAt: e.created_at,
+      }),
+    ),
   };
 }
 
@@ -202,12 +198,7 @@ async function logEvent(
 // Tree edits (staff only — enforced by RLS + requireAnyRole in the wrapper)
 // ---------------------------------------------------------------------------
 
-async function nextPosition(
-  supabase: Client,
-  kind: NodeKind,
-  bookId: string,
-  parentId?: string | null,
-): Promise<number> {
+async function nextPosition(supabase: Client, kind: NodeKind, bookId: string, parentId?: string | null): Promise<number> {
   const table = TABLE_BY_KIND[kind];
   let q = (supabase as SupabaseClient).from(table).select("position").eq("book_id", bookId);
   if (kind === "chapter" && parentId) q = q.eq("unit_id", parentId);
@@ -289,17 +280,9 @@ export async function addNode(
       ? base
       : input.kind === "chapter"
         ? { ...base, unit_id: input.parentId! }
-        : {
-            ...base,
-            chapter_id: input.parentId!,
-            key_concepts: [],
-            learning_outcomes: [],
-            question_opportunities: [],
-          };
+        : { ...base, chapter_id: input.parentId!, key_concepts: [], learning_outcomes: [], question_opportunities: [] };
 
-  const { error } = await (supabase as SupabaseClient)
-    .from(TABLE_BY_KIND[input.kind])
-    .insert(payload);
+  const { error } = await (supabase as SupabaseClient).from(TABLE_BY_KIND[input.kind]).insert(payload);
   if (error) throw new Error(error.message);
   await logEvent(supabase, {
     orgId: ctx.orgId,
@@ -372,11 +355,7 @@ export async function createOutcome(
 export async function updateOutcome(
   supabase: Client,
   ctx: { orgId: string; userId: string },
-  input: {
-    outcomeId: string;
-    text?: string | undefined;
-    status?: "suggested" | "approved" | undefined;
-  },
+  input: { outcomeId: string; text?: string | undefined; status?: "suggested" | "approved" | undefined },
 ): Promise<void> {
   const patch: { text?: string; status?: "suggested" | "approved" } = {};
   if (input.text !== undefined) patch.text = input.text;
@@ -552,13 +531,7 @@ export async function persistCurriculumTree(
     for (const [ci, chapter] of unit.chapters.entries()) {
       const { data: c, error: cError } = await supabase
         .from("curriculum_chapters")
-        .insert({
-          org_id: ctx.orgId,
-          book_id: bookId,
-          unit_id: u.id,
-          title: chapter.title,
-          position: ci + 1,
-        })
+        .insert({ org_id: ctx.orgId, book_id: bookId, unit_id: u.id, title: chapter.title, position: ci + 1 })
         .select("id")
         .single();
       if (cError) throw new Error(cError.message);

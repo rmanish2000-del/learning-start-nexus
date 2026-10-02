@@ -31,18 +31,14 @@ export const Route = createFileRoute("/_authenticated/tutor/$sessionId")({
   head: () => ({
     meta: [
       { title: "AI Tutor — EduOS" },
-      {
-        name: "description",
-        content: "Your personal tutor session — explanations, hints, examples, and practice.",
-      },
+      { name: "description", content: "Your personal tutor session — explanations, hints, examples, and practice." },
       { name: "robots", content: "noindex" },
     ],
   }),
   component: TutorPage,
 });
 
-type Action =
-  "explain" | "hint" | "example" | "reframe" | "try_question" | "socratic" | "practice_question";
+type Action = "explain" | "hint" | "example" | "reframe" | "try_question" | "socratic" | "practice_question";
 
 const ACTION_BUTTONS: { action: Action; label: string; icon: typeof Sparkles }[] = [
   { action: "explain", label: "Explain", icon: BookOpen },
@@ -68,10 +64,8 @@ function TutorPage() {
   });
 
   const mutation = useMutation({
-    mutationFn: (input: {
-      action: Action | "try_answer" | "practice_answer";
-      studentText?: string;
-    }) => runAction({ data: { sessionId, action: input.action, studentText: input.studentText } }),
+    mutationFn: (input: { action: Action | "try_answer" | "practice_answer"; studentText?: string }) =>
+      runAction({ data: { sessionId, action: input.action, studentText: input.studentText } }),
     onSuccess: () => {
       setAnswer("");
       void queryClient.invalidateQueries({ queryKey: ["tutor-session", sessionId] });
@@ -173,8 +167,8 @@ function TutorPage() {
                   Hi! I'm your tutor for {session.concept}.
                 </p>
                 <p className="mx-auto mt-1 max-w-sm text-xs text-muted-foreground">
-                  Pick an action below to get started — I can explain, give hints, show examples, or
-                  ask you questions. You do the thinking!
+                  Pick an action below to get started — I can explain, give hints, show examples,
+                  or ask you questions. You do the thinking!
                 </p>
               </div>
             )}
@@ -257,11 +251,7 @@ function TutorPage() {
                 <Button
                   key={b.action}
                   size="sm"
-                  variant={
-                    b.action === "practice_question" || b.action === "try_question"
-                      ? "default"
-                      : "outline"
-                  }
+                  variant={b.action === "practice_question" || b.action === "try_question" ? "default" : "outline"}
                   disabled={mutation.isPending}
                   onClick={() => mutation.mutate({ action: b.action })}
                 >
@@ -302,8 +292,8 @@ function TutorPage() {
       </div>
 
       <p className="text-center text-xs text-muted-foreground">
-        Practice here is separate from your formal assessments — it's a safe space to make mistakes.
-        Your educator sees that you practiced, not your conversation.
+        Practice here is separate from your formal assessments — it's a safe space to make
+        mistakes. Your educator sees that you practiced, not your conversation.
       </p>
     </div>
   );

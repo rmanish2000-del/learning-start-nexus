@@ -14,7 +14,11 @@ export const LOOP_STAGES = [
 
 export type LoopStage = (typeof LOOP_STAGES)[number];
 
-export type StudentGapAction = "launch-tutor" | "resume-assessment" | "review-evidence" | "wait";
+export type StudentGapAction =
+  | "launch-tutor"
+  | "resume-assessment"
+  | "review-evidence"
+  | "wait";
 
 export type StudentGapCard = {
   gapId: string;

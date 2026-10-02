@@ -67,13 +67,7 @@ for (const subject of SUBJECTS) {
     );
   }
 
-  matrixLines.push(
-    "",
-    "### Outcome and atom level",
-    "",
-    "| Unit | Chapter | Topic | Outcome | Atoms | Atoms covered | Questions | Difficulty | Question types |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-  );
+  matrixLines.push("", "### Outcome and atom level", "", "| Unit | Chapter | Topic | Outcome | Atoms | Atoms covered | Questions | Difficulty | Question types |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- |");
   for (const r of rows) {
     const oq = qs.filter((q) => q.outcomeId === r.outcome.id);
     const coveredAtoms = new Set(oq.map((q) => q.atomId)).size;
@@ -162,9 +156,7 @@ for (const subject of SUBJECTS) {
 
   const slug = curriculum.subjectKey.toUpperCase();
   writeFileSync(`EDUOS_CLASS_9_${slug}_SUBJECT_EXPERT_REVIEW_PACKAGE.md`, pkg.join("\n"));
-  console.log(
-    `wrote EDUOS_CLASS_9_${slug}_SUBJECT_EXPERT_REVIEW_PACKAGE.md (${qs.length} questions)`,
-  );
+  console.log(`wrote EDUOS_CLASS_9_${slug}_SUBJECT_EXPERT_REVIEW_PACKAGE.md (${qs.length} questions)`);
 }
 
 writeFileSync("EDUOS_CLASS_9_CONTENT_VOLUME_MATRIX.md", matrixLines.join("\n") + "\n");

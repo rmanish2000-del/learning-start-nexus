@@ -124,7 +124,9 @@ export async function fetchLaunchPolicySummary(supabase: Client): Promise<Launch
     (p.with_check_expression ?? "").includes("reviewer");
   return {
     consentPolicies: all.filter((p) => p.tablename === "guardian_consents"),
-    reviewerWritePolicies: all.filter((p) => p.cmd !== "SELECT" && mentionsReviewer(p)),
+    reviewerWritePolicies: all.filter(
+      (p) => p.cmd !== "SELECT" && mentionsReviewer(p),
+    ),
     reviewerSelectPolicies: all.filter((p) => p.cmd === "SELECT" && mentionsReviewer(p)),
     tutorInteractionReviewerPolicies: all.filter(
       (p) => p.tablename === "tutor_interactions" && mentionsReviewer(p),
@@ -182,14 +184,7 @@ export async function runLaunchProbes(
       detail: error
         ? `Query failed: ${error.message}`
         : `Visible consent records (this org, RLS): ${orgCount ?? 0} · global: ${globalCount ?? 0} · aarav records: ${aaravRecords}.`,
-      dbError: error
-        ? {
-            code: error.code ?? null,
-            message: error.message,
-            details: error.details ?? null,
-            hint: error.hint ?? null,
-          }
-        : null,
+      dbError: error ? { code: error.code ?? null, message: error.message, details: error.details ?? null, hint: error.hint ?? null } : null,
     });
   }
 
@@ -197,9 +192,7 @@ export async function runLaunchProbes(
   {
     const policies = await fetchPolicyRows(supabase);
     const consent = policies.filter((p) => p.tablename === "guardian_consents");
-    const writeCmds = consent.filter(
-      (p) => p.cmd === "UPDATE" || p.cmd === "DELETE" || p.cmd === "ALL",
-    );
+    const writeCmds = consent.filter((p) => p.cmd === "UPDATE" || p.cmd === "DELETE" || p.cmd === "ALL");
     push({
       key: "consent_append_only",
       name: "Consent history is append-only",
@@ -234,7 +227,8 @@ export async function runLaunchProbes(
                 (d) =>
                   `${d.learnerName} (@${d.handle}) — ${d.interventionTitle} [${d.interventionStatus}]: consent ${d.hasConsent ? "ON FILE" : "MISSING"} → tutor ${d.tutorAccess.toUpperCase()}`,
               )
-              .join(" · ") + ` (${allowed.length} allowed, ${blocked.length} blocked)`,
+              .join(" · ") +
+            ` (${allowed.length} allowed, ${blocked.length} blocked)`,
       dbError: null,
     });
   }
@@ -288,14 +282,7 @@ export async function runLaunchProbes(
       pass: summary.tutorInteractionReviewerPolicies.length === 0 && !error,
       skipped: false,
       detail: `Policies on tutor_interactions mentioning reviewer: ${summary.tutorInteractionReviewerPolicies.length} · conversation rows visible to the current caller: ${visibleInteractions ?? 0}.`,
-      dbError: error
-        ? {
-            code: error.code ?? null,
-            message: error.message,
-            details: error.details ?? null,
-            hint: error.hint ?? null,
-          }
-        : null,
+      dbError: error ? { code: error.code ?? null, message: error.message, details: error.details ?? null, hint: error.hint ?? null } : null,
     });
   }
 

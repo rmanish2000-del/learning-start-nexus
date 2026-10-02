@@ -145,9 +145,7 @@ function LibraryView({ books, isStaff }: { books: BookSummary[]; isStaff: boolea
       form.set("subject", uploadMeta.subject);
       form.set("file", uploadFile);
       const result = await runUpload({ data: form });
-      toast.success(
-        `Uploaded "${uploadMeta.title}" (${result.fileName}). Extract its curriculum next.`,
-      );
+      toast.success(`Uploaded "${uploadMeta.title}" (${result.fileName}). Extract its curriculum next.`);
       setUploadOpen(false);
       setUploadFile(null);
       setUploadMeta({ title: "", board: "", grade: "6", subject: "" });
@@ -429,9 +427,7 @@ function TreeTab({ workspace }: { workspace: BookWorkspace }) {
             <CardTitle className="flex items-center gap-2 text-base">
               <Layers className="h-4 w-4 text-primary" />
               Unit {u.position} — {u.title}
-              <Badge variant="outline" className="ml-1">
-                {u.chapters.length} chapters
-              </Badge>
+              <Badge variant="outline" className="ml-1">{u.chapters.length} chapters</Badge>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -498,8 +494,7 @@ function ReviewTab({ workspace }: { workspace: BookWorkspace }) {
   const [moveTarget, setMoveTarget] = useState("");
   const [busy, setBusy] = useState(false);
 
-  const refresh = () =>
-    queryClient.invalidateQueries({ queryKey: ["curriculum-book", workspace.book.id] });
+  const refresh = () => queryClient.invalidateQueries({ queryKey: ["curriculum-book", workspace.book.id] });
 
   const run = async (fn: () => Promise<unknown>, success: string) => {
     setBusy(true);
@@ -594,9 +589,7 @@ function ReviewTab({ workspace }: { workspace: BookWorkspace }) {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() =>
-                    openEdit({ mode: "add", kind: "chapter", parentId: u.id, title: "" })
-                  }
+                  onClick={() => openEdit({ mode: "add", kind: "chapter", parentId: u.id, title: "" })}
                 >
                   <Plus className="h-3.5 w-3.5" /> Chapter
                 </Button>
@@ -708,14 +701,13 @@ function ReviewTab({ workspace }: { workspace: BookWorkspace }) {
               <SelectValue placeholder="Select new parent" />
             </SelectTrigger>
             <SelectContent>
-              {(edit?.mode === "move" && edit.kind === "chapter"
-                ? chapterParents
-                : topicParents
-              ).map((p) => (
-                <SelectItem key={p.id} value={p.id}>
-                  {p.title}
-                </SelectItem>
-              ))}
+              {(edit?.mode === "move" && edit.kind === "chapter" ? chapterParents : topicParents).map(
+                (p) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.title}
+                  </SelectItem>
+                ),
+              )}
             </SelectContent>
           </Select>
           <DialogFooter>
@@ -739,7 +731,9 @@ function ReviewTab({ workspace }: { workspace: BookWorkspace }) {
       <AlertDialog open={edit?.mode === "delete"} onOpenChange={(open) => !open && setEdit(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete {edit?.mode === "delete" ? edit.kind : ""}?</AlertDialogTitle>
+            <AlertDialogTitle>
+              Delete {edit?.mode === "delete" ? edit.kind : ""}?
+            </AlertDialogTitle>
             <AlertDialogDescription>
               “{edit?.mode === "delete" ? edit.title : ""}” will be removed permanently.
               {edit?.mode === "delete" && edit.kind !== "topic"
@@ -754,7 +748,10 @@ function ReviewTab({ workspace }: { workspace: BookWorkspace }) {
               disabled={busy}
               onClick={() => {
                 if (edit?.mode !== "delete") return;
-                void run(() => deleteFn({ data: { kind: edit.kind, id: edit.id } }), "Deleted.");
+                void run(
+                  () => deleteFn({ data: { kind: edit.kind, id: edit.id } }),
+                  "Deleted.",
+                );
               }}
             >
               {busy ? "Deleting…" : "Delete"}
@@ -814,18 +811,11 @@ function OutcomeRow({
       </CardHeader>
       <CardContent className="space-y-2">
         {topic.outcomes.map((o) => (
-          <div
-            key={o.id}
-            className="flex flex-wrap items-start justify-between gap-2 rounded-lg border p-2.5"
-          >
+          <div key={o.id} className="flex flex-wrap items-start justify-between gap-2 rounded-lg border p-2.5">
             <div className="min-w-0 flex-1">
               {editingId === o.id ? (
                 <div className="flex items-center gap-2">
-                  <Input
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                    className="h-8 text-xs"
-                  />
+                  <Input value={editText} onChange={(e) => setEditText(e.target.value)} className="h-8 text-xs" />
                   <Button
                     size="sm"
                     className="h-8"
@@ -839,12 +829,7 @@ function OutcomeRow({
                   >
                     Save
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="h-8"
-                    onClick={() => setEditingId(null)}
-                  >
+                  <Button size="sm" variant="ghost" className="h-8" onClick={() => setEditingId(null)}>
                     Cancel
                   </Button>
                 </div>
@@ -1075,10 +1060,7 @@ function HistoryTab({ workspace }: { workspace: BookWorkspace }) {
       </CardHeader>
       <CardContent className="space-y-2">
         {workspace.events.map((e) => (
-          <div
-            key={e.id}
-            className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5"
-          >
+          <div key={e.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5">
             <div className="flex items-center gap-2">
               <Mono>{e.event}</Mono>
               {Object.keys(e.detail).length > 0 && (
@@ -1104,15 +1086,7 @@ function HistoryTab({ workspace }: { workspace: BookWorkspace }) {
 // Workspace (selected book)
 // ---------------------------------------------------------------------------
 
-function WorkspaceView({
-  bookId,
-  tab,
-  isStaff,
-}: {
-  bookId: string;
-  tab: string;
-  isStaff: boolean;
-}) {
+function WorkspaceView({ bookId, tab, isStaff }: { bookId: string; tab: string; isStaff: boolean }) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const setStatus = useServerFn(setBookStatusFn);
@@ -1141,9 +1115,7 @@ function WorkspaceView({
             variant="ghost"
             size="sm"
             className="-ml-2 h-7 text-xs"
-            onClick={() =>
-              navigate({ to: "/curriculum", search: { book: undefined, tab: undefined } })
-            }
+            onClick={() => navigate({ to: "/curriculum", search: { book: undefined, tab: undefined } })}
           >
             ← Back to library
           </Button>

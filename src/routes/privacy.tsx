@@ -25,9 +25,9 @@ function PrivacyPage() {
   return (
     <PublicPageLayout title="Privacy Policy" updated="August 23, 2026">
       <p className="text-muted-foreground">
-        This policy describes how the EduOS deployment ("EduOS", "we") handles information. It is
-        written for the tutoring centers, educators, students, and parents/guardians who use this
-        workspace.
+        This policy describes how the EduOS deployment
+        ("EduOS", "we") handles information. It is written for the tutoring centers, educators,
+        students, and parents/guardians who use this workspace.
       </p>
 
       <LegalSection heading="What we collect">
@@ -53,13 +53,9 @@ function PrivacyPage() {
 
       <LegalSection heading="How we use it">
         <ul className="list-disc space-y-1.5 pl-5">
-          <li>
-            Run the core product: diagnostics, gap detection, interventions, and progress reports.
-          </li>
+          <li>Run the core product: diagnostics, gap detection, interventions, and progress reports.</li>
           <li>Personalize the AI tutor to an educator-approved intervention for the student.</li>
-          <li>
-            Give educators and center admins visibility into their own organization's learners.
-          </li>
+          <li>Give educators and center admins visibility into their own organization's learners.</li>
           <li>Enforce access control and audit the platform's security behavior.</li>
         </ul>
       </LegalSection>
@@ -88,8 +84,8 @@ function PrivacyPage() {
         <p>
           EduOS uses essential storage only: your sign-in session, theme preference, and your cookie
           consent choice. We do not use advertising or cross-site tracking cookies. The consent
-          banner lets you accept or limit storage to essentials; both choices keep the product fully
-          functional.
+          banner lets you accept or limit storage to essentials; both choices keep the product
+          fully functional.
         </p>
       </LegalSection>
 
@@ -104,10 +100,7 @@ function PrivacyPage() {
       <LegalSection heading="Contact">
         <p>
           Questions about this policy or your data:{" "}
-          <a
-            href="mailto:support@eduos.global"
-            className="font-medium text-primary hover:underline"
-          >
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
             support@eduos.global
           </a>
           .

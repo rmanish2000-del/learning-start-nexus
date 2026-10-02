@@ -10,6 +10,7 @@ import { z } from "zod";
 
 import { UTM_CAMPAIGNS, UTM_MEDIUMS, UTM_SOURCES } from "@/lib/utm";
 
+
 export const GUIDANCE_EVENTS = [
   "public_page_view",
   "help_opened",
@@ -69,5 +70,6 @@ export const guidanceEventSchema = z.object({
   utmMedium: z.enum(UTM_MEDIUMS).optional(),
   utmCampaign: z.enum(UTM_CAMPAIGNS).optional(),
 });
+
 
 export type GuidanceEventInput = z.infer<typeof guidanceEventSchema>;

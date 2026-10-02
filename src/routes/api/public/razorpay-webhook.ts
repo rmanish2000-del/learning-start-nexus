@@ -32,9 +32,7 @@ export const Route = createFileRoute("/api/public/razorpay-webhook")({
 
         let event: {
           event?: string;
-          payload?: {
-            payment?: { entity?: { id?: string; order_id?: string; error_description?: string } };
-          };
+          payload?: { payment?: { entity?: { id?: string; order_id?: string; error_description?: string } } };
         };
         try {
           event = JSON.parse(raw);
@@ -56,8 +54,7 @@ export const Route = createFileRoute("/api/public/razorpay-webhook")({
           return Response.json({ ok: true, ignored: "no-payment-entity" });
         }
 
-        const { captureFromWebhook, failFromWebhook } =
-          await import("@/lib/parent-diagnostic.server");
+        const { captureFromWebhook, failFromWebhook } = await import("@/lib/parent-diagnostic.server");
 
         try {
           if (event.event === "payment.captured") {

@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
+
 export const Route = createFileRoute("/_authenticated/interventions")({
   beforeLoad: ({ context }) => {
     if (context.role === "student") throw redirect({ to: "/home" });
@@ -58,26 +59,10 @@ function severityBadge(severity: string) {
 
 function statusBadge(status: string) {
   if (status === "open" || status === "suggested" || status === "planned")
-    return (
-      <Badge variant="outline">
-        {GAP_STATUS_LABELS[status] ??
-          RECOMMENDATION_STATUS_LABELS[status] ??
-          INTERVENTION_STATUS_LABELS[status]}
-      </Badge>
-    );
+    return <Badge variant="outline">{GAP_STATUS_LABELS[status] ?? RECOMMENDATION_STATUS_LABELS[status] ?? INTERVENTION_STATUS_LABELS[status]}</Badge>;
   if (status === "dismissed" || status === "cancelled")
-    return (
-      <Badge variant="secondary">
-        {GAP_STATUS_LABELS[status] ?? INTERVENTION_STATUS_LABELS[status]}
-      </Badge>
-    );
-  return (
-    <Badge>
-      {GAP_STATUS_LABELS[status] ??
-        RECOMMENDATION_STATUS_LABELS[status] ??
-        INTERVENTION_STATUS_LABELS[status]}
-    </Badge>
-  );
+    return <Badge variant="secondary">{GAP_STATUS_LABELS[status] ?? INTERVENTION_STATUS_LABELS[status]}</Badge>;
+  return <Badge>{GAP_STATUS_LABELS[status] ?? RECOMMENDATION_STATUS_LABELS[status] ?? INTERVENTION_STATUS_LABELS[status]}</Badge>;
 }
 
 function InterventionsPage() {
@@ -93,6 +78,8 @@ function InterventionsPage() {
     queryKey: ["gap-board", "work-queue"],
     queryFn: () => fetchQueue(),
   });
+
+
 
   const { data: gaps, isPending: gapsPending } = useQuery({
     queryKey: ["gap-board", "gaps"],
@@ -156,10 +143,8 @@ function InterventionsPage() {
   });
 
   const transitionMutation = useMutation({
-    mutationFn: (input: {
-      interventionId: string;
-      status: "in_progress" | "completed" | "cancelled";
-    }) => transitionFn({ data: input }),
+    mutationFn: (input: { interventionId: string; status: "in_progress" | "completed" | "cancelled" }) =>
+      transitionFn({ data: input }),
     onSuccess: () => {
       toast.success("Intervention updated.");
       invalidateAll();
@@ -180,12 +165,8 @@ function InterventionsPage() {
   const closedGaps = (gaps ?? []).filter((g) => g.status !== "open");
   const queue = (recommendations ?? []).filter((r) => r.status === "suggested");
   const actioned = (recommendations ?? []).filter((r) => r.status !== "suggested");
-  const active = (interventions ?? []).filter(
-    (i) => i.status === "planned" || i.status === "in_progress",
-  );
-  const finished = (interventions ?? []).filter(
-    (i) => i.status === "completed" || i.status === "cancelled",
-  );
+  const active = (interventions ?? []).filter((i) => i.status === "planned" || i.status === "in_progress");
+  const finished = (interventions ?? []).filter((i) => i.status === "completed" || i.status === "cancelled");
 
   if (gapsPending) {
     return (
@@ -204,8 +185,8 @@ function InterventionsPage() {
           <Crosshair className="h-5 w-5 text-primary" /> Interventions
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Gaps are detected automatically when assessments are scored (subtopic below 70%). The
-          deterministic engine proposes one intervention per open gap — you decide what happens.
+          Gaps are detected automatically when assessments are scored (subtopic below 70%).
+          The deterministic engine proposes one intervention per open gap — you decide what happens.
         </p>
       </div>
 
@@ -248,12 +229,13 @@ function InterventionsPage() {
                     <p className="text-sm break-words text-muted-foreground">{row.title}</p>
                     <p className="text-xs break-words text-muted-foreground tabular-nums">
                       {row.subtopic ?? "—"}
-                      {row.subject ? ` · ${row.subject}` : ""} · {row.daysInPhase}d in phase ·
-                      mastery {row.mastery}% · urgency {row.urgency}
+                      {row.subject ? ` · ${row.subject}` : ""} · {row.daysInPhase}d in phase · mastery{" "}
+                      {row.mastery}% · urgency {row.urgency}
                     </p>
                   </div>
                 </div>
                 <div className="flex shrink-0 flex-wrap gap-2 sm:justify-end">
+
                   {row.status === "planned" && (
                     <Button
                       size="sm"
@@ -298,6 +280,8 @@ function InterventionsPage() {
         </CardContent>
       </Card>
 
+
+
       {/* Recommendation queue */}
       <Card>
         <CardHeader>
@@ -311,22 +295,16 @@ function InterventionsPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {queue.map((rec) => (
-            <div
-              key={rec.id}
-              className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-start"
-            >
+            <div key={rec.id} className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-start">
               <div className="min-w-0 flex-1 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{rec.title}</p>
                   {severityBadge(rec.learning_gaps?.severity ?? "medium")}
-                  <Badge variant="outline" className="font-mono text-[10px]">
-                    {rec.rule_id}
-                  </Badge>
+                  <Badge variant="outline" className="font-mono text-[10px]">{rec.rule_id}</Badge>
                 </div>
                 <p className="text-sm break-words text-muted-foreground">{rec.activity}</p>
                 <p className="text-xs text-muted-foreground">
-                  {rec.learners?.full_name ?? "—"} · {rec.learning_gaps?.subtopic ?? "—"} ·{" "}
-                  {rec.rationale}
+                  {rec.learners?.full_name ?? "—"} · {rec.learning_gaps?.subtopic ?? "—"} · {rec.rationale}
                 </p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-2">
@@ -379,10 +357,7 @@ function InterventionsPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {active.map((i) => (
-            <div
-              key={i.id}
-              className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-start"
-            >
+            <div key={i.id} className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-start">
               <div className="min-w-0 flex-1 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{i.title}</p>
@@ -399,9 +374,7 @@ function InterventionsPage() {
                 {i.status === "planned" && (
                   <Button
                     size="sm"
-                    onClick={() =>
-                      transitionMutation.mutate({ interventionId: i.id, status: "in_progress" })
-                    }
+                    onClick={() => transitionMutation.mutate({ interventionId: i.id, status: "in_progress" })}
                     disabled={transitionMutation.isPending}
                   >
                     <Play className="h-3.5 w-3.5" /> Start
@@ -410,9 +383,7 @@ function InterventionsPage() {
                 {i.status === "in_progress" && (
                   <Button
                     size="sm"
-                    onClick={() =>
-                      transitionMutation.mutate({ interventionId: i.id, status: "completed" })
-                    }
+                    onClick={() => transitionMutation.mutate({ interventionId: i.id, status: "completed" })}
                     disabled={transitionMutation.isPending}
                   >
                     <CircleCheck className="h-3.5 w-3.5" /> Complete
@@ -421,9 +392,7 @@ function InterventionsPage() {
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() =>
-                    transitionMutation.mutate({ interventionId: i.id, status: "cancelled" })
-                  }
+                  onClick={() => transitionMutation.mutate({ interventionId: i.id, status: "cancelled" })}
                   disabled={transitionMutation.isPending}
                 >
                   Cancel
@@ -432,9 +401,7 @@ function InterventionsPage() {
             </div>
           ))}
           {active.length === 0 && (
-            <p className="py-6 text-center text-sm text-muted-foreground">
-              No active interventions.
-            </p>
+            <p className="py-6 text-center text-sm text-muted-foreground">No active interventions.</p>
           )}
           {finished.length > 0 && (
             <div className="space-y-2 border-t pt-3">
@@ -465,10 +432,7 @@ function InterventionsPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {openGaps.map((gap) => (
-            <div
-              key={gap.id}
-              className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-center"
-            >
+            <div key={gap.id} className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{gap.subtopic}</p>

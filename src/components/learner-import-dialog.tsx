@@ -15,7 +15,11 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { importLearners } from "@/lib/centre-onboarding.functions";
-import { CSV_TEMPLATE, parseLearnerCsv, type ParsedImport } from "@/lib/centre-onboarding-shared";
+import {
+  CSV_TEMPLATE,
+  parseLearnerCsv,
+  type ParsedImport,
+} from "@/lib/centre-onboarding-shared";
 
 /**
  * Bulk roster upload for a centre. Parsing and preview happen client-side; the
@@ -38,10 +42,7 @@ export function LearnerImportDialog() {
       if (result.failed.length) {
         setParsed({
           rows: [],
-          errors: result.failed.map((f, i) => ({
-            line: i + 1,
-            message: `${f.handle}: ${f.message}`,
-          })),
+          errors: result.failed.map((f, i) => ({ line: i + 1, message: `${f.handle}: ${f.message}` })),
         });
       } else {
         setParsed(null);
@@ -106,9 +107,7 @@ export function LearnerImportDialog() {
               {parsed.errors.length > 0 ? (
                 <ul className="max-h-40 space-y-1 overflow-y-auto text-xs text-destructive">
                   {parsed.errors.map((e) => (
-                    <li key={`${e.line}-${e.message}`}>
-                      Line {e.line}: {e.message}
-                    </li>
+                    <li key={`${e.line}-${e.message}`}>Line {e.line}: {e.message}</li>
                   ))}
                 </ul>
               ) : null}

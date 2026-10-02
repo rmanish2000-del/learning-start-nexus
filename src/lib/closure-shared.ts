@@ -34,7 +34,5 @@ export function fmtClosureRate(value: number | null): string {
 }
 
 export function fmtTrend(value: number | null): string {
-  return value === null
-    ? "No reassessments yet"
-    : `${value >= 0 ? "+" : ""}${value} pts mastery lift`;
+  return value === null ? "No reassessments yet" : `${value >= 0 ? "+" : ""}${value} pts mastery lift`;
 }

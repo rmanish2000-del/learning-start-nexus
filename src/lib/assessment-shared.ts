@@ -166,10 +166,7 @@ export function scoreItems(
 }
 
 // Subtopic strengths/gaps used for the generated evidence note.
-export function summarizeBreakdown(breakdown: ResultEntry[]): {
-  strong: string[];
-  needs: string[];
-} {
+export function summarizeBreakdown(breakdown: ResultEntry[]): { strong: string[]; needs: string[] } {
   const bySubtopic = new Map<string, { total: number; correct: number }>();
   for (const entry of breakdown) {
     const bucket = bySubtopic.get(entry.subtopic) ?? { total: 0, correct: 0 };

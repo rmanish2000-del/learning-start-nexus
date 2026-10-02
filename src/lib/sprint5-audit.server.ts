@@ -4,7 +4,11 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { fetchPolicyAudit, type DbErrorShape, type PolicyAuditRow } from "./audit.server";
+import {
+  fetchPolicyAudit,
+  type DbErrorShape,
+  type PolicyAuditRow,
+} from "./audit.server";
 import { asResultEntries, type ResultEntry } from "./assessment-shared";
 import { computeSubtopicStats } from "./intervention-shared";
 import {
@@ -27,12 +31,7 @@ function sessionsTable(client: Client) {
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as {
-    code?: string;
-    message?: string;
-    details?: string | null;
-    hint?: string | null;
-  };
+  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -54,7 +53,10 @@ export type Sprint5Count = {
   note: string;
 };
 
-export async function fetchSprint5Counts(supabase: Client, admin: Client): Promise<Sprint5Count[]> {
+export async function fetchSprint5Counts(
+  supabase: Client,
+  admin: Client,
+): Promise<Sprint5Count[]> {
   const specs = [
     {
       key: "learner_outcomes",
@@ -137,20 +139,20 @@ export async function fetchVisibleOutcomes(supabase: Client): Promise<OutcomeLis
     .order("created_at", { ascending: false })
     .limit(20);
   if (error) throw new Error(error.message);
-  return (
-    (data ?? []) as unknown as (OutcomeRow & { learners: { full_name: string } | null })[]
-  ).map((row) => ({
-    id: row.id,
-    learnerName: row.learners?.full_name ?? "Unknown learner",
-    subtopic: row.subtopic,
-    baselineScore: row.baseline_score,
-    postScore: row.post_score,
-    masteryLift: row.mastery_lift,
-    confidence: row.confidence,
-    status: row.status,
-    completedAt: row.completed_at,
-    createdAt: row.created_at,
-  }));
+  return ((data ?? []) as unknown as (OutcomeRow & { learners: { full_name: string } | null })[]).map(
+    (row) => ({
+      id: row.id,
+      learnerName: row.learners?.full_name ?? "Unknown learner",
+      subtopic: row.subtopic,
+      baselineScore: row.baseline_score,
+      postScore: row.post_score,
+      masteryLift: row.mastery_lift,
+      confidence: row.confidence,
+      status: row.status,
+      completedAt: row.completed_at,
+      createdAt: row.created_at,
+    }),
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -229,7 +231,8 @@ export async function runSprint5Probes(
         subtopicPct,
       });
       const status = classifyOutcome(lift, confidence);
-      const matches = lift === o.mastery_lift && confidence === o.confidence && status === o.status;
+      const matches =
+        lift === o.mastery_lift && confidence === o.confidence && status === o.status;
       probes.push({
         key: "outcome_calculation",
         name: "Outcome calculation proof",
@@ -342,8 +345,7 @@ export async function runSprint5Probes(
       probes.push({
         key: "evidence_chain",
         name: "Evidence chain proof",
-        expectation:
-          "Diagnostic -> gap -> recommendation -> intervention -> practice -> reassessment -> outcome.",
+        expectation: "Diagnostic -> gap -> recommendation -> intervention -> practice -> reassessment -> outcome.",
         pass: false,
         skipped: true,
         detail: "No completed outcome in this organization yet.",
@@ -361,30 +363,13 @@ export async function runSprint5Probes(
         { data: reassessment },
         { count: evidenceCount },
       ] = await Promise.all([
-        sessionsTable(admin)
-          .select("id, status")
-          .eq("id", o.baseline_session_id ?? "")
-          .maybeSingle(),
+        sessionsTable(admin).select("id, status").eq("id", o.baseline_session_id ?? "").maybeSingle(),
         admin.from("learning_gaps").select("id, status").eq("id", gapId).maybeSingle(),
-        admin
-          .from("recommendations")
-          .select("id, status")
-          .eq("gap_id", gapId)
-          .limit(1)
-          .maybeSingle(),
+        admin.from("recommendations").select("id, status").eq("gap_id", gapId).limit(1).maybeSingle(),
         admin.from("interventions").select("id, status").eq("id", o.intervention_id).maybeSingle(),
-        admin
-          .from("tutor_sessions")
-          .select("id", { count: "exact", head: true })
-          .eq("intervention_id", o.intervention_id),
-        sessionsTable(admin)
-          .select("id, status")
-          .eq("id", o.reassessment_session_id ?? "")
-          .maybeSingle(),
-        admin
-          .from("learner_evidence")
-          .select("id", { count: "exact", head: true })
-          .eq("learner_id", o.learner_id),
+        admin.from("tutor_sessions").select("id", { count: "exact", head: true }).eq("intervention_id", o.intervention_id),
+        sessionsTable(admin).select("id, status").eq("id", o.reassessment_session_id ?? "").maybeSingle(),
+        admin.from("learner_evidence").select("id", { count: "exact", head: true }).eq("learner_id", o.learner_id),
       ]);
       const links = [
         { label: "diagnostic session submitted", ok: baseline?.status === "submitted" },
@@ -529,9 +514,7 @@ export async function runSprint5Probes(
     } else {
       const [{ data: outcome }, { data: educator }] = await Promise.all([
         outcomesTable(admin)
-          .select(
-            "id, subtopic, baseline_score, post_score, mastery_lift, status, reassessment_session_id",
-          )
+          .select("id, subtopic, baseline_score, post_score, mastery_lift, status, reassessment_session_id")
           .eq("learner_id", aarav.id)
           .order("created_at", { ascending: false })
           .limit(1)

@@ -37,16 +37,14 @@ export type GapDetailView = {
   evidence: GapEvidenceItem[];
   recommendation: { id: string; title: string; activity: string; rationale: string | null } | null;
   intervention: { id: string; title: string; activity: string; status: string } | null;
-  nextAction: {
-    label: string;
-    kind: "start" | "continue" | "reassess" | "wait" | "view";
-    hint: string;
-  };
+  nextAction: { label: string; kind: "start" | "continue" | "reassess" | "wait" | "view"; hint: string };
   planStatus: "none" | "preparing" | "ready" | "awaiting_educator";
   generatedAt: string;
 };
 
-export type GapAccess = { allowed: true; role: GapViewerRole } | { allowed: false; reason: string };
+export type GapAccess =
+  | { allowed: true; role: GapViewerRole }
+  | { allowed: false; reason: string };
 
 // Explicit, explainable authorisation. Centre staff never reach direct-parent
 // learners; a direct parent never reaches centre operational records.
@@ -87,49 +85,21 @@ export function nextActionFor(input: {
       hint: "A centre admin must assign an educator before interventions are released.",
     };
   if (input.planStatus === "preparing")
-    return {
-      label: "Study plan is being prepared",
-      kind: "wait",
-      hint: "Finish the diagnostic to generate the plan.",
-    };
+    return { label: "Study plan is being prepared", kind: "wait", hint: "Finish the diagnostic to generate the plan." };
   switch (input.stage) {
     case "available":
-      return {
-        label: "Start intervention",
-        kind: "start",
-        hint: "Work through the activity, then practise with the AI Tutor.",
-      };
+      return { label: "Start intervention", kind: "start", hint: "Work through the activity, then practise with the AI Tutor." };
     case "in_progress":
-      return {
-        label: "Continue intervention",
-        kind: "continue",
-        hint: "Pick up where you left off.",
-      };
+      return { label: "Continue intervention", kind: "continue", hint: "Pick up where you left off." };
     case "completed":
     case "ready_for_reassessment":
-      return {
-        label: "Take reassessment",
-        kind: "reassess",
-        hint: "Fresh questions on the same outcome — the original diagnostic is never reused.",
-      };
+      return { label: "Take reassessment", kind: "reassess", hint: "Fresh questions on the same outcome — the original diagnostic is never reused." };
     case "verified":
-      return {
-        label: "View evidence",
-        kind: "view",
-        hint: "Mastery was proved by reassessment; the gap is closed.",
-      };
+      return { label: "View evidence", kind: "view", hint: "Mastery was proved by reassessment; the gap is closed." };
     case "needs_more_support":
-      return {
-        label: "Repeat intervention",
-        kind: "start",
-        hint: "Mastery was not reached — revise and try a fresh reassessment.",
-      };
+      return { label: "Repeat intervention", kind: "start", hint: "Mastery was not reached — revise and try a fresh reassessment." };
     default:
-      return {
-        label: "Study plan is being prepared",
-        kind: "wait",
-        hint: "Your plan is generated automatically after scoring.",
-      };
+      return { label: "Study plan is being prepared", kind: "wait", hint: "Your plan is generated automatically after scoring." };
   }
 }
 

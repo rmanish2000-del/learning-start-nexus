@@ -23,9 +23,7 @@ describe("checkout signature verification", () => {
     const signature = createHmac("sha256", KEY_SECRET)
       .update(`${razorpayOrderId}|${razorpayPaymentId}`)
       .digest("hex");
-    expect(await verifyCheckoutSignature({ razorpayOrderId, razorpayPaymentId, signature })).toBe(
-      true,
-    );
+    expect(await verifyCheckoutSignature({ razorpayOrderId, razorpayPaymentId, signature })).toBe(true);
   });
 
   it("rejects a tampered payment id", async () => {
@@ -42,9 +40,7 @@ describe("checkout signature verification", () => {
 
   it("rejects a signature made with the wrong secret", async () => {
     const { verifyCheckoutSignature } = await mod();
-    const signature = createHmac("sha256", "not_the_secret")
-      .update("order_123|pay_456")
-      .digest("hex");
+    const signature = createHmac("sha256", "not_the_secret").update("order_123|pay_456").digest("hex");
     expect(
       await verifyCheckoutSignature({
         razorpayOrderId: "order_123",
@@ -70,10 +66,7 @@ describe("checkout signature verification", () => {
 });
 
 describe("webhook signature verification", () => {
-  const body = JSON.stringify({
-    event: "payment.captured",
-    payload: { payment: { entity: { id: "pay_1" } } },
-  });
+  const body = JSON.stringify({ event: "payment.captured", payload: { payment: { entity: { id: "pay_1" } } } });
 
   it("accepts the HMAC over the exact raw body", async () => {
     const { verifyWebhookSignature } = await mod();

@@ -40,8 +40,7 @@ export function PwaUpdatePrompt() {
     return () => window.removeEventListener("keydown", onKey);
   }, [visible, later]);
 
-  if (!visible)
-    return <span data-eduos-update-prompt="mounted" data-eduos-build={PWA_CLIENT_BUILD} hidden />;
+  if (!visible) return <span data-eduos-update-prompt="mounted" data-eduos-build={PWA_CLIENT_BUILD} hidden />;
 
   return (
     <div

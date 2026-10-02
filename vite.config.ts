@@ -35,14 +35,8 @@ export default defineConfig({
       alias: {
         // React Email pulls htmlparser2 -> entities; pin every import to the
         // hoisted v4.5.0 copy (v5+ removed ./lib/decode.js and breaks SSR).
-        "entities/lib/decode.js": path.resolve(
-          import.meta.dirname,
-          "node_modules/entities/lib/decode.js",
-        ),
-        "entities/lib/encode.js": path.resolve(
-          import.meta.dirname,
-          "node_modules/entities/lib/encode.js",
-        ),
+        "entities/lib/decode.js": path.resolve(import.meta.dirname, "node_modules/entities/lib/decode.js"),
+        "entities/lib/encode.js": path.resolve(import.meta.dirname, "node_modules/entities/lib/encode.js"),
         entities: path.resolve(import.meta.dirname, "node_modules/entities"),
       },
     },
@@ -63,12 +57,7 @@ export default defineConfig({
         includeAssets: [],
         workbox: {
           // Only fingerprinted build output and the offline shell are precached.
-          globPatterns: [
-            "assets/**/*.{js,css,woff2}",
-            "offline.html",
-            "icons/*.png",
-            "favicon.png",
-          ],
+          globPatterns: ["assets/**/*.{js,css,woff2}", "offline.html", "icons/*.png", "favicon.png"],
           globIgnores: ["**/_server/**", "**/api/**"],
           // No navigateFallback: a precache-bound navigation route is cache-first
           // and would serve the offline shell to online visitors. HTML is always

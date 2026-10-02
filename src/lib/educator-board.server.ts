@@ -68,8 +68,7 @@ export async function fetchClassBoard(
   });
   // Worst first: most open gaps, then lowest mastery, then name.
   rows.sort(
-    (a, b) =>
-      b.total - a.total || a.mastery - b.mastery || a.learnerName.localeCompare(b.learnerName),
+    (a, b) => b.total - a.total || a.mastery - b.mastery || a.learnerName.localeCompare(b.learnerName),
   );
 
   const columnTotals = subjects.map((subject) => ({

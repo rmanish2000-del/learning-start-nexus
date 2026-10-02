@@ -52,7 +52,9 @@ function mapQuestion(row: QuestionRow): QuestionDto {
     source: row.source as "ai" | "manual",
     stimulus: row.stimulus,
     verificationState: (row.verification_state ?? "unverified") as
-      "unverified" | "verified" | "rejected",
+      | "unverified"
+      | "verified"
+      | "rejected",
     verifiedAt: row.verified_at,
     verificationNote: row.verification_note,
     createdAt: row.created_at,
@@ -69,16 +71,8 @@ export async function fetchQuestionBankWorkspace(
   bookId: string,
 ): Promise<QuestionBankWorkspace> {
   const [bookRes, unitsRes, outcomesRes, questionsRes] = await Promise.all([
-    supabase
-      .from("books")
-      .select("id, title, board, grade, subject, status")
-      .eq("id", bookId)
-      .maybeSingle(),
-    supabase
-      .from("curriculum_units")
-      .select("id, title, position")
-      .eq("book_id", bookId)
-      .order("position"),
+    supabase.from("books").select("id, title, board, grade, subject, status").eq("id", bookId).maybeSingle(),
+    supabase.from("curriculum_units").select("id, title, position").eq("book_id", bookId).order("position"),
     supabase.from("assessment_outcomes").select("*").eq("book_id", bookId).order("code"),
     supabase
       .from("question_bank")
@@ -224,6 +218,7 @@ async function callQuestionAi(
   }
 }
 
+
 // Zod dumps its raw issue JSON into `message`; turn that into one readable
 // sentence so batch reports stay legible.
 function describeGenerationError(error: unknown): string {
@@ -271,7 +266,10 @@ export async function generateQuestions(
   const loIds = (maps ?? []).map((m) => m.curriculum_outcome_id);
   let loTexts: string[] = [];
   if (loIds.length > 0) {
-    const { data: los } = await supabase.from("curriculum_outcomes").select("text").in("id", loIds);
+    const { data: los } = await supabase
+      .from("curriculum_outcomes")
+      .select("text")
+      .in("id", loIds);
     loTexts = (los ?? []).map((l) => l.text);
   }
 
@@ -301,7 +299,7 @@ export async function generateQuestions(
     "Rules:",
     "- Age-appropriate language for the grade. Short, unambiguous prompts.",
     "- MCQ: exactly 4 options, exactly one correct; the answer key must match one option verbatim.",
-    '- true_false: options are exactly ["True", "False"] and the answer key is "True" or "False".',
+    "- true_false: options are exactly [\"True\", \"False\"] and the answer key is \"True\" or \"False\".",
     "- fill_blank: the prompt contains exactly one blank shown as ______; the answer key is the missing word or short phrase.",
     "- short_answer: the answer key is a model answer or an 'Any one of:' list an educator can mark against.",
     "- Every question needs an explanation: 1–2 sentences teaching why the answer key is correct.",
@@ -361,6 +359,7 @@ export async function generateQuestions(
     throw new Error(`Question generation failed: ${describeGenerationError(error)}`);
   }
 
+
   // Validate + normalize before insert. MCQ answer keys must match an option.
   const cleaned = questions.map((q) => {
     const options =
@@ -376,9 +375,7 @@ export async function generateQuestions(
         throw new Error("AI returned a choice question without options — please retry generation.");
       }
       if (!options.some((o) => o.trim().toLowerCase() === q.correct_answer.trim().toLowerCase())) {
-        throw new Error(
-          "AI returned a question whose answer key matches no option — please retry.",
-        );
+        throw new Error("AI returned a question whose answer key matches no option — please retry.");
       }
     }
     if (requiresStimulus(q.kind) && !q.stimulus?.trim()) {
@@ -489,14 +486,7 @@ export async function batchGenerateQuestions(
       requested: input.perOutcome,
     };
     if (skipIfAtLeast > 0 && before >= skipIfAtLeast) {
-      results.push({
-        ...base,
-        requested: 0,
-        inserted: 0,
-        status: "skipped",
-        error: null,
-        latencyMs: null,
-      });
+      results.push({ ...base, requested: 0, inserted: 0, status: "skipped", error: null, latencyMs: null });
       continue;
     }
     try {
@@ -567,9 +557,7 @@ export async function batchGenerateQuestions(
       style: input.style ?? "auto",
       totals: report.totals,
       coverage: report.coverage,
-      failures: results
-        .filter((r) => r.status === "failed")
-        .map((r) => ({ code: r.code, error: r.error })),
+      failures: results.filter((r) => r.status === "failed").map((r) => ({ code: r.code, error: r.error })),
     },
   });
 
@@ -580,7 +568,10 @@ export async function batchGenerateQuestions(
 // Manual CRUD + review workflow (staff only — enforced by RLS + role gate)
 // ---------------------------------------------------------------------------
 
-async function outcomeBook(supabase: Client, outcomeId: string): Promise<{ bookId: string }> {
+async function outcomeBook(
+  supabase: Client,
+  outcomeId: string,
+): Promise<{ bookId: string }> {
   const { data, error } = await supabase
     .from("assessment_outcomes")
     .select("book_id")
@@ -613,7 +604,7 @@ export async function createQuestion(
     kind: input.kind,
     difficulty: input.difficulty,
     prompt: input.prompt,
-    stimulus: requiresStimulus(input.kind) ? input.stimulus?.trim() || null : null,
+    stimulus: requiresStimulus(input.kind) ? (input.stimulus?.trim() || null) : null,
     options: isOptionKind(input.kind)
       ? input.kind === "assertion_reason"
         ? ASSERTION_REASON_OPTIONS
@@ -655,7 +646,7 @@ export async function updateQuestion(
       kind: input.kind,
       difficulty: input.difficulty,
       prompt: input.prompt,
-      stimulus: requiresStimulus(input.kind) ? input.stimulus?.trim() || null : null,
+      stimulus: requiresStimulus(input.kind) ? (input.stimulus?.trim() || null) : null,
       options: isOptionKind(input.kind)
         ? input.kind === "assertion_reason"
           ? ASSERTION_REASON_OPTIONS

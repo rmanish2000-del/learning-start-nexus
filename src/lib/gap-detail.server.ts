@@ -85,44 +85,39 @@ export async function fetchGapDetail(
     });
   }
 
-  const [
-    { data: session },
-    { data: rec },
-    { data: intervention },
-    { data: plan },
-    { data: outcome },
-  ] = await Promise.all([
-    gap.session_id
-      ? admin
-          .from("assessment_sessions")
-          .select("id, result, assessments(title)")
-          .eq("id", gap.session_id)
-          .maybeSingle()
-      : Promise.resolve({ data: null } as { data: null }),
-    admin
-      .from("recommendations")
-      .select("id, title, activity, rationale")
-      .eq("gap_id", gapId)
-      .maybeSingle(),
-    admin
-      .from("interventions")
-      .select("id, title, activity, status")
-      .eq("gap_id", gapId)
-      .maybeSingle(),
-    admin
-      .from("learner_study_plans")
-      .select("id, status")
-      .eq("learner_id", gap.learner_id)
-      .order("generated_at", { ascending: false })
-      .limit(1)
-      .maybeSingle(),
-    admin
-      .from("assessment_outcomes")
-      .select("code, title")
-      .eq("org_id", gap.org_id as string)
-      .eq("code", gap.subtopic)
-      .maybeSingle(),
-  ]);
+  const [{ data: session }, { data: rec }, { data: intervention }, { data: plan }, { data: outcome }] =
+    await Promise.all([
+      gap.session_id
+        ? admin
+            .from("assessment_sessions")
+            .select("id, result, assessments(title)")
+            .eq("id", gap.session_id)
+            .maybeSingle()
+        : Promise.resolve({ data: null } as { data: null }),
+      admin
+        .from("recommendations")
+        .select("id, title, activity, rationale")
+        .eq("gap_id", gapId)
+        .maybeSingle(),
+      admin
+        .from("interventions")
+        .select("id, title, activity, status")
+        .eq("gap_id", gapId)
+        .maybeSingle(),
+      admin
+        .from("learner_study_plans")
+        .select("id, status")
+        .eq("learner_id", gap.learner_id)
+        .order("generated_at", { ascending: false })
+        .limit(1)
+        .maybeSingle(),
+      admin
+        .from("assessment_outcomes")
+        .select("code, title")
+        .eq("org_id", gap.org_id as string)
+        .eq("code", gap.subtopic)
+        .maybeSingle(),
+    ]);
 
   const resultRows = Array.isArray((session as { result?: unknown } | null)?.result)
     ? (((session as { result: unknown }).result as ResultRow[]) ?? [])
@@ -150,13 +145,14 @@ export async function fetchGapDetail(
     correct: !!r.correct,
   }));
 
-  const planStatus: GapDetailView["planStatus"] = plan
-    ? "ready"
-    : learnerMode === "centre_managed" && !learner.educator_id
-      ? "awaiting_educator"
-      : intervention
-        ? "ready"
-        : "preparing";
+  const planStatus: GapDetailView["planStatus"] =
+    plan
+      ? "ready"
+      : learnerMode === "centre_managed" && !learner.educator_id
+        ? "awaiting_educator"
+        : intervention
+          ? "ready"
+          : "preparing";
 
   const stage = stageFor({
     interventionStatus: intervention?.status ?? null,
@@ -183,7 +179,7 @@ export async function fetchGapDetail(
     detectedAt: gap.detected_at,
     sourceSessionId: gap.session_id,
     sourceAssessmentTitle:
-      (session as { assessments?: { title?: string } | null } | null)?.assessments?.title ?? null,
+      ((session as { assessments?: { title?: string } | null } | null)?.assessments?.title) ?? null,
     evidence,
     recommendation: rec
       ? { id: rec.id, title: rec.title, activity: rec.activity, rationale: rec.rationale }

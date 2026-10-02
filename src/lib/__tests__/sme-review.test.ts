@@ -26,8 +26,8 @@ describe("SME review queue reconciliation", () => {
   });
 
   it("matches the canonical draft validation artifact", () => {
-    expect(validation.queueCounts["Mathematics"]).toBe(SME_EXPECTED_QUEUE.Mathematics);
-    expect(validation.queueCounts["Science"]).toBe(SME_EXPECTED_QUEUE.Science);
+    expect(validation.queueCounts['Mathematics']).toBe(SME_EXPECTED_QUEUE.Mathematics);
+    expect(validation.queueCounts['Science']).toBe(SME_EXPECTED_QUEUE.Science);
   });
 });
 

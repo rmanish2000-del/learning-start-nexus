@@ -73,22 +73,16 @@ describe("validateItem", () => {
 
   it("blocks an answer that is not among the options", () => {
     const f = validateItem({ ...base, correctAnswer: "7" });
-    expect(f.some((x) => x.checkId === "ANSWER_NOT_IN_OPTIONS" && x.severity === "BLOCKER")).toBe(
-      true,
-    );
+    expect(f.some((x) => x.checkId === "ANSWER_NOT_IN_OPTIONS" && x.severity === "BLOCKER")).toBe(true);
   });
 
   it("blocks a missing curriculum mapping", () => {
     const f = validateItem({ ...base, outcomeId: null });
-    expect(f.some((x) => x.checkId === "CURRICULUM_MAPPING" && x.severity === "BLOCKER")).toBe(
-      true,
-    );
+    expect(f.some((x) => x.checkId === "CURRICULUM_MAPPING" && x.severity === "BLOCKER")).toBe(true);
   });
 
   it("blocks an unknown pool and accepts the three valid pools", () => {
-    expect(validateItem({ ...base, pool: "MIXED" }).some((x) => x.checkId === "POOL_INVALID")).toBe(
-      true,
-    );
+    expect(validateItem({ ...base, pool: "MIXED" }).some((x) => x.checkId === "POOL_INVALID")).toBe(true);
     for (const pool of POOLS) {
       expect(validateItem({ ...base, pool }).some((x) => x.checkId === "POOL_INVALID")).toBe(false);
     }
@@ -113,14 +107,7 @@ describe("validateItem", () => {
   });
 
   it("blocks a case study with no context at all", () => {
-    const f = validateItem({
-      ...base,
-      kind: "case_study",
-      marks: 3,
-      options: null,
-      scoringRule: "r",
-      prompt: "Find it.",
-    });
+    const f = validateItem({ ...base, kind: "case_study", marks: 3, options: null, scoringRule: "r", prompt: "Find it." });
     expect(f.some((x) => x.checkId === "STIMULUS_MISSING" && x.severity === "BLOCKER")).toBe(true);
   });
 });

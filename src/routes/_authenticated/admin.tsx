@@ -12,6 +12,8 @@ import {
   createStaffUser,
   linkParentToLearner,
   listStudentLogins,
+
+
   listParentLinks,
   listStaffUsers,
   resetStaffPassword,
@@ -63,10 +65,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
       { title: "Admin — EduOS" },
       { name: "description", content: "Manage staff accounts, roles, and organization settings." },
       { property: "og:title", content: "Admin — EduOS" },
-      {
-        property: "og:description",
-        content: "Manage staff accounts, roles, and organization settings.",
-      },
+      { property: "og:description", content: "Manage staff accounts, roles, and organization settings." },
     ],
   }),
   component: AdminPage,
@@ -90,7 +89,8 @@ function AdminPage() {
       setResetResult({ name: res.fullName || "This account", password: res.tempPassword });
       toast.success("Temporary password issued.");
     },
-    onError: (err) => toast.error(friendlyErrorMessage(err, "Could not reset that password.")),
+    onError: (err) =>
+      toast.error(friendlyErrorMessage(err, "Could not reset that password.")),
   });
   const updateRoleFn = useServerFn(updateUserRole);
 
@@ -109,13 +109,7 @@ function AdminPage() {
     },
   });
 
-  const {
-    data: staff,
-    isPending,
-    isError: staffIsError,
-    error: staffError,
-    refetch: refetchStaff,
-  } = useQuery({
+  const { data: staff, isPending, isError: staffIsError, error: staffError, refetch: refetchStaff } = useQuery({
     queryKey: ["staff-users"],
     queryFn: () => listStaffFn(),
     retry: false,
@@ -145,7 +139,8 @@ function AdminPage() {
   });
 
   const roleMutation = useMutation({
-    mutationFn: (input: { userId: string; role: AppRole }) => updateRoleFn({ data: input }),
+    mutationFn: (input: { userId: string; role: AppRole }) =>
+      updateRoleFn({ data: input }),
     onSuccess: () => {
       toast.success("Role updated.");
       void queryClient.invalidateQueries({ queryKey: ["staff-users"] });
@@ -177,9 +172,7 @@ function AdminPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">
-              Organization
-            </CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">Organization</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-lg font-semibold">{org?.name ?? "Brightpath Learning"}</p>
@@ -187,9 +180,7 @@ function AdminPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">
-              Staff
-            </CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">Staff</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-lg font-semibold tabular-nums">{staffCount}</p>
@@ -197,9 +188,7 @@ function AdminPage() {
         </Card>
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription className="text-xs font-medium uppercase tracking-wide">
-              Learners
-            </CardDescription>
+            <CardDescription className="text-xs font-medium uppercase tracking-wide">Learners</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="text-lg font-semibold tabular-nums">{learnerCount ?? "—"}</p>
@@ -267,13 +256,7 @@ function AdminPage() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="priya@brightpath.education"
-                      required
-                    />
+                    <Input id="email" name="email" type="email" placeholder="priya@brightpath.education" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="role">Role</Label>
@@ -306,12 +289,7 @@ function AdminPage() {
               <p className="mt-1 text-muted-foreground">
                 {friendlyErrorMessage(staffError, "Please try again.")}
               </p>
-              <Button
-                size="sm"
-                variant="outline"
-                className="mt-3"
-                onClick={() => void refetchStaff()}
-              >
+              <Button size="sm" variant="outline" className="mt-3" onClick={() => void refetchStaff()}>
                 Try again
               </Button>
             </div>
@@ -340,9 +318,7 @@ function AdminPage() {
                     <TableCell className="font-medium">
                       {member.fullName || "—"}
                       {member.id === user.id && (
-                        <Badge variant="outline" className="ml-2">
-                          You
-                        </Badge>
+                        <Badge variant="outline" className="ml-2">You</Badge>
                       )}
                     </TableCell>
                     <TableCell className="text-muted-foreground">{member.email}</TableCell>
@@ -362,10 +338,7 @@ function AdminPage() {
                           })
                         }
                       >
-                        <SelectTrigger
-                          className="ml-auto w-32"
-                          aria-label={`Role for ${member.fullName}`}
-                        >
+                        <SelectTrigger className="ml-auto w-32" aria-label={`Role for ${member.fullName}`}>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -454,7 +427,8 @@ function StudentLoginsCard() {
       toast.success(res.created ? "Student login created." : "Student PIN reset.");
       void queryClient.invalidateQueries({ queryKey: ["admin-student-logins"] });
     },
-    onError: (err) => toast.error(friendlyErrorMessage(err, "Could not set that PIN.")),
+    onError: (err) =>
+      toast.error(friendlyErrorMessage(err, "Could not set that PIN.")),
   });
 
   return (
@@ -557,6 +531,7 @@ function StudentLoginsCard() {
   );
 }
 
+
 // Pilot applications submitted from the public landing page. Reads are
 // admin-only at the database level.
 function PilotLeadsCard() {
@@ -565,9 +540,7 @@ function PilotLeadsCard() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("pilot_leads")
-        .select(
-          "id, centre_name, contact_name, email, phone, learner_count, boards_grades, timeline, notes, status, created_at",
-        )
+        .select("id, centre_name, contact_name, email, phone, learner_count, boards_grades, timeline, notes, status, created_at")
         .order("created_at", { ascending: false })
         .limit(50);
       if (error) throw new Error(error.message);
@@ -624,6 +597,7 @@ function PilotLeadsCard() {
                     approved={lead.status === "approved"}
                     onApproved={() => void refetch()}
                   />
+
                 </div>
               </div>
             ))}
@@ -641,19 +615,14 @@ function ApproveCentreDialog({
   approved,
   onApproved,
 }: {
-  lead: {
-    id: string;
-    centre_name: string;
-    contact_name: string;
-    email: string;
-    phone: string | null;
-  };
+  lead: { id: string; centre_name: string; contact_name: string; email: string; phone: string | null };
   approved: boolean;
   onApproved: () => void;
 }) {
   const approveFn = useServerFn(approveCentreLead);
   const [open, setOpen] = useState(false);
   const [issued, setIssued] = useState<{ adminEmail: string; tempPassword: string } | null>(null);
+
 
   const mutation = useMutation({
     mutationFn: (input: {
@@ -726,12 +695,7 @@ function ApproveCentreDialog({
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor={`orgName-${lead.id}`}>Centre name</Label>
-              <Input
-                id={`orgName-${lead.id}`}
-                name="orgName"
-                defaultValue={lead.centre_name}
-                required
-              />
+              <Input id={`orgName-${lead.id}`} name="orgName" defaultValue={lead.centre_name} required />
             </div>
             <div className="space-y-2">
               <Label htmlFor={`adminFullName-${lead.id}`}>Centre admin name</Label>
@@ -829,9 +793,7 @@ function ParentAccessCard() {
                 <Label htmlFor="parent-select">Parent account</Label>
                 <Select value={parentUserId} onValueChange={setParentUserId}>
                   <SelectTrigger id="parent-select">
-                    <SelectValue
-                      placeholder={data.parents.length ? "Select parent" : "No parent accounts yet"}
-                    />
+                    <SelectValue placeholder={data.parents.length ? "Select parent" : "No parent accounts yet"} />
                   </SelectTrigger>
                   <SelectContent>
                     {data.parents.map((p) => (
@@ -869,8 +831,7 @@ function ParentAccessCard() {
 
             {data.parents.length === 0 && (
               <p className="text-xs text-muted-foreground">
-                Create a parent account first with{" "}
-                <span className="font-medium">Add staff → Parent / guardian</span>.
+                Create a parent account first with <span className="font-medium">Add staff → Parent / guardian</span>.
               </p>
             )}
 

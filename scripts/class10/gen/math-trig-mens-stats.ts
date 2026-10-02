@@ -202,12 +202,7 @@ const HEIGHTS: OutcomeAuthor = {
       "50 root 3 m, about 86.6 m",
       "The height is 100 x sin 60 degrees = 100 x root 3 / 2 = 50 root 3 m, approximately 86.6 m.",
       3,
-      {
-        fn: "sin_height",
-        args: [100, 60],
-        expect: round(100 * Math.sin(deg(60)), 2),
-        tolerance: 0.02,
-      },
+      { fn: "sin_height", args: [100, 60], expect: round(100 * Math.sin(deg(60)), 2), tolerance: 0.02 },
     ),
     cs(
       "MAT-HD-CLIFF-CASE",
@@ -272,12 +267,7 @@ const HEIGHTS: OutcomeAuthor = {
       "6.5 root 3 m, about 11.26 m",
       "The height reached is 13 x sin 60 degrees = 13 root 3 / 2 m, approximately 11.26 m.",
       3,
-      {
-        fn: "sin_height",
-        args: [13, 60],
-        expect: round(13 * Math.sin(deg(60)), 2),
-        tolerance: 0.02,
-      },
+      { fn: "sin_height", args: [13, 60], expect: round(13 * Math.sin(deg(60)), 2), tolerance: 0.02 },
     ),
     cs(
       "MAT-HD-R-AIRCRAFT-CASE",
@@ -306,12 +296,7 @@ const HEIGHTS: OutcomeAuthor = {
       "T1 is taller by about 12.68 m",
       "T1 has height 30 m and T2 has height 30 / root 3, which is about 17.32 m, so the difference is about 12.68 m.",
       4,
-      {
-        fn: "tan_height",
-        args: [30, 30],
-        expect: round(30 * Math.tan(deg(30)), 2),
-        tolerance: 0.02,
-      },
+      { fn: "tan_height", args: [30, 30], expect: round(30 * Math.tan(deg(30)), 2), tolerance: 0.02 },
     ),
     ar(
       "MAT-HD-R-AR-EQUAL",
@@ -363,12 +348,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round((60 / 360) * 3.14 * 36, 2)} cm^2`,
       "The sector area is (60/360) x pi x 6^2 = (1/6) x 3.14 x 36 = 18.84 cm^2.",
       2,
-      {
-        fn: "sector_area",
-        args: [6, 60, 3.14],
-        expect: round((60 / 360) * 3.14 * 36, 2),
-        tolerance: 0.01,
-      },
+      { fn: "sector_area", args: [6, 60, 3.14], expect: round((60 / 360) * 3.14 * 36, 2), tolerance: 0.01 },
     ),
     sa(
       "MAT-ARC-LENGTH-60",
@@ -377,12 +357,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round((60 / 360) * 2 * P * 21, 2)} cm`,
       "The arc length is (60/360) x 2 x 22/7 x 21 = 22 cm.",
       2,
-      {
-        fn: "arc_length",
-        args: [21, 60, P],
-        expect: round((60 / 360) * 2 * P * 21, 2),
-        tolerance: 0.01,
-      },
+      { fn: "arc_length", args: [21, 60, P], expect: round((60 / 360) * 2 * P * 21, 2), tolerance: 0.01 },
     ),
     mc(
       "MAT-ARC-QUADRANT",
@@ -403,12 +378,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round((30 / 360) * P * 441, 2)} cm^2`,
       "The swept area is (30/360) x 22/7 x 21^2 = 115.5 cm^2.",
       3,
-      {
-        fn: "sector_area",
-        args: [21, 30, P],
-        expect: round((30 / 360) * P * 441, 2),
-        tolerance: 0.01,
-      },
+      { fn: "sector_area", args: [21, 30, P], expect: round((30 / 360) * P * 441, 2), tolerance: 0.01 },
     ),
     sa(
       "MAT-ARC-SEGMENT-90",
@@ -417,12 +387,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round(0.25 * 3.14 * 100 - 50, 2)} cm^2`,
       "The quadrant area is 78.5 cm^2 and the right triangle formed by the two radii has area (1/2) x 10 x 10 = 50 cm^2, so the segment area is 28.5 cm^2.",
       4,
-      {
-        fn: "segment_area_right",
-        args: [10, 3.14],
-        expect: round(0.25 * 3.14 * 100 - 50, 2),
-        tolerance: 0.01,
-      },
+      { fn: "segment_area_right", args: [10, 3.14], expect: round(0.25 * 3.14 * 100 - 50, 2), tolerance: 0.01 },
     ),
     ar(
       "MAT-ARC-AR-SECTOR",
@@ -457,12 +422,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round((120 / 360) * 2 * P * 14, 2)} cm`,
       "The arc length is (120/360) x 2 x 22/7 x 14 = 29.33 cm.",
       2,
-      {
-        fn: "arc_length",
-        args: [14, 120, P],
-        expect: round((120 / 360) * 2 * P * 14, 2),
-        tolerance: 0.01,
-      },
+      { fn: "arc_length", args: [14, 120, P], expect: round((120 / 360) * 2 * P * 14, 2), tolerance: 0.01 },
     ),
     mc(
       "MAT-ARC-R-SEMI",
@@ -483,12 +443,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round(2 * 0.25 * P * 784, 2)} cm^2`,
       "One blade cleans (90/360) x 22/7 x 784 = 616 cm^2, so two blades clean 1232 cm^2.",
       4,
-      {
-        fn: "sector_area_multi",
-        args: [28, 90, P, 2],
-        expect: round(2 * 0.25 * P * 784, 2),
-        tolerance: 0.02,
-      },
+      { fn: "sector_area_multi", args: [28, 90, P, 2], expect: round(2 * 0.25 * P * 784, 2), tolerance: 0.02 },
     ),
     sa(
       "MAT-ARC-R-SEGMENT-90",
@@ -497,12 +452,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round(0.25 * P * 196 - 98, 2)} cm^2`,
       "The quadrant area is 154 cm^2 and the triangle area is (1/2) x 14 x 14 = 98 cm^2, so the segment area is 56 cm^2.",
       4,
-      {
-        fn: "segment_area_right",
-        args: [14, P],
-        expect: round(0.25 * P * 196 - 98, 2),
-        tolerance: 0.01,
-      },
+      { fn: "segment_area_right", args: [14, P], expect: round(0.25 * P * 196 - 98, 2), tolerance: 0.01 },
     ),
     sa(
       "MAT-ARC-R-PERIMETER",
@@ -511,12 +461,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `${round((60 / 360) * 2 * P * 21 + 42, 2)} cm`,
       "The arc is 22 cm and the two radii add 42 cm, so the perimeter is 64 cm.",
       3,
-      {
-        fn: "sector_perimeter",
-        args: [21, 60, P],
-        expect: round((60 / 360) * 2 * P * 21 + 42, 2),
-        tolerance: 0.01,
-      },
+      { fn: "sector_perimeter", args: [21, 60, P], expect: round((60 / 360) * 2 * P * 21 + 42, 2), tolerance: 0.01 },
     ),
     di(
       "MAT-ARC-R-TABLE",
@@ -526,12 +471,7 @@ const CIRCLE_AREAS: OutcomeAuthor = {
       `S2, with an area of ${round((30 / 360) * P * 441, 2)} cm^2`,
       "S1 has area (120/360) x 22/7 x 49 = 51.33 cm^2 and S2 has area (30/360) x 22/7 x 441 = 115.5 cm^2, so S2 is larger.",
       3,
-      {
-        fn: "sector_area",
-        args: [21, 30, P],
-        expect: round((30 / 360) * P * 441, 2),
-        tolerance: 0.01,
-      },
+      { fn: "sector_area", args: [21, 30, P], expect: round((30 / 360) * P * 441, 2), tolerance: 0.01 },
     ),
     ar(
       "MAT-ARC-R-AR-RADIUS",
@@ -572,12 +512,7 @@ const SOLIDS: OutcomeAuthor = {
       `${round((2 / 3) * P * 3.5 ** 3, 2)} cm^3`,
       "The volume is (2/3) x 22/7 x 3.5^3 = 89.83 cm^3 to two decimal places.",
       3,
-      {
-        fn: "hemisphere_volume",
-        args: [3.5, P],
-        expect: round((2 / 3) * P * 3.5 ** 3, 2),
-        tolerance: 0.02,
-      },
+      { fn: "hemisphere_volume", args: [3.5, P], expect: round((2 / 3) * P * 3.5 ** 3, 2), tolerance: 0.02 },
     ),
     sa(
       "MAT-SAV-CONE-VOLUME",
@@ -586,12 +521,7 @@ const SOLIDS: OutcomeAuthor = {
       `${round((1 / 3) * 3.14 * 9 * 4, 2)} cm^3`,
       "The volume is (1/3) x 3.14 x 9 x 4 = 37.68 cm^3.",
       2,
-      {
-        fn: "cone_volume",
-        args: [3, 4, 3.14],
-        expect: round((1 / 3) * 3.14 * 9 * 4, 2),
-        tolerance: 0.01,
-      },
+      { fn: "cone_volume", args: [3, 4, 3.14], expect: round((1 / 3) * 3.14 * 9 * 4, 2), tolerance: 0.01 },
     ),
     mc(
       "MAT-SAV-SPHERE-AREA",
@@ -652,12 +582,7 @@ const SOLIDS: OutcomeAuthor = {
       `${round((4 / 3) * P * 21 ** 3, 2)} cm^3`,
       "The volume is (4/3) x 22/7 x 9261 = 38808 cm^3.",
       3,
-      {
-        fn: "sphere_volume",
-        args: [21, P],
-        expect: round((4 / 3) * P * 21 ** 3, 2),
-        tolerance: 0.05,
-      },
+      { fn: "sphere_volume", args: [21, P], expect: round((4 / 3) * P * 21 ** 3, 2), tolerance: 0.05 },
     ),
     sa(
       "MAT-SAV-R-CONE-CSA",
@@ -710,12 +635,7 @@ const SOLIDS: OutcomeAuthor = {
       `${round(P * 3.5 ** 2 * 8, 2)} cm^3`,
       "The volume is 22/7 x 12.25 x 8 = 308 cm^3.",
       2,
-      {
-        fn: "cylinder_volume",
-        args: [3.5, 8, P],
-        expect: round(P * 3.5 ** 2 * 8, 2),
-        tolerance: 0.01,
-      },
+      { fn: "cylinder_volume", args: [3.5, 8, P], expect: round(P * 3.5 ** 2 * 8, 2), tolerance: 0.01 },
     ),
     di(
       "MAT-SAV-R-TABLE",

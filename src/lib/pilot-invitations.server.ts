@@ -104,10 +104,8 @@ export async function acceptInvitation(input: {
   if (!row) throw new Error("This invitation link is not valid.");
 
   const state = invitationState(row);
-  if (state === "revoked")
-    throw new Error("This invitation was withdrawn. Ask your centre for a new one.");
-  if (state === "expired")
-    throw new Error("This invitation has expired. Ask your centre for a new one.");
+  if (state === "revoked") throw new Error("This invitation was withdrawn. Ask your centre for a new one.");
+  if (state === "expired") throw new Error("This invitation has expired. Ask your centre for a new one.");
   if (state === "accepted") {
     if (row.accepted_by !== input.userId) {
       throw new Error("This invitation has already been used.");
@@ -162,12 +160,14 @@ export async function acceptInvitation(input: {
     .single();
   if (grantError) throw new Error(grantError.message);
 
-  await supabaseAdmin.from("pilot_grant_events").insert({
-    grant_id: grant.id,
-    action: "granted",
-    actor_user_id: input.userId,
-    detail: `Invitation accepted · ${row.days} day(s) · ${row.subject ?? "all subjects"} · ${row.reason}`,
-  });
+  await supabaseAdmin
+    .from("pilot_grant_events")
+    .insert({
+      grant_id: grant.id,
+      action: "granted",
+      actor_user_id: input.userId,
+      detail: `Invitation accepted · ${row.days} day(s) · ${row.subject ?? "all subjects"} · ${row.reason}`,
+    });
 
   await supabaseAdmin.from("pilot_invitations").update({ grant_id: grant.id }).eq("id", row.id);
 

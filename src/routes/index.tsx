@@ -65,6 +65,7 @@ const FAQS = [
   },
 ];
 
+
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
     // Signed-in visitors keep going straight to the workspace. The marker
@@ -146,9 +147,7 @@ export const Route = createFileRoute("/")({
 });
 
 function hasSessionMarker() {
-  return (
-    typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie)
-  );
+  return typeof document !== "undefined" && /(?:^|;\s*)eduos_session=1(?:;|$)/.test(document.cookie);
 }
 
 function LandingPage() {
@@ -202,7 +201,8 @@ function Hero() {
               CBSE Class 10 · Maths &amp; Science
             </Badge>
             <h1 className="mt-6 max-w-2xl text-[2rem] leading-[1.1] font-semibold tracking-tight text-balance sm:text-[2.6rem] lg:text-[2.75rem]">
-              See exactly where your child is <span className="text-primary">losing marks.</span>
+              See exactly where your child is{" "}
+              <span className="text-primary">losing marks.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -235,6 +235,8 @@ function Hero() {
               You create the account and pay. Your child signs in separately with their own handle
               and PIN and answers the questions. You receive the report.
             </p>
+
+
 
             <StatRow />
           </div>
@@ -386,13 +388,14 @@ function ProblemSection() {
         </div>
         <p className="mt-8 flex items-start gap-2 text-sm text-muted-foreground">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-          EduOS is built for the step in between: naming the gap, acting on it, and checking whether
-          the action worked.
+          EduOS is built for the step in between: naming the gap, acting on it, and checking
+          whether the action worked.
         </p>
       </div>
     </section>
   );
 }
+
 
 const AUDIENCES: (AudienceContent & { tabLabel: string })[] = [
   {
@@ -480,6 +483,7 @@ const AUDIENCES: (AudienceContent & { tabLabel: string })[] = [
   },
 ];
 
+
 function PricingSection() {
   return (
     <section id="pricing" className="scroll-mt-16 border-t">
@@ -501,6 +505,8 @@ function PricingSection() {
           <span className="tabular-nums">₹2,999</span> — valid for 30 days.
         </p>
 
+
+
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           <div className="rounded-xl border bg-card p-5">
             <h3 className="text-sm font-semibold">Free Learning Check</h3>
@@ -510,9 +516,7 @@ function PricingSection() {
               checked and possible gaps. No card required.
             </p>
             <Button asChild variant="outline" className="mt-4 w-full">
-              <Link to="/auth" search={FREE_CHECK_SEARCH}>
-                Start free
-              </Link>
+              <Link to="/auth" search={FREE_CHECK_SEARCH}>Start free</Link>
             </Button>
           </div>
 
@@ -542,6 +546,7 @@ function PricingSection() {
             </p>
           </div>
         </div>
+
       </div>
     </section>
   );
@@ -579,12 +584,9 @@ function CentreCtaSection() {
           Book a Centre Demo
         </h2>
         <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-          Tell us about your centre or school and we will come back with scope, timeline and what we
-          need from you. You can also email{" "}
-          <a
-            href="mailto:support@eduos.global"
-            className="font-medium text-primary hover:underline"
-          >
+          Tell us about your centre or school and we will come back with scope, timeline and what
+          we need from you. You can also email{" "}
+          <a href="mailto:support@eduos.global" className="font-medium text-primary hover:underline">
             support@eduos.global
           </a>
           .

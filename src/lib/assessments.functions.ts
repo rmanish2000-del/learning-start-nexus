@@ -91,14 +91,13 @@ export const publishAssessment = createServerFn({ method: "POST" })
 
     const curriculum = qMap ?? [];
     const legacyItems = iMap ?? [];
-    const ids =
-      curriculum.length > 0
-        ? curriculum.map((r) => r.question_id)
-        : legacyItems.map((r) => r.item_id);
+    const ids = curriculum.length > 0
+      ? curriculum.map((r) => r.question_id)
+      : legacyItems.map((r) => r.item_id);
     const unverified = curriculum.filter(
       (r) =>
-        ((r.question_bank as unknown as { verification_state?: string } | null)
-          ?.verification_state ?? "unverified") !== "verified",
+        ((r.question_bank as unknown as { verification_state?: string } | null)?.verification_state ??
+          "unverified") !== "verified",
     ).length;
     const duplicates = ids.length - new Set(ids).size;
 
@@ -338,9 +337,7 @@ export const getMyAssessmentSessions = createServerFn({ method: "GET" })
     if (!learner) return [];
     const { data, error } = await context.supabase
       .from("assessment_sessions")
-      .select(
-        "id, status, score_pct, due, last_activity_at, assessments(title, topic, time_limit_minutes)",
-      )
+      .select("id, status, score_pct, due, last_activity_at, assessments(title, topic, time_limit_minutes)")
       .eq("learner_id", learner.id)
       .order("created_at", { ascending: false });
     if (error) throw new Error(error.message);

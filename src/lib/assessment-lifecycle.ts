@@ -80,8 +80,7 @@ export function unavailableReason(action: ActionKey, state: AssessmentState): st
     return state === "archived"
       ? "This assessment is archived. Duplicate it to assign a fresh copy."
       : "Only published assessments can be assigned. Review and publish it first.";
-  if (action === "review")
-    return "This assessment is already published — reviewing applies to drafts.";
+  if (action === "review") return "This assessment is already published — reviewing applies to drafts.";
   if (action === "delete") return "Published assessments cannot be deleted; archive them instead.";
   return `Not available while the assessment is ${STATE_LABELS[state]}.`;
 }
@@ -134,7 +133,8 @@ export function publishBlockers(input: PublishCheckInput): PublishGate[] {
       code: "duplicates",
       message: `${input.duplicateCount} duplicate question(s) violate assessment policy.`,
     });
-  if (!input.subject) blockers.push({ code: "subject", message: "Subject metadata is missing." });
+  if (!input.subject)
+    blockers.push({ code: "subject", message: "Subject metadata is missing." });
   if (input.legacy)
     blockers.push({
       code: "scope",

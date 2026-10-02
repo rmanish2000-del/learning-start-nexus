@@ -10,7 +10,13 @@ import { toast } from "sonner";
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
@@ -102,8 +108,8 @@ function PilotEvidencePage() {
       <header className="space-y-1">
         <h1 className="text-2xl font-semibold tracking-tight">Pilot evidence</h1>
         <p className="text-muted-foreground text-sm">
-          Three evidence lines a pilot reviewer can check independently: tutor effort per gap, CBSE
-          competency coverage in the question bank, and who verified what, when.
+          Three evidence lines a pilot reviewer can check independently: tutor effort per gap,
+          CBSE competency coverage in the question bank, and who verified what, when.
         </p>
       </header>
 

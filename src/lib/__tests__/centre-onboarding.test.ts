@@ -5,7 +5,7 @@ import { parseLearnerCsv } from "../centre-onboarding-shared";
 describe("parseLearnerCsv", () => {
   it("parses a valid roster", () => {
     const result = parseLearnerCsv(
-      'full_name,handle,pin,grade,subject\nAarav Sharma,aarav10,123456,10,Mathematics\n"Neha, R",neha10,654321,10,Science\n',
+      "full_name,handle,pin,grade,subject\nAarav Sharma,aarav10,123456,10,Mathematics\n\"Neha, R\",neha10,654321,10,Science\n",
     );
     expect(result.errors).toEqual([]);
     expect(result.rows).toHaveLength(2);

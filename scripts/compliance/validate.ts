@@ -6,12 +6,8 @@ import { VALIDATOR_VERSION } from "../../src/lib/compliance-shared";
 
 const { snapshot, sourceIssues, subjects, overall } = analyse();
 
-console.log(
-  `${VALIDATOR_VERSION} — ${snapshot.board} Class ${snapshot.classLevel} ${snapshot.academicYear}`,
-);
-console.log(
-  `source registry: ${sourceIssues.filter((i) => i.level === "error").length} error(s), ${sourceIssues.filter((i) => i.level === "warning").length} warning(s)`,
-);
+console.log(`${VALIDATOR_VERSION} — ${snapshot.board} Class ${snapshot.classLevel} ${snapshot.academicYear}`);
+console.log(`source registry: ${sourceIssues.filter((i) => i.level === "error").length} error(s), ${sourceIssues.filter((i) => i.level === "warning").length} warning(s)`);
 
 for (const s of subjects) {
   console.log(`\n== ${s.subject} — ${s.status} (${s.gaps} failing check(s))`);

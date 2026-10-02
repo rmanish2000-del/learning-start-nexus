@@ -4,7 +4,11 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { fetchPolicyAudit, type DbErrorShape, type PolicyAuditRow } from "./audit.server";
+import {
+  fetchPolicyAudit,
+  type DbErrorShape,
+  type PolicyAuditRow,
+} from "./audit.server";
 import type { CallerCtx } from "./blueprint-audit.server";
 import { PILOT_BOOK_ID } from "./curriculum-audit.server";
 
@@ -14,12 +18,7 @@ const QUESTION_BANK_TABLES = ["question_bank"] as const;
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as {
-    code?: string;
-    message?: string;
-    details?: string | null;
-    hint?: string | null;
-  };
+  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -219,15 +218,12 @@ export async function runQuestionBankProbes(
     ]);
     const outcomeBook = new Map((outcomes ?? []).map((o) => [o.id as string, o.book_id as string]));
     const broken = (questions ?? []).filter(
-      (q) =>
-        !outcomeBook.has(q.outcome_id as string) ||
-        outcomeBook.get(q.outcome_id as string) !== q.book_id,
+      (q) => !outcomeBook.has(q.outcome_id as string) || outcomeBook.get(q.outcome_id as string) !== q.book_id,
     );
     probes.push({
       key: "chain-integrity",
       name: "P2 — Outcome → Question chain integrity",
-      expectation:
-        "Every question references an assessment outcome that exists and belongs to the same book.",
+      expectation: "Every question references an assessment outcome that exists and belongs to the same book.",
       detail: `Questions checked: ${questions?.length ?? 0}; broken links: ${broken.length}.`,
       pass: (questions ?? []).length > 0 && broken.length === 0,
     });
@@ -239,9 +235,7 @@ export async function runQuestionBankProbes(
       .from("question_bank")
       .select("id, correct_answer")
       .eq("book_id", PILOT_BOOK_ID);
-    const missing = (questions ?? []).filter(
-      (q) => !q.correct_answer || q.correct_answer.trim() === "",
-    );
+    const missing = (questions ?? []).filter((q) => !q.correct_answer || q.correct_answer.trim() === "");
     probes.push({
       key: "answer-keys",
       name: "P3 — Answer key on every question",
@@ -257,9 +251,7 @@ export async function runQuestionBankProbes(
       .from("question_bank")
       .select("id, explanation")
       .eq("book_id", PILOT_BOOK_ID);
-    const missing = (questions ?? []).filter(
-      (q) => !q.explanation || q.explanation.trim().length < 5,
-    );
+    const missing = (questions ?? []).filter((q) => !q.explanation || q.explanation.trim().length < 5);
     probes.push({
       key: "explanations",
       name: "P4 — Explanation on every question",
@@ -278,20 +270,16 @@ export async function runQuestionBankProbes(
     const badDifficulty = (questions ?? []).filter((q) => q.difficulty < 1 || q.difficulty > 5);
     const badMcq = (questions ?? []).filter((q) => {
       if (q.kind !== "mcq") return false;
-      const opts = Array.isArray(q.options)
-        ? (q.options as unknown[]).filter((o) => typeof o === "string")
-        : [];
+      const opts = Array.isArray(q.options) ? (q.options as unknown[]).filter((o) => typeof o === "string") : [];
       if (opts.length < 2) return true;
       return !opts.some(
-        (o) =>
-          (o as string).trim().toLowerCase() === (q.correct_answer as string).trim().toLowerCase(),
+        (o) => (o as string).trim().toLowerCase() === (q.correct_answer as string).trim().toLowerCase(),
       );
     });
     probes.push({
       key: "difficulty-options",
       name: "P5 — Difficulty 1–5 and MCQ answer keys match an option",
-      expectation:
-        "Every question's difficulty is within 1–5; every MCQ has 2+ options and its answer key matches one option verbatim.",
+      expectation: "Every question's difficulty is within 1–5; every MCQ has 2+ options and its answer key matches one option verbatim.",
       detail: `Questions: ${questions?.length ?? 0}; out-of-range difficulty: ${badDifficulty.length}; invalid MCQs: ${badMcq.length}.`,
       pass: (questions ?? []).length > 0 && badDifficulty.length === 0 && badMcq.length === 0,
     });
@@ -306,25 +294,10 @@ export async function runQuestionBankProbes(
     .maybeSingle();
   if (!otherOrg) {
     for (const [key, name, expectation] of [
-      [
-        "cross-org-read",
-        "P6 — Cross-organization read isolation",
-        "Reading another org's question bank returns 0 rows.",
-      ],
-      [
-        "cross-org-write",
-        "P7 — Cross-organization write rejected",
-        "Inserting into another org is rejected by RLS.",
-      ],
+      ["cross-org-read", "P6 — Cross-organization read isolation", "Reading another org's question bank returns 0 rows."],
+      ["cross-org-write", "P7 — Cross-organization write rejected", "Inserting into another org is rejected by RLS."],
     ] as const) {
-      probes.push({
-        key,
-        name,
-        expectation,
-        detail: "No second organization exists to test against.",
-        pass: true,
-        skipped: true,
-      });
+      probes.push({ key, name, expectation, detail: "No second organization exists to test against.", pass: true, skipped: true });
     }
   } else {
     const read = await (supabase as SupabaseClient)
@@ -357,9 +330,7 @@ export async function runQuestionBankProbes(
       key: "cross-org-write",
       name: "P7 — Cross-organization write rejected",
       expectation: `Inserting a question into "${otherOrg.name}" fails with a row-level security error.`,
-      detail: write.error
-        ? `Rejected: ${write.error.message}`
-        : "INSERT SUCCEEDED — tenant isolation breach.",
+      detail: write.error ? `Rejected: ${write.error.message}` : "INSERT SUCCEEDED — tenant isolation breach.",
       pass: !!write.error,
       dbError: shapeError(write.error),
     });
@@ -382,9 +353,7 @@ export async function runQuestionBankProbes(
       key: "role-write-gate",
       name: "P8 — Reviewer is read-only",
       expectation: "A reviewer's INSERT into question_bank is rejected.",
-      detail: attempt.error
-        ? `Rejected: ${attempt.error.message}`
-        : "INSERT SUCCEEDED — reviewers must not write.",
+      detail: attempt.error ? `Rejected: ${attempt.error.message}` : "INSERT SUCCEEDED — reviewers must not write.",
       pass: !!attempt.error,
       dbError: shapeError(attempt.error),
     });
@@ -422,9 +391,7 @@ export async function runQuestionBankProbes(
         key: "role-write-gate",
         name: "P8 — Staff write round-trip",
         expectation: "Staff can create and delete a question in their own org.",
-        detail: del.error
-          ? `Created but delete failed: ${del.error.message}`
-          : "Created and deleted a temporary question successfully.",
+        detail: del.error ? `Created but delete failed: ${del.error.message}` : "Created and deleted a temporary question successfully.",
         pass: !del.error,
         dbError: shapeError(del.error),
       });

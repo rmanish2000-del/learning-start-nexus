@@ -41,8 +41,7 @@ function QuickStartPage() {
         </div>
         <p className="mt-1 text-sm text-muted-foreground">{content.intro}</p>
         <p className="mt-1 text-xs text-muted-foreground">
-          Tailored to your role:{" "}
-          <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>
+          Tailored to your role: <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>
         </p>
       </div>
 
@@ -60,9 +59,7 @@ function QuickStartPage() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium">{step.title}</p>
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                    {step.body}
-                  </p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{step.body}</p>
                 </div>
                 {step.to && (
                   <Button asChild size="sm" variant="outline" className="shrink-0 gap-1">
@@ -81,12 +78,7 @@ function QuickStartPage() {
         <CardContent className="flex flex-wrap items-center gap-2 p-4">
           <p className="w-full text-sm font-medium">Replay orientation any time</p>
           {content.tourId && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-1.5"
-              onClick={() => requestTour(content.tourId!)}
-            >
+            <Button variant="outline" size="sm" className="gap-1.5" onClick={() => requestTour(content.tourId!)}>
               <Play className="h-3.5 w-3.5" /> Guided tour
             </Button>
           )}

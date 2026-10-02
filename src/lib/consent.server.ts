@@ -32,7 +32,7 @@ function mapConsent(row: ConsentRow): ConsentRecord {
     consentDate: row.consent_date,
     consentVersion: row.consent_version,
     recordedAt: row.created_at,
-    action: row.action === "withdrawn" ? "withdrawn" : "granted",
+    action: (row.action === "withdrawn" ? "withdrawn" : "granted"),
   };
 }
 

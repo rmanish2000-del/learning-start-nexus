@@ -613,11 +613,4 @@ const AP: OutcomeAuthor = {
   ],
 };
 
-export const NUMBER_ALGEBRA_AUTHORS: OutcomeAuthor[] = [
-  HCF_LCM,
-  IRRATIONAL,
-  ZEROES,
-  LINEAR,
-  QUADRATIC,
-  AP,
-];
+export const NUMBER_ALGEBRA_AUTHORS: OutcomeAuthor[] = [HCF_LCM, IRRATIONAL, ZEROES, LINEAR, QUADRATIC, AP];

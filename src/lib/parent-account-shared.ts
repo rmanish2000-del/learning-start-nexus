@@ -13,6 +13,7 @@ export const PILOT_CLASS = 10 as const;
 export const BOARDS = [PILOT_BOARD] as const;
 export const CLASSES = [PILOT_CLASS] as const;
 
+
 export const registerParentSchema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name").max(80),
   email: z.string().trim().email("Enter a valid email").max(120),
@@ -40,6 +41,7 @@ export const addStudentSchema = z.object({
   }),
   board: z.enum(BOARDS),
 });
+
 
 /** Parent-assisted student credential recovery: set or reset the 6-digit PIN. */
 export const setStudentPinSchema = z.object({
@@ -72,6 +74,7 @@ export type ParentStudent = {
   assignmentStatus: AssignmentStatus;
   educatorName: string | null;
 };
+
 
 export type ParentPurchase = {
   orderRef: string;

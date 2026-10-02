@@ -46,6 +46,7 @@ export const Route = createFileRoute("/diagnostic/report/$token")({
   component: DiagnosticReportPage,
 });
 
+
 // Identity gate: the report, the run and the upgrade are account-owned. The
 // server re-checks ownership on every call; this only keeps the UI honest.
 function DiagnosticReportPage() {
@@ -89,11 +90,7 @@ function DiagnosticReportPageBody() {
   if (query.isError || !view) {
     return (
       <DiagnosticShell wide>
-        <QueryError
-          title={t("report.invalid", "This report link is not valid")}
-          error={query.error}
-          onRetry={() => void query.refetch()}
-        />
+        <QueryError title={t("report.invalid", "This report link is not valid")} error={query.error} onRetry={() => void query.refetch()} />
       </DiagnosticShell>
     );
   }
@@ -103,9 +100,7 @@ function DiagnosticReportPageBody() {
       <DiagnosticShell wide>
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">
-              {t("report.unfinished", "The diagnostic is not finished yet")}
-            </CardTitle>
+            <CardTitle className="text-base">{t("report.unfinished", "The diagnostic is not finished yet")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
             <p>
@@ -117,8 +112,7 @@ function DiagnosticReportPageBody() {
             </p>
             <Button asChild>
               <Link to="/diagnostic/session/$token" params={{ token }}>
-                {t("report.resume", "Resume the diagnostic")}{" "}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {t("report.resume", "Resume the diagnostic")} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </CardContent>
@@ -153,8 +147,8 @@ function DiagnosticReportPageBody() {
     >
       <section className="space-y-3">
         <Badge variant="secondary">
-          {view.order.board ?? "CBSE"} {ACTIVE_ACADEMIC_YEAR} · Class {view.order.grade ?? 10} ·{" "}
-          {view.subject} · {view.unitTitle}
+          {view.order.board ?? "CBSE"} {ACTIVE_ACADEMIC_YEAR} · Class {view.order.grade ?? 10} · {view.subject} ·{" "}
+          {view.unitTitle}
         </Badge>
         <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           {t(
@@ -193,9 +187,7 @@ function DiagnosticReportPageBody() {
         {BAND_ORDER.map((band) => (
           <Card key={band}>
             <CardContent className="space-y-1 pt-6">
-              <p className="text-2xl font-semibold tracking-tight">
-                {report.bandCounts[band as MasteryBand]}
-              </p>
+              <p className="text-2xl font-semibold tracking-tight">{report.bandCounts[band as MasteryBand]}</p>
               <BandPill band={band} suffix={t("report.bandSuffix", "outcomes")} />
             </CardContent>
           </Card>
@@ -206,9 +198,7 @@ function DiagnosticReportPageBody() {
         <div className="flex items-center gap-2">
           <AlertTriangle className="h-4 w-4 text-destructive" />
           <h2 className="text-xl font-semibold tracking-tight">
-            {t("report.gaps.title", `The gaps, ranked (${report.gaps.length})`, {
-              n: report.gaps.length,
-            })}
+            {t("report.gaps.title", `The gaps, ranked (${report.gaps.length})`, { n: report.gaps.length })}
           </h2>
         </div>
         {report.gaps.length === 0 ? (
@@ -251,10 +241,7 @@ function DiagnosticReportPageBody() {
                         {
                           missed: gap.questionsMissed,
                           total: gap.questionsTotal,
-                          severity: t(
-                            `severity.${String(gap.severity).toLowerCase()}`,
-                            String(gap.severity),
-                          ),
+                          severity: t(`severity.${String(gap.severity).toLowerCase()}`, String(gap.severity)),
                         },
                       )}
                     </p>
@@ -276,9 +263,7 @@ function DiagnosticReportPageBody() {
       <section className="mt-10 space-y-3">
         <div className="flex items-center gap-2">
           <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-          <h2 className="text-xl font-semibold tracking-tight">
-            {t("report.secure.title", "What good already looks like")}
-          </h2>
+          <h2 className="text-xl font-semibold tracking-tight">{t("report.secure.title", "What good already looks like")}</h2>
         </div>
         {report.secureOutcomes.length === 0 ? (
           <p className="text-sm text-muted-foreground">
@@ -290,10 +275,7 @@ function DiagnosticReportPageBody() {
         ) : (
           <div className="grid gap-2 sm:grid-cols-2">
             {report.secureOutcomes.map((o) => (
-              <div
-                key={o.outcomeId}
-                className="flex items-start gap-3 rounded-md border p-3 text-sm"
-              >
+              <div key={o.outcomeId} className="flex items-start gap-3 rounded-md border p-3 text-sm">
                 <BandPill band={o.band} suffix={`${o.pct}%`} />
                 <span className="text-muted-foreground">
                   <span className="font-medium text-foreground">{o.code}</span> — {o.title}
@@ -367,12 +349,8 @@ function DiagnosticReportPageBody() {
                   </>
                 ) : (
                   <>
-                    <span className="text-3xl font-semibold tracking-tight">
-                      {formatInr(view.offer.listPaise)}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {t("common.perYear", "per year")}
-                    </span>
+                    <span className="text-3xl font-semibold tracking-tight">{formatInr(view.offer.listPaise)}</span>
+                    <span className="text-sm text-muted-foreground">{t("common.perYear", "per year")}</span>
                   </>
                 )}
               </div>
@@ -428,10 +406,7 @@ function DiagnosticReportPageBody() {
                 </Button>
               )}
               <p className="text-xs text-muted-foreground">
-                {t(
-                  "upgrade.report.keep",
-                  "This report stays available on your link whether or not you upgrade.",
-                )}
+                {t("upgrade.report.keep", "This report stays available on your link whether or not you upgrade.")}
               </p>
             </CardContent>
           </Card>

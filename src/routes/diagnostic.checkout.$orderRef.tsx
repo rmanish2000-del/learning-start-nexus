@@ -86,9 +86,7 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
       const intent = await intentFn({ data: { orderRef } });
       if (intent.status !== "paid") {
         if (!intent.razorpayOrderId)
-          throw new Error(
-            t("checkout.error.gateway", "The payment gateway is unavailable right now."),
-          );
+          throw new Error(t("checkout.error.gateway", "The payment gateway is unavailable right now."));
         const result = await openRazorpayCheckout({
           keyId: intent.keyId,
           razorpayOrderId: intent.razorpayOrderId,
@@ -116,25 +114,20 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
             signature: result.razorpay_signature,
           },
         });
-        if (paid.status !== "paid")
-          throw new Error(t("checkout.error.notCaptured", "Payment was not captured."));
+        if (paid.status !== "paid") throw new Error(t("checkout.error.notCaptured", "Payment was not captured."));
       }
       setStage("provisioning");
       const { accessToken } = await setupFn({ data: { orderRef } });
       await navigate({ to: "/diagnostic/handoff/$token", params: { token: accessToken } });
     } catch (error) {
-      toast.error(
-        friendlyErrorMessage(error, t("checkout.error.failed", "Payment could not be completed.")),
-      );
+      toast.error(friendlyErrorMessage(error, t("checkout.error.failed", "Payment could not be completed.")));
       setStage("idle");
     }
   }
 
   return (
     <>
-      <h1 className="text-2xl font-semibold tracking-tight">
-        {t("checkout.title", "Confirm and pay")}
-      </h1>
+      <h1 className="text-2xl font-semibold tracking-tight">{t("checkout.title", "Confirm and pay")}</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         {t(
           "checkout.lede.identity",
@@ -163,17 +156,11 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3 rounded-lg border p-4 text-sm">
-                <Row
-                  label={t("checkout.row.parent", "Parent account")}
-                  value={profile?.fullName || "—"}
-                />
+                <Row label={t("checkout.row.parent", "Parent account")} value={profile?.fullName || "—"} />
                 <Row label={t("checkout.row.email", "Email")} value={profile?.email || "—"} />
                 <Row label={t("checkout.row.mobile", "Mobile")} value={profile?.phone || "—"} />
                 <Separator />
-                <Row
-                  label={t("checkout.row.student", "Student")}
-                  value={order.childFirstName ?? "—"}
-                />
+                <Row label={t("checkout.row.student", "Student")} value={order.childFirstName ?? "—"} />
               </div>
 
               <Alert>
@@ -186,12 +173,7 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
                 </AlertDescription>
               </Alert>
 
-              <Button
-                className="w-full"
-                size="lg"
-                onClick={payAndStart}
-                disabled={stage !== "idle"}
-              >
+              <Button className="w-full" size="lg" onClick={payAndStart} disabled={stage !== "idle"}>
                 {stage !== "idle" ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
@@ -220,11 +202,7 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
               <Row label={t("checkout.row.subject", "Subject")} value={order.subject ?? "—"} />
               <Row label={t("checkout.row.unit", "Chapter group")} value={order.unitTitle ?? "—"} />
               <Separator />
-              <Row
-                label={t("checkout.row.diagnostic", "Diagnostic")}
-                value={formatInr(order.amountPaise)}
-                strong
-              />
+              <Row label={t("checkout.row.diagnostic", "Diagnostic")} value={formatInr(order.amountPaise)} strong />
               <p className="text-xs text-muted-foreground">
                 {t(
                   "checkout.refund",
@@ -234,12 +212,8 @@ function CheckoutBody({ orderRef }: { orderRef: string }) {
 
               <p className="text-xs text-muted-foreground">
                 {t("checkout.support.ref", "Order reference")}:{" "}
-                <span className="font-mono">{orderRef}</span>.{" "}
-                {t("checkout.support.lede", "Payment trouble?")}{" "}
-                <a
-                  href={paymentSupportMailto(orderRef)}
-                  className="font-medium text-primary hover:underline"
-                >
+                <span className="font-mono">{orderRef}</span>. {t("checkout.support.lede", "Payment trouble?")}{" "}
+                <a href={paymentSupportMailto(orderRef)} className="font-medium text-primary hover:underline">
                   {SUPPORT_EMAIL}
                 </a>
               </p>

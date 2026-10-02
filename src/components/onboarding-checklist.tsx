@@ -12,6 +12,7 @@ import {
   claimOnboardingModal,
   dismissCelebrationForever,
   getOnboardingFlag,
+
   releaseOnboardingModal,
   requestTour,
   setOnboardingFlag,
@@ -76,6 +77,7 @@ export function OnboardingChecklist({
     };
   }, [allDone, role]);
 
+
   // Every dismiss path (Keep going, X, backdrop, Escape) lands here. The
   // celebration is a one-time event: dismissing it records a permanent
   // `dismissed_at` so it can never reappear on a later login.
@@ -85,6 +87,7 @@ export function OnboardingChecklist({
     releaseOnboardingModal("celebration");
     setCelebrating(false);
   };
+
 
   return (
     <Card className="border-primary/25 bg-primary/[0.03]">
@@ -96,12 +99,7 @@ export function OnboardingChecklist({
           </CardTitle>
           <div className="flex items-center gap-2">
             {tourId && (
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-7 text-xs"
-                onClick={() => requestTour(tourId)}
-              >
+              <Button variant="ghost" size="sm" className="h-7 text-xs" onClick={() => requestTour(tourId)}>
                 Replay tour
               </Button>
             )}
@@ -127,9 +125,7 @@ export function OnboardingChecklist({
               <Circle className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/50" />
             )}
             <div className="min-w-0 flex-1">
-              <p
-                className={`text-sm font-medium ${step.done ? "text-muted-foreground line-through" : ""}`}
-              >
+              <p className={`text-sm font-medium ${step.done ? "text-muted-foreground line-through" : ""}`}>
                 {i + 1}. {step.title}
               </p>
               <p className="mt-0.5 text-xs text-muted-foreground">{step.description}</p>

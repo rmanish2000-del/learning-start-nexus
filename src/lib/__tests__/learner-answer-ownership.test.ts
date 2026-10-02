@@ -97,16 +97,11 @@ describe("diagnostic answer ownership", () => {
 
   it("rejects an anonymous caller without naming the child", async () => {
     const { saveRunAnswer } = await import("../parent-diagnostic.server");
-    const call = saveRunAnswer({
-      token: "tok_run",
-      questionId: "q1",
-      answer: "A",
-      position: 0,
-      userId: null,
-    });
+    const call = saveRunAnswer({ token: "tok_run", questionId: "q1", answer: "A", position: 0, userId: null });
     await expect(call).rejects.toThrow(/only be answered by the student it was bought for/);
     await expect(call).rejects.not.toThrow(/Aarav Sharma/);
   });
+
 
   it("lets the linked learner save an answer", async () => {
     const { saveRunAnswer } = await import("../parent-diagnostic.server");

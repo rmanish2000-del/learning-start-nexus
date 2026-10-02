@@ -17,9 +17,7 @@ const register = read("EDUOS_CLASS_10_VERIFIED_GAP_REGISTER.json");
 const spec = read("EDUOS_CLASS_10_QUESTION_GENERATION_SPEC.json");
 const sources = read("content/compliance/class-10-2026-27.source-verification.json");
 const evidence = read("content/compliance/class-10-2026-27.evidence.json");
-const mathBaseline = read(
-  "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json",
-);
+const mathBaseline = read("audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json");
 const sciBaseline = read("audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json");
 
 type Row = {
@@ -53,9 +51,7 @@ describe("Phase 1 — official source verification", () => {
 
   it("records Periodic Classification as present, contradicting the baseline exclusion", () => {
     const science = sources.sources.find((s: { subject: string }) => s.subject === "Science");
-    const probe = science.probes.find(
-      (p: { probeId: string }) => p.probeId === "RETAINED_PERIODIC_CLASSIFICATION",
-    );
+    const probe = science.probes.find((p: { probeId: string }) => p.probeId === "RETAINED_PERIODIC_CLASSIFICATION");
     expect(probe.expect).toBe("present");
     expect(probe.found).toBe(true);
   });
@@ -102,9 +98,7 @@ describe("Phase 4, 5 and 6 — corrected findings", () => {
   });
 
   it("keeps the Science book unapproved", () => {
-    const science = evidence.books.find(
-      (b: { title: string }) => b.title === "NCERT Class 10 Science (CBSE)",
-    );
+    const science = evidence.books.find((b: { title: string }) => b.title === "NCERT Class 10 Science (CBSE)");
     expect(science.status).toBe("processed");
   });
 
@@ -119,9 +113,7 @@ describe("Phase 4, 5 and 6 — corrected findings", () => {
 
 describe("Phase 7 — question depth", () => {
   it("uses the approved-and-verified intersection for eligibility", () => {
-    expect(spec.depth_law.eligibility).toBe(
-      "status = 'approved' AND verification_state = 'verified'",
-    );
+    expect(spec.depth_law.eligibility).toBe("status = 'approved' AND verification_state = 'verified'");
   });
 
   it("reports a real deficit against the governing books only", () => {

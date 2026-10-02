@@ -22,8 +22,7 @@ describe("safe PWA guards", () => {
     expect(urls.length).toBeGreaterThan(0);
     const allowed = /^(assets\/|icons\/|favicon\.png$|offline\.html$)/;
     expect(urls.filter((u) => !allowed.test(u))).toEqual([]);
-    const forbidden =
-      /(api|dashboard|report|learner|session|assessment|parent|payment|checkout|auth|supabase)/i;
+    const forbidden = /(api|dashboard|report|learner|session|assessment|parent|payment|checkout|auth|supabase)/i;
     expect(urls.filter((u) => forbidden.test(u.replace(/^assets\/.*$/, "")))).toEqual([]);
   });
 
@@ -59,3 +58,4 @@ describe("safe PWA guards", () => {
     expect(source).toMatch(/"SKIP_WAITING"===\w+\.data\.type&&self\.skipWaiting\(\)/);
   });
 });
+

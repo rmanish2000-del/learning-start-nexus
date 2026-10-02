@@ -77,8 +77,7 @@ export function allocateByWeight(
 
   const weightTotal = outcomes.reduce((s, o) => s + o.diagnosticWeight, 0);
   const rows = outcomes.map((o) => {
-    const exact =
-      weightTotal > 0 ? (o.diagnosticWeight / weightTotal) * total : total / outcomes.length;
+    const exact = weightTotal > 0 ? (o.diagnosticWeight / weightTotal) * total : total / outcomes.length;
     const floor = Math.floor(exact);
     return { id: o.id, code: o.code, floor, rem: exact - floor };
   });
@@ -122,13 +121,7 @@ export const RISK_BAND_LABELS: Record<RiskBand, string> = {
 };
 
 export function predictRisks(
-  outcomes: {
-    id: string;
-    code: string;
-    title: string;
-    diagnosticWeight: number;
-    difficulty: number;
-  }[],
+  outcomes: { id: string; code: string; title: string; diagnosticWeight: number; difficulty: number }[],
 ): RiskRow[] {
   if (outcomes.length === 0) return [];
   const rows = outcomes.map((o) => ({
@@ -143,11 +136,7 @@ export function predictRisks(
   return rows
     .map((r) => ({
       ...r,
-      band: (r.riskScore >= mean * 1.1
-        ? "high"
-        : r.riskScore >= mean * 0.9
-          ? "watch"
-          : "standard") as RiskBand,
+      band: (r.riskScore >= mean * 1.1 ? "high" : r.riskScore >= mean * 0.9 ? "watch" : "standard") as RiskBand,
     }))
     .sort((a, b) => b.riskScore - a.riskScore || (a.code < b.code ? -1 : 1));
 }
@@ -236,9 +225,7 @@ export function buildDiagnosticPlan(args: {
       picked = primary.slice(0, target);
       if (picked.length < target) {
         // Alternatives exhausted — fall back to baseline questions.
-        const fallback = sorted.filter(
-          (q) => exclude.has(q.id) && !picked.some((p) => p.id === q.id),
-        );
+        const fallback = sorted.filter((q) => exclude.has(q.id) && !picked.some((p) => p.id === q.id));
         picked = [...picked, ...fallback.slice(0, target - picked.length)];
       }
     } else {
@@ -274,8 +261,7 @@ export function buildDiagnosticPlan(args: {
   const weightMeasured = outcomePlans
     .filter((p) => p.actualQuestions > 0)
     .reduce((s, p) => s + p.weight, 0);
-  const actualCoveragePct =
-    weightTotal === 0 ? 0 : Math.round((weightMeasured / weightTotal) * 100);
+  const actualCoveragePct = weightTotal === 0 ? 0 : Math.round((weightMeasured / weightTotal) * 100);
 
   return {
     template,

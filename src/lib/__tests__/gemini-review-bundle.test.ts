@@ -35,11 +35,7 @@ function findDuplicateKeys(text: string): string[] {
       let j = i + 1;
       let raw = "";
       while (j < text.length && text[j] !== '"') {
-        if (text[j] === "\\") {
-          raw += text[j]! + text[j + 1]!;
-          j += 2;
-          continue;
-        }
+        if (text[j] === "\\") { raw += text[j]! + text[j + 1]!; j += 2; continue; }
         raw += text[j]!;
         j++;
       }
@@ -61,15 +57,12 @@ function findDuplicateKeys(text: string): string[] {
   return dupes;
 }
 
+
 const manifest = json("GEMINI_REVIEW_BUNDLE_MANIFEST.json");
 
 describe("gemini review bundle — structure", () => {
   it("contains the three bundle control files", () => {
-    for (const f of [
-      "GEMINI_REVIEW_BUNDLE_MANIFEST.json",
-      "GEMINI_REVIEW_BUNDLE_README.md",
-      "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256",
-    ]) {
+    for (const f of ["GEMINI_REVIEW_BUNDLE_MANIFEST.json", "GEMINI_REVIEW_BUNDLE_README.md", "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256"]) {
       expect(existsSync(resolve(BUNDLE, f)), f).toBe(true);
     }
   });
@@ -103,18 +96,9 @@ describe("gemini review bundle — structure", () => {
 
   it("copies the committed baseline files byte-for-byte", () => {
     const pairs: [string, string][] = [
-      [
-        "baseline/cbse-class10-mathematics-2026-27-baseline.json",
-        "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json",
-      ],
-      [
-        "baseline/cbse-class10-science-2026-27-baseline.json",
-        "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json",
-      ],
-      [
-        "evidence/class-10-2026-27.snapshot.json",
-        "content/compliance/class-10-2026-27.snapshot.json",
-      ],
+      ["baseline/cbse-class10-mathematics-2026-27-baseline.json", "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json"],
+      ["baseline/cbse-class10-science-2026-27-baseline.json", "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json"],
+      ["evidence/class-10-2026-27.snapshot.json", "content/compliance/class-10-2026-27.snapshot.json"],
     ];
     for (const [inBundle, src] of pairs) {
       expect(readFileSync(resolve(BUNDLE, inBundle))).toEqual(readFileSync(resolve(ROOT, src)));
@@ -133,11 +117,7 @@ describe("gemini review bundle — integrity", () => {
 
   it("manifest covers every bundle file except the manifest and integrity list", () => {
     const onDisk = walk(BUNDLE)
-      .filter(
-        (p) =>
-          p !== "GEMINI_REVIEW_BUNDLE_MANIFEST.json" &&
-          p !== "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256",
-      )
+      .filter((p) => p !== "GEMINI_REVIEW_BUNDLE_MANIFEST.json" && p !== "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256")
       .sort();
     expect(manifest.files.map((f: { path: string }) => f.path).sort()).toEqual(onDisk);
   });
@@ -180,11 +160,7 @@ describe("gemini review bundle — integrity", () => {
 
   it("bundle_tree_hash is deterministic over payload files only", () => {
     const expected = createHash("sha256")
-      .update(
-        manifest.files
-          .map((f: { path: string; sha256: string }) => `${f.path}\u0000${f.sha256}`)
-          .join("\n"),
-      )
+      .update(manifest.files.map((f: { path: string; sha256: string }) => `${f.path}\u0000${f.sha256}`).join("\n"))
       .digest("hex");
     expect(manifest.bundle_tree_hash).toBe(expected);
     const paths = manifest.files.map((f: { path: string }) => f.path);
@@ -194,11 +170,7 @@ describe("gemini review bundle — integrity", () => {
 
   it("has no stale, unmanifested or missing files on disk", () => {
     const onDisk = walk(BUNDLE)
-      .filter(
-        (p) =>
-          p !== "GEMINI_REVIEW_BUNDLE_MANIFEST.json" &&
-          p !== "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256",
-      )
+      .filter((p) => p !== "GEMINI_REVIEW_BUNDLE_MANIFEST.json" && p !== "GEMINI_REVIEW_BUNDLE_INTEGRITY.sha256")
       .sort();
     const manifestPaths = manifest.files.map((f: { path: string }) => f.path).sort();
     expect(onDisk.filter((p) => !manifestPaths.includes(p))).toEqual([]);
@@ -245,77 +217,35 @@ describe("gemini review bundle — json hygiene", () => {
 
 describe("gemini review bundle — crosswalk contract", () => {
   const cw = json("exports/baseline-to-eduos-crosswalk.json");
-  const math = JSON.parse(
-    readFileSync(
-      resolve(ROOT, "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json"),
-      "utf8",
-    ),
-  );
-  const sci = JSON.parse(
-    readFileSync(
-      resolve(ROOT, "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json"),
-      "utf8",
-    ),
-  );
+  const math = JSON.parse(readFileSync(resolve(ROOT, "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json"), "utf8"));
+  const sci = JSON.parse(readFileSync(resolve(ROOT, "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json"), "utf8"));
 
   it("emits exactly one row per official requirement, none omitted", () => {
     const ids = cw.rows.map((r: { official_requirement_id: string }) => r.official_requirement_id);
     expect(new Set(ids).size).toBe(ids.length);
-    const expected = [...math.requirements, ...sci.requirements].map(
-      (r: { requirement_id: string }) => r.requirement_id,
-    );
+    const expected = [...math.requirements, ...sci.requirements].map((r: { requirement_id: string }) => r.requirement_id);
     expect(ids.sort()).toEqual(expected.sort());
   });
 
   it("reconciles requirement counts with the baselines", () => {
-    expect(cw.rows.filter((r: { subject: string }) => r.subject === "Mathematics").length).toBe(
-      math.total_requirements,
-    );
-    expect(cw.rows.filter((r: { subject: string }) => r.subject === "Science").length).toBe(
-      sci.total_requirements,
-    );
+    expect(cw.rows.filter((r: { subject: string }) => r.subject === "Mathematics").length).toBe(math.total_requirements);
+    expect(cw.rows.filter((r: { subject: string }) => r.subject === "Science").length).toBe(sci.total_requirements);
   });
 
   it("every row carries the full contract with null for missing mappings", () => {
     const keys = [
-      "subject",
-      "academic_year",
-      "official_requirement_id",
-      "official_unit",
-      "official_chapter",
-      "official_topic",
-      "eduos_unit_id",
-      "eduos_unit_title",
-      "eduos_chapter_id",
-      "eduos_chapter_title",
-      "eduos_topic_id",
-      "eduos_topic_title",
-      "outcome_ids",
-      "atom_ids",
-      "approved_question_count",
-      "verified_question_count",
-      "diagnostic_target",
-      "reassessment_reserve",
-      "source_mapping_status",
-      "human_review_status",
-      "current_verdict",
-      "evidence_reference",
+      "subject", "academic_year", "official_requirement_id", "official_unit", "official_chapter", "official_topic",
+      "eduos_unit_id", "eduos_unit_title", "eduos_chapter_id", "eduos_chapter_title", "eduos_topic_id", "eduos_topic_title",
+      "outcome_ids", "atom_ids", "approved_question_count", "verified_question_count", "diagnostic_target",
+      "reassessment_reserve", "source_mapping_status", "human_review_status", "current_verdict", "evidence_reference",
     ];
-    for (const row of cw.rows)
-      for (const k of keys)
-        expect(
-          Object.prototype.hasOwnProperty.call(row, k),
-          `${row.official_requirement_id}.${k}`,
-        ).toBe(true);
+    for (const row of cw.rows) for (const k of keys) expect(Object.prototype.hasOwnProperty.call(row, k), `${row.official_requirement_id}.${k}`).toBe(true);
   });
 
   it("preserves SOURCE_PENDING and unreviewed status", () => {
     expect(cw.class_10_compliance_status).toBe("SOURCE_PENDING");
-    expect(json("exports/compliance-gate-result.json").class_10_compliance_status).toBe(
-      "SOURCE_PENDING",
-    );
-    for (const row of cw.rows)
-      expect(row.human_review_status).toBe("NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT");
+    expect(json("exports/compliance-gate-result.json").class_10_compliance_status).toBe("SOURCE_PENDING");
+    for (const row of cw.rows) expect(row.human_review_status).toBe("NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT");
   });
 });
 
@@ -323,12 +253,7 @@ describe("gemini review bundle — depth evidence", () => {
   const depth = json("exports/question-depth-and-reassessment-evidence.json");
 
   it("provides all five depth levels", () => {
-    for (const k of [
-      "subject_level",
-      "unit_level",
-      "official_requirement_level",
-      "outcome_level",
-    ]) {
+    for (const k of ["subject_level", "unit_level", "official_requirement_level", "outcome_level"]) {
       expect(Array.isArray(depth[k]), k).toBe(true);
       expect(depth[k].length, k).toBeGreaterThan(0);
     }
@@ -342,11 +267,8 @@ describe("gemini review bundle — depth evidence", () => {
     expect(titles).toHaveLength(12);
     // The Meridian pilot book was reversibly archived in the clean rebuild, so
     // its two units must no longer appear in the depth evidence.
-    for (const t of ["Unit 1 — Number Systems", "Unit 2 — Algebra"])
-      expect(titles).not.toContain(t);
-    const meridian = depth.unit_level.filter(
-      (u: { meridian_pilot_unit: boolean }) => u.meridian_pilot_unit,
-    );
+    for (const t of ["Unit 1 — Number Systems", "Unit 2 — Algebra"]) expect(titles).not.toContain(t);
+    const meridian = depth.unit_level.filter((u: { meridian_pilot_unit: boolean }) => u.meridian_pilot_unit);
     expect(meridian.length).toBe(0);
   });
 
@@ -379,25 +301,18 @@ describe("gemini review bundle — privacy and secrets", () => {
       ["private key", /-----BEGIN [A-Z ]*PRIVATE KEY-----/],
       ["bearer token", /Bearer\s+[A-Za-z0-9._-]{20,}/],
     ];
-    for (const [p, t] of texts)
-      for (const [name, re] of patterns) expect(re.test(t), `${p}: ${name}`).toBe(false);
+    for (const [p, t] of texts) for (const [name, re] of patterns) expect(re.test(t), `${p}: ${name}`).toBe(false);
   });
 
   it("contains no learner or parent personal data fields", () => {
-    const forbidden =
-      /\b(learner_name|student_name|parent_name|guardian_name|parent_email|phone_number|date_of_birth|payment_id|order_ref)\b/i;
+    const forbidden = /\b(learner_name|student_name|parent_name|guardian_name|parent_email|phone_number|date_of_birth|payment_id|order_ref)\b/i;
     for (const [p, t] of texts) expect(forbidden.test(t), p).toBe(false);
   });
 
   it("references only public official URLs", () => {
     for (const [p, t] of texts) {
       for (const url of t.match(/https?:\/\/[A-Za-z0-9.-]+\.[A-Za-z]{2,}[^\s"'),]*/g) ?? []) {
-        expect(
-          /^https?:\/\/(cbseacademic\.nic\.in|ncert\.nic\.in|www\.cbse\.gov\.in|cbse\.gov\.in|json-schema\.org|www\.eduos\.global)/.test(
-            url,
-          ),
-          `${p}: ${url}`,
-        ).toBe(true);
+        expect(/^https?:\/\/(cbseacademic\.nic\.in|ncert\.nic\.in|www\.cbse\.gov\.in|cbse\.gov\.in|json-schema\.org|www\.eduos\.global)/.test(url), `${p}: ${url}`).toBe(true);
       }
     }
   });

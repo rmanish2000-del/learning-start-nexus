@@ -41,8 +41,7 @@ const norm = (s: string | null | undefined) =>
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 
-const stripUnitPrefix = (s: string) =>
-  s.replace(/^unit\s*[-–—]?\s*[ivx0-9]+\s*[:.\-–—]\s*/i, "").trim();
+const stripUnitPrefix = (s: string) => s.replace(/^unit\s*[-–—]?\s*[ivx0-9]+\s*[:.\-–—]\s*/i, "").trim();
 
 // ------------------------------------------------------- evidence flattening
 type OutcomeRow = {
@@ -63,22 +62,11 @@ type OutcomeRow = {
 type TopicRow = {
   topicId: string;
   title: string;
-  curriculumOutcomes: {
-    curriculumOutcomeId: string;
-    text: string;
-    status: string;
-    assessmentOutcomeIds: string[];
-  }[];
+  curriculumOutcomes: { curriculumOutcomeId: string; text: string; status: string; assessmentOutcomeIds: string[] }[];
 };
 
 type ChapterRow = { chapterId: string; title: string; topics: TopicRow[] };
-type UnitRow = {
-  unitId: string;
-  title: string;
-  status: string;
-  chapters: ChapterRow[];
-  assessmentOutcomes: OutcomeRow[];
-};
+type UnitRow = { unitId: string; title: string; status: string; chapters: ChapterRow[]; assessmentOutcomes: OutcomeRow[] };
 type BookRow = { bookId: string; title: string; subject: string; status: string; units: UnitRow[] };
 
 const evidence = read("content/compliance/class-10-2026-27.evidence.json") as {
@@ -86,9 +74,7 @@ const evidence = read("content/compliance/class-10-2026-27.evidence.json") as {
   books: BookRow[];
 };
 const sourceVerification = read("content/compliance/class-10-2026-27.source-verification.json");
-const priorCrosswalk = read(
-  "review-bundles/class10-2026-27-gemini/exports/baseline-to-eduos-crosswalk.json",
-);
+const priorCrosswalk = read("review-bundles/class10-2026-27-gemini/exports/baseline-to-eduos-crosswalk.json");
 
 // The governing book per subject is the NCERT-derived book that carries the
 // official unit structure. Archived books and the Meridian pilot import are
@@ -105,9 +91,7 @@ const bookFor = (subject: string) => {
 };
 
 const outcomeIndex = new Map<string, OutcomeRow>();
-for (const b of evidence.books)
-  for (const u of b.units)
-    for (const o of u.assessmentOutcomes) outcomeIndex.set(o.assessmentOutcomeId, o);
+for (const b of evidence.books) for (const u of b.units) for (const o of u.assessmentOutcomes) outcomeIndex.set(o.assessmentOutcomeId, o);
 
 // ------------------------------------------------------------ Phase 2 and 3
 type Requirement = {
@@ -122,14 +106,8 @@ type Requirement = {
 };
 
 const subjects = [
-  {
-    subject: "Mathematics",
-    file: "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json",
-  },
-  {
-    subject: "Science",
-    file: "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json",
-  },
+  { subject: "Mathematics", file: "audit-data/class10/2026-27/cbse-class10-mathematics-2026-27-baseline.json" },
+  { subject: "Science", file: "audit-data/class10/2026-27/cbse-class10-science-2026-27-baseline.json" },
 ] as const;
 
 // Baseline unit and chapter labels are auditor paraphrases of the official
@@ -157,12 +135,7 @@ const CHAPTER_ALIASES: Record<string, string> = {
   "heredity and evolution": "heredity",
 };
 
-const tokens = (s: string) =>
-  new Set(
-    norm(s)
-      .split(" ")
-      .filter((t) => t.length > 2),
-  );
+const tokens = (s: string) => new Set(norm(s).split(" ").filter((t) => t.length > 2));
 const jaccard = (a: string, b: string) => {
   const A = tokens(a);
   const B = tokens(b);
@@ -176,8 +149,7 @@ function bestMatch<T>(candidates: T[], title: (c: T) => string, want: string) {
   let best: { item: T; score: number } | null = null;
   for (const c of candidates) {
     const score = jaccard(title(c), want);
-    if (!best || score > best.score || (score === best.score && title(c) < title(best.item)))
-      best = { item: c, score };
+    if (!best || score > best.score || (score === best.score && title(c) < title(best.item))) best = { item: c, score };
   }
   return best;
 }
@@ -218,17 +190,8 @@ function buildRow(subject: string, req: Requirement) {
   let topicScore = topic ? 1 : 0;
   if (!topic && chapter) {
     const byTopic = bestMatch(chapter.topics, (t) => t.title, req.official_topic);
-    const byRequirement = bestMatch(
-      chapter.topics,
-      (t) => t.title,
-      `${req.official_topic} ${req.official_requirement}`,
-    );
-    const best =
-      byTopic && byRequirement
-        ? byTopic.score >= byRequirement.score
-          ? byTopic
-          : byRequirement
-        : (byTopic ?? byRequirement);
+    const byRequirement = bestMatch(chapter.topics, (t) => t.title, `${req.official_topic} ${req.official_requirement}`);
+    const best = byTopic && byRequirement ? (byTopic.score >= byRequirement.score ? byTopic : byRequirement) : (byTopic ?? byRequirement);
     if (best && best.score >= TOPIC_MATCH_THRESHOLD) {
       topic = best.item;
       topicMatch = "HIGH_CONFIDENCE";
@@ -237,17 +200,9 @@ function buildRow(subject: string, req: Requirement) {
   }
 
   const scope = topic ? "TOPIC" : chapter ? "CHAPTER" : "NONE";
-  const curriculumOutcomes = topic
-    ? topic.curriculumOutcomes
-    : chapter
-      ? chapter.topics.flatMap((t) => t.curriculumOutcomes)
-      : [];
-  const assessmentOutcomeIds = [
-    ...new Set(curriculumOutcomes.flatMap((o) => o.assessmentOutcomeIds)),
-  ].sort();
-  const outcomes = assessmentOutcomeIds
-    .map((id) => outcomeIndex.get(id))
-    .filter((o): o is OutcomeRow => Boolean(o));
+  const curriculumOutcomes = topic ? topic.curriculumOutcomes : chapter ? chapter.topics.flatMap((t) => t.curriculumOutcomes) : [];
+  const assessmentOutcomeIds = [...new Set(curriculumOutcomes.flatMap((o) => o.assessmentOutcomeIds))].sort();
+  const outcomes = assessmentOutcomeIds.map((id) => outcomeIndex.get(id)).filter((o): o is OutcomeRow => Boolean(o));
 
   const sum = (pick: (o: OutcomeRow) => number) => outcomes.reduce((n, o) => n + pick(o), 0);
 
@@ -289,9 +244,7 @@ function buildRow(subject: string, req: Requirement) {
     question_verified: sum((o) => o.questionVerified),
     question_diagnostic_eligible: sum((o) => o.questionDiagnosticEligible),
     question_kinds: [...new Set(outcomes.flatMap((o) => o.questionKinds))].sort(),
-    question_difficulties: [...new Set(outcomes.flatMap((o) => o.questionDifficulties))].sort(
-      (a, b) => a - b,
-    ),
+    question_difficulties: [...new Set(outcomes.flatMap((o) => o.questionDifficulties))].sort((a, b) => a - b),
     verdict,
     evidence_reference: "content/compliance/class-10-2026-27.evidence.json",
     human_review_status: "NOT_REVIEWED_BY_NAMED_SUBJECT_EXPERT",
@@ -318,8 +271,7 @@ const SOURCE_ANCHORED_FINDINGS = [
       "The retrieved CBSE Science 2026-27 syllabus retains Periodic Classification of Elements inside Unit I under the heading 'included in the syllabus but will be assessed only formatively', and the Note for Teachers states it will not be assessed in the year-end examination.",
     resolution: "RETAINED_FORMATIVE_ONLY",
     baseline_status: "BASELINE_CLAIM_CONTRADICTED",
-    remediation:
-      "Reclassify the exclusion as NOT_ASSESSED_IN_YEAR_END_EXAMINATION. Do not generate summative diagnostic items for this topic.",
+    remediation: "Reclassify the exclusion as NOT_ASSESSED_IN_YEAR_END_EXAMINATION. Do not generate summative diagnostic items for this topic.",
   },
   {
     finding_id: "FIND_SCI_EVOLUTION",
@@ -330,17 +282,14 @@ const SOURCE_ANCHORED_FINDINGS = [
       "Unit II separates assessable Heredity from Evolution, which is listed as formative-only. The Note for Teachers repeats that Heredity and Evolution content is not assessed in the year-end examination.",
     resolution: "EVOLUTION_FORMATIVE_ONLY",
     baseline_status: "BASELINE_CLAIM_PARTIAL",
-    remediation:
-      "Label Evolution outcomes as formative and exclude them from diagnostic weighting.",
+    remediation: "Label Evolution outcomes as formative and exclude them from diagnostic weighting.",
   },
   {
     finding_id: "FIND_SCI_MOTOR_GENERATOR",
     phase: "PHASE_6_AMBIGUITY",
     subject: "Science",
-    baseline_claim:
-      "Motor, Electromagnetic Induction and Electric Generator treated as assessable in Unit IV.",
-    verified_truth:
-      "Unit IV lists Motor, Electromagnetic Induction and Electric Generator under the formative-only block.",
+    baseline_claim: "Motor, Electromagnetic Induction and Electric Generator treated as assessable in Unit IV.",
+    verified_truth: "Unit IV lists Motor, Electromagnetic Induction and Electric Generator under the formative-only block.",
     resolution: "FORMATIVE_ONLY",
     baseline_status: "BASELINE_CLAIM_CONTRADICTED",
     remediation: "Mark these outcomes formative; exclude from summative depth targets.",
@@ -349,8 +298,7 @@ const SOURCE_ANCHORED_FINDINGS = [
     finding_id: "FIND_SCI_HUMAN_EYE_SPELLING",
     phase: "PHASE_3_UNMAPPED",
     subject: "Science",
-    baseline_claim:
-      "Prior gap register recorded 1 unmapped official Science topic (SCI-U3-C2 The Human Eye and the Colourful World).",
+    baseline_claim: "Prior gap register recorded 1 unmapped official Science topic (SCI-U3-C2 The Human Eye and the Colourful World).",
     verified_truth:
       "The chapter exists in EduOS as 'The Human Eye and the Colorful World'. The gap was an orthographic mismatch (US spelling), not missing content.",
     resolution: "MAPPED_AFTER_TITLE_CORRECTION",
@@ -375,8 +323,7 @@ const SOURCE_ANCHORED_FINDINGS = [
     phase: "PHASE_6_OVERREACH",
     subject: "Mathematics",
     baseline_claim: "Frustum of a cone flagged as possible academic overreach.",
-    verified_truth:
-      "The string 'frustum' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
+    verified_truth: "The string 'frustum' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
     resolution: "CONFIRMED_OUT_OF_SYLLABUS",
     baseline_status: "BASELINE_CLAIM_CONFIRMED",
     remediation: "Do not author frustum items for 2026-27.",
@@ -386,8 +333,7 @@ const SOURCE_ANCHORED_FINDINGS = [
     phase: "PHASE_6_OVERREACH",
     subject: "Mathematics",
     baseline_claim: "Euclid's division lemma assumed in-scope by the Meridian pilot import.",
-    verified_truth:
-      "The string 'Euclid' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
+    verified_truth: "The string 'Euclid' does not occur in the retrieved CBSE Mathematics 2026-27 syllabus.",
     resolution: "CONFIRMED_OUT_OF_SYLLABUS",
     baseline_status: "PILOT_CONTENT_OUT_OF_SCOPE",
     remediation: "Exclude from generation; retire with the pilot unit.",
@@ -396,8 +342,7 @@ const SOURCE_ANCHORED_FINDINGS = [
     finding_id: "FIND_SCI_BOOK_STATUS",
     phase: "PHASE_5_BOOK_STATUS",
     subject: "Science",
-    baseline_claim:
-      "Science source book status disputed between PROCESSED_NOT_APPROVED and Approved.",
+    baseline_claim: "Science source book status disputed between PROCESSED_NOT_APPROVED and Approved.",
     verified_truth:
       "books.status for 'NCERT Class 10 Science (CBSE)' is 'processed'. It is not approved. The Mathematics counterpart is 'approved'. All 209 Science questions therefore hang off a non-approved book.",
     resolution: "PROCESSED_NOT_APPROVED",
@@ -420,10 +365,7 @@ const SOURCE_ANCHORED_FINDINGS = [
 
 // ------------------------------------------------------------ Phase 2 deltas
 const priorRows: Record<string, Record<string, unknown>> = Object.fromEntries(
-  (priorCrosswalk.rows as Record<string, unknown>[]).map((r) => [
-    String(r["official_requirement_id"]),
-    r,
-  ]),
+  (priorCrosswalk.rows as Record<string, unknown>[]).map((r) => [String(r["official_requirement_id"]), r]),
 );
 
 const conflicts = verifiedRows
@@ -439,27 +381,15 @@ const conflicts = verifiedRows
     }
     const deltas: { field: string; claimed: unknown; verified: unknown }[] = [];
     if (prior["eduos_unit_id"] !== row.eduos_unit_id)
-      deltas.push({
-        field: "eduos_unit_id",
-        claimed: prior["eduos_unit_id"],
-        verified: row.eduos_unit_id,
-      });
+      deltas.push({ field: "eduos_unit_id", claimed: prior["eduos_unit_id"], verified: row.eduos_unit_id });
     if (!prior["eduos_chapter_id"] && row.eduos_chapter_id)
       deltas.push({ field: "eduos_chapter_id", claimed: null, verified: row.eduos_chapter_id });
     if (!prior["eduos_topic_id"] && row.eduos_topic_id)
       deltas.push({ field: "eduos_topic_id", claimed: null, verified: row.eduos_topic_id });
     if (prior["verified_question_count"] !== row.question_verified)
-      deltas.push({
-        field: "verified_question_count",
-        claimed: prior["verified_question_count"],
-        verified: row.question_verified,
-      });
+      deltas.push({ field: "verified_question_count", claimed: prior["verified_question_count"], verified: row.question_verified });
     if (prior["approved_question_count"] !== row.question_approved)
-      deltas.push({
-        field: "approved_question_count",
-        claimed: prior["approved_question_count"],
-        verified: row.question_approved,
-      });
+      deltas.push({ field: "approved_question_count", claimed: prior["approved_question_count"], verified: row.question_approved });
     if (prior["current_verdict"] !== row.verdict)
       deltas.push({ field: "verdict", claimed: prior["current_verdict"], verified: row.verdict });
     if (deltas.length === 0) return null;
@@ -482,9 +412,7 @@ function unitSpec(subject: string, unit: UnitRow, governing: boolean) {
   const eligible = sum((o) => o.questionDiagnosticEligible);
   const required = requiredVerified(outcomes.length);
   const kinds = [...new Set(outcomes.flatMap((o) => o.questionKinds))].sort();
-  const difficulties = [...new Set(outcomes.flatMap((o) => o.questionDifficulties))].sort(
-    (a, b) => a - b,
-  );
+  const difficulties = [...new Set(outcomes.flatMap((o) => o.questionDifficulties))].sort((a, b) => a - b);
   return {
     subject,
     eduos_unit_id: unit.unitId,
@@ -503,11 +431,8 @@ function unitSpec(subject: string, unit: UnitRow, governing: boolean) {
     question_kinds: kinds,
     question_kind_deficit: Math.max(MIN_QUESTION_TYPES_PER_UNIT - kinds.length, 0),
     difficulty_bands: difficulties.length,
-    outcomes_without_eligible_questions: outcomes
-      .filter((o) => o.questionDiagnosticEligible === 0)
-      .map((o) => o.code),
-    verdict:
-      eligible >= required && kinds.length >= MIN_QUESTION_TYPES_PER_UNIT ? "OK" : "SHORTFALL",
+    outcomes_without_eligible_questions: outcomes.filter((o) => o.questionDiagnosticEligible === 0).map((o) => o.code),
+    verdict: eligible >= required && kinds.length >= MIN_QUESTION_TYPES_PER_UNIT ? "OK" : "SHORTFALL",
   };
 }
 
@@ -521,13 +446,7 @@ for (const book of evidence.books) {
 // ------------------------------------------------------ verified gap register
 const gaps: Record<string, unknown>[] = [];
 let gapSeq = 0;
-const gap = (
-  subject: string,
-  category: string,
-  severity: string,
-  detail: string,
-  remediation: string,
-) => {
+const gap = (subject: string, category: string, severity: string, detail: string, remediation: string) => {
   gapSeq += 1;
   gaps.push({
     gap_id: `VGAP-${String(gapSeq).padStart(3, "0")}`,
@@ -536,8 +455,7 @@ const gap = (
     severity,
     detail,
     remediation,
-    verified_against:
-      "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json",
+    verified_against: "content/compliance/class-10-2026-27.evidence.json + class-10-2026-27.source-verification.json",
   });
 };
 
@@ -561,29 +479,19 @@ for (const s of subjects) {
       `${noQuestions.length} mapped requirements carry no diagnostic-eligible question: ${noQuestions.map((r) => r.official_requirement_id).join(", ")}`,
       "Author and verify at least one item per requirement.",
     );
-  const shortfalls = unitSpecs.filter(
-    (u) => u.subject === s.subject && u.governing && u.verdict === "SHORTFALL",
-  );
+  const shortfalls = unitSpecs.filter((u) => u.subject === s.subject && u.governing && u.verdict === "SHORTFALL");
   if (shortfalls.length > 0)
     gap(
       s.subject,
       "QUESTION_DEPTH",
       "MAJOR",
-      shortfalls
-        .map(
-          (u) => `${u.eduos_unit_title}:${u.diagnostic_eligible}/${u.required_diagnostic_eligible}`,
-        )
-        .join(", "),
+      shortfalls.map((u) => `${u.eduos_unit_title}:${u.diagnostic_eligible}/${u.required_diagnostic_eligible}`).join(", "),
       "Author to the depth law before the unit can serve both a diagnostic and a reassessment set.",
     );
 }
 
 for (const f of SOURCE_ANCHORED_FINDINGS) {
-  const severity =
-    f.baseline_status.includes("CONTRADICTED") ||
-    f.baseline_status === "PRIOR_CLAIM_FACTUALLY_WRONG"
-      ? "BLOCKING"
-      : "MAJOR";
+  const severity = f.baseline_status.includes("CONTRADICTED") || f.baseline_status === "PRIOR_CLAIM_FACTUALLY_WRONG" ? "BLOCKING" : "MAJOR";
   gap(f.subject, f.phase, severity, `${f.finding_id}: ${f.verified_truth}`, f.remediation);
 }
 
@@ -615,11 +523,8 @@ written.push(
 written.push(
   writeJson("EDUOS_CLASS_10_GEMINI_CONFLICTS.json", {
     provenance,
-    prior_claim_source:
-      "review-bundles/class10-2026-27-gemini/exports/baseline-to-eduos-crosswalk.json",
-    narrative_conflicts: SOURCE_ANCHORED_FINDINGS.filter(
-      (f) => f.baseline_status !== "BASELINE_CLAIM_CONFIRMED",
-    ),
+    prior_claim_source: "review-bundles/class10-2026-27-gemini/exports/baseline-to-eduos-crosswalk.json",
+    narrative_conflicts: SOURCE_ANCHORED_FINDINGS.filter((f) => f.baseline_status !== "BASELINE_CLAIM_CONFIRMED"),
     row_conflicts: conflicts,
     total_row_conflicts: conflicts.length,
   }),
@@ -640,8 +545,7 @@ written.push(
       diagnostic_minimum: DIAGNOSTIC_MINIMUM,
       minimum_questions_per_outcome: MIN_PER_OUTCOME,
       minimum_question_types_per_unit: MIN_QUESTION_TYPES_PER_UNIT,
-      formula:
-        "required = max(2 * diagnostic_target, 2 * outcomes * minimum_per_outcome, 2 * diagnostic_minimum)",
+      formula: "required = max(2 * diagnostic_target, 2 * outcomes * minimum_per_outcome, 2 * diagnostic_minimum)",
       eligibility: "status = 'approved' AND verification_state = 'verified'",
     },
     total_deficit: unitSpecs.filter((u) => u.governing).reduce((n, u) => n + u.deficit, 0),
@@ -668,20 +572,14 @@ md.push("| Source | HTTP | Bytes | SHA-256 | Probes | Status |");
 md.push("|---|---|---|---|---|---|");
 for (const s of sourceVerification.sources) {
   const pass = s.probes.filter((p: { result: string }) => p.result === "PASS").length;
-  md.push(
-    `| ${s.sourceId} | ${s.httpStatus} | ${s.byteLength} | \`${s.sha256}\` | ${pass}/${s.probes.length} | ${s.verificationStatus} |`,
-  );
+  md.push(`| ${s.sourceId} | ${s.httpStatus} | ${s.byteLength} | \`${s.sha256}\` | ${pass}/${s.probes.length} | ${s.verificationStatus} |`);
 }
 md.push("");
-md.push(
-  "Full retrieval record, including every probe and its expectation: `content/compliance/class-10-2026-27.source-verification.json`.",
-);
+md.push("Full retrieval record, including every probe and its expectation: `content/compliance/class-10-2026-27.source-verification.json`.");
 md.push("");
 md.push("## 2. Requirement mapping");
 md.push("");
-md.push(
-  "| Subject | Requirements | Mapped with evidence | Mapped without usable questions | Unmapped |",
-);
+md.push("| Subject | Requirements | Mapped with evidence | Mapped without usable questions | Unmapped |");
 md.push("|---|---|---|---|---|");
 for (const s of subjects) {
   const rows = verifiedRows.filter((r) => r.subject === s.subject);
@@ -692,9 +590,7 @@ for (const s of subjects) {
 md.push("");
 md.push("## 3. Question depth (diagnostic-eligible = approved AND verified)");
 md.push("");
-md.push(
-  "| Subject | Unit | Governing | Outcomes | Total | Approved | Verified | Eligible | Required | Deficit | Kinds | Verdict |",
-);
+md.push("| Subject | Unit | Governing | Outcomes | Total | Approved | Verified | Eligible | Required | Deficit | Kinds | Verdict |");
 md.push("|---|---|---|---|---|---|---|---|---|---|---|---|");
 for (const u of unitSpecs)
   md.push(
@@ -715,9 +611,7 @@ for (const f of SOURCE_ANCHORED_FINDINGS) {
 }
 md.push("## 5. Verified gap register");
 md.push("");
-md.push(
-  `Total ${gaps.length} gaps, ${gaps.filter((g) => g["severity"] === "BLOCKING").length} blocking. Machine-readable: \`EDUOS_CLASS_10_VERIFIED_GAP_REGISTER.json\`.`,
-);
+md.push(`Total ${gaps.length} gaps, ${gaps.filter((g) => g["severity"] === "BLOCKING").length} blocking. Machine-readable: \`EDUOS_CLASS_10_VERIFIED_GAP_REGISTER.json\`.`);
 md.push("");
 writeFileSync(resolve(ROOT, "EDUOS_CLASS_10_EVIDENCE_VERIFICATION.md"), `${md.join("\n")}\n`);
 written.push("EDUOS_CLASS_10_EVIDENCE_VERIFICATION.md");

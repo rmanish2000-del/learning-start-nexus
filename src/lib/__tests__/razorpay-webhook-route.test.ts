@@ -23,22 +23,13 @@ type Handler = (ctx: { request: Request }) => Promise<Response>;
 
 async function post(body: unknown, signature?: string | null): Promise<Response> {
   const { Route } = await import("@/routes/api/public/razorpay-webhook");
-  const handler = (Route.options as unknown as { server: { handlers: { POST: Handler } } }).server
-    .handlers.POST;
+  const handler = (Route.options as unknown as { server: { handlers: { POST: Handler } } }).server.handlers
+    .POST;
   const raw = typeof body === "string" ? body : JSON.stringify(body);
   const headers = new Headers({ "content-type": "application/json" });
-  const sig =
-    signature === undefined
-      ? createHmac("sha256", WEBHOOK_SECRET).update(raw).digest("hex")
-      : signature;
+  const sig = signature === undefined ? createHmac("sha256", WEBHOOK_SECRET).update(raw).digest("hex") : signature;
   if (sig) headers.set("x-razorpay-signature", sig);
-  return handler({
-    request: new Request("http://localhost/api/public/razorpay-webhook", {
-      method: "POST",
-      headers,
-      body: raw,
-    }),
-  });
+  return handler({ request: new Request("http://localhost/api/public/razorpay-webhook", { method: "POST", headers, body: raw }) });
 }
 
 const captured = {
@@ -73,19 +64,14 @@ describe("razorpay webhook route", () => {
     const res = await post(captured);
     expect(res.status).toBe(200);
     await expect(res.json()).resolves.toEqual({ ok: true, result: "captured" });
-    expect(captureFromWebhook).toHaveBeenCalledWith({
-      providerOrderId: "order_diag",
-      paymentId: "pay_1",
-    });
+    expect(captureFromWebhook).toHaveBeenCalledWith({ providerOrderId: "order_diag", paymentId: "pay_1" });
   });
 
   it("records a signed payment.failed event with the gateway reason", async () => {
     const res = await post({
       event: "payment.failed",
       payload: {
-        payment: {
-          entity: { id: "pay_2", order_id: "order_diag", error_description: "Card declined" },
-        },
+        payment: { entity: { id: "pay_2", order_id: "order_diag", error_description: "Card declined" } },
       },
     });
     expect(res.status).toBe(200);

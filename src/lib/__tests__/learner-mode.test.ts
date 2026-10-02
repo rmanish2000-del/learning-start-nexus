@@ -34,9 +34,9 @@ describe("intervention lifecycle", () => {
     expect(stageFor({ interventionStatus: "planned", gapStatus: "open", planExists: true })).toBe(
       "available",
     );
-    expect(stageFor({ interventionStatus: "completed", gapStatus: "open", planExists: true })).toBe(
-      "ready_for_reassessment",
-    );
+    expect(
+      stageFor({ interventionStatus: "completed", gapStatus: "open", planExists: true }),
+    ).toBe("ready_for_reassessment");
     expect(
       stageFor({ interventionStatus: "planned", gapStatus: "addressed", planExists: true }),
     ).toBe("verified");

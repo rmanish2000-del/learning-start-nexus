@@ -19,9 +19,7 @@ export default defineTool({
     const supabase = supabaseForUser(ctx);
     let query = supabase
       .from("learners")
-      .select(
-        "id, full_name, handle, grade, subject, board, status, learner_mode, mastery_score, mastery_lift",
-      )
+      .select("id, full_name, handle, grade, subject, board, status, learner_mode, mastery_score, mastery_lift")
       .order("full_name", { ascending: true })
       .limit(limit ?? 25);
     if (search) {
@@ -29,10 +27,7 @@ export default defineTool({
       // extra conditions. Strip every character that carries meaning there.
       const safe = search.replace(/[,.()\\"*:]/g, " ").trim();
       if (!safe) {
-        return {
-          content: [{ type: "text", text: "Search term contains no searchable characters." }],
-          isError: true,
-        };
+        return { content: [{ type: "text", text: "Search term contains no searchable characters." }], isError: true };
       }
       query = query.or(`full_name.ilike.%${safe}%,handle.ilike.%${safe}%`);
     }

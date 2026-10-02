@@ -8,7 +8,13 @@ import { QueryError } from "@/components/query-error";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -160,11 +166,7 @@ function AssignmentsPage() {
           >
             Needs assignment ({unassignedCount})
           </Button>
-          <Button
-            size="sm"
-            variant={filter === "all" ? "default" : "outline"}
-            onClick={() => setFilter("all")}
-          >
+          <Button size="sm" variant={filter === "all" ? "default" : "outline"} onClick={() => setFilter("all")}>
             All learners ({(learners ?? []).length})
           </Button>
         </div>
@@ -275,10 +277,7 @@ function AssignmentsPage() {
                       ))}
                   {!learnersLoading && visibleLearners.length === 0 ? (
                     <TableRow>
-                      <TableCell
-                        colSpan={5}
-                        className="py-8 text-center text-sm text-muted-foreground"
-                      >
+                      <TableCell colSpan={5} className="py-8 text-center text-sm text-muted-foreground">
                         {filter === "unassigned"
                           ? "Nothing waiting — every learner has an educator."
                           : "No learners yet."}

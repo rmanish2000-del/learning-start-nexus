@@ -70,9 +70,7 @@ export function buildItems(): GeneratedItem[] {
 
       for (const { pool, drafts, need } of pools) {
         if (drafts.length < need) {
-          throw new Error(
-            `${ref.outcomeCode} ${pool}: authored ${drafts.length} of ${need} required items`,
-          );
+          throw new Error(`${ref.outcomeCode} ${pool}: authored ${drafts.length} of ${need} required items`);
         }
         for (let i = 0; i < need; i += 1) {
           const draft = drafts[i]!;
@@ -80,8 +78,7 @@ export function buildItems(): GeneratedItem[] {
           const n = (seq.get(slug) ?? 0) + 1;
           seq.set(slug, n);
           const externalRef = `C10-2627-${slug}-${String(n).padStart(3, "0")}`;
-          if (seenRef.has(externalRef))
-            throw new Error(`duplicate external reference ${externalRef}`);
+          if (seenRef.has(externalRef)) throw new Error(`duplicate external reference ${externalRef}`);
           seenRef.add(externalRef);
 
           items.push({
@@ -107,9 +104,7 @@ export function buildItems(): GeneratedItem[] {
             atomStatus: ref.atomId ? "MAPPED" : "ATOM_MAPPING_REQUIRED",
             pool,
             scoringRule:
-              draft.kind === "mcq" ||
-              draft.kind === "true_false" ||
-              draft.kind === "assertion_reason"
+              draft.kind === "mcq" || draft.kind === "true_false" || draft.kind === "assertion_reason"
                 ? `Exact option match. ${draft.marks} mark for the correct option, 0 otherwise.`
                 : `Answer-key match with educator override. ${draft.marks} marks maximum, partial credit at reviewer discretion.`,
             sourceAlignment: ref.officialSourceReference
@@ -119,8 +114,7 @@ export function buildItems(): GeneratedItem[] {
             batch: `${BATCH_PREFIX}-${subjectTag(ref.subject)}-${poolTag(pool)}`,
             status: "draft",
             verificationState: "unverified",
-            reviewQueue:
-              ref.subject === "Mathematics" ? "MATHEMATICS_EXPERT_REVIEW" : "SCIENCE_EXPERT_REVIEW",
+            reviewQueue: ref.subject === "Mathematics" ? "MATHEMATICS_EXPERT_REVIEW" : "SCIENCE_EXPERT_REVIEW",
             reviewStatus: "REVIEW_PENDING",
             reviewerId: null,
             reviewerName: null,
@@ -151,9 +145,7 @@ export function summarise(items: GeneratedItem[]) {
       [...new Set(items.map((i) => i.kind))].sort().map((k) => [k, by((i) => i.kind === k)]),
     ),
     byDifficulty: Object.fromEntries(
-      [1, 2, 3, 4, 5]
-        .map((d) => [d, by((i) => i.difficulty === d)])
-        .filter(([, n]) => (n as number) > 0),
+      [1, 2, 3, 4, 5].map((d) => [d, by((i) => i.difficulty === d)]).filter(([, n]) => (n as number) > 0),
     ),
   };
 }
@@ -167,14 +159,10 @@ if (import.meta.main) {
     board: "CBSE",
     class_level: 10,
     academic_year: "2026-27",
-    activation:
-      "None of these items is diagnostic-eligible or reassessment-eligible. Named expert review is required.",
+    activation: "None of these items is diagnostic-eligible or reassessment-eligible. Named expert review is required.",
     summary,
     items,
   };
-  writeFileSync(
-    resolve(ROOT, "EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json"),
-    `${JSON.stringify(out, null, 2)}\n`,
-  );
+  writeFileSync(resolve(ROOT, "EDUOS_CLASS_10_FINAL_QUESTION_REGISTER.json"), `${JSON.stringify(out, null, 2)}\n`);
   console.log(JSON.stringify(summary, null, 2));
 }

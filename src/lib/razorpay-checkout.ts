@@ -7,10 +7,7 @@ export type CheckoutSuccess = {
   razorpay_signature: string;
 };
 
-type RazorpayInstance = {
-  open: () => void;
-  on: (event: string, cb: (payload: unknown) => void) => void;
-};
+type RazorpayInstance = { open: () => void; on: (event: string, cb: (payload: unknown) => void) => void };
 type RazorpayCtor = new (options: Record<string, unknown>) => RazorpayInstance;
 
 const SRC = "https://checkout.razorpay.com/v1/checkout.js";
@@ -21,12 +18,9 @@ function loadScript(): Promise<RazorpayCtor> {
   return new Promise((resolve, reject) => {
     const existing = document.querySelector<HTMLScriptElement>(`script[src="${SRC}"]`);
     const script = existing ?? document.createElement("script");
-    const done = () =>
-      w.Razorpay ? resolve(w.Razorpay) : reject(new Error("Checkout failed to load."));
+    const done = () => (w.Razorpay ? resolve(w.Razorpay) : reject(new Error("Checkout failed to load.")));
     script.addEventListener("load", done, { once: true });
-    script.addEventListener("error", () => reject(new Error("Checkout failed to load.")), {
-      once: true,
-    });
+    script.addEventListener("error", () => reject(new Error("Checkout failed to load.")), { once: true });
     if (!existing) {
       script.src = SRC;
       script.async = true;
@@ -48,9 +42,7 @@ export type OpenCheckoutInput = {
  * Opens Razorpay Checkout. Resolves with the handler payload on success,
  * resolves `null` when the parent dismisses the modal, rejects on failure.
  */
-export async function openRazorpayCheckout(
-  input: OpenCheckoutInput,
-): Promise<CheckoutSuccess | null> {
+export async function openRazorpayCheckout(input: OpenCheckoutInput): Promise<CheckoutSuccess | null> {
   const Razorpay = await loadScript();
   return new Promise<CheckoutSuccess | null>((resolve, reject) => {
     let settled = false;

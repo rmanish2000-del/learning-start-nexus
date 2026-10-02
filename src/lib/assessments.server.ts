@@ -92,9 +92,7 @@ export async function fetchAssessmentItems(assessmentId: string): Promise<Runner
 
   if ((qMap ?? []).length > 0) {
     const rows = qMap ?? [];
-    const outcomeIds = [
-      ...new Set(rows.map((r) => (r.question_bank as unknown as BankRow).outcome_id)),
-    ];
+    const outcomeIds = [...new Set(rows.map((r) => (r.question_bank as unknown as BankRow).outcome_id))];
     const { data: outcomes, error: oError } = await supabaseAdmin
       .from("assessment_outcomes")
       .select("id, code")
@@ -152,9 +150,7 @@ export async function fetchAssessmentItems(assessmentId: string): Promise<Runner
 
 // Strip answers before a session is submitted: students never receive
 // correct_answer or explanation while taking an assessment.
-export function stripAnswers(
-  items: RunnerQuestion[],
-): Omit<RunnerQuestion, "correct_answer" | "explanation">[] {
+export function stripAnswers(items: RunnerQuestion[]): Omit<RunnerQuestion, "correct_answer" | "explanation">[] {
   return items.map(({ correct_answer: _c, explanation: _e, ...rest }) => rest);
 }
 

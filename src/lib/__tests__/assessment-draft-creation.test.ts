@@ -27,10 +27,7 @@ function seed(opts: { subject?: string; grade?: number; board?: string; verified
       },
     ],
     curriculum_units: [{ id: "unit-1", book_id: "book-1", title: "Algebra" }],
-    assessment_outcomes: [
-      { id: "out-1", unit_id: "unit-1" },
-      { id: "out-2", unit_id: "unit-9" },
-    ],
+    assessment_outcomes: [{ id: "out-1", unit_id: "unit-1" }, { id: "out-2", unit_id: "unit-9" }],
     question_bank: questionIds.map((id) => ({
       id,
       book_id: "book-1",
@@ -70,9 +67,9 @@ describe("createAssessmentDraft", () => {
     expect(row["unit_id"]).toBe("unit-1");
     expect(row["archived_at"] ?? null).toBeNull();
     // The defect signature: a new draft must never be legacy content.
-    expect(
-      isLegacyContent({ grade: row["grade"] as number, subject: row["subject"] as string }),
-    ).toBe(false);
+    expect(isLegacyContent({ grade: row["grade"] as number, subject: row["subject"] as string })).toBe(
+      false,
+    );
   });
 
   it("does the same for Science", async () => {
@@ -85,9 +82,9 @@ describe("createAssessmentDraft", () => {
     });
     const row = row0(db, "assessments");
     expect(row["subject"]).toBe("Science");
-    expect(
-      isLegacyContent({ grade: row["grade"] as number, subject: row["subject"] as string }),
-    ).toBe(false);
+    expect(isLegacyContent({ grade: row["grade"] as number, subject: row["subject"] as string })).toBe(
+      false,
+    );
   });
 
   it("produces a draft whose only publish blocker is nothing — publish is reachable", async () => {

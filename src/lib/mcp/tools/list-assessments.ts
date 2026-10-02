@@ -20,9 +20,7 @@ export default defineTool({
     const supabase = supabaseForUser(ctx);
     let query = supabase
       .from("assessments")
-      .select(
-        "id, title, description, kind, status, subject, topic, grade, time_limit_minutes, created_at",
-      )
+      .select("id, title, description, kind, status, subject, topic, grade, time_limit_minutes, created_at")
       .order("created_at", { ascending: false })
       .limit(limit ?? 25);
     if (status) query = query.eq("status", status);

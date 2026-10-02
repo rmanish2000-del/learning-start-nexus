@@ -7,13 +7,7 @@ import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import {
   FEEDBACK_AREAS,
@@ -32,15 +26,9 @@ export const Route = createFileRoute("/_authenticated/feedback-review")({
   head: () => ({
     meta: [
       { title: "Feedback review — EduOS" },
-      {
-        name: "description",
-        content: "Admin-only review of visitor feedback and guidance funnel activity.",
-      },
+      { name: "description", content: "Admin-only review of visitor feedback and guidance funnel activity." },
       { property: "og:title", content: "Feedback review — EduOS" },
-      {
-        property: "og:description",
-        content: "Admin-only review of visitor feedback and guidance funnel activity.",
-      },
+      { property: "og:description", content: "Admin-only review of visitor feedback and guidance funnel activity." },
     ],
   }),
   component: FeedbackReviewPage,
@@ -56,9 +44,7 @@ function FeedbackReviewPage() {
   const feedback = useQuery({
     queryKey: ["feedback-review", status],
     queryFn: () =>
-      listFeedbackFn({
-        data: { limit: 100, ...(status === "all" ? {} : { status: status as never }) },
-      }),
+      listFeedbackFn({ data: { limit: 100, ...(status === "all" ? {} : { status: status as never }) } }),
     enabled: role === "admin",
   });
 
@@ -69,8 +55,7 @@ function FeedbackReviewPage() {
   });
 
   const update = useMutation({
-    mutationFn: (input: { id: string } & Record<string, string>) =>
-      updateFeedbackFn({ data: input as never }),
+    mutationFn: (input: { id: string } & Record<string, string>) => updateFeedbackFn({ data: input as never }),
     onSuccess: () => {
       toast.success("Saved");
       void queryClient.invalidateQueries({ queryKey: ["feedback-review"] });
@@ -84,9 +69,7 @@ function FeedbackReviewPage() {
         <CardContent className="flex flex-col items-center gap-2 py-10 text-center">
           <ShieldAlert className="h-8 w-8 text-muted-foreground/60" />
           <p className="text-sm font-medium">Administrators only</p>
-          <p className="text-xs text-muted-foreground">
-            Feedback review is restricted to admin accounts.
-          </p>
+          <p className="text-xs text-muted-foreground">Feedback review is restricted to admin accounts.</p>
         </CardContent>
       </Card>
     );
@@ -115,10 +98,7 @@ function FeedbackReviewPage() {
           ) : (
             <ul className="grid gap-1.5 sm:grid-cols-2">
               {(counts.data ?? []).map((row) => (
-                <li
-                  key={`${row.name}-${row.cta ?? ""}`}
-                  className="flex items-center justify-between gap-2 text-xs"
-                >
+                <li key={`${row.name}-${row.cta ?? ""}`} className="flex items-center justify-between gap-2 text-xs">
                   <span className="min-w-0 truncate text-muted-foreground">
                     {row.name}
                     {row.cta ? ` · ${row.cta}` : ""}
@@ -190,15 +170,9 @@ function FeedbackCard({
     <Card>
       <CardContent className="space-y-3 p-4">
         <div className="flex flex-wrap items-center gap-1.5">
-          <Badge variant="outline" className="text-[10px]">
-            {item.category}
-          </Badge>
-          <Badge variant="secondary" className="text-[10px]">
-            {item.status}
-          </Badge>
-          <Badge variant="outline" className="text-[10px]">
-            {item.priority}
-          </Badge>
+          <Badge variant="outline" className="text-[10px]">{item.category}</Badge>
+          <Badge variant="secondary" className="text-[10px]">{item.status}</Badge>
+          <Badge variant="outline" className="text-[10px]">{item.priority}</Badge>
           <span className="ml-auto text-[11px] text-muted-foreground">
             {new Date(item.createdAt).toLocaleString()}
           </span>
@@ -234,30 +208,10 @@ function FeedbackCard({
         )}
 
         <div className="grid gap-2 sm:grid-cols-2">
-          <TriageSelect
-            label="Status"
-            value={item.status}
-            options={[...FEEDBACK_STATUSES]}
-            onChange={(v) => onSave({ status: v })}
-          />
-          <TriageSelect
-            label="Priority"
-            value={item.priority}
-            options={[...FEEDBACK_PRIORITIES]}
-            onChange={(v) => onSave({ priority: v })}
-          />
-          <TriageSelect
-            label="Reproduction"
-            value={item.reproduction}
-            options={[...FEEDBACK_REPRODUCTION]}
-            onChange={(v) => onSave({ reproduction: v })}
-          />
-          <TriageSelect
-            label="Product area"
-            value={item.productArea}
-            options={[...FEEDBACK_AREAS]}
-            onChange={(v) => onSave({ productArea: v })}
-          />
+          <TriageSelect label="Status" value={item.status} options={[...FEEDBACK_STATUSES]} onChange={(v) => onSave({ status: v })} />
+          <TriageSelect label="Priority" value={item.priority} options={[...FEEDBACK_PRIORITIES]} onChange={(v) => onSave({ priority: v })} />
+          <TriageSelect label="Reproduction" value={item.reproduction} options={[...FEEDBACK_REPRODUCTION]} onChange={(v) => onSave({ reproduction: v })} />
+          <TriageSelect label="Product area" value={item.productArea} options={[...FEEDBACK_AREAS]} onChange={(v) => onSave({ productArea: v })} />
         </div>
 
         <Textarea
@@ -267,12 +221,7 @@ function FeedbackCard({
           placeholder="Resolution notes"
           className="text-sm"
         />
-        <Button
-          size="sm"
-          variant="outline"
-          disabled={saving}
-          onClick={() => onSave({ resolutionNotes: notes })}
-        >
+        <Button size="sm" variant="outline" disabled={saving} onClick={() => onSave({ resolutionNotes: notes })}>
           Save notes
         </Button>
       </CardContent>

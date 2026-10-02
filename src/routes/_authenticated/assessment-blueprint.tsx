@@ -107,10 +107,7 @@ function WeightBar({ weight }: { weight: number }) {
   return (
     <div className="flex items-center gap-2">
       <div className="h-1.5 w-16 overflow-hidden rounded-full bg-muted">
-        <div
-          className="h-full rounded-full bg-primary"
-          style={{ width: `${Math.min(100, weight)}%` }}
-        />
+        <div className="h-full rounded-full bg-primary" style={{ width: `${Math.min(100, weight)}%` }} />
       </div>
       <span className="text-xs font-medium tabular-nums">{weight}%</span>
     </div>
@@ -159,8 +156,7 @@ function OutcomeCard({ outcome }: { outcome: AssessmentOutcomeDto }) {
         </div>
       )}
       <p className="mt-2 text-[11px] text-muted-foreground">
-        {outcome.mappings.length} curriculum outcome{outcome.mappings.length === 1 ? "" : "s"}{" "}
-        mapped
+        {outcome.mappings.length} curriculum outcome{outcome.mappings.length === 1 ? "" : "s"} mapped
       </p>
     </div>
   );
@@ -207,7 +203,9 @@ function BlueprintTab({ workspace }: { workspace: BlueprintWorkspace }) {
 // ---------------------------------------------------------------------------
 
 function CatalogTab({ workspace }: { workspace: BlueprintWorkspace }) {
-  const rows = workspace.units.flatMap((u) => u.outcomes.map((o) => ({ unit: u.title, ...o })));
+  const rows = workspace.units.flatMap((u) =>
+    u.outcomes.map((o) => ({ unit: u.title, ...o })),
+  );
   return (
     <Card>
       <CardHeader>
@@ -241,12 +239,8 @@ function CatalogTab({ workspace }: { workspace: BlueprintWorkspace }) {
                 </TableCell>
                 <TableCell className="max-w-64 text-xs">{o.title}</TableCell>
                 <TableCell className="text-xs">{o.unit}</TableCell>
-                <TableCell className="text-xs">
-                  {BLOOM_LABELS[o.bloomLevel] ?? o.bloomLevel}
-                </TableCell>
-                <TableCell className="text-xs">
-                  {DIFFICULTY_LABELS[o.difficulty] ?? o.difficulty}
-                </TableCell>
+                <TableCell className="text-xs">{BLOOM_LABELS[o.bloomLevel] ?? o.bloomLevel}</TableCell>
+                <TableCell className="text-xs">{DIFFICULTY_LABELS[o.difficulty] ?? o.difficulty}</TableCell>
                 <TableCell>
                   <WeightBar weight={o.diagnosticWeight} />
                 </TableCell>
@@ -302,10 +296,7 @@ function MappingTab({ workspace }: { workspace: BlueprintWorkspace }) {
                 </div>
                 <div className="divide-y">
                   {o.mappings.map((m) => (
-                    <div
-                      key={m.id}
-                      className="flex flex-wrap items-center gap-x-2 gap-y-1 px-3 py-2 text-xs"
-                    >
+                    <div key={m.id} className="flex flex-wrap items-center gap-x-2 gap-y-1 px-3 py-2 text-xs">
                       <span className="text-muted-foreground">
                         {m.chapterTitle} · <span className="text-foreground">{m.topicTitle}</span>
                       </span>
@@ -313,10 +304,7 @@ function MappingTab({ workspace }: { workspace: BlueprintWorkspace }) {
                       <span className="min-w-0 flex-1">{m.learningOutcomeText}</span>
                       <ArrowRight className="h-3 w-3 shrink-0 text-muted-foreground" />
                       <Mono>{o.code}</Mono>
-                      <Badge
-                        variant={m.learningOutcomeStatus === "approved" ? "secondary" : "outline"}
-                        className="text-[10px]"
-                      >
+                      <Badge variant={m.learningOutcomeStatus === "approved" ? "secondary" : "outline"} className="text-[10px]">
                         {m.learningOutcomeStatus}
                       </Badge>
                     </div>
@@ -370,9 +358,7 @@ function PreviewTab({ workspace }: { workspace: BlueprintWorkspace }) {
             <Label>Learner</Label>
             <Select value={learnerId} onValueChange={setLearnerId} disabled={learnersPending}>
               <SelectTrigger>
-                <SelectValue
-                  placeholder={learnersPending ? "Loading learners…" : "Pick a learner"}
-                />
+                <SelectValue placeholder={learnersPending ? "Loading learners…" : "Pick a learner"} />
               </SelectTrigger>
               <SelectContent>
                 {(learners ?? []).map((l) => (
@@ -401,12 +387,8 @@ function PreviewTab({ workspace }: { workspace: BlueprintWorkspace }) {
             <>
               <div className="grid gap-3 sm:grid-cols-3">
                 <div className="rounded-lg border p-3">
-                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                    Prior mastery
-                  </p>
-                  <p className="mt-1 text-2xl font-semibold tabular-nums">
-                    {preview.priorMastery}%
-                  </p>
+                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Prior mastery</p>
+                  <p className="mt-1 text-2xl font-semibold tabular-nums">{preview.priorMastery}%</p>
                   <p className="text-xs text-muted-foreground">{preview.learner.fullName}</p>
                 </div>
                 <div className="rounded-lg border p-3">
@@ -427,16 +409,11 @@ function PreviewTab({ workspace }: { workspace: BlueprintWorkspace }) {
                   <p className="mt-1 flex items-center gap-2 text-2xl font-semibold tabular-nums">
                     {preview.overall}%
                     {preview.overallLevel && (
-                      <LevelBadge
-                        label={preview.overallLevel.label}
-                        color={preview.overallLevel.color}
-                      />
+                      <LevelBadge label={preview.overallLevel.label} color={preview.overallLevel.color} />
                     )}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {preview.basis === "prior_only"
-                      ? "Prior only — no evidence"
-                      : "Blended 50/50 prior + evidence"}
+                    {preview.basis === "prior_only" ? "Prior only — no evidence" : "Blended 50/50 prior + evidence"}
                   </p>
                 </div>
               </div>
@@ -459,17 +436,13 @@ function PreviewTab({ workspace }: { workspace: BlueprintWorkspace }) {
                         <TableCell className="text-xs">{r.unitTitle}</TableCell>
                         <TableCell className="text-xs">
                           <Mono>{r.code}</Mono>
-                          <span className="block max-w-56 truncate text-muted-foreground">
-                            {r.title}
-                          </span>
+                          <span className="block max-w-56 truncate text-muted-foreground">{r.title}</span>
                         </TableCell>
                         <TableCell className="text-xs tabular-nums">{r.weight}%</TableCell>
                         <TableCell className="text-xs tabular-nums">
                           {r.evidenceScore !== null ? `${r.evidenceScore}%` : "—"}
                         </TableCell>
-                        <TableCell className="text-xs font-medium tabular-nums">
-                          {r.projectedScore}%
-                        </TableCell>
+                        <TableCell className="text-xs font-medium tabular-nums">{r.projectedScore}%</TableCell>
                         <TableCell className="text-xs">{r.projectedLevel}</TableCell>
                       </TableRow>
                     ))}
@@ -566,12 +539,7 @@ function FrameworkTab({ levels, isAdmin }: { levels: MasteryLevelDto[]; isAdmin:
               <div className="flex items-center justify-between gap-2">
                 <LevelBadge label={l.label} color={l.color} />
                 {isAdmin && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-7 w-7"
-                    onClick={() => openEdit(l)}
-                  >
+                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => openEdit(l)}>
                     <Pencil className="h-3.5 w-3.5" />
                     <span className="sr-only">Edit {l.label}</span>
                   </Button>

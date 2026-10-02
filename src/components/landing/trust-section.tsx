@@ -30,6 +30,7 @@ const CHAIN = [
 const PRINCIPLES_CAPTION =
   "Effort alone does not close a gap — reassessment determines closure. Each step is timestamped where the application records it. The AI tutor explains and questions; it cannot change a score or close a gap. Reviewer controls apply on the surfaces where they are currently implemented.";
 
+
 /**
  * Trust and evidence section. Describes only the chain the application
  * actually produces — no testimonials, third-party logos, case studies or
@@ -46,8 +47,8 @@ export function TrustSection() {
           Built around evidence. Not unsupported promises.
         </h2>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          Progress in EduOS is something you can trace. Every claim on a learner record comes from a
-          chain of steps the platform recorded.
+          Progress in EduOS is something you can trace. Every claim on a learner record comes from
+          a chain of steps the platform recorded.
         </p>
 
         <ol className="mt-8 grid gap-3 md:grid-cols-4">
@@ -74,6 +75,7 @@ export function TrustSection() {
         <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">
           {PRINCIPLES_CAPTION}
         </p>
+
       </div>
     </section>
   );

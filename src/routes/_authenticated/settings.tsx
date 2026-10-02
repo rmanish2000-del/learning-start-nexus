@@ -1,15 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, getRouteApi, Link, useNavigate } from "@tanstack/react-router";
-import {
-  Building2,
-  CheckCircle2,
-  Compass,
-  LifeBuoy,
-  Palette,
-  RotateCcw,
-  Sparkles,
-  UserRound,
-} from "lucide-react";
+import { Building2, CheckCircle2, Compass, LifeBuoy, Palette, RotateCcw, Sparkles, UserRound } from "lucide-react";
 import { toast } from "sonner";
 
 import { CentreProfileForm } from "@/components/centre-profile-form";
@@ -26,10 +17,7 @@ export const Route = createFileRoute("/_authenticated/settings")({
   head: () => ({
     meta: [
       { title: "Settings — EduOS" },
-      {
-        name: "description",
-        content: "Your EduOS profile, organization, and appearance settings.",
-      },
+      { name: "description", content: "Your EduOS profile, organization, and appearance settings." },
     ],
   }),
   component: SettingsPage,
@@ -95,7 +83,9 @@ function SettingsPage() {
           </div>
           <div className="flex justify-between gap-4">
             <span className="text-muted-foreground">Sign-in</span>
-            <span className="font-medium">{role === "student" ? "Handle + PIN" : user.email}</span>
+            <span className="font-medium">
+              {role === "student" ? "Handle + PIN" : user.email}
+            </span>
           </div>
           <div className="flex items-center justify-between gap-4">
             <span className="text-muted-foreground">Role</span>
@@ -110,36 +100,36 @@ function SettingsPage() {
           <SampleWorkspaceCard />
         </>
       ) : (
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-base">
-              <Building2 className="h-4 w-4" /> Organization
-            </CardTitle>
-            <CardDescription>The organization you belong to.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2 text-sm">
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Building2 className="h-4 w-4" /> Organization
+          </CardTitle>
+          <CardDescription>The organization you belong to.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2 text-sm">
+          <div className="flex justify-between gap-4">
+            <span className="text-muted-foreground">Name</span>
+            <span className="font-medium">{org?.name ?? "…"}</span>
+          </div>
+          {org?.tagline && (
             <div className="flex justify-between gap-4">
-              <span className="text-muted-foreground">Name</span>
-              <span className="font-medium">{org?.name ?? "…"}</span>
+              <span className="text-muted-foreground">Tagline</span>
+              <span>{org.tagline}</span>
             </div>
-            {org?.tagline && (
-              <div className="flex justify-between gap-4">
-                <span className="text-muted-foreground">Tagline</span>
-                <span>{org.tagline}</span>
-              </div>
-            )}
-            {org?.email && (
-              <div className="flex justify-between gap-4">
-                <span className="text-muted-foreground">Contact</span>
-                <span>{org.email}</span>
-              </div>
-            )}
+          )}
+          {org?.email && (
             <div className="flex justify-between gap-4">
-              <span className="text-muted-foreground">Timezone</span>
-              <span>{org?.timezone ?? "…"}</span>
+              <span className="text-muted-foreground">Contact</span>
+              <span>{org.email}</span>
             </div>
-          </CardContent>
-        </Card>
+          )}
+          <div className="flex justify-between gap-4">
+            <span className="text-muted-foreground">Timezone</span>
+            <span>{org?.timezone ?? "…"}</span>
+          </div>
+        </CardContent>
+      </Card>
       )}
 
       <Card>

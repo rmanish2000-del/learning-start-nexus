@@ -18,12 +18,7 @@ const extraO1_CropVariety: AuthoredQuestion[] = [
     difficulty: 3,
     prompt:
       "A farmer wants a wheat variety that resists lodging in strong wind. Which trait should the seed catalogue highlight for this need?",
-    options: [
-      "High protein content",
-      "Short and sturdy stem",
-      "Early maturity",
-      "Attractive grain colour",
-    ],
+    options: ["High protein content", "Short and sturdy stem", "Early maturity", "Attractive grain colour"],
     answer: "Short and sturdy stem",
     explanation:
       "Lodging is the bending or falling of tall, weak stems under wind or rain; a short, sturdy stem resists this and keeps the crop standing.",
@@ -46,14 +41,8 @@ const extraO1_CropVariety: AuthoredQuestion[] = [
   {
     kind: "mcq",
     difficulty: 2,
-    prompt:
-      "Which of these is an example of a desirable agronomic trait bred into an improved crop variety?",
-    options: [
-      "Susceptibility to pests",
-      "Resistance to lodging",
-      "Longer maturity period",
-      "Low yield stability",
-    ],
+    prompt: "Which of these is an example of a desirable agronomic trait bred into an improved crop variety?",
+    options: ["Susceptibility to pests", "Resistance to lodging", "Longer maturity period", "Low yield stability"],
     answer: "Resistance to lodging",
     explanation:
       "Crop variety improvement programmes select for traits like lodging resistance, disease resistance, higher yield and better quality that benefit the farmer.",
@@ -73,8 +62,7 @@ const extraO2_AnimalHusbandry: AuthoredQuestion[] = [
   {
     kind: "true_false",
     difficulty: 1,
-    prompt:
-      "Cross-breeding is used in cattle rearing to combine high milk yield with disease resistance.",
+    prompt: "Cross-breeding is used in cattle rearing to combine high milk yield with disease resistance.",
     options: ["True", "False"],
     answer: "True",
     explanation:
@@ -98,8 +86,7 @@ const extraO2_AnimalHusbandry: AuthoredQuestion[] = [
   {
     kind: "short_answer",
     difficulty: 3,
-    prompt:
-      "Name two categories of feed given to dairy cattle to maintain both maintenance and milk production.",
+    prompt: "Name two categories of feed given to dairy cattle to maintain both maintenance and milk production.",
     answer: "Roughage and concentrate",
     explanation:
       "Roughage (fibrous fodder) meets maintenance needs while concentrate (nutrient-dense feed) supports the additional demand of milk production.",
@@ -126,14 +113,8 @@ const topicVarietyImprovement: AuthoredTopic = {
         {
           kind: "mcq",
           difficulty: 1,
-          prompt:
-            "Which of the following is NOT a commonly desired trait in an improved crop variety?",
-          options: [
-            "Higher yield",
-            "Disease resistance",
-            "Poor storage quality",
-            "Better grain quality",
-          ],
+          prompt: "Which of the following is NOT a commonly desired trait in an improved crop variety?",
+          options: ["Higher yield", "Disease resistance", "Poor storage quality", "Better grain quality"],
           answer: "Poor storage quality",
           explanation:
             "Breeders aim for traits that benefit farmers and consumers, such as high yield, disease resistance and good storage quality, not poor storage quality.",
@@ -141,8 +122,7 @@ const topicVarietyImprovement: AuthoredTopic = {
         {
           kind: "true_false",
           difficulty: 1,
-          prompt:
-            "Hybridisation involves crossing genetically different plants to combine desirable traits in the offspring.",
+          prompt: "Hybridisation involves crossing genetically different plants to combine desirable traits in the offspring.",
           options: ["True", "False"],
           answer: "True",
           explanation:
@@ -152,8 +132,7 @@ const topicVarietyImprovement: AuthoredTopic = {
           kind: "short_answer",
           difficulty: 2,
           prompt: "State one reason plant breeders develop crop varieties with early maturity.",
-          answer:
-            "Early-maturing varieties allow farmers to grow more crops in a year, increasing overall cropping intensity.",
+          answer: "Early-maturing varieties allow farmers to grow more crops in a year, increasing overall cropping intensity.",
           explanation:
             "A shorter growing period frees the field sooner for the next crop, which raises the number of crop cycles possible per year on the same land.",
         },
@@ -175,8 +154,7 @@ const topicVarietyImprovement: AuthoredTopic = {
         {
           kind: "mcq",
           difficulty: 2,
-          prompt:
-            "Improved crop varieties are often selected for wider climatic adaptability so that they can:",
+          prompt: "Improved crop varieties are often selected for wider climatic adaptability so that they can:",
           options: [
             "Grow only in one narrow climate zone",
             "Be grown successfully in varied climatic conditions",
@@ -190,10 +168,8 @@ const topicVarietyImprovement: AuthoredTopic = {
         {
           kind: "short_answer",
           difficulty: 4,
-          prompt:
-            "Why do plant breeders test a new variety across multiple locations before releasing it to farmers?",
-          answer:
-            "Multi-location trials confirm the variety performs consistently under different soil and climate conditions before wide release.",
+          prompt: "Why do plant breeders test a new variety across multiple locations before releasing it to farmers?",
+          answer: "Multi-location trials confirm the variety performs consistently under different soil and climate conditions before wide release.",
           explanation:
             "A variety may perform well in one location but poorly in another due to soil or climate differences, so trials across sites confirm reliable, wide adaptability before release.",
         },
@@ -237,8 +213,7 @@ const topicNutrientManagement: AuthoredTopic = {
         {
           kind: "mcq",
           difficulty: 2,
-          prompt:
-            "Which of the following is a macro-nutrient required by plants in relatively large amounts?",
+          prompt: "Which of the following is a macro-nutrient required by plants in relatively large amounts?",
           options: ["Nitrogen", "Boron", "Zinc", "Molybdenum"],
           answer: "Nitrogen",
           explanation:
@@ -247,8 +222,7 @@ const topicNutrientManagement: AuthoredTopic = {
         {
           kind: "true_false",
           difficulty: 1,
-          prompt:
-            "Biofertilisers use living microorganisms to enrich soil with nutrients such as nitrogen.",
+          prompt: "Biofertilisers use living microorganisms to enrich soil with nutrients such as nitrogen.",
           options: ["True", "False"],
           answer: "True",
           explanation:
@@ -257,8 +231,7 @@ const topicNutrientManagement: AuthoredTopic = {
         {
           kind: "short_answer",
           difficulty: 3,
-          prompt:
-            "Explain why compost is considered environmentally beneficial compared to synthetic fertiliser overuse.",
+          prompt: "Explain why compost is considered environmentally beneficial compared to synthetic fertiliser overuse.",
           answer:
             "Compost recycles organic waste into humus that improves soil structure without the runoff and pollution risks of excess synthetic fertiliser.",
           explanation:
@@ -282,8 +255,7 @@ const topicNutrientManagement: AuthoredTopic = {
         {
           kind: "mcq",
           difficulty: 2,
-          prompt:
-            "Growing a leguminous crop between two cereal crops mainly helps to replenish which nutrient in the soil?",
+          prompt: "Growing a leguminous crop between two cereal crops mainly helps to replenish which nutrient in the soil?",
           options: ["Nitrogen", "Potassium", "Iron", "Sulphur"],
           answer: "Nitrogen",
           explanation:
@@ -292,8 +264,7 @@ const topicNutrientManagement: AuthoredTopic = {
         {
           kind: "true_false",
           difficulty: 2,
-          prompt:
-            "Chemical fertilisers act more slowly than organic manure in supplying nutrients to plants.",
+          prompt: "Chemical fertilisers act more slowly than organic manure in supplying nutrients to plants.",
           options: ["True", "False"],
           answer: "False",
           explanation:
@@ -302,10 +273,8 @@ const topicNutrientManagement: AuthoredTopic = {
         {
           kind: "short_answer",
           difficulty: 3,
-          prompt:
-            "Give one reason crop rotation with different nutrient demands helps maintain soil fertility.",
-          answer:
-            "It prevents the depletion of any one nutrient because different crops draw on different nutrients from the soil.",
+          prompt: "Give one reason crop rotation with different nutrient demands helps maintain soil fertility.",
+          answer: "It prevents the depletion of any one nutrient because different crops draw on different nutrients from the soil.",
           explanation:
             "Continuous cultivation of the same crop depletes specific nutrients; rotating crops with different nutrient requirements balances nutrient use and helps restore fertility.",
         },
@@ -320,8 +289,7 @@ const topicIrrigationCropping: AuthoredTopic = {
   title: "Irrigation methods and cropping patterns",
   outcomes: [
     {
-      title:
-        "Describe irrigation methods and cropping patterns that improve water-use efficiency and yield",
+      title: "Describe irrigation methods and cropping patterns that improve water-use efficiency and yield",
       category: "application",
       bloom: "apply",
       difficulty: 3,
@@ -349,8 +317,7 @@ const topicIrrigationCropping: AuthoredTopic = {
         {
           kind: "true_false",
           difficulty: 1,
-          prompt:
-            "Intercropping means growing two or more crops in a definite row pattern in the same field at the same time.",
+          prompt: "Intercropping means growing two or more crops in a definite row pattern in the same field at the same time.",
           options: ["True", "False"],
           answer: "True",
           explanation:
@@ -361,12 +328,7 @@ const topicIrrigationCropping: AuthoredTopic = {
           difficulty: 4,
           prompt:
             "A farmer in a drought-prone area wants to conserve water while still irrigating a vegetable field regularly. Which method best suits this need?",
-          options: [
-            "Flood irrigation",
-            "Sprinkler or drip irrigation",
-            "Leaving the field unirrigated",
-            "Digging an open uncovered canal",
-          ],
+          options: ["Flood irrigation", "Sprinkler or drip irrigation", "Leaving the field unirrigated", "Digging an open uncovered canal"],
           answer: "Sprinkler or drip irrigation",
           explanation:
             "Sprinkler and drip systems apply water efficiently in controlled amounts, conserving water compared to flood irrigation, which is important in drought-prone regions.",
@@ -383,8 +345,7 @@ const topicIrrigationCropping: AuthoredTopic = {
         {
           kind: "mcq",
           difficulty: 2,
-          prompt:
-            "Which of these is a traditional source of irrigation water still used in many Indian villages?",
+          prompt: "Which of these is a traditional source of irrigation water still used in many Indian villages?",
           options: ["Drip irrigation", "Wells and tanks", "Fertigation", "Sprinkler system"],
           answer: "Wells and tanks",
           explanation:
@@ -394,12 +355,7 @@ const topicIrrigationCropping: AuthoredTopic = {
           kind: "mcq",
           difficulty: 3,
           prompt: "Sprinkler irrigation is especially suitable for which type of land?",
-          options: [
-            "Uneven, undulating land",
-            "Only perfectly flat paddy fields",
-            "Waterlogged marshland",
-            "Land with no crops at all",
-          ],
+          options: ["Uneven, undulating land", "Only perfectly flat paddy fields", "Waterlogged marshland", "Land with no crops at all"],
           answer: "Uneven, undulating land",
           explanation:
             "Sprinkler irrigation sprays water like rainfall over the field, so it works well on uneven or sandy land where channel-based flooding is impractical.",
@@ -445,12 +401,7 @@ const topicProtectionStorage: AuthoredTopic = {
           kind: "mcq",
           difficulty: 2,
           prompt: "Weeds compete with the main crop mainly for:",
-          options: [
-            "Shade only",
-            "Water, nutrients, space and light",
-            "Carbon dioxide only",
-            "Pollinators only",
-          ],
+          options: ["Shade only", "Water, nutrients, space and light", "Carbon dioxide only", "Pollinators only"],
           answer: "Water, nutrients, space and light",
           explanation:
             "Weeds are unwanted plants that grow alongside crops and compete for the same resources — water, nutrients, space and sunlight — reducing crop yield.",
@@ -458,8 +409,7 @@ const topicProtectionStorage: AuthoredTopic = {
         {
           kind: "true_false",
           difficulty: 1,
-          prompt:
-            "Storing grain with high moisture content increases the risk of fungal attack and spoilage.",
+          prompt: "Storing grain with high moisture content increases the risk of fungal attack and spoilage.",
           options: ["True", "False"],
           answer: "True",
           explanation:
@@ -468,8 +418,7 @@ const topicProtectionStorage: AuthoredTopic = {
         {
           kind: "short_answer",
           difficulty: 3,
-          prompt:
-            "Name two factors, besides insects, that cause deterioration of grain during storage.",
+          prompt: "Name two factors, besides insects, that cause deterioration of grain during storage.",
           answer: "Moisture and inappropriate temperature",
           explanation:
             "Excess moisture encourages fungal growth and germination, while unsuitable temperature also promotes spoilage; both must be controlled in storage.",
@@ -492,8 +441,7 @@ const topicProtectionStorage: AuthoredTopic = {
         {
           kind: "mcq",
           difficulty: 2,
-          prompt:
-            "Which practice helps control insect pests on a standing crop without harming it excessively?",
+          prompt: "Which practice helps control insect pests on a standing crop without harming it excessively?",
           options: [
             "Timely application of appropriate pesticide at recommended dose",
             "Flooding the field permanently",

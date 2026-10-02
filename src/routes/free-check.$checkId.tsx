@@ -2,15 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  GraduationCap,
-  Loader2,
-  LogIn,
-  Save,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, GraduationCap, Loader2, LogIn, Save } from "lucide-react";
 import { toast } from "sonner";
 
 import { DiagnosticShell } from "@/components/diagnostic-shell";
@@ -71,9 +63,7 @@ function FreeCheckPage() {
             <CardTitle className="text-base">Sign in as a student</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm text-muted-foreground">
-            <p>
-              This learning check belongs to a student. Sign in with your handle and 6-digit PIN.
-            </p>
+            <p>This learning check belongs to a student. Sign in with your handle and 6-digit PIN.</p>
             <Button asChild>
               <Link to="/auth">
                 <LogIn className="mr-2 h-4 w-4" /> Student sign-in
@@ -105,6 +95,7 @@ function FreeCheckBody() {
     retry: false,
   });
 
+
   const run = query.data;
   const questions = useMemo(() => run?.questions ?? [], [run]);
 
@@ -132,9 +123,7 @@ function FreeCheckBody() {
     setAnswers((prev) => ({ ...prev, [question.id]: value }));
     setSaving(true);
     try {
-      await saveFn({
-        data: { checkId, questionId: question.id, answer: value, position: nextIndex },
-      });
+      await saveFn({ data: { checkId, questionId: question.id, answer: value, position: nextIndex } });
     } catch (error) {
       toast.error(friendlyErrorMessage(error, "That answer could not be saved."));
     } finally {
@@ -177,19 +166,13 @@ function FreeCheckBody() {
 
   if (run.status === "submitted") {
     return (
-      <DiagnosticShell
-        variant="learner"
-        learnerName={run.learnerName}
-        footerNote={`${run.subject} · ${run.unitTitle}`}
-      >
+      <DiagnosticShell variant="learner" learnerName={run.learnerName} footerNote={`${run.subject} · ${run.unitTitle}`}>
         <Card>
           <CardHeader className="items-center text-center">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
               <CheckCircle2 className="h-6 w-6" />
             </span>
-            <CardTitle className="mt-2 text-xl">
-              {t("freeCheck.complete", "Learning check complete")}
-            </CardTitle>
+            <CardTitle className="mt-2 text-xl">{t("freeCheck.complete", "Learning check complete")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-center text-sm text-muted-foreground">
             <p>
@@ -200,8 +183,7 @@ function FreeCheckBody() {
             </p>
             <Button asChild onClick={() => void navigate({ to: "/home" })}>
               <Link to="/home">
-                <GraduationCap className="mr-2 h-4 w-4" />{" "}
-                {t("runs.backToLearning", "Back to My Learning")}
+                <GraduationCap className="mr-2 h-4 w-4" /> {t("runs.backToLearning", "Back to My Learning")}
               </Link>
             </Button>
           </CardContent>
@@ -214,11 +196,7 @@ function FreeCheckBody() {
   const options = question?.options ?? null;
 
   return (
-    <DiagnosticShell
-      variant="learner"
-      learnerName={run.learnerName}
-      footerNote={`${run.subject} · ${run.unitTitle}`}
-    >
+    <DiagnosticShell variant="learner" learnerName={run.learnerName} footerNote={`${run.subject} · ${run.unitTitle}`}>
       <div className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-xl font-semibold tracking-tight">
@@ -266,10 +244,7 @@ function FreeCheckBody() {
                   return (
                     <div key={id} className="flex items-start gap-3 rounded-md border p-3">
                       <RadioGroupItem value={option.key} id={id} className="mt-0.5" />
-                      <Label
-                        htmlFor={id}
-                        className="cursor-pointer text-sm font-normal leading-relaxed"
-                      >
+                      <Label htmlFor={id} className="cursor-pointer text-sm font-normal leading-relaxed">
                         {option.label}
                       </Label>
                     </div>
@@ -283,9 +258,7 @@ function FreeCheckBody() {
                   id="free-answer"
                   rows={4}
                   value={answers[question.id] ?? ""}
-                  onChange={(e) =>
-                    setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))
-                  }
+                  onChange={(e) => setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))}
                   onBlur={(e) => void persist(e.target.value, index)}
                   placeholder="Type the answer"
                 />
@@ -293,11 +266,7 @@ function FreeCheckBody() {
             )}
 
             <div className="flex items-center justify-between gap-3">
-              <Button
-                variant="outline"
-                onClick={() => setIndex(Math.max(0, index - 1))}
-                disabled={index === 0}
-              >
+              <Button variant="outline" onClick={() => setIndex(Math.max(0, index - 1))} disabled={index === 0}>
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back
               </Button>
               {isLast ? (

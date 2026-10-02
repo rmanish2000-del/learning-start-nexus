@@ -16,11 +16,7 @@ import {
 import { toast } from "sonner";
 
 import { QueryError } from "@/components/query-error";
-import {
-  getStudentSession,
-  saveSessionProgress,
-  submitAssessment,
-} from "@/lib/assessments.functions";
+import { getStudentSession, saveSessionProgress, submitAssessment } from "@/lib/assessments.functions";
 import {
   AssessmentOfflineNotice,
   useAssessmentOnline,
@@ -84,16 +80,14 @@ function TakeAssessmentPage() {
     throwOnError: false,
   });
 
+
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [index, setIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
   const [confirmOpen, setConfirmOpen] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pendingPayload = useRef<{
-    answers: Record<string, string>;
-    currentPosition: number;
-  } | null>(null);
+  const pendingPayload = useRef<{ answers: Record<string, string>; currentPosition: number } | null>(null);
 
   // Hydrate local state once from the stored session (resume support).
   useEffect(() => {
@@ -174,6 +168,7 @@ function TakeAssessmentPage() {
     );
   }
 
+
   // ---- Submitted: result view ----
   // `result` may hold a diagnostic report object rather than a review
   // breakdown (parent-diagnostic pipeline) — normalise before rendering.
@@ -200,8 +195,7 @@ function TakeAssessmentPage() {
     );
   }
 
-  const resumed =
-    data.session.status === "in_progress" && Object.keys(data.session.answers ?? {}).length > 0;
+  const resumed = data.session.status === "in_progress" && Object.keys(data.session.answers ?? {}).length > 0;
 
   const pickAnswer = (itemId: string, value: string) => {
     const next = { ...answers, [itemId]: value };
@@ -222,20 +216,12 @@ function TakeAssessmentPage() {
           <h2 className="text-xl font-semibold tracking-tight">{data.assessment.title}</h2>
           <p className="text-sm text-muted-foreground">
             Grade {data.assessment.grade} · {data.assessment.topic}
-            {data.assessment.time_limit_minutes
-              ? ` · Suggested time ${data.assessment.time_limit_minutes} min`
-              : ""}
+            {data.assessment.time_limit_minutes ? ` · Suggested time ${data.assessment.time_limit_minutes} min` : ""}
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <CloudUpload
-            className={cn("h-3.5 w-3.5", saveState === "saving" && "animate-pulse text-primary")}
-          />
-          {saveState === "saving"
-            ? "Saving…"
-            : saveState === "saved"
-              ? "All answers saved"
-              : "Answers save automatically"}
+          <CloudUpload className={cn("h-3.5 w-3.5", saveState === "saving" && "animate-pulse text-primary")} />
+          {saveState === "saving" ? "Saving…" : saveState === "saved" ? "All answers saved" : "Answers save automatically"}
         </div>
       </div>
 
@@ -260,10 +246,7 @@ function TakeAssessmentPage() {
             {answeredCount}/{questions.length} answered
           </span>
         </div>
-        <Progress
-          value={questions.length ? (answeredCount / questions.length) * 100 : 0}
-          className="h-1.5"
-        />
+        <Progress value={questions.length ? (answeredCount / questions.length) * 100 : 0} className="h-1.5" />
         <div className="flex flex-wrap gap-1.5 pt-1">
           {questions.map((q, i) => (
             <button
@@ -293,19 +276,13 @@ function TakeAssessmentPage() {
               <Badge variant="outline">{DIFFICULTY_LABELS[question.difficulty] ?? "Core"}</Badge>
               {(question.kind === "numeric" ||
                 question.kind === "fill_blank" ||
-                question.kind === "short_answer") && (
-                <Badge variant="outline">Type your answer</Badge>
-              )}
+                question.kind === "short_answer") && <Badge variant="outline">Type your answer</Badge>}
             </div>
             <p className="text-lg font-medium leading-relaxed">{question.prompt}</p>
 
             {(question.kind === "mcq" || question.kind === "true_false") &&
             (question.options ?? []).length > 0 ? (
-              <div
-                className="grid gap-2 sm:grid-cols-2"
-                role="radiogroup"
-                aria-label="Answer options"
-              >
+              <div className="grid gap-2 sm:grid-cols-2" role="radiogroup" aria-label="Answer options">
                 {(question.options ?? []).map((option) => {
                   const selected = answers[question.id] === option.key;
                   return (
@@ -328,9 +305,7 @@ function TakeAssessmentPage() {
                           selected && "border-primary bg-primary",
                         )}
                       >
-                        {selected && (
-                          <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
-                        )}
+                        {selected && <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />}
                       </span>
                       {option.label}
                     </button>
@@ -453,10 +428,7 @@ function ResultView({
               {title} — submitted
             </p>
             <p className="text-2xl font-semibold tabular-nums">
-              {scorePct}%{" "}
-              <span className="text-sm font-normal text-primary-foreground/80">
-                ({correct}/{total} correct)
-              </span>
+              {scorePct}% <span className="text-sm font-normal text-primary-foreground/80">({correct}/{total} correct)</span>
             </p>
           </div>
           <Button asChild variant="secondary" size="sm">
@@ -484,20 +456,12 @@ function ResultView({
                     </p>
                     <p className="text-sm">
                       Your answer:{" "}
-                      <span
-                        className={cn(
-                          "font-medium",
-                          entry.correct
-                            ? "text-emerald-600 dark:text-emerald-400"
-                            : "text-destructive",
-                        )}
-                      >
+                      <span className={cn("font-medium", entry.correct ? "text-emerald-600 dark:text-emerald-400" : "text-destructive")}>
                         {entry.given || "—"}
                       </span>
                       {!entry.correct && (
                         <>
-                          {" · "}Correct answer:{" "}
-                          <span className="font-medium">{entry.correct_answer}</span>
+                          {" · "}Correct answer: <span className="font-medium">{entry.correct_answer}</span>
                         </>
                       )}
                     </p>
@@ -508,9 +472,7 @@ function ResultView({
                       </p>
                     )}
                   </div>
-                  <Badge variant="outline" className="shrink-0">
-                    {entry.subtopic}
-                  </Badge>
+                  <Badge variant="outline" className="shrink-0">{entry.subtopic}</Badge>
                 </div>
               </CardContent>
             </Card>

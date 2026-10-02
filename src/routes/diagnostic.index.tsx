@@ -16,23 +16,12 @@ import { toast } from "sonner";
 
 import { DiagnosticShell } from "@/components/diagnostic-shell";
 import { QueryError } from "@/components/query-error";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getDiagnosticCatalog, startDiagnosticOrder } from "@/lib/parent-diagnostic.functions";
@@ -40,6 +29,7 @@ import { myPilotAccessFn, startPilotRunFn } from "@/lib/pilot-access.functions";
 import { createStudentProfile, getParentAccount } from "@/lib/parent-account.functions";
 import { ParentDetailsCard, parentDetailsComplete } from "@/components/parent-details-card";
 import { breadcrumbLd, offerLd, pageHead } from "@/lib/seo";
+
 
 import { BOARDS, CLASSES, addStudentSchema } from "@/lib/parent-account-shared";
 import { ParentAuthGate } from "@/components/parent-auth-gate";
@@ -84,8 +74,7 @@ const WHAT_YOU_GET = [
   {
     icon: Target,
     title: "Outcome-level mastery bands",
-    detail:
-      "Weak · Developing · Secure · Strong against every active outcome in the chapter group.",
+    detail: "Weak · Developing · Secure · Strong against every active outcome in the chapter group.",
   },
   {
     icon: ClipboardList,
@@ -100,8 +89,7 @@ const WHAT_YOU_GET = [
   {
     icon: FileText,
     title: "A report you can keep",
-    detail:
-      "Kept in your account and accessible from your report link, whether or not you upgrade.",
+    detail: "Kept in your account and accessible from your report link, whether or not you upgrade.",
   },
 ];
 
@@ -166,6 +154,7 @@ function DiagnosticPurchasePage() {
     queryFn: () => pilotAccessFn(),
     enabled: Boolean(user),
   });
+
 
   async function addStudent() {
     const parsed = addStudentSchema.safeParse({
@@ -260,14 +249,9 @@ function DiagnosticPurchasePage() {
         /* storage unavailable — non-fatal */
       }
       const order = await startFn({ data: { bookId, unitId, learnerId: activeStudentId } });
-      await navigate({
-        to: "/diagnostic/checkout/$orderRef",
-        params: { orderRef: order.orderRef },
-      });
+      await navigate({ to: "/diagnostic/checkout/$orderRef", params: { orderRef: order.orderRef } });
     } catch (error) {
-      toast.error(
-        friendlyErrorMessage(error, t("diag.toast.startFailed", "Could not start checkout.")),
-      );
+      toast.error(friendlyErrorMessage(error, t("diag.toast.startFailed", "Could not start checkout.")));
       setPending(false);
     }
   }
@@ -319,205 +303,175 @@ function DiagnosticPurchasePage() {
 
       <Card className="mt-8">
         <CardHeader>
-          <CardTitle className="text-base">
-            {t("diag.choose.title", "Choose what to diagnose")}
-          </CardTitle>
+          <CardTitle className="text-base">{t("diag.choose.title", "Choose what to diagnose")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <ParentAuthGate next="/diagnostic">
-            {query.isLoading ? (
-              <div className="space-y-3">
-                <Skeleton className="h-10 w-full" />
-                <Skeleton className="h-10 w-full" />
-              </div>
-            ) : query.isError ? (
-              <QueryError
-                title={t("diag.loading.error", "Subjects could not be loaded")}
-                error={query.error}
-                onRetry={() => void query.refetch()}
-              />
-            ) : catalog.length === 0 ? (
-              <p className="text-sm text-muted-foreground">
-                {t(
-                  "diag.empty",
-                  "No Class 10 subject is on sale right now. Please check back shortly.",
-                )}
-              </p>
-            ) : (
-              <>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="diag-subject">
-                      {t("diag.field.subject", "Board & subject")}
-                    </Label>
-                    <Select value={bookId} onValueChange={selectSubject}>
-                      <SelectTrigger id="diag-subject">
-                        <SelectValue
-                          placeholder={t("diag.field.subject.placeholder", "Select subject")}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {catalog.map((c) => (
-                          <SelectItem key={c.bookId} value={c.bookId}>
-                            {t(
-                              "diag.subject.option",
-                              `${c.board} Class ${c.grade} · ${c.subject}`,
-                              {
-                                board: c.board,
-                                grade: c.grade,
-                                subject: c.subject,
-                              },
-                            )}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="diag-unit">{t("diag.field.unit", "Chapter group")}</Label>
-                    <Select value={unitId} onValueChange={setUnitId} disabled={!bookId}>
-                      <SelectTrigger id="diag-unit">
-                        <SelectValue
-                          placeholder={
-                            bookId
-                              ? t("diag.field.unit.placeholder", "Select chapter group")
-                              : t("diag.field.unit.placeholderLocked", "Pick a subject first")
-                          }
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {units.map((u) => (
-                          <SelectItem key={u.unitId} value={u.unitId}>
-                            {t("diag.unit.option", `${u.title} · ${u.outcomes} outcomes`, {
-                              title: u.title,
-                              n: u.outcomes,
-                            })}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+          {query.isLoading ? (
+            <div className="space-y-3">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+          ) : query.isError ? (
+            <QueryError
+              title={t("diag.loading.error", "Subjects could not be loaded")}
+              error={query.error}
+              onRetry={() => void query.refetch()}
+            />
+          ) : catalog.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              {t("diag.empty", "No Class 10 subject is on sale right now. Please check back shortly.")}
+            </p>
+          ) : (
+            <>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <Label htmlFor="diag-subject">{t("diag.field.subject", "Board & subject")}</Label>
+                  <Select value={bookId} onValueChange={selectSubject}>
+                    <SelectTrigger id="diag-subject">
+                      <SelectValue placeholder={t("diag.field.subject.placeholder", "Select subject")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {catalog.map((c) => (
+                        <SelectItem key={c.bookId} value={c.bookId}>
+                          {t("diag.subject.option", `${c.board} Class ${c.grade} · ${c.subject}`, {
+                            board: c.board,
+                            grade: c.grade,
+                            subject: c.subject,
+                          })}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
-                {unit ? (
-                  <p className="text-sm text-muted-foreground">
+                <div className="space-y-1.5">
+                  <Label htmlFor="diag-unit">{t("diag.field.unit", "Chapter group")}</Label>
+                  <Select value={unitId} onValueChange={setUnitId} disabled={!bookId}>
+                    <SelectTrigger id="diag-unit">
+                      <SelectValue
+                        placeholder={
+                          bookId
+                            ? t("diag.field.unit.placeholder", "Select chapter group")
+                            : t("diag.field.unit.placeholderLocked", "Pick a subject first")
+                        }
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {units.map((u) => (
+                        <SelectItem key={u.unitId} value={u.unitId}>
+                          {t("diag.unit.option", `${u.title} · ${u.outcomes} outcomes`, {
+                            title: u.title,
+                            n: u.outcomes,
+                          })}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              {unit ? (
+                <p className="text-sm text-muted-foreground">
+                  {t(
+                    "diag.unit.summary",
+                    `${unit.questionCount} questions drawn across ${unit.outcomes} learning outcomes, allocated by board weight. Price is ${formatInr(PRICING.diagnosticPaise)} whatever you choose.`,
+                    { n: unit.questionCount, outcomes: unit.outcomes, price: formatInr(PRICING.diagnosticPaise) },
+                  )}
+                </p>
+              ) : null}
+              <Separator />
+
+              <ParentDetailsCard profile={account.data?.profile} onSaved={() => account.refetch()} />
+
+              <div className="space-y-3">
+
+                <div>
+                  <p className="text-sm font-medium">{t("diag.student.title", "Who is this for?")}</p>
+                  <p className="text-xs text-muted-foreground">
                     {t(
-                      "diag.unit.summary",
-                      `${unit.questionCount} questions drawn across ${unit.outcomes} learning outcomes, allocated by board weight. Price is ${formatInr(PRICING.diagnosticPaise)} whatever you choose.`,
-                      {
-                        n: unit.questionCount,
-                        outcomes: unit.outcomes,
-                        price: formatInr(PRICING.diagnosticPaise),
-                      },
+                      "diag.student.lede",
+                      "The diagnostic, the report and the plan are stored against this student profile in your account.",
                     )}
                   </p>
-                ) : null}
-                <Separator />
-
-                <ParentDetailsCard
-                  profile={account.data?.profile}
-                  onSaved={() => account.refetch()}
-                />
-
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm font-medium">
-                      {t("diag.student.title", "Who is this for?")}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {t(
-                        "diag.student.lede",
-                        "The diagnostic, the report and the plan are stored against this student profile in your account.",
-                      )}
-                    </p>
-                  </div>
-
-                  {account.isLoading ? (
-                    <Skeleton className="h-10 w-full" />
-                  ) : students.length > 0 ? (
-                    <div className="space-y-1.5">
-                      <Label htmlFor="diag-student">{t("diag.field.student", "Student")}</Label>
-                      <Select value={activeStudentId} onValueChange={setLearnerId}>
-                        <SelectTrigger id="diag-student">
-                          <SelectValue
-                            placeholder={t("diag.field.student.placeholder", "Select student")}
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {students.map((st) => (
-                            <SelectItem key={st.id} value={st.id}>
-                              {`${st.fullName} · ${st.board} Class ${st.grade}`}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">
-                      {t(
-                        "diag.student.none",
-                        "Add your child's profile to continue — it takes one line.",
-                      )}
-                    </p>
-                  )}
-
-                  <div className="grid gap-3 sm:grid-cols-[1.4fr_0.8fr_1fr_auto]">
-                    <div className="space-y-1.5">
-                      <Label htmlFor="new-student-name">
-                        {t("diag.student.name", "Student name")}
-                      </Label>
-                      <Input
-                        id="new-student-name"
-                        value={newStudent.fullName}
-                        onChange={(e) => setNewStudent((v) => ({ ...v, fullName: e.target.value }))}
-                        placeholder="Aarav Sharma"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <Label htmlFor="new-student-class">{t("diag.student.class", "Class")}</Label>
-                      <Select
-                        value={newStudent.grade}
-                        onValueChange={(v) => setNewStudent((s2) => ({ ...s2, grade: v }))}
-                      >
-                        <SelectTrigger id="new-student-class">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {CLASSES.map((c) => (
-                            <SelectItem key={c} value={String(c)}>{`Class ${c}`}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-1.5">
-                      <Label htmlFor="new-student-board">{t("diag.student.board", "Board")}</Label>
-                      <Select
-                        value={newStudent.board}
-                        onValueChange={(v) => setNewStudent((s2) => ({ ...s2, board: v }))}
-                      >
-                        <SelectTrigger id="new-student-board">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {BOARDS.map((b) => (
-                            <SelectItem key={b} value={b}>
-                              {b}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="flex items-end">
-                      <Button variant="outline" onClick={addStudent} disabled={addingStudent}>
-                        {addingStudent ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                        {t("diag.student.add", "Add student")}
-                      </Button>
-                    </div>
-                  </div>
                 </div>
 
-                {cta}
-              </>
-            )}
+                {account.isLoading ? (
+                  <Skeleton className="h-10 w-full" />
+                ) : students.length > 0 ? (
+                  <div className="space-y-1.5">
+                    <Label htmlFor="diag-student">{t("diag.field.student", "Student")}</Label>
+                    <Select value={activeStudentId} onValueChange={setLearnerId}>
+                      <SelectTrigger id="diag-student">
+                        <SelectValue placeholder={t("diag.field.student.placeholder", "Select student")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {students.map((st) => (
+                          <SelectItem key={st.id} value={st.id}>
+                            {`${st.fullName} · ${st.board} Class ${st.grade}`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    {t("diag.student.none", "Add your child's profile to continue — it takes one line.")}
+                  </p>
+                )}
+
+                <div className="grid gap-3 sm:grid-cols-[1.4fr_0.8fr_1fr_auto]">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-student-name">{t("diag.student.name", "Student name")}</Label>
+                    <Input
+                      id="new-student-name"
+                      value={newStudent.fullName}
+                      onChange={(e) => setNewStudent((v) => ({ ...v, fullName: e.target.value }))}
+                      placeholder="Aarav Sharma"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-student-class">{t("diag.student.class", "Class")}</Label>
+                    <Select
+                      value={newStudent.grade}
+                      onValueChange={(v) => setNewStudent((s2) => ({ ...s2, grade: v }))}
+                    >
+                      <SelectTrigger id="new-student-class">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CLASSES.map((c) => (
+                          <SelectItem key={c} value={String(c)}>{`Class ${c}`}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="new-student-board">{t("diag.student.board", "Board")}</Label>
+                    <Select
+                      value={newStudent.board}
+                      onValueChange={(v) => setNewStudent((s2) => ({ ...s2, board: v }))}
+                    >
+                      <SelectTrigger id="new-student-board">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {BOARDS.map((b) => (
+                          <SelectItem key={b} value={b}>{b}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-end">
+                    <Button variant="outline" onClick={addStudent} disabled={addingStudent}>
+                      {addingStudent ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                      {t("diag.student.add", "Add student")}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {cta}
+            </>
+          )}
           </ParentAuthGate>
         </CardContent>
       </Card>
@@ -535,9 +489,7 @@ function DiagnosticPurchasePage() {
                 <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <div className="space-y-1">
                   <p className="text-sm font-medium">{t(`diag.get.${i}.title`, item.title)}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {t(`diag.get.${i}.detail`, item.detail)}
-                  </p>
+                  <p className="text-sm text-muted-foreground">{t(`diag.get.${i}.detail`, item.detail)}</p>
                 </div>
               </CardContent>
             </Card>
@@ -575,9 +527,7 @@ function DiagnosticPurchasePage() {
         <Card>
           <CardContent className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
-              <p className="text-2xl font-semibold tracking-tight">
-                {formatInr(PRICING.diagnosticPaise)}
-              </p>
+              <p className="text-2xl font-semibold tracking-tight">{formatInr(PRICING.diagnosticPaise)}</p>
               <p className="text-sm text-muted-foreground">
                 {t(
                   "diag.price.note",
@@ -597,6 +547,7 @@ function DiagnosticPurchasePage() {
           </span>
           <span>{t("diag.trust.support", "Support: support@eduos.global")}</span>
         </div>
+
       </section>
 
       <section className="mt-12 space-y-4">
@@ -606,9 +557,7 @@ function DiagnosticPurchasePage() {
         <Accordion type="single" collapsible className="w-full">
           {FAQS.map((f, i) => (
             <AccordionItem key={f.q} value={`faq-${i}`}>
-              <AccordionTrigger className="text-left text-sm">
-                {t(`diag.faq.${i}.q`, f.q)}
-              </AccordionTrigger>
+              <AccordionTrigger className="text-left text-sm">{t(`diag.faq.${i}.q`, f.q)}</AccordionTrigger>
               <AccordionContent className="text-sm text-muted-foreground">
                 {t(`diag.faq.${i}.a`, f.a, {
                   days: PRICING.creditWindowDays,

@@ -56,44 +56,17 @@ export const PLAN_META = {
 
 /** Live screens with no counterpart anywhere in the redesign prototype. */
 export const NO_REDESIGN_REFERENCE: { screen: string; note: string }[] = [
-  {
-    screen: "/auth (sign-in, staff + student PIN)",
-    note: "Prototype starts after login — keep current implementation unchanged.",
-  },
-  {
-    screen: "/learners and /learners/$learnerId (5-tab learner profile)",
-    note: "Educator drill-in target exists in Figma only as a heatmap cell click; the destination screen is not designed.",
-  },
-  {
-    screen: "/curriculum, /curriculum-audit",
-    note: "Curriculum intake and tree view absent from the prototype.",
-  },
-  {
-    screen: "/assessment-blueprint, /question-bank, /assessment-builder, /diagnostic-engine",
-    note: "Authoring pipeline absent from the prototype.",
-  },
-  {
-    screen: "/gap-analysis (current staff gap workspace)",
-    note: "Redesign shows a heatmap instead, but does not design the existing analytic drill-downs.",
-  },
-  {
-    screen: "/assessments, /assignments, /session/$id, /assessment/$id",
-    note: "Assessment delivery and assignment flows absent.",
-  },
-  {
-    screen: "/tutor/$sessionId (AI Tutor chat)",
-    note: "Referenced as a loop stage only; no tutor chat screen designed.",
-  },
+  { screen: "/auth (sign-in, staff + student PIN)", note: "Prototype starts after login — keep current implementation unchanged." },
+  { screen: "/learners and /learners/$learnerId (5-tab learner profile)", note: "Educator drill-in target exists in Figma only as a heatmap cell click; the destination screen is not designed." },
+  { screen: "/curriculum, /curriculum-audit", note: "Curriculum intake and tree view absent from the prototype." },
+  { screen: "/assessment-blueprint, /question-bank, /assessment-builder, /diagnostic-engine", note: "Authoring pipeline absent from the prototype." },
+  { screen: "/gap-analysis (current staff gap workspace)", note: "Redesign shows a heatmap instead, but does not design the existing analytic drill-downs." },
+  { screen: "/assessments, /assignments, /session/$id, /assessment/$id", note: "Assessment delivery and assignment flows absent." },
+  { screen: "/tutor/$sessionId (AI Tutor chat)", note: "Referenced as a loop stage only; no tutor chat screen designed." },
   { screen: "/admin, /settings", note: "Provisioning, roles, consent admin, appearance — absent." },
   { screen: "/quick-start, /help", note: "Onboarding and help surfaces absent." },
-  {
-    screen: "/pilot-evidence, /outcome-proof",
-    note: "Reviewer Reports tab is adjacent but is a download list, not these dashboards.",
-  },
-  {
-    screen: "All 15 *-audit / verification centres",
-    note: "Absent — the prototype has no internal QA surface at all.",
-  },
+  { screen: "/pilot-evidence, /outcome-proof", note: "Reviewer Reports tab is adjacent but is a download list, not these dashboards." },
+  { screen: "All 15 *-audit / verification centres", note: "Absent — the prototype has no internal QA surface at all." },
 ];
 
 export const PLAN_ITEMS: PlanItem[] = [
@@ -110,25 +83,15 @@ export const PLAN_ITEMS: PlanItem[] = [
       "Gap-first layout: a single 'Highest priority — do this now' banner with a Start action, then active gaps sorted by urgency, each showing subject, current loop stage (Diagnostic / Gap / Intervention / Tutor / Reassessment / Evidence), current mastery, days in phase and one recommended action.",
     businessValue:
       "Pilot success is judged on gap closure rate. Making the next action unambiguous is the single largest lever on learner throughput per week.",
-    userValue:
-      "The learner never has to decide what to work on; one tap from login to the right activity.",
+    userValue: "The learner never has to decide what to work on; one tap from login to the right activity.",
     effort: "M",
-    effortNote:
-      "Reorders and re-renders existing data (learning_gaps, recommendations, interventions, mastery). No new pipeline.",
+    effortNote: "Reorders and re-renders existing data (learning_gaps, recommendations, interventions, mastery). No new pipeline.",
     risk: "Low",
-    riskNote:
-      "Presentation-layer change on one route; existing cards can be retained lower on the page during pilot.",
-    components: [
-      "src/routes/_authenticated/home.tsx",
-      "new PriorityActionCard",
-      "new GapQueueList",
-      "new LoopStageStepper",
-    ],
+    riskNote: "Presentation-layer change on one route; existing cards can be retained lower on the page during pilot.",
+    components: ["src/routes/_authenticated/home.tsx", "new PriorityActionCard", "new GapQueueList", "new LoopStageStepper"],
     screens: ["/home"],
-    dbImpact:
-      "None. learning_gaps, recommendations, interventions, mastery_history already carry every field shown.",
-    apiImpact:
-      "Extend the existing student read server fn to return gaps ordered by urgency with the resolved next action. No new endpoint.",
+    dbImpact: "None. learning_gaps, recommendations, interventions, mastery_history already carry every field shown.",
+    apiImpact: "Extend the existing student read server fn to return gaps ordered by urgency with the resolved next action. No new endpoint.",
   },
   {
     id: "UX-02",
@@ -140,21 +103,13 @@ export const PLAN_ITEMS: PlanItem[] = [
       "Closure counts exist only inside /outcome-proof and /pilot-evidence. Students, parents and educators see mastery percentages but never 'X of Y gaps closed'.",
     proposedState:
       "A consistent header strip on /home, /parent and /dashboard: gaps closed of total, closure rate this term, active gaps needing action, and the trend direction — the same four numbers everywhere so roles can talk to each other.",
-    businessValue:
-      "One shared outcome vocabulary across learner, parent, educator and reviewer; makes pilot reporting self-evident rather than exported.",
+    businessValue: "One shared outcome vocabulary across learner, parent, educator and reviewer; makes pilot reporting self-evident rather than exported.",
     userValue: "Every user can answer 'are we winning?' in under two seconds.",
     effort: "S",
     effortNote: "Reuses the closure maths already implemented for the outcome dashboard.",
     risk: "Low",
-    riskNote:
-      "Read-only aggregate; must reuse existing metric definitions so numbers cannot diverge between screens.",
-    components: [
-      "new OutcomeHeaderStrip",
-      "src/lib/outcome-dashboard-shared.ts",
-      "home.tsx",
-      "parent.tsx",
-      "dashboard.tsx",
-    ],
+    riskNote: "Read-only aggregate; must reuse existing metric definitions so numbers cannot diverge between screens.",
+    components: ["new OutcomeHeaderStrip", "src/lib/outcome-dashboard-shared.ts", "home.tsx", "parent.tsx", "dashboard.tsx"],
     screens: ["/home", "/parent", "/dashboard"],
     dbImpact: "None.",
     apiImpact: "Reuse getOutcomeDashboard aggregates; add a lightweight per-role summary selector.",
@@ -169,25 +124,16 @@ export const PLAN_ITEMS: PlanItem[] = [
       "/dashboard shows roster health and intervention outcomes as lists; /gap-analysis analyses one learner or outcome set at a time. There is no single view of the whole class.",
     proposedState:
       "A matrix of learners × subjects with gap counts, density banding (0 / 1–2 / 3–4 / 5–7 / 8+), per-student risk chips (On track / At risk / Critical), row and column totals, and click-through from any cell to the filtered learner view.",
-    businessValue:
-      "Educator time is the scarcest pilot resource; triage across a class in one screen instead of per-learner navigation.",
+    businessValue: "Educator time is the scarcest pilot resource; triage across a class in one screen instead of per-learner navigation.",
     userValue: "Immediately shows who and which subject to intervene on today.",
     effort: "M",
     effortNote: "One aggregate query plus a matrix component; drill-in targets already exist.",
     risk: "Low",
-    riskNote:
-      "Read-only. Watch performance on large rosters — aggregate server-side, not in the browser.",
-    components: [
-      "new GapHeatmap",
-      "new RiskBadge",
-      "src/lib/gap.server.ts",
-      "dashboard.tsx or /gap-analysis",
-    ],
+    riskNote: "Read-only. Watch performance on large rosters — aggregate server-side, not in the browser.",
+    components: ["new GapHeatmap", "new RiskBadge", "src/lib/gap.server.ts", "dashboard.tsx or /gap-analysis"],
     screens: ["/dashboard", "/gap-analysis", "/learners"],
-    dbImpact:
-      "None for the matrix. Optional index on learning_gaps(org_id, learner_id, subject, status) for roster-scale reads.",
-    apiImpact:
-      "New read server fn getClassGapMatrix (RLS-scoped to the educator's assigned learners).",
+    dbImpact: "None for the matrix. Optional index on learning_gaps(org_id, learner_id, subject, status) for roster-scale reads.",
+    apiImpact: "New read server fn getClassGapMatrix (RLS-scoped to the educator's assigned learners).",
   },
   {
     id: "UX-04",
@@ -199,24 +145,16 @@ export const PLAN_ITEMS: PlanItem[] = [
       "/interventions lists active interventions and detected gaps without urgency ranking, without days-in-phase, and with actions one navigation step away.",
     proposedState:
       "A numbered queue sorted by urgency (mastery, stage, days stalled), each row showing learner, gap, stage, days in phase and mastery, with inline Log and Act buttons, plus a one-line 'N students need action today' summary above the list.",
-    businessValue:
-      "Reduces stalled interventions — the main cause of unclosed gaps in a pilot term.",
+    businessValue: "Reduces stalled interventions — the main cause of unclosed gaps in a pilot term.",
     userValue: "Turns a list into a worklist the educator can clear.",
     effort: "M",
     effortNote: "Ranking function plus inline actions over existing intervention mutations.",
     risk: "Medium",
-    riskNote:
-      "Ranking must be deterministic and explainable, otherwise educators distrust the order. Ship the rule text next to the list.",
-    components: [
-      "src/routes/_authenticated/interventions.tsx",
-      "new InterventionQueueRow",
-      "src/lib/intervention-shared.ts",
-    ],
+    riskNote: "Ranking must be deterministic and explainable, otherwise educators distrust the order. Ship the rule text next to the list.",
+    components: ["src/routes/_authenticated/interventions.tsx", "new InterventionQueueRow", "src/lib/intervention-shared.ts"],
     screens: ["/interventions", "/dashboard"],
-    dbImpact:
-      "None — days-in-phase derives from existing timestamps. Add stage_entered_at only if phase changes are not currently timestamped.",
-    apiImpact:
-      "Extend interventions read fn with ranking + days-in-phase; reuse existing log/act mutations.",
+    dbImpact: "None — days-in-phase derives from existing timestamps. Add stage_entered_at only if phase changes are not currently timestamped.",
+    apiImpact: "Extend interventions read fn with ranking + days-in-phase; reuse existing log/act mutations.",
   },
   {
     id: "UX-05",
@@ -228,26 +166,17 @@ export const PLAN_ITEMS: PlanItem[] = [
       "Reviewers land on /launch-audit and read audit centres. Evidence review is possible only for questions (question_verifications); there is no learner-evidence queue and no approve / query / reject decision path.",
     proposedState:
       "A queue of submitted evidence (learner, school, subject, type, timestamp, score) with counts for Pending / Approved / Query raised / Rejected, status filters, a detail pane, and three decisions: Approve, Raise query, Reject — each writing an auditable record.",
-    businessValue:
-      "External verification is the credibility spine of the pilot; without a queue the evidence flow is manual and unprovable.",
+    businessValue: "External verification is the credibility spine of the pilot; without a queue the evidence flow is manual and unprovable.",
     userValue: "Reviewer works a single inbox to zero instead of hunting across audit pages.",
     effort: "L",
-    effortNote:
-      "New table, new server fns, new screen, new RLS policies, plus notification of the educator on query/reject.",
+    effortNote: "New table, new server fns, new screen, new RLS policies, plus notification of the educator on query/reject.",
     risk: "Medium",
-    riskNote:
-      "Writes by a role that is read-only today. Must keep reviewer writes confined to verification records — never to scores, mastery or evidence content.",
-    components: [
-      "new /evidence-queue route",
-      "new EvidenceQueueList",
-      "new EvidenceDecisionPanel",
-      "src/lib/verification.functions.ts",
-    ],
+    riskNote: "Writes by a role that is read-only today. Must keep reviewer writes confined to verification records — never to scores, mastery or evidence content.",
+    components: ["new /evidence-queue route", "new EvidenceQueueList", "new EvidenceDecisionPanel", "src/lib/verification.functions.ts"],
     screens: ["new reviewer queue", "/launch-audit", "/parent (verified-by attribution)"],
     dbImpact:
       "New table evidence_verifications (evidence_id, reviewer_id, decision, note, decided_at, org_id) with GRANTs and RLS; reviewer role gains INSERT on it only.",
-    apiImpact:
-      "New server fns: listEvidenceQueue, decideEvidence (requireAnyRole reviewer/admin). Existing evidence reads unchanged.",
+    apiImpact: "New server fns: listEvidenceQueue, decideEvidence (requireAnyRole reviewer/admin). Existing evidence reads unchanged.",
   },
   {
     id: "UX-06",
@@ -259,23 +188,15 @@ export const PLAN_ITEMS: PlanItem[] = [
       "Closures and evidence show status and score but not who verified them. Parents cannot distinguish a teacher-marked item from an externally validated one.",
     proposedState:
       "Every closure and evidence row shows 'Verified by Educator' or 'Verified by Reviewer' with the date, and pending items are explicitly labelled 'Awaiting verification'.",
-    businessValue:
-      "Parent trust and pilot defensibility both rest on the difference between internal and external validation.",
-    userValue:
-      "Parents see proof, not claims; educators see what is still awaiting external sign-off.",
+    businessValue: "Parent trust and pilot defensibility both rest on the difference between internal and external validation.",
+    userValue: "Parents see proof, not claims; educators see what is still awaiting external sign-off.",
     effort: "S",
     effortNote: "Rendering plus a verifier reference; small once UX-05 lands.",
     risk: "Low",
     riskNote: "Depends on UX-05 for reviewer decisions; educator verification can ship first.",
-    components: [
-      "new VerifiedByBadge",
-      "parent.tsx",
-      "home.tsx",
-      "new educator verification panel",
-    ],
+    components: ["new VerifiedByBadge", "parent.tsx", "home.tsx", "new educator verification panel"],
     screens: ["/parent", "/home", "/dashboard"],
-    dbImpact:
-      "learner_evidence gains verified_by (uuid) and verified_role, or these are read from evidence_verifications introduced in UX-05.",
+    dbImpact: "learner_evidence gains verified_by (uuid) and verified_role, or these are read from evidence_verifications introduced in UX-05.",
     apiImpact: "Evidence read fns return verifier identity and role; no new endpoint.",
   },
   {
@@ -288,8 +209,7 @@ export const PLAN_ITEMS: PlanItem[] = [
       "The sidebar System group carries 15 audit/verification entries. Even for admins the navigation reads as internal scaffolding rather than a product.",
     proposedState:
       "One 'Verification' entry opening a hub that indexes every audit centre by sprint/domain. Deep links keep working. Workspace nav drops to the redesign's small item count for all roles.",
-    businessValue:
-      "Pilot demos and reviewer onboarding stop being derailed by internal QA surfaces.",
+    businessValue: "Pilot demos and reviewer onboarding stop being derailed by internal QA surfaces.",
     userValue: "Navigation is scannable; audits remain one click from the hub.",
     effort: "S",
     effortNote: "Nav config change plus an index page listing the existing routes.",
@@ -312,15 +232,12 @@ export const PLAN_ITEMS: PlanItem[] = [
       "The six-stage loop exists in the data but is never shown as a sequence. Learners see activities, not a story of how a gap gets closed.",
     proposedState:
       "A vertical timeline per unit/gap: Diagnostic → Gap Detection → Intervention → Tutor → Reassessment → Evidence, each entry dated with its outcome, the current stage marked 'In progress', and future stages shown as locked with their unlock condition.",
-    businessValue:
-      "Demonstrates the EduOS loop to every stakeholder inside the product instead of in a deck.",
+    businessValue: "Demonstrates the EduOS loop to every stakeholder inside the product instead of in a deck.",
     userValue: "Learners see progress and understand why the next step is locked.",
     effort: "M",
-    effortNote:
-      "Cross-table event assembly (assessments, gaps, interventions, tutor sessions, reassessments, evidence) into one ordered feed.",
+    effortNote: "Cross-table event assembly (assessments, gaps, interventions, tutor sessions, reassessments, evidence) into one ordered feed.",
     risk: "Medium",
-    riskNote:
-      "Timeline correctness depends on consistent timestamps across five tables; needs a deterministic assembler with tests.",
+    riskNote: "Timeline correctness depends on consistent timestamps across five tables; needs a deterministic assembler with tests.",
     components: ["new GapJourneyTimeline", "new src/lib/journey.server.ts", "home.tsx"],
     screens: ["/home", "/learners/$learnerId (educator view of same timeline)"],
     dbImpact: "None if all stage events are timestamped; otherwise add gap_stage_events.",
@@ -332,24 +249,16 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Student",
     figmaRef: "Student → Mastery",
-    currentState:
-      "Mastery renders as a trend chart without a target line; a percentage alone gives no sense of sufficiency.",
+    currentState: "Mastery renders as a trend chart without a target line; a percentage alone gives no sense of sufficiency.",
     proposedState:
       "Per subject: current mastery, active gap count, topics mastered, and a bar with a marked target threshold, labelled 'based on verified assessments only'.",
-    businessValue:
-      "Anchors the pilot to a stated mastery standard rather than relative improvement.",
+    businessValue: "Anchors the pilot to a stated mastery standard rather than relative improvement.",
     userValue: "Learner knows how far they are from 'good enough' per subject.",
     effort: "S",
-    effortNote:
-      "Chart/bar rendering over existing mastery data; the threshold becomes an org setting.",
+    effortNote: "Chart/bar rendering over existing mastery data; the threshold becomes an org setting.",
     risk: "Low",
     riskNote: "Target must be configurable per organisation, not hardcoded.",
-    components: [
-      "new SubjectMasteryBar",
-      "src/components/mastery-chart.tsx",
-      "home.tsx",
-      "parent.tsx",
-    ],
+    components: ["new SubjectMasteryBar", "src/components/mastery-chart.tsx", "home.tsx", "parent.tsx"],
     screens: ["/home", "/parent"],
     dbImpact: "organizations gains mastery_target_pct (default 80).",
     apiImpact: "Mastery read fns return the org target alongside scores.",
@@ -360,12 +269,9 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Student",
     figmaRef: "Student → Evidence",
-    currentState:
-      "Evidence is visible to staff and reviewers; the learner has no portfolio view of their own verified work.",
-    proposedState:
-      "Counters for verified / pending / total, then a list of evidence items with type, date, score and verification state.",
-    businessValue:
-      "Evidence becomes motivating output for the learner, increasing completion of reassessments.",
+    currentState: "Evidence is visible to staff and reviewers; the learner has no portfolio view of their own verified work.",
+    proposedState: "Counters for verified / pending / total, then a list of evidence items with type, date, score and verification state.",
+    businessValue: "Evidence becomes motivating output for the learner, increasing completion of reassessments.",
     userValue: "The learner sees a growing record of proven work.",
     effort: "S",
     effortNote: "New read view over learner_evidence with student-scoped RLS.",
@@ -373,8 +279,7 @@ export const PLAN_ITEMS: PlanItem[] = [
     riskNote: "Must expose only the learner's own rows; verify with a cross-learner probe.",
     components: ["new EvidencePortfolio", "home.tsx"],
     screens: ["/home"],
-    dbImpact:
-      "learner_evidence SELECT policy for the owning student (verify current policy before adding).",
+    dbImpact: "learner_evidence SELECT policy for the owning student (verify current policy before adding).",
     apiImpact: "New read fn getMyEvidence.",
   },
   {
@@ -383,23 +288,16 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Parent",
     figmaRef: "Parent → Outcomes",
-    currentState:
-      "/parent leads with consent and a mastery chart; outcome totals are secondary and tutor minutes are not surfaced at all.",
+    currentState: "/parent leads with consent and a mastery chart; outcome totals are secondary and tutor minutes are not surfaced at all.",
     proposedState:
       "Header row: gaps closed of total, still open, closure rate, verified evidence count, tutor minutes this term, overall mastery, and trend direction — then active gaps with stage and days, then verified closures.",
-    businessValue:
-      "Parent trust is the retention lever for a paid pilot; activity metrics do not build it, verified outcomes do.",
+    businessValue: "Parent trust is the retention lever for a paid pilot; activity metrics do not build it, verified outcomes do.",
     userValue: "A parent understands their child's position in 10 seconds without interpretation.",
     effort: "M",
     effortNote: "Mostly assembly; tutor minutes per gap already exist via the tutor evidence view.",
     risk: "Low",
-    riskNote:
-      "Must stay strictly scoped to linked children (parent_learner_links) — already enforced, retest after the change.",
-    components: [
-      "parent.tsx",
-      "OutcomeHeaderStrip (from UX-02)",
-      "src/lib/outcome-dashboard.server.ts",
-    ],
+    riskNote: "Must stay strictly scoped to linked children (parent_learner_links) — already enforced, retest after the change.",
+    components: ["parent.tsx", "OutcomeHeaderStrip (from UX-02)", "src/lib/outcome-dashboard.server.ts"],
     screens: ["/parent"],
     dbImpact: "None — tutor_evidence_by_gap and mastery_history cover it.",
     apiImpact: "Extend the parent read fn with the tutor-minutes and closure aggregates.",
@@ -410,24 +308,19 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Parent",
     figmaRef: "Parent → Tutor",
-    currentState:
-      "Tutor sessions are not shown to parents; tutor time is invisible outside pilot evidence pages.",
+    currentState: "Tutor sessions are not shown to parents; tutor time is invisible outside pilot evidence pages.",
     proposedState:
       "Totals (minutes this term, sessions completed of planned, gaps supported), a session list with tutor, date, duration and outcome, and a 'Next session' card naming the linked gap and the reassessment that follows.",
-    businessValue:
-      "Directly justifies tutoring spend with gap-linked minutes — the clearest commercial proof point in the pilot.",
+    businessValue: "Directly justifies tutoring spend with gap-linked minutes — the clearest commercial proof point in the pilot.",
     userValue: "Parents see what tutoring bought, and what happens next.",
     effort: "M",
     effortNote: "Read view is straightforward; scheduling is the new part.",
     risk: "Medium",
-    riskNote:
-      "Only ship 'Next session' if scheduling data is real. Without a scheduling model the card must be omitted, not faked.",
+    riskNote: "Only ship 'Next session' if scheduling data is real. Without a scheduling model the card must be omitted, not faked.",
     components: ["new TutorSessionLog", "parent.tsx", "src/lib/tutor.server.ts"],
     screens: ["/parent"],
-    dbImpact:
-      "tutor_sessions gains scheduled_at and educator_id for planned sessions (completed-session reads need no change).",
-    apiImpact:
-      "New read fn getChildTutorLog; scheduling mutation only if the schedule feature is approved.",
+    dbImpact: "tutor_sessions gains scheduled_at and educator_id for planned sessions (completed-session reads need no change).",
+    apiImpact: "New read fn getChildTutorLog; scheduling mutation only if the schedule feature is approved.",
   },
   {
     id: "UX-13",
@@ -435,12 +328,10 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Parent",
     figmaRef: "Parent → Trends",
-    currentState:
-      "A mastery-over-time chart without a baseline marker, target marker or stated gain.",
+    currentState: "A mastery-over-time chart without a baseline marker, target marker or stated gain.",
     proposedState:
       "Per subject: diagnostic baseline, current verified mastery, target, gain in percentage points, open gap count — plus a plain-language 'subjects needing attention' note derived from the same numbers.",
-    businessValue:
-      "Mastery lift is the headline pilot metric; showing it per subject makes renewal conversations concrete.",
+    businessValue: "Mastery lift is the headline pilot metric; showing it per subject makes renewal conversations concrete.",
     userValue: "Parents see movement, not just a level.",
     effort: "S",
     effortNote: "Baseline is the first diagnostic score already stored in mastery_history.",
@@ -457,12 +348,9 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Educator",
     figmaRef: "Educator → Cohort",
-    currentState:
-      "Class-level aggregates live in /outcome-proof, which is framed as an executive dashboard rather than a teaching tool.",
-    proposedState:
-      "Class average mastery, total active gaps, gaps closed this term, and a per-subject bar list ordered worst-first with gap counts.",
-    businessValue:
-      "Lets a centre manager compare classes and spot subject-level curriculum problems, not just learner problems.",
+    currentState: "Class-level aggregates live in /outcome-proof, which is framed as an executive dashboard rather than a teaching tool.",
+    proposedState: "Class average mastery, total active gaps, gaps closed this term, and a per-subject bar list ordered worst-first with gap counts.",
+    businessValue: "Lets a centre manager compare classes and spot subject-level curriculum problems, not just learner problems.",
     userValue: "Educator sees which subject is dragging the class.",
     effort: "S",
     effortNote: "Aggregates already computed for the outcome dashboard.",
@@ -479,12 +367,10 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Educator",
     figmaRef: "Educator → Verification",
-    currentState:
-      "Educators cannot see where their submitted evidence sits in the reviewer's queue.",
+    currentState: "Educators cannot see where their submitted evidence sits in the reviewer's queue.",
     proposedState:
       "A panel listing submitted items with learner, subject, type, date and state (Verified / In review / Pending), plus the rule statement that closures are only confirmed on reviewer validation.",
-    businessValue:
-      "Closes the loop between submission and external validation, raising verification throughput.",
+    businessValue: "Closes the loop between submission and external validation, raising verification throughput.",
     userValue: "Educator knows what is blocked on the reviewer and what needs resubmission.",
     effort: "S",
     effortNote: "Read view over the UX-05 verification records.",
@@ -501,12 +387,10 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P1",
     role: "Reviewer",
     figmaRef: "Reviewer → Closure Validation",
-    currentState:
-      "No closure-validation step exists; audit centres prove system behaviour, not per-school evidence compliance.",
+    currentState: "No closure-validation step exists; audit centres prove system behaviour, not per-school evidence compliance.",
     proposedState:
       "An explanation of what closure validation means, then a per-school list showing verified / pending / total submissions with a compliance percentage and a below-threshold warning.",
-    businessValue:
-      "Gives a district or chain buyer the oversight view that justifies multi-site rollout.",
+    businessValue: "Gives a district or chain buyer the oversight view that justifies multi-site rollout.",
     userValue: "Reviewer targets site visits at the schools that are actually behind.",
     effort: "L",
     effortNote:
@@ -514,14 +398,9 @@ export const PLAN_ITEMS: PlanItem[] = [
     risk: "High",
     riskNote:
       "Do NOT widen tenant isolation to build this. It requires an explicit district/tenant-group model with its own policies — a scoped design task, not a UI change.",
-    components: [
-      "new ClosureValidation screen",
-      "src/lib/verification.functions.ts",
-      "RLS policies",
-    ],
+    components: ["new ClosureValidation screen", "src/lib/verification.functions.ts", "RLS policies"],
     screens: ["new reviewer screen"],
-    dbImpact:
-      "New districts / org_groups table plus reviewer scope mapping, with GRANTs and RLS. Significant.",
+    dbImpact: "New districts / org_groups table plus reviewer scope mapping, with GRANTs and RLS. Significant.",
     apiImpact: "New district-scoped read fns; every one needs a cross-district denial probe.",
   },
 
@@ -544,8 +423,7 @@ export const PLAN_ITEMS: PlanItem[] = [
       "Any XP that can be earned without a verified closure corrupts the outcome narrative. Ship only after UX-05/UX-06 make verification authoritative.",
     components: ["new XpLedger", "new BadgeGrid", "new src/lib/xp.server.ts"],
     screens: ["/home"],
-    dbImpact:
-      "New tables xp_events and badge_awards with GRANTs and RLS; awards written server-side only.",
+    dbImpact: "New tables xp_events and badge_awards with GRANTs and RLS; awards written server-side only.",
     apiImpact: "Award hook on verified closure; new read fn getMyXp.",
   },
   {
@@ -554,18 +432,14 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P2",
     role: "Reviewer",
     figmaRef: "Reviewer → Reports",
-    currentState:
-      "/pilot-evidence and the audit centres are printable but there is no report library with ready/pending/scheduled states.",
-    proposedState:
-      "A list of standard reports (closure summary, intervention effectiveness, compliance audit, at-risk cohort) with status, date and download.",
-    businessValue:
-      "Useful for a district sale; not required for pilot evidence, which the audit centres already cover.",
+    currentState: "/pilot-evidence and the audit centres are printable but there is no report library with ready/pending/scheduled states.",
+    proposedState: "A list of standard reports (closure summary, intervention effectiveness, compliance audit, at-risk cohort) with status, date and download.",
+    businessValue: "Useful for a district sale; not required for pilot evidence, which the audit centres already cover.",
     userValue: "Reviewer exports without asking anyone.",
     effort: "L",
     effortNote: "Report generation, storage of artefacts, and a scheduling concept.",
     risk: "Medium",
-    riskNote:
-      "Generated files must inherit tenant scope; a mis-scoped export leaks across organisations.",
+    riskNote: "Generated files must inherit tenant scope; a mis-scoped export leaks across organisations.",
     components: ["new ReportLibrary", "report generation server fns", "storage bucket"],
     screens: ["new reviewer screen"],
     dbImpact: "New table generated_reports plus a storage bucket with org-scoped paths.",
@@ -577,8 +451,7 @@ export const PLAN_ITEMS: PlanItem[] = [
     priority: "P2",
     role: "All roles",
     figmaRef: "Every portal → 'Switch Portal'",
-    currentState:
-      "Role is fixed by the signed-in account; the context bar already shows role, organisation and educator.",
+    currentState: "Role is fixed by the signed-in account; the context bar already shows role, organisation and educator.",
     proposedState:
       "Keep as-is for real users. Optionally a demo-only switcher for admins to preview each portal — never a way to assume another role's data.",
     businessValue: "Demo convenience only.",
@@ -607,8 +480,7 @@ export const SEQUENCE: { wave: string; window: string; items: string[]; rational
     wave: "Wave 2 — Educator efficiency",
     window: "Week 2",
     items: ["UX-03", "UX-04"],
-    rationale:
-      "Heatmap plus prioritised queue is the largest saving in educator time per closed gap, and both are read-side only.",
+    rationale: "Heatmap plus prioritised queue is the largest saving in educator time per closed gap, and both are read-side only.",
   },
   {
     wave: "Wave 3 — Evidence flow",
@@ -621,15 +493,13 @@ export const SEQUENCE: { wave: string; window: string; items: string[]; rational
     wave: "Wave 4 — Parent trust",
     window: "Week 5",
     items: ["UX-11", "UX-13", "UX-12"],
-    rationale:
-      "Once verification is authoritative, parent screens can claim verified outcomes truthfully. Tutor scheduling is the only part that may slip.",
+    rationale: "Once verification is authoritative, parent screens can claim verified outcomes truthfully. Tutor scheduling is the only part that may slip.",
   },
   {
     wave: "Wave 5 — Learner depth",
     window: "Week 6",
     items: ["UX-08", "UX-09", "UX-10", "UX-14"],
-    rationale:
-      "Journey, mastery targets, portfolio and cohort distribution deepen the story without changing the operating model.",
+    rationale: "Journey, mastery targets, portfolio and cohort distribution deepen the story without changing the operating model.",
   },
   {
     wave: "Deferred — needs a decision, not a sprint",

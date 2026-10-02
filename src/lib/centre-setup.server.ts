@@ -102,14 +102,16 @@ export async function getCentreSetup(admin: Admin, orgId: string): Promise<Centr
   const signals = await loadCentreSetupSignals(admin, orgId);
   const state = deriveCentreSetup(signals);
   if (state.complete) {
-    await admin.from("centre_setup_progress").upsert(
-      {
-        org_id: orgId,
-        completed_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "org_id", ignoreDuplicates: false },
-    );
+    await admin
+      .from("centre_setup_progress")
+      .upsert(
+        {
+          org_id: orgId,
+          completed_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "org_id", ignoreDuplicates: false },
+      );
   }
   return state;
 }

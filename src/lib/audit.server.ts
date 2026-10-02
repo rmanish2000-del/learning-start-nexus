@@ -94,12 +94,7 @@ export type CrossOrgTest = {
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as {
-    code?: string;
-    message?: string;
-    details?: string | null;
-    hint?: string | null;
-  };
+  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -181,10 +176,7 @@ export async function runCrossOrgTests(
       ),
     );
   } else {
-    const read = await supabase
-      .from("assessments")
-      .select("id, title")
-      .eq("id", foreignAssessment.id);
+    const read = await supabase.from("assessments").select("id, title").eq("id", foreignAssessment.id);
     const rows = read.data?.length ?? 0;
     tests.push({
       key: "read_assessment",
@@ -500,10 +492,7 @@ export type BuildProofCount = {
   isolated: boolean;
 };
 
-export async function fetchBuildProofCounts(
-  supabase: Client,
-  admin: Client,
-): Promise<{
+export async function fetchBuildProofCounts(supabase: Client, admin: Client): Promise<{
   counts: BuildProofCount[];
   submittedVisible: number | null;
   submittedGlobal: number;
@@ -531,17 +520,16 @@ export async function fetchBuildProofCounts(
       isolated: visibleToYou === null ? true : visibleToYou < globalAllOrgs,
     });
   }
-  const [{ count: submittedVisible, error: subErr }, { count: submittedGlobal }] =
-    await Promise.all([
-      supabase
-        .from("assessment_sessions")
-        .select("id", { count: "exact", head: true })
-        .eq("status", "submitted"),
-      admin
-        .from("assessment_sessions")
-        .select("id", { count: "exact", head: true })
-        .eq("status", "submitted"),
-    ]);
+  const [{ count: submittedVisible, error: subErr }, { count: submittedGlobal }] = await Promise.all([
+    supabase
+      .from("assessment_sessions")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "submitted"),
+    admin
+      .from("assessment_sessions")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "submitted"),
+  ]);
   return {
     counts,
     submittedVisible: subErr ? null : (submittedVisible ?? 0),

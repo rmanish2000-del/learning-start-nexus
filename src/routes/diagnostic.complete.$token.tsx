@@ -12,8 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useI18n } from "@/lib/i18n/context";
 
 const TITLE = "Diagnostic complete | EduOS";
-const DESCRIPTION =
-  "Your diagnostic has been submitted and scored. Your parent receives the report.";
+const DESCRIPTION = "Your diagnostic has been submitted and scored. Your parent receives the report.";
 
 export const Route = createFileRoute("/diagnostic/complete/$token")({
   head: () => ({
@@ -65,11 +64,7 @@ function CompletePage() {
 
   const c = query.data;
   return (
-    <DiagnosticShell
-      variant="learner"
-      learnerName={c.learnerName}
-      footerNote={`${c.subject} · ${c.unitTitle}`}
-    >
+    <DiagnosticShell variant="learner" learnerName={c.learnerName} footerNote={`${c.subject} · ${c.unitTitle}`}>
       <Card>
         <CardHeader className="items-center text-center">
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
@@ -87,8 +82,7 @@ function CompletePage() {
           </p>
           <Button asChild>
             <Link to="/home">
-              <GraduationCap className="mr-2 h-4 w-4" />{" "}
-              {t("runs.backToLearning", "Back to My Learning")}
+              <GraduationCap className="mr-2 h-4 w-4" /> {t("runs.backToLearning", "Back to My Learning")}
             </Link>
           </Button>
         </CardContent>

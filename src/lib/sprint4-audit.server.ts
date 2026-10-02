@@ -4,7 +4,11 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import { fetchPolicyAudit, type DbErrorShape, type PolicyAuditRow } from "./audit.server";
+import {
+  fetchPolicyAudit,
+  type DbErrorShape,
+  type PolicyAuditRow,
+} from "./audit.server";
 import {
   callTutorAi,
   generateTutorReply,
@@ -30,24 +34,28 @@ export type Sprint4Count = {
   note: string;
 };
 
-export async function fetchSprint4Counts(supabase: Client, admin: Client): Promise<Sprint4Count[]> {
-  const tables: { table: "tutor_sessions" | "tutor_interactions"; label: string; note: string }[] =
-    [
-      {
-        table: "tutor_sessions",
-        label: "Tutor sessions",
-        note: "Students see their own; staff see org learners they may view.",
-      },
-      {
-        table: "tutor_interactions",
-        label: "Tutor interactions (conversation)",
-        note: "Student-only by policy — staff see 0 here by design (privacy).",
-      },
-    ];
+export async function fetchSprint4Counts(
+  supabase: Client,
+  admin: Client,
+): Promise<Sprint4Count[]> {
+  const tables: { table: "tutor_sessions" | "tutor_interactions"; label: string; note: string }[] = [
+    {
+      table: "tutor_sessions",
+      label: "Tutor sessions",
+      note: "Students see their own; staff see org learners they may view.",
+    },
+    {
+      table: "tutor_interactions",
+      label: "Tutor interactions (conversation)",
+      note: "Student-only by policy — staff see 0 here by design (privacy).",
+    },
+  ];
 
   const out: Sprint4Count[] = [];
   for (const t of tables) {
-    const visible = await supabase.from(t.table).select("id", { count: "exact", head: true });
+    const visible = await supabase
+      .from(t.table)
+      .select("id", { count: "exact", head: true });
     const global = await admin.from(t.table).select("id", { count: "exact", head: true });
     const visibleToYou = visible.error ? null : (visible.count ?? 0);
     const globalAllOrgs = global.count ?? 0;
@@ -89,15 +97,14 @@ export async function fetchTutorSessionAggregates(
 ): Promise<TutorSessionAggregate[]> {
   const { data, error } = await supabase
     .from("tutor_sessions")
-    .select(
-      "id, concept, topic, status, interaction_count, concepts_accessed, last_activity_at, created_at, learners(full_name)",
-    )
+    .select("id, concept, topic, status, interaction_count, concepts_accessed, last_activity_at, created_at, learners(full_name)")
     .order("last_activity_at", { ascending: false })
     .limit(20);
   if (error) throw new Error(error.message);
   return (data ?? []).map((row) => ({
     id: row.id,
-    learnerName: (row.learners as { full_name: string } | null)?.full_name ?? "Unknown learner",
+    learnerName:
+      (row.learners as { full_name: string } | null)?.full_name ?? "Unknown learner",
     concept: row.concept,
     topic: row.topic,
     status: row.status,
@@ -124,12 +131,7 @@ export type Sprint4Probe = {
 
 function shapeError(err: unknown): DbErrorShape {
   if (!err || typeof err !== "object") return null;
-  const e = err as {
-    code?: string;
-    message?: string;
-    details?: string | null;
-    hint?: string | null;
-  };
+  const e = err as { code?: string; message?: string; details?: string | null; hint?: string | null };
   return {
     code: e.code ?? null,
     message: e.message ?? "unknown error",
@@ -208,8 +210,7 @@ export async function runSprint4Probes(
     probes.push({
       key: "conversation_privacy",
       name: "Educators cannot read tutor conversations",
-      expectation:
-        "Staff SELECT on tutor_interactions returns 0 rows even when conversations exist.",
+      expectation: "Staff SELECT on tutor_interactions returns 0 rows even when conversations exist.",
       pass: globalCount === 0 ? true : visibleCount === 0,
       skipped: globalCount === 0,
       detail:
@@ -232,10 +233,7 @@ export async function runSprint4Probes(
       for (const key of ["cross_org_read", "cross_org_insert"] as const) {
         probes.push({
           key,
-          name:
-            key === "cross_org_read"
-              ? "Cross-organization read denied"
-              : "Cross-organization insert denied",
+          name: key === "cross_org_read" ? "Cross-organization read denied" : "Cross-organization insert denied",
           expectation: "A second organization must exist for this probe.",
           pass: false,
           skipped: true,
@@ -377,9 +375,10 @@ export async function runSprint4Probes(
 
   // P6 — Live AI gateway status (honest signal; P5 covers the outage case).
   {
-    const ai = await callTutorAi("You are a math tutor. Reply with exactly: Tutor online.", [
-      { role: "user", content: "Status check" },
-    ]);
+    const ai = await callTutorAi(
+      "You are a math tutor. Reply with exactly: Tutor online.",
+      [{ role: "user", content: "Status check" }],
+    );
     probes.push({
       key: "ai_gateway_live",
       name: "AI gateway reachable",
@@ -415,20 +414,12 @@ export async function runSprint4Probes(
       });
     } else {
       const masteryBefore = learner.mastery_score;
-      const evidenceBefore =
-        (
-          await admin
-            .from("learner_evidence")
-            .select("id", { count: "exact", head: true })
-            .eq("learner_id", learner.id)
-        ).count ?? 0;
-      const sessionsBefore =
-        (
-          await admin
-            .from("assessment_sessions")
-            .select("id", { count: "exact", head: true })
-            .eq("learner_id", learner.id)
-        ).count ?? 0;
+      const evidenceBefore = (
+        await admin.from("learner_evidence").select("id", { count: "exact", head: true }).eq("learner_id", learner.id)
+      ).count ?? 0;
+      const sessionsBefore = (
+        await admin.from("assessment_sessions").select("id", { count: "exact", head: true }).eq("learner_id", learner.id)
+      ).count ?? 0;
 
       const content = conceptContent("Equivalence");
       const { data: session } = await admin
@@ -471,10 +462,7 @@ export async function runSprint4Probes(
           const reply = await generateTutorReply(FIXTURE_CTX, step.action, {
             hintLevel: 1,
             studentText: step.studentText,
-            activeItem:
-              isAnswer || step.action === "practice_question"
-                ? (content.practice[0] ?? null)
-                : null,
+            activeItem: isAnswer || step.action === "practice_question" ? (content.practice[0] ?? null) : null,
             correct: isAnswer ? true : null,
             history: [],
             forceFallback: true,
@@ -503,20 +491,12 @@ export async function runSprint4Probes(
           .select("mastery_score")
           .eq("id", learner.id)
           .single();
-        const evidenceAfter =
-          (
-            await admin
-              .from("learner_evidence")
-              .select("id", { count: "exact", head: true })
-              .eq("learner_id", learner.id)
-          ).count ?? 0;
-        const sessionsAfter =
-          (
-            await admin
-              .from("assessment_sessions")
-              .select("id", { count: "exact", head: true })
-              .eq("learner_id", learner.id)
-          ).count ?? 0;
+        const evidenceAfter = (
+          await admin.from("learner_evidence").select("id", { count: "exact", head: true }).eq("learner_id", learner.id)
+        ).count ?? 0;
+        const sessionsAfter = (
+          await admin.from("assessment_sessions").select("id", { count: "exact", head: true }).eq("learner_id", learner.id)
+        ).count ?? 0;
 
         const boundariesHeld =
           learnerAfter?.mastery_score === masteryBefore &&

@@ -23,9 +23,6 @@ if (!url) {
 const sqlPath = resolve(import.meta.dirname, "export-snapshot.sql");
 const out = execFileSync("psql", [url, "-At", "-f", sqlPath], { encoding: "utf8" });
 JSON.parse(out); // fail loudly if the query returned anything but JSON
-const target = resolve(
-  import.meta.dirname,
-  "../../content/compliance/class-10-2026-27.snapshot.json",
-);
+const target = resolve(import.meta.dirname, "../../content/compliance/class-10-2026-27.snapshot.json");
 writeFileSync(target, out);
 console.log(`wrote ${target} (${out.length} bytes)`);

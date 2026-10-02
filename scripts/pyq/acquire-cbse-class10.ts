@@ -99,11 +99,7 @@ function curl(url: string, out: string): { status: number; type: string; finalUr
     ],
     { encoding: "utf8" },
   ).split("\n");
-  return {
-    status: Number(meta[0]),
-    type: (meta[1] ?? "").trim(),
-    finalUrl: (meta[2] ?? "").trim(),
-  };
+  return { status: Number(meta[0]), type: (meta[1] ?? "").trim(), finalUrl: (meta[2] ?? "").trim() };
 }
 
 async function main() {
@@ -246,38 +242,15 @@ async function main() {
     },
   };
 
-  const csv = (rows: string[][]) =>
-    rows.map((r) => r.map((c) => `"${c.replace(/"/g, '""')}"`).join(",")).join("\n") + "\n";
-  writeFileSync(
-    join(REPO, "CBSE_CLASS10_PYQ_SOURCE_REGISTER.json"),
-    `${JSON.stringify(register, null, 2)}\n`,
-  );
+  const csv = (rows: string[][]) => rows.map((r) => r.map((c) => `"${c.replace(/"/g, '""')}"`).join(",")).join("\n") + "\n";
+  writeFileSync(join(REPO, "CBSE_CLASS10_PYQ_SOURCE_REGISTER.json"), `${JSON.stringify(register, null, 2)}\n`);
   writeFileSync(
     join(REPO, "CBSE_CLASS10_PYQ_SOURCE_REGISTER.csv"),
     csv([
-      [
-        "year",
-        "subject",
-        "subject_code",
-        "final_url",
-        "http_status",
-        "content_type",
-        "bytes",
-        "signature",
-        "sha256",
-        "checksums_agree",
-      ],
+      ["year", "subject", "subject_code", "final_url", "http_status", "content_type", "bytes", "signature", "sha256", "checksums_agree"],
       ...accepted.map((a) => [
-        String(a.year),
-        a.subject,
-        a.subjectCode,
-        a.finalUrl,
-        String(a.httpStatus),
-        a.contentType,
-        String(a.bytes),
-        a.fileSignature,
-        a.sha256,
-        String(a.checksumsAgree),
+        String(a.year), a.subject, a.subjectCode, a.finalUrl, String(a.httpStatus), a.contentType,
+        String(a.bytes), a.fileSignature, a.sha256, String(a.checksumsAgree),
       ]),
     ]),
   );
@@ -288,36 +261,16 @@ async function main() {
   writeFileSync(
     join(REPO, "CBSE_CLASS10_PYQ_EXTRACTION_INVENTORY.csv"),
     csv([
-      [
-        "year",
-        "subject",
-        "archive",
-        "pdf_entry",
-        "bytes",
-        "signature",
-        "sha256",
-        "set_series",
-        "exam_type",
-      ],
+      ["year", "subject", "archive", "pdf_entry", "bytes", "signature", "sha256", "set_series", "exam_type"],
       ...inventory.map((i) => [
-        String(i.year),
-        i.subject,
-        i.archive,
-        i.entry,
-        String(i.entryBytes),
-        i.entrySignature,
-        i.entrySha256,
-        i.setSeries,
-        i.examType,
+        String(i.year), i.subject, i.archive, i.entry, String(i.entryBytes), i.entrySignature,
+        i.entrySha256, i.setSeries, i.examType,
       ]),
     ]),
   );
   writeFileSync(
     join(REPO, "CBSE_CLASS10_PYQ_MISSING_FILES.csv"),
-    csv([
-      ["year", "subject", "reason", "detail"],
-      ...missing.map((m) => [String(m.year), m.subject, m.reason, m.detail]),
-    ]),
+    csv([["year", "subject", "reason", "detail"], ...missing.map((m) => [String(m.year), m.subject, m.reason, m.detail])]),
   );
 
   console.log(JSON.stringify(register.counts, null, 2));
