@@ -1149,6 +1149,8 @@ export type Database = {
       centre_onboarding: {
         Row: {
           approved_at: string
+          catalogue: Json
+          catalogue_confirmed_at: string | null
           created_at: string
           org_id: string
           profile_completed_at: string | null
@@ -1157,6 +1159,8 @@ export type Database = {
         }
         Insert: {
           approved_at?: string
+          catalogue?: Json
+          catalogue_confirmed_at?: string | null
           created_at?: string
           org_id: string
           profile_completed_at?: string | null
@@ -1165,6 +1169,8 @@ export type Database = {
         }
         Update: {
           approved_at?: string
+          catalogue?: Json
+          catalogue_confirmed_at?: string | null
           created_at?: string
           org_id?: string
           profile_completed_at?: string | null
@@ -1901,6 +1907,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      founder_access_denials: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          id: string
+          operation: string
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          operation: string
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          operation?: string
+        }
+        Relationships: []
       }
       free_learning_checks: {
         Row: {
@@ -3620,6 +3647,8 @@ export type Database = {
           id: string
           learner_count: string | null
           notes: string | null
+          owner_notification_error: string | null
+          owner_notified_at: string | null
           phone: string | null
           status: string
           timeline: string | null
@@ -3637,6 +3666,8 @@ export type Database = {
           id?: string
           learner_count?: string | null
           notes?: string | null
+          owner_notification_error?: string | null
+          owner_notified_at?: string | null
           phone?: string | null
           status?: string
           timeline?: string | null
@@ -3654,6 +3685,8 @@ export type Database = {
           id?: string
           learner_count?: string | null
           notes?: string | null
+          owner_notification_error?: string | null
+          owner_notified_at?: string | null
           phone?: string | null
           status?: string
           timeline?: string | null
