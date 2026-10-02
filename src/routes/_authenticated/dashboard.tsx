@@ -2,7 +2,15 @@ import { useRef } from "react";
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, BookOpenCheck, FlaskConical, Rocket, TrendingUp, TriangleAlert, Users } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpenCheck,
+  FlaskConical,
+  Rocket,
+  TrendingUp,
+  TriangleAlert,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -62,17 +70,22 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
       { title: "Dashboard — EduOS" },
-      { name: "description", content: "Roster health, mastery trends, and recent learning evidence." },
+      {
+        name: "description",
+        content: "Roster health, mastery trends, and recent learning evidence.",
+      },
       { property: "og:title", content: "Dashboard — EduOS" },
-      { property: "og:description", content: "Roster health, mastery trends, and recent learning evidence." },
+      {
+        property: "og:description",
+        content: "Roster health, mastery trends, and recent learning evidence.",
+      },
     ],
   }),
   component: DashboardPage,
 });
 
 export function statusBadge(status: Learner["status"]) {
-  if (status === "needs_attention")
-    return <Badge variant="destructive">Needs attention</Badge>;
+  if (status === "needs_attention") return <Badge variant="destructive">Needs attention</Badge>;
   if (status === "paused") return <Badge variant="outline">Paused</Badge>;
   return <Badge variant="secondary">Active</Badge>;
 }
@@ -150,7 +163,6 @@ function DashboardPage() {
     },
   });
 
-
   const { data: evidence } = useQuery({
     queryKey: ["recent-evidence"],
     queryFn: async () => {
@@ -166,7 +178,9 @@ function DashboardPage() {
 
   const roster = learners ?? [];
   const total = roster.length;
-  const avgMastery = total ? Math.round(roster.reduce((s, l) => s + l.mastery_score, 0) / total) : 0;
+  const avgMastery = total
+    ? Math.round(roster.reduce((s, l) => s + l.mastery_score, 0) / total)
+    : 0;
   const avgLift = total
     ? Math.round((roster.reduce((s, l) => s + Number(l.mastery_lift), 0) / total) * 10) / 10
     : 0;
@@ -175,10 +189,30 @@ function DashboardPage() {
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
 
   const stats = [
-    { label: "Learners", value: String(total), icon: Users, hint: role === "admin" ? "Across the center" : "On your roster" },
-    { label: "Average mastery", value: `${avgMastery}%`, icon: BookOpenCheck, hint: "Across active learners" },
-    { label: "Avg 30-day lift", value: liftText(avgLift), icon: TrendingUp, hint: "Points gained this month" },
-    { label: "Needs attention", value: String(attention.length), icon: TriangleAlert, hint: "Below 60% or flagged" },
+    {
+      label: "Learners",
+      value: String(total),
+      icon: Users,
+      hint: role === "admin" ? "Across the center" : "On your roster",
+    },
+    {
+      label: "Average mastery",
+      value: `${avgMastery}%`,
+      icon: BookOpenCheck,
+      hint: "Across active learners",
+    },
+    {
+      label: "Avg 30-day lift",
+      value: liftText(avgLift),
+      icon: TrendingUp,
+      hint: "Points gained this month",
+    },
+    {
+      label: "Needs attention",
+      value: String(attention.length),
+      icon: TriangleAlert,
+      hint: "Below 60% or flagged",
+    },
   ];
 
   const onboardingSteps: OnboardingStep[] = [
@@ -201,7 +235,8 @@ function DashboardPage() {
     {
       key: "approve-intervention",
       title: "Approve an intervention",
-      description: "Scores under 70% open a gap with a recommendation — approving it unlocks the AI Tutor.",
+      description:
+        "Scores under 70% open a gap with a recommendation — approving it unlocks the AI Tutor.",
       done: (interventionCount ?? 0) > 0,
       to: "/interventions",
       ctaLabel: "Open interventions",
@@ -238,7 +273,9 @@ function DashboardPage() {
     queryFn: () => fetchClassBoard(),
   });
 
-  const closureSummary = closureView ? summariseClosure(closureView.label, closureView.totals) : null;
+  const closureSummary = closureView
+    ? summariseClosure(closureView.label, closureView.totals)
+    : null;
 
   // Never hard-code a centre name — admins of any organization see their own.
   const { data: org } = useQuery({
@@ -253,7 +290,6 @@ function DashboardPage() {
       return data;
     },
   });
-
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
@@ -313,13 +349,12 @@ function DashboardPage() {
         <p className="flex items-start gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-800 dark:text-amber-300">
           <FlaskConical className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           <span>
-            <span className="font-semibold">SAMPLE workspace active</span> — {sampleCount} sample learners are
-            excluded from every number on this page. They are labelled SAMPLE in Learners and can be
-            removed from Settings.
+            <span className="font-semibold">SAMPLE workspace active</span> — {sampleCount} sample
+            learners are excluded from every number on this page. They are labelled SAMPLE in
+            Learners and can be removed from Settings.
           </span>
         </p>
       )}
-
 
       <div data-tour="educator-checklist">
         <OnboardingChecklist
@@ -381,10 +416,26 @@ function DashboardPage() {
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              { label: "Improvement", value: outcomeSummary?.improvement, tone: "text-emerald-600 dark:text-emerald-400" },
-              { label: "No improvement", value: outcomeSummary?.noImprovement, tone: "text-destructive" },
-              { label: "Low confidence", value: outcomeSummary?.lowConfidence, tone: "text-amber-600 dark:text-amber-400" },
-              { label: "Requires review", value: outcomeSummary?.requiresReview, tone: "text-muted-foreground" },
+              {
+                label: "Improvement",
+                value: outcomeSummary?.improvement,
+                tone: "text-emerald-600 dark:text-emerald-400",
+              },
+              {
+                label: "No improvement",
+                value: outcomeSummary?.noImprovement,
+                tone: "text-destructive",
+              },
+              {
+                label: "Low confidence",
+                value: outcomeSummary?.lowConfidence,
+                tone: "text-amber-600 dark:text-amber-400",
+              },
+              {
+                label: "Requires review",
+                value: outcomeSummary?.requiresReview,
+                tone: "text-muted-foreground",
+              },
               {
                 label: "Avg lift",
                 value:
@@ -440,7 +491,11 @@ function DashboardPage() {
                   className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-accent"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold">
-                    {learner.full_name.split(" ").map((p) => p[0]).slice(0, 2).join("")}
+                    {learner.full_name
+                      .split(" ")
+                      .map((p) => p[0])
+                      .slice(0, 2)
+                      .join("")}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{learner.full_name}</p>
@@ -450,7 +505,9 @@ function DashboardPage() {
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-semibold tabular-nums">{learner.mastery_score}%</p>
-                    <p className="text-xs text-muted-foreground tabular-nums">{liftText(Number(learner.mastery_lift))} pts</p>
+                    <p className="text-xs text-muted-foreground tabular-nums">
+                      {liftText(Number(learner.mastery_lift))} pts
+                    </p>
                   </div>
                   {statusBadge(learner.status)}
                 </Link>
@@ -475,13 +532,16 @@ function DashboardPage() {
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">{item.title}</p>
                   <p className="text-xs text-muted-foreground">
-                    {nameByLearner.get(item.learner_id) ?? "Learner"} · {item.kind} · {item.recorded_on}
+                    {nameByLearner.get(item.learner_id) ?? "Learner"} · {item.kind} ·{" "}
+                    {item.recorded_on}
                   </p>
                 </div>
               </div>
             ))}
             {(evidence ?? []).length === 0 && (
-              <p className="py-8 text-center text-sm text-muted-foreground">No evidence logged yet.</p>
+              <p className="py-8 text-center text-sm text-muted-foreground">
+                No evidence logged yet.
+              </p>
             )}
           </CardContent>
         </Card>

@@ -40,7 +40,9 @@ async function loadScope(supabase: Client): Promise<{
     supabase.from("learning_gaps").select("id, learner_id, status, first_detected_at, updated_at"),
     (supabase as SupabaseClient)
       .from("learner_outcomes")
-      .select("learner_id, status, mastery_lift, post_score, baseline_score, created_at, completed_at"),
+      .select(
+        "learner_id, status, mastery_lift, post_score, baseline_score, created_at, completed_at",
+      ),
   ]);
   if (learnersRes.error) throw new Error(learnersRes.error.message);
   if (gapsRes.error) throw new Error(gapsRes.error.message);
@@ -48,7 +50,9 @@ async function loadScope(supabase: Client): Promise<{
 
   const learners = (learnersRes.data ?? []) as unknown as LearnerRow[];
   const centreIds = new Set(learners.map((l) => l.id));
-  const educatorIds = [...new Set(learners.map((l) => l.educator_id).filter((v): v is string => !!v))];
+  const educatorIds = [
+    ...new Set(learners.map((l) => l.educator_id).filter((v): v is string => !!v)),
+  ];
   const educatorNames = new Map<string, string>();
   if (educatorIds.length > 0) {
     const { data: profiles } = await supabase

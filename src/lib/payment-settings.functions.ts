@@ -32,9 +32,8 @@ export const savePaymentSettingsFn = createServerFn({ method: "POST" })
   )
   .handler(async ({ context, data }) => {
     await requirePlatformOwner(context);
-    const { saveRazorpayCredentials, razorpayCredentialStatus } = await import(
-      "./payment-credentials.server"
-    );
+    const { saveRazorpayCredentials, razorpayCredentialStatus } =
+      await import("./payment-credentials.server");
     await saveRazorpayCredentials({
       keyId: data.keyId,
       keySecret: data.keySecret,
@@ -48,9 +47,8 @@ export const clearPaymentSettingsFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await requirePlatformOwner(context);
-    const { clearRazorpayCredentials, razorpayCredentialStatus } = await import(
-      "./payment-credentials.server"
-    );
+    const { clearRazorpayCredentials, razorpayCredentialStatus } =
+      await import("./payment-credentials.server");
     await clearRazorpayCredentials(context.userId);
     return razorpayCredentialStatus();
   });
