@@ -3474,82 +3474,6 @@ export type Database = {
           },
         ]
       }
-      centre_setup_progress: {
-        Row: {
-          completed_at: string | null
-          org_id: string
-          report_reviewed_at: string | null
-          sample_created_at: string | null
-          sample_removed_at: string | null
-          updated_at: string
-        }
-        Insert: {
-          completed_at?: string | null
-          org_id: string
-          report_reviewed_at?: string | null
-          sample_created_at?: string | null
-          sample_removed_at?: string | null
-          updated_at?: string
-        }
-        Update: {
-          completed_at?: string | null
-          org_id?: string
-          report_reviewed_at?: string | null
-          sample_created_at?: string | null
-          sample_removed_at?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "centre_setup_progress_org_id_fkey"
-            columns: ["org_id"]
-            isOneToOne: true
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      sample_workspace_events: {
-        Row: {
-          action: string
-          actor_user_id: string
-          assessments_count: number
-          created_at: string
-          id: string
-          learners_count: number
-          org_id: string
-          sessions_count: number
-        }
-        Insert: {
-          action: string
-          actor_user_id: string
-          assessments_count?: number
-          created_at?: string
-          id?: string
-          learners_count?: number
-          org_id: string
-          sessions_count?: number
-        }
-        Update: {
-          action?: string
-          actor_user_id?: string
-          assessments_count?: number
-          created_at?: string
-          id?: string
-          learners_count?: number
-          org_id?: string
-          sessions_count?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sample_workspace_events_org_id_fkey"
-            columns: ["org_id"]
-            isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       pilot_grant_events: {
         Row: {
           action: string
@@ -5281,10 +5205,6 @@ export type Database = {
       expire_stale_parent_orders: {
         Args: { older_than?: string }
         Returns: number
-      }
-      remove_sample_workspace: {
-        Args: { p_actor: string; p_org: string }
-        Returns: Json
       }
       has_active_pilot_access: {
         Args: { _learner_id: string; _subject?: string }
