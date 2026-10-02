@@ -79,3 +79,13 @@ rollback and official curriculum correctness.
 - [x] Guard test `src/lib/__tests__/no-platform-branding.test.ts` fails on any user-facing platform branding.
 - [x] Permanent rule recorded in AGENTS.md.
 - [ ] Founder action: create EduOS-owned Google Cloud OAuth client and enter it in Cloud → Users → Auth Settings → Google, so the consent screen reads "EduOS".
+
+## P0 Centre admin activation (Parts A–H)
+- [ ] A. Founder-only Payment Settings (verified email, server-enforced, generic 403, denied-attempt logging)
+- [ ] B. Centre-admin navigation (capability rules, platform links absent)
+- [ ] C. First-login welcome + persisted 6-step checklist
+- [ ] D. Non-blank centre routes (loading/zero/error/populated/denied)
+- [ ] E. Isolated removable SAMPLE workspace
+- [ ] F. Safe founder-only centre approval provisioning
+- [ ] G. Centre application owner notification (support@eduos.global)
+- [ ] H. Tests, RLS checks, secret scan, browser verification; deploy only if all gates pass

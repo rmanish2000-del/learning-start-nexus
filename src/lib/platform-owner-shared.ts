@@ -16,6 +16,14 @@ export function isPlatformOwnerEmail(
   return email.trim().toLowerCase() === owner.trim().toLowerCase();
 }
 
+/** Exact owner email AND a confirmed email. Role is never an input. */
+export function isPlatformOwnerUser(
+  user: { email?: string | null; email_confirmed_at?: string | null } | null | undefined,
+): boolean {
+  if (!user?.email_confirmed_at) return false;
+  return isPlatformOwnerEmail(user.email);
+}
+
 /** Routes that exist only for the platform owner. Absent from navigation for everyone else. */
 export const PLATFORM_OWNER_PATHS = [
   "/payment-settings",

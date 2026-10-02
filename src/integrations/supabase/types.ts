@@ -1152,6 +1152,41 @@ export type Database = {
           },
         ]
       }
+      centre_setup_progress: {
+        Row: {
+          completed_at: string | null
+          org_id: string
+          report_reviewed_at: string | null
+          sample_created_at: string | null
+          sample_removed_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          org_id: string
+          report_reviewed_at?: string | null
+          sample_created_at?: string | null
+          sample_removed_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          org_id?: string
+          report_reviewed_at?: string | null
+          sample_created_at?: string | null
+          sample_removed_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "centre_setup_progress_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: true
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       concept_edges: {
         Row: {
           book_id: string
@@ -1872,6 +1907,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      founder_access_denials: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          id: string
+          operation: string
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          operation: string
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          operation?: string
+        }
+        Relationships: []
       }
       free_learning_checks: {
         Row: {
@@ -3670,6 +3726,8 @@ export type Database = {
           id: string
           learner_count: string | null
           notes: string | null
+          owner_notification_error: string | null
+          owner_notified_at: string | null
           phone: string | null
           status: string
           timeline: string | null
@@ -3687,6 +3745,8 @@ export type Database = {
           id?: string
           learner_count?: string | null
           notes?: string | null
+          owner_notification_error?: string | null
+          owner_notified_at?: string | null
           phone?: string | null
           status?: string
           timeline?: string | null
@@ -3704,6 +3764,8 @@ export type Database = {
           id?: string
           learner_count?: string | null
           notes?: string | null
+          owner_notification_error?: string | null
+          owner_notified_at?: string | null
           phone?: string | null
           status?: string
           timeline?: string | null
@@ -4822,6 +4884,47 @@ export type Database = {
           },
         ]
       }
+      sample_workspace_events: {
+        Row: {
+          action: string
+          actor_user_id: string
+          assessments_count: number
+          created_at: string
+          id: string
+          learners_count: number
+          org_id: string
+          sessions_count: number
+        }
+        Insert: {
+          action: string
+          actor_user_id: string
+          assessments_count?: number
+          created_at?: string
+          id?: string
+          learners_count?: number
+          org_id: string
+          sessions_count?: number
+        }
+        Update: {
+          action?: string
+          actor_user_id?: string
+          assessments_count?: number
+          created_at?: string
+          id?: string
+          learners_count?: number
+          org_id?: string
+          sessions_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sample_workspace_events_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sme_review_queue: {
         Row: {
           evidence: Json
@@ -5188,6 +5291,10 @@ export type Database = {
         Returns: boolean
       }
       profile_phone: { Args: { _user_id: string }; Returns: string }
+      remove_sample_workspace: {
+        Args: { p_actor: string; p_org: string }
+        Returns: Json
+      }
       tutor_evidence_by_gap: {
         Args: never
         Returns: {
