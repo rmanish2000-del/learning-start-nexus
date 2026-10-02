@@ -1,4 +1,4 @@
-// Admin payment settings — thin server-function wrappers.
+// Founder-only payment settings — thin server-function wrappers.
 //
 // Secret values are write-only: nothing here ever returns a key secret or
 // webhook secret to the browser, only masked status.
@@ -7,12 +7,12 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { requireAnyRole } from "./admin.server";
+import { requireFounder } from "./founder.server";
 
 export const getPaymentSettingsFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requireFounder(context.supabase);
     const { razorpayCredentialStatus } = await import("./payment-credentials.server");
     return razorpayCredentialStatus();
   });
@@ -29,7 +29,7 @@ export const savePaymentSettingsFn = createServerFn({ method: "POST" })
       .parse(data),
   )
   .handler(async ({ context, data }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requireFounder(context.supabase);
     const { saveRazorpayCredentials, razorpayCredentialStatus } = await import(
       "./payment-credentials.server"
     );
@@ -45,7 +45,7 @@ export const savePaymentSettingsFn = createServerFn({ method: "POST" })
 export const clearPaymentSettingsFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requireFounder(context.supabase);
     const { clearRazorpayCredentials, razorpayCredentialStatus } = await import(
       "./payment-credentials.server"
     );
@@ -56,7 +56,7 @@ export const clearPaymentSettingsFn = createServerFn({ method: "POST" })
 export const listPaymentAuditFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requireFounder(context.supabase);
     const { listCredentialAudit } = await import("./payment-credentials.server");
     return listCredentialAudit();
   });
@@ -64,7 +64,7 @@ export const listPaymentAuditFn = createServerFn({ method: "GET" })
 export const testPaymentSettingsFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requireFounder(context.supabase);
     const { testRazorpayCredentials } = await import("./payment-credentials.server");
     return testRazorpayCredentials(context.userId);
   });
@@ -72,7 +72,7 @@ export const testPaymentSettingsFn = createServerFn({ method: "POST" })
 export const getWebhookStatusFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requireFounder(context.supabase);
     const { getWebhookStatus } = await import("./payment-observability.server");
     return getWebhookStatus();
   });
