@@ -41,7 +41,7 @@ function shaFromGitFiles(): string | null {
     if (existsSync(loose)) return readFileSync(loose, "utf8").trim();
     const packed = readFileSync(path.join(gitDir, "packed-refs"), "utf8");
     const line = packed.split("\n").find((l) => l.endsWith(" " + ref));
-    return line ? line.split(" ")[0] : null;
+    return line ? (line.split(" ")[0] ?? null) : null;
   } catch {
     return null;
   }
@@ -58,12 +58,16 @@ function buildSha(): string {
   ];
   try {
     candidates.push(
-      execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim(),
+      execSync("git rev-parse HEAD", { stdio: ["ignore", "pipe", "ignore"] })
+        .toString()
+        .trim(),
     );
   } catch {
     // git binary unavailable in this build environment
   }
-  return candidates.map((c) => c?.trim().toLowerCase()).find((c) => c && SHA_RE.test(c)) ?? "unknown";
+  return (
+    candidates.map((c) => c?.trim().toLowerCase()).find((c) => c && SHA_RE.test(c)) ?? "unknown"
+  );
 }
 
 export default defineConfig({
