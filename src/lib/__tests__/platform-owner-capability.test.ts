@@ -132,7 +132,7 @@ describe("server functions gate on the platform owner", () => {
 describe("client route gate and navigation", () => {
   it("the authenticated layout computes platformOwner from the verified user and guards owner paths first", () => {
     const src = read("src/routes/_authenticated/route.tsx");
-    expect(src).toContain("isPlatformOwnerEmail(data.user.email)");
+    expect(src).toContain("isPlatformOwnerUser(data.user)");
     expect(src).toContain("isPlatformOwnerPath(location.pathname) && !platformOwner");
     expect(src).toContain("platformOwner,");
     // Audit surfaces are no longer open to every admin.
