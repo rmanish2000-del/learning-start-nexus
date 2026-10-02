@@ -1,3 +1,4 @@
+import { useWorkspaceContext } from "@/lib/workspace-context";
 import { useState } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -71,7 +72,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
 });
 
 function AdminPage() {
-  const { user, profile, platformOwner } = Route.useRouteContext();
+  const { user, profile, platformOwner } = useWorkspaceContext();
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tempPassword, setTempPassword] = useState<string | null>(null);

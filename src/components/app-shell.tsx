@@ -1,3 +1,4 @@
+import { useWorkspaceContext } from "@/lib/workspace-context";
 import { useQuery } from "@tanstack/react-query";
 import { Link, getRouteApi } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -139,10 +140,9 @@ const TITLES: [RegExp, string][] = [
   [/^\/pilot-evidence/, "Pilot evidence"],
 ];
 
-const authRoute = getRouteApi("/_authenticated");
 
 function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
-  const { role, platformOwner } = authRoute.useRouteContext();
+  const { role, platformOwner } = useWorkspaceContext();
   if (!items.some((item) => canSeeNavItem(item, role, platformOwner))) return null;
   return (
     <SidebarGroup>
@@ -155,7 +155,7 @@ function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
 }
 
 function NavLinks({ items }: { items: NavItem[] }) {
-  const { role, platformOwner } = authRoute.useRouteContext();
+  const { role, platformOwner } = useWorkspaceContext();
   const { isMobile, setOpenMobile } = useSidebar();
 
   return (
@@ -185,7 +185,7 @@ function NavLinks({ items }: { items: NavItem[] }) {
 
 // Persistent context indicator: current role, organization, and assigned educator.
 function DemoContextBar() {
-  const { user, role, profile } = authRoute.useRouteContext();
+  const { user, role, profile } = useWorkspaceContext();
 
   const { data: org } = useQuery({
     queryKey: ["org", profile?.org_id],
@@ -256,7 +256,7 @@ function DemoContextBar() {
 
 // Sidebar footer shows the signed-in user's own centre, never a fixed name.
 function OrgFooterLabel() {
-  const { profile } = authRoute.useRouteContext();
+  const { profile } = useWorkspaceContext();
   const { data: org } = useQuery({
     queryKey: ["org", profile?.org_id],
     enabled: !!profile?.org_id,
@@ -280,7 +280,7 @@ function OrgFooterLabel() {
 // Workspace navigation for the signed-in role. Centre admins get Quick Start
 // pinned at position 1 until their server-side setup checklist completes.
 function WorkspaceNav() {
-  const { role } = authRoute.useRouteContext();
+  const { role } = useWorkspaceContext();
   const fetchSetup = useServerFn(getCentreSetupFn);
   const { data: setup } = useQuery({
     queryKey: CENTRE_SETUP_QUERY_KEY,
@@ -347,7 +347,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 }
 
 function HeaderTitle() {
-  const { role } = authRoute.useRouteContext();
+  const { role } = useWorkspaceContext();
 
   return (
     <h1 className="flex min-w-0 items-center gap-2 text-sm font-medium text-foreground">

@@ -1,20 +1,17 @@
-// Platform-owner gate — server only.
+// Platform-owner gate — server only. The single authority for every
+// platform-level server function (payment settings, payment audit, pilot
+// access, pilot invitations, feedback review, centre approval).
 //
-// Every platform-level server function calls requirePlatformOwner() before
-// doing anything. The identity comes from the verified JWT claims produced by
-// requireSupabaseAuth (supabase.auth.getClaims), never from request input.
-// PLATFORM_OWNER_EMAIL may be overridden through the server secret store for
-// a staging project; it defaults to the production owner.
+// Identity is re-validated with the auth server on every call
+// (supabase.auth.getUser), never taken from request input or unverified
+// claims. Access requires the exact owner email AND a confirmed email.
+// Role is deliberately not an input. Denials throw a generic HTTP 403 and are
+// recorded with actor id + operation name only — never secrets or reasons.
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/integrations/supabase/types";
-import { isPlatformOwnerEmail, PLATFORM_OWNER_EMAIL } from "./platform-owner-shared";
-
-export function platformOwnerEmail(): string {
-  const configured = process.env["PLATFORM_OWNER_EMAIL"];
-  return (configured && configured.trim() ? configured : PLATFORM_OWNER_EMAIL).trim().toLowerCase();
-}
+import { isPlatformOwnerUser } from "./platform-owner-shared";
 
 export type OwnerContext = {
   supabase: SupabaseClient<Database>;
@@ -22,19 +19,26 @@ export type OwnerContext = {
   claims?: unknown;
 };
 
-async function callerEmail(context: OwnerContext): Promise<string | null> {
-  const fromClaims = (context.claims as { email?: unknown } | null | undefined)?.email;
-  if (typeof fromClaims === "string" && fromClaims) return fromClaims;
-  const { data } = await context.supabase.auth.getUser();
-  return data.user?.email ?? null;
-}
-
 export async function isPlatformOwner(context: OwnerContext): Promise<boolean> {
-  return isPlatformOwnerEmail(await callerEmail(context), platformOwnerEmail());
+  const { data, error } = await context.supabase.auth.getUser();
+  if (error || !data?.user) return false;
+  if (data.user.id !== context.userId) return false;
+  return isPlatformOwnerUser(data.user);
 }
 
-/** Throws unless the signed-in caller is the platform owner. */
-export async function requirePlatformOwner(context: OwnerContext): Promise<void> {
+/** Throws a generic 403 Response unless the caller is the confirmed platform owner. */
+export async function requirePlatformOwner(
+  context: OwnerContext,
+  operation = "platform",
+): Promise<void> {
   if (await isPlatformOwner(context)) return;
-  throw new Error("You do not have permission to perform this action.");
+  try {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    await supabaseAdmin
+      .from("founder_access_denials")
+      .insert({ actor_id: context.userId ?? null, operation: operation.slice(0, 80) });
+  } catch {
+    // Denial logging must never change the response.
+  }
+  throw new Response("Forbidden", { status: 403 });
 }
