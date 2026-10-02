@@ -28,10 +28,13 @@ export async function fetchClassBoard(
   const [{ data: learners, error: lErr }, { data: gaps, error: gErr }] = await Promise.all([
     // Centre aggregates exclude DIRECT_PARENT learners entirely (server-side,
     // not a UI filter): they have no centre membership and no educator.
+    // The SAMPLE workspace is excluded here too: cohort progress and the gap
+    // heatmap are reporting surfaces.
     supabase
       .from("learners")
       .select("id, full_name, grade, subject, mastery_score")
       .eq("learner_mode", "centre_managed")
+      .eq("is_sample", false)
       .order("full_name"),
     supabase.from("learning_gaps").select("learner_id, subject, status, updated_at"),
   ]);

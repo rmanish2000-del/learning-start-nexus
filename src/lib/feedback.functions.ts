@@ -2,7 +2,7 @@
 //
 // Submission and event recording are deliberately public (visitors are not
 // signed in), but they write through server-only code into locked tables.
-// Review functions are admin-only.
+// Review functions are platform-owner only.
 
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
@@ -28,9 +28,11 @@ export const recordGuidanceEventFn = createServerFn({ method: "POST" })
     return { ok: true as const };
   });
 
-async function assertAdmin(context: { supabase: unknown; userId: string }) {
-  const { requireAnyRole } = await import("./admin.server");
-  await requireAnyRole(context.supabase as never, context.userId, ["admin"]);
+// Feedback spans every organization and carries contact emails, so review is
+// platform-owner only — never a centre admin.
+async function assertAdmin(context: { supabase: unknown; userId: string; claims?: unknown }) {
+  const { requirePlatformOwner } = await import("./platform-owner.server");
+  await requirePlatformOwner({ supabase: context.supabase as never, userId: context.userId, claims: context.claims });
 }
 
 export const listFeedbackFn = createServerFn({ method: "GET" })

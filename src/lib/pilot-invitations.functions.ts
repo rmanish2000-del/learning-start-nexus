@@ -1,6 +1,7 @@
 // Pilot invitations — RPC surface.
 //
-// Creating and revoking an invitation is admin-only and re-checked server-side.
+// Creating, listing and revoking invitations is platform-owner only and
+// re-checked server-side.
 // Previewing a link is deliberately public (the visitor is not signed in yet)
 // and returns only masked, non-identifying detail. Accepting requires the
 // invited account to be signed in.
@@ -8,7 +9,7 @@
 import { createServerFn } from "@tanstack/react-start";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import { requireAnyRole } from "./admin.server";
+import { requirePlatformOwner } from "./platform-owner.server";
 import {
   createPilotInvitationSchema,
   invitationTokenSchema,
@@ -19,7 +20,7 @@ export const createPilotInvitationFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => createPilotInvitationSchema.parse(data))
   .handler(async ({ data, context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requirePlatformOwner(context);
     const { createPilotInvitation } = await import("./pilot-invitations.server");
     return createPilotInvitation({ ...data, actorUserId: context.userId });
   });
@@ -27,7 +28,7 @@ export const createPilotInvitationFn = createServerFn({ method: "POST" })
 export const listPilotInvitationsFn = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requirePlatformOwner(context);
     const { listInvitations } = await import("./pilot-invitations.server");
     return listInvitations();
   });
@@ -36,7 +37,7 @@ export const revokePilotInvitationFn = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => revokePilotInvitationSchema.parse(data))
   .handler(async ({ data, context }) => {
-    await requireAnyRole(context.supabase, context.userId, ["admin"]);
+    await requirePlatformOwner(context);
     const { revokeInvitation } = await import("./pilot-invitations.server");
     await revokeInvitation({ ...data, actorUserId: context.userId });
     return { ok: true };

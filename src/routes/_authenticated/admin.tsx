@@ -71,7 +71,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
 });
 
 function AdminPage() {
-  const { user, profile } = Route.useRouteContext();
+  const { user, profile, platformOwner } = Route.useRouteContext();
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tempPassword, setTempPassword] = useState<string | null>(null);
@@ -389,7 +389,9 @@ function AdminPage() {
 
       <StudentLoginsCard />
 
-      <PilotLeadsCard />
+      {/* Centre applications are platform-level: rendered for the platform
+          owner only, and the table policy enforces the same identity. */}
+      {platformOwner ? <PilotLeadsCard /> : null}
     </div>
   );
 }

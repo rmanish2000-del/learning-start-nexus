@@ -11,6 +11,7 @@ import {
   type AppRole,
 } from "@/lib/roles";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
+import { isPlatformOwnerEmail, isPlatformOwnerPath } from "@/lib/platform-owner-shared";
 import { AppShell } from "@/components/app-shell";
 
 /** Parents are portal-only, but support pages stay open to them. */
@@ -48,6 +49,16 @@ export const Route = createFileRoute("/_authenticated")({
     }
     const role = roleRow.role as AppRole;
 
+    // Platform owner: the one identity allowed on platform-level surfaces.
+    // The email comes from the server-verified user object; every platform
+    // server function re-checks the same identity from the JWT claims.
+    const platformOwner = isPlatformOwnerEmail(data.user.email);
+
+    // Platform-level routes (payment settings, pilot access, feedback review,
+    // payment audit) do not exist for anyone else — centre admins included.
+    if (isPlatformOwnerPath(location.pathname) && !platformOwner) {
+      throw redirect({ to: roleHome(role) });
+    }
 
     // Sprint 5A: reviewers are audit-only. Bounce them from any workspace
     // route to the launch audit (their home).
@@ -70,25 +81,9 @@ export const Route = createFileRoute("/_authenticated")({
       throw redirect({ to: "/home" });
     }
 
-    // Audit and verification surfaces: admins and reviewers only.
-    if (isAuditPath(location.pathname) && role !== "admin" && role !== "reviewer") {
-      throw redirect({ to: roleHome(role) });
-    }
-
-    // Pilot access grants free journeys — admin authority only.
-    if (
-      (location.pathname === "/pilot-access" || location.pathname.startsWith("/pilot-access/")) &&
-      role !== "admin"
-    ) {
-      throw redirect({ to: roleHome(role) });
-    }
-
-    // Payment settings are admin-only (keys, secrets, environment switch).
-    if (
-      (location.pathname === "/payment-settings" ||
-        location.pathname.startsWith("/payment-settings/")) &&
-      role !== "admin"
-    ) {
+    // Audit and verification surfaces are platform-level: the platform owner
+    // and internal reviewers only. A centre admin never reaches them.
+    if (isAuditPath(location.pathname) && !platformOwner && role !== "reviewer") {
       throw redirect({ to: roleHome(role) });
     }
 
@@ -100,6 +95,7 @@ export const Route = createFileRoute("/_authenticated")({
       user: data.user,
       role,
       profile: profile ?? null,
+      platformOwner,
     };
   },
   component: AuthenticatedLayout,
