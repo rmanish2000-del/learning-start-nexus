@@ -76,6 +76,12 @@ export const Route = createFileRoute("/_authenticated")({
     // (quick start, help center); everyone else is bounced away from /parent.
     if (
       role === "parent" &&
+      // The confirmed platform owner keeps platform-level surfaces whatever
+      // their workspace role; identity, not role, grants them.
+      !(
+        platformOwner &&
+        (isPlatformOwnerPath(location.pathname) || isAuditPath(location.pathname))
+      ) &&
       !PARENT_ALLOWED_PATHS.some(
         (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
       )
