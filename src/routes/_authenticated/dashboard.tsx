@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
+import { liftText, statusBadge } from "@/components/learner-status";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ContextHelp } from "@/components/context-help";
@@ -83,17 +84,6 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   }),
   component: DashboardPage,
 });
-
-export function statusBadge(status: Learner["status"]) {
-  if (status === "needs_attention") return <Badge variant="destructive">Needs attention</Badge>;
-  if (status === "paused") return <Badge variant="outline">Paused</Badge>;
-  return <Badge variant="secondary">Active</Badge>;
-}
-
-export function liftText(lift: number) {
-  const rounded = Math.round(lift * 10) / 10;
-  return `${rounded > 0 ? "+" : ""}${rounded}`;
-}
 
 function DashboardPage() {
   const { role, profile } = Route.useRouteContext();
@@ -399,19 +389,13 @@ function DashboardPage() {
 
       <Card data-tour="educator-outcomes">
         <div ref={outcomesRef} className="scroll-mt-20" />
-        <CardHeader className="flex flex-row items-center justify-between">
+        <CardHeader>
           <div>
             <CardTitle className="text-base">Intervention outcomes</CardTitle>
             <CardDescription>
               Reassessment results across the organization — diagnostic vs post-intervention
             </CardDescription>
           </div>
-          <Link
-            to="/sprint-5-audit"
-            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-          >
-            Audit <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
         </CardHeader>
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
