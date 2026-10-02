@@ -4,6 +4,7 @@
 //     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { execSync } from "node:child_process";
 import path from "node:path";
 
 import { loadEnv } from "vite";
@@ -43,6 +44,7 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    define: { __BUILD_SHA__: JSON.stringify(buildSha()) },
     resolve: {
       alias: {
         // React Email pulls htmlparser2 -> entities; pin every import to the
