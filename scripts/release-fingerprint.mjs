@@ -8,7 +8,14 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const INPUTS = ["src", "public", "supabase/migrations", "package.json", "vite.config.ts", "tsconfig.json"];
+const INPUTS = [
+  "src",
+  "public",
+  "supabase/migrations",
+  "package.json",
+  "vite.config.ts",
+  "tsconfig.json",
+];
 // Generated or environment-specific files that may legitimately differ per machine.
 const EXCLUDE = [/^src\/routeTree\.gen\.ts$/, /(^|\/)\.DS_Store$/, /(^|\/)node_modules\//];
 
