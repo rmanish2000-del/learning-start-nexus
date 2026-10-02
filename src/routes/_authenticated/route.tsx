@@ -11,7 +11,7 @@ import {
   type AppRole,
 } from "@/lib/roles";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
-import { isPlatformOwnerEmail, isPlatformOwnerPath } from "@/lib/platform-owner-shared";
+import { isPlatformOwnerPath, isPlatformOwnerUser } from "@/lib/platform-owner-shared";
 import { AppShell } from "@/components/app-shell";
 
 /** Parents are portal-only, but support pages stay open to them. */
@@ -52,7 +52,7 @@ export const Route = createFileRoute("/_authenticated")({
     // Platform owner: the one identity allowed on platform-level surfaces.
     // The email comes from the server-verified user object; every platform
     // server function re-checks the same identity from the JWT claims.
-    const platformOwner = isPlatformOwnerEmail(data.user.email);
+    const platformOwner = isPlatformOwnerUser(data.user);
 
     // Platform-level routes (payment settings, pilot access, feedback review,
     // payment audit) do not exist for anyone else — centre admins included.
