@@ -288,7 +288,7 @@
       "coordinate": {
         "store": "git",
         "repo": "rmanish2000-del/learning-start-nexus",
-        "ref": "5bf25fb554067560ec3b7dd5aa09380f90f82888",
+        "ref": "4b86de0fafe1372a7d9b180cca471e950d67e866",
         "path": "verification/staging-migration-reconciliation/handoff/MANIFEST.json",
         "sha256": "bd4527c3358464e72b3a6f8131555a71485837e21b5d82ece4f79ac56dc83bd4",
         "bytes": 84242
@@ -309,7 +309,7 @@
         "method": "sha256sum of the session upload matched; SHA256SUMS 32/32 OK; MANIFEST 32 entries; all 32 members committed under verification/staging-migration-reconciliation/handoff/ (staging-only migrations and the staging-applied 20260915161655 under handoff/staging-history/, NOT under supabase/migrations/)"
       },
       "evidence_grade": "verified",
-      "note": "Ref points at the base commit; files land with the reconciliation commit."
+      "note": "On main since merge 4b86de0fafe1372a7d9b180cca471e950d67e866 (PR #9)."
     },
     {
       "id": "ART-0012",
@@ -319,7 +319,7 @@
       "coordinate": {
         "store": "git",
         "repo": "rmanish2000-del/learning-start-nexus",
-        "ref": "5bf25fb554067560ec3b7dd5aa09380f90f82888",
+        "ref": "4b86de0fafe1372a7d9b180cca471e950d67e866",
         "path": "verification/staging-migration-reconciliation/ledger-evidence/READ_ME.md",
         "sha256": "5b377c79f25034b004261b55d1d9fe502735ddbca8b6cfca4b7a45015c8f2a6f",
         "bytes": 38118
@@ -340,7 +340,7 @@
         "method": "sha256sum of the session upload; SHA256SUMS 38/38 OK; all members committed under verification/staging-migration-reconciliation/ledger-evidence/ (founder email already redacted by the producer)"
       },
       "evidence_grade": "verified",
-      "note": "Ref points at the base commit; files land with the reassessment commit."
+      "note": "On main since merge 4b86de0fafe1372a7d9b180cca471e950d67e866 (PR #9)."
     },
     {
       "id": "ART-0013",
@@ -350,7 +350,7 @@
       "coordinate": {
         "store": "git",
         "repo": "rmanish2000-del/learning-start-nexus",
-        "ref": "b0b2f304b456de4bab80ca5088b9f4b2af3f72a3",
+        "ref": "4b86de0fafe1372a7d9b180cca471e950d67e866",
         "path": "verification/staging-migration-reconciliation/MIGRATION_DISPOSITION_MATRIX.md"
       },
       "producer": {
@@ -368,7 +368,35 @@
         "method": "generated in this review from supabase/migrations and ledger-evidence; one row per migration (110)"
       },
       "evidence_grade": "verified",
-      "note": "Ref points at the previous head; the file lands with the review commit."
+      "note": "On main since merge 4b86de0fafe1372a7d9b180cca471e950d67e866 (PR #9)."
+    },
+    {
+      "id": "ART-0014",
+      "title": "Post-merge staging execution plan (plan only; not executed)",
+      "kind": "plan",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "4b86de0fafe1372a7d9b180cca471e950d67e866",
+        "path": "verification/staging-migration-reconciliation/POST_MERGE_STAGING_EXECUTION_PLAN.md"
+      },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "lovable",
+        "retrieval_confirmed": false
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T17:40:00Z",
+        "method": "written in this session; lands with the post-merge docs commit on main"
+      },
+      "evidence_grade": "verified",
+      "note": "Ref points at the merge commit; the file lands with the post-merge docs commit on main (PENDING_COMMIT warning expected until then)."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T14:10:00Z",
+  "updated_at": "2026-10-03T17:40:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
@@ -14,8 +14,8 @@
   "repo": {
     "name": "rmanish2000-del/learning-start-nexus",
     "canonical_branch": "main",
-    "verified_head_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888",
-    "verified_at": "2026-10-03T11:30:00Z",
+    "verified_head_sha": "4b86de0fafe1372a7d9b180cca471e950d67e866",
+    "verified_at": "2026-10-03T17:40:00Z",
     "evidence_grade": "verified",
     "history_rule": "Lovable-connected. Never rewrite published history (no force-push, rebase, amend or squash of pushed commits)."
   },
@@ -24,31 +24,31 @@
       "command": "bunx vitest run",
       "result": "650 passed / 53 files (reconcile/staging-migrations; includes the live three-scenario migration dry-run)",
       "evidence_grade": "verified",
-      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
+      "observed_at_sha": "41eef22f0dd3313e045b52a1199b8bce26ad21e0 (PR #9 head, merged as 4b86de0fafe1372a7d9b180cca471e950d67e866)"
     },
     "typecheck": {
       "command": "bunx tsc --noEmit -p tsconfig.json",
       "result": "0 errors",
       "evidence_grade": "verified",
-      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
+      "observed_at_sha": "41eef22f0dd3313e045b52a1199b8bce26ad21e0 (PR #9 head, merged as 4b86de0fafe1372a7d9b180cca471e950d67e866)"
     },
     "lint": {
       "command": "bun run lint",
       "result": "clean on changed files (scripts/db, new test); repo-wide lint still red from pre-existing formatting",
       "evidence_grade": "verified",
-      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
+      "observed_at_sha": "41eef22f0dd3313e045b52a1199b8bce26ad21e0 (PR #9 head, merged as 4b86de0fafe1372a7d9b180cca471e950d67e866)"
     },
     "build": {
       "command": "LOVABLE_SANDBOX=1 bun run build",
       "result": "success, 254 precache entries",
       "evidence_grade": "verified",
-      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
+      "observed_at_sha": "41eef22f0dd3313e045b52a1199b8bce26ad21e0 (PR #9 head, merged as 4b86de0fafe1372a7d9b180cca471e950d67e866)"
     },
     "ai_governance": {
       "command": "bun run ai:check",
       "result": "PASS (0 errors)",
       "evidence_grade": "verified",
-      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
+      "observed_at_sha": "41eef22f0dd3313e045b52a1199b8bce26ad21e0 (PR #9 head, merged as 4b86de0fafe1372a7d9b180cca471e950d67e866)"
     }
   },
   "production": {
@@ -126,6 +126,14 @@
       "merged_at": "2026-10-03T08:50:00Z",
       "merged_by": "claude_code (founder-authorised in the 2026-10-03 P0 review-and-merge assignment)",
       "evidence_grade": "verified"
+    },
+    {
+      "number": 9,
+      "url": "https://github.com/rmanish2000-del/learning-start-nexus/pull/9",
+      "merge_sha": "4b86de0fafe1372a7d9b180cca471e950d67e866",
+      "merged_at": "2026-10-03T17:35:00Z",
+      "merged_by": "claude_code (founder-authorised in the 2026-10-03 'execute the founder merge decision' assignment)",
+      "evidence_grade": "verified"
     }
   ],
   "security": {
@@ -141,11 +149,23 @@
     }
   },
   "database": {
-    "canonical_migrations_at_verified_head": 109,
+    "canonical_migrations_at_verified_head": 110,
     "fresh_replay": "waived (docs/tech-debt/DB-BASELINE-001.md); not supported",
-    "staging_drift": "71 code files and 8 staging-only + 13 main-only migrations plus one same-name conflict (20260915161655); see verification/staging-migration-reconciliation/",
-    "reconciliation": "forward-only migration 20261003120000_staging_reconciliation_forward_only.sql on branch reconcile/staging-migrations (PR pending; not applied anywhere)",
+    "staging_drift": "[SUPERSEDED 2026-10-03: see reconciliation] 71 code files and 8 staging-only + 13 main-only migrations plus one same-name conflict (20260915161655); see verification/staging-migration-reconciliation/",
+    "reconciliation": "forward-only migration 20261003120000_staging_reconciliation_forward_only.sql merged into main at 4b86de0fafe1372a7d9b180cca471e950d67e866 (PR #9). NOT applied anywhere; staging execution plan: verification/staging-migration-reconciliation/POST_MERGE_STAGING_EXECUTION_PLAN.md",
     "evidence_grade": "verified",
     "staging_ledger": "35 rows (ART-0012, read-only). Latest 20261002052550. Main-only names after 2026-09-05 absent; question_commercial_release, production_release_pool, founder_access_denials absent; all 14 remediation/automation tables present."
-  }
+  },
+  "milestones": [
+    {
+      "id": "RECONCILIATION-2026-10-03",
+      "title": "Staging migration reconciliation merged (forward-only, ledger-verified)",
+      "sha": "4b86de0fafe1372a7d9b180cca471e950d67e866",
+      "date": "2026-10-03",
+      "evidence": "verification/staging-migration-reconciliation/VERIFICATION_REPORT.md §12",
+      "applied_to_staging": false,
+      "applied_to_production": false,
+      "evidence_grade": "verified"
+    }
+  ]
 }

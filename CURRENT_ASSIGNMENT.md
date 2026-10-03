@@ -1,6 +1,6 @@
 # EduOS — Current Assignment
 
-**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `5bf25fb554067560ec3b7dd5aa09380f90f82888`
+**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `4b86de0fafe1372a7d9b180cca471e950d67e866`
 **Machine-readable mirror (authoritative on conflict):** `.ai/CURRENT_TASK.json`
 **Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (canonical migration reconciliation).
 
@@ -20,59 +20,37 @@ before any handoff.
 
 ## Active assignment
 
-**Id:** `ASG-2026-10-03-006`
-**Title:** Canonical migration reconciliation with the real staging schema (forward-only)
-**Received:** 2026-10-03 · **Priority:** P0 SECURITY / DATA INTEGRITY · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** PASS (reassessed with the staging ledger, ART-0012) — migration unchanged and confirmed correct; PR #9 recommended for merge (founder decision); staging apply only under explicit permission with a backup.
+**Id:** `ASG-2026-10-03-007`
+**Title:** Staging apply readiness for `20261003120000` (apply-policy confirmation and pre-apply evidence; no apply)
+**Received:** 2026-10-03 · **Priority:** P0 · **Owner:** Lovable · **Continuity owner:** M365 Copilot
+**Status:** planned — waits on the Drive INBOX assignment to the Lovable seat.
 
 ### Business value
 
-Makes canonical main safely compatible with the staging schema without rewriting applied
-migrations or risking the 10 feedback rows, 1 remediation snapshot and 325 remediation
-actions that exist on staging.
+Unblocks a safe, single-migration staging apply that brings staging to canonical main's schema
+without touching the 10 feedback rows, 1 remediation snapshot and 325 remediation actions.
 
-### Input (verified)
+### Objective
 
-`EDUOS_STAGING_RECONCILIATION_HANDOFF.zip`, 84242 bytes, SHA-256
-`bd4527c3358464e72b3a6f8131555a71485837e21b5d82ece4f79ac56dc83bd4` — registry `ART-0011`;
-all 32 members committed under `verification/staging-migration-reconciliation/handoff/`.
-
-### Scope
-
-In: one new migration `supabase/migrations/20261003120000_staging_reconciliation_forward_only.sql`
-(generated from main's own migrations by `scripts/db/generate-reconciliation-migration.py`),
-the dry-run harness `scripts/db/reconciliation-dryrun/`, the test
-`src/lib/__tests__/staging-migration-reconciliation.test.ts`, evidence and registries.
-Out: merge, deployment, any live database execution, staging sync, modifying/renaming/deleting
-any applied migration, importing staging-only migration names into main.
+Satisfy preconditions P2–P5 of
+`verification/staging-migration-reconciliation/POST_MERGE_STAGING_EXECUTION_PLAN.md`: written
+apply-policy confirmation (only versions newer than ledger row `20261002052550` are executed),
+export of the four SQL-less ledger rows, staging backup identifier, pre-apply read-only snapshot.
+**Do not apply the migration.** P1 (explicit founder permission) is a separate founder act.
 
 ### Steps
 
 | # | Action | Executor | Status |
 |---|---|---|---|
-| S1 | Input gate (identity, 32/32 sums, manifest, drift, 13+8 migrations, conflict, 3 pairs, schema evidence, secrets) | Claude Code | done |
-| S2 | Independent audit of the matrix (hash-confirmed pairs; 14-vs-7 table discrepancy recorded) | Claude Code | done |
-| S3 | Generate the forward-only idempotent migration; no DROP TABLE / TRUNCATE / DELETE / DROP COLUMN | Claude Code | done |
-| S4 | Dry-run on disposable PostgreSQL 16: bare, main-shaped (no-op), staging-shaped (rows preserved, idempotent) | Claude Code | done |
-| S5 | Gates, commit, push, draft PR against `main` | Claude Code | done |
-| S6 | Attach the staging applied-migration ledger and the seven-table check | Lovable | done (ART-0012) |
-| S7 | Founder merge decision on PR #9; Lovable confirms the platform apply policy before any staging apply | Founder / Lovable | pending |
-| S8 | Reassess PR #9 against the ledger (no migration change required) | Claude Code | done |
+| S1 | Answer `BLK-PLATFORM-APPLY-SEMANTICS` in writing | Lovable | planned |
+| S2 | Export the four SQL-less ledger rows (read-only) | Lovable | planned |
+| S3 | Record staging backup / restore-point identifier | Lovable | planned |
+| S4 | Pre-apply read-only snapshot (`objects.sql`, counts 10 / 1 / 325) | Lovable | planned |
+| S5 | Founder grants explicit staging apply permission or declines (G1: irreversible decision) | Founder | planned |
 
-### Permissions
+### Completed predecessor (record)
 
-Deployment: **not allowed.** Database execution: **not allowed.** Merge: **not allowed in this assignment.**
-
-### Blockers
-
-`BLK-PLATFORM-APPLY-SEMANTICS`, `BLK-STAGING-4-UNKNOWN-MIGRATIONS` (Lovable; the two earlier ledger blockers are closed), plus the open
-items in `.ai/BLOCKER_REGISTRY.json`.
-
-### Rollback
-
-Close the PR or delete the single new migration file; nothing has been applied anywhere.
-
-### Next gate
-
-Founder decides the merge of PR #9; Lovable confirms the apply policy and takes a staging
-backup before any staging apply (explicit permission required).
+`ASG-2026-10-03-006` — DONE. PR #9 merged into `main` at
+`4b86de0fafe1372a7d9b180cca471e950d67e866` (founder merge decision, 2026-10-03). Migration NOT
+applied anywhere. Milestone `RECONCILIATION-2026-10-03`. Full record:
+`.ai/CURRENT_TASK.json` → `history`, and `verification/staging-migration-reconciliation/VERIFICATION_REPORT.md` §§1–12.

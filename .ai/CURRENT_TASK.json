@@ -1,107 +1,45 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T14:10:00Z",
+  "updated_at": "2026-10-03T17:45:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
   },
   "stale_after_days": 14,
   "task": {
-    "id": "ASG-2026-10-03-006",
-    "title": "Canonical migration reconciliation with the real staging schema (forward-only)",
-    "status": "in_progress",
+    "id": "ASG-2026-10-03-007",
+    "title": "Staging apply readiness for 20261003120000 (apply-policy confirmation and pre-apply evidence; no apply)",
+    "status": "planned",
     "priority": "P0",
-    "business_value": "Makes canonical main safely compatible with the staging schema without rewriting applied migrations or risking the 10 feedback rows, 1 remediation snapshot and 325 remediation actions on staging.",
+    "business_value": "Unblocks a safe, single-migration staging apply that brings staging to canonical main's schema without touching the 10 feedback rows, 1 remediation snapshot and 325 remediation actions.",
     "owner": {
-      "tool": "claude_code"
+      "tool": "lovable"
     },
     "continuity_owner": {
       "tool": "m365_copilot"
     },
     "repo": {
       "name": "rmanish2000-del/learning-start-nexus",
-      "branch": "reconcile/staging-migrations",
-      "base_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888"
+      "branch": "main",
+      "base_sha": "4b86de0fafe1372a7d9b180cca471e950d67e866"
     },
-    "objective": "Audit the supplied migration matrix, preserve all 109 existing migrations byte-for-byte, add one forward-only idempotent reconciliation migration generated from main's own migrations, prove it on bare, main-shaped and staging-shaped disposable databases (rows preserved, idempotent, nothing removed), record ledger uncertainty, open a draft PR, no merge, no deployment, no live database access.",
+    "objective": "Satisfy preconditions P2–P5 of verification/staging-migration-reconciliation/POST_MERGE_STAGING_EXECUTION_PLAN.md: confirm the platform applies only versions newer than ledger row 20261002052550, export the four SQL-less ledger rows, take a staging backup identifier, capture the pre-apply read-only snapshot. Do NOT apply the migration; P1 (explicit founder permission) is a separate founder act.",
     "scope": {
       "in": [
-        "supabase/migrations/20261003120000_staging_reconciliation_forward_only.sql (new)",
-        "scripts/db/generate-reconciliation-migration.py",
-        "scripts/db/reconciliation-dryrun/*",
-        "src/lib/__tests__/staging-migration-reconciliation.test.ts",
-        "verification/staging-migration-reconciliation/**",
-        "registry updates"
+        "read-only staging catalog queries",
+        "written apply-policy confirmation",
+        "backup identifier",
+        "evidence files to Drive AGENT-REPORTS and .ai/ARTIFACT_REGISTRY.json"
       ],
       "out": [
-        "merge",
+        "applying any migration",
         "deployment",
-        "any live database execution",
-        "staging sync",
-        "modifying, renaming or deleting any applied migration",
-        "importing staging-only migration names into main"
+        "production access",
+        "editing any migration file",
+        "marking ledger rows"
       ]
     },
-    "input_artifact_ids": ["ART-0011", "ART-0012", "ART-0013"],
-    "steps": [
-      {
-        "id": "S1",
-        "action": "Input gate: ZIP identity, 32/32 sums, manifest, drift list, 13+8 migrations, conflict pair, 3 identical pairs, schema evidence, secret scan",
-        "executor": "claude_code",
-        "capability": "repo.read",
-        "status": "done"
-      },
-      {
-        "id": "S2",
-        "action": "Independent audit of the matrix: byte-identical pairs confirmed by hash; 14-vs-7 table discrepancy found and recorded",
-        "executor": "claude_code",
-        "capability": "repo.read",
-        "status": "done"
-      },
-      {
-        "id": "S3",
-        "action": "Generate the forward-only idempotent migration from main's own files; no DROP TABLE/TRUNCATE/DELETE/DROP COLUMN",
-        "executor": "claude_code",
-        "capability": "repo.write",
-        "status": "done"
-      },
-      {
-        "id": "S4",
-        "action": "Dry-run on disposable PostgreSQL 16: bare, main-shaped, staging-shaped (seeded 10/1/325); idempotency and row preservation asserted",
-        "executor": "claude_code",
-        "capability": "repo.test",
-        "status": "done"
-      },
-      {
-        "id": "S5",
-        "action": "Gates, commit, push, draft PR against main (not merge-ready while the ledger is unverified)",
-        "executor": "claude_code",
-        "capability": "repo.pr",
-        "status": "done"
-      },
-      {
-        "id": "S6",
-        "action": "Attach the staging applied-migration ledger and the seven-table check",
-        "executor": "lovable",
-        "capability": "db.live_read",
-        "status": "done",
-        "note": "Ledger and seven-table check delivered as ART-0012 and reassessed."
-      },
-      {
-        "id": "S8",
-        "action": "Reassess PR #9 against the ledger: same-name conflict confirmed in ledger; 7 main-only names absent; 3 objects absent; 14 tables present with provenance; no migration change required; evidence and registries updated",
-        "executor": "claude_code",
-        "capability": "repo.write",
-        "status": "done"
-      },
-      {
-        "id": "S9",
-        "action": "P0 line-by-line review of PR #9 against the ledger, all 110 migration files, the 14-table check and the 4 SQL-less ledger rows; disposition matrix produced; result PASS, MERGE NOW recommended, no code change",
-        "executor": "claude_code",
-        "capability": "repo.write",
-        "status": "done"
-      }
-    ],
+    "input_artifact_ids": ["ART-0012", "ART-0013", "ART-0014"],
     "deployment": {
       "in_scope": false,
       "permission": "none"
@@ -110,17 +48,48 @@
       "allowed": false,
       "by": "founder"
     },
-    "gates": [
-      "bun run ai:check",
-      "bunx vitest run",
-      "bunx tsc --noEmit -p tsconfig.json",
-      "eslint on changed files",
-      "LOVABLE_SANDBOX=1 bun run build",
-      "secret scan",
-      "migration dry-run (bare, main-shaped, staging-shaped) with data-preservation assertions"
+    "steps": [
+      {
+        "id": "S1",
+        "action": "Answer BLK-PLATFORM-APPLY-SEMANTICS in writing (which versions the platform executes on sync/apply)",
+        "executor": "lovable",
+        "capability": "platform.read",
+        "status": "planned"
+      },
+      {
+        "id": "S2",
+        "action": "Export the four SQL-less ledger rows (BLK-STAGING-4-UNKNOWN-MIGRATIONS) read-only",
+        "executor": "lovable",
+        "capability": "db.live_read",
+        "status": "planned"
+      },
+      {
+        "id": "S3",
+        "action": "Record staging backup / restore-point identifier",
+        "executor": "lovable",
+        "capability": "platform.read",
+        "status": "planned"
+      },
+      {
+        "id": "S4",
+        "action": "Pre-apply read-only snapshot with scripts/db/reconciliation-dryrun/objects.sql and counts (10 / 1 / 325)",
+        "executor": "lovable",
+        "capability": "db.live_read",
+        "status": "planned"
+      },
+      {
+        "id": "S5",
+        "action": "Founder grants explicit staging apply permission (P1) or declines",
+        "executor": "founder",
+        "capability": "decision",
+        "founder_exception": "irreversible_decision",
+        "status": "planned"
+      }
     ],
-    "rollback": "Close the PR or delete the single new migration file; nothing has been applied to any database.",
-    "return_to": "m365_copilot"
+    "blockers": ["BLK-PLATFORM-APPLY-SEMANTICS", "BLK-STAGING-4-UNKNOWN-MIGRATIONS"],
+    "handoff_to": {
+      "tool": "m365_copilot"
+    }
   },
   "history": [
     {
@@ -158,6 +127,94 @@
       "completed_on": "2026-09-03",
       "evidence": "EDUOS_SAFE_PWA_PRODUCTION_PROMOTION_VERIFICATION.md",
       "note": "Previously the body of CURRENT_ASSIGNMENT.md; the full text is preserved in git history at fa5fcde09323096a715e8307fc5114b210ae198f:CURRENT_ASSIGNMENT.md."
+    },
+    {
+      "id": "ASG-2026-10-03-006",
+      "title": "Canonical migration reconciliation with the real staging schema (forward-only)",
+      "status": "complete",
+      "completed_on": "2026-10-03",
+      "evidence": "PR #9 merged into main at 4b86de0fafe1372a7d9b180cca471e950d67e866 (founder merge decision; executed by claude_code). Full task body preserved in git history at 41eef22f0dd3313e045b52a1199b8bce26ad21e0:.ai/CURRENT_TASK.json; report verification/staging-migration-reconciliation/VERIFICATION_REPORT.md §§1–12.",
+      "result": {
+        "grade": "PASS",
+        "merged_sha": "4b86de0fafe1372a7d9b180cca471e950d67e866",
+        "staging_applied": false,
+        "production_applied": false
+      },
+      "steps": [
+        {
+          "id": "S1",
+          "action": "Input gate: ZIP identity, 32/32 sums, manifest, drift list, 13+8 migrations, conflict pair, 3 identical pairs, schema evidence, secret scan",
+          "executor": "claude_code",
+          "capability": "repo.read",
+          "status": "done"
+        },
+        {
+          "id": "S2",
+          "action": "Independent audit of the matrix: byte-identical pairs confirmed by hash; 14-vs-7 table discrepancy found and recorded",
+          "executor": "claude_code",
+          "capability": "repo.read",
+          "status": "done"
+        },
+        {
+          "id": "S3",
+          "action": "Generate the forward-only idempotent migration from main's own files; no DROP TABLE/TRUNCATE/DELETE/DROP COLUMN",
+          "executor": "claude_code",
+          "capability": "repo.write",
+          "status": "done"
+        },
+        {
+          "id": "S4",
+          "action": "Dry-run on disposable PostgreSQL 16: bare, main-shaped, staging-shaped (seeded 10/1/325); idempotency and row preservation asserted",
+          "executor": "claude_code",
+          "capability": "repo.test",
+          "status": "done"
+        },
+        {
+          "id": "S5",
+          "action": "Gates, commit, push, draft PR against main (not merge-ready while the ledger is unverified)",
+          "executor": "claude_code",
+          "capability": "repo.pr",
+          "status": "done"
+        },
+        {
+          "id": "S6",
+          "action": "Attach the staging applied-migration ledger and the seven-table check",
+          "executor": "lovable",
+          "capability": "db.live_read",
+          "status": "done",
+          "note": "Ledger and seven-table check delivered as ART-0012 and reassessed."
+        },
+        {
+          "id": "S8",
+          "action": "Reassess PR #9 against the ledger: same-name conflict confirmed in ledger; 7 main-only names absent; 3 objects absent; 14 tables present with provenance; no migration change required; evidence and registries updated",
+          "executor": "claude_code",
+          "capability": "repo.write",
+          "status": "done"
+        },
+        {
+          "id": "S9",
+          "action": "P0 line-by-line review of PR #9 against the ledger, all 110 migration files, the 14-table check and the 4 SQL-less ledger rows; disposition matrix produced; result PASS, MERGE NOW recommended, no code change",
+          "executor": "claude_code",
+          "capability": "repo.write",
+          "status": "done"
+        },
+        {
+          "id": "S7",
+          "action": "Founder merge decision on PR #9",
+          "executor": "founder",
+          "capability": "merge",
+          "status": "done",
+          "note": "executed by claude_code under explicit founder authorisation; merge 4b86de0fafe1372a7d9b180cca471e950d67e866",
+          "founder_exception": "irreversible_decision"
+        },
+        {
+          "id": "S10",
+          "action": "Post-merge: registries, CURRENT_STATE, CURRENT_TASK, reconciliation docs updated; main SHA verified; worktree clean; milestone RECONCILIATION-2026-10-03 recorded; staging execution plan written (not executed)",
+          "executor": "claude_code",
+          "capability": "repo.write",
+          "status": "done"
+        }
+      ]
     }
   ]
 }
