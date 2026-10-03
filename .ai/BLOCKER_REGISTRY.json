@@ -143,7 +143,7 @@
     {
       "id": "BLK-PLATFORM-APPLY-SEMANTICS",
       "opened": "2026-10-03",
-      "statement": "The staging ledger holds 35 rows while main has 110 migration names; 95 older main names (pre-remix and 20260905094512/094600/094734, 20260905074149, 20260919*, 20261002045629/050000/050331) were never applied yet later versions were. This shows the platform does not replay older missing names when newer ones are applied, so 20261003120000 should be applied alone — but the platform's apply policy is undocumented.",
+      "statement": "The staging ledger holds 35 rows while main has 110 migration names; 95 older main names (pre-remix and 20260905094512/094600/094734, 20260905074149, 20260919*, 20261002045629/050000/050331) were never applied yet later versions were. This shows the platform does not replay older missing names when newer ones are applied, so 20261003120000 should be applied alone — but the platform's apply policy is undocumented. [2026-10-03 line-by-line review: 27 main-only files are UNSAFE_RERUN and 22 UNKNOWN on staging (MIGRATION_DISPOSITION_MATRIX.md); a full replay of ledger-absent versions fails at 20260823082320 regardless of PR #9. Only 20261003120000 may be applied.]",
       "owner": "lovable",
       "resolution_path": "Before applying main to staging, confirm with Lovable Cloud that only versions newer than the last ledger row (20261002052550) are executed; if the platform would also attempt 20260919175712 (unguarded CREATE TABLE on existing tables), stop and mark that name applied first. Take a staging backup before any apply.",
       "status": "open"
@@ -155,6 +155,15 @@
       "owner": "lovable",
       "resolution_path": "Export the four statement bodies (read-only) or confirm they were fully reverted by 20260904172759.",
       "status": "open"
+    },
+    {
+      "id": "BLK-LOVABLE-BEHAVIOR-REPORT-COORDINATE",
+      "opened": "2026-10-03",
+      "statement": "Assignment input 3 ('Lovable migration-behavior report, latest') has no addressable coordinate (no Drive file_id, git path or URL) and was not found in AGENT-REPORTS or INBOX. Only its conclusion (apply semantics UNKNOWN; project history contradicts documentation) is known, via the assignment text.",
+      "owner": "m365_copilot",
+      "resolution_path": "Publish the report to Drive AGENT-REPORTS and register it in .ai/ARTIFACT_REGISTRY.json with file_id; the PR #9 review already treats apply semantics as unknown so no re-review is expected.",
+      "status": "open",
+      "grade": "reported"
     }
   ]
 }

@@ -341,6 +341,34 @@
       },
       "evidence_grade": "verified",
       "note": "Ref points at the base commit; files land with the reassessment commit."
+    },
+    {
+      "id": "ART-0013",
+      "title": "Migration disposition matrix (PR #9 line-by-line review)",
+      "kind": "evidence",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "b0b2f304b456de4bab80ca5088b9f4b2af3f72a3",
+        "path": "verification/staging-migration-reconciliation/MIGRATION_DISPOSITION_MATRIX.md"
+      },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "m365_copilot",
+        "retrieval_confirmed": false
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T17:30:00Z",
+        "method": "generated in this review from supabase/migrations and ledger-evidence; one row per migration (110)"
+      },
+      "evidence_grade": "verified",
+      "note": "Ref points at the previous head; the file lands with the review commit."
     }
   ]
 }

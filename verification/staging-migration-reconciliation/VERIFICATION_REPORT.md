@@ -133,3 +133,46 @@ Four staging-only ledger rows (`20260901040820`, `20260903053903`, `202609031454
 - PR #9 remains **correct without any migration change**; this reassessment adds evidence and registry updates only.
 - Recommendation: **MERGE PR #9** (founder decision; merge is a founder act).
 - Staging deployment readiness: **READY, conditional** — apply `20261003120000` to staging only under explicit founder permission, after a staging backup, after Lovable confirms the apply policy, and with a post-apply read-only check that the three absent objects now exist and the 10 / 1 / 325 counts are unchanged. Production: not in scope.
+
+## 11. Line-by-line review of PR #9 against the ledger (P0 data-integrity review, 2026-10-03)
+
+Scope: every statement of `20261003120000_staging_reconciliation_forward_only.sql` (167 top-level statements, 123 of them `DO` guards) against the 35 ledger rows, all 110 migration files on the branch (109 on main + the new one; the assignment's "104" is not a count this repository produces), `table-check.csv` (14 tables), `object-check.md`, and the four ledger rows without exported SQL. Full matrix: `MIGRATION_DISPOSITION_MATRIX.md` / `.json` (one row per file).
+
+Input 3 of the assignment ("Lovable migration-behavior report, latest") carried no addressable coordinate and was not found in Drive `AGENT-REPORTS` or `INBOX`; its only content available here is the assignment's own sentence (apply semantics UNKNOWN; project history contradicts documentation). It is graded *reported* and recorded as `BLK-LOVABLE-BEHAVIOR-REPORT-COORDINATE`. Nothing below depends on it beyond treating apply semantics as unknown, which this review already does.
+
+### 11.1 The eight named migrations
+
+| Version | Disposition | Verified basis |
+|---|---|---|
+| `20260915161655` | SAFE_NOOP (main file) / applied (ledger) | main file is `SELECT 1`; the ledger row holds staging's 49-statement version, and **every one of those 49 statements is normalised-identical to a statement in main's `20260919175712`** (strict subset). No divergent definition exists. |
+| `20260919175712` | **UNSAFE_RERUN** | 14 unguarded `CREATE TABLE`; all 14 present on staging (`table-check.csv`). Plain replay fails at statement 1. PR #9 re-expresses all 142 statements guarded. |
+| `20260919175907` | SAFE_RERUN | 3 × `INSERT … ON CONFLICT DO NOTHING`; `question_bank`, `question_auto_verifications`, `question_pool_exclusions`, `remediation_work_items` all referenced or created by ledger-applied SQL, so they exist on staging. Verbatim in PR #9. |
+| `20260919195620` | SAFE_CREATE | `question_commercial_release`, policy, trigger, 2 indexes, view `production_release_pool` all ABSENT (`object-check.md`). Unguarded, so single-run only; PR #9 carries it guarded. |
+| `20260919195651` | SAFE_RERUN | `ALTER VIEW … SET (security_invoker = on)` is idempotent; PR #9 applies it only when the view exists. |
+| `20261002045629` | SAFE_CREATE / SAFE_RERUN | fully guarded; `founder_access_denials` ABSENT; `pilot_leads` columns unverified but `ADD COLUMN IF NOT EXISTS`. |
+| `20261002050000` | **UNSAFE_RERUN** | unguarded `CREATE POLICY "Platform owner reads/updates pilot applications"`; both present on staging (`object-check.md`). Staging's `20261002052550` is a strict superset of this file (diff: confirmed-email owner check, `DROP POLICY IF EXISTS` before create, no other difference). Correctly **excluded** from PR #9; its policies appear there DO-guarded and its functions are not re-issued. |
+| `20261002050331` | SAFE_RERUN | `CREATE OR REPLACE FUNCTION private.is_platform_owner()` with confirmed-email semantics equal to staging's (`trim` vs `coalesce`). In PR #9. |
+
+### 11.2 What PR #9 already protects against
+
+| Risk | Protection in PR #9 | Verified how |
+|---|---|---|
+| duplicate migration names | adds exactly one new name `20261003120000`, absent from the ledger (35 rows) and from main; touches no existing file (`existing-migrations.sha256`, 109 entries, asserted by test) | ledger.json ∩ branch names computed in this review |
+| duplicated PR #5 behaviour | `20261002050000` not included; `is_platform_owner()` issued once via `CREATE OR REPLACE` (replaces, never duplicates); the two owner policies and the sample-workspace objects are only `DO … IF NOT EXISTS (pg_policies …)` | statement census: 0 unguarded `CREATE POLICY`, 0 unguarded `CREATE TRIGGER` |
+| 14 existing tables | 16 × `CREATE TABLE IF NOT EXISTS`; definitions byte-equal to the applied staging statements for the 7 shared tables | §10.1 and the 49-statement subset check above |
+| existing policies | 17 `pg_policies` guards; 0 unguarded `CREATE POLICY` | census |
+| existing indexes | 14 × `CREATE [UNIQUE] INDEX IF NOT EXISTS`, 0 unguarded | census |
+| existing triggers | 16 `pg_trigger` guards; the only `DROP TRIGGER IF EXISTS` are the two delete-blocking triggers main itself removes, each inside a `to_regclass` guard | census; dry-run removals list |
+| missing dependencies | every `public.*` object the migration reads (32 names) is either created by it or referenced by a ledger-applied statement (exists on staging) | reference cross-check in this review |
+
+### 11.3 Could merging PR #9 ever cause …
+
+- **Replay risk.** Merging changes the repository only. The matrix shows 27 main-only files are UNSAFE_RERUN and 22 UNKNOWN on staging; **this is true of main today, with or without PR #9**, and PR #9 cannot remove it (published migrations are never rewritten). If the platform ever replays *all* ledger-absent versions in order, it fails at `20260823082320` (`CREATE TABLE organizations`) before reaching anything from PR #9. If it applies only versions newer than the last ledger row (`20261002052550`), the only candidate is `20261003120000`, which is safe. The ledger evidence (95 older names skipped while newer ones applied) supports the second behaviour; Lovable reports it as unknown. PR #9 neither increases nor reduces this risk.
+- **Duplicate policies.** No: every `CREATE POLICY` is name-guarded; PostgreSQL also rejects a duplicate policy name on the same table, so the failure mode would be an error, not a duplicate.
+- **Duplicate ownership checks.** No: one `CREATE OR REPLACE FUNCTION private.is_platform_owner()`; result is a single function with confirmed-email semantics on both shapes.
+- **Migration failure.** Not from this file on the three proven shapes (bare, main, staging). Residual: objects created by the four ledger rows without SQL are unknown, but PR #9 never alters or drops an existing object, so an unexpected extra object cannot make it fail; an unexpected *missing* object is excluded by the dependency cross-check.
+- **Partial application.** Every statement is idempotent, so an interrupted run followed by a re-run converges (second run proven identical in `dryrun-results.json`).
+
+### 11.4 Result
+
+**PASS.** No code change required. Recommendation: **MERGE NOW** (founder act; no deploy, no staging apply, no ledger write in this assignment). Staging apply stays READY-conditional on explicit permission, backup, confirmation of apply semantics (`BLK-PLATFORM-APPLY-SEMANTICS`), and read-only post-apply checks.

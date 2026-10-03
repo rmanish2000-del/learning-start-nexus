@@ -42,7 +42,7 @@
         "importing staging-only migration names into main"
       ]
     },
-    "input_artifact_ids": ["ART-0011", "ART-0012"],
+    "input_artifact_ids": ["ART-0011", "ART-0012", "ART-0013"],
     "steps": [
       {
         "id": "S1",
@@ -90,6 +90,13 @@
       {
         "id": "S8",
         "action": "Reassess PR #9 against the ledger: same-name conflict confirmed in ledger; 7 main-only names absent; 3 objects absent; 14 tables present with provenance; no migration change required; evidence and registries updated",
+        "executor": "claude_code",
+        "capability": "repo.write",
+        "status": "done"
+      },
+      {
+        "id": "S9",
+        "action": "P0 line-by-line review of PR #9 against the ledger, all 110 migration files, the 14-table check and the 4 SQL-less ledger rows; disposition matrix produced; result PASS, MERGE NOW recommended, no code change",
         "executor": "claude_code",
         "capability": "repo.write",
         "status": "done"
