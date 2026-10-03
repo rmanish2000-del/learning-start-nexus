@@ -130,7 +130,7 @@
   --eds-color-text-primary: var(--eds-neutral-900);
   --eds-color-text-secondary: var(--eds-neutral-500);
   --eds-color-text-tertiary: var(--eds-neutral-400);
-  --eds-color-text-on-brand: #ffffff;
+  --eds-color-text-on-brand: #1a0d02;
   --eds-color-focus-ring: var(--eds-blue-600);
   --eds-color-state-success: var(--eds-green-500);
   --eds-color-state-error: var(--eds-red-600);

@@ -1,0 +1,1427 @@
+diff --git a/content/mpbse/mpbse-class10-sample-papers.csv b/content/mpbse/mpbse-class10-sample-papers.csv
+new file mode 100644
+index 0000000..19057dd
+--- /dev/null
++++ b/content/mpbse/mpbse-class10-sample-papers.csv
+@@ -0,0 +1,22 @@
++id,board,class_level,session,exam_year,subject,maths_stream,document_type,language,status,official_url,final_url,http_status,mime_type,bytes,pdf_pages,sha256,discovery,copyright_policy,retrieved_at
++MPBSE-C10-2026-MAT-BASIC,MPBSE,10,2025-26,2026,Mathematics,Basic,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28basic%29.PDF,https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28basic%29.PDF,200,application/pdf,786378,11,75e28def48af283713e212baafe718df84203de8886dbc8d0c080022f695908f,https://mpbse.nic.in/ModelPaper.html (live index),OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2026-MAT-STANDARD,MPBSE,10,2025-26,2026,Mathematics,Standard,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28standard%29.PDF,https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28standard%29.PDF,200,application/pdf,912234,12,6f8ff0128976ed3191dd55cefc208bd74596bb0597ff9b30ea16a4aba682916a,https://mpbse.nic.in/ModelPaper.html (live index),OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2026-SCI,MPBSE,10,2025-26,2026,Science,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/2025-26/10th%20Science.PDF,https://mpbse.nic.in/ModelPaper/2025-26/10th%20Science.PDF,200,application/pdf,743761,10,a78fd716f83259484bb4b38aee8cc009eb4d26ada19eb580ceb1ac4e514ee47c,https://mpbse.nic.in/ModelPaper.html (live index),OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2025-MAT,MPBSE,10,2024-25,2025,Mathematics,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/2024-25/10th%20MATHS.PDF,https://mpbse.nic.in/ModelPaper/2024-25/10th%20MATHS.PDF,200,application/pdf,314516,8,8c246fe433ac26a634836d2c0ead252b62901eb50a0be72e212c7728f4c9f0b7,"Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2025-SCI,MPBSE,10,2024-25,2025,Science,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/2024-25/10th%20Science.PDF,https://mpbse.nic.in/ModelPaper/2024-25/10th%20Science.PDF,200,application/pdf,244563,9,3d3a972dac1e3ee37f65d6ef38854a4922f9f6e4021752f7ca761debad2e16c9,"Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2024-MAT,MPBSE,10,2023-24,2024,Mathematics,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/Maths%2010th%20Sample%20Paper%202023-24.PDF,https://mpbse.nic.in/ModelPaper/Maths%2010th%20Sample%20Paper%202023-24.PDF,200,application/pdf,991545,8,763a3d21d534253bb5352a4bb2a64d32f2f9d336bd11ab4fa136a95c0cdb7228,"Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2024-SCI,MPBSE,10,2023-24,2024,Science,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/Science%2010th%20Sample%20Paper%202023-24.PDF,https://mpbse.nic.in/ModelPaper/Science%2010th%20Sample%20Paper%202023-24.PDF,200,application/pdf,341230,12,5ad14300f189af3ec514f9ffc2764317f6d97176a7ff0d3696416b86b814eec8,"Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2023-MAT,MPBSE,10,2022-23,2023,Mathematics,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/06%20MATH'S%2010th%20Model%20Question%20Paper%202022-23.PDF,https://mpbse.nic.in/ModelPaper/06%20MATH'S%2010th%20Model%20Question%20Paper%202022-23.PDF,200,application/pdf,292852,8,f38cfee67fa3b943db5116f16a4b9f67d7fbfbfb053747f5fc9d422d4d8c35a3,"Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2023-SCI,MPBSE,10,2022-23,2023,Science,,SAMPLE_QUESTION_PAPER,Hindi and English (bilingual),VERIFIED,https://mpbse.nic.in/ModelPaper/04%20SCIENCE%2010th%20Model%20Question%20Paper%202022-23.PDF,https://mpbse.nic.in/ModelPaper/04%20SCIENCE%2010th%20Model%20Question%20Paper%202022-23.PDF,200,application/pdf,565670,8,bb0231505ea8b6605539f7fbf51d0020ffb23be7cb2ac2206037b03be23ca21c,"Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2022-MAT,MPBSE,10,2021-22,2022,Mathematics,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2022-SCI,MPBSE,10,2021-22,2022,Science,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2021-MAT,MPBSE,10,2020-21,2021,Mathematics,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2021-SCI,MPBSE,10,2020-21,2021,Science,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2020-MAT,MPBSE,10,2019-20,2020,Mathematics,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2020-SCI,MPBSE,10,2019-20,2020,Science,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2019-MAT,MPBSE,10,2018-19,2019,Mathematics,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2019-SCI,MPBSE,10,2018-19,2019,Science,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2018-MAT,MPBSE,10,2017-18,2018,Mathematics,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2018-SCI,MPBSE,10,2017-18,2018,Science,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2017-MAT,MPBSE,10,2016-17,2017,Mathematics,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
++MPBSE-C10-2017-SCI,MPBSE,10,2016-17,2017,Science,,SAMPLE_QUESTION_PAPER,,NOT_FOUND,,,,,,,,,OFFICIAL_LINK_AND_METADATA_ONLY,2026-10-02T13:07:33Z
+diff --git a/content/mpbse/mpbse-class10-sample-papers.json b/content/mpbse/mpbse-class10-sample-papers.json
+new file mode 100644
+index 0000000..c2843f6
+--- /dev/null
++++ b/content/mpbse/mpbse-class10-sample-papers.json
+@@ -0,0 +1,469 @@
++{
++ "registry": "MPBSE Class 10 Mathematics and Science sample papers 2017-2026",
++ "generated_at": "2026-10-02T13:07:33Z",
++ "policy": "Official link and metadata only. No paper text stored.",
++ "records": [
++  {
++   "id": "MPBSE-C10-2026-MAT-BASIC",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2025-26",
++   "exam_year": 2026,
++   "subject": "Mathematics",
++   "maths_stream": "Basic",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28basic%29.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28basic%29.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 786378,
++   "pdf_pages": 11,
++   "sha256": "75e28def48af283713e212baafe718df84203de8886dbc8d0c080022f695908f",
++   "discovery": "https://mpbse.nic.in/ModelPaper.html (live index)",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2026-MAT-STANDARD",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2025-26",
++   "exam_year": 2026,
++   "subject": "Mathematics",
++   "maths_stream": "Standard",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28standard%29.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/2025-26/10th%20Maths%20%28standard%29.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 912234,
++   "pdf_pages": 12,
++   "sha256": "6f8ff0128976ed3191dd55cefc208bd74596bb0597ff9b30ea16a4aba682916a",
++   "discovery": "https://mpbse.nic.in/ModelPaper.html (live index)",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2026-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2025-26",
++   "exam_year": 2026,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/2025-26/10th%20Science.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/2025-26/10th%20Science.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 743761,
++   "pdf_pages": 10,
++   "sha256": "a78fd716f83259484bb4b38aee8cc009eb4d26ada19eb580ceb1ac4e514ee47c",
++   "discovery": "https://mpbse.nic.in/ModelPaper.html (live index)",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2025-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2024-25",
++   "exam_year": 2025,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/2024-25/10th%20MATHS.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/2024-25/10th%20MATHS.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 314516,
++   "pdf_pages": 8,
++   "sha256": "8c246fe433ac26a634836d2c0ead252b62901eb50a0be72e212c7728f4c9f0b7",
++   "discovery": "Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2025-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2024-25",
++   "exam_year": 2025,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/2024-25/10th%20Science.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/2024-25/10th%20Science.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 244563,
++   "pdf_pages": 9,
++   "sha256": "3d3a972dac1e3ee37f65d6ef38854a4922f9f6e4021752f7ca761debad2e16c9",
++   "discovery": "Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2024-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2023-24",
++   "exam_year": 2024,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/Maths%2010th%20Sample%20Paper%202023-24.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/Maths%2010th%20Sample%20Paper%202023-24.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 991545,
++   "pdf_pages": 8,
++   "sha256": "763a3d21d534253bb5352a4bb2a64d32f2f9d336bd11ab4fa136a95c0cdb7228",
++   "discovery": "Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2024-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2023-24",
++   "exam_year": 2024,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/Science%2010th%20Sample%20Paper%202023-24.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/Science%2010th%20Sample%20Paper%202023-24.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 341230,
++   "pdf_pages": 12,
++   "sha256": "5ad14300f189af3ec514f9ffc2764317f6d97176a7ff0d3696416b86b814eec8",
++   "discovery": "Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2023-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2022-23",
++   "exam_year": 2023,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/06%20MATH'S%2010th%20Model%20Question%20Paper%202022-23.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/06%20MATH'S%2010th%20Model%20Question%20Paper%202022-23.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 292852,
++   "pdf_pages": 8,
++   "sha256": "f38cfee67fa3b943db5116f16a4b9f67d7fbfbfb053747f5fc9d422d4d8c35a3",
++   "discovery": "Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2023-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2022-23",
++   "exam_year": 2023,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "Hindi and English (bilingual)",
++   "status": "VERIFIED",
++   "official_url": "https://mpbse.nic.in/ModelPaper/04%20SCIENCE%2010th%20Model%20Question%20Paper%202022-23.PDF",
++   "final_url": "https://mpbse.nic.in/ModelPaper/04%20SCIENCE%2010th%20Model%20Question%20Paper%202022-23.PDF",
++   "http_status": 200,
++   "mime_type": "application/pdf",
++   "bytes": 565670,
++   "pdf_pages": 8,
++   "sha256": "bb0231505ea8b6605539f7fbf51d0020ffb23be7cb2ac2206037b03be23ca21c",
++   "discovery": "Web Archive index of mpbse.nic.in/ModelPaper/, re-fetched live from mpbse.nic.in",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2022-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2021-22",
++   "exam_year": 2022,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2022-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2021-22",
++   "exam_year": 2022,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2021-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2020-21",
++   "exam_year": 2021,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2021-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2020-21",
++   "exam_year": 2021,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2020-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2019-20",
++   "exam_year": 2020,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2020-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2019-20",
++   "exam_year": 2020,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2019-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2018-19",
++   "exam_year": 2019,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2019-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2018-19",
++   "exam_year": 2019,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2018-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2017-18",
++   "exam_year": 2018,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2018-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2017-18",
++   "exam_year": 2018,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2017-MAT",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2016-17",
++   "exam_year": 2017,
++   "subject": "Mathematics",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  },
++  {
++   "id": "MPBSE-C10-2017-SCI",
++   "board": "MPBSE",
++   "class_level": 10,
++   "session": "2016-17",
++   "exam_year": 2017,
++   "subject": "Science",
++   "maths_stream": "",
++   "document_type": "SAMPLE_QUESTION_PAPER",
++   "language": "",
++   "status": "NOT_FOUND",
++   "official_url": "",
++   "final_url": "",
++   "http_status": "",
++   "mime_type": "",
++   "bytes": "",
++   "pdf_pages": "",
++   "sha256": "",
++   "discovery": "",
++   "copyright_policy": "OFFICIAL_LINK_AND_METADATA_ONLY",
++   "retrieved_at": "2026-10-02T13:07:33Z"
++  }
++ ]
++}
+\ No newline at end of file
+diff --git a/design/figma/MPBSE_DESIGN_CORRECTION.md b/design/figma/MPBSE_DESIGN_CORRECTION.md
+new file mode 100644
+index 0000000..821c1a5
+--- /dev/null
++++ b/design/figma/MPBSE_DESIGN_CORRECTION.md
+@@ -0,0 +1,9 @@
++# MPBSE design correction (against Figma handoff fa5fcde0)
++
++The handoff stated MPBSE Class 10 Mathematics has a single paper. This is wrong.
++MPBSE publishes separate **Mathematics Basic** and **Mathematics Standard** model papers
++for 2026 (verified on mpbse.nic.in, 2026-10-02; see content/mpbse/).
++
++Implementation: the MPBSE panel on Exam Pattern shows a Basic / Standard filter for
++Mathematics; Science has no stream filter. MPBSE copy defaults to Hindi (`lang="hi"`)
++with an English switch; CBSE and the rest of the app stay English.
+diff --git a/src/components/app-shell.tsx b/src/components/app-shell.tsx
+index 1dca342..511f0f6 100644
+--- a/src/components/app-shell.tsx
++++ b/src/components/app-shell.tsx
+@@ -356,9 +356,9 @@ function HeaderTitle() {
+         className={cn(
+           "rounded-full px-2 py-0.5 text-[11px] font-medium",
+           role === "admin" && "bg-destructive/10 text-destructive",
+-          role === "educator" && "bg-primary/10 text-primary",
+-          role === "student" && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+-          role === "parent" && "bg-amber-500/10 text-amber-600 dark:text-amber-400",
++          role === "educator" && "bg-primary/10 text-foreground",
++          role === "student" && "bg-emerald-500/10 text-emerald-800 dark:text-emerald-400",
++          role === "parent" && "bg-amber-500/10 text-amber-800 dark:text-amber-400",
+         )}
+       >
+         {ROLE_LABELS[role]}
+diff --git a/src/components/mpbse-papers.tsx b/src/components/mpbse-papers.tsx
+new file mode 100644
+index 0000000..f6e59ac
+--- /dev/null
++++ b/src/components/mpbse-papers.tsx
+@@ -0,0 +1,190 @@
++// MPBSE Class 10 paper practice panel. Hindi by default (user decision 2026-10-02);
++// the rest of EduOS stays English. Official papers are linked, never reproduced.
++import { Link } from "@tanstack/react-router";
++import { ExternalLink, FileText, Target } from "lucide-react";
++import { useMemo, useState } from "react";
++
++import { Badge } from "@/components/ui/badge";
++import { Button } from "@/components/ui/button";
++import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
++import registry from "../../content/mpbse/mpbse-class10-sample-papers.json";
++
++export type MpbseRecord = {
++  id: string;
++  exam_year: number;
++  subject: string;
++  maths_stream?: string | null;
++  status: string;
++  official_url?: string | null;
++  pdf_pages?: number | null;
++  bytes?: number | null;
++  sha256?: string | null;
++  document_type: string;
++};
++
++export const MPBSE_RECORDS = (registry as { records: MpbseRecord[] }).records;
++
++const SUBJECT_HI: Record<string, string> = { Mathematics: "गणित", Science: "विज्ञान" };
++const STREAM_HI: Record<string, string> = { Basic: "बेसिक", Standard: "स्टैंडर्ड" };
++
++export function MpbsePapers() {
++  const [english, setEnglish] = useState(false);
++  const [year, setYear] = useState<number | "all">("all");
++  const [subject, setSubject] = useState<string | "all">("all");
++  const [stream, setStream] = useState<string | "all">("all");
++  const L = (hi: string, en: string) => (english ? en : hi);
++
++  const verified = MPBSE_RECORDS.filter((r) => r.status === "VERIFIED");
++  const missing = MPBSE_RECORDS.filter((r) => r.status !== "VERIFIED");
++  const years = [...new Set(verified.map((r) => r.exam_year))].sort((a, b) => b - a);
++  const shown = useMemo(
++    () =>
++      verified.filter(
++        (r) =>
++          (year === "all" || r.exam_year === year) &&
++          (subject === "all" || r.subject === subject) &&
++          (stream === "all" || (r.maths_stream ?? "") === stream),
++      ),
++    [verified, year, subject, stream],
++  );
++  const missingYears = [...new Set(missing.map((r) => r.exam_year))].sort();
++
++  return (
++    <section lang={english ? "en" : "hi"} className="space-y-4" aria-label="MPBSE">
++      <div className="flex flex-wrap items-center justify-between gap-2">
++        <p className="text-muted-foreground max-w-3xl text-sm">
++          {L(
++            "एमपी बोर्ड (MPBSE) कक्षा 10 के आधिकारिक मॉडल पेपर। पेपर mpbse.nic.in पर खुलते हैं — EduOS पेपर का पाठ नहीं दोहराता।",
++            "Official MPBSE Class 10 model papers. Papers open on mpbse.nic.in — EduOS does not reproduce paper text.",
++          )}
++        </p>
++        <Button size="sm" variant="ghost" onClick={() => setEnglish((v) => !v)}>
++          {english ? "हिंदी" : "English"}
++        </Button>
++      </div>
++
++      <div className="flex flex-wrap gap-2" role="group" aria-label={L("वर्ष", "Year")}>
++        <FilterBtn on={year === "all"} onClick={() => setYear("all")}>
++          {L("सभी वर्ष", "All years")}
++        </FilterBtn>
++        {years.map((y) => (
++          <FilterBtn key={y} on={year === y} onClick={() => setYear(y)}>
++            {y}
++          </FilterBtn>
++        ))}
++      </div>
++      <div className="flex flex-wrap gap-2" role="group" aria-label={L("विषय", "Subject")}>
++        <FilterBtn on={subject === "all"} onClick={() => setSubject("all")}>
++          {L("सभी विषय", "All subjects")}
++        </FilterBtn>
++        {["Mathematics", "Science"].map((s) => (
++          <FilterBtn
++            key={s}
++            on={subject === s}
++            onClick={() => {
++              setSubject(s);
++              if (s === "Science") setStream("all");
++            }}
++          >
++            {english ? s : SUBJECT_HI[s]}
++          </FilterBtn>
++        ))}
++        {subject !== "Science" &&
++          ["Basic", "Standard"].map((s) => (
++            <FilterBtn
++              key={s}
++              on={stream === s}
++              onClick={() => setStream(stream === s ? "all" : s)}
++            >
++              {L(`गणित ${STREAM_HI[s]}`, `Maths ${s}`)}
++            </FilterBtn>
++          ))}
++      </div>
++
++      <div className="grid gap-3 md:grid-cols-2">
++        {shown.map((r) => (
++          <Card key={r.id} data-testid="mpbse-paper">
++            <CardHeader className="pb-2">
++              <CardTitle className="flex items-center gap-2 text-base">
++                <FileText className="h-4 w-4" aria-hidden />
++                {r.exam_year} · {english ? r.subject : SUBJECT_HI[r.subject]}
++                {r.maths_stream && (
++                  <Badge variant="secondary">
++                    {english ? r.maths_stream : STREAM_HI[r.maths_stream]}
++                  </Badge>
++                )}
++              </CardTitle>
++              <CardDescription>
++                {L("आधिकारिक मॉडल पेपर", "Official model paper")} · {r.pdf_pages}{" "}
++                {L("पृष्ठ", "pages")}
++              </CardDescription>
++            </CardHeader>
++            <CardContent className="flex flex-wrap gap-2">
++              <Button asChild size="sm" variant="outline">
++                <a href={r.official_url ?? "#"} target="_blank" rel="noopener noreferrer">
++                  {L("mpbse.nic.in पर खोलें", "Open on mpbse.nic.in")}{" "}
++                  <ExternalLink className="ml-1 h-3 w-3" aria-hidden />
++                </a>
++              </Button>
++              <Button size="sm" variant="secondary" disabled aria-describedby="mpbse-practice-note">
++                {L("MPBSE अभ्यास जल्द आ रहा है", "MPBSE practice coming soon")}
++              </Button>
++            </CardContent>
++          </Card>
++        ))}
++        {shown.length === 0 && (
++          <p className="text-muted-foreground text-sm">
++            {L("इस चयन के लिए कोई पेपर नहीं।", "No papers for this selection.")}
++          </p>
++        )}
++      </div>
++
++      <p id="mpbse-practice-note" className="text-muted-foreground text-sm">
++        {L(
++          "MPBSE के लिए EduOS के मूल प्रश्न अभी तैयार नहीं हैं, इसलिए अभ्यास बंद है। CBSE अभ्यास CBSE बटन से उपलब्ध है।",
++          "Original EduOS questions for MPBSE are not ready yet, so practice is turned off. CBSE practice is available under the CBSE button.",
++        )}
++      </p>
++
++      <Card>
++        <CardHeader className="pb-2">
++          <CardTitle className="flex items-center gap-2 text-base">
++            <Target className="h-4 w-4" aria-hidden /> {L("कमज़ोर अध्याय", "Weak chapters")}
++          </CardTitle>
++          <CardDescription>
++            {L(
++              "अभ्यास के परिणाम आपकी सीखने की कमियों से जुड़ते हैं।",
++              "Practice results feed your learning gaps.",
++            )}
++          </CardDescription>
++        </CardHeader>
++        <CardContent>
++          <Button asChild size="sm" variant="outline">
++            <Link to="/gap-analysis">{L("मेरी कमियाँ देखें", "See my gaps")}</Link>
++          </Button>
++        </CardContent>
++      </Card>
++
++      <p className="text-muted-foreground text-xs">
++        {L("आधिकारिक साइट पर उपलब्ध नहीं:", "Not available on the official site:")}{" "}
++        {missingYears.join(", ")}
++      </p>
++    </section>
++  );
++}
++
++function FilterBtn({
++  on,
++  onClick,
++  children,
++}: {
++  on: boolean;
++  onClick: () => void;
++  children: React.ReactNode;
++}) {
++  return (
++    <Button size="sm" variant={on ? "default" : "outline"} aria-pressed={on} onClick={onClick}>
++      {children}
++    </Button>
++  );
++}
+diff --git a/src/components/ui/sidebar.tsx b/src/components/ui/sidebar.tsx
+index 29f3cb6..fe3ddb5 100644
+--- a/src/components/ui/sidebar.tsx
++++ b/src/components/ui/sidebar.tsx
+@@ -311,10 +311,10 @@ const SidebarRail = React.forwardRef<HTMLButtonElement, React.ComponentProps<"bu
+ );
+ SidebarRail.displayName = "SidebarRail";
+ 
+-const SidebarInset = React.forwardRef<HTMLDivElement, React.ComponentProps<"main">>(
++const SidebarInset = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+   ({ className, ...props }, ref) => {
+     return (
+-      <main
++      <div
+         ref={ref}
+         className={cn(
+           // min-w-0 (not w-full): with the desktop sidebar in the same flex row,
+@@ -433,7 +433,7 @@ const SidebarGroupLabel = React.forwardRef<
+       ref={ref}
+       data-sidebar="group-label"
+       className={cn(
+-        "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
++        "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/85 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+         "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
+         className,
+       )}
+diff --git a/src/components/user-menu.tsx b/src/components/user-menu.tsx
+index ee22711..13c74cc 100644
+--- a/src/components/user-menu.tsx
++++ b/src/components/user-menu.tsx
+@@ -5,6 +5,7 @@ import { ChevronsUpDown, LogOut } from "lucide-react";
+ import { supabase } from "@/integrations/supabase/client";
+ import { STUDENT_EMAIL_DOMAIN } from "@/lib/auth-utils";
+ import { clearSessionMarker } from "@/lib/session-marker";
++import { clearAttemptStorage } from "@/lib/attempt-storage";
+ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+ import {
+   DropdownMenu,
+@@ -33,13 +34,17 @@ export function UserMenu() {
+   const queryClient = useQueryClient();
+   const { user, role, profile } = authRoute.useRouteContext();
+ 
+-  const displayName = profile?.full_name || (user.user_metadata?.["full_name"] as string) || "Account";
+-  const email = user.email?.endsWith(`@${STUDENT_EMAIL_DOMAIN}`) ? "Student account" : (user.email ?? "");
++  const displayName =
++    profile?.full_name || (user.user_metadata?.["full_name"] as string) || "Account";
++  const email = user.email?.endsWith(`@${STUDENT_EMAIL_DOMAIN}`)
++    ? "Student account"
++    : (user.email ?? "");
+ 
+   async function handleSignOut() {
+     await queryClient.cancelQueries();
+     queryClient.clear();
+     clearSessionMarker();
++    clearAttemptStorage();
+     await supabase.auth.signOut();
+     void navigate({ to: "/auth", replace: true });
+   }
+@@ -51,7 +56,9 @@ export function UserMenu() {
+           <Avatar className="h-8 w-8">
+             <AvatarFallback className="text-xs">{initials(displayName) || "?"}</AvatarFallback>
+           </Avatar>
+-          <span className="hidden max-w-32 truncate text-sm font-medium md:inline">{displayName}</span>
++          <span className="hidden max-w-32 truncate text-sm font-medium md:inline">
++            {displayName}
++          </span>
+           <ChevronsUpDown className="hidden h-3.5 w-3.5 text-muted-foreground md:inline" />
+         </Button>
+       </DropdownMenuTrigger>
+diff --git a/src/lib/__tests__/attempt-storage.test.ts b/src/lib/__tests__/attempt-storage.test.ts
+new file mode 100644
+index 0000000..9d1807f
+--- /dev/null
++++ b/src/lib/__tests__/attempt-storage.test.ts
+@@ -0,0 +1,59 @@
++import { beforeEach, describe, expect, it } from "vitest";
++import { ATTEMPT_OWNER_KEY, claimAttemptStorage, clearAttemptStorage } from "../attempt-storage";
++
++class MemStorage {
++  m = new Map<string, string>();
++  get length() {
++    return this.m.size;
++  }
++  key(i: number) {
++    return [...this.m.keys()][i] ?? null;
++  }
++  getItem(k: string) {
++    return this.m.get(k) ?? null;
++  }
++  setItem(k: string, v: string) {
++    this.m.set(k, v);
++  }
++  removeItem(k: string) {
++    this.m.delete(k);
++  }
++}
++
++let ls: MemStorage;
++beforeEach(() => {
++  ls = new MemStorage();
++  (globalThis as unknown as { window: unknown }).window = { localStorage: ls };
++});
++
++describe("attempt storage isolation", () => {
++  it("wipes another learner's saved attempt on account change", () => {
++    claimAttemptStorage("learner-a");
++    ls.setItem("eduos.pyq.open", "{}");
++    ls.setItem("eduos.pyq.answers.s1", '{"q":"A"}');
++    claimAttemptStorage("learner-b");
++    expect(ls.getItem("eduos.pyq.open")).toBeNull();
++    expect(ls.getItem("eduos.pyq.answers.s1")).toBeNull();
++    expect(ls.getItem(ATTEMPT_OWNER_KEY)).toBe("learner-b");
++  });
++  it("keeps the same learner's attempt", () => {
++    claimAttemptStorage("learner-a");
++    ls.setItem("eduos.pyq.answers.s1", "{}");
++    claimAttemptStorage("learner-a");
++    expect(ls.getItem("eduos.pyq.answers.s1")).toBe("{}");
++  });
++  it("sign-out clears everything but unrelated keys", () => {
++    claimAttemptStorage("learner-a");
++    ls.setItem("eduos.pyq.answers.s1", "{}");
++    ls.setItem("other", "x");
++    clearAttemptStorage();
++    expect(ls.getItem("eduos.pyq.answers.s1")).toBeNull();
++    expect(ls.getItem(ATTEMPT_OWNER_KEY)).toBeNull();
++    expect(ls.getItem("other")).toBe("x");
++  });
++  it("no user means nothing restorable", () => {
++    ls.setItem("eduos.pyq.open", "{}");
++    expect(claimAttemptStorage(null)).toBe(false);
++    expect(ls.getItem("eduos.pyq.open")).toBeNull();
++  });
++});
+diff --git a/src/lib/__tests__/english-only.test.ts b/src/lib/__tests__/english-only.test.ts
+index 1e94050..a0944a8 100644
+--- a/src/lib/__tests__/english-only.test.ts
++++ b/src/lib/__tests__/english-only.test.ts
+@@ -41,6 +41,8 @@ describe("English-only product language", () => {
+   it("contains no Devanagari user-facing copy outside comments in the i18n module", () => {
+     const offenders = FILES.filter((f) => {
+       if (f.endsWith(join("lib", "i18n", "context.tsx"))) return false;
++      // Only exception: MPBSE panel defaults to Hindi (founder decision 2026-10-02).
++      if (f.endsWith(join("components", "mpbse-papers.tsx"))) return false;
+       if (f.endsWith("english-only.test.ts")) return false;
+       return DEVANAGARI.test(readFileSync(f, "utf8"));
+     });
+diff --git a/src/lib/__tests__/mpbse-registry.test.ts b/src/lib/__tests__/mpbse-registry.test.ts
+new file mode 100644
+index 0000000..c003f34
+--- /dev/null
++++ b/src/lib/__tests__/mpbse-registry.test.ts
+@@ -0,0 +1,48 @@
++import { readFileSync } from "node:fs";
++import { describe, expect, it } from "vitest";
++
++import registry from "../../../content/mpbse/mpbse-class10-sample-papers.json";
++
++type Rec = Record<string, unknown>;
++const records = (registry as { records: Rec[] }).records;
++const verified = records.filter((r) => r["status"] === "VERIFIED");
++const EMPTY = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
++
++describe("MPBSE registry", () => {
++  it("has 9 verified official papers", () => {
++    expect(verified).toHaveLength(9);
++  });
++  it("every verified paper is official, real and unique", () => {
++    const hashes = new Set<string>();
++    for (const r of verified) {
++      expect(r["board"]).toBe("MPBSE");
++      expect(r["class_level"]).toBe(10);
++      expect(String(r["official_url"])).toMatch(/^https:\/\/mpbse\.nic\.in\//);
++      const h = String(r["sha256"]);
++      expect(h).toMatch(/^[0-9a-f]{64}$/);
++      expect(h).not.toBe(EMPTY);
++      expect(/^(.)\1+$/.test(h)).toBe(false);
++      expect(Number(r["bytes"])).toBeGreaterThan(0);
++      expect(r["copyright_policy"]).toBe("OFFICIAL_LINK_AND_METADATA_ONLY");
++      hashes.add(h);
++    }
++    expect(hashes.size).toBe(verified.length);
++  });
++  it("2026 Maths has Basic and Standard as separate papers", () => {
++    const m = verified.filter((r) => r["exam_year"] === 2026 && r["subject"] === "Mathematics");
++    expect(m.map((r) => r["maths_stream"]).sort()).toEqual(["Basic", "Standard"]);
++  });
++  it("NOT_FOUND years carry no invented URL", () => {
++    for (const r of records.filter((x) => x["status"] !== "VERIFIED")) {
++      expect(r["official_url"] ?? "").toBe("");
++    }
++  });
++  it("CSV matches JSON", () => {
++    const csv = readFileSync("content/mpbse/mpbse-class10-sample-papers.csv", "utf8")
++      .trim()
++      .split(/\r?\n/);
++    expect(csv.length - 1).toBe(records.length);
++    for (const r of records)
++      expect(csv.some((l) => l.startsWith(`${String(r["id"])},`))).toBe(true);
++  });
++});
+diff --git a/src/lib/__tests__/vendor-branding.test.ts b/src/lib/__tests__/vendor-branding.test.ts
+new file mode 100644
+index 0000000..a69b037
+--- /dev/null
++++ b/src/lib/__tests__/vendor-branding.test.ts
+@@ -0,0 +1,66 @@
++// Release-blocking: no vendor/platform branding may reach customers.
++// Internal identifiers (imports, env names, integration modules, routes required
++// by the platform) are allowed; visible text, metadata and public files are not.
++import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
++import { join } from "node:path";
++import { describe, expect, it } from "vitest";
++
++import { SITE_NAME } from "../seo";
++
++const FORBIDDEN = /lovable|supabase|gpt[\s-]?engineer|learning-start-nexus/i;
++const ROOT = process.cwd();
++
++function walk(dir: string, exts: RegExp, out: string[] = []): string[] {
++  for (const name of readdirSync(dir)) {
++    const p = join(dir, name);
++    if (statSync(p).isDirectory()) {
++      if (name === "__tests__" || name === "integrations") continue;
++      walk(p, exts, out);
++    } else if (exts.test(name)) out.push(p);
++  }
++  return out;
++}
++
++// Lines that only carry internal identifiers, never rendered text.
++const INTERNAL =
++  /^\s*(import|export \{|\/\/|\*|\/\*)|@\/integrations|process\.env|createFileRoute\(|from "@lovable|lovable\.auth\.|supabase\.(auth|from|rpc|storage|functions|channel|removeChannel)|\bsupabase\b(?!["'`])|Supabase[A-Z]\w*|reportLovableError|LovableError|createLovableAiGatewayProvider|__lovable|LOVABLE_|"Lovable-API-Key"|ai\.gateway\.lovable\.dev|lovableproject|beta\.lovable\.dev|\.lovable\/oauth|name: "lovable"|security-headers/;
++
++describe("vendor branding is never customer-visible", () => {
++  it("public files (manifest, offline page, robots) are clean", () => {
++    const files = walk(join(ROOT, "public"), /\.(html|webmanifest|json|txt|xml|js|svg)$/);
++    const hits = files.filter((f) => FORBIDDEN.test(readFileSync(f, "utf8")));
++    expect(hits).toEqual([]);
++  });
++
++  it("rendered text and metadata in routes/components are clean", () => {
++    const files = [
++      ...walk(join(ROOT, "src/routes"), /\.tsx?$/),
++      ...walk(join(ROOT, "src/components"), /\.tsx?$/),
++    ].filter((f) => !f.endsWith("routeTree.gen.ts"));
++    const hits: string[] = [];
++    for (const f of files) {
++      readFileSync(f, "utf8")
++        .split("\n")
++        .forEach((line, i) => {
++          if (FORBIDDEN.test(line) && !INTERNAL.test(line))
++            hits.push(`${f}:${i + 1}: ${line.trim()}`);
++        });
++    }
++    expect(hits).toEqual([]);
++  });
++
++  it("production metadata uses the EduOS identity", () => {
++    const seo = readFileSync(join(ROOT, "src/lib/seo.ts"), "utf8");
++    expect(seo).toContain('"https://www.eduos.global"');
++    expect(SITE_NAME).toBe("EduOS");
++    const manifest = readFileSync(join(ROOT, "public/manifest.webmanifest"), "utf8");
++    expect(manifest).toMatch(/EduOS/);
++  });
++
++  it("built client bundles carry no visible vendor copy (when a build exists)", () => {
++    const dir = join(ROOT, "dist/client/assets");
++    if (!existsSync(dir)) return;
++    const hits = walk(dir, /\.(html|css)$/).filter((f) => FORBIDDEN.test(readFileSync(f, "utf8")));
++    expect(hits).toEqual([]);
++  });
++});
+diff --git a/src/lib/attempt-storage.ts b/src/lib/attempt-storage.ts
+new file mode 100644
+index 0000000..0e4ccb1
+--- /dev/null
++++ b/src/lib/attempt-storage.ts
+@@ -0,0 +1,47 @@
++// Browser-saved timed-attempt answers are scoped to one signed-in account.
++// They are wiped on sign-out and whenever a different account signs in on the
++// same device, so one learner never sees another learner's saved attempt.
++export const ATTEMPT_PREFIX = "eduos.pyq.";
++export const ATTEMPT_OWNER_KEY = `${ATTEMPT_PREFIX}owner`;
++
++function store(): Storage | null {
++  try {
++    return typeof window === "undefined" ? null : window.localStorage;
++  } catch {
++    return null;
++  }
++}
++
++export function clearAttemptStorage(): void {
++  const s = store();
++  if (!s) return;
++  try {
++    const keys: string[] = [];
++    for (let i = 0; i < s.length; i++) {
++      const k = s.key(i);
++      if (k && k.startsWith(ATTEMPT_PREFIX)) keys.push(k);
++    }
++    keys.forEach((k) => s.removeItem(k));
++  } catch {
++    /* storage unavailable */
++  }
++}
++
++/** Ensure saved attempts belong to `userId`; wipe them otherwise. Returns true if storage is usable. */
++export function claimAttemptStorage(userId: string | null | undefined): boolean {
++  const s = store();
++  if (!s) return false;
++  if (!userId) {
++    clearAttemptStorage();
++    return false;
++  }
++  try {
++    if (s.getItem(ATTEMPT_OWNER_KEY) !== userId) {
++      clearAttemptStorage();
++      s.setItem(ATTEMPT_OWNER_KEY, userId);
++    }
++    return true;
++  } catch {
++    return false;
++  }
++}
+diff --git a/src/routes/__root.tsx b/src/routes/__root.tsx
+index 3448038..3c72af3 100644
+--- a/src/routes/__root.tsx
++++ b/src/routes/__root.tsx
+@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
+ import { reportLovableError } from "../lib/lovable-error-reporting";
+ import { supabase } from "@/integrations/supabase/client";
+ import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
++import { claimAttemptStorage, clearAttemptStorage } from "@/lib/attempt-storage";
+ import { ThemeProvider } from "@/hooks/use-theme";
+ import { Toaster } from "@/components/ui/sonner";
+ import { CookieConsentBanner } from "@/components/cookie-consent";
+@@ -173,10 +174,15 @@ function RootComponent() {
+   useEffect(() => {
+     const {
+       data: { subscription },
+-    } = supabase.auth.onAuthStateChange((event) => {
++    } = supabase.auth.onAuthStateChange((event, session) => {
+       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+-      if (event === "SIGNED_OUT") clearSessionMarker();
+-      else setSessionMarker();
++      if (event === "SIGNED_OUT") {
++        clearSessionMarker();
++        clearAttemptStorage();
++      } else {
++        setSessionMarker();
++        claimAttemptStorage(session?.user.id);
++      }
+       router.invalidate();
+       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+     });
+diff --git a/src/routes/_authenticated/exam-pattern.tsx b/src/routes/_authenticated/exam-pattern.tsx
+index 3473159..5397eca 100644
+--- a/src/routes/_authenticated/exam-pattern.tsx
++++ b/src/routes/_authenticated/exam-pattern.tsx
+@@ -5,28 +5,22 @@ import { ContextHelp } from "@/components/context-help";
+ import { createFileRoute } from "@tanstack/react-router";
+ import { useServerFn } from "@tanstack/react-start";
+ import { BarChart3, Clock, FileText, ShieldCheck, Target } from "lucide-react";
+-import { useState } from "react";
++import { useEffect, useState } from "react";
++
++import { MpbsePapers } from "@/components/mpbse-papers";
+ import { toast } from "sonner";
+ 
+ import { QueryError } from "@/components/query-error";
+ import { Badge } from "@/components/ui/badge";
+ import { Button } from "@/components/ui/button";
+-import {
+-  Card,
+-  CardContent,
+-  CardDescription,
+-  CardHeader,
+-  CardTitle,
+-} from "@/components/ui/card";
++import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+ import { Progress } from "@/components/ui/progress";
+ import { Skeleton } from "@/components/ui/skeleton";
+ import { Textarea } from "@/components/ui/textarea";
+ import { friendlyErrorMessage } from "@/lib/user-errors";
+-import {
+-  getPyqWorkspaceFn,
+-  startPyqSessionFn,
+-  submitPyqSessionFn,
+-} from "@/lib/pyq.functions";
++import { getPyqWorkspaceFn, startPyqSessionFn, submitPyqSessionFn } from "@/lib/pyq.functions";
++import { supabase } from "@/integrations/supabase/client";
++import { claimAttemptStorage } from "@/lib/attempt-storage";
+ import {
+   PYQ_SUBJECTS,
+   PYQ_TIMED_MINUTES,
+@@ -74,6 +68,7 @@ function ExamPatternPage() {
+   const start = useServerFn(startPyqSessionFn);
+   const submit = useServerFn(submitPyqSessionFn);
+ 
++  const [board, setBoard] = useState<"CBSE" | "MPBSE">("CBSE");
+   const [subject, setSubject] = useState<PyqSubject | null>(null);
+   const [year, setYear] = useState<string | null>(null);
+   const [paperId, setPaperId] = useState<string | null>(null);
+@@ -81,24 +76,85 @@ function ExamPatternPage() {
+   const [answers, setAnswers] = useState<Record<string, string>>({});
+   const [result, setResult] = useState<Awaited<ReturnType<typeof submitPyqSessionFn>> | null>(null);
+ 
++  // Autosave: answers for the open session survive a reload on this device.
++  const [restored, setRestored] = useState(false);
++  useEffect(() => {
++    let cancelled = false;
++    void supabase.auth.getSession().then(({ data }) => {
++      if (cancelled) return;
++      // Only restore an attempt saved by this same account on this device.
++      if (claimAttemptStorage(data.session?.user.id)) {
++        try {
++          const raw = window.localStorage.getItem("eduos.pyq.open");
++          if (raw) {
++            const open = JSON.parse(raw) as SessionState;
++            setSession(open);
++            setAnswers(
++              JSON.parse(
++                window.localStorage.getItem(`eduos.pyq.answers.${open.sessionId}`) ?? "{}",
++              ) as Record<string, string>,
++            );
++          }
++        } catch {
++          /* storage unavailable or corrupt */
++        }
++      }
++      setRestored(true);
++    });
++    return () => {
++      cancelled = true;
++    };
++  }, []);
++  useEffect(() => {
++    if (!restored) return;
++    try {
++      if (!session) {
++        window.localStorage.removeItem("eduos.pyq.open");
++        return;
++      }
++      window.localStorage.setItem("eduos.pyq.open", JSON.stringify(session));
++      window.localStorage.setItem(
++        `eduos.pyq.answers.${session.sessionId}`,
++        JSON.stringify(answers),
++      );
++    } catch {
++      /* storage unavailable */
++    }
++  }, [restored, session, answers]);
++
+   const query = useQuery({
+     queryKey: ["pyq-workspace", subject],
+     queryFn: () => load({ data: subject ? { subject } : {} }),
+   });
+ 
+   const startMutation = useMutation({
+-    mutationFn: (vars: { mode: PyqMode; chapter: string | null; paperId?: string | null }) =>
+-      start({
++    mutationFn: (vars: {
++      mode: PyqMode;
++      chapter: string | null;
++      paperId?: string | null;
++      subject?: PyqSubject;
++    }) => {
++      const s = vars.subject ?? subject;
++      return start({
+         data: {
+           mode: vars.mode,
+           chapter: vars.chapter,
+           paperId: vars.paperId ?? null,
+-          ...(subject ? { subject } : {}),
++          ...(s ? { subject: s } : {}),
+         },
+-      }),
++      });
++    },
+     onSuccess: (data) => {
+       setSession(data);
+-      setAnswers({});
++      let saved: Record<string, string> = {};
++      try {
++        saved = JSON.parse(
++          window.localStorage.getItem(`eduos.pyq.answers.${data.sessionId}`) ?? "{}",
++        ) as Record<string, string>;
++      } catch {
++        saved = {};
++      }
++      setAnswers(saved);
+       setResult(null);
+     },
+     onError: (error) => toast.error(friendlyErrorMessage(error)),
+@@ -107,6 +163,11 @@ function ExamPatternPage() {
+   const submitMutation = useMutation({
+     mutationFn: () => submit({ data: { sessionId: session!.sessionId, answers } }),
+     onSuccess: (data) => {
++      try {
++        window.localStorage.removeItem(`eduos.pyq.answers.${session?.sessionId}`);
++      } catch {
++        /* storage unavailable */
++      }
+       setResult(data);
+       setSession(null);
+       toast.success(`Scored ${data.scorePct}%`);
+@@ -115,8 +176,43 @@ function ExamPatternPage() {
+     onError: (error) => toast.error(friendlyErrorMessage(error)),
+   });
+ 
+-  if (query.isLoading) return <Skeleton className="h-96 w-full" />;
+-  if (query.isError) return <QueryError error={query.error} onRetry={() => query.refetch()} />;
++  // The board picker and MPBSE list need no learner data, so they render even
++  // while the CBSE workspace is loading or unavailable.
++  const boardPicker = (
++    <div className="flex flex-wrap gap-2" role="group" aria-label="Board">
++      {(["CBSE", "MPBSE"] as const).map((b) => (
++        <Button
++          key={b}
++          size="sm"
++          variant={board === b ? "default" : "outline"}
++          aria-pressed={board === b}
++          onClick={() => setBoard(b)}
++        >
++          {b}
++        </Button>
++      ))}
++    </div>
++  );
++  if (board === "MPBSE" || query.isLoading || query.isError) {
++    return (
++      <div className="space-y-6">
++        <header className="space-y-2">
++          <div className="flex flex-wrap items-center justify-between gap-2">
++            <h1 className="text-2xl font-semibold tracking-tight">Exam pattern practice</h1>
++            <ContextHelp page="/exam-pattern" />
++          </div>
++          {boardPicker}
++        </header>
++        {board === "MPBSE" ? (
++          <MpbsePapers />
++        ) : query.isLoading ? (
++          <Skeleton className="h-96 w-full" />
++        ) : (
++          <QueryError error={query.error} onRetry={() => query.refetch()} />
++        )}
++      </div>
++    );
++  }
+   const data = query.data!;
+ 
+   const available = new Map(data.availableByChapter.map((c) => [c.chapter, c.available]));
+@@ -130,6 +226,7 @@ function ExamPatternPage() {
+           <h1 className="text-2xl font-semibold tracking-tight">Exam pattern practice</h1>
+           <ContextHelp page="/exam-pattern" />
+         </div>
++        {boardPicker}
+         <p className="text-muted-foreground max-w-3xl text-sm">
+           {data.subject} · chapter weights derived from {data.cohortMeta.papersAnalysed} official
+           CBSE Class 10 papers ({data.cohortMeta.years.join(", ")}). You practise EduOS-verified
+@@ -175,7 +272,10 @@ function ExamPatternPage() {
+                       {available.get(chapter.chapter) ?? 0} verified questions
+                     </span>
+                   </div>
+-                  <Progress value={chapter.markShare * 100} />
++                  <Progress
++                    value={chapter.markShare * 100}
++                    aria-label={`${chapter.chapter} share of marks`}
++                  />
+                   <div className="flex flex-wrap gap-2">
+                     {data.weakChapters.includes(chapter.chapter) && (
+                       <Badge variant="destructive">Your weak area</Badge>
+@@ -183,7 +283,9 @@ function ExamPatternPage() {
+                     <Button
+                       size="sm"
+                       variant="outline"
+-                      disabled={(available.get(chapter.chapter) ?? 0) === 0 || startMutation.isPending}
++                      disabled={
++                        (available.get(chapter.chapter) ?? 0) === 0 || startMutation.isPending
++                      }
+                       onClick={() =>
+                         startMutation.mutate({ mode: "practice", chapter: chapter.chapter })
+                       }
+@@ -261,9 +363,7 @@ function ExamPatternPage() {
+               )}
+               <Button
+                 disabled={!paperId || startMutation.isPending}
+-                onClick={() =>
+-                  startMutation.mutate({ mode: "full_paper", chapter: null, paperId })
+-                }
++                onClick={() => startMutation.mutate({ mode: "full_paper", chapter: null, paperId })}
+               >
+                 Start full paper attempt
+               </Button>
+@@ -385,10 +485,7 @@ function ExamPatternPage() {
+               </div>
+             ))}
+             <div className="flex gap-2">
+-              <Button
+-                disabled={submitMutation.isPending}
+-                onClick={() => submitMutation.mutate()}
+-              >
++              <Button disabled={submitMutation.isPending} onClick={() => submitMutation.mutate()}>
+                 Submit for feedback
+               </Button>
+               <Button variant="ghost" onClick={() => setSession(null)}>
+@@ -435,9 +532,7 @@ function ExamPatternPage() {
+                   <p className="text-muted-foreground text-sm">
+                     Your answer: {row.given || "—"} · Correct: {row.item.correctAnswer}
+                   </p>
+-                  {row.item.explanation && (
+-                    <p className="text-sm">{row.item.explanation}</p>
+-                  )}
++                  {row.item.explanation && <p className="text-sm">{row.item.explanation}</p>}
+                 </div>
+               ))}
+             </div>
+diff --git a/src/routes/_authenticated/route.tsx b/src/routes/_authenticated/route.tsx
+index 65bd695..e33385a 100644
+--- a/src/routes/_authenticated/route.tsx
++++ b/src/routes/_authenticated/route.tsx
+@@ -35,7 +35,7 @@ export const Route = createFileRoute("/_authenticated")({
+     const { data, error } = await supabase.auth.getUser();
+     if (error || !data.user) {
+       clearSessionMarker();
+-      throw redirect({ to: "/auth" });
++      throw redirect({ to: "/auth", search: { next: location.href } });
+     }
+ 
+     // Renew the document-gate marker for the server middleware in start.ts.
+diff --git a/src/routes/auth.tsx b/src/routes/auth.tsx
+index a50a894..a7d4424 100644
+--- a/src/routes/auth.tsx
++++ b/src/routes/auth.tsx
+@@ -53,7 +53,8 @@ export const Route = createFileRoute("/auth")({
+       ? { tab: search["tab"] }
+       : {}),
+     mode: search["mode"] === "signup" ? "signup" : "signin",
+-    ...(typeof search["next"] === "string" && search["next"].startsWith("/")
++    ...(typeof search["next"] === "string" &&
++    /^\/(?![\/\\])/.test(search["next"])
+       ? { next: search["next"] }
+       : {}),
+   }),
+@@ -151,6 +152,9 @@ function AuthPage() {
+   useEffect(() => {
+     void supabase.auth.getUser().then(async ({ data }) => {
+       if (!data.user) return;
++      // Renew the document-gate marker first, or a full reload of `next`
++      // would be bounced straight back here.
++      setSessionMarker();
+       if (search.next) {
+         window.location.replace(search.next);
+         return;
+diff --git a/src/start.ts b/src/start.ts
+index 7c1aa09..d844e6d 100644
+--- a/src/start.ts
++++ b/src/start.ts
+@@ -64,7 +64,8 @@ const authGateMiddleware = createMiddleware().server(({ next, request }) => {
+   return new Response(null, {
+     status: 302,
+     headers: {
+-      location: "/auth",
++      // Keep the requested page so sign-in returns the user to it (deep links).
++      location: `/auth?next=${encodeURIComponent(url.pathname + url.search)}`,
+       "cache-control": "no-store",
+     },
+   });
+diff --git a/src/styles.css b/src/styles.css
+index 72a099d..aef1e4f 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -130,7 +130,7 @@
+   --eds-color-text-primary: var(--eds-neutral-900);
+   --eds-color-text-secondary: var(--eds-neutral-500);
+   --eds-color-text-tertiary: var(--eds-neutral-400);
+-  --eds-color-text-on-brand: #ffffff;
++  --eds-color-text-on-brand: #1a0d02;
+   --eds-color-focus-ring: var(--eds-blue-600);
+   --eds-color-state-success: var(--eds-green-500);
+   --eds-color-state-error: var(--eds-red-600);
+diff --git a/tsconfig.json b/tsconfig.json
+index a522d21..a61370d 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -8,6 +8,7 @@
+     "types": ["vite/client"],
+ 
+     "moduleResolution": "Bundler",
++    "resolveJsonModule": true,
+     "allowImportingTsExtensions": true,
+     "verbatimModuleSyntax": false,
+     "noEmit": true,

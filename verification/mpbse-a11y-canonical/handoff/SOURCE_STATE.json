@@ -1,0 +1,46 @@
+{
+ "lovable_saved_version": "6cf4c74bc2f2a428e5d8a042ad6e4f4c8260e2df",
+ "pending_uncommitted": [
+  "src/components/ui/sidebar.tsx (group-label contrast /70 -> /85; deployed to staging, auto-saved after this reply)"
+ ],
+ "base_version": "b84fe4767124233859ecaf5df0c65df55defe1e1",
+ "branch": "main",
+ "changed_paths": [
+  "content/mpbse/mpbse-class10-sample-papers.csv",
+  "content/mpbse/mpbse-class10-sample-papers.json",
+  "design/figma/MPBSE_DESIGN_CORRECTION.md",
+  "src/components/app-shell.tsx",
+  "src/components/mpbse-papers.tsx",
+  "src/components/ui/sidebar.tsx",
+  "src/components/user-menu.tsx",
+  "src/lib/__tests__/attempt-storage.test.ts",
+  "src/lib/__tests__/english-only.test.ts",
+  "src/lib/__tests__/mpbse-registry.test.ts",
+  "src/lib/__tests__/vendor-branding.test.ts",
+  "src/lib/attempt-storage.ts",
+  "src/routes/__root.tsx",
+  "src/routes/_authenticated/exam-pattern.tsx",
+  "src/routes/_authenticated/route.tsx",
+  "src/routes/auth.tsx",
+  "src/start.ts",
+  "src/styles.css",
+  "tsconfig.json"
+ ],
+ "tests": {
+  "vitest": "505/505 passed",
+  "secret_scan": "0 findings",
+  "live_staging_uat": "PASS (see TEST_EVIDENCE.md)"
+ },
+ "staging_url": "https://eduos-staging.lovable.app",
+ "staging_fingerprint": "assets/styles-CEoXcQt9.css",
+ "production_status": "UNTOUCHED - not deployed, not modified",
+ "known_limitations": [
+  "Not pushed to rmanish2000-del/learning-start-nexus; canonical GitHub integration NOT complete",
+  "Founder owner-account positive access not re-run live this turn (non-owner denial verified)",
+  "Only one learner role tested live; educator/parent/reviewer denial verified earlier on preview",
+  "Screen reader not used; axe-core WCAG 2 A/AA only",
+  "MPBSE practice disabled until original MPBSE questions exist",
+  "2017-2022 MPBSE papers NOT_FOUND on official site",
+  "app-shell.tsx: apply only colour changes (formatting rewrite rejected)"
+ ]
+}

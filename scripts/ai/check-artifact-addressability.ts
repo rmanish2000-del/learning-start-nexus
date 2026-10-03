@@ -109,6 +109,14 @@ export function checkArtifactAddressability(
     const producer = (art["producer"] as Json | undefined) ?? {};
     const consumer = (art["consumer"] as Json | undefined) ?? {};
 
+    // A superseded or withdrawn artifact is history: it is never retrieved, so
+    // it needs no live coordinate, but it must not be required by the task.
+    if (status === "superseded" || status === "withdrawn") {
+      if (required)
+        fatal("INACCESSIBLE_ARTIFACT", `CURRENT_TASK depends on a ${String(status)} artifact`);
+      return;
+    }
+
     if (status === "missing" || status === "blocked") {
       if (!openBlockers.has(String(art["blocker_id"])))
         fatal("BLOCKER_UNREGISTERED", `${String(status)} artifact has no open blocker`);

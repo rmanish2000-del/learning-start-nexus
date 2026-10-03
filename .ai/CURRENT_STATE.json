@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_at": "2026-10-03T08:05:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
@@ -14,41 +14,41 @@
   "repo": {
     "name": "rmanish2000-del/learning-start-nexus",
     "canonical_branch": "main",
-    "verified_head_sha": "fa5fcde09323096a715e8307fc5114b210ae198f",
-    "verified_at": "2026-10-03T07:00:00Z",
+    "verified_head_sha": "b634d11aa5e82c64b92261728df71348958069d6",
+    "verified_at": "2026-10-03T08:05:00Z",
     "evidence_grade": "verified",
     "history_rule": "Lovable-connected. Never rewrite published history (no force-push, rebase, amend or squash of pushed commits)."
   },
   "gates": {
     "vitest": {
       "command": "bunx vitest run",
-      "result": "540 passed / 47 files (includes src/lib/__tests__/ai-governance.test.ts)",
+      "result": "562 passed / 51 files (feat/mpbse-a11y-canonical; main at b634d11 = 540 / 47)",
       "evidence_grade": "verified",
-      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+      "observed_at_sha": "b634d11aa5e82c64b92261728df71348958069d6 + feat/mpbse-a11y-canonical working tree"
     },
     "typecheck": {
       "command": "bunx tsc --noEmit -p tsconfig.json",
       "result": "0 errors",
       "evidence_grade": "verified",
-      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+      "observed_at_sha": "b634d11aa5e82c64b92261728df71348958069d6 + feat/mpbse-a11y-canonical working tree"
     },
     "lint": {
       "command": "bun run lint",
-      "result": "clean",
+      "result": "clean on changed files except pre-existing prettier findings in src/start.ts lines 18/79 and a pre-existing react-refresh warning in sidebar.tsx (both present on main)",
       "evidence_grade": "verified",
-      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+      "observed_at_sha": "b634d11aa5e82c64b92261728df71348958069d6 + feat/mpbse-a11y-canonical working tree"
     },
     "build": {
       "command": "LOVABLE_SANDBOX=1 bun run build",
-      "result": "success (precache 247 entries first pass, 254 final)",
+      "result": "success, 254 precache entries",
       "evidence_grade": "verified",
-      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+      "observed_at_sha": "b634d11aa5e82c64b92261728df71348958069d6 + feat/mpbse-a11y-canonical working tree"
     },
     "ai_governance": {
       "command": "bun run ai:check",
-      "result": "PASS — 0 errors; conflicts reported as resolved warnings",
+      "result": "PASS (0 errors; 7 resolved-conflict warnings; 6 informational artifact warnings)",
       "evidence_grade": "verified",
-      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+      "observed_at_sha": "b634d11aa5e82c64b92261728df71348958069d6 + feat/mpbse-a11y-canonical working tree"
     }
   },
   "production": {
@@ -92,7 +92,7 @@
     "product_language": "English only (founder decision 2026-08-28; D9; G5; guarded by src/lib/__tests__/english-only.test.ts)",
     "pricing": "₹199 diagnostic · ₹2,999 annual plan · ₹199 credit · ₹2,800 upgrade",
     "platform_owner": "exact rmanish2000@gmail.com with confirmed email; no configurable override (src/lib/platform-owner-shared.ts)",
-    "mpbse": "No MPBSE code on main at the verified head; MPBSE remains disabled in product."
+    "mpbse": "MPBSE paper registry + board surface integrated on branch feat/mpbse-a11y-canonical (PR pending); MPBSE practice stays disabled ('coming soon'); 9 verified official mpbse.nic.in links, 12 NOT_FOUND years."
   },
   "founder_only_acts": [
     "merge",
@@ -101,5 +101,15 @@
     "payment",
     "legal",
     "irreversible_decision"
+  ],
+  "merged_pull_requests": [
+    {
+      "number": 6,
+      "url": "https://github.com/rmanish2000-del/learning-start-nexus/pull/6",
+      "merge_sha": "b634d11aa5e82c64b92261728df71348958069d6",
+      "merged_at": "2026-10-03T07:50:00Z",
+      "merged_by": "claude_code (founder-authorised in the 2026-10-03 review-and-merge assignment)",
+      "evidence_grade": "verified"
+    }
   ]
 }

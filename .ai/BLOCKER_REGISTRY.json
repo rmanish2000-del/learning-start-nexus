@@ -1,7 +1,9 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T07:00:00Z",
-  "updated_by": { "tool": "claude_code" },
+  "updated_at": "2026-10-03T08:40:00Z",
+  "updated_by": {
+    "tool": "claude_code"
+  },
   "purpose": "Open blockers with an owner and, where the founder is the owner, the G1 exception that justifies it. Any artifact in ARTIFACT_REGISTRY.json with status 'missing' or 'blocked' must reference an entry here.",
   "blockers": [
     {
@@ -11,7 +13,9 @@
       "artifact_id": "ART-0005",
       "owner": "lovable",
       "resolution_path": "Commit the package contents to the repository on a branch (git coordinate) or upload to Drive AGENT-REPORTS and record the file id; then re-issue the assignment through ASSIGNMENT_SCHEMA.json.",
-      "status": "open"
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "Superseded: the founder attached EDUOS_MPBSE_CANONICAL_HANDOFF.zip (ART-0009) with a matching SHA-256."
     },
     {
       "id": "BLK-MPBSE-A11Y-ZIP",
@@ -20,7 +24,9 @@
       "artifact_id": "ART-0006",
       "owner": "lovable",
       "resolution_path": "Same as BLK-STAGING-HANDOFF-ZIP.",
-      "status": "open"
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "Superseded: the founder attached EDUOS_MPBSE_CANONICAL_HANDOFF.zip (ART-0009) with a matching SHA-256."
     },
     {
       "id": "BLK-PDF-BRANCH",
@@ -74,6 +80,17 @@
       "founder_exception": "irreversible_decision",
       "resolution_path": "Merge or close https://github.com/rmanish2000-del/learning-start-nexus/pull/4.",
       "status": "open"
+    },
+    {
+      "id": "BLK-MPBSE-HINDI-RATIFICATION",
+      "opened": "2026-10-03",
+      "statement": "The MPBSE panel ships Hindi-default copy (lang=hi, English switch) citing a founder decision of 2026-10-02 that is not recorded in PRODUCT_DECISIONS.md and conflicts with D9/G5 (English-only product).",
+      "owner": "founder",
+      "founder_exception": "irreversible_decision",
+      "resolution_path": "Founder ratifies GV-013 by merging the MPBSE PR, or rejects it and the panel is switched to English-only before merge.",
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "English-only retained by founder decision."
     }
   ]
 }

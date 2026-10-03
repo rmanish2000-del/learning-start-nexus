@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_at": "2026-10-03T08:05:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -118,7 +118,7 @@
       "id": "ART-0005",
       "title": "Canonical integration staging handoff package (ZIP, SHA256 prefix d0ec4db3)",
       "kind": "package",
-      "status": "missing",
+      "status": "superseded",
       "coordinate": null,
       "producer": {
         "tool": "lovable",
@@ -135,13 +135,14 @@
         "method": "Referenced by SHA only; never attached, never in Drive, never in git."
       },
       "evidence_grade": "blocked",
-      "blocker_id": "BLK-STAGING-HANDOFF-ZIP"
+      "blocker_id": "BLK-STAGING-HANDOFF-ZIP",
+      "note": "Superseded 2026-10-03 by ART-0009 (EDUOS_MPBSE_CANONICAL_HANDOFF.zip), which the founder attached directly; the earlier package identities were never delivered."
     },
     {
       "id": "ART-0006",
       "title": "EDUOS_MPBSE_A11Y_EXPORT.zip (1,630,453 bytes, SHA256 7fe13c42…6374)",
       "kind": "package",
-      "status": "missing",
+      "status": "superseded",
       "coordinate": null,
       "producer": {
         "tool": "lovable",
@@ -158,7 +159,8 @@
         "method": "Referenced by filename and hash only; never attached."
       },
       "evidence_grade": "blocked",
-      "blocker_id": "BLK-MPBSE-A11Y-ZIP"
+      "blocker_id": "BLK-MPBSE-A11Y-ZIP",
+      "note": "Superseded 2026-10-03 by ART-0009 (EDUOS_MPBSE_CANONICAL_HANDOFF.zip), which the founder attached directly; the earlier package identities were never delivered."
     },
     {
       "id": "ART-0007",
@@ -215,6 +217,37 @@
       },
       "evidence_grade": "verified",
       "note": "Ref points at the base commit; the path exists only from the governance commit onward. Resolver treats a path missing at the base ref but present in the working tree as 'pending commit'."
+    },
+    {
+      "id": "ART-0009",
+      "title": "EDUOS_MPBSE_CANONICAL_HANDOFF.zip (716174 B) — Lovable staging handoff, text contents committed",
+      "kind": "package",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "b634d11aa5e82c64b92261728df71348958069d6",
+        "path": "verification/mpbse-a11y-canonical/handoff/MANIFEST.json",
+        "sha256": "290f51a170329344a13b541f1e651c9f13c3e56ae4e069d65a585f6f9105940f",
+        "bytes": 716174
+      },
+      "producer": {
+        "tool": "lovable",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "claude_code",
+        "retrieval_confirmed": true,
+        "confirmed_at": "2026-10-03T07:38:00Z"
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T07:38:00Z",
+        "method": "sha256sum of the session upload matched the assignment; SHA256SUMS.txt 54/54 OK; text members (manifest, source state, test evidence, sums, patch) committed under verification/mpbse-a11y-canonical/handoff/; the 7 PNG screenshots are identified by hash in MANIFEST.json and not committed"
+      },
+      "evidence_grade": "verified",
+      "note": "sha256/bytes describe the ZIP itself; the git path is the committed manifest. The ref points at the base commit; the files land with the integration commit (pending_commit until then)."
     }
   ]
 }

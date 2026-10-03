@@ -68,7 +68,8 @@ const authGateMiddleware = createMiddleware().server(({ next, request }) => {
   return new Response(null, {
     status: 302,
     headers: {
-      location: "/auth",
+      // Keep the requested page so sign-in returns the user to it (deep links).
+      location: `/auth?next=${encodeURIComponent(url.pathname + url.search)}`,
       "cache-control": "no-store",
     },
   });
