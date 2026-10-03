@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T11:30:00Z",
+  "updated_at": "2026-10-03T14:10:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -310,6 +310,37 @@
       },
       "evidence_grade": "verified",
       "note": "Ref points at the base commit; files land with the reconciliation commit."
+    },
+    {
+      "id": "ART-0012",
+      "title": "EDUOS_STAGING_LEDGER_SCHEMA_EVIDENCE_v2.zip (38118 B) — staging applied-migration ledger and object checks (read-only)",
+      "kind": "evidence",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "5bf25fb554067560ec3b7dd5aa09380f90f82888",
+        "path": "verification/staging-migration-reconciliation/ledger-evidence/READ_ME.md",
+        "sha256": "5b377c79f25034b004261b55d1d9fe502735ddbca8b6cfca4b7a45015c8f2a6f",
+        "bytes": 38118
+      },
+      "producer": {
+        "tool": "lovable",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "claude_code",
+        "retrieval_confirmed": true,
+        "confirmed_at": "2026-10-03T14:00:00Z"
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T14:00:00Z",
+        "method": "sha256sum of the session upload; SHA256SUMS 38/38 OK; all members committed under verification/staging-migration-reconciliation/ledger-evidence/ (founder email already redacted by the producer)"
+      },
+      "evidence_grade": "verified",
+      "note": "Ref points at the base commit; files land with the reassessment commit."
     }
   ]
 }

@@ -1,0 +1,15 @@
+table_name,pg_tables_present,rls_enabled,catalog_accessible
+automated_provisional_outcomes,yes,t,yes
+automated_review_imports,yes,t,yes
+automated_review_rollback_events,yes,t,yes
+curriculum_source_register,yes,t,yes
+engine_rerun_results,yes,t,yes
+legacy_verification_quarantine,yes,t,yes
+question_content_revisions,yes,t,yes
+question_marking_specs,yes,t,yes
+question_originality_checks,yes,t,yes
+question_pool_exclusions,yes,t,yes
+remediation_actions,yes,t,yes
+remediation_snapshots,yes,t,yes
+remediation_work_items,yes,t,yes
+sme_review_queue,yes,t,yes

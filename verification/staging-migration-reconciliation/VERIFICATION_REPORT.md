@@ -4,7 +4,7 @@
 **Canonical base:** `main` @ `5bf25fb554067560ec3b7dd5aa09380f90f82888` (fetched, clean worktree) · **Branch:** `reconcile/staging-migrations`
 **Deployment / live database execution / staging sync / merge:** none performed
 
-## Result: PARTIAL — migration delivered and proven on disposable databases; the applied-migration ledger of staging remains unverified, so the PR is a draft, not merge-ready
+## Result: PASS (reassessed 2026-10-03 with the staging ledger, §10) — migration unchanged and confirmed correct; merge recommended under founder decision; staging apply only with explicit permission and a backup
 
 ## 1. Attachment verification
 
@@ -92,3 +92,44 @@ See the PR body / handoff for the observed values: `bun run ai:check`, `bunx vit
 ## 9. Rollback
 
 Close the PR, or delete `supabase/migrations/20261003120000_staging_reconciliation_forward_only.sql` (plus `scripts/db/`, the test and this folder). Nothing has been applied to any database; nothing was deployed.
+
+## 10. Reassessment with the staging ledger (`EDUOS_STAGING_LEDGER_SCHEMA_EVIDENCE_v2.zip`, ART-0012)
+
+**Package:** 38118 B, SHA-256 `5b377c79f25034b004261b55d1d9fe502735ddbca8b6cfca4b7a45015c8f2a6f`; `SHA256SUMS` 38/38; 35 ledger rows, 31 with SQL byte-verified by MD5; founder email redacted by the producer. Committed under `ledger-evidence/`.
+
+### 10.1 Ledger contents vs the assumptions used in PR #9
+
+| PR #9 assumption | Ledger fact | Effect on PR #9 |
+|---|---|---|
+| Staging applied the **full** `20260915161655` | present in ledger; statement byte-identical to the handoff copy (8394 chars, 7 tables) | confirmed — the same-name conflict is real; main's placeholder will never be applied on staging (name already recorded) |
+| `20260919175712/175907/195620/195651`, `20261002045629/050000/050331` not applied on staging | all seven **absent** from the ledger | confirmed — exactly the set whose effects the reconciliation migration re-asserts |
+| `question_commercial_release`, `production_release_pool`, `founder_access_denials` absent | `object-check.md`: all three ABSENT | confirmed — created by the migration (`IF NOT EXISTS` / `CREATE OR REPLACE VIEW`, `security_invoker` applied once the view exists) |
+| All 14 tables of `20260919175712` exist (disputed in §2) | `table-check.csv`: 14/14 present, RLS on. Provenance from main's own history: 7 from `20260915161655` (staging version), 3 from `20260915180432`, 4 from `20260915181935` — both shared versions byte-identical between ledger and main | dispute resolved; `IF NOT EXISTS` is a no-op for all 14 on staging |
+| `is_platform_owner()` confirmed-email + PR #5 policies present | present (ledger `20261002052550`; definition matches) | `CREATE OR REPLACE` yields the identical body; policy guards are no-ops |
+| `pilot_leads.owner_notified_at / owner_notification_error` (from `20261002045629`) | not covered by `object-check.md`; `20261002052550` does not add them | unverified; guarded `ADD COLUMN IF NOT EXISTS` handles both cases |
+| 10 / 1 / 325 rows | `count-check.json`: 10 / 1 / 325 | matches the seeded dry-run shape |
+
+Every shared version (21) between ledger and main is byte-identical except `20260915161655` — no second same-name conflict exists.
+
+### 10.2 What the ledger reveals about the platform's apply policy
+
+The ledger holds 35 rows against 110 names on main. Ninety-five older main names were never applied on staging (the pre-remix history plus `20260905074149`, `20260905094512/094600/094734`, `20260919*`, `20261002045629/050000/050331`), yet newer versions (`20260915161655` … `20261002052550`) were applied afterwards. The platform therefore did **not** replay older missing names when applying newer ones. The content of 14 of those older names reached staging through the alignment migration `20260904172759` ("Part 2: canonical production migrations, applied in order") and three through byte-identical renamed copies.
+
+Consequence: `20261003120000_staging_reconciliation_forward_only.sql` is newer than every ledger row and is the single migration the platform would apply next. It was designed for precisely this state and is a no-op where staging already matches main. The policy itself is undocumented — `BLK-PLATFORM-APPLY-SEMANTICS` asks Lovable Cloud to confirm it before any apply, with a backup taken first.
+
+### 10.3 New residual
+
+Four staging-only ledger rows (`20260901040820`, `20260903053903`, `20260903145457`, `20260903171759`) have no exported SQL (MD5 + length only). They predate `20260904172759`, which dropped the staging-only pilot objects, so they are probably superseded — inferred, not verified (`BLK-STAGING-4-UNKNOWN-MIGRATIONS`). They do not affect the reconciliation migration's guards.
+
+### 10.4 Blocker disposition
+
+- `BLK-MIGRATION-LEDGER-UNVERIFIED` — **closed**: ledger obtained and reconciled line by line.
+- `BLK-STAGING-7-TABLES-UNVERIFIED` — **closed**: 14/14 present with provenance.
+- `BLK-PLATFORM-APPLY-SEMANTICS` — **open** (narrow): confirm "newer-than-last-row only" before applying to staging.
+- `BLK-STAGING-4-UNKNOWN-MIGRATIONS` — **open** (informational).
+
+### 10.5 Decision
+
+- PR #9 remains **correct without any migration change**; this reassessment adds evidence and registry updates only.
+- Recommendation: **MERGE PR #9** (founder decision; merge is a founder act).
+- Staging deployment readiness: **READY, conditional** — apply `20261003120000` to staging only under explicit founder permission, after a staging backup, after Lovable confirms the apply policy, and with a post-apply read-only check that the three absent objects now exist and the 10 / 1 / 325 counts are unchanged. Production: not in scope.

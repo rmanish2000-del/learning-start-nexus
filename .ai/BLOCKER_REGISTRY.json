@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T11:30:00Z",
+  "updated_at": "2026-10-03T14:10:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -126,7 +126,9 @@
       "statement": "The applied-migration ledger of the staging project (supabase_migrations.schema_migrations) could not be read (no permission). Which main-only names the platform considers applied on staging is unknown; object presence is inferred from the schema, not from the ledger. The forward-only reconciliation migration is safe regardless of the ledger, but replaying main's older migrations on staging (e.g. 20260919175712 creating tables that exist) still depends on the platform marking those names applied.",
       "owner": "lovable",
       "resolution_path": "Export supabase_migrations.schema_migrations from staging (read-only) and attach it; then decide, with the Cloud owner, whether to mark 20260915161655 (staging content), 20260919175712, the three renamed pairs and 20261002050000/050331 as applied on staging without executing them.",
-      "status": "open"
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "Ledger obtained (ART-0012): 35 rows, 31 with byte-verified SQL. 20260915161655 and 20261002052550 present; 20260919175712/175907/195620/195651 and 20261002045629/050000/050331 absent; question_commercial_release, production_release_pool, founder_access_denials absent — exactly the gap PR #9's forward-only migration fills. Residual platform-semantics risk tracked as BLK-PLATFORM-APPLY-SEMANTICS."
     },
     {
       "id": "BLK-STAGING-7-TABLES-UNVERIFIED",
@@ -134,6 +136,24 @@
       "statement": "The matrix claims all 14 tables of main's 20260919175712 already exist on staging, but staging's applied 20260915161655 creates only 7 of them; schema-state.txt inspected remediation_snapshots/actions only. Presence of automated_review_imports, automated_provisional_outcomes, automated_review_rollback_events, question_marking_specs, question_content_revisions, curriculum_source_register and question_originality_checks on staging is unverified. The reconciliation migration creates them IF NOT EXISTS either way.",
       "owner": "lovable",
       "resolution_path": "Read-only check of pg_tables on staging for the seven names; attach the result.",
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "Verified by ART-0012 table-check.csv: all 14 tables present with RLS on. Provenance: 7 from staging's 20260915161655 (full), 3 from 20260915180432 and 4 from 20260915181935 — both shared with main and byte-identical. The matrix claim was correct; the dispute is resolved."
+    },
+    {
+      "id": "BLK-PLATFORM-APPLY-SEMANTICS",
+      "opened": "2026-10-03",
+      "statement": "The staging ledger holds 35 rows while main has 110 migration names; 95 older main names (pre-remix and 20260905094512/094600/094734, 20260905074149, 20260919*, 20261002045629/050000/050331) were never applied yet later versions were. This shows the platform does not replay older missing names when newer ones are applied, so 20261003120000 should be applied alone — but the platform's apply policy is undocumented.",
+      "owner": "lovable",
+      "resolution_path": "Before applying main to staging, confirm with Lovable Cloud that only versions newer than the last ledger row (20261002052550) are executed; if the platform would also attempt 20260919175712 (unguarded CREATE TABLE on existing tables), stop and mark that name applied first. Take a staging backup before any apply.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-STAGING-4-UNKNOWN-MIGRATIONS",
+      "opened": "2026-10-03",
+      "statement": "Four staging-only ledger rows (20260901040820, 20260903053903, 20260903145457, 20260903171759; 4.2–5.4 KB each) have no exported SQL — only MD5 and length. Their DDL is unknown; they predate the 2026-09-04 alignment migration that dropped staging-only pilot objects, so they are probably superseded, but this is inferred.",
+      "owner": "lovable",
+      "resolution_path": "Export the four statement bodies (read-only) or confirm they were fully reverted by 20260904172759.",
       "status": "open"
     }
   ]

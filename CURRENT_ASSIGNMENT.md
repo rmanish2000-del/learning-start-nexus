@@ -23,7 +23,7 @@ before any handoff.
 **Id:** `ASG-2026-10-03-006`
 **Title:** Canonical migration reconciliation with the real staging schema (forward-only)
 **Received:** 2026-10-03 · **Priority:** P0 SECURITY / DATA INTEGRITY · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** PARTIAL — forward-only migration delivered and proven on disposable databases (branch `reconcile/staging-migrations`, draft PR against `main`); the staging applied-migration ledger is unverified, so the PR is not merge-ready.
+**Status:** PASS (reassessed with the staging ledger, ART-0012) — migration unchanged and confirmed correct; PR #9 recommended for merge (founder decision); staging apply only under explicit permission with a backup.
 
 ### Business value
 
@@ -55,8 +55,9 @@ any applied migration, importing staging-only migration names into main.
 | S3 | Generate the forward-only idempotent migration; no DROP TABLE / TRUNCATE / DELETE / DROP COLUMN | Claude Code | done |
 | S4 | Dry-run on disposable PostgreSQL 16: bare, main-shaped (no-op), staging-shaped (rows preserved, idempotent) | Claude Code | done |
 | S5 | Gates, commit, push, draft PR against `main` | Claude Code | done |
-| S6 | Attach the staging applied-migration ledger and the seven-table check | Lovable | pending |
-| S7 | Decide ledger marking with the Cloud owner; founder merge decision | Founder (irreversible decision) | pending |
+| S6 | Attach the staging applied-migration ledger and the seven-table check | Lovable | done (ART-0012) |
+| S7 | Founder merge decision on PR #9; Lovable confirms the platform apply policy before any staging apply | Founder / Lovable | pending |
+| S8 | Reassess PR #9 against the ledger (no migration change required) | Claude Code | done |
 
 ### Permissions
 
@@ -64,7 +65,7 @@ Deployment: **not allowed.** Database execution: **not allowed.** Merge: **not a
 
 ### Blockers
 
-`BLK-MIGRATION-LEDGER-UNVERIFIED`, `BLK-STAGING-7-TABLES-UNVERIFIED` (Lovable), plus the open
+`BLK-PLATFORM-APPLY-SEMANTICS`, `BLK-STAGING-4-UNKNOWN-MIGRATIONS` (Lovable; the two earlier ledger blockers are closed), plus the open
 items in `.ai/BLOCKER_REGISTRY.json`.
 
 ### Rollback
@@ -73,5 +74,5 @@ Close the PR or delete the single new migration file; nothing has been applied a
 
 ### Next gate
 
-Lovable attaches the staging ledger export (read-only) and the seven-table check; then the
-founder decides on ledger marking and the merge.
+Founder decides the merge of PR #9; Lovable confirms the apply policy and takes a staging
+backup before any staging apply (explicit permission required).

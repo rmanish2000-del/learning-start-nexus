@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T11:30:00Z",
+  "updated_at": "2026-10-03T14:10:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
@@ -42,7 +42,7 @@
         "importing staging-only migration names into main"
       ]
     },
-    "input_artifact_ids": ["ART-0011"],
+    "input_artifact_ids": ["ART-0011", "ART-0012"],
     "steps": [
       {
         "id": "S1",
@@ -84,7 +84,15 @@
         "action": "Attach the staging applied-migration ledger and the seven-table check",
         "executor": "lovable",
         "capability": "db.live_read",
-        "status": "pending"
+        "status": "done",
+        "note": "Ledger and seven-table check delivered as ART-0012 and reassessed."
+      },
+      {
+        "id": "S8",
+        "action": "Reassess PR #9 against the ledger: same-name conflict confirmed in ledger; 7 main-only names absent; 3 objects absent; 14 tables present with provenance; no migration change required; evidence and registries updated",
+        "executor": "claude_code",
+        "capability": "repo.write",
+        "status": "done"
       }
     ],
     "deployment": {
