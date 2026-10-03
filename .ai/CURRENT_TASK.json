@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_at": "2026-10-03T08:05:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
   },
   "stale_after_days": 14,
   "task": {
-    "id": "ASG-2026-10-03-001",
-    "title": "Prompt and context engineering standard — adopt the .ai governance layer",
+    "id": "ASG-2026-10-03-003",
+    "title": "MPBSE, accessibility, branding and deep-link staging work — canonical integration and independent verification",
     "status": "in_progress",
     "priority": "P0",
-    "business_value": "Stops every seat from re-deriving state, losing artifacts between tools, and asking the founder to execute tool work. Directly reduces usage-credit waste (D17) and blocked assignments (two staging packages were never retrievable).",
+    "business_value": "Moves verified staging work (MPBSE paper registry/board surface, timed-attempt persistence with account isolation, a11y fixes, EduOS-only branding check, safe /exam-pattern deep-link return) into the canonical repository with complete provenance and no unrelated changes.",
     "owner": {
       "tool": "claude_code"
     },
@@ -20,74 +20,68 @@
     },
     "repo": {
       "name": "rmanish2000-del/learning-start-nexus",
-      "branch": "claude/ai-governance-context-engineering",
-      "base_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+      "branch": "feat/mpbse-a11y-canonical",
+      "base_sha": "b634d11aa5e82c64b92261728df71348958069d6"
     },
-    "objective": "Every assignment and handoff carries addressable artifact coordinates, a repository SHA, graded evidence and explicit permissions, and is validated fail-closed before any seat acts on it.",
+    "objective": "Apply EDUOS_MPBSE_CANONICAL_HANDOFF.zip (716174 B, sha256 290f51a1…940f) to canonical main file by file, preserving canonical security/owner controls, with regression tests, evidence under verification/mpbse-a11y-canonical/, a PR against main, no merge and no deployment.",
     "scope": {
       "in": [
-        ".ai registries and schemas",
-        "docs/ai standards",
-        "scripts/ai validators and their tests",
-        "AGENTS.md, EDUOS_PROJECT_OPERATING_SYSTEM.md, CURRENT_ASSIGNMENT.md, EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md updates"
+        "19 handoff paths (content/mpbse, design/figma, src/components, src/lib, src/routes, src/start.ts, src/styles.css, tsconfig.json)",
+        "regression tests for deep-link return security and attempt-storage cleanup",
+        "verification evidence",
+        "registry updates"
       ],
       "out": [
-        "application code",
-        "database schema",
-        "deployment",
         "merge",
-        "deleting any historical evidence"
+        "staging or production deployment",
+        "database or migration changes",
+        "dependency upgrades",
+        "app-shell.tsx changes beyond the three role-label colour lines"
       ]
     },
+    "input_artifact_ids": ["ART-0009"],
     "steps": [
       {
         "id": "S1",
-        "action": "Audit the eight continuity documents and record contradictions",
+        "action": "Input availability gate: ZIP identity, SHA256SUMS, MANIFEST, 19 files, patch vs files/, secret scan",
         "executor": "claude_code",
         "capability": "repo.read",
         "status": "done"
       },
       {
         "id": "S2",
-        "action": "Create .ai registries, schemas, docs/ai standards, scripts/ai validators and fail-closed tests",
+        "action": "Apply changes.patch to main file by file; reject files/ deltas that would regress canonical owner controls or the /lovable/ auth-gate bypass",
         "executor": "claude_code",
         "capability": "repo.write",
         "status": "done"
       },
       {
         "id": "S3",
-        "action": "Run vitest, tsc, eslint, build and the ai:check gate",
+        "action": "Add missing regression tests (return-path sanitizer, deep-link wiring, cleanup wiring, MPBSE practice disabled)",
         "executor": "claude_code",
-        "capability": "repo.test",
+        "capability": "repo.write",
         "status": "done"
       },
       {
         "id": "S4",
-        "action": "Commit, push to a new branch and open a PR against main",
+        "action": "Run vitest, tsc, lint (changed files), build, ai:check, secret scan",
         "executor": "claude_code",
-        "capability": "repo.pr",
-        "status": "done"
+        "capability": "repo.test",
+        "status": "pending"
       },
       {
         "id": "S5",
-        "action": "Review and merge the PR",
-        "executor": "founder",
-        "capability": "repo.merge",
-        "founder_exception": "irreversible_decision",
+        "action": "Commit, push feat/mpbse-a11y-canonical, open PR against main",
+        "executor": "claude_code",
+        "capability": "repo.pr",
         "status": "pending"
       },
       {
         "id": "S6",
-        "action": "Issue the next INBOX assignment as ASSIGNMENT_SCHEMA.json-conformant JSON (or Markdown with an embedded JSON block)",
-        "executor": "m365_copilot",
-        "capability": "assignment.issue",
-        "status": "pending"
-      },
-      {
-        "id": "S7",
-        "action": "Lovable returns results as HANDOFF_SCHEMA.json-conformant handoffs with git coordinates",
-        "executor": "lovable",
-        "capability": "handoff.produce",
+        "action": "Ratify the MPBSE Hindi-default exception (GV-013) and merge the PR",
+        "executor": "founder",
+        "capability": "repo.merge",
+        "founder_exception": "irreversible_decision",
         "status": "pending"
       }
     ],
@@ -102,14 +96,21 @@
     "gates": [
       "bunx vitest run",
       "bunx tsc --noEmit -p tsconfig.json",
-      "bun run lint",
+      "eslint on changed files",
       "LOVABLE_SANDBOX=1 bun run build",
       "bun run ai:check"
     ],
-    "rollback": "Revert the governance commit(s) on this branch; no runtime, schema or deployment change is involved.",
+    "rollback": "Revert the integration commit(s) on the branch or close the PR; no schema, data or deployment change.",
     "return_to": "m365_copilot"
   },
   "history": [
+    {
+      "id": "ASG-2026-10-03-001",
+      "title": "Prompt and context engineering standard — adopt the .ai governance layer",
+      "status": "complete",
+      "completed_on": "2026-10-03",
+      "evidence": "PR #6 merged as b634d11aa5e82c64b92261728df71348958069d6; handoff in Drive AGENT-REPORTS 2026-10-03_0720_CODE_HANDOFF-AI-GOVERNANCE-LAYER.md (file id 1K3sG4a79HiMuBO7Wd4PKnPhryccpZ4Nh)"
+    },
     {
       "id": "LEGACY-SAFE-PWA-PHASE-1",
       "title": "Safe PWA Phase 1 — exact verified production promotion",

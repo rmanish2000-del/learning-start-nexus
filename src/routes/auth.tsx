@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
+import { sanitizeReturnPath } from "@/lib/auth-return";
 import { setSessionMarker } from "@/lib/session-marker";
 import { claimParentRole, registerParent } from "@/lib/parent-account.functions";
 import { registerParentSchema } from "@/lib/parent-account-shared";
@@ -53,9 +54,10 @@ export const Route = createFileRoute("/auth")({
       ? { tab: search["tab"] }
       : {}),
     mode: search["mode"] === "signup" ? "signup" : "signin",
-    ...(typeof search["next"] === "string" && search["next"].startsWith("/")
-      ? { next: search["next"] }
-      : {}),
+    ...(() => {
+      const next = sanitizeReturnPath(search["next"]);
+      return next ? { next } : {};
+    })(),
   }),
 
 
@@ -151,6 +153,9 @@ function AuthPage() {
   useEffect(() => {
     void supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) return;
+      // Renew the document-gate marker first, or a full reload of `next`
+      // would be bounced straight back here.
+      setSessionMarker();
       if (search.next) {
         window.location.replace(search.next);
         return;

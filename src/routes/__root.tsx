@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { clearSessionMarker, setSessionMarker } from "@/lib/session-marker";
+import { claimAttemptStorage, clearAttemptStorage } from "@/lib/attempt-storage";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieConsentBanner } from "@/components/cookie-consent";
@@ -174,10 +175,15 @@ function RootComponent() {
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-      if (event === "SIGNED_OUT") clearSessionMarker();
-      else setSessionMarker();
+      if (event === "SIGNED_OUT") {
+        clearSessionMarker();
+        clearAttemptStorage();
+      } else {
+        setSessionMarker();
+        claimAttemptStorage(session?.user.id);
+      }
       router.invalidate();
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
     });

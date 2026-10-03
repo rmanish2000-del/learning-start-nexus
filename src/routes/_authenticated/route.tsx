@@ -35,7 +35,7 @@ export const Route = createFileRoute("/_authenticated")({
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) {
       clearSessionMarker();
-      throw redirect({ to: "/auth" });
+      throw redirect({ to: "/auth", search: { next: location.href } });
     }
 
     // Renew the document-gate marker for the server middleware in start.ts.

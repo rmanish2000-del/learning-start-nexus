@@ -1,7 +1,9 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T07:00:00Z",
-  "updated_by": { "tool": "claude_code" },
+  "updated_at": "2026-10-03T08:05:00Z",
+  "updated_by": {
+    "tool": "claude_code"
+  },
   "purpose": "Pointers to every durable decision plus the resolution of every known context conflict. check-context-conflicts.ts fails closed when it detects a conflict whose id has no entry in `conflict_resolutions`.",
   "pointers": [
     {
@@ -133,6 +135,14 @@
         "scripts/ai/validate-assignment.ts",
         "scripts/ai/check-artifact-addressability.ts"
       ]
+    },
+    {
+      "id": "GV-013",
+      "date": "2026-10-03",
+      "title": "MPBSE panel Hindi-default exception (provisional, awaiting founder ratification)",
+      "statement": "The MPBSE paper panel on /exam-pattern renders Hindi by default with an English switch, scoped to src/components/mpbse-papers.tsx and allow-listed in english-only.test.ts. Reported as a founder decision of 2026-10-02 (Lovable handoff). Every other surface stays English-only (D9, G5). Provisional until the founder merges the MPBSE PR (BLK-MPBSE-HINDI-RATIFICATION).",
+      "resolves": ["CX-MPBSE-HINDI"],
+      "enforced_by": ["src/lib/__tests__/english-only.test.ts"]
     }
   ],
   "conflict_resolutions": {
@@ -143,6 +153,7 @@
     "CX-OS-FILE-EXISTS": "GV-007",
     "CX-CURRENT-ASSIGNMENT-HISTORY": "GV-010",
     "CX-DUPLICATE-ROADMAP": "GV-011",
-    "CX-TEST-COUNT-DRIFT": "GV-006"
+    "CX-TEST-COUNT-DRIFT": "GV-006",
+    "CX-MPBSE-HINDI": "GV-013"
   }
 }

@@ -1,13 +1,11 @@
 # EduOS — Current Assignment
 
-**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `fa5fcde09323096a715e8307fc5114b210ae198f`
+**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `b634d11aa5e82c64b92261728df71348958069d6`
 **Machine-readable mirror (authoritative on conflict):** `.ai/CURRENT_TASK.json`
-**Evidence source:** founder assignment to the Claude Code seat, 2026-10-03.
+**Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (canonical integration and independent verification).
 
-This file holds **only** the active assignment. Completed assignments move to
-`.ai/CURRENT_TASK.json` → `history` with a git coordinate to their full text; the previous
-contents of this file are preserved at
-`fa5fcde09323096a715e8307fc5114b210ae198f:CURRENT_ASSIGNMENT.md`.
+This file holds **only** the active assignment. Completed assignments live in
+`.ai/CURRENT_TASK.json` → `history` with a git coordinate to their full text.
 
 ---
 
@@ -15,54 +13,49 @@ contents of this file are preserved at
 
 `EDUOS_PROJECT_OPERATING_SYSTEM.md` §11 (Founder Non-Execution, M365 Copilot continuity
 ownership, English assignments / Hindi chat), §12 (Business-Value-First) and §13 (AI
-governance: capability check, addressable coordinates, explicit permissions, graded
-evidence, return ownership to M365 Copilot). `AGENTS.md` carries the same rules for every
-seat. `bun run ai:check` must pass before any handoff.
+governance). `AGENTS.md` carries the same rules for every seat. `bun run ai:check` must pass
+before any handoff.
 
 ---
 
 ## Active assignment
 
-**Id:** `ASG-2026-10-03-001`
-**Title:** Prompt and context engineering standard — adopt the `.ai` governance layer
+**Id:** `ASG-2026-10-03-003`
+**Title:** MPBSE, accessibility, branding and deep-link staging work — canonical integration and independent verification
 **Received:** 2026-10-03 · **Priority:** P0 · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** in progress — repository work delivered on branch
-`claude/ai-governance-context-engineering` (PR against `main`); merge and adoption steps pending.
+**Status:** in progress — integration delivered on branch `feat/mpbse-a11y-canonical` (PR against `main`); founder ratification and merge pending.
 
 ### Business value
 
-Stops every seat from re-deriving state, losing artifacts between tools and asking the
-founder to execute tool work. Two staging packages (`ART-0005`, `ART-0006`) were referenced
-by name and hash only and were never retrievable; this layer makes that impossible to issue.
+Moves the verified staging work (MPBSE paper registry and board surface, timed-attempt
+persistence with account isolation, accessibility fixes, EduOS-only branding check, safe
+`/exam-pattern` deep-link return) into the canonical repository with complete provenance and
+no unrelated changes.
 
-### Objective
+### Input (verified)
 
-Every assignment and handoff carries addressable artifact coordinates, a repository SHA,
-graded evidence and explicit permissions, and is validated fail-closed before any seat acts.
+`EDUOS_MPBSE_CANONICAL_HANDOFF.zip`, 716174 bytes, SHA-256
+`290f51a170329344a13b541f1e651c9f13c3e56ae4e069d65a585f6f9105940f` — registry `ART-0009`;
+text members committed under `verification/mpbse-a11y-canonical/handoff/`.
 
 ### Scope
 
-In: `.ai/` registries and schemas; `docs/ai/` standards; `scripts/ai/` validators and
-tests; updates to `AGENTS.md`, `EDUOS_PROJECT_OPERATING_SYSTEM.md`, this file and
-`EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md`.
-Out: application code, database schema, deployment, merge, deleting historical evidence.
+In: the 19 handoff paths, applied from `changes.patch` file by file; regression tests for the
+return-path sanitizer, deep-link wiring, attempt-storage cleanup and MPBSE practice staying
+disabled; verification evidence; registry updates.
+Out: merge, staging or production deployment, database or migration changes, dependency
+upgrades, `app-shell.tsx` changes beyond the three role-label colour lines.
 
 ### Steps
 
 | # | Action | Executor | Status |
 |---|---|---|---|
-| S1 | Audit the eight continuity documents and record contradictions | Claude Code | done |
-| S2 | Create `.ai`, `docs/ai`, `scripts/ai` and the fail-closed tests | Claude Code | done |
-| S3 | Run vitest, tsc, eslint, build and `ai:check` | Claude Code | done |
-| S4 | Commit, push to a new branch, open a PR against `main` | Claude Code | done |
-| S5 | Review and merge the PR | Founder (irreversible decision) | pending |
-| S6 | Issue the next INBOX assignment as `ASSIGNMENT_SCHEMA.json`-conformant JSON | M365 Copilot | pending |
-| S7 | Return results as `HANDOFF_SCHEMA.json`-conformant handoffs with git coordinates | Lovable | pending |
-
-### Gates
-
-`bunx vitest run` · `bunx tsc --noEmit -p tsconfig.json` · `bun run lint` ·
-`LOVABLE_SANDBOX=1 bun run build` · `bun run ai:check`
+| S1 | Input availability gate (ZIP identity, SHA256SUMS, manifest, 19 files, patch vs files/, secret scan) | Claude Code | done |
+| S2 | Apply `changes.patch` to main file by file; reject `files/` deltas that regress canonical controls | Claude Code | done |
+| S3 | Add missing regression tests | Claude Code | done |
+| S4 | Run vitest, tsc, lint (changed files), build, `ai:check`, secret scan | Claude Code | done |
+| S5 | Commit, push, open PR against `main` | Claude Code | done |
+| S6 | Ratify the MPBSE Hindi-default exception (GV-013) and merge the PR | Founder (irreversible decision) | pending |
 
 ### Permissions
 
@@ -70,16 +63,17 @@ Deployment: **not in scope, no permission.** Merge: founder only.
 
 ### Blockers
 
-See `.ai/BLOCKER_REGISTRY.json` (production SHA unverifiable from this seat; two missing
-staging packages; PDF branch on the remote; roadmap case collision; OAuth client; PR #4
-decision).
+`BLK-MPBSE-HINDI-RATIFICATION` (founder decision), plus the open items in
+`.ai/BLOCKER_REGISTRY.json` (production SHA verification by Lovable, PDF branch, roadmap case
+collision, OAuth client, PR #4 decision).
 
 ### Rollback
 
-Revert the governance commit(s) on the branch. No runtime, schema or deployment change.
+Close the PR or revert the integration commit on the branch. No schema, data or deployment
+change.
 
 ### Next gate
 
-Founder merge of the PR, then M365 Copilot issues `ASG-2026-10-03-002`
-(`docs/ai/examples/assignment.example.json`: verify the deployed production SHA against the
-release fingerprint and close `BLK-PRODUCTION-SHA`).
+Founder merge of the MPBSE PR, then Lovable executes `ASG-2026-10-03-002`
+(`docs/ai/examples/assignment.example.json`: verify the deployed production SHA and close
+`BLK-PRODUCTION-SHA`).

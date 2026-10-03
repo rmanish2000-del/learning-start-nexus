@@ -5,28 +5,22 @@ import { ContextHelp } from "@/components/context-help";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { BarChart3, Clock, FileText, ShieldCheck, Target } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { MpbsePapers } from "@/components/mpbse-papers";
 import { toast } from "sonner";
 
 import { QueryError } from "@/components/query-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { friendlyErrorMessage } from "@/lib/user-errors";
-import {
-  getPyqWorkspaceFn,
-  startPyqSessionFn,
-  submitPyqSessionFn,
-} from "@/lib/pyq.functions";
+import { getPyqWorkspaceFn, startPyqSessionFn, submitPyqSessionFn } from "@/lib/pyq.functions";
+import { supabase } from "@/integrations/supabase/client";
+import { claimAttemptStorage } from "@/lib/attempt-storage";
 import {
   PYQ_SUBJECTS,
   PYQ_TIMED_MINUTES,
@@ -74,6 +68,7 @@ function ExamPatternPage() {
   const start = useServerFn(startPyqSessionFn);
   const submit = useServerFn(submitPyqSessionFn);
 
+  const [board, setBoard] = useState<"CBSE" | "MPBSE">("CBSE");
   const [subject, setSubject] = useState<PyqSubject | null>(null);
   const [year, setYear] = useState<string | null>(null);
   const [paperId, setPaperId] = useState<string | null>(null);
@@ -81,24 +76,85 @@ function ExamPatternPage() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [result, setResult] = useState<Awaited<ReturnType<typeof submitPyqSessionFn>> | null>(null);
 
+  // Autosave: answers for the open session survive a reload on this device.
+  const [restored, setRestored] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    void supabase.auth.getSession().then(({ data }) => {
+      if (cancelled) return;
+      // Only restore an attempt saved by this same account on this device.
+      if (claimAttemptStorage(data.session?.user.id)) {
+        try {
+          const raw = window.localStorage.getItem("eduos.pyq.open");
+          if (raw) {
+            const open = JSON.parse(raw) as SessionState;
+            setSession(open);
+            setAnswers(
+              JSON.parse(
+                window.localStorage.getItem(`eduos.pyq.answers.${open.sessionId}`) ?? "{}",
+              ) as Record<string, string>,
+            );
+          }
+        } catch {
+          /* storage unavailable or corrupt */
+        }
+      }
+      setRestored(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  useEffect(() => {
+    if (!restored) return;
+    try {
+      if (!session) {
+        window.localStorage.removeItem("eduos.pyq.open");
+        return;
+      }
+      window.localStorage.setItem("eduos.pyq.open", JSON.stringify(session));
+      window.localStorage.setItem(
+        `eduos.pyq.answers.${session.sessionId}`,
+        JSON.stringify(answers),
+      );
+    } catch {
+      /* storage unavailable */
+    }
+  }, [restored, session, answers]);
+
   const query = useQuery({
     queryKey: ["pyq-workspace", subject],
     queryFn: () => load({ data: subject ? { subject } : {} }),
   });
 
   const startMutation = useMutation({
-    mutationFn: (vars: { mode: PyqMode; chapter: string | null; paperId?: string | null }) =>
-      start({
+    mutationFn: (vars: {
+      mode: PyqMode;
+      chapter: string | null;
+      paperId?: string | null;
+      subject?: PyqSubject;
+    }) => {
+      const s = vars.subject ?? subject;
+      return start({
         data: {
           mode: vars.mode,
           chapter: vars.chapter,
           paperId: vars.paperId ?? null,
-          ...(subject ? { subject } : {}),
+          ...(s ? { subject: s } : {}),
         },
-      }),
+      });
+    },
     onSuccess: (data) => {
       setSession(data);
-      setAnswers({});
+      let saved: Record<string, string> = {};
+      try {
+        saved = JSON.parse(
+          window.localStorage.getItem(`eduos.pyq.answers.${data.sessionId}`) ?? "{}",
+        ) as Record<string, string>;
+      } catch {
+        saved = {};
+      }
+      setAnswers(saved);
       setResult(null);
     },
     onError: (error) => toast.error(friendlyErrorMessage(error)),
@@ -107,6 +163,11 @@ function ExamPatternPage() {
   const submitMutation = useMutation({
     mutationFn: () => submit({ data: { sessionId: session!.sessionId, answers } }),
     onSuccess: (data) => {
+      try {
+        window.localStorage.removeItem(`eduos.pyq.answers.${session?.sessionId}`);
+      } catch {
+        /* storage unavailable */
+      }
       setResult(data);
       setSession(null);
       toast.success(`Scored ${data.scorePct}%`);
@@ -115,8 +176,43 @@ function ExamPatternPage() {
     onError: (error) => toast.error(friendlyErrorMessage(error)),
   });
 
-  if (query.isLoading) return <Skeleton className="h-96 w-full" />;
-  if (query.isError) return <QueryError error={query.error} onRetry={() => query.refetch()} />;
+  // The board picker and MPBSE list need no learner data, so they render even
+  // while the CBSE workspace is loading or unavailable.
+  const boardPicker = (
+    <div className="flex flex-wrap gap-2" role="group" aria-label="Board">
+      {(["CBSE", "MPBSE"] as const).map((b) => (
+        <Button
+          key={b}
+          size="sm"
+          variant={board === b ? "default" : "outline"}
+          aria-pressed={board === b}
+          onClick={() => setBoard(b)}
+        >
+          {b}
+        </Button>
+      ))}
+    </div>
+  );
+  if (board === "MPBSE" || query.isLoading || query.isError) {
+    return (
+      <div className="space-y-6">
+        <header className="space-y-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h1 className="text-2xl font-semibold tracking-tight">Exam pattern practice</h1>
+            <ContextHelp page="/exam-pattern" />
+          </div>
+          {boardPicker}
+        </header>
+        {board === "MPBSE" ? (
+          <MpbsePapers />
+        ) : query.isLoading ? (
+          <Skeleton className="h-96 w-full" />
+        ) : (
+          <QueryError error={query.error} onRetry={() => query.refetch()} />
+        )}
+      </div>
+    );
+  }
   const data = query.data!;
 
   const available = new Map(data.availableByChapter.map((c) => [c.chapter, c.available]));
@@ -130,6 +226,7 @@ function ExamPatternPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Exam pattern practice</h1>
           <ContextHelp page="/exam-pattern" />
         </div>
+        {boardPicker}
         <p className="text-muted-foreground max-w-3xl text-sm">
           {data.subject} · chapter weights derived from {data.cohortMeta.papersAnalysed} official
           CBSE Class 10 papers ({data.cohortMeta.years.join(", ")}). You practise EduOS-verified
@@ -175,7 +272,10 @@ function ExamPatternPage() {
                       {available.get(chapter.chapter) ?? 0} verified questions
                     </span>
                   </div>
-                  <Progress value={chapter.markShare * 100} />
+                  <Progress
+                    value={chapter.markShare * 100}
+                    aria-label={`${chapter.chapter} share of marks`}
+                  />
                   <div className="flex flex-wrap gap-2">
                     {data.weakChapters.includes(chapter.chapter) && (
                       <Badge variant="destructive">Your weak area</Badge>
@@ -183,7 +283,9 @@ function ExamPatternPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      disabled={(available.get(chapter.chapter) ?? 0) === 0 || startMutation.isPending}
+                      disabled={
+                        (available.get(chapter.chapter) ?? 0) === 0 || startMutation.isPending
+                      }
                       onClick={() =>
                         startMutation.mutate({ mode: "practice", chapter: chapter.chapter })
                       }
@@ -261,9 +363,7 @@ function ExamPatternPage() {
               )}
               <Button
                 disabled={!paperId || startMutation.isPending}
-                onClick={() =>
-                  startMutation.mutate({ mode: "full_paper", chapter: null, paperId })
-                }
+                onClick={() => startMutation.mutate({ mode: "full_paper", chapter: null, paperId })}
               >
                 Start full paper attempt
               </Button>
@@ -385,10 +485,7 @@ function ExamPatternPage() {
               </div>
             ))}
             <div className="flex gap-2">
-              <Button
-                disabled={submitMutation.isPending}
-                onClick={() => submitMutation.mutate()}
-              >
+              <Button disabled={submitMutation.isPending} onClick={() => submitMutation.mutate()}>
                 Submit for feedback
               </Button>
               <Button variant="ghost" onClick={() => setSession(null)}>
@@ -435,9 +532,7 @@ function ExamPatternPage() {
                   <p className="text-muted-foreground text-sm">
                     Your answer: {row.given || "—"} · Correct: {row.item.correctAnswer}
                   </p>
-                  {row.item.explanation && (
-                    <p className="text-sm">{row.item.explanation}</p>
-                  )}
+                  {row.item.explanation && <p className="text-sm">{row.item.explanation}</p>}
                 </div>
               ))}
             </div>

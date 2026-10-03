@@ -490,7 +490,12 @@ describe("context conflict detector fails closed", () => {
 });
 
 describe("artifact addressability fails closed", () => {
-  const base = (): AddressabilityInputs => clone(loadAddressabilityInputs());
+  const base = (): AddressabilityInputs => {
+    const inputs = clone(loadAddressabilityInputs());
+    // The live task may require live artifacts; these cases register their own.
+    delete (inputs.currentTask["task"] as Json)["input_artifact_ids"];
+    return inputs;
+  };
   const resolverReturning = (r: GitResolution) => ({ git: () => r });
   const currentGit = (over: Json = {}): Json => ({
     id: "ART-T001",
@@ -552,6 +557,18 @@ describe("artifact addressability fails closed", () => {
     const result = checkArtifactAddressability(inputs, resolverReturning("present"));
     expect(result.ok).toBe(false);
     expect(result.findings.filter((f) => f.code === "INACCESSIBLE_ARTIFACT")).toHaveLength(2);
+  });
+
+  it("skips superseded artifacts unless the current task still depends on them", () => {
+    const inputs = base();
+    inputs.artifactRegistry["artifacts"] = [
+      currentGit({ id: "ART-T011", status: "superseded", coordinate: null }),
+    ];
+    expect(codes(checkArtifactAddressability(inputs, resolverReturning("present")))).toEqual([]);
+    (inputs.currentTask["task"] as Json)["input_artifact_ids"] = ["ART-T011"];
+    expect(codes(checkArtifactAddressability(inputs, resolverReturning("present")))).toContain(
+      "INACCESSIBLE_ARTIFACT",
+    );
   });
 
   it("rejects a missing artifact with no open blocker", () => {
@@ -663,7 +680,7 @@ describe("continuity documents after the governance change", () => {
     const text = read("CURRENT_ASSIGNMENT.md");
     const task = json(".ai/CURRENT_TASK.json")["task"] as Json;
     expect(text).toContain(String(task["id"]));
-    expect(text).toContain("fa5fcde09323096a715e8307fc5114b210ae198f");
+    expect(text).toContain(String((task["repo"] as Json)["base_sha"]));
     expect(text).not.toMatch(/\*\*Status:\*\* Complete/);
     expect(text).not.toMatch(/## Previous assignment/);
   });

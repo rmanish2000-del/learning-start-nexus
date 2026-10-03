@@ -490,9 +490,9 @@ function HeaderTitle() {
         className={cn(
           "rounded-full px-2 py-0.5 text-[11px] font-medium",
           role === "admin" && "bg-destructive/10 text-destructive",
-          role === "educator" && "bg-primary/10 text-primary",
-          role === "student" && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-          role === "parent" && "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+          role === "educator" && "bg-primary/10 text-foreground",
+          role === "student" && "bg-emerald-500/10 text-emerald-800 dark:text-emerald-400",
+          role === "parent" && "bg-amber-500/10 text-amber-800 dark:text-amber-400",
         )}
       >
         {ROLE_LABELS[role]}
