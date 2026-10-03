@@ -4,7 +4,7 @@
 **Canonical base:** `main` @ `9c90805ccb5a50c3717acfd6a1b1428f0f763150` (fetched; clean worktree; contains merged PR #7 whose integration head was `7324d530d019bf48b92df31cdbd623061d20d244`)
 **Working branch:** `security/open-redirect-canonical-fix` · **Merge:** not performed · **Staging / production:** not deployed, not modified
 
-## Result: PASS (fix delivered; merge withheld for independent review)
+## Result: PASS — merged into `main` as `553052e92730189329603a33e011fe2b0c640bc4` (PR #8) after independent re-verification on head `2dad469e2376b6e4f67364aca22268d746c40be1`; not deployed
 
 ## 1. Attachment verification
 

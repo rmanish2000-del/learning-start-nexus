@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:50:00Z",
+  "updated_at": "2026-10-03T09:00:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
@@ -14,41 +14,41 @@
   "repo": {
     "name": "rmanish2000-del/learning-start-nexus",
     "canonical_branch": "main",
-    "verified_head_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150",
-    "verified_at": "2026-10-03T08:40:00Z",
+    "verified_head_sha": "553052e92730189329603a33e011fe2b0c640bc4",
+    "verified_at": "2026-10-03T09:00:00Z",
     "evidence_grade": "verified",
     "history_rule": "Lovable-connected. Never rewrite published history (no force-push, rebase, amend or squash of pushed commits)."
   },
   "gates": {
     "vitest": {
       "command": "bunx vitest run",
-      "result": "640 passed / 52 files (security/open-redirect-canonical-fix; main@9c90805 = 562 / 51)",
+      "result": "640 passed / 52 files",
       "evidence_grade": "verified",
-      "observed_at_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150 + security/open-redirect-canonical-fix working tree"
+      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
     },
     "typecheck": {
       "command": "bunx tsc --noEmit -p tsconfig.json",
       "result": "0 errors",
       "evidence_grade": "verified",
-      "observed_at_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150 + security/open-redirect-canonical-fix working tree"
+      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
     },
     "lint": {
       "command": "bun run lint",
       "result": "clean on changed files except pre-existing prettier findings in src/routes/auth.tsx (21 on branch vs 22 on main), src/start.ts and the sidebar.tsx warning",
       "evidence_grade": "verified",
-      "observed_at_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150 + security/open-redirect-canonical-fix working tree"
+      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
     },
     "build": {
       "command": "LOVABLE_SANDBOX=1 bun run build",
       "result": "success, 254 precache entries",
       "evidence_grade": "verified",
-      "observed_at_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150 + security/open-redirect-canonical-fix working tree"
+      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
     },
     "ai_governance": {
       "command": "bun run ai:check",
       "result": "PASS (0 errors)",
       "evidence_grade": "verified",
-      "observed_at_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150 + security/open-redirect-canonical-fix working tree"
+      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
     }
   },
   "production": {
@@ -118,12 +118,20 @@
       "merged_at": "2026-10-03T08:05:00Z",
       "merged_by": "claude_code (founder-authorised in the 2026-10-03 correction-and-merge assignment)",
       "evidence_grade": "verified"
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/rmanish2000-del/learning-start-nexus/pull/8",
+      "merge_sha": "553052e92730189329603a33e011fe2b0c640bc4",
+      "merged_at": "2026-10-03T08:50:00Z",
+      "merged_by": "claude_code (founder-authorised in the 2026-10-03 P0 review-and-merge assignment)",
+      "evidence_grade": "verified"
     }
   ],
   "security": {
     "open_redirect": {
-      "status": "fix on branch security/open-redirect-canonical-fix; main@9c90805 is vulnerable in the signed-in flow",
-      "evidence": "verification/open-redirect-canonical/REPRODUCTION_main-9c90805.txt",
+      "status": "fixed on main at 553052e92730189329603a33e011fe2b0c640bc4 (PR #8); production not yet redeployed — main is ahead of the deployed build",
+      "evidence": "verification/open-redirect-canonical/VERIFICATION_REPORT.md",
       "evidence_grade": "verified"
     },
     "authz_status_codes": {

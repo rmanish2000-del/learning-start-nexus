@@ -1,6 +1,6 @@
 # EduOS — Current Assignment
 
-**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `9c90805ccb5a50c3717acfd6a1b1428f0f763150`
+**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `553052e92730189329603a33e011fe2b0c640bc4`
 **Machine-readable mirror (authoritative on conflict):** `.ai/CURRENT_TASK.json`
 **Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (P0 canonical security hotfix).
 
@@ -23,7 +23,7 @@ before any handoff.
 **Id:** `ASG-2026-10-03-004`
 **Title:** P0 canonical security hotfix — `/auth?next=` open redirect
 **Received:** 2026-10-03 · **Priority:** P0 SECURITY · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** in progress — fix delivered on branch `security/open-redirect-canonical-fix` (PR against `main`); merge withheld for independent review (founder act).
+**Status:** complete — PR #8 merged as `553052e92730189329603a33e011fe2b0c640bc4` after independent review (founder-authorised). Production has **not** been redeployed; next mission `ASG-2026-10-03-005` (Lovable: production SHA verification, then explicit founder deployment permission).
 
 ### Business value
 
@@ -60,7 +60,7 @@ Out: merge, deployment, global 401/403 remediation (recorded as `BLK-AUTHZ-401-S
 | S2 | Reproduce the signed-in open redirect on `main` | Claude Code | done |
 | S3 | One sanitizer, validator root-cause fix, re-sanitize at both redirects, 16-variant tests in both flows | Claude Code | done |
 | S4 | Gates, commit, push, PR against `main` (no merge) | Claude Code | done |
-| S5 | Independent review and merge decision | Founder (irreversible decision) | pending |
+| S5 | Independent review and merge (founder-authorised) | Claude Code | done — merge `553052e9` |
 
 ### Permissions
 
