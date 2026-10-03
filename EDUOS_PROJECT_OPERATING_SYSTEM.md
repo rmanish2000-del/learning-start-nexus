@@ -2,7 +2,7 @@
 
 **Repository path:** `EDUOS_PROJECT_OPERATING_SYSTEM.md` (canonical repository root, `learning-start-nexus`)
 **Created:** 2026-08-27 (UTC) · **Canonical branch:** `main`
-**Source of rules:** `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` §1, §3–§8, §14–§17
+**Source of rules:** `EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md` §1, §3–§8, §14–§17 (historical); `docs/ai/` standards and `.ai/` registries (2026-10-03 onward)
 **Change policy:** operating rules only. Changes rarely. Never a place for status, sprint notes or release history.
 
 ---
@@ -111,7 +111,9 @@ Every assignment includes, without the founder asking:
 5. Provide the **full** commit SHA.
 6. Confirm the working tree is clean.
 7. Confirm no required migrations or translations are untracked.
-8. Publish/deploy the verified canonical HEAD when appropriate.
+8. Publish/deploy the verified canonical HEAD **only when the assignment carries explicit
+   founder deployment permission** (§13.4). **[SUPERSEDED 2026-10-03: the earlier wording
+   "when appropriate" granted nothing — see `.ai/DECISION_REGISTRY.json` GV-004.]**
 9. Verify production serves the intended behaviour.
 10. Provide the production URL and deployment status.
 11. Provide tests, screenshots and evidence.
@@ -385,3 +387,87 @@ Credit-efficiency rules:
 
 This rule overrides any earlier wording in this or any other continuity file that implies a different
 work-ordering priority.
+
+---
+
+## 13. AI governance: prompt, context and artifact rules (2026-10-03, permanent)
+
+Machine-readable state lives in `.ai/` (index, state, task, capabilities, authorities,
+artifacts, decisions, blockers, schemas). The standards live in `docs/ai/`. The gate
+`bun run ai:check` and `src/lib/__tests__/ai-governance.test.ts` enforce every rule below
+and fail closed. This section is read subject to §11.1; where an older section conflicts,
+this section wins and the older text is marked superseded, never deleted.
+
+### 13.1 Capability check before assigning
+
+Before any step is assigned, consult `.ai/TOOL_CAPABILITIES.json`. A step that a tool holds
+as `available` is assigned to that tool. The founder receives only founder-only acts —
+merge, deployment approval, credentials, payment, legal approval, irreversible decisions —
+each with its G1 exception named. `validate-assignment.ts` rejects founder execution of
+tool-executable work (`FOUNDER_EXECUTION`).
+
+### 13.2 Verify inputs and use addressable coordinates
+
+Every input and output crossing a tool boundary has a coordinate: git `repo + full 40-char
+SHA + path`, Drive `file_id` (with folder id), or an https URL; optionally `sha256` and
+`bytes`. The issuing seat retrieves each input first and records `access_verified: true`
+with the verifying seat. Filenames, hashes without location, "Files", "this project",
+"attached", "shared earlier" and chat references are rejected (`FILENAME_ONLY_*`,
+`VAGUE_LOCATION`). Standard: `docs/ai/ARTIFACT_TRANSPORT_PROTOCOL.md`.
+
+### 13.3 Repository and store authorities
+
+| Authority | Store | Owns |
+|---|---|---|
+| Application (only deployment source) | `rmanish2000-del/learning-start-nexus` | code, migrations, tests, `.ai/`, `docs/ai/`, continuity documents |
+| Product | `rmanish2000-del/eduos-ai` | product definition and strategy |
+| Fleet | `rmanish2000-del/eduos` | fleet seat and ProjectOS configuration |
+| Reports | Drive AGENT-REPORTS `11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg` | CHAT-HANDOFF.md, FLEET-STATE.md, seat reports |
+| Assignments | Drive INBOX `1Xptv2lvM-3pJHLI5vPmlh9rUgtlKxjuf` | one active assignment per seat |
+
+Producer and consumer of a git artifact must name the same repository; a cross-repository
+hand-over records a `transport` entry (`PRODUCER_CONSUMER_REPO_MISMATCH` otherwise).
+
+### 13.4 Permissions are explicit
+
+Deployment is in scope only when the assignment states `deployment.in_scope: true`,
+`permission: "explicit"`, `granted_by: "founder"`, a verbatim founder statement and a
+target. Conditional wording ("when appropriate", "if needed") is rejected
+(`DEPLOYMENT_PERMISSION`). Merging into `main` is a founder act. Published history is never
+rewritten (AGENTS.md).
+
+### 13.5 Stop on inaccessible input
+
+An input that cannot be retrieved from its coordinate stops the dependent work: the seat
+returns `BLOCKED`, registers a `BLK-` entry with the owner that can fix it, and never
+substitutes a similar file or asks the founder to fetch what another seat can fetch.
+
+### 13.6 Producer publication and consumer retrieval confirmation
+
+The producer records the coordinate and `publication_confirmed: true` in
+`.ai/ARTIFACT_REGISTRY.json` and the handoff. The consumer records
+`retrieval_confirmed: true` before acting. A handoff with unpublished artifacts fails
+(`PUBLICATION_UNCONFIRMED`).
+
+### 13.7 Avoid founder execution
+
+Any wording anywhere in the continuity set that asks the founder to test, verify, run,
+configure or fetch is superseded by §11.1 and this section. Open founder items are listed in
+`.ai/BLOCKER_REGISTRY.json` with their exception; everything else is tool work.
+
+### 13.8 Evidence: reported, verified, production
+
+Every claim carries a grade: `verified` (observed by the writing seat, with command or
+coordinate), `reported` (stated by another seat or document), `assumed`, or `blocked`.
+Production state is `verified` only against `GET /api/public/version` compared with
+`EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md`, or a deployment record. Deployed-SHA claims in
+documents are `reported` (GV-006); `.ai/CURRENT_STATE.json` is the only current claim.
+
+### 13.9 Return ownership to M365 Copilot
+
+Every assignment ends with a handoff conforming to `.ai/HANDOFF_SCHEMA.json`
+(`ownership_returned_to: m365_copilot`), placed in Drive AGENT-REPORTS, after
+`.ai/CURRENT_STATE.json` and `.ai/CURRENT_TASK.json` were updated in the same commit as the
+work. M365 Copilot confirms retrieval and issues exactly one next assignment conforming to
+`.ai/ASSIGNMENT_SCHEMA.json`. Chat replies to the founder stay short and in Hindi (§11.3);
+assignments and handoffs are in English.

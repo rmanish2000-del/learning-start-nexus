@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "ASG-2026-10-03-002",
+  "title": "Verify the deployed production SHA against the release fingerprint",
+  "issued_at": "2026-10-03T07:30:00Z",
+  "issued_by": { "tool": "m365_copilot" },
+  "seat": { "tool": "lovable", "mode": "verification, read-only" },
+  "priority": "P0",
+  "business_value": "Closes BLK-PRODUCTION-SHA so every later release claim can be graded 'verified' instead of 'reported'; prevents a stale production from being mistaken for the canonical build.",
+  "repo": {
+    "name": "rmanish2000-del/learning-start-nexus",
+    "branch": "main",
+    "base_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+  },
+  "objective": "Record in .ai/CURRENT_STATE.json which commit production serves, graded 'verified', using the public version endpoint and a local build of the same commit.",
+  "scope": {
+    "in": [
+      "GET https://www.eduos.global/api/public/version",
+      "LOVABLE_SANDBOX=1 bun run build at the base SHA",
+      "update .ai/CURRENT_STATE.json production block",
+      "close BLK-PRODUCTION-SHA in .ai/BLOCKER_REGISTRY.json"
+    ],
+    "out": ["any deployment", "any migration", "any application code change"]
+  },
+  "inputs": [
+    {
+      "name": "Release fingerprint evidence",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "fa5fcde09323096a715e8307fc5114b210ae198f",
+        "path": "EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md"
+      },
+      "access_verified": true,
+      "verified_by": "claude_code",
+      "verified_at": "2026-10-03T06:58:58Z",
+      "purpose": "Expected fingerprint d064be7f74d8… for the corrective release"
+    }
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "action": "Fetch /api/public/version from production and record releaseId, fingerprint, builtAt",
+      "executor": "lovable",
+      "capability": "web.fetch_production",
+      "evidence_required": "raw JSON response"
+    },
+    {
+      "id": "S2",
+      "action": "Build the base SHA locally and compare the embedded fingerprint",
+      "executor": "lovable",
+      "capability": "repo.test",
+      "evidence_required": "build log line with the fingerprint"
+    },
+    {
+      "id": "S3",
+      "action": "Write production.deployed_sha and evidence_grade='verified' with source into .ai/CURRENT_STATE.json; set BLK-PRODUCTION-SHA status to closed",
+      "executor": "lovable",
+      "capability": "repo.write"
+    },
+    {
+      "id": "S4",
+      "action": "Run bun run ai:check and the full gate set",
+      "executor": "lovable",
+      "capability": "repo.test"
+    },
+    {
+      "id": "S5",
+      "action": "Commit to main with the full SHA in the handoff",
+      "executor": "lovable",
+      "capability": "repo.push"
+    }
+  ],
+  "gates": [
+    "bun run ai:check",
+    "bunx vitest run",
+    "bunx tsc --noEmit -p tsconfig.json",
+    "bun run lint"
+  ],
+  "deployment": { "in_scope": false, "permission": "none" },
+  "merge": { "allowed": false, "by": "founder" },
+  "outputs": [
+    {
+      "name": "Updated CURRENT_STATE.json",
+      "store": "git",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "path": ".ai/CURRENT_STATE.json",
+      "consumer": "m365_copilot"
+    },
+    {
+      "name": "Handoff",
+      "store": "drive",
+      "folder_id": "11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg",
+      "consumer": "m365_copilot"
+    }
+  ],
+  "rollback": "Revert the documentation-only commit; no runtime, schema or deployment change.",
+  "return_to": "m365_copilot"
+}

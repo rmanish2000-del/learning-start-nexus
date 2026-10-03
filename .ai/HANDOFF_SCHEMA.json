@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rmanish2000-del/learning-start-nexus/.ai/HANDOFF_SCHEMA.json",
+  "title": "EduOS handoff",
+  "description": "Machine-checkable contract for every result handed from one AI seat to another (normally back to M365 Copilot). Validated by scripts/ai/validate-handoff.ts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "assignment_id",
+    "produced_at",
+    "producer",
+    "consumer",
+    "repo",
+    "production",
+    "result",
+    "summary",
+    "evidence",
+    "artifacts",
+    "contradictions",
+    "blockers",
+    "worktree_clean",
+    "rollback",
+    "ownership_returned_to"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "id": { "type": "string", "pattern": "^HND-\\d{4}-\\d{2}-\\d{2}-\\d{3,}$" },
+    "assignment_id": { "type": "string", "pattern": "^ASG-\\d{4}-\\d{2}-\\d{2}-\\d{3,}$" },
+    "produced_at": { "type": "string", "format": "date-time" },
+    "producer": { "$ref": "#/$defs/Actor" },
+    "consumer": { "$ref": "#/$defs/Actor" },
+    "repo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "branch", "head_sha"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "branch": { "type": "string", "minLength": 1 },
+        "head_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "pr_url": { "type": "string", "pattern": "^https://github\\.com/" }
+      }
+    },
+    "production": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["touched", "sha", "evidence_grade"],
+      "properties": {
+        "touched": { "type": "boolean" },
+        "sha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+        "evidence_grade": { "$ref": "#/$defs/EvidenceGrade" },
+        "source": { "type": "string" }
+      }
+    },
+    "result": { "enum": ["PASS", "PARTIAL", "FAIL", "BLOCKED"] },
+    "summary": { "type": "string", "minLength": 12 },
+    "evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Evidence" } },
+    "artifacts": { "type": "array", "items": { "$ref": "#/$defs/HandoffArtifact" } },
+    "contradictions": { "type": "array", "items": { "$ref": "#/$defs/Contradiction" } },
+    "blockers": { "type": "array", "items": { "$ref": "#/$defs/Blocker" } },
+    "worktree_clean": { "type": "boolean" },
+    "rollback": { "type": "string", "minLength": 8 },
+    "next_assignment_ref": { "type": "string" },
+    "ownership_returned_to": { "const": "m365_copilot" }
+  },
+  "$defs": {
+    "ToolId": {
+      "enum": ["claude_code", "lovable", "m365_copilot", "claude_cowork", "figma", "founder"]
+    },
+    "EvidenceGrade": { "enum": ["verified", "reported", "assumed", "blocked"] },
+    "Actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool"],
+      "properties": {
+        "tool": { "$ref": "#/$defs/ToolId" },
+        "session": { "type": "string", "pattern": "^https://" }
+      }
+    },
+    "GitCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store", "repo", "ref", "path"],
+      "properties": {
+        "store": { "const": "git" },
+        "repo": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "ref": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "path": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\./).+$" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" }
+      }
+    },
+    "DriveCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store", "file_id"],
+      "properties": {
+        "store": { "const": "drive" },
+        "file_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{20,}$" },
+        "folder_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{20,}$" },
+        "title": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" }
+      }
+    },
+    "UrlCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store", "url"],
+      "properties": {
+        "store": { "const": "url" },
+        "url": { "type": "string", "pattern": "^https://" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" }
+      }
+    },
+    "Coordinate": {
+      "oneOf": [
+        { "$ref": "#/$defs/GitCoordinate" },
+        { "$ref": "#/$defs/DriveCoordinate" },
+        { "$ref": "#/$defs/UrlCoordinate" }
+      ]
+    },
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim", "grade"],
+      "properties": {
+        "claim": { "type": "string", "minLength": 5 },
+        "grade": { "$ref": "#/$defs/EvidenceGrade" },
+        "coordinate": { "$ref": "#/$defs/Coordinate" },
+        "command": { "type": "string" },
+        "observed": { "type": "string" }
+      }
+    },
+    "HandoffArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "coordinate", "publication_confirmed", "retrieval_confirmed"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "coordinate": { "$ref": "#/$defs/Coordinate" },
+        "publication_confirmed": { "type": "boolean" },
+        "retrieval_confirmed": { "type": "boolean" },
+        "retrieval_confirmed_by": { "$ref": "#/$defs/ToolId" }
+      }
+    },
+    "Contradiction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "statement", "resolution"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^CX-[A-Z0-9-]+$" },
+        "statement": { "type": "string", "minLength": 5 },
+        "resolution": { "type": "string", "minLength": 5 },
+        "decision_ref": { "type": "string" }
+      }
+    },
+    "Blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "statement", "owner"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^BLK-[A-Z0-9-]+$" },
+        "statement": { "type": "string", "minLength": 5 },
+        "owner": { "$ref": "#/$defs/ToolId" },
+        "founder_exception": {
+          "enum": ["credential", "payment", "legal", "irreversible_decision", "manual_no_tool"]
+        }
+      }
+    }
+  }
+}

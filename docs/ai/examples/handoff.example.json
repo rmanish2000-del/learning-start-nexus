@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "HND-2026-10-03-001",
+  "assignment_id": "ASG-2026-10-03-001",
+  "produced_at": "2026-10-03T07:45:00Z",
+  "producer": {
+    "tool": "claude_code",
+    "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
+  },
+  "consumer": { "tool": "m365_copilot" },
+  "repo": {
+    "name": "rmanish2000-del/learning-start-nexus",
+    "branch": "claude/ai-governance-context-engineering",
+    "head_sha": "fa5fcde09323096a715e8307fc5114b210ae198f",
+    "pr_url": "https://github.com/rmanish2000-del/learning-start-nexus/pull/1"
+  },
+  "production": {
+    "touched": false,
+    "sha": null,
+    "evidence_grade": "blocked",
+    "source": "Production is unreachable from the Claude Code seat; see BLK-PRODUCTION-SHA"
+  },
+  "result": "PARTIAL",
+  "summary": "Governance layer created and validated; merge and production verification remain with the founder and Lovable.",
+  "evidence": [
+    {
+      "claim": "All vitest suites pass at the head SHA",
+      "grade": "verified",
+      "command": "bunx vitest run",
+      "observed": "see PR body for counts"
+    },
+    {
+      "claim": "Typecheck has 0 errors",
+      "grade": "verified",
+      "command": "bunx tsc --noEmit -p tsconfig.json"
+    },
+    {
+      "claim": "Staging is built from a different source than main",
+      "grade": "verified",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "6b33e35e4bab5d2323d030842bcb168094f1f1c5",
+        "path": "verification/mpbse-staging-release/VERIFICATION_REPORT.md"
+      }
+    },
+    {
+      "claim": "Production serves commit 6aef3be2",
+      "grade": "reported",
+      "observed": "PROJECT_STATUS.md 2026-09-06 entry; not re-observed"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "AI governance README",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "fa5fcde09323096a715e8307fc5114b210ae198f",
+        "path": ".ai/README.md"
+      },
+      "publication_confirmed": true,
+      "retrieval_confirmed": false
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CX-PRODUCT-LANGUAGE",
+      "statement": "PRODUCT_DECISIONS row 20 says Hindi covers the parent journey; the product is English-only.",
+      "resolution": "English-only stands; row 20 is historical.",
+      "decision_ref": "GV-003"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "BLK-PRODUCTION-SHA",
+      "statement": "Deployed SHA cannot be verified from this seat.",
+      "owner": "lovable"
+    }
+  ],
+  "worktree_clean": true,
+  "rollback": "Revert the governance commit on the branch; documentation and tooling only.",
+  "next_assignment_ref": "ASG-2026-10-03-002",
+  "ownership_returned_to": "m365_copilot"
+}

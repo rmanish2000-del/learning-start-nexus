@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": { "tool": "claude_code" },
+  "purpose": "Which store owns which kind of change. An assignment names exactly one target authority; a producer and its consumer must agree on the store and the repository of every artifact (checked by check-artifact-addressability.ts).",
+  "repositories": [
+    {
+      "name": "rmanish2000-del/learning-start-nexus",
+      "authority": "application",
+      "canonical_branch": "main",
+      "deployment_source": true,
+      "sync": "Lovable syncs main both ways; see AGENTS.md history rule.",
+      "owns": [
+        "application code",
+        "migrations",
+        "tests",
+        ".ai registries",
+        "docs/ai standards",
+        "verification reports",
+        "continuity documents"
+      ],
+      "evidence_grade": "verified"
+    },
+    {
+      "name": "rmanish2000-del/eduos-ai",
+      "authority": "product",
+      "canonical_branch": "main",
+      "deployment_source": false,
+      "owns": ["product definition", "strategy", "canonical product truth"],
+      "evidence_grade": "reported",
+      "note": "Not attached to the Claude Code seat in this session; coordinates into it are 'reported' until a seat reads them."
+    },
+    {
+      "name": "rmanish2000-del/eduos",
+      "authority": "fleet",
+      "canonical_branch": "main",
+      "deployment_source": false,
+      "owns": ["fleet seat configuration", "ProjectOS orchestration packs"],
+      "evidence_grade": "reported",
+      "note": "Not attached to the Claude Code seat in this session."
+    }
+  ],
+  "stores": [
+    {
+      "store": "drive",
+      "id": "11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg",
+      "name": "AGENT-REPORTS",
+      "owns": ["CHAT-HANDOFF.md", "FLEET-STATE.md", "seat reports"],
+      "rule": "Reports are published here AND their git coordinate is recorded in ARTIFACT_REGISTRY.json when the content also lives in the repository."
+    },
+    {
+      "store": "drive",
+      "id": "1Xptv2lvM-3pJHLI5vPmlh9rUgtlKxjuf",
+      "name": "INBOX",
+      "owns": ["assignments, one active per seat"],
+      "rule": "Assignments conform to ASSIGNMENT_SCHEMA.json. Never pasted in chat."
+    },
+    {
+      "store": "url",
+      "id": "https://www.eduos.global",
+      "name": "production",
+      "owns": ["served release"],
+      "rule": "Read-only evidence source. Touching it requires explicit founder deployment permission."
+    }
+  ],
+  "selection_rule": "Select the repository by the authority being changed. Ordinary live application work defaults to rmanish2000-del/learning-start-nexus."
+}

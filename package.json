@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "ai:check": "bun scripts/ai/validate-context.ts && bun scripts/ai/check-context-conflicts.ts && bun scripts/ai/check-artifact-addressability.ts && bun scripts/ai/validate-assignment.ts docs/ai/examples/assignment.example.json && bun scripts/ai/validate-handoff.ts docs/ai/examples/handoff.example.json"
   },
   "overrides": {
     "rolldown": "1.2.1"

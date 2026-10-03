@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": { "tool": "claude_code" },
+  "purpose": "Open blockers with an owner and, where the founder is the owner, the G1 exception that justifies it. Any artifact in ARTIFACT_REGISTRY.json with status 'missing' or 'blocked' must reference an entry here.",
+  "blockers": [
+    {
+      "id": "BLK-STAGING-HANDOFF-ZIP",
+      "opened": "2026-10-02",
+      "statement": "Canonical-integration assignment referenced a staging handoff ZIP by SHA256 prefix d0ec4db3 only. No coordinate; never retrievable.",
+      "artifact_id": "ART-0005",
+      "owner": "lovable",
+      "resolution_path": "Commit the package contents to the repository on a branch (git coordinate) or upload to Drive AGENT-REPORTS and record the file id; then re-issue the assignment through ASSIGNMENT_SCHEMA.json.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-MPBSE-A11Y-ZIP",
+      "opened": "2026-10-02",
+      "statement": "EDUOS_MPBSE_A11Y_EXPORT.zip was referenced by filename, size and hash only; never attached.",
+      "artifact_id": "ART-0006",
+      "owner": "lovable",
+      "resolution_path": "Same as BLK-STAGING-HANDOFF-ZIP.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-PDF-BRANCH",
+      "opened": "2026-10-02",
+      "statement": "Remote branch evidence/mpbse-cbse-class10-2026-10-01 still carries copyright-unverified PDF binaries. The Claude Code seat could not delete it (proxy).",
+      "owner": "founder",
+      "founder_exception": "irreversible_decision",
+      "resolution_path": "Delete the remote branch from GitHub, or authorise a seat with branch-delete access.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-PRODUCTION-SHA",
+      "opened": "2026-10-03",
+      "statement": "The deployed production SHA cannot be verified from the Claude Code seat; documents disagree (GV-006).",
+      "owner": "lovable",
+      "resolution_path": "Fetch GET https://www.eduos.global/api/public/version, compare with EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md and record the result in CURRENT_STATE.json with grade 'verified'.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-STAGING-NOT-MAIN",
+      "opened": "2026-10-02",
+      "statement": "Staging asset hashes differ from a build of main@fa5fcde; staging is not the canonical build (ART-0002).",
+      "owner": "lovable",
+      "resolution_path": "Rebuild staging from the canonical head or commit the staging source to a branch so it can be diffed.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-ROADMAP-CASE",
+      "opened": "2026-10-03",
+      "statement": "ROADMAP.md and roadmap.md coexist; case-insensitive checkouts cannot hold both.",
+      "owner": "founder",
+      "founder_exception": "irreversible_decision",
+      "resolution_path": "Decide whether roadmap.md is renamed to docs/history/ROADMAP_CLASS10_REBUILD_2026-08-29.md (content preserved) in a later change.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-OAUTH-CLIENT",
+      "opened": "2026-09-08",
+      "statement": "EduOS-owned Google OAuth client must be created so the consent screen reads 'EduOS' (roadmap.md White-label section).",
+      "owner": "founder",
+      "founder_exception": "credential",
+      "resolution_path": "Create the OAuth client in Google Cloud and enter it in Cloud → Users → Auth Settings → Google. The seat can verify the consent screen afterwards.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-PR4-DECISION",
+      "opened": "2026-10-02",
+      "statement": "PR #4 (metadata-only evidence package) awaits a founder merge/close decision.",
+      "artifact_id": "ART-0004",
+      "owner": "founder",
+      "founder_exception": "irreversible_decision",
+      "resolution_path": "Merge or close https://github.com/rmanish2000-del/learning-start-nexus/pull/4.",
+      "status": "open"
+    }
+  ]
+}

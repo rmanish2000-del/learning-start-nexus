@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": { "tool": "claude_code" },
+  "purpose": "What each seat can execute. validate-assignment.ts rejects any step assigned to the founder when a tool listed here holds the capability as 'available'. Update this file when a capability is proven or disproven; a capability claimed in chat is 'reported' until a seat has exercised it.",
+  "capability_keys": {
+    "repo.read": "Read files and history of the canonical repository",
+    "repo.write": "Edit files on a branch",
+    "repo.test": "Run vitest, tsc, eslint and the production build",
+    "repo.push": "Push a branch to origin",
+    "repo.pr": "Open or update a pull request against main",
+    "repo.merge": "Merge into main",
+    "repo.history_rewrite": "Force-push, rebase, amend or squash published commits",
+    "deploy.staging": "Publish to the staging project",
+    "deploy.production": "Publish to https://www.eduos.global",
+    "db.live_read": "Query the Lovable Cloud database",
+    "db.migrate": "Apply a migration to the live database",
+    "web.fetch_production": "Fetch https://www.eduos.global",
+    "web.fetch_external": "Fetch arbitrary public sites (CBSE, MPBSE, NCERT)",
+    "browser.external": "Drive a browser against external sites",
+    "drive.read": "Read Google Drive files by id",
+    "drive.write": "Create or update Google Drive files",
+    "credentials.provide": "Supply a secret, API key or OAuth client",
+    "payment.execute": "Move money",
+    "legal.approve": "Legal, contractual or external approval",
+    "assignment.issue": "Issue an assignment to a seat",
+    "handoff.produce": "Produce a handoff conforming to HANDOFF_SCHEMA.json",
+    "design.package": "Produce a Figma implementation package"
+  },
+  "founder_only": ["repo.merge", "credentials.provide", "payment.execute", "legal.approve"],
+  "tools": {
+    "claude_code": {
+      "role": "Default execution owner: implementation, tests, verification, repository operations.",
+      "capabilities": {
+        "repo.read": { "status": "available", "evidence_grade": "verified" },
+        "repo.write": { "status": "available", "evidence_grade": "verified" },
+        "repo.test": {
+          "status": "available",
+          "evidence_grade": "verified",
+          "note": "Dependencies install only after rewriting bun.lock mirror URLs to registry.npmjs.org locally (never committed)."
+        },
+        "repo.push": { "status": "available", "evidence_grade": "verified" },
+        "repo.pr": { "status": "available", "evidence_grade": "verified" },
+        "repo.merge": {
+          "status": "forbidden",
+          "evidence_grade": "verified",
+          "note": "Founder act."
+        },
+        "repo.history_rewrite": {
+          "status": "forbidden",
+          "evidence_grade": "verified",
+          "note": "AGENTS.md Lovable rule; force-push is also blocked by the seat's safety classifier."
+        },
+        "deploy.staging": { "status": "unavailable", "evidence_grade": "verified" },
+        "deploy.production": { "status": "forbidden", "evidence_grade": "verified" },
+        "db.live_read": {
+          "status": "unavailable",
+          "evidence_grade": "verified",
+          "note": "Supabase MCP is not connected to the Lovable Cloud project."
+        },
+        "db.migrate": { "status": "forbidden", "evidence_grade": "verified" },
+        "web.fetch_production": {
+          "status": "unavailable",
+          "evidence_grade": "verified",
+          "note": "Proxy denies eduos.global."
+        },
+        "web.fetch_external": {
+          "status": "unavailable",
+          "evidence_grade": "verified",
+          "note": "Proxy denies mpboardexams.com, supabase.co, lfs.github.com, *.pkg.dev; github.com is allowed."
+        },
+        "browser.external": { "status": "unavailable", "evidence_grade": "verified" },
+        "drive.read": {
+          "status": "available",
+          "evidence_grade": "verified",
+          "note": "Downloads above 10 MB fail; use session uploads for large packages."
+        },
+        "drive.write": { "status": "available", "evidence_grade": "verified" },
+        "credentials.provide": { "status": "forbidden", "evidence_grade": "verified" },
+        "payment.execute": { "status": "forbidden", "evidence_grade": "verified" },
+        "legal.approve": { "status": "forbidden", "evidence_grade": "verified" },
+        "assignment.issue": {
+          "status": "available",
+          "evidence_grade": "verified",
+          "note": "Only to Drive INBOX, in English, one active per seat."
+        },
+        "handoff.produce": { "status": "available", "evidence_grade": "verified" },
+        "design.package": { "status": "unavailable", "evidence_grade": "verified" }
+      }
+    },
+    "lovable": {
+      "role": "Application authority editor and the only deployment executor. Commits sync to main.",
+      "capabilities": {
+        "repo.read": { "status": "available", "evidence_grade": "reported" },
+        "repo.write": {
+          "status": "available",
+          "evidence_grade": "reported",
+          "note": "Writes land on main directly; a Claude Code PR is merged by the founder, not by Lovable."
+        },
+        "repo.test": { "status": "available", "evidence_grade": "reported" },
+        "repo.push": { "status": "available", "evidence_grade": "reported" },
+        "repo.pr": { "status": "unavailable", "evidence_grade": "reported" },
+        "repo.merge": { "status": "forbidden", "evidence_grade": "verified" },
+        "repo.history_rewrite": { "status": "forbidden", "evidence_grade": "verified" },
+        "deploy.staging": {
+          "status": "available",
+          "evidence_grade": "reported",
+          "note": "Requires explicit permission in the assignment."
+        },
+        "deploy.production": {
+          "status": "available",
+          "evidence_grade": "reported",
+          "note": "Requires explicit founder permission in the assignment; 'when appropriate' is not permission (GV-004)."
+        },
+        "db.live_read": { "status": "available", "evidence_grade": "reported" },
+        "db.migrate": {
+          "status": "available",
+          "evidence_grade": "reported",
+          "note": "Only with the migration committed and rollback stated."
+        },
+        "web.fetch_production": { "status": "available", "evidence_grade": "reported" },
+        "web.fetch_external": { "status": "unknown", "evidence_grade": "assumed" },
+        "browser.external": { "status": "unknown", "evidence_grade": "assumed" },
+        "drive.read": {
+          "status": "unavailable",
+          "evidence_grade": "reported",
+          "note": "Artifacts for Lovable must be committed to git, never left in Drive or chat."
+        },
+        "drive.write": { "status": "unavailable", "evidence_grade": "reported" },
+        "credentials.provide": { "status": "forbidden", "evidence_grade": "verified" },
+        "payment.execute": { "status": "forbidden", "evidence_grade": "verified" },
+        "legal.approve": { "status": "forbidden", "evidence_grade": "verified" },
+        "assignment.issue": { "status": "unavailable", "evidence_grade": "verified" },
+        "handoff.produce": { "status": "available", "evidence_grade": "reported" },
+        "design.package": { "status": "unavailable", "evidence_grade": "verified" }
+      }
+    },
+    "m365_copilot": {
+      "role": "AI Program Director and continuity owner. Issues assignments, receives every handoff.",
+      "capabilities": {
+        "repo.read": {
+          "status": "unavailable",
+          "evidence_grade": "reported",
+          "note": "Reads documents it is given; cannot resolve git coordinates itself, so handoffs must quote the content it needs or point to Drive."
+        },
+        "repo.write": { "status": "unavailable", "evidence_grade": "verified" },
+        "repo.test": { "status": "unavailable", "evidence_grade": "verified" },
+        "repo.push": { "status": "unavailable", "evidence_grade": "verified" },
+        "repo.pr": { "status": "unavailable", "evidence_grade": "verified" },
+        "repo.merge": { "status": "forbidden", "evidence_grade": "verified" },
+        "repo.history_rewrite": { "status": "forbidden", "evidence_grade": "verified" },
+        "deploy.staging": { "status": "unavailable", "evidence_grade": "verified" },
+        "deploy.production": { "status": "forbidden", "evidence_grade": "verified" },
+        "db.live_read": { "status": "unavailable", "evidence_grade": "verified" },
+        "db.migrate": { "status": "forbidden", "evidence_grade": "verified" },
+        "web.fetch_production": { "status": "unknown", "evidence_grade": "assumed" },
+        "web.fetch_external": { "status": "unknown", "evidence_grade": "assumed" },
+        "browser.external": { "status": "unavailable", "evidence_grade": "reported" },
+        "drive.read": { "status": "available", "evidence_grade": "reported" },
+        "drive.write": { "status": "available", "evidence_grade": "reported" },
+        "credentials.provide": { "status": "forbidden", "evidence_grade": "verified" },
+        "payment.execute": { "status": "forbidden", "evidence_grade": "verified" },
+        "legal.approve": { "status": "forbidden", "evidence_grade": "verified" },
+        "assignment.issue": { "status": "available", "evidence_grade": "verified" },
+        "handoff.produce": { "status": "available", "evidence_grade": "reported" },
+        "design.package": { "status": "unavailable", "evidence_grade": "verified" }
+      }
+    },
+    "claude_cowork": {
+      "role": "Browser-capable research and verification seat for external sites and production.",
+      "capabilities": {
+        "repo.read": { "status": "unknown", "evidence_grade": "assumed" },
+        "repo.write": { "status": "unavailable", "evidence_grade": "reported" },
+        "repo.test": { "status": "unavailable", "evidence_grade": "reported" },
+        "repo.push": { "status": "unavailable", "evidence_grade": "reported" },
+        "repo.pr": { "status": "unavailable", "evidence_grade": "reported" },
+        "repo.merge": { "status": "forbidden", "evidence_grade": "verified" },
+        "repo.history_rewrite": { "status": "forbidden", "evidence_grade": "verified" },
+        "deploy.staging": { "status": "unavailable", "evidence_grade": "verified" },
+        "deploy.production": { "status": "forbidden", "evidence_grade": "verified" },
+        "db.live_read": { "status": "unavailable", "evidence_grade": "reported" },
+        "db.migrate": { "status": "forbidden", "evidence_grade": "verified" },
+        "web.fetch_production": { "status": "available", "evidence_grade": "reported" },
+        "web.fetch_external": { "status": "available", "evidence_grade": "reported" },
+        "browser.external": { "status": "available", "evidence_grade": "reported" },
+        "drive.read": { "status": "available", "evidence_grade": "reported" },
+        "drive.write": { "status": "available", "evidence_grade": "reported" },
+        "credentials.provide": { "status": "forbidden", "evidence_grade": "verified" },
+        "payment.execute": { "status": "forbidden", "evidence_grade": "verified" },
+        "legal.approve": { "status": "forbidden", "evidence_grade": "verified" },
+        "assignment.issue": { "status": "unavailable", "evidence_grade": "verified" },
+        "handoff.produce": { "status": "available", "evidence_grade": "reported" },
+        "design.package": { "status": "unavailable", "evidence_grade": "verified" }
+      }
+    },
+    "figma": {
+      "role": "Design packages only.",
+      "capabilities": {
+        "design.package": { "status": "available", "evidence_grade": "reported" },
+        "repo.merge": { "status": "forbidden", "evidence_grade": "verified" },
+        "deploy.production": { "status": "forbidden", "evidence_grade": "verified" },
+        "credentials.provide": { "status": "forbidden", "evidence_grade": "verified" },
+        "payment.execute": { "status": "forbidden", "evidence_grade": "verified" },
+        "legal.approve": { "status": "forbidden", "evidence_grade": "verified" }
+      }
+    },
+    "founder": {
+      "role": "Accepts evidence; performs only founder-only acts and the five G1 exceptions.",
+      "capabilities": {
+        "repo.merge": { "status": "available", "evidence_grade": "verified" },
+        "credentials.provide": { "status": "available", "evidence_grade": "verified" },
+        "payment.execute": { "status": "available", "evidence_grade": "verified" },
+        "legal.approve": { "status": "available", "evidence_grade": "verified" },
+        "deploy.production": {
+          "status": "available",
+          "evidence_grade": "verified",
+          "note": "Approves; Lovable executes."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": { "tool": "claude_code" },
+  "purpose": "Ordered index of every context source an AI seat may rely on. Lower rank wins when sources conflict. A source marked 'historical' is evidence of what was true at its timestamp and must never be read as current truth.",
+  "authority_order": [
+    "production_evidence",
+    "repository_head",
+    ".ai registries",
+    "operating_rules",
+    "continuity_documents",
+    "historical_reports",
+    "chat"
+  ],
+  "sources": [
+    {
+      "rank": 1,
+      "id": "production_evidence",
+      "kind": "live",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "https://www.eduos.global/api/public/version",
+      "status": "current",
+      "purpose": "Release fingerprint actually served by production. Compare against EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md. Not reachable from the Claude Code seat (see TOOL_CAPABILITIES.json)."
+    },
+    {
+      "rank": 2,
+      "id": "repository_head",
+      "kind": "git",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "refs/heads/main",
+      "status": "current",
+      "purpose": "Canonical application source. Code and tests override every document."
+    },
+    {
+      "rank": 3,
+      "id": "current_state",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/CURRENT_STATE.json",
+      "status": "current",
+      "purpose": "Verified repository state, gates and graded production claims."
+    },
+    {
+      "rank": 3,
+      "id": "current_task",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/CURRENT_TASK.json",
+      "status": "current",
+      "purpose": "The single active mission. Stale after `stale_after_days`."
+    },
+    {
+      "rank": 3,
+      "id": "tool_capabilities",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/TOOL_CAPABILITIES.json",
+      "status": "current",
+      "purpose": "What each seat can and cannot do. Consulted before any step is assigned to the founder."
+    },
+    {
+      "rank": 3,
+      "id": "repository_authorities",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/REPOSITORY_AUTHORITIES.json",
+      "status": "current",
+      "purpose": "Which repository or store owns which kind of change."
+    },
+    {
+      "rank": 3,
+      "id": "artifact_registry",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/ARTIFACT_REGISTRY.json",
+      "status": "current",
+      "purpose": "Addressable coordinates and access status for every artifact that crosses a tool boundary."
+    },
+    {
+      "rank": 3,
+      "id": "decision_registry",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/DECISION_REGISTRY.json",
+      "status": "current",
+      "purpose": "Durable decisions and the resolution of every known context conflict."
+    },
+    {
+      "rank": 3,
+      "id": "blocker_registry",
+      "kind": "registry",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": ".ai/BLOCKER_REGISTRY.json",
+      "status": "current",
+      "purpose": "Open blockers with owner and founder-exception classification."
+    },
+    {
+      "rank": 4,
+      "id": "agents_md",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "AGENTS.md",
+      "status": "current",
+      "purpose": "Repository instructions loaded by every agent: Lovable history rule, white-label rule, AI governance rules."
+    },
+    {
+      "rank": 4,
+      "id": "operating_system",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "EDUOS_PROJECT_OPERATING_SYSTEM.md",
+      "status": "current",
+      "purpose": "Permanent rulebook. Sections 0-12 are rules; dated sections between 10 and 11 are historical release notes kept for evidence."
+    },
+    {
+      "rank": 4,
+      "id": "ai_standards",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "docs/ai/",
+      "status": "current",
+      "purpose": "Prompt engineering, context engineering, artifact transport, tool handoff and conflict resolution standards."
+    },
+    {
+      "rank": 5,
+      "id": "current_assignment_md",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "CURRENT_ASSIGNMENT.md",
+      "status": "current",
+      "purpose": "Human-readable mirror of CURRENT_TASK.json. The JSON wins on conflict."
+    },
+    {
+      "rank": 5,
+      "id": "project_status",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "PROJECT_STATUS.md",
+      "status": "current_with_historical_sections",
+      "purpose": "Release-by-release status log. Header sections are dated 2026-09-03; dated updates below are append-only history. Deployed-SHA claims are 'reported' until matched against production_evidence."
+    },
+    {
+      "rank": 5,
+      "id": "product_decisions",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "PRODUCT_DECISIONS.md",
+      "status": "current_with_historical_sections",
+      "purpose": "Decisions D1-D17 and the numbered table. Row 20 (Hindi parent journey) is superseded by D9/G5 — see DECISION_REGISTRY GV-003."
+    },
+    {
+      "rank": 5,
+      "id": "technical_state",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "TECHNICAL_STATE.md",
+      "status": "current_with_historical_sections",
+      "purpose": "Architecture and schema notes. Test counts and §8 command comments are historical; CURRENT_STATE.json carries the verified figures."
+    },
+    {
+      "rank": 5,
+      "id": "roadmap",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "ROADMAP.md",
+      "status": "current_with_historical_sections",
+      "purpose": "Canonical roadmap. Does not authorise work."
+    },
+    {
+      "rank": 6,
+      "id": "roadmap_lowercase",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "roadmap.md",
+      "status": "historical",
+      "purpose": "Class 10 clean-rebuild checklist from 2026-08-29 onward. Kept for evidence; collides with ROADMAP.md on case-insensitive filesystems (BLK-ROADMAP-CASE)."
+    },
+    {
+      "rank": 6,
+      "id": "handoff_package",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md",
+      "status": "bootstrap_index_with_superseded_history",
+      "purpose": "Short bootstrap index at the top; everything below the superseded marker is preserved history."
+    },
+    {
+      "rank": 6,
+      "id": "verification_reports",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "verification/",
+      "status": "historical",
+      "purpose": "Independent verification reports, each stamped with the commit it verified."
+    },
+    {
+      "rank": 6,
+      "id": "release_reports",
+      "kind": "document",
+      "repo": "rmanish2000-del/learning-start-nexus",
+      "location": "EDUOS_*.md",
+      "status": "historical",
+      "purpose": "Release and audit reports. Evidence of their own timestamp only."
+    },
+    {
+      "rank": 7,
+      "id": "drive_agent_reports",
+      "kind": "drive",
+      "location": "drive:folder:11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg",
+      "status": "current",
+      "purpose": "AGENT-REPORTS folder: CHAT-HANDOFF.md, FLEET-STATE.md and seat reports. Binding for chat behaviour; never a substitute for repository coordinates."
+    },
+    {
+      "rank": 7,
+      "id": "drive_inbox",
+      "kind": "drive",
+      "location": "drive:folder:1Xptv2lvM-3pJHLI5vPmlh9rUgtlKxjuf",
+      "status": "current",
+      "purpose": "INBOX folder: one active assignment per seat, in English, conforming to ASSIGNMENT_SCHEMA.json."
+    },
+    {
+      "rank": 8,
+      "id": "chat",
+      "kind": "chat",
+      "location": "conversation",
+      "status": "volatile",
+      "purpose": "Lowest authority. A claim made only in chat is 'reported' until a coordinate backs it."
+    }
+  ]
+}

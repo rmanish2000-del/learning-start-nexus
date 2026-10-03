@@ -1,3 +1,57 @@
+# EDUOS NEW-CHAT HANDOFF PACKAGE — bootstrap index
+
+**Reduced to an index:** 2026-10-03 (UTC). The full package as it stood before this date is
+preserved unchanged below the superseded marker; nothing was deleted. Facts in that history
+are evidence of their own date only.
+
+## Read in this order
+
+1. `AGENTS.md` — repository rules every seat inherits.
+2. `.ai/CONTEXT_INDEX.json` — ordered sources and authority rank.
+3. `.ai/CURRENT_STATE.json` — verified head, gates, graded production claims.
+4. `.ai/CURRENT_TASK.json` and `CURRENT_ASSIGNMENT.md` — the single active mission.
+5. `.ai/BLOCKER_REGISTRY.json`, `.ai/DECISION_REGISTRY.json` — open blockers, resolved conflicts.
+6. `EDUOS_PROJECT_OPERATING_SYSTEM.md` §0–§13 — permanent rules.
+7. `docs/ai/` — prompt, context, artifact transport, handoff and conflict standards.
+8. `PROJECT_STATUS.md`, `PRODUCT_DECISIONS.md`, `TECHNICAL_STATE.md`, `ROADMAP.md` — only the sections the task needs.
+
+## Bootstrap prompt (paste into a new chat)
+
+```text
+You are taking over EduOS. Read AGENTS.md, then .ai/CONTEXT_INDEX.json and the files it ranks,
+in order. Treat production evidence > repository head > .ai registries > operating rules >
+continuity documents > historical reports > chat. Grade every claim verified / reported /
+assumed / blocked. Act only on an assignment that validates with
+`bun scripts/ai/validate-assignment.ts`; return only a handoff that validates with
+`bun scripts/ai/validate-handoff.ts`. Never assign tool-executable work to the founder.
+Deployment needs explicit founder permission in the assignment; merges are founder acts;
+published history is never rewritten. Assignments in English to the Drive INBOX; chat replies
+short, in Hindi. Return ownership to M365 Copilot.
+```
+
+## Acceptance check for the new chat
+
+Answer from the files, not from memory: the verified head SHA; the grade of the deployed
+production SHA; the active task id and its base SHA; the open blockers owned by the founder
+and their G1 exceptions; the product language; the pilot scope; the founder-only acts.
+
+## Where the old sections went
+
+| Old section | Now |
+|---|---|
+| §1 bootstrap prompt, §2 documents to receive | this index and `.ai/CONTEXT_INDEX.json` |
+| §3–§8 product, modes, identity, lifecycle laws | `EDUOS_PROJECT_OPERATING_SYSTEM.md` §3–§8 |
+| §9–§11 payment, content, release identity | `PROJECT_STATUS.md`, `.ai/CURRENT_STATE.json` |
+| §12 mission, §13 verdict format | `.ai/CURRENT_TASK.json`, `.ai/HANDOFF_SCHEMA.json` |
+| §14 commit/publish rule, §16–§17 continuity | `EDUOS_PROJECT_OPERATING_SYSTEM.md` §9–§10, §13 |
+| G1–G7 governance | `EDUOS_PROJECT_OPERATING_SYSTEM.md` §11–§12, `.ai/DECISION_REGISTRY.json` |
+
+---
+
+**[SUPERSEDED 2026-10-03: everything below is the historical package, kept verbatim as evidence. The bootstrap index above and the `.ai/` registries are current.]**
+
+---
+
 # EDUOS NEW-CHAT HANDOFF PACKAGE
 
 **Prepared:** 2026-08-23  
