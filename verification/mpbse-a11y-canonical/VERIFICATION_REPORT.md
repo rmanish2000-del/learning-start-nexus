@@ -4,7 +4,7 @@
 **Canonical base:** `main` @ `b634d11aa5e82c64b92261728df71348958069d6` (fetched, clean worktree)
 **Working branch:** `feat/mpbse-a11y-canonical` · **Merge:** not performed (founder act) · **Staging / production:** not deployed, not modified
 
-## Result: PASS (integration) — merge withheld for founder ratification of GV-013
+## Result: PASS (integration) — corrected 2026-10-03 to English-only per founder decision; merge authorised after gates
 
 ## 1. Input availability gate
 
@@ -76,7 +76,7 @@ The `handoffs/mpbse-a11y/files/src/components/ui/sidebar.tsx` copy is older (`/7
 | Mobile timed-attempt persistence | `eduos.pyq.open` / `eduos.pyq.answers.<session>` autosave after `restored`; cleared on submit |
 | Account isolation on shared devices | `claimAttemptStorage(userId)` wipes keys when the owner differs (`attempt-storage.test.ts`) |
 | Sign-out answer cleanup | `clearAttemptStorage()` in `UserMenu.handleSignOut` and on `SIGNED_OUT` in `__root.tsx` (source-shape test) |
-| Accessibility fixes | `SidebarInset` `<main>`→`<div>` (removes the duplicate landmark; the real `<main>` is in `app-shell.tsx:470`), group-label contrast `/85`, `--eds-color-text-on-brand` `#1a0d02`, `aria-label` on `Progress`, `aria-pressed` filters, `lang` attribute on the MPBSE section |
+| Accessibility fixes | `SidebarInset` `<main>`→`<div>` (removes the duplicate landmark; the real `<main>` is in `app-shell.tsx:470`), group-label contrast `/85`, `--eds-color-text-on-brand` `#1a0d02`, `aria-label` on `Progress`, `aria-pressed` filters, `lang="en"` on the MPBSE section |
 | EduOS-only branding release check | `vendor-branding.test.ts` 4/4 incl. built `dist/client/assets` scan after the production build |
 | Safe `/exam-pattern` deep-link return | `start.ts` 302 → `/auth?next=<encoded path+search>`; `route.tsx` redirect carries `next: location.href`; `/auth` renews the marker before `window.location.replace(next)` |
 | `//evil.com` and external return destinations rejected | `auth-return-route.test.ts` (protocol-relative, backslash, `https://`, `javascript:`, relative) |
@@ -103,9 +103,25 @@ The `handoffs/mpbse-a11y/files/src/components/ui/sidebar.tsx` copy is older (`/7
 | `bun run ai:check` | PASS |
 | `bun install` | not re-run: dependencies were already installed from the existing lockfile in this session; `bun.lock` unchanged |
 
-## 8. Contradiction recorded
+## 8. Contradiction recorded and resolved
 
-`CX-MPBSE-HINDI`: the panel ships Hindi-default copy citing a founder decision of 2026-10-02 that is not in `PRODUCT_DECISIONS.md` and conflicts with D9/G5 (English-only product). Recorded as provisional **GV-013** with blocker `BLK-MPBSE-HINDI-RATIFICATION`; the founder ratifies by merging or asks for English-only before merge.
+`CX-MPBSE-HINDI`: the staging handoff shipped Hindi-default copy for the MPBSE panel citing a
+founder decision of 2026-10-02 that was not in `PRODUCT_DECISIONS.md` and conflicted with
+D9/G5. **Founder decision 2026-10-03: rejected.** The panel is English-only (`lang="en"`, no
+toggle, no Devanagari strings), `english-only.test.ts` carries no MPBSE exception, GV-013 now
+records the English-only decision, and `BLK-MPBSE-HINDI-RATIFICATION` is closed
+("English-only retained by founder decision"). Behaviour preserved: registry, year/subject/
+stream filters, official links, `aria-pressed` filters, `aria-describedby` practice note,
+disabled practice.
+
+Exact language changes in `src/components/mpbse-papers.tsx`: removed `SUBJECT_HI`,
+`STREAM_HI`, the `english` state, the `L(hi, en)` helper and the हिंदी/English toggle button;
+`lang={english ? "en" : "hi"}` → `lang="en"`; every rendered string now uses its former
+English variant (intro, "All years", "All subjects", "Maths Basic/Standard", "Official model
+paper · n pages", "Open on mpbse.nic.in", "MPBSE practice coming soon", practice note, "Weak
+chapters", "Practice results feed your learning gaps.", "See my gaps", "Not available on the
+official site:", "No papers for this selection."). The handoff's "Hindi + English lang
+attributes" UAT row is therefore superseded.
 
 ## 9. Limitations and unresolved risks
 
@@ -121,4 +137,4 @@ Close the PR, or `git revert <integration commit>` on the branch. No schema, dat
 
 ## 11. Handoff
 
-Ownership returned to M365 Copilot. Next founder act: ratify GV-013 and merge the PR. Next assignment already issued as the example `ASG-2026-10-03-002` (Lovable verifies the deployed production SHA).
+Ownership returned to M365 Copilot. Merge of PR #7 executed under explicit founder authorisation after all gates passed on the corrected head. Next assignment already issued as the example `ASG-2026-10-03-002` (Lovable verifies the deployed production SHA).

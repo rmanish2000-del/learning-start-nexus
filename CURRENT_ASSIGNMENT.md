@@ -23,7 +23,7 @@ before any handoff.
 **Id:** `ASG-2026-10-03-003`
 **Title:** MPBSE, accessibility, branding and deep-link staging work — canonical integration and independent verification
 **Received:** 2026-10-03 · **Priority:** P0 · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** in progress — integration delivered on branch `feat/mpbse-a11y-canonical` (PR against `main`); founder ratification and merge pending.
+**Status:** in progress — integration delivered on branch `feat/mpbse-a11y-canonical` (PR #7); founder decision received 2026-10-03: MPBSE panel English-only (GV-013 Hindi exception rejected); merge authorised after gates.
 
 ### Business value
 
@@ -55,15 +55,16 @@ upgrades, `app-shell.tsx` changes beyond the three role-label colour lines.
 | S3 | Add missing regression tests | Claude Code | done |
 | S4 | Run vitest, tsc, lint (changed files), build, `ai:check`, secret scan | Claude Code | done |
 | S5 | Commit, push, open PR against `main` | Claude Code | done |
-| S6 | Ratify the MPBSE Hindi-default exception (GV-013) and merge the PR | Founder (irreversible decision) | pending |
+| S6 | Founder decision applied: MPBSE panel English-only, Hindi strings/toggle removed, test exception removed | Claude Code | done |
+| S7 | Re-run gates, push, independent diff review, merge PR #7 (founder-authorised) | Claude Code | pending |
 
 ### Permissions
 
-Deployment: **not in scope, no permission.** Merge: founder only.
+Deployment: **not in scope, no permission.** Merge: founder-authorised for PR #7 in the 2026-10-03 correction-and-merge assignment, executed by Claude Code only after every gate passes.
 
 ### Blockers
 
-`BLK-MPBSE-HINDI-RATIFICATION` (founder decision), plus the open items in
+`BLK-MPBSE-HINDI-RATIFICATION` closed (English-only retained by founder decision). Open items in
 `.ai/BLOCKER_REGISTRY.json` (production SHA verification by Lovable, PDF branch, roadmap case
 collision, OAuth client, PR #4 decision).
 
@@ -74,6 +75,6 @@ change.
 
 ### Next gate
 
-Founder merge of the MPBSE PR, then Lovable executes `ASG-2026-10-03-002`
+Merge of PR #7 after gates, then Lovable executes `ASG-2026-10-03-002`
 (`docs/ai/examples/assignment.example.json`: verify the deployed production SHA and close
 `BLK-PRODUCTION-SHA`).

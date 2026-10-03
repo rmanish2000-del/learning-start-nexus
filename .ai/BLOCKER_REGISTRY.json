@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:05:00Z",
+  "updated_at": "2026-10-03T08:40:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -88,7 +88,9 @@
       "owner": "founder",
       "founder_exception": "irreversible_decision",
       "resolution_path": "Founder ratifies GV-013 by merging the MPBSE PR, or rejects it and the panel is switched to English-only before merge.",
-      "status": "open"
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "English-only retained by founder decision."
     }
   ]
 }

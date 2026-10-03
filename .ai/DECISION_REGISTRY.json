@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:05:00Z",
+  "updated_at": "2026-10-03T08:40:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -139,10 +139,13 @@
     {
       "id": "GV-013",
       "date": "2026-10-03",
-      "title": "MPBSE panel Hindi-default exception (provisional, awaiting founder ratification)",
-      "statement": "The MPBSE paper panel on /exam-pattern renders Hindi by default with an English switch, scoped to src/components/mpbse-papers.tsx and allow-listed in english-only.test.ts. Reported as a founder decision of 2026-10-02 (Lovable handoff). Every other surface stays English-only (D9, G5). Provisional until the founder merges the MPBSE PR (BLK-MPBSE-HINDI-RATIFICATION).",
+      "title": "MPBSE panel is English-only (founder decision 2026-10-03)",
+      "statement": "The founder rejected the provisional Hindi-default exception proposed by the staging handoff. The MPBSE paper panel on /exam-pattern renders English only with lang=\"en\" and no language toggle; english-only.test.ts carries no MPBSE exception. D9/G5 (English-only product) stand without exception.",
       "resolves": ["CX-MPBSE-HINDI"],
-      "enforced_by": ["src/lib/__tests__/english-only.test.ts"]
+      "enforced_by": [
+        "src/lib/__tests__/english-only.test.ts",
+        "src/lib/__tests__/auth-return-route.test.ts"
+      ]
     }
   ],
   "conflict_resolutions": {

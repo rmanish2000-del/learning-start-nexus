@@ -41,8 +41,6 @@ describe("English-only product language", () => {
   it("contains no Devanagari user-facing copy outside comments in the i18n module", () => {
     const offenders = FILES.filter((f) => {
       if (f.endsWith(join("lib", "i18n", "context.tsx"))) return false;
-      // Only exception: MPBSE panel defaults to Hindi (founder decision 2026-10-02).
-      if (f.endsWith(join("components", "mpbse-papers.tsx"))) return false;
       if (f.endsWith("english-only.test.ts")) return false;
       return DEVANAGARI.test(readFileSync(f, "utf8"));
     });

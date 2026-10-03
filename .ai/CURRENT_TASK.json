@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:05:00Z",
+  "updated_at": "2026-10-03T08:40:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
@@ -67,21 +67,27 @@
         "action": "Run vitest, tsc, lint (changed files), build, ai:check, secret scan",
         "executor": "claude_code",
         "capability": "repo.test",
-        "status": "pending"
+        "status": "done"
       },
       {
         "id": "S5",
         "action": "Commit, push feat/mpbse-a11y-canonical, open PR against main",
         "executor": "claude_code",
         "capability": "repo.pr",
-        "status": "pending"
+        "status": "done"
       },
       {
         "id": "S6",
-        "action": "Ratify the MPBSE Hindi-default exception (GV-013) and merge the PR",
-        "executor": "founder",
-        "capability": "repo.merge",
-        "founder_exception": "irreversible_decision",
+        "action": "Founder decision: GV-013 rejected; MPBSE panel switched to English-only, Hindi strings and toggle removed, english-only test exception removed",
+        "executor": "claude_code",
+        "capability": "repo.write",
+        "status": "done"
+      },
+      {
+        "id": "S7",
+        "action": "Re-run gates, push correction, independently review the final diff and merge PR #7 (founder-authorised in the 2026-10-03 correction-and-merge assignment)",
+        "executor": "claude_code",
+        "capability": "repo.push",
         "status": "pending"
       }
     ],
@@ -90,8 +96,9 @@
       "permission": "none"
     },
     "merge": {
-      "allowed": false,
-      "by": "founder"
+      "allowed": true,
+      "by": "founder",
+      "note": "Merge executed by Claude Code under explicit founder authorisation in the 2026-10-03 correction-and-merge assignment, only after every gate passes."
     },
     "gates": [
       "bunx vitest run",
