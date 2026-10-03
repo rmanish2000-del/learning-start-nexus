@@ -164,6 +164,16 @@
       "resolution_path": "Publish the report to Drive AGENT-REPORTS and register it in .ai/ARTIFACT_REGISTRY.json with file_id; the PR #9 review already treats apply semantics as unknown so no re-review is expected.",
       "status": "open",
       "grade": "reported"
+    },
+    {
+      "id": "BLK-STAGING-REPO-SESSION-ACCESS",
+      "opened": "2026-10-03",
+      "statement": "Promotion assignment (canonical 1c6e70055c3376ca2776c44f730ac08b02871a69 -> rmanish2000-del/eduos-staging, branch promote/canonical-1c6e7005) could not start: the destination repository exists and the account can push (list_repos: can_push true), but attaching it to this Claude Code session (add_repo) was denied by the session permission policy, so no clone, branch, drift report, push or PR was possible. Three candidate destinations exist (eduos-staging, eduos-staging-02802864, eduos-staging-9f89075a, all pushed 2026-10-03 18:17-18:32 UTC); the assignment names eduos-staging. Source-side gates on 1c6e7005 all green (ai:check PASS; vitest 649 passed / 1 skipped; tsc 0; changed-file eslint clean; production build success; secret scan 0). Migration sha256 7ffac67d520bce8c6df3dfaab71a0d9dfb3fe427a94f0921425b4668bda0850b.",
+      "owner": "founder",
+      "founder_exception": "credential",
+      "resolution_path": "Start the promotion session with rmanish2000-del/eduos-staging in its repository scope (or allow the add_repo permission for this session), and confirm which of the three eduos-staging* repositories is the Lovable-staging-connected destination. Then re-run the promotion assignment unchanged.",
+      "status": "open",
+      "grade": "blocked"
     }
   ]
 }
