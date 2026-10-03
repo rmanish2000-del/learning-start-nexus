@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T09:00:00Z",
+  "updated_at": "2026-10-03T14:10:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
@@ -14,41 +14,41 @@
   "repo": {
     "name": "rmanish2000-del/learning-start-nexus",
     "canonical_branch": "main",
-    "verified_head_sha": "553052e92730189329603a33e011fe2b0c640bc4",
-    "verified_at": "2026-10-03T09:00:00Z",
+    "verified_head_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888",
+    "verified_at": "2026-10-03T11:30:00Z",
     "evidence_grade": "verified",
     "history_rule": "Lovable-connected. Never rewrite published history (no force-push, rebase, amend or squash of pushed commits)."
   },
   "gates": {
     "vitest": {
       "command": "bunx vitest run",
-      "result": "640 passed / 52 files",
+      "result": "650 passed / 53 files (reconcile/staging-migrations; includes the live three-scenario migration dry-run)",
       "evidence_grade": "verified",
-      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
+      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
     },
     "typecheck": {
       "command": "bunx tsc --noEmit -p tsconfig.json",
       "result": "0 errors",
       "evidence_grade": "verified",
-      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
+      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
     },
     "lint": {
       "command": "bun run lint",
-      "result": "clean on changed files except pre-existing prettier findings in src/routes/auth.tsx (21 on branch vs 22 on main), src/start.ts and the sidebar.tsx warning",
+      "result": "clean on changed files (scripts/db, new test); repo-wide lint still red from pre-existing formatting",
       "evidence_grade": "verified",
-      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
+      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
     },
     "build": {
       "command": "LOVABLE_SANDBOX=1 bun run build",
       "result": "success, 254 precache entries",
       "evidence_grade": "verified",
-      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
+      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
     },
     "ai_governance": {
       "command": "bun run ai:check",
       "result": "PASS (0 errors)",
       "evidence_grade": "verified",
-      "observed_at_sha": "553052e92730189329603a33e011fe2b0c640bc4 (PR #8 head 2dad469e re-verified at merge)"
+      "observed_at_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888 + reconcile/staging-migrations working tree"
     }
   },
   "production": {
@@ -139,5 +139,13 @@
       "blockers": ["BLK-AUTHZ-401-SERVER-FN", "BLK-AUTHZ-403-ROLE-FN"],
       "evidence_grade": "reported"
     }
+  },
+  "database": {
+    "canonical_migrations_at_verified_head": 109,
+    "fresh_replay": "waived (docs/tech-debt/DB-BASELINE-001.md); not supported",
+    "staging_drift": "71 code files and 8 staging-only + 13 main-only migrations plus one same-name conflict (20260915161655); see verification/staging-migration-reconciliation/",
+    "reconciliation": "forward-only migration 20261003120000_staging_reconciliation_forward_only.sql on branch reconcile/staging-migrations (PR pending; not applied anywhere)",
+    "evidence_grade": "verified",
+    "staging_ledger": "35 rows (ART-0012, read-only). Latest 20261002052550. Main-only names after 2026-09-05 absent; question_commercial_release, production_release_pool, founder_access_denials absent; all 14 remediation/automation tables present."
   }
 }

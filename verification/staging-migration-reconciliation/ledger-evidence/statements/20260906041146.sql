@@ -1,0 +1,1 @@
+REVOKE SELECT ON public.pilot_invitations FROM anon;

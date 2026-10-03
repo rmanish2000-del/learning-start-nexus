@@ -1,0 +1,71 @@
+Files main/src/components/app-shell.tsx and staging/src/components/app-shell.tsx differ
+Files main/src/components/landing/marketing-page.tsx and staging/src/components/landing/marketing-page.tsx differ
+Only in main/src/components: learner-status.tsx
+Files main/src/components/mpbse-papers.tsx and staging/src/components/mpbse-papers.tsx differ
+Files main/src/components/public-layout.tsx and staging/src/components/public-layout.tsx differ
+Files main/src/components/share-row.tsx and staging/src/components/share-row.tsx differ
+Files main/src/integrations/supabase/types.ts and staging/src/integrations/supabase/types.ts differ
+Only in main/src/lib/__tests__: ai-governance.test.ts
+Files main/src/lib/__tests__/english-only.test.ts and staging/src/lib/__tests__/english-only.test.ts differ
+Only in main/src/lib/__tests__: env-secret-guard.test.ts
+Only in main/src/lib/__tests__: no-platform-branding.test.ts
+Files main/src/lib/__tests__/payment-credential-access.test.ts and staging/src/lib/__tests__/payment-credential-access.test.ts differ
+Files main/src/lib/__tests__/pilot-invitations.test.ts and staging/src/lib/__tests__/pilot-invitations.test.ts differ
+Files main/src/lib/__tests__/platform-owner-capability.test.ts and staging/src/lib/__tests__/platform-owner-capability.test.ts differ
+Only in main/src/lib/__tests__: release-fingerprint.test.ts
+Only in main/src/lib/__tests__: release-pool.test.ts
+Only in main/src/lib/__tests__: return-path-route.test.ts
+Files main/src/lib/__tests__/return-path.test.ts and staging/src/lib/__tests__/return-path.test.ts differ
+Files main/src/lib/__tests__/sample-workspace.test.ts and staging/src/lib/__tests__/sample-workspace.test.ts differ
+Only in staging/src/lib/__tests__: seo-staging-guards.test.ts
+Only in staging/src/lib/__tests__: staging-scenario-matrix.test.ts
+Only in main/src/lib/__tests__: unconfirmed-owner.test.ts
+Files main/src/lib/__tests__/vendor-branding.test.ts and staging/src/lib/__tests__/vendor-branding.test.ts differ
+Files main/src/lib/centre-setup.server.ts and staging/src/lib/centre-setup.server.ts differ
+Files main/src/lib/diagnostic.server.ts and staging/src/lib/diagnostic.server.ts differ
+Files main/src/lib/educator-board.server.ts and staging/src/lib/educator-board.server.ts differ
+Only in main/src/lib: email-templates
+Files main/src/lib/feedback.functions.ts and staging/src/lib/feedback.functions.ts differ
+Files main/src/lib/free-check.server.ts and staging/src/lib/free-check.server.ts differ
+Files main/src/lib/help-center.ts and staging/src/lib/help-center.ts differ
+Files main/src/lib/landing-content.ts and staging/src/lib/landing-content.ts differ
+Only in main/src/lib: nav-visibility.ts
+Files main/src/lib/onboarding.ts and staging/src/lib/onboarding.ts differ
+Files main/src/lib/outcome-dashboard.server.ts and staging/src/lib/outcome-dashboard.server.ts differ
+Files main/src/lib/payment-settings.functions.ts and staging/src/lib/payment-settings.functions.ts differ
+Files main/src/lib/platform-owner-shared.ts and staging/src/lib/platform-owner-shared.ts differ
+Files main/src/lib/platform-owner.server.ts and staging/src/lib/platform-owner.server.ts differ
+Files main/src/lib/pyq.server.ts and staging/src/lib/pyq.server.ts differ
+Only in main/src/lib: release-pool.ts
+Files main/src/lib/return-path.ts and staging/src/lib/return-path.ts differ
+Files main/src/lib/seo.ts and staging/src/lib/seo.ts differ
+Only in main/src/lib: workspace-context.ts
+Files main/src/routes/__root.tsx and staging/src/routes/__root.tsx differ
+Files main/src/routes/_authenticated/admin.tsx and staging/src/routes/_authenticated/admin.tsx differ
+Files main/src/routes/_authenticated/auto-verification.tsx and staging/src/routes/_authenticated/auto-verification.tsx differ
+Files main/src/routes/_authenticated/dashboard.tsx and staging/src/routes/_authenticated/dashboard.tsx differ
+Files main/src/routes/_authenticated/feedback-review.tsx and staging/src/routes/_authenticated/feedback-review.tsx differ
+Files 'main/src/routes/_authenticated/learners.$learnerId.tsx' and 'staging/src/routes/_authenticated/learners.$learnerId.tsx' differ
+Files main/src/routes/_authenticated/learners.tsx and staging/src/routes/_authenticated/learners.tsx differ
+Files main/src/routes/_authenticated/payment-settings.tsx and staging/src/routes/_authenticated/payment-settings.tsx differ
+Files main/src/routes/_authenticated/quick-start.tsx and staging/src/routes/_authenticated/quick-start.tsx differ
+Files main/src/routes/_authenticated/route.tsx and staging/src/routes/_authenticated/route.tsx differ
+Files main/src/routes/_authenticated/settings.tsx and staging/src/routes/_authenticated/settings.tsx differ
+Files main/src/routes/about.tsx and staging/src/routes/about.tsx differ
+Only in main/src/routes/api/public: version.ts
+Files main/src/routes/auth.tsx and staging/src/routes/auth.tsx differ
+Files main/src/routes/cbse-class-10-learning-gap-diagnostic.tsx and staging/src/routes/cbse-class-10-learning-gap-diagnostic.tsx differ
+Files main/src/routes/cbse-paper-practice.tsx and staging/src/routes/cbse-paper-practice.tsx differ
+Files main/src/routes/class-10-maths-diagnostic.tsx and staging/src/routes/class-10-maths-diagnostic.tsx differ
+Files main/src/routes/class-10-science-diagnostic.tsx and staging/src/routes/class-10-science-diagnostic.tsx differ
+Files main/src/routes/contact.tsx and staging/src/routes/contact.tsx differ
+Files main/src/routes/diagnostic.index.tsx and staging/src/routes/diagnostic.index.tsx differ
+Files main/src/routes/free-learning-check.tsx and staging/src/routes/free-learning-check.tsx differ
+Files main/src/routes/index.tsx and staging/src/routes/index.tsx differ
+Only in main/src/routes: lovable
+Files main/src/routes/parent-guide-learning-gaps.tsx and staging/src/routes/parent-guide-learning-gaps.tsx differ
+Files main/src/routes/privacy.tsx and staging/src/routes/privacy.tsx differ
+Files main/src/routes/reassessment-and-evidence.tsx and staging/src/routes/reassessment-and-evidence.tsx differ
+Only in staging/src/routes: 'robots[.]txt.ts'
+Files main/src/routes/terms.tsx and staging/src/routes/terms.tsx differ
+Files main/src/start.ts and staging/src/start.ts differ

@@ -1,0 +1,6 @@
+{
+  "feedback_submissions": 10,
+  "remediation_snapshots": 1,
+  "remediation_actions": 325,
+  "method": "SELECT count(*) only; no row contents read"
+}
