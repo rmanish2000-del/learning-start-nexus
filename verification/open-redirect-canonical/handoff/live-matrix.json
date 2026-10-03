@@ -1,0 +1,382 @@
+{
+ "links": {
+  "//evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "https://evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/\\evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "\\\\evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/\\/evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "\\/evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "//\\evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/\t/evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/%2F%2Fevil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "%2F%2Fevil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "https%3A%2F%2Fevil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/%5Cevil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/%2F\\evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/\\%2Fevil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/%5C/evil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/%252F%252Fevil.com": {
+   "signed_out": "SAFE /auth?mode=signin",
+   "signed_in_founder": "SAFE /dashboard"
+  },
+  "/exam-pattern": {
+   "signed_out": "SAFE /auth?next=%2Fexam-pattern&mode=signin",
+   "signed_in_founder": "SAFE /exam-pattern"
+  },
+  "/exam-pattern?board=cbse#papers": {
+   "signed_out": "SAFE /auth?next=%2Fexam-pattern%3Fboard%3Dcbse%23papers&mode=signin",
+   "signed_in_founder": "SAFE /exam-pattern?board=cbse#papers"
+  }
+ },
+ "roles": {
+  "anonymous": {
+   "server": {
+    "pilot:9b25e89a0fb1": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "create:dd7f3d821eca": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "create:cc53c2c7c595": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "revoke:ec62851cb14b": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "revoke:cc53c2c7c595": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "payment:a5fb16840f6e": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "payment:c984415c68f7": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "payment:bde8bc1bfc82": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "admin:a099f3dbb9f6": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "admin:c475fca67468": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ],
+    "admin:7f5be3875d40": [
+     200,
+     "Unauthorized: No authorization header provided"
+    ]
+   },
+   "/pilot-access": "/auth?next=%2Fpilot-access&mode=signin",
+   "/payment-settings": "/auth?next=%2Fpayment-settings&mode=signin",
+   "/feedback-review": "/auth?next=%2Ffeedback-review&mode=signin"
+  },
+  "founder": {
+   "landing": "/dashboard",
+   "nav_owner_links": [
+    "/pilot-access",
+    "/payment-settings",
+    "/feedback-review"
+   ],
+   "/pilot-access": "/pilot-access",
+   "/payment-settings": "/payment-settings",
+   "/feedback-review": "/feedback-review",
+   "server": {
+    "pilot:9b25e89a0fb1": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "payment:a5fb16840f6e": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "payment:c984415c68f7": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "payment:bde8bc1bfc82": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "admin:a099f3dbb9f6": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "admin:c475fca67468": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "admin:7f5be3875d40": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ]
+   }
+  },
+  "centre_admin": {
+   "landing": "/dashboard",
+   "nav_owner_links": [],
+   "/pilot-access": "/dashboard",
+   "/payment-settings": "/dashboard",
+   "/feedback-review": "/dashboard",
+   "server": {
+    "pilot:9b25e89a0fb1": [
+     403,
+     "Forbidden"
+    ],
+    "create:dd7f3d821eca": [
+     403,
+     "Forbidden"
+    ],
+    "create:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:ec62851cb14b": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "payment:a5fb16840f6e": [
+     403,
+     "Forbidden"
+    ],
+    "payment:c984415c68f7": [
+     403,
+     "Forbidden"
+    ],
+    "payment:bde8bc1bfc82": [
+     403,
+     "Forbidden"
+    ],
+    "admin:a099f3dbb9f6": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "admin:c475fca67468": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ],
+    "admin:7f5be3875d40": [
+     200,
+     "{\"t\":10,\"i\":0,\"p\":{\"k\":[\"result\",\"error\",\"context\"],\"v\":[{\"t"
+    ]
+   }
+  },
+  "educator": {
+   "landing": "/dashboard",
+   "nav_owner_links": [],
+   "/pilot-access": "/dashboard",
+   "/payment-settings": "/dashboard",
+   "/feedback-review": "/dashboard",
+   "server": {
+    "pilot:9b25e89a0fb1": [
+     403,
+     "Forbidden"
+    ],
+    "create:dd7f3d821eca": [
+     403,
+     "Forbidden"
+    ],
+    "create:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:ec62851cb14b": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "payment:a5fb16840f6e": [
+     403,
+     "Forbidden"
+    ],
+    "payment:c984415c68f7": [
+     403,
+     "Forbidden"
+    ],
+    "payment:bde8bc1bfc82": [
+     403,
+     "Forbidden"
+    ],
+    "admin:a099f3dbb9f6": [
+     200,
+     "You do not have permission to perform this action."
+    ],
+    "admin:c475fca67468": [
+     200,
+     "You do not have permission to perform this action."
+    ],
+    "admin:7f5be3875d40": [
+     200,
+     "You do not have permission to perform this action."
+    ]
+   }
+  },
+  "parent": {
+   "landing": "/parent",
+   "nav_owner_links": [],
+   "/pilot-access": "/parent",
+   "/payment-settings": "/parent",
+   "/feedback-review": "/parent",
+   "server": {
+    "pilot:9b25e89a0fb1": [
+     403,
+     "Forbidden"
+    ],
+    "create:dd7f3d821eca": [
+     403,
+     "Forbidden"
+    ],
+    "create:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:ec62851cb14b": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "payment:a5fb16840f6e": [
+     403,
+     "Forbidden"
+    ],
+    "payment:c984415c68f7": [
+     403,
+     "Forbidden"
+    ],
+    "payment:bde8bc1bfc82": [
+     403,
+     "Forbidden"
+    ],
+    "admin:a099f3dbb9f6": [
+     200,
+     "You do not have permission to perform this action."
+    ],
+    "admin:c475fca67468": [
+     200,
+     "You do not have permission to perform this action."
+    ],
+    "admin:7f5be3875d40": [
+     200,
+     "You do not have permission to perform this action."
+    ]
+   }
+  },
+  "reviewer": {
+   "landing": "/launch-audit",
+   "nav_owner_links": [],
+   "/pilot-access": "/launch-audit",
+   "/payment-settings": "/launch-audit",
+   "/feedback-review": "/launch-audit",
+   "server": {
+    "pilot:9b25e89a0fb1": [
+     403,
+     "Forbidden"
+    ],
+    "create:dd7f3d821eca": [
+     403,
+     "Forbidden"
+    ],
+    "create:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:ec62851cb14b": [
+     403,
+     "Forbidden"
+    ],
+    "revoke:cc53c2c7c595": [
+     403,
+     "Forbidden"
+    ],
+    "payment:a5fb16840f6e": [
+     403,
+     "Forbidden"
+    ],
+    "payment:c984415c68f7": [
+     403,
+     "Forbidden"
+    ],
+    "payment:bde8bc1bfc82": [
+     403,
+     "Forbidden"
+    ],
+    "admin:a099f3dbb9f6": [
+     200,
+     "You do not have permission to perform this action."
+    ],
+    "admin:c475fca67468": [
+     200,
+     "You do not have permission to perform this action."
+    ],
+    "admin:7f5be3875d40": [
+     200,
+     "You do not have permission to perform this action."
+    ]
+   }
+  }
+ }
+}

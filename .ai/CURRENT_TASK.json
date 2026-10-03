@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:40:00Z",
+  "updated_at": "2026-10-03T08:50:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
   },
   "stale_after_days": 14,
   "task": {
-    "id": "ASG-2026-10-03-003",
-    "title": "MPBSE, accessibility, branding and deep-link staging work — canonical integration and independent verification",
+    "id": "ASG-2026-10-03-004",
+    "title": "P0 canonical security hotfix — /auth?next= open redirect",
     "status": "in_progress",
     "priority": "P0",
-    "business_value": "Moves verified staging work (MPBSE paper registry/board surface, timed-attempt persistence with account isolation, a11y fixes, EduOS-only branding check, safe /exam-pattern deep-link return) into the canonical repository with complete provenance and no unrelated changes.",
+    "business_value": "Moves the verified open-redirect fix from staging into canonical GitHub before any production deployment; closes the signed-in redirect to external origins reproduced on main@9c90805.",
     "owner": {
       "tool": "claude_code"
     },
@@ -20,74 +20,60 @@
     },
     "repo": {
       "name": "rmanish2000-del/learning-start-nexus",
-      "branch": "feat/mpbse-a11y-canonical",
-      "base_sha": "b634d11aa5e82c64b92261728df71348958069d6"
+      "branch": "security/open-redirect-canonical-fix",
+      "base_sha": "9c90805ccb5a50c3717acfd6a1b1428f0f763150"
     },
-    "objective": "Apply EDUOS_MPBSE_CANONICAL_HANDOFF.zip (716174 B, sha256 290f51a1…940f) to canonical main file by file, preserving canonical security/owner controls, with regression tests, evidence under verification/mpbse-a11y-canonical/, a PR against main, no merge and no deployment.",
+    "objective": "Apply EDUOS_OPEN_REDIRECT_FIX.zip (3818627 B, sha256 7834334c…8b4d): one canonical sanitizer (src/lib/return-path.ts), validator always sets `next`, both redirects re-sanitize, 16-variant regression tests in signed-in and signed-out flows, evidence under verification/open-redirect-canonical/, PR against main, no merge, no deployment.",
     "scope": {
       "in": [
-        "19 handoff paths (content/mpbse, design/figma, src/components, src/lib, src/routes, src/start.ts, src/styles.css, tsconfig.json)",
-        "regression tests for deep-link return security and attempt-storage cleanup",
-        "verification evidence",
+        "src/lib/return-path.ts (replaces src/lib/auth-return.ts)",
+        "src/routes/auth.tsx validateSearch and both redirect sites",
+        "src/lib/__tests__/return-path.test.ts",
+        "src/lib/__tests__/return-path-route.test.ts",
+        "verification/open-redirect-canonical/",
         "registry updates"
       ],
       "out": [
         "merge",
-        "staging or production deployment",
-        "database or migration changes",
-        "dependency upgrades",
-        "app-shell.tsx changes beyond the three role-label colour lines"
+        "deployment",
+        "global error-handling / 401-403 remediation (recorded as BLK-AUTHZ-401-SERVER-FN and BLK-AUTHZ-403-ROLE-FN)"
       ]
     },
-    "input_artifact_ids": ["ART-0009"],
     "steps": [
       {
         "id": "S1",
-        "action": "Input availability gate: ZIP identity, SHA256SUMS, MANIFEST, 19 files, patch vs files/, secret scan",
+        "action": "Input gate: ZIP identity, SHA256SUMS 32/32, required paths, secret scan",
         "executor": "claude_code",
         "capability": "repo.read",
         "status": "done"
       },
       {
         "id": "S2",
-        "action": "Apply changes.patch to main file by file; reject files/ deltas that would regress canonical owner controls or the /lovable/ auth-gate bypass",
+        "action": "Reproduce the signed-in open redirect on main@9c90805 (router merge keeps omitted raw `next`)",
         "executor": "claude_code",
-        "capability": "repo.write",
+        "capability": "repo.test",
         "status": "done"
       },
       {
         "id": "S3",
-        "action": "Add missing regression tests (return-path sanitizer, deep-link wiring, cleanup wiring, MPBSE practice disabled)",
+        "action": "Consolidate to one sanitizer (return-path.ts), fix validateSearch, re-sanitize at both redirects, 16-variant tests in both flows",
         "executor": "claude_code",
         "capability": "repo.write",
         "status": "done"
       },
       {
         "id": "S4",
-        "action": "Run vitest, tsc, lint (changed files), build, ai:check, secret scan",
-        "executor": "claude_code",
-        "capability": "repo.test",
-        "status": "done"
-      },
-      {
-        "id": "S5",
-        "action": "Commit, push feat/mpbse-a11y-canonical, open PR against main",
+        "action": "Run gates, commit, push, open PR against main (no merge)",
         "executor": "claude_code",
         "capability": "repo.pr",
         "status": "done"
       },
       {
-        "id": "S6",
-        "action": "Founder decision: GV-013 rejected; MPBSE panel switched to English-only, Hindi strings and toggle removed, english-only test exception removed",
-        "executor": "claude_code",
-        "capability": "repo.write",
-        "status": "done"
-      },
-      {
-        "id": "S7",
-        "action": "Re-run gates, push correction, independently review the final diff and merge PR #7 (founder-authorised in the 2026-10-03 correction-and-merge assignment)",
-        "executor": "claude_code",
-        "capability": "repo.push",
+        "id": "S5",
+        "action": "Independent review and merge decision",
+        "executor": "founder",
+        "capability": "repo.merge",
+        "founder_exception": "irreversible_decision",
         "status": "pending"
       }
     ],
@@ -96,21 +82,33 @@
       "permission": "none"
     },
     "merge": {
-      "allowed": true,
-      "by": "founder",
-      "note": "Merge executed by Claude Code under explicit founder authorisation in the 2026-10-03 correction-and-merge assignment, only after every gate passes."
+      "allowed": false,
+      "by": "founder"
     },
     "gates": [
+      "bun run ai:check",
       "bunx vitest run",
       "bunx tsc --noEmit -p tsconfig.json",
       "eslint on changed files",
       "LOVABLE_SANDBOX=1 bun run build",
-      "bun run ai:check"
+      "secret scan",
+      "english-only test",
+      "owner-route regression",
+      "/lovable/ bypass regression",
+      "complete redirect matrix"
     ],
-    "rollback": "Revert the integration commit(s) on the branch or close the PR; no schema, data or deployment change.",
-    "return_to": "m365_copilot"
+    "rollback": "Close the PR or revert the hotfix commit; rolling back re-opens the signed-in open redirect.",
+    "return_to": "m365_copilot",
+    "input_artifact_ids": ["ART-0010"]
   },
   "history": [
+    {
+      "id": "ASG-2026-10-03-003",
+      "title": "MPBSE, accessibility, branding and deep-link staging work — canonical integration and independent verification",
+      "status": "complete",
+      "completed_on": "2026-10-03",
+      "evidence": "PR #7 merged as 9c90805ccb5a50c3717acfd6a1b1428f0f763150 after the English-only correction (7324d53); handoffs in Drive AGENT-REPORTS 1pUu-B3U0dQZGUk314n7ZVnjWsiponsGE and 15weEISf7rocu0-mLC5KY3tFLYQ50N5Wh"
+    },
     {
       "id": "ASG-2026-10-03-001",
       "title": "Prompt and context engineering standard — adopt the .ai governance layer",

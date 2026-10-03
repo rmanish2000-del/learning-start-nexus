@@ -7,8 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { studentEmail, studentPassword } from "@/lib/auth-utils";
 import { roleHome, type AppRole } from "@/lib/roles";
-import { sanitizeReturnPath } from "@/lib/auth-return";
 import { setSessionMarker } from "@/lib/session-marker";
+import { sanitizeReturnPath, validatedReturnPath } from "@/lib/return-path";
 import { claimParentRole, registerParent } from "@/lib/parent-account.functions";
 import { registerParentSchema } from "@/lib/parent-account-shared";
 import { Button } from "@/components/ui/button";
@@ -43,7 +43,11 @@ const ROLE_OPTIONS = [
 ];
 
 // All optional: plain <Link to="/auth"> must stay valid everywhere.
-type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string };
+type AuthSearch = {
+  tab?: "staff" | "student" | "parent";
+  mode?: "signin" | "signup";
+  next?: string | undefined;
+};
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
@@ -54,10 +58,10 @@ export const Route = createFileRoute("/auth")({
       ? { tab: search["tab"] }
       : {}),
     mode: search["mode"] === "signup" ? "signup" : "signin",
-    ...(() => {
-      const next = sanitizeReturnPath(search["next"]);
-      return next ? { next } : {};
-    })(),
+    // Always set the key (sanitized value or undefined): the router merges
+    // validated output over the raw search, so an omitted key would let a
+    // rejected raw `next` survive.
+    ...validatedReturnPath(search),
   }),
 
 
@@ -156,8 +160,10 @@ function AuthPage() {
       // Renew the document-gate marker first, or a full reload of `next`
       // would be bounced straight back here.
       setSessionMarker();
-      if (search.next) {
-        window.location.replace(search.next);
+      // Consume only a freshly sanitized value, never raw router search.
+      const target = sanitizeReturnPath(search.next);
+      if (target) {
+        window.location.replace(target);
         return;
       }
       const role = await resolveRole(data.user);
@@ -167,9 +173,11 @@ function AuthPage() {
 
   const goHome = async (user: { id: string; user_metadata?: Record<string, unknown> }) => {
     setSessionMarker();
-    if (search.next) {
-      // Return the parent to the purchase they were mid-way through.
-      window.location.replace(search.next);
+    // Return the parent to the purchase they were mid-way through — only to a
+    // freshly sanitized same-origin path.
+    const target = sanitizeReturnPath(search.next);
+    if (target) {
+      window.location.replace(target);
       return;
     }
     const role = await resolveRole(user);

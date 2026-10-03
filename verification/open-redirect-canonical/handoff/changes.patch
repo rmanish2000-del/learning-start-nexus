@@ -1,0 +1,158 @@
+diff --git a/src/lib/__tests__/return-path.test.ts b/src/lib/__tests__/return-path.test.ts
+new file mode 100644
+index 0000000..9346d7e
+--- /dev/null
++++ b/src/lib/__tests__/return-path.test.ts
+@@ -0,0 +1,41 @@
++import { describe, it, expect } from "vitest";
++import { sanitizeReturnPath } from "../return-path";
++
++const bad = [
++  "//evil.com",
++  "https://evil.com",
++  "/\\evil.com",
++  "\\\\evil.com",
++  "/\\/evil.com",
++  "\\/evil.com",
++  "//\\evil.com",
++  "/\t/evil.com",
++  "/\n/evil.com",
++  "/%2F%2Fevil.com",
++  "%2F%2Fevil.com",
++  "https%3A%2F%2Fevil.com",
++  "/%5Cevil.com",
++  "/%5C/evil.com",
++  "/%2F\\evil.com",
++  "/\\%2Fevil.com",
++  "/%252F%252Fevil.com",
++  "javascript:alert(1)",
++  " /exam-pattern",
++  "",
++  "evil.com",
++];
++
++describe("sanitizeReturnPath", () => {
++  it.each(bad)("rejects %j", (v) => {
++    expect(sanitizeReturnPath(v)).toBeUndefined();
++  });
++  it("rejects non-strings", () => {
++    expect(sanitizeReturnPath(undefined)).toBeUndefined();
++    expect(sanitizeReturnPath(42)).toBeUndefined();
++    expect(sanitizeReturnPath({})).toBeUndefined();
++  });
++  it("keeps valid internal paths", () => {
++    expect(sanitizeReturnPath("/exam-pattern")).toBe("/exam-pattern");
++    expect(sanitizeReturnPath("/parent?tab=report&x=1#gaps")).toBe("/parent?tab=report&x=1#gaps");
++  });
++});
+diff --git a/src/lib/return-path.ts b/src/lib/return-path.ts
+new file mode 100644
+index 0000000..af2f55e
+--- /dev/null
++++ b/src/lib/return-path.ts
+@@ -0,0 +1,45 @@
++/**
++ * Canonical guard for post-sign-in return paths (`/auth?next=...`).
++ * Returns a same-origin path (pathname + search + hash) or undefined.
++ * Rejects protocol-relative, absolute, backslash, control-character and
++ * percent-encoded variants of those forms, including browser-normalised ones.
++ */
++const BASE = "https://eduos.invalid";
++
++function looksExternal(v: string): boolean {
++  if (!v.startsWith("/")) return true;
++  if (v.startsWith("//")) return true;
++  if (v.includes("\\")) return true;
++  // eslint-disable-next-line no-control-regex
++  if (/[\u0000-\u001f\u007f\s]/.test(v)) return true;
++  if (/^[a-z][a-z0-9+.-]*:/i.test(v)) return true;
++  return false;
++}
++
++export function sanitizeReturnPath(raw: unknown): string | undefined {
++  if (typeof raw !== "string" || raw.length === 0 || raw.length > 2048) return undefined;
++  if (looksExternal(raw)) return undefined;
++  // Check decoded forms too (up to 3 rounds) so encoded slashes/backslashes can't sneak through.
++  let cur = raw;
++  for (let i = 0; i < 3; i++) {
++    let dec: string;
++    try {
++      dec = decodeURIComponent(cur);
++    } catch {
++      return undefined;
++    }
++    if (dec === cur) break;
++    if (looksExternal(dec)) return undefined;
++    cur = dec;
++  }
++  let url: URL;
++  try {
++    url = new URL(raw, BASE);
++  } catch {
++    return undefined;
++  }
++  if (url.origin !== BASE) return undefined;
++  const out = url.pathname + url.search + url.hash;
++  if (looksExternal(out)) return undefined;
++  return out;
++}
+diff --git a/src/routes/auth.tsx b/src/routes/auth.tsx
+index a7d4424..777e59e 100644
+--- a/src/routes/auth.tsx
++++ b/src/routes/auth.tsx
+@@ -8,6 +8,7 @@ import { lovable } from "@/integrations/lovable";
+ import { studentEmail, studentPassword } from "@/lib/auth-utils";
+ import { roleHome, type AppRole } from "@/lib/roles";
+ import { setSessionMarker } from "@/lib/session-marker";
++import { sanitizeReturnPath } from "@/lib/return-path";
+ import { claimParentRole, registerParent } from "@/lib/parent-account.functions";
+ import { registerParentSchema } from "@/lib/parent-account-shared";
+ import { Button } from "@/components/ui/button";
+@@ -42,7 +43,7 @@ const ROLE_OPTIONS = [
+ ];
+ 
+ // All optional: plain <Link to="/auth"> must stay valid everywhere.
+-type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string };
++type AuthSearch = { tab?: "staff" | "student" | "parent"; mode?: "signin" | "signup"; next?: string | undefined };
+ 
+ export const Route = createFileRoute("/auth")({
+   validateSearch: (search: Record<string, unknown>): AuthSearch => ({
+@@ -53,10 +54,9 @@ export const Route = createFileRoute("/auth")({
+       ? { tab: search["tab"] }
+       : {}),
+     mode: search["mode"] === "signup" ? "signup" : "signin",
+-    ...(typeof search["next"] === "string" &&
+-    /^\/(?![\/\\])/.test(search["next"])
+-      ? { next: search["next"] }
+-      : {}),
++    // Always set the key: the router merges validated output over the raw
++    // search, so omitting a rejected value would let it survive.
++    next: sanitizeReturnPath(search["next"]),
+   }),
+ 
+ 
+@@ -155,8 +155,9 @@ function AuthPage() {
+       // Renew the document-gate marker first, or a full reload of `next`
+       // would be bounced straight back here.
+       setSessionMarker();
+-      if (search.next) {
+-        window.location.replace(search.next);
++      const safeNext = sanitizeReturnPath(search.next);
++      if (safeNext) {
++        window.location.replace(safeNext);
+         return;
+       }
+       const role = await resolveRole(data.user);
+@@ -166,9 +167,10 @@ function AuthPage() {
+ 
+   const goHome = async (user: { id: string; user_metadata?: Record<string, unknown> }) => {
+     setSessionMarker();
+-    if (search.next) {
++    const safeNext = sanitizeReturnPath(search.next);
++    if (safeNext) {
+       // Return the parent to the purchase they were mid-way through.
+-      window.location.replace(search.next);
++      window.location.replace(safeNext);
+       return;
+     }
+     const role = await resolveRole(user);

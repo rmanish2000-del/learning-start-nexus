@@ -1,8 +1,8 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { sanitizeReturnPath } from "../auth-return";
+import { sanitizeReturnPath } from "../return-path";
 
 const read = (p: string) => readFileSync(resolve(import.meta.dirname, "../../..", p), "utf8");
 
@@ -48,15 +48,29 @@ describe("deep-link return wiring", () => {
     expect(route).toContain('throw redirect({ to: "/auth", search: { next: location.href } });');
   });
 
-  it("/auth validates `next` through sanitizeReturnPath and renews the marker before returning", () => {
+  it("/auth always sets `next` in validateSearch and consumes only a freshly sanitized value at both redirects", () => {
     const auth = read("src/routes/auth.tsx");
-    expect(auth).toContain('import { sanitizeReturnPath } from "@/lib/auth-return";');
-    expect(auth).toContain('const next = sanitizeReturnPath(search["next"]);');
+    expect(auth).toContain(
+      'import { sanitizeReturnPath, validatedReturnPath } from "@/lib/return-path";',
+    );
+    expect(auth).toContain("...validatedReturnPath(search),");
+    expect(auth).not.toMatch(/auth-return/);
     expect(auth).not.toMatch(/search\["next"\]\.startsWith\("\/"\)/);
+    const redirects = auth.match(/window\.location\.replace\(([^)]*)\)/g) ?? [];
+    expect(redirects).toHaveLength(2);
+    for (const r of redirects) expect(r).toBe("window.location.replace(target)");
+    expect((auth.match(/const target = sanitizeReturnPath\(search\.next\);/g) ?? []).length).toBe(
+      2,
+    );
     // Signed-in cold load: the marker is renewed before `next` is honoured.
     expect(auth).toMatch(
-      /setSessionMarker\(\);\s*\n\s*if \(search\.next\) \{\s*\n\s*window\.location\.replace\(search\.next\);/,
+      /setSessionMarker\(\);\s*\n\s*\/\/[^\n]*\n\s*const target = sanitizeReturnPath\(search\.next\);/,
     );
+  });
+
+  it("exactly one return-path sanitizer exists in src/lib", () => {
+    expect(existsSync(resolve(import.meta.dirname, "../auth-return.ts"))).toBe(false);
+    expect(existsSync(resolve(import.meta.dirname, "../return-path.ts"))).toBe(true);
   });
 });
 

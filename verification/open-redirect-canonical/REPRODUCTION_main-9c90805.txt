@@ -1,0 +1,17 @@
+EXPLOITABLE next="//evil.com" -> search.next="//evil.com" -> https://evil.com
+EXPLOITABLE next="https://evil.com" -> search.next="https://evil.com" -> https://evil.com
+EXPLOITABLE next="/\\evil.com" -> search.next="/\\evil.com" -> https://evil.com
+EXPLOITABLE next="\\\\evil.com" -> search.next="\\\\evil.com" -> https://evil.com
+EXPLOITABLE next="/\\/evil.com" -> search.next="/\\/evil.com" -> https://evil.com
+EXPLOITABLE next="\\/evil.com" -> search.next="\\/evil.com" -> https://evil.com
+EXPLOITABLE next="//\\evil.com" -> search.next="//\\evil.com" -> https://evil.com
+EXPLOITABLE next="/\t/evil.com" -> search.next="/\t/evil.com" -> https://evil.com
+safe        next="/%2F%2Fevil.com" -> search.next="/%2F%2Fevil.com" -> https://www.eduos.global
+safe        next="%2F%2Fevil.com" -> search.next="%2F%2Fevil.com" -> https://www.eduos.global
+safe        next="https%3A%2F%2Fevil.com" -> search.next="https%3A%2F%2Fevil.com" -> https://www.eduos.global
+safe        next="/%5Cevil.com" -> search.next="/%5Cevil.com" -> https://www.eduos.global
+safe        next="/%2F\\evil.com" -> search.next="/%2F\\evil.com" -> https://www.eduos.global
+safe        next="/\\%2Fevil.com" -> search.next="/\\%2Fevil.com" -> unparseable
+safe        next="/%5C/evil.com" -> search.next="/%5C/evil.com" -> https://www.eduos.global
+safe        next="/%252F%252Fevil.com" -> search.next="/%252F%252Fevil.com" -> https://www.eduos.global
+main@9c90805 signed-in flow: 8/16 variants reach an external origin
