@@ -397,6 +397,34 @@
       },
       "evidence_grade": "verified",
       "note": "Ref points at the merge commit; the file lands with the post-merge docs commit on main (PENDING_COMMIT warning expected until then)."
+    },
+    {
+      "id": "ART-0015",
+      "title": "PR #9 safety review and founder checklists (merge record, staging execution, rollback)",
+      "kind": "evidence",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "41db83fe9a7d5ed31f22448b83195a72076f896a",
+        "path": "verification/staging-migration-reconciliation/PR9_SAFETY_REVIEW_AND_CHECKLISTS.md"
+      },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "m365_copilot",
+        "retrieval_confirmed": false
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T18:00:00Z",
+        "method": "written in this session; lands with the next docs commit on main (ref = previous head)"
+      },
+      "evidence_grade": "verified",
+      "note": "Repository-complete statement for PR #9; function-signature and view-body parity with staging verified."
     }
   ]
 }
