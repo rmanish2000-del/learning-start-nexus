@@ -12,7 +12,7 @@ An artifact exists for another seat only when it has one of these coordinates:
 | Store   | Required fields                    | Example                                                                                                           |
 | ------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `git`   | `repo`, `ref` (full SHA), `path`   | `rmanish2000-del/learning-start-nexus @ fa5fcde0… : verification/centre-admin-first-login/VERIFICATION_REPORT.md` |
-| `drive` | `file_id` (+ `folder_id`, `title`) | `drive:file:1AbC…` in AGENT-REPORTS `11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg`                                           |
+| `drive` | `file_id` (+ `folder_id`, `title`) | `drive:file:1AbC…` in AGENT-REPORTS `1AVMHLC6Lhb_FgKAW4ED88t1-UCHh8X6k`                                           |
 | `url`   | `url` (https)                      | `https://github.com/rmanish2000-del/learning-start-nexus/pull/4`                                                  |
 
 Optional for all: `sha256`, `bytes`. A hash **without** a coordinate is not transport.

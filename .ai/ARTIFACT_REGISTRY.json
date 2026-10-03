@@ -1,7 +1,9 @@
 {
   "schema_version": "1.0",
   "updated_at": "2026-10-03T07:00:00Z",
-  "updated_by": { "tool": "claude_code" },
+  "updated_by": {
+    "tool": "claude_code"
+  },
   "purpose": "Every artifact that crosses a tool boundary is registered here with an addressable coordinate, its producer, the consumer's retrieval confirmation and a graded access status. check-artifact-addressability.ts fails closed when an artifact referenced by CURRENT_TASK.json is not retrievable from this checkout, when a 'current' artifact has no coordinate, or when producer and consumer disagree on the repository without a transport record.",
   "artifacts": [
     {
@@ -15,8 +17,14 @@
         "ref": "fa5fcde09323096a715e8307fc5114b210ae198f",
         "path": "verification/centre-admin-first-login/VERIFICATION_REPORT.md"
       },
-      "producer": { "tool": "claude_code", "repo": "rmanish2000-del/learning-start-nexus" },
-      "consumer": { "tool": "m365_copilot", "retrieval_confirmed": false },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "m365_copilot",
+        "retrieval_confirmed": false
+      },
       "access": {
         "status": "verified",
         "verified_by": "claude_code",
@@ -36,8 +44,14 @@
         "ref": "6b33e35e4bab5d2323d030842bcb168094f1f1c5",
         "path": "verification/mpbse-staging-release/VERIFICATION_REPORT.md"
       },
-      "producer": { "tool": "claude_code", "repo": "rmanish2000-del/learning-start-nexus" },
-      "consumer": { "tool": "m365_copilot", "retrieval_confirmed": false },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "m365_copilot",
+        "retrieval_confirmed": false
+      },
       "access": {
         "status": "verified",
         "verified_by": "claude_code",
@@ -57,7 +71,10 @@
         "ref": "fa5fcde09323096a715e8307fc5114b210ae198f",
         "path": "EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md"
       },
-      "producer": { "tool": "lovable", "repo": "rmanish2000-del/learning-start-nexus" },
+      "producer": {
+        "tool": "lovable",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
       "consumer": {
         "tool": "claude_code",
         "retrieval_confirmed": true,
@@ -80,8 +97,14 @@
         "store": "url",
         "url": "https://github.com/rmanish2000-del/learning-start-nexus/pull/4"
       },
-      "producer": { "tool": "claude_code", "repo": "rmanish2000-del/learning-start-nexus" },
-      "consumer": { "tool": "founder", "retrieval_confirmed": false },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "founder",
+        "retrieval_confirmed": false
+      },
       "access": {
         "status": "verified",
         "verified_by": "claude_code",
@@ -97,8 +120,14 @@
       "kind": "package",
       "status": "missing",
       "coordinate": null,
-      "producer": { "tool": "lovable", "repo": null },
-      "consumer": { "tool": "claude_code", "retrieval_confirmed": false },
+      "producer": {
+        "tool": "lovable",
+        "repo": null
+      },
+      "consumer": {
+        "tool": "claude_code",
+        "retrieval_confirmed": false
+      },
       "access": {
         "status": "inaccessible",
         "verified_by": "claude_code",
@@ -114,8 +143,14 @@
       "kind": "package",
       "status": "missing",
       "coordinate": null,
-      "producer": { "tool": "lovable", "repo": null },
-      "consumer": { "tool": "claude_code", "retrieval_confirmed": false },
+      "producer": {
+        "tool": "lovable",
+        "repo": null
+      },
+      "consumer": {
+        "tool": "claude_code",
+        "retrieval_confirmed": false
+      },
       "access": {
         "status": "inaccessible",
         "verified_by": "claude_code",
@@ -127,28 +162,31 @@
     },
     {
       "id": "ART-0007",
-      "title": "Drive AGENT-REPORTS / CHAT-HANDOFF.md",
+      "title": "Drive AGENT-REPORTS / CHAT-HANDOFF (superseded copy 2026-08-18; current CHAT-HANDOFF.md id to be recorded on next Drive read)",
       "kind": "handoff",
-      "status": "current",
+      "status": "superseded",
       "coordinate": {
         "store": "drive",
-        "folder_id": "11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg",
+        "folder_id": "1AVMHLC6Lhb_FgKAW4ED88t1-UCHh8X6k",
         "file_id": "11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg",
-        "title": "CHAT-HANDOFF.md"
+        "title": "CHAT-HANDOFF-superseded-2026-08-18-0025.md"
       },
-      "producer": { "tool": "m365_copilot", "repo": null },
+      "producer": {
+        "tool": "m365_copilot",
+        "repo": null
+      },
       "consumer": {
         "tool": "claude_code",
         "retrieval_confirmed": true,
         "confirmed_at": "2026-10-01T00:00:00Z"
       },
       "access": {
-        "status": "unverified",
+        "status": "verified",
         "verified_by": "claude_code",
-        "verified_at": "2026-10-01T00:00:00Z",
-        "method": "Google Drive MCP read by folder id; the file id recorded here is the folder id supplied by the founder — replace with the file's own id on the next Drive read."
+        "verified_at": "2026-10-03T07:25:00Z",
+        "method": "Google Drive get_file_metadata: id resolves to the superseded file; parentId is the AGENT-REPORTS folder"
       },
-      "evidence_grade": "reported"
+      "evidence_grade": "verified"
     },
     {
       "id": "ART-0008",
@@ -161,8 +199,14 @@
         "ref": "fa5fcde09323096a715e8307fc5114b210ae198f",
         "path": ".ai/README.md"
       },
-      "producer": { "tool": "claude_code", "repo": "rmanish2000-del/learning-start-nexus" },
-      "consumer": { "tool": "m365_copilot", "retrieval_confirmed": false },
+      "producer": {
+        "tool": "claude_code",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "m365_copilot",
+        "retrieval_confirmed": false
+      },
       "access": {
         "status": "verified",
         "verified_by": "claude_code",

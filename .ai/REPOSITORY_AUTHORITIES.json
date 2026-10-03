@@ -43,7 +43,7 @@
   "stores": [
     {
       "store": "drive",
-      "id": "11mSM9Q465EyaWkpgtL_ngDFHsRVaYOzg",
+      "id": "1AVMHLC6Lhb_FgKAW4ED88t1-UCHh8X6k",
       "name": "AGENT-REPORTS",
       "owns": ["CHAT-HANDOFF.md", "FLEET-STATE.md", "seat reports"],
       "rule": "Reports are published here AND their git coordinate is recorded in ARTIFACT_REGISTRY.json when the content also lives in the repository."
