@@ -1,0 +1,104 @@
+{
+  "board": "MPBSE",
+  "class": 10,
+  "subject": "Mathematics (Basic / Standard — same syllabus and marks scheme; question-paper difficulty differs)",
+  "session": "2026-27",
+  "max_marks": 75,
+  "time_hours": 3,
+  "total_questions": 23,
+  "chapter_marks": [
+    {
+      "chapter": "1 वास्तविक संख्याएँ (Real Numbers)",
+      "marks": 6
+    },
+    {
+      "chapter": "2 बहुपद (Polynomials)",
+      "marks": 5
+    },
+    {
+      "chapter": "3 दो चर वाले रैखिक समीकरण युग्म (Pair of Linear Equations in Two Variables)",
+      "marks": 7
+    },
+    {
+      "chapter": "4 द्विघात समीकरण (Quadratic Equations)",
+      "marks": 5
+    },
+    {
+      "chapter": "5 समांतर श्रेढ़ियाँ (Arithmetic Progressions)",
+      "marks": 5
+    },
+    {
+      "chapter": "6 त्रिभुज (Triangles)",
+      "marks": 5
+    },
+    {
+      "chapter": "7 निर्देशांक ज्यामिति (Coordinate Geometry)",
+      "marks": 5
+    },
+    {
+      "chapter": "8 त्रिकोणमिति का परिचय (Introduction to Trigonometry)",
+      "marks": 5
+    },
+    {
+      "chapter": "9 त्रिकोणमिति के कुछ अनुप्रयोग (Some Applications of Trigonometry)",
+      "marks": 5
+    },
+    {
+      "chapter": "10 वृत्त (Circles)",
+      "marks": 5
+    },
+    {
+      "chapter": "11 वृत्तों से संबंधित क्षेत्रफल (Areas Related to Circles)",
+      "marks": 5
+    },
+    {
+      "chapter": "12 पृष्ठीय क्षेत्रफल और आयतन (Surface Areas and Volumes)",
+      "marks": 6
+    },
+    {
+      "chapter": "13 सांख्यिकी (Statistics)",
+      "marks": 5
+    },
+    {
+      "chapter": "14 प्रायिकता (Probability)",
+      "marks": 6
+    }
+  ],
+  "question_structure": {
+    "objective_q1_to_q5": {
+      "questions": 5,
+      "items": 30,
+      "marks_each": 1,
+      "breakdown": {
+        "Q1 correct option": 6,
+        "Q2 fill in blanks": 6,
+        "Q3 true/false": 6,
+        "Q4 match pairs": 6,
+        "Q5 one-sentence answer": 6
+      }
+    },
+    "q6_to_q17": {
+      "questions": 12,
+      "marks_each": 2
+    },
+    "q18_to_q20": {
+      "questions": 3,
+      "marks_each": 3
+    },
+    "q21_to_q23": {
+      "questions": 3,
+      "marks_each": 4
+    }
+  },
+  "evidence": {
+    "file": "MPBSE_MarksScheme_2026_27.pdf",
+    "pdf_page": 31,
+    "printed_page": 30,
+    "sha256_see": "sha256sums.txt"
+  },
+  "model_paper_check": {
+    "file": "MPBSE_ModelPaper_2025_26_Class10_Maths_Standard.pdf",
+    "page": 1,
+    "stated": "Total Questions 23, Time 3 Hours, Maximum Marks 75 (session 2025-26 sample; consistent with 2026-27 scheme)"
+  }
+}
