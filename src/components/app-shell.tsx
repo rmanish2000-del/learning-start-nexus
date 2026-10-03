@@ -4,7 +4,36 @@ import { Link, getRouteApi } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { CENTRE_SETUP_QUERY_KEY } from "@/components/centre-setup-checklist";
 import { getCentreSetupFn } from "@/lib/centre-setup.functions";
-import { BadgeCheck, BookOpen, ClipboardCheck, ClipboardList, Compass, CreditCard, Crosshair, FileCheck2, FileQuestion, FileSearch, FlaskConical, Gauge, GitBranch, GraduationCap, HeartHandshake, LayoutDashboard, LifeBuoy, MessageSquare, PieChart, Rocket, Settings, ShieldCheck, Sparkles, Target, Ticket, TrendingUp, UserCog, Users } from "lucide-react";
+import {
+  BadgeCheck,
+  BookOpen,
+  ClipboardCheck,
+  ClipboardList,
+  Compass,
+  CreditCard,
+  Crosshair,
+  FileCheck2,
+  FileQuestion,
+  FileSearch,
+  FlaskConical,
+  Gauge,
+  GitBranch,
+  GraduationCap,
+  HeartHandshake,
+  LayoutDashboard,
+  LifeBuoy,
+  MessageSquare,
+  PieChart,
+  Rocket,
+  Settings,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Ticket,
+  TrendingUp,
+  UserCog,
+  Users,
+} from "lucide-react";
 import { HowItWorksDialog } from "@/components/how-it-works";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
@@ -26,47 +55,120 @@ import {
 } from "@/components/ui/sidebar";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
-import { ROLE_LABELS, type AppRole } from "@/lib/roles";
+import { ROLE_LABELS } from "@/lib/roles";
+import { canSeeNavItem, type NavVisibility } from "@/lib/nav-visibility";
 
-type NavItem = {
+type NavItem = NavVisibility & {
   to: string;
   label: string;
   icon: typeof LayoutDashboard;
-  roles: AppRole[];
   exact?: boolean;
-  /** Platform-owner exclusive: not rendered for anyone else, whatever their role. */
-  ownerOnly?: boolean;
-  /** Also visible to the platform owner even if their role is not listed. */
-  ownerAlso?: boolean;
 };
-
-/** Capability check for navigation: role membership plus platform-owner flags. */
-export function canSeeNavItem(item: NavItem, role: AppRole, platformOwner: boolean): boolean {
-  if (item.ownerOnly && !platformOwner) return false;
-  if (item.roles.includes(role)) return true;
-  return Boolean(item.ownerAlso && platformOwner);
-}
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "educator"] },
   { to: "/learners", label: "Learners", icon: Users, roles: ["admin", "educator"] },
   { to: "/assessments", label: "Assessments", icon: ClipboardList, roles: ["admin", "educator"] },
-  { to: "/curriculum", label: "Curriculum", icon: BookOpen, roles: ["admin", "educator", "reviewer"], exact: true },
-  { to: "/assessment-blueprint", label: "Blueprint", icon: Crosshair, roles: ["admin", "educator", "reviewer"], exact: true },
-  { to: "/question-bank", label: "Question Bank", icon: FileQuestion, roles: ["admin", "educator", "reviewer"], exact: true },
-  { to: "/assessment-builder", label: "Assessment Builder", icon: ClipboardCheck, roles: ["admin", "educator", "reviewer"], exact: true },
-  { to: "/diagnostic-engine", label: "Diagnostic Engine", icon: Gauge, roles: ["admin", "educator", "reviewer"], exact: true },
-  { to: "/gap-analysis", label: "Gap Analysis", icon: PieChart, roles: ["admin", "educator", "reviewer"], exact: true },
-  { to: "/outcome-proof", label: "Outcome Proof", icon: TrendingUp, roles: ["admin", "educator", "reviewer", "parent"], exact: true },
-  { to: "/pilot-evidence", label: "Pilot Evidence", icon: BadgeCheck, roles: ["admin", "educator", "reviewer"], exact: true },
+  {
+    to: "/curriculum",
+    label: "Curriculum",
+    icon: BookOpen,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
+  {
+    to: "/assessment-blueprint",
+    label: "Blueprint",
+    icon: Crosshair,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
+  {
+    to: "/question-bank",
+    label: "Question Bank",
+    icon: FileQuestion,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
+  {
+    to: "/assessment-builder",
+    label: "Assessment Builder",
+    icon: ClipboardCheck,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
+  {
+    to: "/diagnostic-engine",
+    label: "Diagnostic Engine",
+    icon: Gauge,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
+  {
+    to: "/gap-analysis",
+    label: "Gap Analysis",
+    icon: PieChart,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
+  {
+    to: "/outcome-proof",
+    label: "Outcome Proof",
+    icon: TrendingUp,
+    roles: ["admin", "educator", "reviewer", "parent"],
+    exact: true,
+  },
+  {
+    to: "/pilot-evidence",
+    label: "Pilot Evidence",
+    icon: BadgeCheck,
+    roles: ["admin", "educator", "reviewer"],
+    exact: true,
+  },
   { to: "/interventions", label: "Interventions", icon: Crosshair, roles: ["admin", "educator"] },
   { to: "/assignments", label: "Assignments", icon: UserCog, roles: ["admin"] },
   { to: "/admin", label: "Admin", icon: ShieldCheck, roles: ["admin"] },
   // Platform-level surfaces: absent from the DOM for every centre admin.
-  { to: "/payment-settings", label: "Payment Settings", icon: CreditCard, roles: ["admin"], exact: true, ownerOnly: true },
-  { to: "/pilot-access", label: "Pilot Access", icon: Ticket, roles: ["admin"], exact: true, ownerOnly: true },
-  { to: "/feedback-review", label: "Feedback", icon: MessageSquare, roles: ["admin"], exact: true, ownerOnly: true },
-  { to: "/auto-verification", label: "Auto Verification", icon: BadgeCheck, roles: ["reviewer"], exact: true, ownerAlso: true },
+  {
+    to: "/payment-settings",
+    label: "Payment Settings",
+    icon: CreditCard,
+    roles: ["admin"],
+    exact: true,
+    ownerOnly: true,
+  },
+  {
+    to: "/pilot-access",
+    label: "Pilot Access",
+    icon: Ticket,
+    roles: ["admin"],
+    exact: true,
+    ownerOnly: true,
+  },
+  {
+    to: "/feedback-review",
+    label: "Feedback",
+    icon: MessageSquare,
+    roles: ["admin"],
+    exact: true,
+    ownerOnly: true,
+  },
+  {
+    to: "/payment-audit",
+    label: "Payment Audit",
+    icon: CreditCard,
+    roles: [],
+    exact: true,
+    ownerOnly: true,
+  },
+  {
+    to: "/auto-verification",
+    label: "Auto Verification",
+    icon: BadgeCheck,
+    roles: ["reviewer"],
+    exact: true,
+    ownerAlso: true,
+  },
   { to: "/home", label: "My Learning", icon: GraduationCap, roles: ["student"], exact: true },
   { to: "/exam-pattern", label: "Exam Pattern", icon: Target, roles: ["student"], exact: true },
   { to: "/parent", label: "My Child", icon: HeartHandshake, roles: ["parent"], exact: true },
@@ -77,19 +179,48 @@ const NAV_ITEMS: NavItem[] = [
 // sidebar stays scannable while deep links keep working.
 const SYSTEM_ITEMS: NavItem[] = [
   { to: "/settings", label: "Settings", icon: Settings, roles: ["admin", "educator", "student"] },
-  { to: "/verification", label: "Verification", icon: ShieldCheck, roles: ["reviewer"], ownerAlso: true },
+  {
+    to: "/verification",
+    label: "Verification",
+    icon: ShieldCheck,
+    roles: ["reviewer"],
+    ownerAlso: true,
+  },
 ];
 
 // Centre admins see Quick Start pinned first in Workspace until the six-step
 // setup checklist is complete (server-side state); then it leaves the main
 // navigation and stays reachable from Support.
-const CENTRE_QUICK_START: NavItem = { to: "/quick-start", label: "Quick Start", icon: Rocket, roles: ["admin"], exact: true };
-
+const CENTRE_QUICK_START: NavItem = {
+  to: "/quick-start",
+  label: "Quick Start",
+  icon: Rocket,
+  roles: ["admin"],
+  exact: true,
+};
 
 const SUPPORT_ITEMS: NavItem[] = [
-  { to: "/quick-start", label: "Quick Start", icon: Compass, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
-  { to: "/help", label: "Help Center", icon: LifeBuoy, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
-  { to: "/role-academy", label: "Role Academy", icon: GraduationCap, roles: ["admin", "educator", "student", "reviewer", "parent"], exact: true },
+  {
+    to: "/quick-start",
+    label: "Quick Start",
+    icon: Compass,
+    roles: ["admin", "educator", "student", "reviewer", "parent"],
+    exact: true,
+  },
+  {
+    to: "/help",
+    label: "Help Center",
+    icon: LifeBuoy,
+    roles: ["admin", "educator", "student", "reviewer", "parent"],
+    exact: true,
+  },
+  {
+    to: "/role-academy",
+    label: "Role Academy",
+    icon: GraduationCap,
+    roles: ["admin", "educator", "student", "reviewer", "parent"],
+    exact: true,
+  },
 ];
 
 const TITLES: [RegExp, string][] = [
@@ -140,7 +271,6 @@ const TITLES: [RegExp, string][] = [
   [/^\/pilot-evidence/, "Pilot evidence"],
 ];
 
-
 function NavGroup({ label, items }: { label: string; items: NavItem[] }) {
   const { role, platformOwner } = useWorkspaceContext();
   if (!items.some((item) => canSeeNavItem(item, role, platformOwner))) return null;
@@ -160,25 +290,27 @@ function NavLinks({ items }: { items: NavItem[] }) {
 
   return (
     <SidebarMenu>
-      {items.filter((item) => canSeeNavItem(item, role, platformOwner)).map((item) => (
-        <SidebarMenuItem key={item.to}>
-          <SidebarMenuButton
-            asChild
-            tooltip={item.label}
-            className="data-[status=active]:bg-sidebar-accent data-[status=active]:text-sidebar-accent-foreground"
-          >
-            <Link
-              to={item.to}
-              {...(item.exact ? { activeOptions: { exact: true } } : {})}
-              activeProps={{ "aria-current": "page" }}
-              onClick={() => isMobile && setOpenMobile(false)}
+      {items
+        .filter((item) => canSeeNavItem(item, role, platformOwner))
+        .map((item) => (
+          <SidebarMenuItem key={item.to}>
+            <SidebarMenuButton
+              asChild
+              tooltip={item.label}
+              className="data-[status=active]:bg-sidebar-accent data-[status=active]:text-sidebar-accent-foreground"
             >
-              <item.icon />
-              <span>{item.label}</span>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      ))}
+              <Link
+                to={item.to}
+                {...(item.exact ? { activeOptions: { exact: true } } : {})}
+                activeProps={{ "aria-current": "page" }}
+                onClick={() => isMobile && setOpenMobile(false)}
+              >
+                <item.icon />
+                <span>{item.label}</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        ))}
     </SidebarMenu>
   );
 }
@@ -276,7 +408,6 @@ function OrgFooterLabel() {
   );
 }
 
-
 // Workspace navigation for the signed-in role. Centre admins get Quick Start
 // pinned at position 1 until their server-side setup checklist completes.
 function WorkspaceNav() {
@@ -323,7 +454,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <SidebarFooter className="p-3">
           <OrgFooterLabel />
         </SidebarFooter>
-
       </Sidebar>
       <SidebarInset>
         <header className="flex h-13 items-center justify-between border-b px-4 print:hidden">
@@ -337,7 +467,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
         <DemoContextBar />
-        <main id="main-content" tabIndex={-1} className="min-w-0 max-w-full flex-1 overflow-x-clip p-4 md:p-6">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="min-w-0 max-w-full flex-1 overflow-x-clip p-4 md:p-6"
+        >
           {children}
         </main>
       </SidebarInset>

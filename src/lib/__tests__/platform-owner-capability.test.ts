@@ -166,11 +166,14 @@ describe("client route gate and navigation", () => {
   it("owner-only nav items are flagged, so they are absent from the DOM for centre admins", () => {
     const src = read("src/components/app-shell.tsx");
     for (const to of ["/payment-settings", "/pilot-access", "/feedback-review"]) {
-      const line = src.split("\n").find((l) => l.includes(`to: "${to}"`));
-      expect(line, to).toBeDefined();
-      expect(line, to).toContain("ownerOnly: true");
+      const start = src.indexOf(`to: "${to}"`);
+      expect(start, to).toBeGreaterThan(-1);
+      const block = src.slice(start, src.indexOf("}", start));
+      expect(block, to).toContain("ownerOnly: true");
     }
-    expect(src).toContain("if (item.ownerOnly && !platformOwner) return false;");
+    expect(read("src/lib/nav-visibility.ts")).toContain(
+      "if (item.ownerOnly) return platformOwner;",
+    );
     expect(src).toContain("canSeeNavItem(item, role, platformOwner)");
   });
 
@@ -208,5 +211,19 @@ describe("database: pilot applications and sign-up roles", () => {
     expect(fn).toContain("v_signup_role = 'parent'");
     expect(fn).toContain("v_provisioned AND v_signup_role IN");
     expect(fn).not.toMatch(/v_signup_role IN \('parent'/);
+  });
+});
+
+describe("owner navigation is identity-based", () => {
+  it("owner-only links ignore role and depend only on platformOwner", () => {
+    expect(readFileSync("src/lib/nav-visibility.ts", "utf8")).toContain(
+      "if (item.ownerOnly) return platformOwner;",
+    );
+    const src = readFileSync("src/components/app-shell.tsx", "utf8");
+    expect(src).toContain('to: "/payment-audit"');
+  });
+  it("dashboard no longer links centre admins to the sprint 5 audit", () => {
+    const src = readFileSync("src/routes/_authenticated/dashboard.tsx", "utf8");
+    expect(src).not.toContain('to="/sprint-5-audit"');
   });
 });

@@ -11,6 +11,9 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/tanstack/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
+// @ts-expect-error -- plain ESM helper shared with the release-evidence CLI
+import { releaseFingerprint } from "./scripts/release-fingerprint.mjs";
+
 // Safe PWA Phase 1.
 //
 // The worker caches PUBLIC STATIC ASSETS ONLY. Everything personal —
@@ -24,6 +27,15 @@ const PRIVATE_PATHS =
 // request time; load them into process.env without exposing them to the client.
 Object.assign(process.env, loadEnv(process.env["NODE_ENV"] ?? "development", process.cwd(), ""));
 
+// Deterministic release identity for /api/public/version: release ID,
+// source-tree fingerprint and build timestamp only (see scripts/release-fingerprint.mjs).
+const RELEASE_INFO = {
+  ...(({ releaseId, fingerprint }) => ({ releaseId, fingerprint }))(
+    releaseFingerprint(import.meta.dirname),
+  ),
+  builtAt: new Date().toISOString(),
+};
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
@@ -31,12 +43,19 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    define: { __RELEASE_INFO__: JSON.stringify(RELEASE_INFO) },
     resolve: {
       alias: {
         // React Email pulls htmlparser2 -> entities; pin every import to the
         // hoisted v4.5.0 copy (v5+ removed ./lib/decode.js and breaks SSR).
-        "entities/lib/decode.js": path.resolve(import.meta.dirname, "node_modules/entities/lib/decode.js"),
-        "entities/lib/encode.js": path.resolve(import.meta.dirname, "node_modules/entities/lib/encode.js"),
+        "entities/lib/decode.js": path.resolve(
+          import.meta.dirname,
+          "node_modules/entities/lib/decode.js",
+        ),
+        "entities/lib/encode.js": path.resolve(
+          import.meta.dirname,
+          "node_modules/entities/lib/encode.js",
+        ),
         entities: path.resolve(import.meta.dirname, "node_modules/entities"),
       },
     },
@@ -57,7 +76,12 @@ export default defineConfig({
         includeAssets: [],
         workbox: {
           // Only fingerprinted build output and the offline shell are precached.
-          globPatterns: ["assets/**/*.{js,css,woff2}", "offline.html", "icons/*.png", "favicon.png"],
+          globPatterns: [
+            "assets/**/*.{js,css,woff2}",
+            "offline.html",
+            "icons/*.png",
+            "favicon.png",
+          ],
           globIgnores: ["**/_server/**", "**/api/**"],
           // No navigateFallback: a precache-bound navigation route is cache-first
           // and would serve the offline shell to online visitors. HTML is always

@@ -1,0 +1,196 @@
+{
+  "$schema": "https://eduos.global/schemas/paper-practice-filter/v1",
+  "feature": "paper-practice-board-selector",
+  "boards": [
+    {
+      "id": "cbse",
+      "label": "CBSE",
+      "accentColor": "#0D9488",
+      "classes": [10],
+      "subjects": ["mathematics", "science", "english", "social-science"],
+      "paperTypes": ["board-paper", "sample-paper"],
+      "years": ["2019", "2020", "2021", "2022", "2023", "2024"],
+      "mediums": ["english"],
+      "modes": ["full-timed", "chapter"],
+      "structureSchema": "cbse-v1"
+    },
+    {
+      "id": "mpbse",
+      "label": "MP Board (MPBSE)",
+      "hindiLabel": "मध्य प्रदेश बोर्ड (MPBSE)",
+      "accentColor": "#7C3AED",
+      "website": "https://mpbse.nic.in",
+      "classes": [10],
+      "subjects": [
+        {
+          "id": "mathematics-basic",
+          "label": "Mathematics Basic",
+          "hindiLabel": "गणित (सामान्य)",
+          "verificationRequired": "Confirm whether MPBSE has a Basic/Standard Mathematics split. This is a CBSE concept. Do not publish without MPBSE confirmation."
+        },
+        {
+          "id": "mathematics-standard",
+          "label": "Mathematics Standard",
+          "hindiLabel": "गणित (उच्च)",
+          "verificationRequired": "Same as above — confirm with MPBSE."
+        },
+        {
+          "id": "science",
+          "label": "Science",
+          "hindiLabel": "विज्ञान"
+        }
+      ],
+      "paperTypes": [
+        {
+          "id": "board-paper",
+          "label": "Board Paper",
+          "hindiLabel": "बोर्ड प्रश्नपत्र",
+          "description": "Actual MPBSE board examination paper",
+          "source": "official-external-link",
+          "hosted": false,
+          "linkTarget": "mpbse.nic.in"
+        },
+        {
+          "id": "model-paper",
+          "label": "Model Paper",
+          "hindiLabel": "मॉडल प्रश्नपत्र",
+          "description": "Official MPBSE blueprint/model paper",
+          "source": "official-external-link",
+          "hosted": false,
+          "linkTarget": "mpbse.nic.in"
+        }
+      ],
+      "years": [
+        { "value": "2024", "flag": null },
+        { "value": "2023", "flag": null },
+        { "value": "2022", "flag": null },
+        { "value": "2021", "flag": "covid-disrupted", "note": "MPBSE 2021 exam was disrupted by COVID. Paper pattern differs significantly from other years. Flag visually with * and tooltip." },
+        { "value": "2020", "flag": null },
+        { "value": "2019", "flag": null }
+      ],
+      "mediums": [
+        { "id": "hindi",   "label": "Hindi",   "hindiLabel": "हिंदी",     "default": true,  "htmlLang": "hi" },
+        { "id": "english", "label": "English",  "hindiLabel": "अंग्रेज़ी", "default": false, "htmlLang": "en" }
+      ],
+      "modes": [
+        {
+          "id": "full-timed",
+          "label": "Full Timed Paper",
+          "hindiLabel": "पूर्ण समयबद्ध परीक्षा",
+          "duration": "3h",
+          "totalMarks": 100,
+          "feedbackTiming": "post-submission"
+        },
+        {
+          "id": "chapter",
+          "label": "Chapter Practice",
+          "hindiLabel": "अध्याय अभ्यास",
+          "duration": "untimed",
+          "totalMarks": "variable",
+          "feedbackTiming": "instant"
+        }
+      ],
+      "structureSchema": "mpbse-class10-v1",
+      "paperStructure": {
+        "totalMarks": 100,
+        "duration": "3 hours",
+        "warning": "Illustrative. Verify against official MPBSE blueprint at mpbse.nic.in before production use.",
+        "sections": [
+          {
+            "id": "A", "hindiId": "अ",
+            "type": "mcq",
+            "questionRange": "1-20",
+            "marksPerQuestion": 1,
+            "totalMarks": 20,
+            "internalChoices": false,
+            "hindiTypeName": "बहुविकल्पीय प्रश्न"
+          },
+          {
+            "id": "B", "hindiId": "ब",
+            "type": "very-short-answer",
+            "questionRange": "21-26",
+            "marksPerQuestion": 2,
+            "totalMarks": 12,
+            "internalChoices": true,
+            "hindiChoiceLabel": "आंतरिक विकल्प",
+            "hindiTypeName": "अति लघु उत्तरीय"
+          },
+          {
+            "id": "C", "hindiId": "स",
+            "type": "short-answer",
+            "questionRange": "27-31",
+            "marksPerQuestion": 3,
+            "totalMarks": 15,
+            "internalChoices": true,
+            "hindiChoiceLabel": "आंतरिक विकल्प",
+            "hindiTypeName": "लघु उत्तरीय"
+          },
+          {
+            "id": "D", "hindiId": "द",
+            "type": "long-answer",
+            "questionRange": "32-35",
+            "marksPerQuestion": 5,
+            "totalMarks": 20,
+            "internalChoices": true,
+            "hindiChoiceLabel": "आंतरिक विकल्प",
+            "hindiTypeName": "दीर्घ उत्तरीय"
+          },
+          {
+            "id": "E", "hindiId": "इ",
+            "type": "case-based",
+            "questionRange": "36-38",
+            "marksNote": "4 marks each + sub-parts = ~33 marks total",
+            "totalMarks": 33,
+            "internalChoices": false,
+            "subjectVariants": {
+              "science": "Includes map-based and practical-based questions",
+              "mathematics": "Includes graph-based and data interpretation questions"
+            },
+            "hindiTypeName": "प्रकरण आधारित"
+          }
+        ]
+      },
+      "contentTypes": [
+        {
+          "id": "official-mpbse",
+          "label": "Official MPBSE",
+          "hindiLabel": "आधिकारिक MPBSE",
+          "badgeColor": "#059669",
+          "hosted": false,
+          "linkStrategy": "external-new-tab",
+          "ariaLabel": "View official MPBSE paper (opens in new tab)",
+          "disclaimer": "External link · mpbse.nic.in · EduOS does not host this content"
+        },
+        {
+          "id": "eduos-practice",
+          "label": "EduOS Practice",
+          "hindiLabel": "EduOS अभ्यास",
+          "badgeColor": "#7C3AED",
+          "hosted": true,
+          "disclaimer": "EduOS-authored questions following MPBSE pattern · not official MPBSE"
+        },
+        {
+          "id": "pattern-analysis",
+          "label": "Pattern Analysis",
+          "hindiLabel": "पैटर्न विश्लेषण",
+          "badgeColor": "#6366F1",
+          "hosted": true,
+          "disclaimer": "AI-derived insights · not official MPBSE · verify against current blueprint",
+          "citationRequired": "Must cite years analysed, e.g. 'Based on MPBSE papers 2019–2024'"
+        }
+      ]
+    }
+  ],
+  "filterCascade": {
+    "order": ["board", "class", "subject", "paperType", "year", "medium", "mode"],
+    "boardSwitchResetsAll": true,
+    "defaultMedium": "hindi",
+    "requiredBeforeCTA": ["subject", "year", "mode"],
+    "classIsFixed": true,
+    "classValue": 10
+  },
+  "stateRequirements": {
+    "routes": ["/paper-practice", "/paper-practice/chapter"],
+    "requiredStates": ["loading", "zero-data", "populated", "error", "permission-denied"]
+  }
+}
