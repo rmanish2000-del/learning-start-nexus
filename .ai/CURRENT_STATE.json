@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": {
+    "tool": "claude_code",
+    "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
+  },
+  "evidence_grades": {
+    "verified": "Observed directly by the seat that wrote this entry (command output, HTTP response, file hash).",
+    "reported": "Stated by another seat or document; not re-observed.",
+    "assumed": "Inferred; no observation.",
+    "blocked": "Could not be observed from the current seat."
+  },
+  "repo": {
+    "name": "rmanish2000-del/learning-start-nexus",
+    "canonical_branch": "main",
+    "verified_head_sha": "fa5fcde09323096a715e8307fc5114b210ae198f",
+    "verified_at": "2026-10-03T07:00:00Z",
+    "evidence_grade": "verified",
+    "history_rule": "Lovable-connected. Never rewrite published history (no force-push, rebase, amend or squash of pushed commits)."
+  },
+  "gates": {
+    "vitest": {
+      "command": "bunx vitest run",
+      "result": "540 passed / 47 files (includes src/lib/__tests__/ai-governance.test.ts)",
+      "evidence_grade": "verified",
+      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+    },
+    "typecheck": {
+      "command": "bunx tsc --noEmit -p tsconfig.json",
+      "result": "0 errors",
+      "evidence_grade": "verified",
+      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+    },
+    "lint": {
+      "command": "bun run lint",
+      "result": "clean",
+      "evidence_grade": "verified",
+      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+    },
+    "build": {
+      "command": "LOVABLE_SANDBOX=1 bun run build",
+      "result": "success (precache 247 entries first pass, 254 final)",
+      "evidence_grade": "verified",
+      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+    },
+    "ai_governance": {
+      "command": "bun run ai:check",
+      "result": "PASS — 0 errors; conflicts reported as resolved warnings",
+      "evidence_grade": "verified",
+      "observed_at_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+    }
+  },
+  "production": {
+    "url": "https://www.eduos.global",
+    "deployed_sha": null,
+    "evidence_grade": "blocked",
+    "how_to_verify": "GET https://www.eduos.global/api/public/version and compare `fingerprint` with the expected value in EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md; compare the served asset hashes with a local LOVABLE_SANDBOX=1 build of the claimed commit.",
+    "expected_release_fingerprint": "d064be7f74d802cb0a5a92c93089f1e158b76152fee0f9bc450b7f0c8d076434",
+    "expected_release_id": "eduos-d064be7f74d8",
+    "last_reported_deployed_sha": {
+      "value": "6aef3be2c7179c2a4968d636c94b6416b63506a6",
+      "source": "PROJECT_STATUS.md — 'Support-email integration (2026-09-06)'",
+      "evidence_grade": "reported"
+    },
+    "note": "The Claude Code seat cannot reach eduos.global (network allowlist). Production verification is a Lovable or Cowork step."
+  },
+  "staging": {
+    "known_asset_hashes": {
+      "styles": "styles-CPFiICLa.css",
+      "auth": "auth-jF9Ybvtc.js"
+    },
+    "main_asset_hashes_at_verified_head": {
+      "styles": "styles-DMtY-X8K.css",
+      "auth": "auth-BNA1a8FE.js"
+    },
+    "conclusion": "Staging is not built from main@fa5fcde. See verification/mpbse-staging-release/VERIFICATION_REPORT.md (branch claude/gallant-gauss-jqipny, commit 6b33e35e4bab5d2323d030842bcb168094f1f1c5).",
+    "evidence_grade": "verified"
+  },
+  "open_pull_requests": [
+    {
+      "number": 4,
+      "url": "https://github.com/rmanish2000-del/learning-start-nexus/pull/4",
+      "title": "MPBSE/CBSE Class 10 evidence package (metadata only)",
+      "state": "open",
+      "evidence_grade": "reported",
+      "decision_owner": "founder"
+    }
+  ],
+  "product_truth": {
+    "pilot_scope": "CBSE Class 10 Mathematics and Science",
+    "product_language": "English only (founder decision 2026-08-28; D9; G5; guarded by src/lib/__tests__/english-only.test.ts)",
+    "pricing": "₹199 diagnostic · ₹2,999 annual plan · ₹199 credit · ₹2,800 upgrade",
+    "platform_owner": "exact rmanish2000@gmail.com with confirmed email; no configurable override (src/lib/platform-owner-shared.ts)",
+    "mpbse": "No MPBSE code on main at the verified head; MPBSE remains disabled in product."
+  },
+  "founder_only_acts": [
+    "merge",
+    "deploy_approval",
+    "credentials",
+    "payment",
+    "legal",
+    "irreversible_decision"
+  ]
+}

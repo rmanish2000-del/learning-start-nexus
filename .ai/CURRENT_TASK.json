@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": {
+    "tool": "claude_code",
+    "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
+  },
+  "stale_after_days": 14,
+  "task": {
+    "id": "ASG-2026-10-03-001",
+    "title": "Prompt and context engineering standard — adopt the .ai governance layer",
+    "status": "in_progress",
+    "priority": "P0",
+    "business_value": "Stops every seat from re-deriving state, losing artifacts between tools, and asking the founder to execute tool work. Directly reduces usage-credit waste (D17) and blocked assignments (two staging packages were never retrievable).",
+    "owner": {
+      "tool": "claude_code"
+    },
+    "continuity_owner": {
+      "tool": "m365_copilot"
+    },
+    "repo": {
+      "name": "rmanish2000-del/learning-start-nexus",
+      "branch": "claude/ai-governance-context-engineering",
+      "base_sha": "fa5fcde09323096a715e8307fc5114b210ae198f"
+    },
+    "objective": "Every assignment and handoff carries addressable artifact coordinates, a repository SHA, graded evidence and explicit permissions, and is validated fail-closed before any seat acts on it.",
+    "scope": {
+      "in": [
+        ".ai registries and schemas",
+        "docs/ai standards",
+        "scripts/ai validators and their tests",
+        "AGENTS.md, EDUOS_PROJECT_OPERATING_SYSTEM.md, CURRENT_ASSIGNMENT.md, EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md updates"
+      ],
+      "out": [
+        "application code",
+        "database schema",
+        "deployment",
+        "merge",
+        "deleting any historical evidence"
+      ]
+    },
+    "steps": [
+      {
+        "id": "S1",
+        "action": "Audit the eight continuity documents and record contradictions",
+        "executor": "claude_code",
+        "capability": "repo.read",
+        "status": "done"
+      },
+      {
+        "id": "S2",
+        "action": "Create .ai registries, schemas, docs/ai standards, scripts/ai validators and fail-closed tests",
+        "executor": "claude_code",
+        "capability": "repo.write",
+        "status": "done"
+      },
+      {
+        "id": "S3",
+        "action": "Run vitest, tsc, eslint, build and the ai:check gate",
+        "executor": "claude_code",
+        "capability": "repo.test",
+        "status": "done"
+      },
+      {
+        "id": "S4",
+        "action": "Commit, push to a new branch and open a PR against main",
+        "executor": "claude_code",
+        "capability": "repo.pr",
+        "status": "done"
+      },
+      {
+        "id": "S5",
+        "action": "Review and merge the PR",
+        "executor": "founder",
+        "capability": "repo.merge",
+        "founder_exception": "irreversible_decision",
+        "status": "pending"
+      },
+      {
+        "id": "S6",
+        "action": "Issue the next INBOX assignment as ASSIGNMENT_SCHEMA.json-conformant JSON (or Markdown with an embedded JSON block)",
+        "executor": "m365_copilot",
+        "capability": "assignment.issue",
+        "status": "pending"
+      },
+      {
+        "id": "S7",
+        "action": "Lovable returns results as HANDOFF_SCHEMA.json-conformant handoffs with git coordinates",
+        "executor": "lovable",
+        "capability": "handoff.produce",
+        "status": "pending"
+      }
+    ],
+    "deployment": {
+      "in_scope": false,
+      "permission": "none"
+    },
+    "merge": {
+      "allowed": false,
+      "by": "founder"
+    },
+    "gates": [
+      "bunx vitest run",
+      "bunx tsc --noEmit -p tsconfig.json",
+      "bun run lint",
+      "LOVABLE_SANDBOX=1 bun run build",
+      "bun run ai:check"
+    ],
+    "rollback": "Revert the governance commit(s) on this branch; no runtime, schema or deployment change is involved.",
+    "return_to": "m365_copilot"
+  },
+  "history": [
+    {
+      "id": "LEGACY-SAFE-PWA-PHASE-1",
+      "title": "Safe PWA Phase 1 — exact verified production promotion",
+      "status": "complete",
+      "completed_on": "2026-09-03",
+      "evidence": "EDUOS_SAFE_PWA_PRODUCTION_PROMOTION_VERIFICATION.md",
+      "note": "Previously the body of CURRENT_ASSIGNMENT.md; the full text is preserved in git history at fa5fcde09323096a715e8307fc5114b210ae198f:CURRENT_ASSIGNMENT.md."
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-03T07:00:00Z",
+  "updated_by": { "tool": "claude_code" },
+  "purpose": "Pointers to every durable decision plus the resolution of every known context conflict. check-context-conflicts.ts fails closed when it detects a conflict whose id has no entry in `conflict_resolutions`.",
+  "pointers": [
+    {
+      "id": "D1-D9",
+      "source": "PRODUCT_DECISIONS.md — 2026-08-28 Wave 0 entry; EDUOS_CLASSES_9_12_EXPANSION_ARCHITECTURE.md §14",
+      "summary": "Catalogue-driven scope, academic-year versioning, configurable pricing, single ₹199 credit, named subject-expert sign-off, English-only copy (D9)."
+    },
+    {
+      "id": "D10-D16",
+      "source": "PRODUCT_DECISIONS.md — 2026-09-02 entry; EDUOS_NEW_CHAT_HANDOFF_PACKAGE.md G1-G6",
+      "summary": "Founder Non-Execution Rule, M365 Copilot continuity ownership, proactive completion, delegation format, English assignments / Hindi chat, no duplicate work."
+    },
+    {
+      "id": "D17",
+      "source": "PRODUCT_DECISIONS.md — 2026-09-03 entry; EDUOS_PROJECT_OPERATING_SYSTEM.md §12",
+      "summary": "Business-Value-First prioritisation and credit-efficiency rules."
+    },
+    {
+      "id": "WHITE-LABEL",
+      "source": "AGENTS.md — White-label branding",
+      "summary": "No build-platform branding on any user-facing surface; guarded by src/lib/__tests__/no-platform-branding.test.ts."
+    },
+    {
+      "id": "PLATFORM-OWNER",
+      "source": "src/lib/platform-owner-shared.ts",
+      "summary": "Platform owner is the exact confirmed email rmanish2000@gmail.com; no configurable override."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "GV-001",
+      "date": "2026-10-03",
+      "title": "Addressable artifact coordinates are mandatory",
+      "statement": "Every input and output that crosses a tool boundary is identified by a coordinate (git repo+sha+path, Drive file id, or https URL), optionally with sha256 and byte size. A filename, 'Files', 'this project', 'attached' or a chat reference is not a coordinate and fails validation.",
+      "rationale": "Two staging packages (ART-0005, ART-0006) were referenced by name and hash only and were never retrievable, blocking two assignments.",
+      "enforced_by": [
+        "scripts/ai/validate-assignment.ts",
+        "scripts/ai/validate-handoff.ts",
+        "scripts/ai/check-artifact-addressability.ts"
+      ]
+    },
+    {
+      "id": "GV-002",
+      "date": "2026-10-03",
+      "title": "Evidence is graded verified / reported / assumed / blocked",
+      "statement": "Every claim in a handoff carries a grade. 'Verified' means the producing seat observed it directly and names the command or coordinate. A production claim is 'verified' only against GET /api/public/version or a deployment record.",
+      "enforced_by": ["scripts/ai/validate-handoff.ts"]
+    },
+    {
+      "id": "GV-003",
+      "date": "2026-10-03",
+      "title": "Product language is English only",
+      "statement": "The application is English-only (founder decision 2026-08-28, D9, G5). PRODUCT_DECISIONS.md row 20, PROJECT_STATUS.md §5 'Hindi ↔ English toggle', ROADMAP.md 'Hindi v1' and the 'Hindi coverage' candidate are historical and superseded. Hindi is a chat-communication rule only.",
+      "resolves": ["CX-PRODUCT-LANGUAGE"],
+      "enforced_by": [
+        "src/lib/__tests__/english-only.test.ts",
+        "scripts/ai/check-context-conflicts.ts"
+      ]
+    },
+    {
+      "id": "GV-004",
+      "date": "2026-10-03",
+      "title": "Deployment permission must be explicit",
+      "statement": "An assignment that includes deployment states deployment.in_scope=true, permission='explicit', granted_by='founder' and a statement without conditional wording. 'Publish when appropriate' (OS §9 item 8, handoff §14 item 8) is not permission. PRODUCT_DECISIONS row 23 (publishing is a founder decision) stands; Lovable executes once permission is explicit.",
+      "resolves": ["CX-DEPLOY-PERMISSION"],
+      "enforced_by": ["scripts/ai/validate-assignment.ts"]
+    },
+    {
+      "id": "GV-005",
+      "date": "2026-10-03",
+      "title": "Execution ownership and founder-only acts",
+      "statement": "Claude Code is the default execution owner; Lovable is the deployment executor; M365 Copilot is continuity owner and receives every handoff; Claude Cowork handles external-site browsing. The founder performs only merges, deployment approval, credentials, payments, legal approval and irreversible decisions. A step assigned to the founder that a tool can perform fails validation. roadmap.md 'Founder action: remix as eduos-staging' is reassigned to Lovable; 'Founder action: create EduOS-owned Google OAuth client' is a legitimate credential exception.",
+      "resolves": ["CX-FOUNDER-ACTION"],
+      "enforced_by": ["scripts/ai/validate-assignment.ts", ".ai/TOOL_CAPABILITIES.json"]
+    },
+    {
+      "id": "GV-006",
+      "date": "2026-10-03",
+      "title": "Production SHA claims in documents are 'reported'",
+      "statement": "The continuity documents record at least nine different 'deployed production' SHAs at different dates. None is current truth. CURRENT_STATE.json carries production.deployed_sha=null with grade 'blocked' until a seat compares the served fingerprint with EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md.",
+      "resolves": ["CX-DEPLOYED-SHA"],
+      "enforced_by": ["scripts/ai/check-context-conflicts.ts", "scripts/ai/validate-context.ts"]
+    },
+    {
+      "id": "GV-007",
+      "date": "2026-10-03",
+      "title": "EDUOS_PROJECT_OPERATING_SYSTEM.md exists and is the rulebook",
+      "statement": "The handoff package §2 note and the PROJECT_STATUS.md 2026-08-27 note saying the file does not exist were true on 2026-08-27 and are superseded by its creation the same day.",
+      "resolves": ["CX-OS-FILE-EXISTS"]
+    },
+    {
+      "id": "GV-008",
+      "date": "2026-10-03",
+      "title": "Historical evidence is marked superseded, never deleted",
+      "statement": "Reducing a document to a bootstrap index keeps the full prior text below a '[SUPERSEDED …]' marker. Git history is never rewritten (AGENTS.md).",
+      "enforced_by": ["src/lib/__tests__/ai-governance.test.ts"]
+    },
+    {
+      "id": "GV-009",
+      "date": "2026-10-03",
+      "title": "Repository and store authorities",
+      "statement": "learning-start-nexus = application authority and only deployment source; eduos-ai = product authority; eduos = fleet authority; Drive AGENT-REPORTS and INBOX are report and assignment stores. Producer and consumer of a git artifact must name the same repository.",
+      "enforced_by": [
+        "scripts/ai/check-artifact-addressability.ts",
+        ".ai/REPOSITORY_AUTHORITIES.json"
+      ]
+    },
+    {
+      "id": "GV-010",
+      "date": "2026-10-03",
+      "title": "One active mission",
+      "statement": "CURRENT_TASK.json holds one task; CURRENT_ASSIGNMENT.md mirrors it. Completed missions move to CURRENT_TASK.history with a git coordinate to their full text. CURRENT_TASK is stale after stale_after_days or when its base_sha differs from CURRENT_STATE.repo.verified_head_sha.",
+      "resolves": ["CX-CURRENT-ASSIGNMENT-HISTORY"],
+      "enforced_by": ["scripts/ai/validate-context.ts"]
+    },
+    {
+      "id": "GV-011",
+      "date": "2026-10-03",
+      "title": "ROADMAP.md is canonical; roadmap.md is historical",
+      "statement": "Both files exist and differ only by case, which collides on Windows and macOS checkouts. roadmap.md is kept as historical evidence and must not receive new entries. Deleting or renaming it is a founder decision (BLK-ROADMAP-CASE).",
+      "resolves": ["CX-DUPLICATE-ROADMAP"]
+    },
+    {
+      "id": "GV-012",
+      "date": "2026-10-03",
+      "title": "Stop on inaccessible input",
+      "statement": "When an assignment names an input the seat cannot retrieve, the seat returns BLOCKED with the blocker registered, instead of substituting, guessing, or asking the founder to fetch it when another tool can.",
+      "enforced_by": [
+        "scripts/ai/validate-assignment.ts",
+        "scripts/ai/check-artifact-addressability.ts"
+      ]
+    }
+  ],
+  "conflict_resolutions": {
+    "CX-PRODUCT-LANGUAGE": "GV-003",
+    "CX-DEPLOY-PERMISSION": "GV-004",
+    "CX-FOUNDER-ACTION": "GV-005",
+    "CX-DEPLOYED-SHA": "GV-006",
+    "CX-OS-FILE-EXISTS": "GV-007",
+    "CX-CURRENT-ASSIGNMENT-HISTORY": "GV-010",
+    "CX-DUPLICATE-ROADMAP": "GV-011",
+    "CX-TEST-COUNT-DRIFT": "GV-006"
+  }
+}

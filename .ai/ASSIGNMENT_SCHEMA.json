@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rmanish2000-del/learning-start-nexus/.ai/ASSIGNMENT_SCHEMA.json",
+  "title": "EduOS assignment",
+  "description": "Machine-checkable contract for every assignment issued to an AI seat. Validated by scripts/ai/validate-assignment.ts, which also applies the fail-closed semantic rules documented in docs/ai/PROMPT_ENGINEERING_STANDARD.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "issued_at",
+    "issued_by",
+    "seat",
+    "priority",
+    "business_value",
+    "repo",
+    "objective",
+    "scope",
+    "inputs",
+    "steps",
+    "gates",
+    "deployment",
+    "merge",
+    "outputs",
+    "rollback",
+    "return_to"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "id": { "type": "string", "pattern": "^ASG-\\d{4}-\\d{2}-\\d{2}-\\d{3,}$" },
+    "title": { "type": "string", "minLength": 8 },
+    "issued_at": { "type": "string", "format": "date-time" },
+    "issued_by": { "$ref": "#/$defs/Actor" },
+    "seat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool", "mode"],
+      "properties": {
+        "tool": { "$ref": "#/$defs/ToolId" },
+        "mode": { "type": "string", "minLength": 3 }
+      }
+    },
+    "priority": { "enum": ["P0", "P1", "P2", "P3"] },
+    "business_value": { "type": "string", "minLength": 12 },
+    "repo": { "$ref": "#/$defs/RepoRef" },
+    "objective": { "type": "string", "minLength": 12 },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["in", "out"],
+      "properties": {
+        "in": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 3 } },
+        "out": { "type": "array", "items": { "type": "string", "minLength": 3 } }
+      }
+    },
+    "inputs": { "type": "array", "items": { "$ref": "#/$defs/InputRef" } },
+    "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Step" } },
+    "gates": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 3 } },
+    "deployment": { "$ref": "#/$defs/DeploymentPermission" },
+    "merge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed", "by"],
+      "properties": {
+        "allowed": { "type": "boolean" },
+        "by": { "enum": ["founder"] }
+      }
+    },
+    "outputs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/OutputSpec" } },
+    "rollback": { "type": "string", "minLength": 8 },
+    "return_to": { "const": "m365_copilot" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "ToolId": {
+      "enum": ["claude_code", "lovable", "m365_copilot", "claude_cowork", "figma", "founder"]
+    },
+    "Actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool"],
+      "properties": {
+        "tool": { "$ref": "#/$defs/ToolId" },
+        "session": { "type": "string", "pattern": "^https://" }
+      }
+    },
+    "RepoRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "branch", "base_sha"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "branch": { "type": "string", "minLength": 1 },
+        "base_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      }
+    },
+    "GitCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store", "repo", "ref", "path"],
+      "properties": {
+        "store": { "const": "git" },
+        "repo": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "ref": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "path": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\./).+$" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" }
+      }
+    },
+    "DriveCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store", "file_id"],
+      "properties": {
+        "store": { "const": "drive" },
+        "file_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{20,}$" },
+        "folder_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{20,}$" },
+        "title": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" }
+      }
+    },
+    "UrlCoordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["store", "url"],
+      "properties": {
+        "store": { "const": "url" },
+        "url": { "type": "string", "pattern": "^https://" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "bytes": { "type": "integer" }
+      }
+    },
+    "Coordinate": {
+      "oneOf": [
+        { "$ref": "#/$defs/GitCoordinate" },
+        { "$ref": "#/$defs/DriveCoordinate" },
+        { "$ref": "#/$defs/UrlCoordinate" }
+      ]
+    },
+    "InputRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "coordinate", "access_verified"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "coordinate": { "$ref": "#/$defs/Coordinate" },
+        "access_verified": { "type": "boolean" },
+        "verified_by": { "$ref": "#/$defs/ToolId" },
+        "verified_at": { "type": "string", "format": "date-time" },
+        "purpose": { "type": "string" }
+      }
+    },
+    "Step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "action", "executor", "capability"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^S\\d+$" },
+        "action": { "type": "string", "minLength": 5 },
+        "executor": { "$ref": "#/$defs/ToolId" },
+        "capability": { "type": "string", "pattern": "^[a-z_]+(\\.[a-z_]+)+$" },
+        "founder_exception": {
+          "enum": ["credential", "payment", "legal", "irreversible_decision", "manual_no_tool"]
+        },
+        "evidence_required": { "type": "string" }
+      }
+    },
+    "DeploymentPermission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["in_scope", "permission"],
+      "properties": {
+        "in_scope": { "type": "boolean" },
+        "permission": { "enum": ["explicit", "none"] },
+        "granted_by": { "enum": ["founder"] },
+        "statement": { "type": "string" },
+        "target": { "enum": ["staging", "production"] }
+      }
+    },
+    "OutputSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "store"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "store": { "enum": ["git", "drive", "url"] },
+        "repo": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "path": { "type": "string" },
+        "folder_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{20,}$" },
+        "consumer": { "$ref": "#/$defs/ToolId" }
+      }
+    }
+  }
+}
