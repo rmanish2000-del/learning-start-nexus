@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:05:00Z",
+  "updated_at": "2026-10-03T08:50:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -248,6 +248,37 @@
       },
       "evidence_grade": "verified",
       "note": "sha256/bytes describe the ZIP itself; the git path is the committed manifest. The ref points at the base commit; the files land with the integration commit (pending_commit until then)."
+    },
+    {
+      "id": "ART-0010",
+      "title": "EDUOS_OPEN_REDIRECT_FIX.zip (3818627 B) — Lovable P0 open-redirect package, text contents committed",
+      "kind": "package",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "9c90805ccb5a50c3717acfd6a1b1428f0f763150",
+        "path": "verification/open-redirect-canonical/handoff/README.md",
+        "sha256": "7834334c57035bd8c8352edf4717561c758fa78767aab302102d83f0b5148b4d",
+        "bytes": 3818627
+      },
+      "producer": {
+        "tool": "lovable",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "claude_code",
+        "retrieval_confirmed": true,
+        "confirmed_at": "2026-10-03T08:25:00Z"
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T08:25:00Z",
+        "method": "sha256sum of the session upload matched the assignment; SHA256SUMS.txt 32/32 OK; README, sums, patch, live-matrix.json, run.py and the supplied sanitizer committed under verification/open-redirect-canonical/handoff/; 24 PNG screenshots identified by hash in SHA256SUMS.txt, not committed"
+      },
+      "evidence_grade": "verified",
+      "note": "Ref points at the base commit; the files land with the hotfix commit."
     }
   ]
 }

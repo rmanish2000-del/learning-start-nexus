@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:40:00Z",
+  "updated_at": "2026-10-03T08:50:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -91,6 +91,34 @@
       "status": "closed",
       "closed": "2026-10-03",
       "closure": "English-only retained by founder decision."
+    },
+    {
+      "id": "BLK-SECURITY-HANDOFF-COORDINATE",
+      "opened": "2026-10-03",
+      "statement": "The PR #7 security-reconciliation assignment refers to a 'new Lovable security handoff' by description only. No Drive file id, git path or URL was given; Drive (AGENT-REPORTS, INBOX, recent) and the session uploads hold no such file. The handoff's malicious variants and its 401/403 finding cannot be verified.",
+      "owner": "m365_copilot",
+      "resolution_path": "Issue the coordinate (Drive file id in AGENT-REPORTS, or commit the handoff text to a branch) and re-issue; the reproduction matrix and hardening in fix/auth-return-hardening stand regardless.",
+      "status": "closed",
+      "closed": "2026-10-03",
+      "closure": "The founder attached EDUOS_OPEN_REDIRECT_FIX.zip (ART-0010) with a matching SHA-256."
+    },
+    {
+      "id": "BLK-AUTHZ-401-SERVER-FN",
+      "opened": "2026-10-03",
+      "statement": "Signed-out calls to protected server functions return HTTP 200 with an 'Unauthorized: No authorization header provided' error body instead of HTTP 401 (Lovable live matrix, staging, 11 functions). Data is not exposed; the status code is wrong.",
+      "owner": "claude_code",
+      "resolution_path": "Separate assignment: make requireSupabaseAuth throw a Response with status 401 (or map the thrown error to 401 in the server-function error middleware) and add route tests. Not part of the open-redirect hotfix.",
+      "status": "open",
+      "evidence": "verification/open-redirect-canonical/handoff/live-matrix.json roles.anonymous.server"
+    },
+    {
+      "id": "BLK-AUTHZ-403-ROLE-FN",
+      "opened": "2026-10-03",
+      "statement": "Centre-admin server functions called by educator/parent/reviewer return HTTP 200 with 'You do not have permission' instead of HTTP 403. Founder-only functions already return a real 403 (requirePlatformOwner).",
+      "owner": "claude_code",
+      "resolution_path": "Separate assignment: make the role guards (requireRole / admin checks) throw a 403 Response like requirePlatformOwner does, with tests. Not part of the open-redirect hotfix.",
+      "status": "open",
+      "evidence": "verification/open-redirect-canonical/handoff/live-matrix.json roles.educator/parent/reviewer.server"
     }
   ]
 }

@@ -1,8 +1,8 @@
 # EduOS — Current Assignment
 
-**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `b634d11aa5e82c64b92261728df71348958069d6`
+**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `9c90805ccb5a50c3717acfd6a1b1428f0f763150`
 **Machine-readable mirror (authoritative on conflict):** `.ai/CURRENT_TASK.json`
-**Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (canonical integration and independent verification).
+**Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (P0 canonical security hotfix).
 
 This file holds **only** the active assignment. Completed assignments live in
 `.ai/CURRENT_TASK.json` → `history` with a git coordinate to their full text.
@@ -20,61 +20,62 @@ before any handoff.
 
 ## Active assignment
 
-**Id:** `ASG-2026-10-03-003`
-**Title:** MPBSE, accessibility, branding and deep-link staging work — canonical integration and independent verification
-**Received:** 2026-10-03 · **Priority:** P0 · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** in progress — integration delivered on branch `feat/mpbse-a11y-canonical` (PR #7); founder decision received 2026-10-03: MPBSE panel English-only (GV-013 Hindi exception rejected); merge authorised after gates.
+**Id:** `ASG-2026-10-03-004`
+**Title:** P0 canonical security hotfix — `/auth?next=` open redirect
+**Received:** 2026-10-03 · **Priority:** P0 SECURITY · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
+**Status:** in progress — fix delivered on branch `security/open-redirect-canonical-fix` (PR against `main`); merge withheld for independent review (founder act).
 
 ### Business value
 
-Moves the verified staging work (MPBSE paper registry and board surface, timed-attempt
-persistence with account isolation, accessibility fixes, EduOS-only branding check, safe
-`/exam-pattern` deep-link return) into the canonical repository with complete provenance and
-no unrelated changes.
+Moves the verified open-redirect fix from staging into canonical GitHub before any production
+deployment. The signed-in flow on `main` @ `9c90805` sends an already-signed-in user to an
+external origin for 8 of the 16 supplied `next` variants (reproduced:
+`verification/open-redirect-canonical/REPRODUCTION_main-9c90805.txt`).
 
 ### Input (verified)
 
-`EDUOS_MPBSE_CANONICAL_HANDOFF.zip`, 716174 bytes, SHA-256
-`290f51a170329344a13b541f1e651c9f13c3e56ae4e069d65a585f6f9105940f` — registry `ART-0009`;
-text members committed under `verification/mpbse-a11y-canonical/handoff/`.
+`EDUOS_OPEN_REDIRECT_FIX.zip`, 3818627 bytes, SHA-256
+`7834334c57035bd8c8352edf4717561c758fa78767aab302102d83f0b5148b4d` — registry `ART-0010`;
+text members committed under `verification/open-redirect-canonical/handoff/`.
+
+### Root cause
+
+`/auth` `validateSearch` omitted a rejected `next`. TanStack Router (router-core 1.171.34,
+`router.js` 683–686) builds a match's search as `{ ...parentSearch, ...strictSearch }`, so the
+raw value survived into `Route.useSearch()` and `window.location.replace(search.next)` used it.
 
 ### Scope
 
-In: the 19 handoff paths, applied from `changes.patch` file by file; regression tests for the
-return-path sanitizer, deep-link wiring, attempt-storage cleanup and MPBSE practice staying
-disabled; verification evidence; registry updates.
-Out: merge, staging or production deployment, database or migration changes, dependency
-upgrades, `app-shell.tsx` changes beyond the three role-label colour lines.
+In: `src/lib/return-path.ts` (the one canonical sanitizer, replaces `src/lib/auth-return.ts`),
+`src/routes/auth.tsx` (validator always sets `next`; both redirects re-sanitize),
+`src/lib/__tests__/return-path.test.ts` + `return-path-route.test.ts`, evidence, registries.
+Out: merge, deployment, global 401/403 remediation (recorded as `BLK-AUTHZ-401-SERVER-FN` and
+`BLK-AUTHZ-403-ROLE-FN`).
 
 ### Steps
 
 | # | Action | Executor | Status |
 |---|---|---|---|
-| S1 | Input availability gate (ZIP identity, SHA256SUMS, manifest, 19 files, patch vs files/, secret scan) | Claude Code | done |
-| S2 | Apply `changes.patch` to main file by file; reject `files/` deltas that regress canonical controls | Claude Code | done |
-| S3 | Add missing regression tests | Claude Code | done |
-| S4 | Run vitest, tsc, lint (changed files), build, `ai:check`, secret scan | Claude Code | done |
-| S5 | Commit, push, open PR against `main` | Claude Code | done |
-| S6 | Founder decision applied: MPBSE panel English-only, Hindi strings/toggle removed, test exception removed | Claude Code | done |
-| S7 | Re-run gates, push, independent diff review, merge PR #7 (founder-authorised) | Claude Code | pending |
+| S1 | Input gate (identity, SHA256SUMS 32/32, required paths, secret scan) | Claude Code | done |
+| S2 | Reproduce the signed-in open redirect on `main` | Claude Code | done |
+| S3 | One sanitizer, validator root-cause fix, re-sanitize at both redirects, 16-variant tests in both flows | Claude Code | done |
+| S4 | Gates, commit, push, PR against `main` (no merge) | Claude Code | done |
+| S5 | Independent review and merge decision | Founder (irreversible decision) | pending |
 
 ### Permissions
 
-Deployment: **not in scope, no permission.** Merge: founder-authorised for PR #7 in the 2026-10-03 correction-and-merge assignment, executed by Claude Code only after every gate passes.
+Deployment: **not in scope, no permission.** Merge: **not allowed in this assignment.**
 
 ### Blockers
 
-`BLK-MPBSE-HINDI-RATIFICATION` closed (English-only retained by founder decision). Open items in
-`.ai/BLOCKER_REGISTRY.json` (production SHA verification by Lovable, PDF branch, roadmap case
-collision, OAuth client, PR #4 decision).
+`BLK-AUTHZ-401-SERVER-FN`, `BLK-AUTHZ-403-ROLE-FN` (new, separate assignments) plus the open
+items in `.ai/BLOCKER_REGISTRY.json`.
 
 ### Rollback
 
-Close the PR or revert the integration commit on the branch. No schema, data or deployment
-change.
+Close the PR or revert the hotfix commit. **Rolling back re-opens the signed-in open redirect.**
 
 ### Next gate
 
-Merge of PR #7 after gates, then Lovable executes `ASG-2026-10-03-002`
-(`docs/ai/examples/assignment.example.json`: verify the deployed production SHA and close
-`BLK-PRODUCTION-SHA`).
+Founder review and merge of the hotfix PR; then Lovable executes `ASG-2026-10-03-002`
+(production SHA verification) and a separate assignment addresses the 401/403 status codes.
