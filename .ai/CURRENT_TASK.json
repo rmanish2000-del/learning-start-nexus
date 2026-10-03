@@ -1,78 +1,120 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T09:00:00Z",
+  "updated_at": "2026-10-03T11:30:00Z",
   "updated_by": {
     "tool": "claude_code",
     "session": "https://claude.ai/code/session_01XgFsQZ7R2PrHTUJPqrfpHk"
   },
   "stale_after_days": 14,
   "task": {
-    "id": "ASG-2026-10-03-005",
-    "title": "Production SHA verification and release of the open-redirect fix (Lovable)",
-    "status": "planned",
+    "id": "ASG-2026-10-03-006",
+    "title": "Canonical migration reconciliation with the real staging schema (forward-only)",
+    "status": "in_progress",
     "priority": "P0",
-    "business_value": "main carries the open-redirect fix (553052e) but production serves an older build; until production is re-verified and redeployed under explicit founder permission, signed-in users remain exposed on the live site.",
+    "business_value": "Makes canonical main safely compatible with the staging schema without rewriting applied migrations or risking the 10 feedback rows, 1 remediation snapshot and 325 remediation actions on staging.",
     "owner": {
-      "tool": "lovable"
+      "tool": "claude_code"
     },
     "continuity_owner": {
       "tool": "m365_copilot"
     },
     "repo": {
       "name": "rmanish2000-del/learning-start-nexus",
-      "branch": "main",
-      "base_sha": "553052e92730189329603a33e011fe2b0c640bc4"
+      "branch": "reconcile/staging-migrations",
+      "base_sha": "5bf25fb554067560ec3b7dd5aa09380f90f82888"
     },
-    "objective": "Verify which commit production serves (GET /api/public/version vs EDUOS_RELEASE_FINGERPRINT_EVIDENCE.md), record it in CURRENT_STATE with grade verified, and prepare the production release of main@553052e for explicit founder deployment permission.",
+    "objective": "Audit the supplied migration matrix, preserve all 109 existing migrations byte-for-byte, add one forward-only idempotent reconciliation migration generated from main's own migrations, prove it on bare, main-shaped and staging-shaped disposable databases (rows preserved, idempotent, nothing removed), record ledger uncertainty, open a draft PR, no merge, no deployment, no live database access.",
     "scope": {
       "in": [
-        "production fingerprint verification",
-        "CURRENT_STATE.production update",
-        "release note for the open-redirect fix"
+        "supabase/migrations/20261003120000_staging_reconciliation_forward_only.sql (new)",
+        "scripts/db/generate-reconciliation-migration.py",
+        "scripts/db/reconciliation-dryrun/*",
+        "src/lib/__tests__/staging-migration-reconciliation.test.ts",
+        "verification/staging-migration-reconciliation/**",
+        "registry updates"
       ],
       "out": [
-        "deployment without explicit founder permission",
-        "401/403 remediation (BLK-AUTHZ-401-SERVER-FN, BLK-AUTHZ-403-ROLE-FN — separate assignment)"
+        "merge",
+        "deployment",
+        "any live database execution",
+        "staging sync",
+        "modifying, renaming or deleting any applied migration",
+        "importing staging-only migration names into main"
       ]
     },
+    "input_artifact_ids": ["ART-0011"],
     "steps": [
       {
         "id": "S1",
-        "action": "Fetch https://www.eduos.global/api/public/version and compare with the release fingerprint evidence",
-        "executor": "lovable",
-        "capability": "web.fetch_production",
-        "status": "pending"
+        "action": "Input gate: ZIP identity, 32/32 sums, manifest, drift list, 13+8 migrations, conflict pair, 3 identical pairs, schema evidence, secret scan",
+        "executor": "claude_code",
+        "capability": "repo.read",
+        "status": "done"
       },
       {
         "id": "S2",
-        "action": "Record production.deployed_sha (verified) in .ai/CURRENT_STATE.json and close BLK-PRODUCTION-SHA",
-        "executor": "lovable",
-        "capability": "repo.write",
-        "status": "pending"
+        "action": "Independent audit of the matrix: byte-identical pairs confirmed by hash; 14-vs-7 table discrepancy found and recorded",
+        "executor": "claude_code",
+        "capability": "repo.read",
+        "status": "done"
       },
       {
         "id": "S3",
-        "action": "Grant or withhold explicit production deployment permission for main@553052e",
-        "executor": "founder",
-        "capability": "deploy.production",
-        "founder_exception": "irreversible_decision",
+        "action": "Generate the forward-only idempotent migration from main's own files; no DROP TABLE/TRUNCATE/DELETE/DROP COLUMN",
+        "executor": "claude_code",
+        "capability": "repo.write",
+        "status": "done"
+      },
+      {
+        "id": "S4",
+        "action": "Dry-run on disposable PostgreSQL 16: bare, main-shaped, staging-shaped (seeded 10/1/325); idempotency and row preservation asserted",
+        "executor": "claude_code",
+        "capability": "repo.test",
+        "status": "done"
+      },
+      {
+        "id": "S5",
+        "action": "Gates, commit, push, draft PR against main (not merge-ready while the ledger is unverified)",
+        "executor": "claude_code",
+        "capability": "repo.pr",
+        "status": "done"
+      },
+      {
+        "id": "S6",
+        "action": "Attach the staging applied-migration ledger and the seven-table check",
+        "executor": "lovable",
+        "capability": "db.live_read",
         "status": "pending"
       }
     ],
     "deployment": {
       "in_scope": false,
-      "permission": "none",
-      "note": "Deployment becomes in scope only when the founder issues an assignment with permission='explicit'."
+      "permission": "none"
     },
     "merge": {
       "allowed": false,
       "by": "founder"
     },
-    "gates": ["bun run ai:check"],
-    "rollback": "Documentation-only until deployment is authorised.",
+    "gates": [
+      "bun run ai:check",
+      "bunx vitest run",
+      "bunx tsc --noEmit -p tsconfig.json",
+      "eslint on changed files",
+      "LOVABLE_SANDBOX=1 bun run build",
+      "secret scan",
+      "migration dry-run (bare, main-shaped, staging-shaped) with data-preservation assertions"
+    ],
+    "rollback": "Close the PR or delete the single new migration file; nothing has been applied to any database.",
     "return_to": "m365_copilot"
   },
   "history": [
+    {
+      "id": "ASG-2026-10-03-005",
+      "title": "Production SHA verification and release of the open-redirect fix (Lovable)",
+      "status": "superseded",
+      "completed_on": "2026-10-03",
+      "evidence": "Superseded as the active task by ASG-2026-10-03-006 (staging migration reconciliation); production SHA verification remains open as BLK-PRODUCTION-SHA for Lovable."
+    },
     {
       "id": "ASG-2026-10-03-004",
       "title": "P0 canonical security hotfix — /auth?next= open redirect",

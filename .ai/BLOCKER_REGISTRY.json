@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:50:00Z",
+  "updated_at": "2026-10-03T11:30:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -119,6 +119,22 @@
       "resolution_path": "Separate assignment: make the role guards (requireRole / admin checks) throw a 403 Response like requirePlatformOwner does, with tests. Not part of the open-redirect hotfix.",
       "status": "open",
       "evidence": "verification/open-redirect-canonical/handoff/live-matrix.json roles.educator/parent/reviewer.server"
+    },
+    {
+      "id": "BLK-MIGRATION-LEDGER-UNVERIFIED",
+      "opened": "2026-10-03",
+      "statement": "The applied-migration ledger of the staging project (supabase_migrations.schema_migrations) could not be read (no permission). Which main-only names the platform considers applied on staging is unknown; object presence is inferred from the schema, not from the ledger. The forward-only reconciliation migration is safe regardless of the ledger, but replaying main's older migrations on staging (e.g. 20260919175712 creating tables that exist) still depends on the platform marking those names applied.",
+      "owner": "lovable",
+      "resolution_path": "Export supabase_migrations.schema_migrations from staging (read-only) and attach it; then decide, with the Cloud owner, whether to mark 20260915161655 (staging content), 20260919175712, the three renamed pairs and 20261002050000/050331 as applied on staging without executing them.",
+      "status": "open"
+    },
+    {
+      "id": "BLK-STAGING-7-TABLES-UNVERIFIED",
+      "opened": "2026-10-03",
+      "statement": "The matrix claims all 14 tables of main's 20260919175712 already exist on staging, but staging's applied 20260915161655 creates only 7 of them; schema-state.txt inspected remediation_snapshots/actions only. Presence of automated_review_imports, automated_provisional_outcomes, automated_review_rollback_events, question_marking_specs, question_content_revisions, curriculum_source_register and question_originality_checks on staging is unverified. The reconciliation migration creates them IF NOT EXISTS either way.",
+      "owner": "lovable",
+      "resolution_path": "Read-only check of pg_tables on staging for the seven names; attach the result.",
+      "status": "open"
     }
   ]
 }

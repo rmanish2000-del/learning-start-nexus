@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-10-03T08:50:00Z",
+  "updated_at": "2026-10-03T11:30:00Z",
   "updated_by": {
     "tool": "claude_code"
   },
@@ -279,6 +279,37 @@
       },
       "evidence_grade": "verified",
       "note": "Ref points at the base commit; the files land with the hotfix commit."
+    },
+    {
+      "id": "ART-0011",
+      "title": "EDUOS_STAGING_RECONCILIATION_HANDOFF.zip (84242 B) — Lovable read-only staging export",
+      "kind": "package",
+      "status": "current",
+      "coordinate": {
+        "store": "git",
+        "repo": "rmanish2000-del/learning-start-nexus",
+        "ref": "5bf25fb554067560ec3b7dd5aa09380f90f82888",
+        "path": "verification/staging-migration-reconciliation/handoff/MANIFEST.json",
+        "sha256": "bd4527c3358464e72b3a6f8131555a71485837e21b5d82ece4f79ac56dc83bd4",
+        "bytes": 84242
+      },
+      "producer": {
+        "tool": "lovable",
+        "repo": "rmanish2000-del/learning-start-nexus"
+      },
+      "consumer": {
+        "tool": "claude_code",
+        "retrieval_confirmed": true,
+        "confirmed_at": "2026-10-03T11:00:00Z"
+      },
+      "access": {
+        "status": "verified",
+        "verified_by": "claude_code",
+        "verified_at": "2026-10-03T11:00:00Z",
+        "method": "sha256sum of the session upload matched; SHA256SUMS 32/32 OK; MANIFEST 32 entries; all 32 members committed under verification/staging-migration-reconciliation/handoff/ (staging-only migrations and the staging-applied 20260915161655 under handoff/staging-history/, NOT under supabase/migrations/)"
+      },
+      "evidence_grade": "verified",
+      "note": "Ref points at the base commit; files land with the reconciliation commit."
     }
   ]
 }

@@ -1,0 +1,89 @@
+## public.feedback_submissions
+row_count=10
+    column_name    |        data_type         | is_nullable 
+-------------------+--------------------------+-------------
+ id                | uuid                     | NO
+ category          | text                     | NO
+ message           | text                     | NO
+ contact_email     | text                     | YES
+ screenshot_path   | text                     | YES
+ route             | text                     | NO
+ device_class      | text                     | NO
+ viewport          | text                     | YES
+ browser_family    | text                     | YES
+ app_version       | text                     | YES
+ guidance_context  | text                     | YES
+ cta_context       | text                     | YES
+ is_authenticated  | boolean                  | NO
+ submitter_user_id | uuid                     | YES
+ client_hash       | text                     | NO
+ dedupe_hash       | text                     | NO
+ status            | text                     | NO
+ priority          | text                     | NO
+ reproduction      | text                     | NO
+ product_area      | text                     | NO
+ duplicate_of      | uuid                     | YES
+ business_impact   | text                     | YES
+ resolution_notes  | text                     | YES
+ created_at        | timestamp with time zone | NO
+ updated_at        | timestamp with time zone | NO
+(25 rows)
+
+ policyname | cmd | roles 
+------------+-----+-------
+(0 rows)
+
+## public.remediation_snapshots
+row_count=1
+ column_name |        data_type         | is_nullable 
+-------------+--------------------------+-------------
+ id          | uuid                     | NO
+ org_id      | uuid                     | NO
+ label       | text                     | NO
+ scope       | text                     | NO
+ checksum    | text                     | NO
+ location    | text                     | NO
+ payload     | jsonb                    | NO
+ created_at  | timestamp with time zone | NO
+(8 rows)
+
+          policyname          |  cmd   |      roles      
+------------------------------+--------+-----------------
+ remediation_snapshots_select | SELECT | {authenticated}
+(1 row)
+
+## public.remediation_actions
+row_count=325
+ column_name  |        data_type         | is_nullable 
+--------------+--------------------------+-------------
+ id           | uuid                     | NO
+ org_id       | uuid                     | NO
+ run_id       | uuid                     | NO
+ action_type  | text                     | NO
+ question_id  | uuid                     | YES
+ external_ref | text                     | YES
+ subject      | text                     | YES
+ prior_value  | jsonb                    | NO
+ new_value    | jsonb                    | NO
+ reason       | text                     | NO
+ evidence     | jsonb                    | NO
+ created_at   | timestamp with time zone | NO
+(12 rows)
+
+         policyname         |  cmd   |      roles      
+----------------------------+--------+-----------------
+ remediation_actions_select | SELECT | {authenticated}
+(1 row)
+
+## private.book_org_id exists
+1
+## catalogue_public_subjects view (expected dropped)
+0
+## pilot_journey table (staging alignment dropped)
+0
+## sample_workspace_events / centre_setup_progress (PR #5)
+centre_setup_progress
+sample_workspace_events
+Captured: 2026-10-03T10:51:37Z
+## production_release_pool view exists=0
+## question_commercial_release table exists=0; founder_access_denials table exists=0 (checked 10:5x UTC)

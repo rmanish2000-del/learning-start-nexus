@@ -1,8 +1,8 @@
 # EduOS — Current Assignment
 
-**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `553052e92730189329603a33e011fe2b0c640bc4`
+**Last verified:** 2026-10-03 (UTC) · **Canonical branch:** `main` · **Verified head:** `5bf25fb554067560ec3b7dd5aa09380f90f82888`
 **Machine-readable mirror (authoritative on conflict):** `.ai/CURRENT_TASK.json`
-**Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (P0 canonical security hotfix).
+**Evidence source:** founder assignment to the Claude Code seat, 2026-10-03 (canonical migration reconciliation).
 
 This file holds **only** the active assignment. Completed assignments live in
 `.ai/CURRENT_TASK.json` → `history` with a git coordinate to their full text.
@@ -20,62 +20,58 @@ before any handoff.
 
 ## Active assignment
 
-**Id:** `ASG-2026-10-03-004`
-**Title:** P0 canonical security hotfix — `/auth?next=` open redirect
-**Received:** 2026-10-03 · **Priority:** P0 SECURITY · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
-**Status:** complete — PR #8 merged as `553052e92730189329603a33e011fe2b0c640bc4` after independent review (founder-authorised). Production has **not** been redeployed; next mission `ASG-2026-10-03-005` (Lovable: production SHA verification, then explicit founder deployment permission).
+**Id:** `ASG-2026-10-03-006`
+**Title:** Canonical migration reconciliation with the real staging schema (forward-only)
+**Received:** 2026-10-03 · **Priority:** P0 SECURITY / DATA INTEGRITY · **Owner:** Claude Code · **Continuity owner:** M365 Copilot
+**Status:** PARTIAL — forward-only migration delivered and proven on disposable databases (branch `reconcile/staging-migrations`, draft PR against `main`); the staging applied-migration ledger is unverified, so the PR is not merge-ready.
 
 ### Business value
 
-Moves the verified open-redirect fix from staging into canonical GitHub before any production
-deployment. The signed-in flow on `main` @ `9c90805` sends an already-signed-in user to an
-external origin for 8 of the 16 supplied `next` variants (reproduced:
-`verification/open-redirect-canonical/REPRODUCTION_main-9c90805.txt`).
+Makes canonical main safely compatible with the staging schema without rewriting applied
+migrations or risking the 10 feedback rows, 1 remediation snapshot and 325 remediation
+actions that exist on staging.
 
 ### Input (verified)
 
-`EDUOS_OPEN_REDIRECT_FIX.zip`, 3818627 bytes, SHA-256
-`7834334c57035bd8c8352edf4717561c758fa78767aab302102d83f0b5148b4d` — registry `ART-0010`;
-text members committed under `verification/open-redirect-canonical/handoff/`.
-
-### Root cause
-
-`/auth` `validateSearch` omitted a rejected `next`. TanStack Router (router-core 1.171.34,
-`router.js` 683–686) builds a match's search as `{ ...parentSearch, ...strictSearch }`, so the
-raw value survived into `Route.useSearch()` and `window.location.replace(search.next)` used it.
+`EDUOS_STAGING_RECONCILIATION_HANDOFF.zip`, 84242 bytes, SHA-256
+`bd4527c3358464e72b3a6f8131555a71485837e21b5d82ece4f79ac56dc83bd4` — registry `ART-0011`;
+all 32 members committed under `verification/staging-migration-reconciliation/handoff/`.
 
 ### Scope
 
-In: `src/lib/return-path.ts` (the one canonical sanitizer, replaces `src/lib/auth-return.ts`),
-`src/routes/auth.tsx` (validator always sets `next`; both redirects re-sanitize),
-`src/lib/__tests__/return-path.test.ts` + `return-path-route.test.ts`, evidence, registries.
-Out: merge, deployment, global 401/403 remediation (recorded as `BLK-AUTHZ-401-SERVER-FN` and
-`BLK-AUTHZ-403-ROLE-FN`).
+In: one new migration `supabase/migrations/20261003120000_staging_reconciliation_forward_only.sql`
+(generated from main's own migrations by `scripts/db/generate-reconciliation-migration.py`),
+the dry-run harness `scripts/db/reconciliation-dryrun/`, the test
+`src/lib/__tests__/staging-migration-reconciliation.test.ts`, evidence and registries.
+Out: merge, deployment, any live database execution, staging sync, modifying/renaming/deleting
+any applied migration, importing staging-only migration names into main.
 
 ### Steps
 
 | # | Action | Executor | Status |
 |---|---|---|---|
-| S1 | Input gate (identity, SHA256SUMS 32/32, required paths, secret scan) | Claude Code | done |
-| S2 | Reproduce the signed-in open redirect on `main` | Claude Code | done |
-| S3 | One sanitizer, validator root-cause fix, re-sanitize at both redirects, 16-variant tests in both flows | Claude Code | done |
-| S4 | Gates, commit, push, PR against `main` (no merge) | Claude Code | done |
-| S5 | Independent review and merge (founder-authorised) | Claude Code | done — merge `553052e9` |
+| S1 | Input gate (identity, 32/32 sums, manifest, drift, 13+8 migrations, conflict, 3 pairs, schema evidence, secrets) | Claude Code | done |
+| S2 | Independent audit of the matrix (hash-confirmed pairs; 14-vs-7 table discrepancy recorded) | Claude Code | done |
+| S3 | Generate the forward-only idempotent migration; no DROP TABLE / TRUNCATE / DELETE / DROP COLUMN | Claude Code | done |
+| S4 | Dry-run on disposable PostgreSQL 16: bare, main-shaped (no-op), staging-shaped (rows preserved, idempotent) | Claude Code | done |
+| S5 | Gates, commit, push, draft PR against `main` | Claude Code | done |
+| S6 | Attach the staging applied-migration ledger and the seven-table check | Lovable | pending |
+| S7 | Decide ledger marking with the Cloud owner; founder merge decision | Founder (irreversible decision) | pending |
 
 ### Permissions
 
-Deployment: **not in scope, no permission.** Merge: **not allowed in this assignment.**
+Deployment: **not allowed.** Database execution: **not allowed.** Merge: **not allowed in this assignment.**
 
 ### Blockers
 
-`BLK-AUTHZ-401-SERVER-FN`, `BLK-AUTHZ-403-ROLE-FN` (new, separate assignments) plus the open
+`BLK-MIGRATION-LEDGER-UNVERIFIED`, `BLK-STAGING-7-TABLES-UNVERIFIED` (Lovable), plus the open
 items in `.ai/BLOCKER_REGISTRY.json`.
 
 ### Rollback
 
-Close the PR or revert the hotfix commit. **Rolling back re-opens the signed-in open redirect.**
+Close the PR or delete the single new migration file; nothing has been applied anywhere.
 
 ### Next gate
 
-Founder review and merge of the hotfix PR; then Lovable executes `ASG-2026-10-03-002`
-(production SHA verification) and a separate assignment addresses the 401/403 status codes.
+Lovable attaches the staging ledger export (read-only) and the seven-table check; then the
+founder decides on ledger marking and the merge.
